@@ -27,6 +27,9 @@ yarn-error.log*
 # Dependency directories
 node_modules/
 
+# Terraform working dir (never commit providers/modules)
+**/.terraform/
+
 # Eslint cache
 .eslintcache
 
