@@ -138,7 +138,10 @@ public with sharing class PrivacyRequestController {
 
   private Boolean validateCaptcha(String response) {
     // String secretKey = '6LcgTxInAAAAAMV-upoVlSD8ONFTXLCw5qBrDIAN';
-    String secretKey = '';
+    String secretKey = MqlSecrets.getRecaptchaSecretKey();
+    // Fail closed if the org isn't configured.
+    if (String.isBlank(secretKey))
+      return false;
     String captchaVerifyURL = 'https://www.google.com/recaptcha/api/siteverify';
 
     HttpRequest req = new HttpRequest();

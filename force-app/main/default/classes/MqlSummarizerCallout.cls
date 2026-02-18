@@ -8,7 +8,6 @@ public class MqlSummarizerCallout {
   // (We can rename/generalize the CMDT later without changing callout logic.)
   private class EndpointConfig {
     public String baseUrl;
-    public String apiKey;
   }
 
   private static String getEnvironment() {
@@ -24,14 +23,13 @@ public class MqlSummarizerCallout {
     EndpointConfig cfg = new EndpointConfig();
     try {
       List<TicketSummarizerEndpoint__mdt> rows = [
-        SELECT BaseUrl__c, ApiKey__c
+        SELECT BaseUrl__c
         FROM TicketSummarizerEndpoint__mdt
         WHERE Environment__c = :environment
         LIMIT 1
       ];
       if (!rows.isEmpty()) {
         cfg.baseUrl = rows[0].BaseUrl__c;
-        cfg.apiKey = rows[0].ApiKey__c;
       }
     } catch (Exception e) {
       // If the CMDT isn't available in this org, fall back to hardcoded defaults.
@@ -111,7 +109,6 @@ public class MqlSummarizerCallout {
       return;
 
     String environment = getEnvironment();
-    EndpointConfig cfg = loadEndpointConfig(environment);
 
     HttpRequest request = new HttpRequest();
     request.setEndpoint(getEndpointUrl(environment));
@@ -119,8 +116,9 @@ public class MqlSummarizerCallout {
     request.setHeader('Content-Type', 'application/json');
 
     // API Gateway requires x-api-key when api_key_required = true.
-    if (String.isNotBlank(cfg.apiKey)) {
-      request.setHeader('x-api-key', cfg.apiKey);
+    String apiKey = MqlSecrets.getApiGatewayApiKey();
+    if (String.isNotBlank(apiKey)) {
+      request.setHeader('x-api-key', apiKey);
     }
 
     Map<String, Object> requestBody = new Map<String, Object>{

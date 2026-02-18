@@ -2,9 +2,6 @@ public with sharing class ContactUsRequestController {
   // test https://erepublic--staging--c.visualforce.com/apex/ContactUsRequest
 
   // HubSpot Configuration
-  // Do not hardcode secrets in source control. Configure this via Named Credential,
-  // Custom Metadata, or another org-level secret store.
-  private static final String HUBSPOT_ACCESS_TOKEN = '';
   private static final String HUBSPOT_API_URL = 'https://api.hubapi.com/crm/v3/objects/contacts';
 
   // Google reCAPTCHA keys must be configured in the org (do not commit them).
@@ -45,7 +42,10 @@ public with sharing class ContactUsRequestController {
 
   private Boolean validateCaptcha(String response) {
     // String secretKey = '6LcgTxInAAAAAMV-upoVlSD8ONFTXLCw5qBrDIAN';
-    String secretKey = '';
+    String secretKey = MqlSecrets.getRecaptchaSecretKey();
+    // Fail closed if the org isn't configured.
+    if (String.isBlank(secretKey))
+      return false;
     String captchaVerifyURL = 'https://www.google.com/recaptcha/api/siteverify';
 
     HttpRequest req = new HttpRequest();
@@ -171,6 +171,11 @@ public with sharing class ContactUsRequestController {
     String topic,
     String message
   ) {
+    String hubspotToken = MqlSecrets.getHubspotPrivateAppToken();
+    if (String.isBlank(hubspotToken)) {
+      System.debug('HubSpot token not configured; skipping callout.');
+      return;
+    }
     try {
       // Build the request body
       Map<String, Object> properties = new Map<String, Object>();
@@ -207,7 +212,7 @@ public with sharing class ContactUsRequestController {
       request.setEndpoint(HUBSPOT_API_URL);
       request.setMethod('POST');
       request.setHeader('Content-Type', 'application/json');
-      request.setHeader('Authorization', 'Bearer ' + HUBSPOT_ACCESS_TOKEN);
+      request.setHeader('Authorization', 'Bearer ' + hubspotToken);
       request.setBody(JSON.serialize(requestBody));
       request.setTimeout(120000);
 
@@ -241,6 +246,11 @@ public with sharing class ContactUsRequestController {
     String email,
     Map<String, Object> properties
   ) {
+    String hubspotToken = MqlSecrets.getHubspotPrivateAppToken();
+    if (String.isBlank(hubspotToken)) {
+      System.debug('HubSpot token not configured; skipping callout.');
+      return;
+    }
     try {
       // First, search for the contact by email
       String searchUrl = 'https://api.hubapi.com/crm/v3/objects/contacts/search';
@@ -265,10 +275,7 @@ public with sharing class ContactUsRequestController {
       searchRequest.setEndpoint(searchUrl);
       searchRequest.setMethod('POST');
       searchRequest.setHeader('Content-Type', 'application/json');
-      searchRequest.setHeader(
-        'Authorization',
-        'Bearer ' + HUBSPOT_ACCESS_TOKEN
-      );
+      searchRequest.setHeader('Authorization', 'Bearer ' + hubspotToken);
       searchRequest.setBody(JSON.serialize(searchBody));
       searchRequest.setTimeout(120000);
 
@@ -293,10 +300,7 @@ public with sharing class ContactUsRequestController {
           updateRequest.setEndpoint(updateUrl);
           updateRequest.setMethod('PATCH');
           updateRequest.setHeader('Content-Type', 'application/json');
-          updateRequest.setHeader(
-            'Authorization',
-            'Bearer ' + HUBSPOT_ACCESS_TOKEN
-          );
+          updateRequest.setHeader('Authorization', 'Bearer ' + hubspotToken);
           updateRequest.setBody(JSON.serialize(updateBody));
           updateRequest.setTimeout(120000);
 

@@ -1,12 +1,18 @@
-@isTest(SeeAllData=true)
+@isTest
 public class MqlSummarizerCalloutTest {
-  private static Id anyContactWithAccountId() {
-    List<Contact> cs = [SELECT Id FROM Contact WHERE AccountId != NULL LIMIT 1];
-    System.assert(
-      !cs.isEmpty(),
-      'Expected at least one Contact with an Account in org data'
+  private static void upsertTestSecrets() {
+    upsert new MqlSecrets__c(
+      SetupOwnerId = UserInfo.getOrganizationId(),
+      ApiGatewayApiKey__c = 'test-apigw-key'
     );
-    return cs[0].Id;
+  }
+
+  private static Id createContactId() {
+    Account a = new Account(Name = 'Test Account');
+    insert a;
+    Contact c = new Contact(LastName = 'Test Contact', AccountId = a.Id);
+    insert c;
+    return c.Id;
   }
 
   private class MockOk implements HttpCalloutMock {
@@ -18,6 +24,7 @@ public class MqlSummarizerCalloutTest {
         String.isNotBlank(req.getHeader('x-api-key')),
         'Expected x-api-key header'
       );
+      System.assertEquals('test-apigw-key', req.getHeader('x-api-key'));
       System.assert(
         req.getEndpoint().contains('/summarize'),
         'Expected /summarize endpoint'
@@ -33,23 +40,25 @@ public class MqlSummarizerCalloutTest {
 
   @isTest
   static void insertsThresholdMql_WritesSummary() {
+    upsertTestSecrets();
     Test.setMock(HttpCalloutMock.class, new MockOk());
 
-    Id contactId = anyContactWithAccountId();
+    Id contactId = createContactId();
 
-    Test.startTest();
-    insert new MQL__c(
+    MQL__c m = new MQL__c(
       Contact__c = contactId,
       Lead_Source__c = 'Fit and Behavior Threshold Reached'
     );
+    insert m;
+
+    Test.startTest();
+    MqlSummarizerCallout.triggerSummarization(new Set<Id>{ m.Id });
     Test.stopTest();
 
     MQL__c mql = [
       SELECT Engagement_AI_Summary__c
       FROM MQL__c
-      WHERE Contact__c = :contactId
-      ORDER BY CreatedDate DESC
-      LIMIT 1
+      WHERE Id = :m.Id
     ];
     System.assertEquals('<p>ok</p>', mql.Engagement_AI_Summary__c);
   }
@@ -57,26 +66,27 @@ public class MqlSummarizerCalloutTest {
   @isTest
   static void insertNonThresholdMql_DoesNotCallout() {
     // If a callout happens, the test will fail because no mock is registered.
-    Id contactId = anyContactWithAccountId();
+    Id contactId = createContactId();
+    MQL__c m = new MQL__c(Contact__c = contactId, Lead_Source__c = 'Email');
+    insert m;
 
     Test.startTest();
-    insert new MQL__c(Contact__c = contactId, Lead_Source__c = 'Email');
+    MqlSummarizerCallout.triggerSummarization(new Set<Id>{ m.Id });
     Test.stopTest();
 
     MQL__c mql = [
       SELECT Engagement_AI_Summary__c
       FROM MQL__c
-      WHERE Contact__c = :contactId
-      ORDER BY CreatedDate DESC
-      LIMIT 1
+      WHERE Id = :m.Id
     ];
     System.assertEquals(null, mql.Engagement_AI_Summary__c);
   }
 
   @isTest
   static void forceOverwrite_OverwritesExistingSummary() {
+    upsertTestSecrets();
     Test.setMock(HttpCalloutMock.class, new MockOk());
-    Id contactId = anyContactWithAccountId();
+    Id contactId = createContactId();
 
     // Create threshold MQL with existing summary.
     MQL__c m = new MQL__c(
@@ -101,8 +111,9 @@ public class MqlSummarizerCalloutTest {
 
   @isTest
   static void adminInvocable_ForceOverwrite_WritesSummary() {
+    upsertTestSecrets();
     Test.setMock(HttpCalloutMock.class, new MockOk());
-    Id contactId = anyContactWithAccountId();
+    Id contactId = createContactId();
 
     MQL__c m = new MQL__c(
       Contact__c = contactId,
@@ -132,8 +143,9 @@ public class MqlSummarizerCalloutTest {
 
   @isTest
   static void adminInvocable_NonForce_WritesWhenBlank() {
+    upsertTestSecrets();
     Test.setMock(HttpCalloutMock.class, new MockOk());
-    Id contactId = anyContactWithAccountId();
+    Id contactId = createContactId();
 
     MQL__c m = new MQL__c(
       Contact__c = contactId,
@@ -162,8 +174,9 @@ public class MqlSummarizerCalloutTest {
 
   @isTest
   static void adminHelper_RegenerateForce_Overwrites() {
+    upsertTestSecrets();
     Test.setMock(HttpCalloutMock.class, new MockOk());
-    Id contactId = anyContactWithAccountId();
+    Id contactId = createContactId();
 
     MQL__c m = new MQL__c(
       Contact__c = contactId,
@@ -187,8 +200,9 @@ public class MqlSummarizerCalloutTest {
 
   @isTest
   static void forceOverwrite_AllowsNonThresholdMql_ForTesting() {
+    upsertTestSecrets();
     Test.setMock(HttpCalloutMock.class, new MockOk());
-    Id contactId = anyContactWithAccountId();
+    Id contactId = createContactId();
 
     MQL__c m = new MQL__c(
       Contact__c = contactId,

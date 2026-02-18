@@ -1,10 +1,21 @@
 @isTest
 private class ContactUsRequestControllerTest {
+  private static void upsertTestSecrets() {
+    // Org-defaults Hierarchy Custom Setting record for tests.
+    upsert new MqlSecrets__c(
+      SetupOwnerId = UserInfo.getOrganizationId(),
+      RecaptchaSecretKey__c = 'test-recaptcha-secret',
+      HubspotPrivateAppToken__c = 'test-hubspot-token',
+      ApiGatewayApiKey__c = 'test-apigw-key'
+    );
+  }
+
   /**
    * Test successful form submission
    */
   @isTest
   static void testSuccessfulFormSubmission() {
+    upsertTestSecrets();
     // Set up ApexPages context
     PageReference pageRef = Page.ContactUsRequest;
     Test.setCurrentPage(pageRef);
@@ -64,6 +75,7 @@ private class ContactUsRequestControllerTest {
    */
   @isTest
   static void testMinimalFormSubmission() {
+    upsertTestSecrets();
     // Set up ApexPages context
     PageReference pageRef = Page.ContactUsRequest;
     Test.setCurrentPage(pageRef);
@@ -146,6 +158,7 @@ private class ContactUsRequestControllerTest {
    */
   @isTest
   static void testHubSpotContactExists() {
+    upsertTestSecrets();
     // Set up ApexPages context
     PageReference pageRef = Page.ContactUsRequest;
     Test.setCurrentPage(pageRef);
@@ -192,6 +205,7 @@ private class ContactUsRequestControllerTest {
    */
   @isTest
   static void testSalesAdvertisingTopicSentToHubSpot() {
+    upsertTestSecrets();
     // Set up ApexPages context
     PageReference pageRef = Page.ContactUsRequest;
     Test.setCurrentPage(pageRef);
@@ -240,6 +254,7 @@ private class ContactUsRequestControllerTest {
    */
   @isTest
   static void testNonSalesAdvertisingTopicNotSentToHubSpot() {
+    upsertTestSecrets();
     // Set up ApexPages context
     PageReference pageRef = Page.ContactUsRequest;
     Test.setCurrentPage(pageRef);
@@ -306,6 +321,7 @@ private class ContactUsRequestControllerTest {
    */
   @isTest
   static void testSalesAdvertisingHubSpotConflictUpdate() {
+    upsertTestSecrets();
     // Set up ApexPages context
     PageReference pageRef = Page.ContactUsRequest;
     Test.setCurrentPage(pageRef);
@@ -352,6 +368,7 @@ private class ContactUsRequestControllerTest {
    */
   @isTest
   static void testHubSpotApiError() {
+    upsertTestSecrets();
     // Set up ApexPages context
     PageReference pageRef = Page.ContactUsRequest;
     Test.setCurrentPage(pageRef);

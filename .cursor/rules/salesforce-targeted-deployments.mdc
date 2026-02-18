@@ -1,0 +1,41 @@
+---
+description: Require targeted Salesforce deployments (only changed metadata + specified local tests)
+alwaysApply: true
+---
+
+# Salesforce Deployments Must Be Targeted
+
+When deploying to Salesforce (sandbox or production), ALWAYS use a targeted deployment:
+
+- Deploy ONLY the components you changed or created (plus any required companion metadata, e.g. `*.cls-meta.xml`).
+- Include the relevant Apex test classes in the deploy.
+- Run ONLY specified local tests (do not run all tests org-wide).
+
+## Required CLI Pattern
+
+Use `sf project deploy start` with one `--source-dir` per component (or folder) and `--test-level RunSpecifiedTests` with explicit `--tests` entries.
+
+### Example
+
+```sh
+sf project deploy start \
+  --target-org mql-sandbox \
+  --source-dir force-app/main/default/objects/MqlSecrets__c \
+  --source-dir force-app/main/default/classes/MqlSecrets.cls \
+  --source-dir force-app/main/default/classes/MqlSecrets.cls-meta.xml \
+  --source-dir force-app/main/default/classes/ContactUsRequestController.cls \
+  --source-dir force-app/main/default/classes/PrivacyRequestController.cls \
+  --source-dir force-app/main/default/classes/TicketSummarizerCallout.cls \
+  --source-dir force-app/main/default/classes/MqlSummarizerCallout.cls \
+  --source-dir force-app/main/default/classes/ContactUsRequestControllerTest.cls \
+  --source-dir force-app/main/default/classes/PrivacyRequestController_test.cls \
+  --test-level RunSpecifiedTests \
+  --tests ContactUsRequestControllerTest \
+  --tests PrivacyRequestController_test
+```
+
+## Guardrails
+
+- Do NOT deploy the entire `force-app/` tree unless explicitly requested.
+- Do NOT use `--test-level RunLocalTests` or `RunAllTestsInOrg` unless explicitly requested.
+- Prefer listing individual files/folders under `force-app/main/default/` rather than broad globs.

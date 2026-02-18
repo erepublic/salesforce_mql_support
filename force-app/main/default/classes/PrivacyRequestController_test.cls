@@ -1,6 +1,12 @@
 @isTest
 public class PrivacyRequestController_test {
   public static testMethod void testPrivacyReqController() {
+    // Org-defaults Hierarchy Custom Setting record for tests.
+    upsert new MqlSecrets__c(
+      SetupOwnerId = UserInfo.getOrganizationId(),
+      RecaptchaSecretKey__c = 'test-recaptcha-secret'
+    );
+
     PrivacyRequestController testCtrl = new PrivacyRequestController();
     List<selectOption> stateOpts = testCtrl.getStateOptions();
     System.assertEquals(stateOpts.size(), 77);

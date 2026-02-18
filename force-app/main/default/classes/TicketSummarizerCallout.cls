@@ -2,26 +2,25 @@ public class TicketSummarizerCallout {
   // Environment-specific API Gateway URLs
   private static final String SANDBOX_BASE_URL = 'https://ur090e3441.execute-api.us-west-1.amazonaws.com';
   private static final String PRODUCTION_BASE_URL = 'https://3fncen6rdd.execute-api.us-west-1.amazonaws.com';
-  private static final String SANDBOX_API_KEY = ''; // Prefer configuring in TicketSummarizerEndpoint__mdt
-  private static final String PRODUCTION_API_KEY = ''; // Prefer configuring in TicketSummarizerEndpoint__mdt
+
+  @TestVisible
+  private static String testEnvironmentOverride;
 
   private class EndpointConfig {
     public String baseUrl;
-    public String apiKey;
   }
 
   private static EndpointConfig loadEndpointConfig(String environment) {
     EndpointConfig cfg = new EndpointConfig();
     try {
       List<TicketSummarizerEndpoint__mdt> rows = [
-        SELECT BaseUrl__c, ApiKey__c
+        SELECT BaseUrl__c
         FROM TicketSummarizerEndpoint__mdt
         WHERE Environment__c = :environment
         LIMIT 1
       ];
       if (!rows.isEmpty()) {
         cfg.baseUrl = rows[0].BaseUrl__c;
-        cfg.apiKey = rows[0].ApiKey__c;
       }
     } catch (Exception e) {
       // Fallback to hardcoded defaults if the CMDT isn't deployed yet.
@@ -32,6 +31,10 @@ public class TicketSummarizerCallout {
   // Detect environment based on org domain
   private static String getEnvironment() {
     try {
+      if (Test.isRunningTest() && String.isNotBlank(testEnvironmentOverride)) {
+        return testEnvironmentOverride;
+      }
+
       // Try multiple methods to detect sandbox
       String orgDomain = DomainCreator.getOrgMyDomainHostname();
       System.debug('Org domain: ' + orgDomain);
@@ -136,16 +139,13 @@ public class TicketSummarizerCallout {
 
     String endpointUrl = getEndpointUrl();
     String environment = getEnvironment();
-    EndpointConfig cfg = loadEndpointConfig(environment);
 
     request.setEndpoint(endpointUrl);
     request.setMethod('POST');
     request.setHeader('Content-Type', 'application/json');
 
     // API Gateway requires x-api-key when api_key_required = true.
-    String apiKey = String.isNotBlank(cfg.apiKey)
-      ? cfg.apiKey
-      : ((environment == 'production') ? PRODUCTION_API_KEY : SANDBOX_API_KEY);
+    String apiKey = MqlSecrets.getApiGatewayApiKey();
     if (String.isNotBlank(apiKey)) {
       request.setHeader('x-api-key', apiKey);
     }
