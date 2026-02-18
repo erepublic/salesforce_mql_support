@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Request_Gift_Cards</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Request Gift Cards</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <requireRowSelection>false</requireRowSelection>
+    <url
+  >/flow/Event_or_Conference_SF_Create_Gift_Card_Ticket?recordId={!Events__c.Id}&amp;retURL=https://erepublic.lightning.force.com/lightning/r/Events__c/{!Events__c.Id}/related/Tickets__r/view</url>
+</WebLink>

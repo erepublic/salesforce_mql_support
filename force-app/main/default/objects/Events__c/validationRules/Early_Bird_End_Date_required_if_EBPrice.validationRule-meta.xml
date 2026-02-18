@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Early_Bird_End_Date_required_if_EBPrice</fullName>
+    <active>true</active>
+    <errorConditionFormula>(Govt_Early_Bird_Discount__c  &lt;&gt; 0 || 
+  Industry_Early_Bird_Discount__c  &lt;&gt; 0)  &amp;&amp; 
+  ISBLANK(TEXT(Early_Bird_End_Date__c))</errorConditionFormula>
+    <errorDisplayField>Early_Bird_End_Date__c</errorDisplayField>
+    <errorMessage>Please put a value in the Early Bird End Date</errorMessage>
+</ValidationRule>

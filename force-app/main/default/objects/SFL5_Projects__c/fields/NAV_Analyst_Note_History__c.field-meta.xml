@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NAV_Analyst_Note_History__c</fullName>
+    <inlineHelpText
+  >History of the NAV Analyst Notes. Insert most recent note (keep it short). Do not erase previous notes.</inlineHelpText>
+    <label>NAV Analyst Note History [DELETE]</label>
+    <length>32000</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

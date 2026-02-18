@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>eventsabstract__c</fullName>
+    <description
+  >An abstract or short description of the event. Typically a paragraph.</description>
+    <inlineHelpText
+  >An abstract or short description of the event. Typically a paragraph.</inlineHelpText>
+    <label>On24 eventsabstract</label>
+    <length>2300</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

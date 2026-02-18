@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Report_Frequency__c</fullName>
+    <description
+  >How often the delivery team will be emailing client reports</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >How often the delivery team will be emailing client reports: weekly, twice per month, monthly, end of campaign)</inlineHelpText>
+    <label>Report Frequency</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

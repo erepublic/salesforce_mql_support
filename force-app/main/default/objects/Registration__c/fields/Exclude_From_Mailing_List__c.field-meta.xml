@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exclude_From_Mailing_List__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Excludes registrant from the mailing list for this event.</description>
+    <inlineHelpText
+  >Check here to exclude this registrant from the mailing list for this event only.</inlineHelpText>
+    <label>Exclude From Mailing List?</label>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

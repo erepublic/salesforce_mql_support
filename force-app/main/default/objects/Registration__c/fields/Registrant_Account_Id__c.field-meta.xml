@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Registrant_Account_Id__c</fullName>
+    <description>The registrant&apos;s Account Id.</description>
+    <externalId>false</externalId>
+    <formula>Registrant_Name__r.account_id_formula__c</formula>
+    <label>Registrant Account Id</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,1729 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Stage__c</fullName>
+    <label>Project Stage</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Project_Type__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Initiated</fullName>
+                <default>false</default>
+                <label>Initiated</label>
+            </value>
+            <value>
+                <fullName>Received</fullName>
+                <default>true</default>
+                <label>Received</label>
+            </value>
+            <value>
+                <fullName>Scheduled Kick-Off</fullName>
+                <default>false</default>
+                <label>Scheduled Kick-Off</label>
+            </value>
+            <value>
+                <fullName>Kick-off Call Complete</fullName>
+                <default>false</default>
+                <label>Kick-off Call Complete</label>
+            </value>
+            <value>
+                <fullName>Video Prep</fullName>
+                <default>false</default>
+                <label>Video Prep</label>
+            </value>
+            <value>
+                <fullName>SOW Complete</fullName>
+                <default>false</default>
+                <label>SOW Complete</label>
+            </value>
+            <value>
+                <fullName>SOW w/Client for Approval</fullName>
+                <default>false</default>
+                <label>SOW w/Client for Approval</label>
+            </value>
+            <value>
+                <fullName>SOW Approved</fullName>
+                <default>false</default>
+                <label>SOW Approved</label>
+            </value>
+            <value>
+                <fullName>Survey w/Client for Approval</fullName>
+                <default>false</default>
+                <label>Survey w/Client for Approval</label>
+            </value>
+            <value>
+                <fullName>Survey Approved (Field Ready)</fullName>
+                <default>false</default>
+                <label>Survey Approved (Field Ready)</label>
+            </value>
+            <value>
+                <fullName>Outline Received</fullName>
+                <default>false</default>
+                <label>Outline Received</label>
+            </value>
+            <value>
+                <fullName>Outline with Client</fullName>
+                <default>false</default>
+                <label>Outline with Client</label>
+            </value>
+            <value>
+                <fullName>Drafting</fullName>
+                <default>false</default>
+                <label>Drafting</label>
+            </value>
+            <value>
+                <fullName>Internal Draft Review</fullName>
+                <default>false</default>
+                <label>Internal Draft Review</label>
+            </value>
+            <value>
+                <fullName>Draft with Client</fullName>
+                <default>false</default>
+                <label>Draft with Client</label>
+            </value>
+            <value>
+                <fullName>Design</fullName>
+                <default>false</default>
+                <label>Design</label>
+            </value>
+            <value>
+                <fullName>Designed Proof with Client</fullName>
+                <default>false</default>
+                <label>Designed Proof with Client</label>
+            </value>
+            <value>
+                <fullName>Final Internal Review and Copy Edit</fullName>
+                <default>false</default>
+                <label>Final Internal Review and Copy Edit</label>
+            </value>
+            <value>
+                <fullName>Planning</fullName>
+                <default>false</default>
+                <label>Planning</label>
+            </value>
+            <value>
+                <fullName>Kick Off</fullName>
+                <default>false</default>
+                <label>Kick Off</label>
+            </value>
+            <value>
+                <fullName>Business Requirements</fullName>
+                <default>false</default>
+                <label>Business Requirements</label>
+            </value>
+            <value>
+                <fullName>Technical Requirements</fullName>
+                <default>false</default>
+                <label>Technical Requirements</label>
+            </value>
+            <value>
+                <fullName>Pending Standup or Interview</fullName>
+                <default>false</default>
+                <label>Pending Standup or Interview</label>
+            </value>
+            <value>
+                <fullName>Meeting with Rep</fullName>
+                <default>false</default>
+                <label>Meeting with Rep</label>
+            </value>
+            <value>
+                <fullName>Draft</fullName>
+                <default>false</default>
+                <label>Draft</label>
+            </value>
+            <value>
+                <fullName>Treatment</fullName>
+                <default>false</default>
+                <label>Treatment</label>
+            </value>
+            <value>
+                <fullName>Kick-off Call</fullName>
+                <default>false</default>
+                <label>Kick-off Call</label>
+            </value>
+            <value>
+                <fullName>SOW</fullName>
+                <default>false</default>
+                <label>SOW</label>
+            </value>
+            <value>
+                <fullName>Contacts Received</fullName>
+                <default>false</default>
+                <label>Contacts Received</label>
+            </value>
+            <value>
+                <fullName>Printing</fullName>
+                <default>false</default>
+                <label>Printing</label>
+            </value>
+            <value>
+                <fullName>Distribution</fullName>
+                <default>false</default>
+                <label>Distribution</label>
+            </value>
+            <value>
+                <fullName>Discussion Guide</fullName>
+                <default>false</default>
+                <label>Discussion Guide out for Approval</label>
+            </value>
+            <value>
+                <fullName>Discussion Guide Approved</fullName>
+                <default>false</default>
+                <label>Discussion Guide Approved</label>
+            </value>
+            <value>
+                <fullName>Outreach In Progress</fullName>
+                <default>false</default>
+                <label>Outreach In Progress</label>
+            </value>
+            <value>
+                <fullName>Interview In Progress</fullName>
+                <default>false</default>
+                <label>Interviews In Progress</label>
+            </value>
+            <value>
+                <fullName>Target List</fullName>
+                <default>false</default>
+                <label>Target List</label>
+            </value>
+            <value>
+                <fullName>Data Complete</fullName>
+                <default>false</default>
+                <label>Data Complete</label>
+            </value>
+            <value>
+                <fullName>Analysis</fullName>
+                <default>false</default>
+                <label>Analysis</label>
+            </value>
+            <value>
+                <fullName>Marketing Kickoff Call Completed</fullName>
+                <default>false</default>
+                <label>Marketing Kickoff Call Completed</label>
+            </value>
+            <value>
+                <fullName>Talking Points to Client</fullName>
+                <default>false</default>
+                <label>Talking Points to Client</label>
+            </value>
+            <value>
+                <fullName>Interviews Completed</fullName>
+                <default>false</default>
+                <label>Interviews Completed</label>
+            </value>
+            <value>
+                <fullName>Writeups Complete</fullName>
+                <default>false</default>
+                <label>Writeups Complete</label>
+            </value>
+            <value>
+                <fullName>Writing Process</fullName>
+                <default>false</default>
+                <label>Writing Process</label>
+            </value>
+            <value>
+                <fullName>Editing Process</fullName>
+                <default>false</default>
+                <label>Editing Process</label>
+            </value>
+            <value>
+                <fullName>Text To Client</fullName>
+                <default>false</default>
+                <label>Text To Client</label>
+            </value>
+            <value>
+                <fullName>Text to Government</fullName>
+                <default>false</default>
+                <label>Text to Government</label>
+            </value>
+            <value>
+                <fullName>Layout Process</fullName>
+                <default>false</default>
+                <label>Layout Process</label>
+            </value>
+            <value>
+                <fullName>Out for Final Project Approval</fullName>
+                <default>false</default>
+                <label>Out for Final Project Approval</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <label>Approved</label>
+            </value>
+            <value>
+                <fullName>Colors</fullName>
+                <default>false</default>
+                <label>Colors</label>
+            </value>
+            <value>
+                <fullName>Writer/Producer Research</fullName>
+                <default>false</default>
+                <label>Writer/Producer Research</label>
+            </value>
+            <value>
+                <fullName>Outline to Client</fullName>
+                <default>false</default>
+                <label>Outline to Client</label>
+            </value>
+            <value>
+                <fullName>Contact Interviewees</fullName>
+                <default>false</default>
+                <label>Contact Interviewees</label>
+            </value>
+            <value>
+                <fullName>Create 2nd Outline</fullName>
+                <default>false</default>
+                <label>Create 2nd Outline</label>
+            </value>
+            <value>
+                <fullName>1st Script Outline to Client</fullName>
+                <default>false</default>
+                <label>1st Script Outline to Client</label>
+            </value>
+            <value>
+                <fullName>1st Feedback Received</fullName>
+                <default>false</default>
+                <label>1st Feedback Received</label>
+            </value>
+            <value>
+                <fullName>2nd Script Outline to Client</fullName>
+                <default>false</default>
+                <label>2nd Script Outline to Client</label>
+            </value>
+            <value>
+                <fullName>2nd Feedback Received</fullName>
+                <default>false</default>
+                <label>2nd Feedback Received</label>
+            </value>
+            <value>
+                <fullName>Interview Pending</fullName>
+                <default>false</default>
+                <label>Interview Pending</label>
+            </value>
+            <value>
+                <fullName>Artwork Completed</fullName>
+                <default>false</default>
+                <label>Artwork Completed</label>
+            </value>
+            <value>
+                <fullName>Pre-Production</fullName>
+                <default>false</default>
+                <label>Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Production</fullName>
+                <default>false</default>
+                <label>Production</label>
+            </value>
+            <value>
+                <fullName>Post-Production</fullName>
+                <default>false</default>
+                <label>Post-Production</label>
+            </value>
+            <value>
+                <fullName>Link Delivered</fullName>
+                <default>false</default>
+                <label>Link Delivered</label>
+            </value>
+            <value>
+                <fullName>Deliver Video</fullName>
+                <default>false</default>
+                <label>Deliver Video</label>
+            </value>
+            <value>
+                <fullName>Draft Delivered</fullName>
+                <default>false</default>
+                <label>Draft Delivered</label>
+            </value>
+            <value>
+                <fullName>Active</fullName>
+                <default>false</default>
+                <label>Active</label>
+            </value>
+            <value>
+                <fullName>Questions Received</fullName>
+                <default>false</default>
+                <label>Questions Received</label>
+            </value>
+            <value>
+                <fullName>Promotion Writing/Survey Posting</fullName>
+                <default>false</default>
+                <label>Promotion Writing/Survey Posting</label>
+            </value>
+            <value>
+                <fullName>Client Approval of Promotion/Survey Posted</fullName>
+                <default>false</default>
+                <label>Client Approval of Promotion/Survey Posted</label>
+            </value>
+            <value>
+                <fullName>Building/Editing Survey</fullName>
+                <default>false</default>
+                <label>Building/Editing Survey</label>
+            </value>
+            <value>
+                <fullName>Survey Instrument</fullName>
+                <default>false</default>
+                <label>Survey Instrument</label>
+            </value>
+            <value>
+                <fullName>Interview Guide</fullName>
+                <default>false</default>
+                <label>Interview Guide</label>
+            </value>
+            <value>
+                <fullName>Fielding_Survey</fullName>
+                <default>false</default>
+                <label>Fielding Survey</label>
+            </value>
+            <value>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+                <label>In Progress</label>
+            </value>
+            <value>
+                <fullName>Survey Closed</fullName>
+                <default>false</default>
+                <label>Survey Closed</label>
+            </value>
+            <value>
+                <fullName>Leads Sent to Client</fullName>
+                <default>false</default>
+                <label>Leads Sent to Client</label>
+            </value>
+            <value>
+                <fullName>Executive Summary Sent to Client</fullName>
+                <default>false</default>
+                <label>Executive Summary Sent to Client</label>
+            </value>
+            <value>
+                <fullName>Build/Test</fullName>
+                <default>false</default>
+                <label>Build/Test</label>
+            </value>
+            <value>
+                <fullName>Implementation</fullName>
+                <default>false</default>
+                <label>Implementation</label>
+            </value>
+            <value>
+                <fullName>Invitation Development</fullName>
+                <default>false</default>
+                <label>Invitation Development</label>
+            </value>
+            <value>
+                <fullName>Promo Out</fullName>
+                <default>false</default>
+                <label>Promo Out</label>
+            </value>
+            <value>
+                <fullName>Content Call</fullName>
+                <default>false</default>
+                <label>Content Call</label>
+            </value>
+            <value>
+                <fullName>Dry Run</fullName>
+                <default>false</default>
+                <label>Dry Run</label>
+            </value>
+            <value>
+                <fullName>Live Event Material Prep</fullName>
+                <default>false</default>
+                <label>Live Event Material Prep</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+            <value>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+                <label>Cancelled</label>
+            </value>
+            <value>
+                <fullName>Requested to Post</fullName>
+                <default>false</default>
+                <label>Requested to Post</label>
+            </value>
+            <value>
+                <fullName>Posted</fullName>
+                <default>false</default>
+                <label>Posted</label>
+            </value>
+            <value>
+                <fullName>Pending Client Action</fullName>
+                <default>false</default>
+                <label>Pending Client Action</label>
+            </value>
+            <value>
+                <fullName>Accepted</fullName>
+                <default>false</default>
+                <label>Accepted</label>
+            </value>
+            <value>
+                <fullName>50% Complete</fullName>
+                <default>false</default>
+                <label>50% Complete</label>
+            </value>
+            <value>
+                <fullName>80% Complete</fullName>
+                <default>false</default>
+                <label>80% Complete</label>
+            </value>
+            <value>
+                <fullName>100% Complete</fullName>
+                <default>false</default>
+                <label>100% Complete</label>
+            </value>
+            <value>
+                <fullName>Client Kickoff</fullName>
+                <default>false</default>
+                <label>Client Kickoff</label>
+            </value>
+            <value>
+                <fullName>Instrument Construction</fullName>
+                <default>false</default>
+                <label>Instrument Construction</label>
+            </value>
+            <value>
+                <fullName>Kickoff</fullName>
+                <default>false</default>
+                <label>Kickoff</label>
+            </value>
+            <value>
+                <fullName>In Field</fullName>
+                <default>false</default>
+                <label>In Field</label>
+            </value>
+            <value>
+                <fullName>Report Construction</fullName>
+                <default>false</default>
+                <label>Report Construction</label>
+            </value>
+            <value>
+                <fullName>Delivery</fullName>
+                <default>false</default>
+                <label>Delivery</label>
+            </value>
+            <value>
+                <fullName>UAT</fullName>
+                <default>false</default>
+                <label>UAT</label>
+            </value>
+            <value>
+                <fullName>Closing</fullName>
+                <default>false</default>
+                <label>Closing</label>
+            </value>
+            <value>
+                <fullName>Sent to Copy Editor</fullName>
+                <default>false</default>
+                <label>Sent to Copy Editor</label>
+            </value>
+            <value>
+                <fullName>Topline Delivered</fullName>
+                <default>false</default>
+                <label>Topline Delivered</label>
+            </value>
+            <value>
+                <fullName>Deck In Progress</fullName>
+                <default>false</default>
+                <label>Deck In Progress</label>
+            </value>
+            <value>
+                <fullName>Data Analysis</fullName>
+                <default>false</default>
+                <label>Data Analysis</label>
+            </value>
+            <value>
+                <fullName>Topline Sent to Judges</fullName>
+                <default>false</default>
+                <label>Topline Sent to Judges</label>
+            </value>
+            <value>
+                <fullName>Final Scoring</fullName>
+                <default>false</default>
+                <label>Final Scoring</label>
+            </value>
+            <value>
+                <fullName>Deck Created</fullName>
+                <default>false</default>
+                <label>Deck Created</label>
+            </value>
+            <value>
+                <fullName>Report Cards In Progress</fullName>
+                <default>false</default>
+                <label>Report Cards In Progress</label>
+            </value>
+            <value>
+                <fullName>Deck Ready for Delivery</fullName>
+                <default>false</default>
+                <label>Deck Ready for Delivery</label>
+            </value>
+            <value>
+                <fullName>Deck Delivered</fullName>
+                <default>false</default>
+                <label>Deck Delivered</label>
+            </value>
+            <value>
+                <fullName>Results Distributed</fullName>
+                <default>false</default>
+                <label>Results Distributed</label>
+            </value>
+            <value>
+                <fullName>In-contact</fullName>
+                <default>false</default>
+                <label>In-contact</label>
+            </value>
+            <value>
+                <fullName>Researching</fullName>
+                <default>false</default>
+                <label>Researching</label>
+            </value>
+            <value>
+                <fullName>In Review</fullName>
+                <default>false</default>
+                <label>In Review</label>
+            </value>
+            <value>
+                <fullName>Published</fullName>
+                <default>false</default>
+                <label>Published</label>
+            </value>
+            <value>
+                <fullName>Unresponsive</fullName>
+                <default>false</default>
+                <label>Unresponsive</label>
+            </value>
+            <value>
+                <fullName>Client Transition</fullName>
+                <default>false</default>
+                <label>Client Transition</label>
+            </value>
+            <value>
+                <fullName>Escalated</fullName>
+                <default>false</default>
+                <label>Escalated</label>
+            </value>
+            <value>
+                <fullName>On-hold: Client</fullName>
+                <default>false</default>
+                <label>On-hold: Client</label>
+            </value>
+            <value>
+                <fullName>On-hold: Internal</fullName>
+                <default>false</default>
+                <label>On-hold: Internal</label>
+            </value>
+            <value>
+                <fullName>Delivered</fullName>
+                <default>false</default>
+                <label>Delivered</label>
+            </value>
+            <value>
+                <fullName>Conducting Interviews</fullName>
+                <default>false</default>
+                <label>Conducting Interviews</label>
+            </value>
+            <value>
+                <fullName>Deck</fullName>
+                <default>false</default>
+                <label>Deck</label>
+            </value>
+            <value>
+                <fullName>Closed</fullName>
+                <default>false</default>
+                <label>Closed</label>
+            </value>
+            <value>
+                <fullName>Pending Content Studio</fullName>
+                <default>false</default>
+                <label>Pending Content Studio</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Navigator</controllingFieldValue>
+            <controllingFieldValue
+      >Navigator Custom Project</controllingFieldValue>
+            <controllingFieldValue>National Survey</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Consulting/Training</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Speaking Engagement</controllingFieldValue>
+            <controllingFieldValue>Custom Special Report</controllingFieldValue>
+            <controllingFieldValue>Custom / Other</controllingFieldValue>
+            <controllingFieldValue>Custom Interview</controllingFieldValue>
+            <controllingFieldValue>Custom Survey</controllingFieldValue>
+            <controllingFieldValue>Navigator Premium</controllingFieldValue>
+            <controllingFieldValue
+      >Navigator Vertical Brief</controllingFieldValue>
+            <controllingFieldValue
+      >Navigator Systems Watch</controllingFieldValue>
+            <valueName>Initiated</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Navigator</controllingFieldValue>
+            <controllingFieldValue
+      >Navigator Custom Project</controllingFieldValue>
+            <controllingFieldValue>National Survey</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Consulting/Training</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Speaking Engagement</controllingFieldValue>
+            <controllingFieldValue>Custom Special Report</controllingFieldValue>
+            <controllingFieldValue>Custom / Other</controllingFieldValue>
+            <controllingFieldValue
+      >Other Strategy/Training</controllingFieldValue>
+            <controllingFieldValue
+      >Jurisdictional Profiles</controllingFieldValue>
+            <controllingFieldValue>Contact Lists</controllingFieldValue>
+            <controllingFieldValue>Custom Interview</controllingFieldValue>
+            <controllingFieldValue>Marketing Services</controllingFieldValue>
+            <controllingFieldValue>Custom Report</controllingFieldValue>
+            <controllingFieldValue>Custom Survey</controllingFieldValue>
+            <controllingFieldValue>Custom Event</controllingFieldValue>
+            <controllingFieldValue
+      >Battlecards and Playbooks</controllingFieldValue>
+            <controllingFieldValue>Navigator Premium</controllingFieldValue>
+            <controllingFieldValue
+      >Navigator Vertical Brief</controllingFieldValue>
+            <controllingFieldValue
+      >Navigator Systems Watch</controllingFieldValue>
+            <valueName>Closed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Navigator Custom Project</controllingFieldValue>
+            <controllingFieldValue>Custom Special Report</controllingFieldValue>
+            <controllingFieldValue>Custom / Other</controllingFieldValue>
+            <controllingFieldValue
+      >Other Strategy/Training</controllingFieldValue>
+            <controllingFieldValue
+      >Jurisdictional Profiles</controllingFieldValue>
+            <controllingFieldValue>Market Strategy</controllingFieldValue>
+            <controllingFieldValue>Market Presentations</controllingFieldValue>
+            <controllingFieldValue
+      >Contracts Inventory / Analysis</controllingFieldValue>
+            <controllingFieldValue>Contact Lists</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Marketing Services</controllingFieldValue>
+            <controllingFieldValue>Custom Report</controllingFieldValue>
+            <controllingFieldValue>Mailing List Rental</controllingFieldValue>
+            <controllingFieldValue
+      >Partner Opt In Email List Rental</controllingFieldValue>
+            <controllingFieldValue>Custom Event</controllingFieldValue>
+            <controllingFieldValue
+      >Battlecards and Playbooks</controllingFieldValue>
+            <controllingFieldValue>Exchange Communities</controllingFieldValue>
+            <controllingFieldValue>Research Request</controllingFieldValue>
+            <controllingFieldValue>Maintenance/Updates</controllingFieldValue>
+            <controllingFieldValue
+      >Navigator Vertical Brief</controllingFieldValue>
+            <controllingFieldValue>All of the Above</controllingFieldValue>
+            <controllingFieldValue
+      >Navigator Systems Watch</controllingFieldValue>
+            <valueName>In Progress</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Navigator Custom Project</controllingFieldValue>
+            <controllingFieldValue
+      >Navigator Vertical Brief</controllingFieldValue>
+            <controllingFieldValue
+      >Navigator Systems Watch</controllingFieldValue>
+            <valueName>Researching</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Navigator Custom Project</controllingFieldValue>
+            <controllingFieldValue
+      >Navigator Vertical Brief</controllingFieldValue>
+            <valueName>In Review</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Navigator Custom Project</controllingFieldValue>
+            <controllingFieldValue>Market Strategy</controllingFieldValue>
+            <controllingFieldValue>Market Presentations</controllingFieldValue>
+            <controllingFieldValue
+      >Contracts Inventory / Analysis</controllingFieldValue>
+            <controllingFieldValue>Contact Lists</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue
+      >Partner Opt In Email List Rental</controllingFieldValue>
+            <controllingFieldValue>Exchange Communities</controllingFieldValue>
+            <controllingFieldValue>Research Request</controllingFieldValue>
+            <controllingFieldValue>Maintenance/Updates</controllingFieldValue>
+            <controllingFieldValue>All of the Above</controllingFieldValue>
+            <valueName>Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>National Survey</controllingFieldValue>
+            <valueName>Building/Editing Survey</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>National Survey</controllingFieldValue>
+            <controllingFieldValue>Lead-Gen Poll</controllingFieldValue>
+            <controllingFieldValue>Custom Survey</controllingFieldValue>
+            <valueName>Fielding_Survey</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>National Survey</controllingFieldValue>
+            <valueName>Data Analysis</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>National Survey</controllingFieldValue>
+            <valueName>Topline Sent to Judges</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>National Survey</controllingFieldValue>
+            <valueName>Final Scoring</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>National Survey</controllingFieldValue>
+            <valueName>Deck Created</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>National Survey</controllingFieldValue>
+            <valueName>Report Cards In Progress</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>National Survey</controllingFieldValue>
+            <valueName>Results Distributed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Account Based Marketing</controllingFieldValue>
+            <controllingFieldValue>Two-Step Nurture</controllingFieldValue>
+            <controllingFieldValue>Multi-Touch Nurture</controllingFieldValue>
+            <controllingFieldValue>Digital Marketing</controllingFieldValue>
+            <controllingFieldValue>Website Metrics</controllingFieldValue>
+            <controllingFieldValue>Newsletter Metrics</controllingFieldValue>
+            <controllingFieldValue>Lead Metrics</controllingFieldValue>
+            <controllingFieldValue>Video Metrics</controllingFieldValue>
+            <controllingFieldValue>Standard Leads</controllingFieldValue>
+            <controllingFieldValue>Filtered Leads</controllingFieldValue>
+            <valueName>Active</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Account Based Marketing</controllingFieldValue>
+            <controllingFieldValue>Two-Step Nurture</controllingFieldValue>
+            <controllingFieldValue>Multi-Touch Nurture</controllingFieldValue>
+            <controllingFieldValue>Digital Marketing</controllingFieldValue>
+            <controllingFieldValue>Promo Video</controllingFieldValue>
+            <controllingFieldValue>Masterclass</controllingFieldValue>
+            <controllingFieldValue>ICYMI</controllingFieldValue>
+            <controllingFieldValue>Virtual Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue>Website Metrics</controllingFieldValue>
+            <controllingFieldValue>Newsletter Metrics</controllingFieldValue>
+            <controllingFieldValue
+      >GovGirl Event Coverage</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Profile</controllingFieldValue>
+            <controllingFieldValue>Lead Metrics</controllingFieldValue>
+            <controllingFieldValue>Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Video Metrics</controllingFieldValue>
+            <controllingFieldValue>Publishable Report</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Annual TLP</controllingFieldValue>
+            <controllingFieldValue>Lead-Gen Poll</controllingFieldValue>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <controllingFieldValue>Video</controllingFieldValue>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <controllingFieldValue>Custom Roundtables</controllingFieldValue>
+            <controllingFieldValue>Editorial Roundtables</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <controllingFieldValue>Custom Newsletter</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <controllingFieldValue>Mailing List Rental</controllingFieldValue>
+            <controllingFieldValue
+      >Partner Opt In Email List Rental</controllingFieldValue>
+            <controllingFieldValue>Standard Leads</controllingFieldValue>
+            <controllingFieldValue>Filtered Leads</controllingFieldValue>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <controllingFieldValue>Research Request</controllingFieldValue>
+            <controllingFieldValue>Maintenance/Updates</controllingFieldValue>
+            <controllingFieldValue>All of the Above</controllingFieldValue>
+            <valueName>Completed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Account Based Marketing</controllingFieldValue>
+            <controllingFieldValue>Two-Step Nurture</controllingFieldValue>
+            <controllingFieldValue>Multi-Touch Nurture</controllingFieldValue>
+            <controllingFieldValue>Digital Marketing</controllingFieldValue>
+            <controllingFieldValue>Promo Video</controllingFieldValue>
+            <controllingFieldValue>Masterclass</controllingFieldValue>
+            <controllingFieldValue>ICYMI</controllingFieldValue>
+            <controllingFieldValue>Virtual Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Market Strategy</controllingFieldValue>
+            <controllingFieldValue>Market Presentations</controllingFieldValue>
+            <controllingFieldValue
+      >Contracts Inventory / Analysis</controllingFieldValue>
+            <controllingFieldValue>Contact Lists</controllingFieldValue>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue
+      >GovGirl Event Coverage</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Profile</controllingFieldValue>
+            <controllingFieldValue>Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Publishable Report</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Annual TLP</controllingFieldValue>
+            <controllingFieldValue>Lead-Gen Poll</controllingFieldValue>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <controllingFieldValue>Video</controllingFieldValue>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <controllingFieldValue>Custom Roundtables</controllingFieldValue>
+            <controllingFieldValue>Editorial Roundtables</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <controllingFieldValue>Custom Newsletter</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <controllingFieldValue>Mailing List Rental</controllingFieldValue>
+            <controllingFieldValue
+      >Partner Opt In Email List Rental</controllingFieldValue>
+            <controllingFieldValue>Standard Leads</controllingFieldValue>
+            <controllingFieldValue>Filtered Leads</controllingFieldValue>
+            <controllingFieldValue>Exchange Communities</controllingFieldValue>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <controllingFieldValue>Research Request</controllingFieldValue>
+            <controllingFieldValue>Maintenance/Updates</controllingFieldValue>
+            <controllingFieldValue>All of the Above</controllingFieldValue>
+            <valueName>Cancelled</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Account Based Marketing</controllingFieldValue>
+            <controllingFieldValue>Two-Step Nurture</controllingFieldValue>
+            <controllingFieldValue>Multi-Touch Nurture</controllingFieldValue>
+            <controllingFieldValue>Website Ad</controllingFieldValue>
+            <controllingFieldValue>Newsletter Ad</controllingFieldValue>
+            <controllingFieldValue>Thank You Page Promo</controllingFieldValue>
+            <controllingFieldValue>Standard Leads</controllingFieldValue>
+            <controllingFieldValue>Filtered Leads</controllingFieldValue>
+            <valueName>Pending Client Action</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Account Based Marketing</controllingFieldValue>
+            <controllingFieldValue>Two-Step Nurture</controllingFieldValue>
+            <controllingFieldValue>Multi-Touch Nurture</controllingFieldValue>
+            <controllingFieldValue>Standard Leads</controllingFieldValue>
+            <controllingFieldValue>Filtered Leads</controllingFieldValue>
+            <controllingFieldValue>Navigator Premium</controllingFieldValue>
+            <valueName>On-hold: Client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Account Based Marketing</controllingFieldValue>
+            <controllingFieldValue>Two-Step Nurture</controllingFieldValue>
+            <controllingFieldValue>Multi-Touch Nurture</controllingFieldValue>
+            <controllingFieldValue>Standard Leads</controllingFieldValue>
+            <controllingFieldValue>Filtered Leads</controllingFieldValue>
+            <controllingFieldValue>Navigator Premium</controllingFieldValue>
+            <valueName>On-hold: Internal</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Account Based Marketing</controllingFieldValue>
+            <controllingFieldValue>Two-Step Nurture</controllingFieldValue>
+            <controllingFieldValue>Multi-Touch Nurture</controllingFieldValue>
+            <controllingFieldValue>Standard Leads</controllingFieldValue>
+            <controllingFieldValue>Filtered Leads</controllingFieldValue>
+            <valueName>Pending Content Studio</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Custom Consulting/Training</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Speaking Engagement</controllingFieldValue>
+            <controllingFieldValue>Masterclass</controllingFieldValue>
+            <controllingFieldValue>ICYMI</controllingFieldValue>
+            <controllingFieldValue>Virtual Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue>Custom Interview</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Profile</controllingFieldValue>
+            <controllingFieldValue>Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Publishable Report</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Annual TLP</controllingFieldValue>
+            <controllingFieldValue>Lead-Gen Poll</controllingFieldValue>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <controllingFieldValue>Video</controllingFieldValue>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <controllingFieldValue>Custom Survey</controllingFieldValue>
+            <controllingFieldValue>Custom Roundtables</controllingFieldValue>
+            <controllingFieldValue>Editorial Roundtables</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <controllingFieldValue>Custom Newsletter</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <valueName>Scheduled Kick-Off</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Custom Consulting/Training</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Speaking Engagement</controllingFieldValue>
+            <controllingFieldValue>Masterclass</controllingFieldValue>
+            <controllingFieldValue>ICYMI</controllingFieldValue>
+            <controllingFieldValue>Virtual Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue>Custom Interview</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Profile</controllingFieldValue>
+            <controllingFieldValue>Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Publishable Report</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Annual TLP</controllingFieldValue>
+            <controllingFieldValue>Lead-Gen Poll</controllingFieldValue>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <controllingFieldValue>Custom Survey</controllingFieldValue>
+            <controllingFieldValue>Custom Roundtables</controllingFieldValue>
+            <controllingFieldValue>Editorial Roundtables</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <controllingFieldValue>Custom Newsletter</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <valueName>Kick-off Call Complete</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Custom Consulting/Training</controllingFieldValue>
+            <valueName>SOW Complete</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Custom Consulting/Training</controllingFieldValue>
+            <valueName>SOW w/Client for Approval</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Custom Consulting/Training</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Speaking Engagement</controllingFieldValue>
+            <controllingFieldValue>Custom Interview</controllingFieldValue>
+            <controllingFieldValue>Custom Survey</controllingFieldValue>
+            <valueName>SOW Approved</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Custom Consulting/Training</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Speaking Engagement</controllingFieldValue>
+            <controllingFieldValue>Custom Interview</controllingFieldValue>
+            <controllingFieldValue>Custom Survey</controllingFieldValue>
+            <valueName>Deck In Progress</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Custom Consulting/Training</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Speaking Engagement</controllingFieldValue>
+            <controllingFieldValue>Custom Interview</controllingFieldValue>
+            <controllingFieldValue>Custom Survey</controllingFieldValue>
+            <valueName>Deck Ready for Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Custom Consulting/Training</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Speaking Engagement</controllingFieldValue>
+            <valueName>Deck Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Promo Video</controllingFieldValue>
+            <controllingFieldValue>Masterclass</controllingFieldValue>
+            <controllingFieldValue>Custom / Other</controllingFieldValue>
+            <controllingFieldValue>ICYMI</controllingFieldValue>
+            <controllingFieldValue>Virtual Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Market Strategy</controllingFieldValue>
+            <controllingFieldValue>Market Presentations</controllingFieldValue>
+            <controllingFieldValue
+      >Contracts Inventory / Analysis</controllingFieldValue>
+            <controllingFieldValue>Contact Lists</controllingFieldValue>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue
+      >GovGirl Event Coverage</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Profile</controllingFieldValue>
+            <controllingFieldValue>Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Publishable Report</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Annual TLP</controllingFieldValue>
+            <controllingFieldValue>Lead-Gen Poll</controllingFieldValue>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <controllingFieldValue>Video</controllingFieldValue>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <controllingFieldValue>Custom Roundtables</controllingFieldValue>
+            <controllingFieldValue>Editorial Roundtables</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <controllingFieldValue>Custom Newsletter</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <controllingFieldValue>Mailing List Rental</controllingFieldValue>
+            <controllingFieldValue
+      >Partner Opt In Email List Rental</controllingFieldValue>
+            <controllingFieldValue>Exchange Communities</controllingFieldValue>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <controllingFieldValue>Research Request</controllingFieldValue>
+            <controllingFieldValue>Maintenance/Updates</controllingFieldValue>
+            <controllingFieldValue>All of the Above</controllingFieldValue>
+            <valueName>Received</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Promo Video</controllingFieldValue>
+            <valueName>Marketing Kickoff Call Completed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Promo Video</controllingFieldValue>
+            <valueName>1st Script Outline to Client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Promo Video</controllingFieldValue>
+            <valueName>1st Feedback Received</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Promo Video</controllingFieldValue>
+            <valueName>2nd Script Outline to Client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Promo Video</controllingFieldValue>
+            <valueName>2nd Feedback Received</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Promo Video</controllingFieldValue>
+            <controllingFieldValue>Video</controllingFieldValue>
+            <valueName>Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Promo Video</controllingFieldValue>
+            <controllingFieldValue
+      >GovGirl Event Coverage</controllingFieldValue>
+            <controllingFieldValue>Video</controllingFieldValue>
+            <valueName>Post-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Promo Video</controllingFieldValue>
+            <valueName>Draft Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Masterclass</controllingFieldValue>
+            <valueName>Video Prep</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <controllingFieldValue>CDE Special Report</controllingFieldValue>
+            <controllingFieldValue>Data Highlight</controllingFieldValue>
+            <controllingFieldValue
+      >SP Research Deliverables</controllingFieldValue>
+            <controllingFieldValue>SP Sales Training</controllingFieldValue>
+            <controllingFieldValue>Delivery Overview</controllingFieldValue>
+            <controllingFieldValue
+      >Project Delivery Routing form</controllingFieldValue>
+            <controllingFieldValue
+      >Senior Fellow Expansion</controllingFieldValue>
+            <controllingFieldValue>Events</controllingFieldValue>
+            <controllingFieldValue>Proposal Templates</controllingFieldValue>
+            <controllingFieldValue>CDE Tracking System</controllingFieldValue>
+            <controllingFieldValue>Partnerships</controllingFieldValue>
+            <controllingFieldValue>Audience &amp; Lists</controllingFieldValue>
+            <controllingFieldValue>Centerdigitaled.com</controllingFieldValue>
+            <controllingFieldValue>Social Media</controllingFieldValue>
+            <controllingFieldValue>Lead Delivery</controllingFieldValue>
+            <valueName>Planning</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <controllingFieldValue
+      >Other Strategy/Training</controllingFieldValue>
+            <controllingFieldValue
+      >Jurisdictional Profiles</controllingFieldValue>
+            <controllingFieldValue>CDE Special Report</controllingFieldValue>
+            <controllingFieldValue>Data Highlight</controllingFieldValue>
+            <controllingFieldValue
+      >SP Research Deliverables</controllingFieldValue>
+            <controllingFieldValue>SP Sales Training</controllingFieldValue>
+            <controllingFieldValue>Delivery Overview</controllingFieldValue>
+            <controllingFieldValue
+      >Project Delivery Routing form</controllingFieldValue>
+            <controllingFieldValue
+      >Senior Fellow Expansion</controllingFieldValue>
+            <controllingFieldValue>Events</controllingFieldValue>
+            <controllingFieldValue>Proposal Templates</controllingFieldValue>
+            <controllingFieldValue>CDE Tracking System</controllingFieldValue>
+            <controllingFieldValue>Partnerships</controllingFieldValue>
+            <controllingFieldValue>Audience &amp; Lists</controllingFieldValue>
+            <controllingFieldValue>Centerdigitaled.com</controllingFieldValue>
+            <controllingFieldValue>Social Media</controllingFieldValue>
+            <controllingFieldValue>Lead Delivery</controllingFieldValue>
+            <controllingFieldValue>Marketing Services</controllingFieldValue>
+            <controllingFieldValue>Custom Report</controllingFieldValue>
+            <controllingFieldValue>Custom Event</controllingFieldValue>
+            <controllingFieldValue
+      >Battlecards and Playbooks</controllingFieldValue>
+            <valueName>Kick Off</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <controllingFieldValue>CDE Special Report</controllingFieldValue>
+            <controllingFieldValue>Data Highlight</controllingFieldValue>
+            <controllingFieldValue
+      >SP Research Deliverables</controllingFieldValue>
+            <controllingFieldValue>SP Sales Training</controllingFieldValue>
+            <controllingFieldValue>Delivery Overview</controllingFieldValue>
+            <controllingFieldValue
+      >Project Delivery Routing form</controllingFieldValue>
+            <controllingFieldValue
+      >Senior Fellow Expansion</controllingFieldValue>
+            <controllingFieldValue>Events</controllingFieldValue>
+            <controllingFieldValue>Proposal Templates</controllingFieldValue>
+            <controllingFieldValue>CDE Tracking System</controllingFieldValue>
+            <controllingFieldValue>Partnerships</controllingFieldValue>
+            <controllingFieldValue>Audience &amp; Lists</controllingFieldValue>
+            <controllingFieldValue>Centerdigitaled.com</controllingFieldValue>
+            <controllingFieldValue>Social Media</controllingFieldValue>
+            <controllingFieldValue>Lead Delivery</controllingFieldValue>
+            <valueName>50% Complete</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <controllingFieldValue>CDE Special Report</controllingFieldValue>
+            <controllingFieldValue>Data Highlight</controllingFieldValue>
+            <controllingFieldValue
+      >SP Research Deliverables</controllingFieldValue>
+            <controllingFieldValue>SP Sales Training</controllingFieldValue>
+            <controllingFieldValue>Delivery Overview</controllingFieldValue>
+            <controllingFieldValue
+      >Project Delivery Routing form</controllingFieldValue>
+            <controllingFieldValue
+      >Senior Fellow Expansion</controllingFieldValue>
+            <controllingFieldValue>Events</controllingFieldValue>
+            <controllingFieldValue>Proposal Templates</controllingFieldValue>
+            <controllingFieldValue>CDE Tracking System</controllingFieldValue>
+            <controllingFieldValue>Partnerships</controllingFieldValue>
+            <controllingFieldValue>Audience &amp; Lists</controllingFieldValue>
+            <controllingFieldValue>Centerdigitaled.com</controllingFieldValue>
+            <controllingFieldValue>Social Media</controllingFieldValue>
+            <controllingFieldValue>Lead Delivery</controllingFieldValue>
+            <valueName>80% Complete</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <controllingFieldValue>CDE Special Report</controllingFieldValue>
+            <controllingFieldValue>Data Highlight</controllingFieldValue>
+            <controllingFieldValue
+      >SP Research Deliverables</controllingFieldValue>
+            <controllingFieldValue>SP Sales Training</controllingFieldValue>
+            <controllingFieldValue>Delivery Overview</controllingFieldValue>
+            <controllingFieldValue
+      >Project Delivery Routing form</controllingFieldValue>
+            <controllingFieldValue
+      >Senior Fellow Expansion</controllingFieldValue>
+            <controllingFieldValue>Events</controllingFieldValue>
+            <controllingFieldValue>Proposal Templates</controllingFieldValue>
+            <controllingFieldValue>CDE Tracking System</controllingFieldValue>
+            <controllingFieldValue>Partnerships</controllingFieldValue>
+            <controllingFieldValue>Audience &amp; Lists</controllingFieldValue>
+            <controllingFieldValue>Centerdigitaled.com</controllingFieldValue>
+            <controllingFieldValue>Social Media</controllingFieldValue>
+            <controllingFieldValue>Lead Delivery</controllingFieldValue>
+            <valueName>100% Complete</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom / Other</controllingFieldValue>
+            <controllingFieldValue>Market Strategy</controllingFieldValue>
+            <controllingFieldValue>Market Presentations</controllingFieldValue>
+            <controllingFieldValue
+      >Contracts Inventory / Analysis</controllingFieldValue>
+            <controllingFieldValue>Contact Lists</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Mailing List Rental</controllingFieldValue>
+            <controllingFieldValue
+      >Partner Opt In Email List Rental</controllingFieldValue>
+            <controllingFieldValue>Exchange Communities</controllingFieldValue>
+            <controllingFieldValue>Research Request</controllingFieldValue>
+            <controllingFieldValue>Maintenance/Updates</controllingFieldValue>
+            <controllingFieldValue>All of the Above</controllingFieldValue>
+            <valueName>Draft</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom / Other</controllingFieldValue>
+            <controllingFieldValue>Market Strategy</controllingFieldValue>
+            <controllingFieldValue>Market Presentations</controllingFieldValue>
+            <controllingFieldValue
+      >Contracts Inventory / Analysis</controllingFieldValue>
+            <controllingFieldValue>Contact Lists</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Exchange Communities</controllingFieldValue>
+            <controllingFieldValue>Research Request</controllingFieldValue>
+            <controllingFieldValue>Maintenance/Updates</controllingFieldValue>
+            <controllingFieldValue>All of the Above</controllingFieldValue>
+            <valueName>Data Complete</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom / Other</controllingFieldValue>
+            <controllingFieldValue>Market Strategy</controllingFieldValue>
+            <controllingFieldValue>Market Presentations</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <controllingFieldValue>Exchange Communities</controllingFieldValue>
+            <controllingFieldValue>Research Request</controllingFieldValue>
+            <controllingFieldValue>Maintenance/Updates</controllingFieldValue>
+            <controllingFieldValue>All of the Above</controllingFieldValue>
+            <valueName>Analysis</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom / Other</controllingFieldValue>
+            <controllingFieldValue>Other</controllingFieldValue>
+            <valueName>Client Kickoff</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Other Strategy/Training</controllingFieldValue>
+            <controllingFieldValue
+      >Jurisdictional Profiles</controllingFieldValue>
+            <controllingFieldValue>Marketing Services</controllingFieldValue>
+            <controllingFieldValue>Custom Report</controllingFieldValue>
+            <controllingFieldValue>Custom Event</controllingFieldValue>
+            <controllingFieldValue
+      >Battlecards and Playbooks</controllingFieldValue>
+            <valueName>Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ICYMI</controllingFieldValue>
+            <controllingFieldValue>Custom Roundtables</controllingFieldValue>
+            <controllingFieldValue>Editorial Roundtables</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <valueName>Invitation Development</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ICYMI</controllingFieldValue>
+            <controllingFieldValue>Custom Roundtables</controllingFieldValue>
+            <controllingFieldValue>Editorial Roundtables</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <valueName>Promo Out</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ICYMI</controllingFieldValue>
+            <controllingFieldValue>Custom Roundtables</controllingFieldValue>
+            <controllingFieldValue>Editorial Roundtables</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <valueName>Content Call</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ICYMI</controllingFieldValue>
+            <controllingFieldValue>Custom Roundtables</controllingFieldValue>
+            <controllingFieldValue>Editorial Roundtables</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <valueName>Dry Run</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ICYMI</controllingFieldValue>
+            <controllingFieldValue>Custom Roundtables</controllingFieldValue>
+            <controllingFieldValue>Editorial Roundtables</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <valueName>Live Event Material Prep</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Virtual Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Market Strategy</controllingFieldValue>
+            <controllingFieldValue>Market Presentations</controllingFieldValue>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Profile</controllingFieldValue>
+            <controllingFieldValue>Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Publishable Report</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Annual TLP</controllingFieldValue>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <controllingFieldValue>Custom Newsletter</controllingFieldValue>
+            <valueName>Outline Received</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Virtual Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Profile</controllingFieldValue>
+            <controllingFieldValue>Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Publishable Report</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Annual TLP</controllingFieldValue>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <controllingFieldValue>Custom Newsletter</controllingFieldValue>
+            <valueName>Outline with Client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Virtual Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Profile</controllingFieldValue>
+            <controllingFieldValue>Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Publishable Report</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Annual TLP</controllingFieldValue>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <controllingFieldValue>Custom Newsletter</controllingFieldValue>
+            <valueName>Drafting</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Virtual Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Profile</controllingFieldValue>
+            <controllingFieldValue>Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Publishable Report</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Annual TLP</controllingFieldValue>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <controllingFieldValue>Custom Newsletter</controllingFieldValue>
+            <valueName>Internal Draft Review</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Virtual Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Profile</controllingFieldValue>
+            <controllingFieldValue>Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Publishable Report</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Annual TLP</controllingFieldValue>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <controllingFieldValue>Custom Newsletter</controllingFieldValue>
+            <controllingFieldValue>Mailing List Rental</controllingFieldValue>
+            <controllingFieldValue
+      >Partner Opt In Email List Rental</controllingFieldValue>
+            <valueName>Draft with Client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Virtual Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Profile</controllingFieldValue>
+            <controllingFieldValue>Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Publishable Report</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Annual TLP</controllingFieldValue>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <controllingFieldValue>Custom Newsletter</controllingFieldValue>
+            <valueName>Design</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Virtual Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Profile</controllingFieldValue>
+            <controllingFieldValue>Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Publishable Report</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Annual TLP</controllingFieldValue>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <controllingFieldValue>Custom Newsletter</controllingFieldValue>
+            <valueName>Designed Proof with Client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Virtual Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Profile</controllingFieldValue>
+            <controllingFieldValue>Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Publishable Report</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Annual TLP</controllingFieldValue>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <controllingFieldValue>Custom Newsletter</controllingFieldValue>
+            <valueName>Final Internal Review and Copy Edit</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Market Strategy</controllingFieldValue>
+            <controllingFieldValue>Market Presentations</controllingFieldValue>
+            <controllingFieldValue>Exchange Communities</controllingFieldValue>
+            <controllingFieldValue>Research Request</controllingFieldValue>
+            <controllingFieldValue>Maintenance/Updates</controllingFieldValue>
+            <controllingFieldValue>All of the Above</controllingFieldValue>
+            <valueName>Kick-off Call</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Contact Lists</controllingFieldValue>
+            <controllingFieldValue>Exchange Communities</controllingFieldValue>
+            <controllingFieldValue>Research Request</controllingFieldValue>
+            <controllingFieldValue>Maintenance/Updates</controllingFieldValue>
+            <controllingFieldValue>All of the Above</controllingFieldValue>
+            <valueName>Target List</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue>Custom Interview</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Profile</controllingFieldValue>
+            <controllingFieldValue>Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Publishable Report</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Annual TLP</controllingFieldValue>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <valueName>Interview In Progress</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Interview</controllingFieldValue>
+            <controllingFieldValue>Exchange Communities</controllingFieldValue>
+            <controllingFieldValue>Research Request</controllingFieldValue>
+            <controllingFieldValue>Maintenance/Updates</controllingFieldValue>
+            <controllingFieldValue>All of the Above</controllingFieldValue>
+            <valueName>Discussion Guide</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Interview</controllingFieldValue>
+            <valueName>Discussion Guide Approved</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Interview</controllingFieldValue>
+            <valueName>Outreach In Progress</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Interview</controllingFieldValue>
+            <valueName>Interviews Completed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Interview</controllingFieldValue>
+            <valueName>Writeups Complete</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Website Ad</controllingFieldValue>
+            <controllingFieldValue>Newsletter Ad</controllingFieldValue>
+            <controllingFieldValue>Thank You Page Promo</controllingFieldValue>
+            <valueName>Requested to Post</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Website Ad</controllingFieldValue>
+            <controllingFieldValue>Newsletter Ad</controllingFieldValue>
+            <controllingFieldValue>Thank You Page Promo</controllingFieldValue>
+            <valueName>Posted</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Website Ad</controllingFieldValue>
+            <controllingFieldValue>Newsletter Ad</controllingFieldValue>
+            <controllingFieldValue>Thank You Page Promo</controllingFieldValue>
+            <valueName>Accepted</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >GovGirl Event Coverage</controllingFieldValue>
+            <valueName>Pending Standup or Interview</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lead-Gen Poll</controllingFieldValue>
+            <valueName>Questions Received</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lead-Gen Poll</controllingFieldValue>
+            <valueName>Promotion Writing/Survey Posting</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lead-Gen Poll</controllingFieldValue>
+            <valueName>Client Approval of Promotion/Survey Posted</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lead-Gen Poll</controllingFieldValue>
+            <controllingFieldValue>Custom Survey</controllingFieldValue>
+            <valueName>Survey Closed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lead-Gen Poll</controllingFieldValue>
+            <valueName>Leads Sent to Client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Lead-Gen Poll</controllingFieldValue>
+            <valueName>Executive Summary Sent to Client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Video</controllingFieldValue>
+            <valueName>Meeting with Rep</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Video</controllingFieldValue>
+            <valueName>Writer/Producer Research</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Video</controllingFieldValue>
+            <valueName>Outline to Client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Video</controllingFieldValue>
+            <valueName>Contact Interviewees</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Video</controllingFieldValue>
+            <valueName>Create 2nd Outline</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Video</controllingFieldValue>
+            <valueName>Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Video</controllingFieldValue>
+            <valueName>Link Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Video</controllingFieldValue>
+            <valueName>Deliver Video</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Survey</controllingFieldValue>
+            <valueName>Survey w/Client for Approval</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Survey</controllingFieldValue>
+            <valueName>Survey Approved (Field Ready)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Survey</controllingFieldValue>
+            <valueName>Topline Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Mailing List Rental</controllingFieldValue>
+            <controllingFieldValue
+      >Partner Opt In Email List Rental</controllingFieldValue>
+            <valueName>Approved</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Exchange Communities</controllingFieldValue>
+            <valueName>Distribution</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Navigator Premium</controllingFieldValue>
+            <valueName>In-contact</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Navigator Premium</controllingFieldValue>
+            <valueName>Unresponsive</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Navigator Premium</controllingFieldValue>
+            <valueName>Client Transition</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Navigator Premium</controllingFieldValue>
+            <valueName>Escalated</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Navigator Vertical Brief</controllingFieldValue>
+            <controllingFieldValue
+      >Navigator Systems Watch</controllingFieldValue>
+            <valueName>Published</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

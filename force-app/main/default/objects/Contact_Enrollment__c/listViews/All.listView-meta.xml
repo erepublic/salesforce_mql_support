@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Course_Enrollment__c</columns>
+    <columns>Course_Department__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Course_Email__c</columns>
+    <columns>Enrollment_Key_Sent_Date__c</columns>
+    <columns>Enrollment_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>Percent_Complete__c</columns>
+    <columns>Course__c</columns>
+    <columns>External_Enrollment_Id_Unique__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

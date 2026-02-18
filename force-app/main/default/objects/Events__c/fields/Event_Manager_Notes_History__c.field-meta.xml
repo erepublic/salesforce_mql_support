@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Manager_Notes_History__c</fullName>
+    <description
+  >Ticket #81824 - 3/12/2025 - LF: Updated to Event Note History. Previously used as &quot;Event Manager Note History&quot; 
+This field is automatically populated with notes from the Event Manager Notes field.</description>
+    <inlineHelpText
+  >This field is automatically populated with notes from the Event Note field.</inlineHelpText>
+    <label>Event Note History</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

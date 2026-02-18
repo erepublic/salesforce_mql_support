@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Job_Function_Detail__c</fullName>
+    <description
+  >Detailed breakout of the job function demographic category.</description>
+    <inlineHelpText
+  >Detailed breakout of the job function demographic category.</inlineHelpText>
+    <label>Job Function Detail</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Job_Function_Detail</valueSetName>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

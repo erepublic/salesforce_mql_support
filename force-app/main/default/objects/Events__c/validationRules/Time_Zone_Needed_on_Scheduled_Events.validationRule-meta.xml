@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Zone_Needed_on_Scheduled_Events</fullName>
+    <active>true</active>
+    <description
+  >Alerts a user to the necessity of a time zone needed if an event is scheduled or later in its work process.</description>
+    <errorConditionFormula
+  >((ISPICKVAL(Status__c ,&quot;Scheduled&quot;) || ISPICKVAL(Status__c ,&quot;Venue Set&quot;) || ISPICKVAL(Status__c ,&quot;Program Set&quot;) || ISPICKVAL(Status__c ,&quot;In-Production&quot;) || ISPICKVAL(Status__c ,&quot;Completed&quot;)) &amp;&amp; (Event_End_Date__c &gt; TODAY()) &amp;&amp; ( ISPICKVAL(Time_Zone__c,&quot;&quot;)))</errorConditionFormula>
+    <errorDisplayField>Time_Zone__c</errorDisplayField>
+    <errorMessage
+  >Please enter a time zone for the physical location of where the event will be executed.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Gas_Total__c</fullName>
+    <formula
+  >Gas_f__c  +  Gas_m__c  +  Gas_t__c  +  Gas_w__c  +  Gas_th__c  +  Gas_sa__c  +  Gas_su__c +  Misc_2_w__c  +  Misc_2_th__c  +  Misc_2_t__c  +  Misc_2_su__c  +  Misc_2_sa__c  +  Misc_2_m__c  +  Misc_2_f__c  +  Misc_1_w__c  +  Misc_1_th__c  +  Misc_1_t__c  +  Misc_1_su__c  +  Misc_1_sa__c +  Misc_1_m__c  +  Misc_1_f__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Gas/Tolls/Misc Total</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

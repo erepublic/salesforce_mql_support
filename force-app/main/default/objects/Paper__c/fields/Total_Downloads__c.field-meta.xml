@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Downloads__c</fullName>
+    <description
+  >The total number of downloads for this paper, including non-qualified downloaders and ones rejected by the client.</description>
+    <inlineHelpText
+  >The total number of downloads for this paper, including non-qualified downloaders and ones rejected by the client.</inlineHelpText>
+    <label>Total Downloads</label>
+    <summaryForeignKey>Paper_Download__c.Paper__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

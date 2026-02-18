@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Memberships</fullName>
+    <columns>NAME</columns>
+    <columns>Nav_TW_Login_Report__c</columns>
+    <columns>Account_Name__c</columns>
+    <columns>All_Memberships__c</columns>
+    <columns>Account_Owner__c</columns>
+    <columns>Sales_Admin__c</columns>
+    <columns>NAV_Member_Engagement__c</columns>
+    <columns>DGN_End_Date__c</columns>
+    <columns>DGN_Membership_Level__c</columns>
+    <columns>DEN_End_Date__c</columns>
+    <columns>DEN_Membership_Level__c</columns>
+    <columns>TW_End_Date__c</columns>
+    <columns>ITX_End_Date__c</columns>
+    <columns>IFL_End_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Memberships - All Time</label>
+</ListView>

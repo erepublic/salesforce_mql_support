@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Job_Type__c</fullName>
+    <label>Job Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Department__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Business Cards</fullName>
+                <default>false</default>
+                <label>Business Cards</label>
+            </value>
+            <value>
+                <fullName>Client Web Ads</fullName>
+                <default>false</default>
+                <label>Client Web Ads</label>
+            </value>
+            <value>
+                <fullName>Comm Dev - Other</fullName>
+                <default>false</default>
+                <label>Comm Dev - Other</label>
+            </value>
+            <value>
+                <fullName>Content Studio Advertorials</fullName>
+                <default>false</default>
+                <label>Content Studio Advertorials</label>
+            </value>
+            <value>
+                <fullName>Content Studio Case Study</fullName>
+                <default>false</default>
+                <label>Content Studio Case Study</label>
+            </value>
+            <value>
+                <fullName>Content Studio Event Package</fullName>
+                <default>false</default>
+                <label>Content Studio Event Package</label>
+            </value>
+            <value>
+                <fullName>Content Studio Handbook</fullName>
+                <default>false</default>
+                <label>Content Studio Handbook</label>
+            </value>
+            <value>
+                <fullName>Content Studio Infographics</fullName>
+                <default>false</default>
+                <label>Content Studio Infographics</label>
+            </value>
+            <value>
+                <fullName>Content Studio Issue Brief</fullName>
+                <default>false</default>
+                <label>Content Studio Issue Brief</label>
+            </value>
+            <value>
+                <fullName>Content Studio Mag Placement</fullName>
+                <default>false</default>
+                <label>Content Studio Mag Placement</label>
+            </value>
+            <value>
+                <fullName>Content Studio Miscellaneous</fullName>
+                <default>false</default>
+                <label>Content Studio Miscellaneous</label>
+            </value>
+            <value>
+                <fullName>Content Studio Print Distribution</fullName>
+                <default>false</default>
+                <label>Content Studio Print Distribution</label>
+            </value>
+            <value>
+                <fullName>Content Studio Publishable Report</fullName>
+                <default>false</default>
+                <label>Content Studio Publishable Report</label>
+            </value>
+            <value>
+                <fullName>Content Studio Q&amp;A</fullName>
+                <default>false</default>
+                <label>Content Studio Q&amp;A</label>
+            </value>
+            <value>
+                <fullName>Content Studio Slides for Video</fullName>
+                <default>false</default>
+                <label>Content Studio Slides for Video</label>
+            </value>
+            <value>
+                <fullName>Content Studio TLP</fullName>
+                <default>false</default>
+                <label>Content Studio TLP</label>
+            </value>
+            <value>
+                <fullName>Content Studio White Papers</fullName>
+                <default>false</default>
+                <label>Content Studio White Papers</label>
+            </value>
+            <value>
+                <fullName>Corporate Event Signs</fullName>
+                <default>false</default>
+                <label>Corporate Event Signs</label>
+            </value>
+            <value>
+                <fullName>Corporate Miscellaneous</fullName>
+                <default>false</default>
+                <label>Corporate Miscellaneous</label>
+            </value>
+            <value>
+                <fullName>Custom Webinar Headers - PPT and CERT</fullName>
+                <default>false</default>
+                <label>Custom Webinar Headers - PPT and CERT</label>
+            </value>
+            <value>
+                <fullName>Event Headers</fullName>
+                <default>false</default>
+                <label>Event Headers</label>
+            </value>
+            <value>
+                <fullName>Event Materials</fullName>
+                <default>false</default>
+                <label>Event Materials</label>
+            </value>
+            <value>
+                <fullName>Event Promo Cards</fullName>
+                <default>false</default>
+                <label>Event Promo Cards</label>
+            </value>
+            <value>
+                <fullName>Flipbook Upgrade</fullName>
+                <default>false</default>
+                <label>Flipbook Upgrade</label>
+            </value>
+            <value>
+                <fullName>GOVERNING Miscellaneous</fullName>
+                <default>false</default>
+                <label>GOVERNING Miscellaneous</label>
+            </value>
+            <value>
+                <fullName>GOVERNING Web Quote Art</fullName>
+                <default>false</default>
+                <label>GOVERNING Web Quote Art</label>
+            </value>
+            <value>
+                <fullName>Industry Insider Market Facts Charts</fullName>
+                <default>false</default>
+                <label>Industry Insider Market Facts Charts</label>
+            </value>
+            <value>
+                <fullName>Innovation Miscellaneous</fullName>
+                <default>false</default>
+                <label>Innovation Miscellaneous</label>
+            </value>
+            <value>
+                <fullName>Magazine</fullName>
+                <default>false</default>
+                <label>Magazine</label>
+            </value>
+            <value>
+                <fullName>Magazine Miscellaneous</fullName>
+                <default>false</default>
+                <label>Magazine Miscellaneous</label>
+            </value>
+            <value>
+                <fullName>Magazine Publisher&apos;s Sworn Statement</fullName>
+                <default>false</default>
+                <label>Magazine Publisher&apos;s Sworn Statement</label>
+            </value>
+            <value>
+                <fullName>Magazine Tip Ons</fullName>
+                <default>false</default>
+                <label>Magazine Tip Ons</label>
+            </value>
+            <value>
+                <fullName>Magazine Web Art</fullName>
+                <default>false</default>
+                <label>Magazine Web Art</label>
+            </value>
+            <value>
+                <fullName>Marketing/Navigator Market Facts Charts</fullName>
+                <default>false</default>
+                <label>Marketing/Navigator Market Facts Charts</label>
+            </value>
+            <value>
+                <fullName>Marketing Datasheet Offerings</fullName>
+                <default>false</default>
+                <label>Marketing Datasheet Offerings</label>
+            </value>
+            <value>
+                <fullName>Marketing Infographics</fullName>
+                <default>false</default>
+                <label>Marketing Infographics</label>
+            </value>
+            <value>
+                <fullName>Marketing Miscellaneous</fullName>
+                <default>false</default>
+                <label>Marketing Miscellaneous</label>
+            </value>
+            <value>
+                <fullName>Marketing Webinar Headers &amp; PPT</fullName>
+                <default>false</default>
+                <label>Marketing Webinar Headers &amp; PPT</label>
+            </value>
+            <value>
+                <fullName>Member Services Miscellaneous</fullName>
+                <default>false</default>
+                <label>Member Services Miscellaneous</label>
+            </value>
+            <value>
+                <fullName>People &amp; Culture Docs, Forms, Headers</fullName>
+                <default>false</default>
+                <label>People &amp; Culture Docs, Forms, Headers</label>
+            </value>
+            <value>
+                <fullName>PowerPoint Design</fullName>
+                <default>false</default>
+                <label>PowerPoint Design</label>
+            </value>
+            <value>
+                <fullName>PowerPoint QC &amp; Font Embedding</fullName>
+                <default>false</default>
+                <label>PowerPoint QC &amp; Font Embedding</label>
+            </value>
+            <value>
+                <fullName>Research Event Jurisdictional Profile</fullName>
+                <default>false</default>
+                <label>Research Event Jurisdictional Profile</label>
+            </value>
+            <value>
+                <fullName>Research Miscellaneous</fullName>
+                <default>false</default>
+                <label>Research Miscellaneous</label>
+            </value>
+            <value>
+                <fullName>Research Navigator Datasheet Offerings</fullName>
+                <default>false</default>
+                <label>Research Navigator Datasheet Offerings</label>
+            </value>
+            <value>
+                <fullName>Research Navigator Vertical Reports</fullName>
+                <default>false</default>
+                <label>Research Navigator Vertical Reports</label>
+            </value>
+            <value>
+                <fullName>Research PowerPoint Design</fullName>
+                <default>false</default>
+                <label>Research PowerPoint Design</label>
+            </value>
+            <value>
+                <fullName>Research Survey Sponsor Profiles</fullName>
+                <default>false</default>
+                <label>Research Survey Sponsor Profiles</label>
+            </value>
+            <value>
+                <fullName>Sales Miscellaneous</fullName>
+                <default>false</default>
+                <label>Sales Miscellaneous</label>
+            </value>
+            <value>
+                <fullName>Staff Headshots</fullName>
+                <default>false</default>
+                <label>Staff Headshots</label>
+            </value>
+            <value>
+                <fullName>Surveys &amp; Awards Images</fullName>
+                <default>false</default>
+                <label>Surveys &amp; Awards Images</label>
+            </value>
+            <value>
+                <fullName>Task Force for Fun</fullName>
+                <default>false</default>
+                <label>Task Force for Fun</label>
+            </value>
+            <value>
+                <fullName>Website Mock Up / Banners / Images</fullName>
+                <default>false</default>
+                <label>Website Mock Up / Banners / Images</label>
+            </value>
+            <value>
+                <fullName>Custom Webinar Headers</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Custom Webinar Headers</label>
+            </value>
+            <value>
+                <fullName>Custom Webinar PPT and CERT</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Custom Webinar PPT and CERT</label>
+            </value>
+            <value>
+                <fullName>Event Materials Flipbook Upgrade</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Event Materials Flipbook Upgrade</label>
+            </value>
+            <value>
+                <fullName>Magazine Flipbook Upgrade</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Magazine Flipbook Upgrade</label>
+            </value>
+            <value>
+                <fullName>Research PowerPoint QC &amp; Font Embedding</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Research PowerPoint QC &amp; Font Embedding</label>
+            </value>
+            <value>
+                <fullName>eRepublic Jobs</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>eRepublic Jobs</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Member Services</controllingFieldValue>
+            <valueName>Industry Insider Market Facts Charts</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Member Services</controllingFieldValue>
+            <valueName>Member Services Miscellaneous</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Member Services</controllingFieldValue>
+            <controllingFieldValue>Sales</controllingFieldValue>
+            <controllingFieldValue>Innovation</controllingFieldValue>
+            <valueName>PowerPoint Design</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Member Services</controllingFieldValue>
+            <controllingFieldValue>Research</controllingFieldValue>
+            <valueName>PowerPoint QC &amp; Font Embedding</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <valueName>Content Studio Advertorials</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <valueName>Content Studio Case Study</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <valueName>Content Studio Event Package</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <valueName>Content Studio Handbook</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <valueName>Content Studio Infographics</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <valueName>Content Studio Issue Brief</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <valueName>Content Studio Mag Placement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <valueName>Content Studio Miscellaneous</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <valueName>Content Studio Print Distribution</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <valueName>Content Studio Publishable Report</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <valueName>Content Studio Q&amp;A</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <valueName>Content Studio Slides for Video</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <valueName>Content Studio TLP</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <valueName>Content Studio White Papers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <valueName>Custom Webinar Headers - PPT and CERT</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Content Studio</controllingFieldValue>
+            <controllingFieldValue>Editorial</controllingFieldValue>
+            <controllingFieldValue>Logistics</controllingFieldValue>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <controllingFieldValue>Research</controllingFieldValue>
+            <controllingFieldValue>Sales</controllingFieldValue>
+            <valueName>Flipbook Upgrade</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Corporate</controllingFieldValue>
+            <valueName>Business Cards</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Corporate</controllingFieldValue>
+            <valueName>Corporate Event Signs</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Corporate</controllingFieldValue>
+            <valueName>Corporate Miscellaneous</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Corporate</controllingFieldValue>
+            <valueName>People &amp; Culture Docs, Forms, Headers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Corporate</controllingFieldValue>
+            <valueName>Staff Headshots</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Corporate</controllingFieldValue>
+            <valueName>Surveys &amp; Awards Images</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Corporate</controllingFieldValue>
+            <valueName>Task Force for Fun</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Digital</controllingFieldValue>
+            <valueName>Client Web Ads</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Digital</controllingFieldValue>
+            <valueName>Website Mock Up / Banners / Images</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Editorial</controllingFieldValue>
+            <valueName>GOVERNING Miscellaneous</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Editorial</controllingFieldValue>
+            <valueName>GOVERNING Web Quote Art</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Editorial</controllingFieldValue>
+            <valueName>Magazine</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Editorial</controllingFieldValue>
+            <valueName>Magazine Miscellaneous</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Editorial</controllingFieldValue>
+            <valueName>Magazine Web Art</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Logistics</controllingFieldValue>
+            <valueName>Event Headers</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Logistics</controllingFieldValue>
+            <valueName>Event Materials</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Logistics</controllingFieldValue>
+            <valueName>Event Promo Cards</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>Marketing/Navigator Market Facts Charts</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>Marketing Datasheet Offerings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>Marketing Infographics</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>Marketing Miscellaneous</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Marketing</controllingFieldValue>
+            <valueName>Marketing Webinar Headers &amp; PPT</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Research</controllingFieldValue>
+            <valueName>Research Event Jurisdictional Profile</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Research</controllingFieldValue>
+            <valueName>Research Miscellaneous</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Research</controllingFieldValue>
+            <valueName>Research Navigator Datasheet Offerings</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Research</controllingFieldValue>
+            <valueName>Research Navigator Vertical Reports</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Research</controllingFieldValue>
+            <valueName>Research PowerPoint Design</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Research</controllingFieldValue>
+            <valueName>Research Survey Sponsor Profiles</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sales</controllingFieldValue>
+            <valueName>Sales Miscellaneous</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Community Development</controllingFieldValue>
+            <valueName>Comm Dev - Other</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Community Development</controllingFieldValue>
+            <valueName>Magazine Publisher&apos;s Sworn Statement</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Community Development</controllingFieldValue>
+            <valueName>Magazine Tip Ons</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Innovation</controllingFieldValue>
+            <valueName>Innovation Miscellaneous</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

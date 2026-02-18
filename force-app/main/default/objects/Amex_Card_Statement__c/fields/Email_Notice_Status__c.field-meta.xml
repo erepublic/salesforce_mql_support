@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Notice_Status__c</fullName>
+    <description
+  >Indicates how many emails had to be sent in order to get the report turned in.</description>
+    <inlineHelpText
+  >Indicates how many emails had to be sent in order to get the report turned in.</inlineHelpText>
+    <label>Email Notice Status</label>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Email Not Sent</fullName>
+                <default>true</default>
+                <label>Email Not Sent</label>
+            </value>
+            <value>
+                <fullName>1st Notice</fullName>
+                <default>false</default>
+                <label>1st Notice</label>
+            </value>
+            <value>
+                <fullName>2nd Notice</fullName>
+                <default>false</default>
+                <label>2nd Notice</label>
+            </value>
+            <value>
+                <fullName>Late Notice</fullName>
+                <default>false</default>
+                <label>Late Notice</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Backlog_Status__c</fullName>
+    <inlineHelpText
+  >This is the Status of items that have been placed in the backlog. Only items marked as Shovel Ready are ready to be assigned</inlineHelpText>
+    <label>Backlog Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Shovel Ready</fullName>
+                <default>false</default>
+                <label>Shovel Ready</label>
+            </value>
+            <value>
+                <fullName>Needs More info</fullName>
+                <default>false</default>
+                <label>Needs More info</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

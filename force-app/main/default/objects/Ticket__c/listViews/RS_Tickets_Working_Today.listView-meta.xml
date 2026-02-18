@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RS_Tickets_Working_Today</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND (4 OR 5)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Phase__c</columns>
+    <columns>Title__c</columns>
+    <columns>Working_Date__c</columns>
+    <columns>ETA__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>Requested_By__c</columns>
+    <columns>Assignee__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Assignee__c</field>
+        <operation>equals</operation>
+        <value>Ryan Saul</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>notEqual</operation>
+        <value>Closed,Contract Cycle Finished,Canceled</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Salesforce</value>
+    </filters>
+    <filters>
+        <field>Working_Date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>TODAY</value>
+    </filters>
+    <filters>
+        <field>Working_Date__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>RS - Tickets (Working &lt;=Today)</label>
+</ListView>

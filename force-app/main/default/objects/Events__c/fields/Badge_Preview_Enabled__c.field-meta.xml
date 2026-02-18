@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Badge_Preview_Enabled__c</fullName>
+    <defaultValue>true</defaultValue>
+    <description
+  >Created for Ticket #91174: Only used on Standard Events. To be Manually unchecked by registration when badge editing is no longer available.</description>
+    <inlineHelpText
+  >When checked, the badge preview link will allow registrants to preview and update their badge.
+When unchecked, the badge preview link will inform registrants that previewing the badge is no longer available for this event.</inlineHelpText>
+    <label>Badge Preview Enabled</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

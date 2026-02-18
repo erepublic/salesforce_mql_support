@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description
+  >On creation, automatically opts out the registrant based on a list of emails.</description>
+    <environments>Default</environments>
+    <interviewLabel
+  >Registration - RT BS - Auto Opt-Out {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Registration - RT BS - Auto Opt-Out</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Check_Exclude_from_Mailing</name>
+        <label>Check Exclude from Mailing</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <inputAssignments>
+            <field>Exclude_From_Mailing_List__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Check_Exclude_from_Mailing</targetReference>
+        </connector>
+        <filterFormula>OR(
+{!$Record.Registrant_Name__r.Email}=&quot;kbaldauf@pic.fsu.edu&quot;,
+{!$Record.Registrant_Name__r.Email}=&quot;lauraw@oic.wa.gov&quot;,
+{!$Record.Registrant_Name__r.Email}=&quot;Lynne.Campanale@calpers.ca.gov&quot;,
+{!$Record.Registrant_Name__r.Email}=&quot;maryam.abbassi@lacity.org&quot;,
+{!$Record.Registrant_Name__r.Email}=&quot;ted.ross@lacity.org&quot;,
+{!$Record.Registrant_Name__r.Email}=&quot;amy.pearson@watech.wa.gov&quot;,
+{!$Record.Registrant_Name__r.Email}=&quot;william.kehoe@watech.wa.gov&quot;,
+{!$Record.Registrant_Name__r.Email}=&quot;bill.kehoe@watech.wa.gov&quot;,
+{!$Record.Registrant_Name__r.Email}=&quot;laurel.mcmillan@watech.wa.gov&quot;,
+{!$Record.Registrant_Name__r.Email}=&quot;sachin.brahme@state.ca.gov&quot;
+)</filterFormula>
+        <object>Registration__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Email_Sales_Rep_when_Rejected</name>
+        <label>Email Sales Rep when Rejected</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Contract.Contract_Email_Sales_Rep_when_Rejected</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Contract.Contract_Email_Sales_Rep_when_Rejected</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>Replaces Workflow Rule:
+- Contract - Email Sales Rep when Rejected
+
+Purpose:
+- Notifies the assigned Sales Rep / Admin when a Registration Billing Contract
+is rejected by Finance.
+
+Impacted Record Types:
+- Registration Billing (01214000000AVtTAAW)
+
+Actions:
+- Sends email alert &quot;Contract - Reg Billing - Status Rejected by Finance&quot;
+  to the Related User (Sales Rep / Admin)
+- Includes salesforce@erepublic.com as additional recipient</description>
+    <environments>Default</environments>
+    <interviewLabel
+  >Contract - RT AS - Rejected by Finance {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contract - RT AS - Alert Rejected by Finance</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Email_Sales_Rep_when_Rejected</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria
+    >true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Rejected by Finance</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01214000000AVtTAAW</stringValue>
+            </value>
+        </filters>
+        <object>Contract</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

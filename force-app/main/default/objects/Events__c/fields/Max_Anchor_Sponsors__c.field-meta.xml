@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Max_Anchor_Sponsors__c</fullName>
+    <description
+  >&quot;The maximum number of anchor sponsors that may be sold for this program, as approved by the Event Director.&quot; Created per Ticket #99279.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >The maximum number of anchor sponsors that may be sold for this program, as approved by the Event Director.</inlineHelpText>
+    <label>Max Anchor Sponsors</label>
+    <precision>4</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Reg_Roll_Up__c</fullName>
+    <description
+  >Displays a count of all registrations of all types and from all sources. This number should match the total number of records seen on the Full Export report.</description>
+    <inlineHelpText
+  >Displays a count of all registrations of all types and from all sources. This number should match the total number of records seen on the Full Export report.</inlineHelpText>
+    <label>Total Registered</label>
+    <summaryForeignKey>Registration__c.Event__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

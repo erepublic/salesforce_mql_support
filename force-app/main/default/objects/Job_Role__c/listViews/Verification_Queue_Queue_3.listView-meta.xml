@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verification_Queue_Queue_3</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+    <columns>Queue__c</columns>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Verification_Date__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Job_Role_Title__c</columns>
+    <columns>Contact_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Queue__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </filters>
+    <filters>
+        <field>Last_Verification_Date_Tier__c</field>
+        <operation>equals</operation>
+        <value>Unverified,04 - 365+ days,03 - 180 - 364 days</value>
+    </filters>
+    <filters>
+        <field>Job_Role_Mailing_State__c</field>
+        <operation>equals</operation>
+        <value>FL,IL,GA,VA,AZ,WA,MD,OR,WI,CT,IA,NV,AK,MT,VT,NC,KY,SD,WV</value>
+    </filters>
+    <label>Verification Queue - Eenie</label>
+</ListView>

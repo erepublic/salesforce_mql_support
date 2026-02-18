@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MO_DGS_2022_Registrations</fullName>
+    <columns>Event__c</columns>
+    <columns>NAME</columns>
+    <columns>Registrant_Name__c</columns>
+    <columns>Badge_Org__c</columns>
+    <columns>Registrant_Email__c</columns>
+    <columns>Reg_Notes__c</columns>
+    <columns>Reg_Speaker__c</columns>
+    <columns>Reg_Advisory_Board__c</columns>
+    <columns>Reg_Source__c</columns>
+    <columns>Reg_Type__c</columns>
+    <columns>Gift_Card_Recipient__c</columns>
+    <columns>Exclude_From_Mailing_List__c</columns>
+    <columns>Contract__c</columns>
+    <columns>Reg_Fee_Promo_Code__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event_ID_Formula__c</field>
+        <operation>equals</operation>
+        <value>a0m5Y00000JK7u2QAD</value>
+    </filters>
+    <filters>
+        <field>Reg_Type__c</field>
+        <operation>equals</operation>
+        <value>Govt Attendee</value>
+    </filters>
+    <label>2022 Event Registrations by ID</label>
+</ListView>

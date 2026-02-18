@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Process_Decomp_Reference__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Product__c,
+&quot;Case Study&quot;,HYPERLINK(&quot;http://bit.ly/3ZerKUt&quot;,&quot;Case Study Process&quot;),
+&quot;Custom Video&quot;,HYPERLINK(&quot;http://bit.ly/3QgcrXi&quot;,&quot;Custom Video Process&quot;),
+&quot;Executive Q&amp;A&quot;,HYPERLINK(&quot;http://bit.ly/3w0H21T&quot;,&quot;Q&amp;A Process&quot;),
+&quot;Handbook&quot;,HYPERLINK(&quot;http://bit.ly/3X7a1wn&quot;,&quot;Handbook Process&quot;),
+&quot;ICYMI&quot;,HYPERLINK(&quot;http://bit.ly/3GkN55V&quot;,&quot;ICYMI Video Process&quot;),
+&quot;Infographic&quot;,HYPERLINK(&quot;http://bit.ly/3Qi1Z1g&quot;,&quot;Infographic Process&quot;),
+&quot;Issue Brief&quot;,HYPERLINK(&quot;http://bit.ly/3ZcNyzL&quot;,&quot;Issue Brief Process&quot;),
+&quot;Lunch &amp; Learn Webinar&quot;,HYPERLINK(&quot;http://bit.ly/3iggpT5&quot;,&quot;Webinar Process&quot;),
+&quot;Publishable Report&quot;,HYPERLINK(&quot;http://bit.ly/3GcPwYg&quot;,&quot;Publishable Report Process&quot;),
+&quot;Roundtable&quot;,HYPERLINK(&quot;http://bit.ly/3X9v9lF&quot;,&quot;Roundtable Process&quot;),
+&quot;State-Specific Webinar&quot;,HYPERLINK(&quot;http://bit.ly/3iggpT5&quot;,&quot;Webinar Process&quot;),
+&quot;Thought Leadership Paper&quot;,HYPERLINK(&quot;http://bit.ly/3jPqUNH&quot;,&quot;Thought Leadership Paper Process&quot;),
+&quot;Virtual Conversation&quot;,HYPERLINK(&quot;http://bit.ly/3iggpT5&quot;,&quot;Webinar Process&quot;),
+&quot;Virtual Q&amp;A&quot;,HYPERLINK(&quot;http://bit.ly/3ZcN0K9&quot;,&quot;Virtual Q&amp;A Process&quot;),
+&quot;Webinar&quot;,HYPERLINK(&quot;http://bit.ly/3iggpT5&quot;,&quot;Webinar Process&quot;),
+&quot;White Paper&quot;,HYPERLINK(&quot;http://bit.ly/3ZcNyzL&quot;,&quot;White Paper Process&quot;),
+null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Product Process Docs</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

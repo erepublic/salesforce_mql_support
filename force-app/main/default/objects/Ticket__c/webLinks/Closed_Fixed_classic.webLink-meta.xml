@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Closed_Fixed_classic</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Closed / Fixed</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url
+  >/{!Ticket__c.Id}/e?&amp;00N30000009xceE=&quot;Closed&quot;&amp;00N30000009xceO=&quot;Fixed&quot;&amp;00N30000009xSp4=&quot;Completed&quot;&amp;save=1&amp;retURL=%2F{!Ticket__c.Id}</url>
+</WebLink>

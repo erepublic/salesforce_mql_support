@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>State_Term_Contracts</fullName>
+    <columns>NAME</columns>
+    <columns>Display_Title__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Title__c</field>
+        <operation>contains</operation>
+        <value>state term contract</value>
+    </filters>
+    <filters>
+        <field>Due_Date_Requested__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2023</value>
+    </filters>
+    <label>State Term Contracts</label>
+</ListView>

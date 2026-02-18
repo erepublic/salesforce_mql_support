@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Assigned_Onsite_Staff__c</fullName>
+    <label>Assigned Onsite Staff</label>
+    <summaryFilterItems>
+        <field>Event_Contact_Role__c.Role__c</field>
+        <operation>contains</operation>
+        <value>Onsite</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Event_Contact_Role__c.Internal_Contact__c</field>
+        <operation>notEqual</operation>
+        <value />
+    </summaryFilterItems>
+    <summaryForeignKey>Event_Contact_Role__c.Event__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

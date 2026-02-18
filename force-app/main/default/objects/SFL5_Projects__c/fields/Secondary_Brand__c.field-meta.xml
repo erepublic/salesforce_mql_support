@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Secondary_Brand__c</fullName>
+    <label>Secondary Brand</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>GT</fullName>
+                <default>false</default>
+                <label>GT</label>
+            </value>
+            <value>
+                <fullName>GOV</fullName>
+                <default>false</default>
+                <label>GOV</label>
+            </value>
+            <value>
+                <fullName>PCIO</fullName>
+                <default>false</default>
+                <label>PCIO</label>
+            </value>
+            <value>
+                <fullName>EM</fullName>
+                <default>false</default>
+                <label>EM</label>
+            </value>
+            <value>
+                <fullName>DC</fullName>
+                <default>false</default>
+                <label>DC</label>
+            </value>
+            <value>
+                <fullName>CVG</fullName>
+                <default>false</default>
+                <label>CVG</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

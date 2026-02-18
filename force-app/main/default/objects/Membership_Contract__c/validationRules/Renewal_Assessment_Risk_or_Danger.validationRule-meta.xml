@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Assessment_Risk_or_Danger</fullName>
+    <active>true</active>
+    <errorConditionFormula>OR(
+ISPICKVAL( Renewal_Assessment__c , &quot;Danger&quot;),
+ISPICKVAL( Renewal_Assessment__c , &quot;Risk&quot;)
+)
+&amp;&amp;
+ISPICKVAL(Expiration_Risk_Reason__c, &quot;&quot;)</errorConditionFormula>
+    <errorDisplayField>Expiration_Risk_Reason__c</errorDisplayField>
+    <errorMessage
+  >Please provide a reason for the Risk or Danger Renewal Assessment.</errorMessage>
+</ValidationRule>

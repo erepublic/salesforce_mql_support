@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Is_this_a_Named_Account</name>
+        <label>Is this a Named Account?</label>
+        <locationX>182</locationX>
+        <locationY>503</locationY>
+        <defaultConnector>
+            <targetReference>Update_Opp_Owner_Sheryl_Winter</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Unnamed</defaultConnectorLabel>
+        <rules>
+            <name>Named</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >Get_Account_Public_Sector.Sales_Team_Formula__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>POD</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >Get_Account_Public_Sector.Sales_Team_Formula__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>VP Sales</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Update_Opp_Owner_Account_Owner_Public_Sector</targetReference>
+            </connector>
+            <label>Named</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>What_Account_Name_RecordType</name>
+        <label>What Account Name / RecordType?</label>
+        <locationX>380</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Update_Opp_Owner_Account_Owner</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Public_Sector_Unassigned_e_Republic</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Account.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>012300000008caWAAQ</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Account.Name</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>e.Republic</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Account_Public_Sector</targetReference>
+            </connector>
+            <label>Public Sector / Unassigned / e.Republic</label>
+        </rules>
+    </decisions>
+    <description
+  >On creation, assign Opportunities to the Account Owner or Subscription Sales Owner.</description>
+    <environments>Default</environments>
+    <interviewLabel
+  >Opportunity - RT BS - {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Opportunity - RT BS - Owner Changes to Account Owner</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Account_Public_Sector</name>
+        <label>Get Account (Public Sector / e.Republic)</label>
+        <locationX>182</locationX>
+        <locationY>395</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_this_a_Named_Account</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.AccountId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Opp_Owner_Account_Owner</name>
+        <label>Update Opp Owner - Account Owner</label>
+        <locationX>578</locationX>
+        <locationY>395</locationY>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>$Record.Account.OwnerId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Opp_Owner_Account_Owner_Public_Sector</name>
+        <label>Update Opp Owner - Account Owner (Public Sector)</label>
+        <locationX>50</locationX>
+        <locationY>611</locationY>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>$Record.Account.OwnerId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Opp_Owner_Sheryl_Winter</name>
+        <label>Update Opp Owner - Sheryl Winter</label>
+        <locationX>314</locationX>
+        <locationY>611</locationY>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <stringValue>0051O00000DAM8dQAH</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>254</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>What_Account_Name_RecordType</targetReference>
+        </connector>
+        <filterFormula>AND(
+         TEXT({!$Record.StageName}) &lt;&gt; &quot;Closed Lost&quot;,
+         {!$Record.RecordTypeId} &lt;&gt; &quot;01214000000AX7E&quot;, /* Partnership Opportunity Record Type */
+         {!$User.UserRoleId} &lt;&gt; &quot;00E5Y000002pWGI&quot;, /* Exclude BizOps Flow User Role */
+         {!$Record.Owner.UserRoleId} &lt;&gt; &quot;00E5Y000002pWGI&quot;, /* Exclude BizOps Owner Role as Owners */
+         OR(
+                {!$Record.OwnerId} &lt;&gt; {!$Record.Account.OwnerId},
+                CONTAINS({!$Record.Account.Name}, &quot;e.Republic&quot;)
+               )
+        )</filterFormula>
+        <object>Opportunity</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

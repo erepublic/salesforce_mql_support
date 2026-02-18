@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Gift_Card_Checked_for_Webinars</fullName>
+    <active>true</active>
+    <errorConditionFormula
+  >RecordTypeId = &apos;0125Y000001TJkR&apos; /*Gift Card*/
+&amp;&amp;
+Event__r.RecordTypeId = &apos;01214000000AUym&apos; /*Webinar*/
+&amp;&amp;
+Event__r.Gift_Card__c = FALSE</errorConditionFormula>
+    <errorMessage
+  >Cannot request gift cards for a webinar without &quot;Gift Card&quot; checkbox checked.</errorMessage>
+</ValidationRule>

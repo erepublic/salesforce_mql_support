@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>System2__c</fullName>
+    <label>System</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CMS</fullName>
+                <default>false</default>
+                <label>CMS</label>
+            </value>
+            <value>
+                <fullName>Events</fullName>
+                <default>false</default>
+                <label>Events</label>
+            </value>
+            <value>
+                <fullName>Events Portal</fullName>
+                <default>false</default>
+                <label>Events Portal</label>
+            </value>
+            <value>
+                <fullName>SF-Tools</fullName>
+                <default>false</default>
+                <label>SF-Tools</label>
+            </value>
+            <value>
+                <fullName>Navigator</fullName>
+                <default>false</default>
+                <label>Navigator</label>
+            </value>
+            <value>
+                <fullName>Techwire</fullName>
+                <default>false</default>
+                <label>Insider</label>
+            </value>
+            <value>
+                <fullName>Governing</fullName>
+                <default>false</default>
+                <label>Governing</label>
+            </value>
+            <value>
+                <fullName>Govtech</fullName>
+                <default>false</default>
+                <label>Govtech</label>
+            </value>
+            <value>
+                <fullName>Govtech Microsite</fullName>
+                <default>false</default>
+                <label>Govtech Microsite</label>
+            </value>
+            <value>
+                <fullName>eRepublic</fullName>
+                <default>false</default>
+                <label>eRepublic</label>
+            </value>
+            <value>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+                <label>Salesforce</label>
+            </value>
+            <value>
+                <fullName>Other/ Not Sure</fullName>
+                <default>false</default>
+                <label>Other/ Not Sure</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

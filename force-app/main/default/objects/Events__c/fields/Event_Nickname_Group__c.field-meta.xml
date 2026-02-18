@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Nickname_Group__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >IF(CONTAINS(Nickname__c, &quot; 2030&quot;), SUBSTITUTE(Nickname__c , &quot; 2030&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2029&quot;), SUBSTITUTE(Nickname__c , &quot; 2029&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2028&quot;), SUBSTITUTE(Nickname__c , &quot; 2028&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2027&quot;), SUBSTITUTE(Nickname__c , &quot; 2027&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2026&quot;), SUBSTITUTE(Nickname__c , &quot; 2026&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2025&quot;), SUBSTITUTE(Nickname__c , &quot; 2025&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2024&quot;), SUBSTITUTE(Nickname__c , &quot; 2024&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2023&quot;), SUBSTITUTE(Nickname__c , &quot; 2023&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2022&quot;), SUBSTITUTE(Nickname__c , &quot; 2022&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2021&quot;), SUBSTITUTE(Nickname__c , &quot; 2021&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2020&quot;), SUBSTITUTE(Nickname__c , &quot; 2020&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2019&quot;), SUBSTITUTE(Nickname__c , &quot; 2019&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2018&quot;), SUBSTITUTE(Nickname__c , &quot; 2018&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2017&quot;), SUBSTITUTE(Nickname__c , &quot; 2017&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2016&quot;), SUBSTITUTE(Nickname__c , &quot; 2016&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2015&quot;), SUBSTITUTE(Nickname__c , &quot; 2015&quot;, &quot;&quot;),
+IF(CONTAINS(Nickname__c, &quot; 2014&quot;), SUBSTITUTE(Nickname__c , &quot; 2014&quot;, &quot;&quot;),
+
+
+&quot;&quot;)))))))))))))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Event Nickname Group</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

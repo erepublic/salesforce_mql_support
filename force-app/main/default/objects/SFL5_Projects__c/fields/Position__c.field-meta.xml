@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Position__c</fullName>
+    <label>Position</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Website - Top Leaderboard (T2)</fullName>
+                <default>false</default>
+                <label>Website - Top Leaderboard (T2)</label>
+            </value>
+            <value>
+                <fullName>Website - Top Button (T3)</fullName>
+                <default>false</default>
+                <label>Website - Top Button (T3)</label>
+            </value>
+            <value>
+                <fullName>Website - Top House Ad (T4)</fullName>
+                <default>false</default>
+                <label>Website - Top House Ad (T4)</label>
+            </value>
+            <value>
+                <fullName>Website - Top Rectangle (R2)</fullName>
+                <default>false</default>
+                <label>Website - Top Rectangle (R2)</label>
+            </value>
+            <value>
+                <fullName>Website - Middle Rectangle(M1)</fullName>
+                <default>false</default>
+                <label>Website - Middle Rectangle(M1)</label>
+            </value>
+            <value>
+                <fullName>Website - Bottom Rectangle(R4)</fullName>
+                <default>false</default>
+                <label>Website - Bottom Rectangle(R4)</label>
+            </value>
+            <value>
+                <fullName>Website - Top Skyscraper (L1)</fullName>
+                <default>false</default>
+                <label>Website - Top Skyscraper (L1)</label>
+            </value>
+            <value>
+                <fullName>Website - Bottom Skyscraper (L4)</fullName>
+                <default>false</default>
+                <label>Website - Bottom Skyscraper (L4)</label>
+            </value>
+            <value>
+                <fullName>Website - Big Button (L2)</fullName>
+                <default>false</default>
+                <label>Website - Big Button (L2)</label>
+            </value>
+            <value>
+                <fullName>Website - Bottom Leaderboard (B1)</fullName>
+                <default>false</default>
+                <label>Website - Bottom Leaderboard (B1)</label>
+            </value>
+            <value>
+                <fullName>Website - Bottom Button (B2)</fullName>
+                <default>false</default>
+                <label>Website - Bottom Button (B2)</label>
+            </value>
+            <value>
+                <fullName>Website – Interstitial (T5)</fullName>
+                <default>false</default>
+                <label>Website – Interstitial (T5)</label>
+            </value>
+            <value>
+                <fullName>Website - Text Link (TL 1-5)</fullName>
+                <default>false</default>
+                <label>Website - Text Link (TL 1-5)</label>
+            </value>
+            <value>
+                <fullName>Website - Top House Ad (R3)</fullName>
+                <default>false</default>
+                <label>Website - Top House Ad (R3)</label>
+            </value>
+            <value>
+                <fullName>Newsletter - Top</fullName>
+                <default>false</default>
+                <label>Newsletter - Top</label>
+            </value>
+            <value>
+                <fullName>Newsletter - Middle</fullName>
+                <default>false</default>
+                <label>Newsletter - Middle</label>
+            </value>
+            <value>
+                <fullName>Newsletter - Bottom</fullName>
+                <default>false</default>
+                <label>Newsletter - Bottom</label>
+            </value>
+            <value>
+                <fullName>Asset Posting</fullName>
+                <default>false</default>
+                <label>Asset Posting</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

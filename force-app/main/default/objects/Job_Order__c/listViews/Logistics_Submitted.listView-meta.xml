@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Logistics_Submitted</fullName>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Job_Name__c</columns>
+    <columns>Brand__c</columns>
+    <columns>Job_Type__c</columns>
+    <columns>Event__c</columns>
+    <columns>Date_Submitted__c</columns>
+    <columns>Requested_Due_Date__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Department__c</field>
+        <operation>equals</operation>
+        <value>Logistics</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Submitted</value>
+    </filters>
+    <label>Logistics - Submitted</label>
+</ListView>

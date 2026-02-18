@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Headers_Web_Sizes__c</fullName>
+    <label>Headers &amp; Web Sizes</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1440 x 720 (header background)</fullName>
+                <default>false</default>
+                <label>1440 x 720 (header background)</label>
+            </value>
+            <value>
+                <fullName>770x513 (Home Page Tile)</fullName>
+                <default>false</default>
+                <label>770x513 (Home Page Tile)</label>
+            </value>
+            <value>
+                <fullName>970x250 (Banner Web Ad)</fullName>
+                <default>false</default>
+                <label>970x250 (Banner Web Ad)</label>
+            </value>
+            <value>
+                <fullName>640x480 (Banner Web Ad)</fullName>
+                <default>false</default>
+                <label>640x480 (Banner Web Ad)</label>
+            </value>
+            <value>
+                <fullName>300x250 (Banner Web Ad)</fullName>
+                <default>false</default>
+                <label>300x250 (Banner Web Ad)</label>
+            </value>
+            <value>
+                <fullName>320x100 (Mobile Ad)</fullName>
+                <default>false</default>
+                <label>320x100 (Mobile Ad)</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

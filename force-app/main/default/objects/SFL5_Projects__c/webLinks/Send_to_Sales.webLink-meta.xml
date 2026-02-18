@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_to_Sales</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Send to Sales</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/{!SFL5_Projects__c.Id}/e?00N1400000BL6Ei=
+{!Today}&amp;save=1&amp;retURL=%2F006%2Fe%3F%26RecordType%3D01230000000wZms%26ent%3DOpportunity%3Fopp17_lkid%3D70114000002RTQQ%26opp17%3DResearch%2BProjects%2B-%2BSent%2Bto%2BSales%26accid%3D{!SFL5_Projects__c.ClientId__c}%26opp3%3D{!SFL5_Projects__c.Client__c}%20-%20Research%20Lead%26opp11%3DLead%20Opportunity</url>
+</WebLink>

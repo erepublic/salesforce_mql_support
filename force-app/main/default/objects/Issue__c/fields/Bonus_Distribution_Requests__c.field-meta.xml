@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bonus_Distribution_Requests__c</fullName>
+    <description
+  >Number of events this issue has been requested to be sent out to.</description>
+    <inlineHelpText
+  >Number of events this issue has been requested to be sent out to.</inlineHelpText>
+    <label># of BD Requests</label>
+    <summaryForeignKey>Bonus_Distribution__c.Issue_Name__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

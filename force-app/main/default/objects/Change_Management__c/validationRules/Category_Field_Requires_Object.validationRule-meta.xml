@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category_Field_Requires_Object</fullName>
+    <active>true</active>
+    <description
+  >If the Category is &quot;Field&quot; then the Object field is required.</description>
+    <errorConditionFormula>AND(
+    ISPICKVAL(Category__c, &quot;Field&quot;),
+    ISBLANK(TEXT(Object__c))
+)</errorConditionFormula>
+    <errorDisplayField>Object__c</errorDisplayField>
+    <errorMessage>Object field is required.</errorMessage>
+</ValidationRule>

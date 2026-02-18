@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Date_Mismatch_2__c</fullName>
+    <description
+  >Event Quarter does not match Event Month, or Event Name contains different year than Event Year.</description>
+    <formula>OR(
+  AND(
+    NOT(
+      ISBLANK( TEXT(Event_Month__c) )
+    ),
+    NOT(
+      ISBLANK( TEXT(Event_Quarter__c) )
+    ),
+    CASE( TEXT(Event_Month__c),
+      &quot;January&quot;, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q1&quot;, &quot;1&quot;, &quot;&quot;),
+      &quot;February&quot;, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q1&quot;, &quot;1&quot;, &quot;&quot;),
+      &quot;March&quot;, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q1&quot;, &quot;1&quot;, &quot;&quot;),
+      &quot;April&quot;, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q2&quot;, &quot;1&quot;, &quot;&quot;),
+      &quot;May&quot;, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q2&quot;, &quot;1&quot;, &quot;&quot;),
+      &quot;June&quot;, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q2&quot;, &quot;1&quot;, &quot;&quot;),
+      &quot;July&quot;, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q3&quot;, &quot;1&quot;, &quot;&quot;),
+      &quot;August&quot;, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q3&quot;, &quot;1&quot;, &quot;&quot;),
+      &quot;September&quot;, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q3&quot;, &quot;1&quot;, &quot;&quot;),
+      &quot;October&quot;,IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q4&quot;, &quot;1&quot;, &quot;&quot;),
+      &quot;November&quot;,IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q4&quot;, &quot;1&quot;, &quot;&quot;),
+      &quot;December&quot;,IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q4&quot;, &quot;1&quot;, &quot;&quot;),
+    &quot;&quot;)
+    = &quot;1&quot;
+  ),
+  AND(
+    CONTAINS( Name , &quot;2020&quot;),
+    OR(
+      AND(
+        NOT(ISBLANK( Event_Start_Date__c )),
+        YEAR(Event_Start_Date__c) &lt;&gt; 2020
+      ),
+      AND(
+        NOT(ISBLANK( Event_Year__c )),
+        Event_Year__c &lt;&gt; 2020
+      )
+    )
+  ),
+  AND(
+    CONTAINS( Name , &quot;2021&quot;),
+    OR(
+      AND(
+        NOT(ISBLANK( Event_Start_Date__c )),
+        YEAR(Event_Start_Date__c) &lt;&gt; 2021
+      ),
+      AND(
+        NOT(ISBLANK( Event_Year__c )),
+        Event_Year__c &lt;&gt; 2021
+      )
+    )
+  ),
+  AND(
+    CONTAINS( Name , &quot;2022&quot;),
+    OR(
+      AND(
+        NOT(ISBLANK( Event_Start_Date__c )),
+        YEAR(Event_Start_Date__c) &lt;&gt; 2022
+      ),
+      AND(
+        NOT(ISBLANK( Event_Year__c )),
+        Event_Year__c &lt;&gt; 2022
+      )
+    )
+  ),
+  AND(
+    CONTAINS( Name , &quot;2023&quot;),
+    OR(
+      AND(
+        NOT(ISBLANK( Event_Start_Date__c )),
+        YEAR(Event_Start_Date__c) &lt;&gt; 2023
+      ),
+      AND(
+        NOT(ISBLANK( Event_Year__c )),
+        Event_Year__c &lt;&gt; 2023
+      )
+    )
+  ),
+  AND(
+    CONTAINS( Name , &quot;2024&quot;),
+    OR(
+      AND(
+        NOT(ISBLANK( Event_Start_Date__c )),
+        YEAR(Event_Start_Date__c) &lt;&gt; 2024
+      ),
+      AND(
+        NOT(ISBLANK( Event_Year__c )),
+        Event_Year__c &lt;&gt; 2024
+      )
+    )
+  ),
+  AND(
+    CONTAINS( Name , &quot;2025&quot;),
+    OR(
+      AND(
+        NOT(ISBLANK( Event_Start_Date__c )),
+        YEAR(Event_Start_Date__c) &lt;&gt; 2025
+      ),
+      AND(
+        NOT(ISBLANK( Event_Year__c )),
+        Event_Year__c &lt;&gt; 2025
+      )
+    )
+  ),
+  AND(
+    CONTAINS( Name , &quot;2026&quot;),
+    OR(
+      AND(
+        NOT(ISBLANK( Event_Start_Date__c )),
+        YEAR(Event_Start_Date__c) &lt;&gt; 2026
+      ),
+      AND(
+        NOT(ISBLANK( Event_Year__c )),
+        Event_Year__c &lt;&gt; 2026
+      )
+    )
+  ),
+  AND(
+    CONTAINS( Name , &quot;2027&quot;),
+    OR(
+      AND(
+        NOT(ISBLANK( Event_Start_Date__c )),
+        YEAR(Event_Start_Date__c) &lt;&gt; 2027
+      ),
+      AND(
+        NOT(ISBLANK( Event_Year__c )),
+        Event_Year__c &lt;&gt; 2027
+      )
+    )
+  ),
+  AND(
+    CONTAINS( Name , &quot;2028&quot;),
+    OR(
+      AND(
+        NOT(ISBLANK( Event_Start_Date__c )),
+        YEAR(Event_Start_Date__c) &lt;&gt; 2028
+      ),
+      AND(
+        NOT(ISBLANK( Event_Year__c )),
+        Event_Year__c &lt;&gt; 2028
+      )
+    )
+  ),
+  AND(
+    CONTAINS( Name , &quot;2029&quot;),
+    OR(
+      AND(
+        NOT(ISBLANK( Event_Start_Date__c )),
+        YEAR(Event_Start_Date__c) &lt;&gt; 2029
+      ),
+      AND(
+        NOT(ISBLANK( Event_Year__c )),
+        Event_Year__c &lt;&gt; 2029
+      )
+    )
+  )
+)</formula>
+    <inlineHelpText
+  >Event Quarter does not match Event Month, or Event Name contains different year than Event Year.</inlineHelpText>
+    <label>Date Mismatch 2</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

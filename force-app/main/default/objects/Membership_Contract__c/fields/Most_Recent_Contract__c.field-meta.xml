@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Most_Recent_Contract__c</fullName>
+    <description
+  >Checked if the Account fields &quot;DGN/DEN Most Recent Membership&quot; have the same contract as this contract name.</description>
+    <formula>OR(
+    Membership_Name__r.Account_Name__r.DGN_Most_Recent_Membership__r.Id = Id,
+    Membership_Name__r.Account_Name__r.DEN_Most_Recent_Membership__r.Id = Id
+)</formula>
+    <label>Most Recent Contract</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

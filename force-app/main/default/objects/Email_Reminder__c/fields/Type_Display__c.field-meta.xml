@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type_Display__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >IF(INCLUDES(Type__c, &quot;Kick-off Meeting - Date Confirmed&quot;), &quot;Kick-off Meeting - Date Confirmed&quot; + BR(), NULL) +
+IF(INCLUDES(Type__c, &quot;Kick-off Meeting - Invite Accepted&quot;), &quot;Kick-off Meeting - Invite Accepted&quot; + BR(), NULL) +
+IF(INCLUDES(Type__c, &quot;Client Confirmed Resources and Materials&quot;), &quot;Client Confirmed Resources and Materials&quot; + BR(), NULL) +
+IF(INCLUDES(Type__c, &quot;Writer Offer&quot;), &quot;Writer Offer&quot; + BR(), NULL) +
+IF(INCLUDES(Type__c, &quot;Writer Agreement&quot;), &quot;Writer Agreement&quot; + BR(), NULL) +
+IF(INCLUDES(Type__c, &quot;Interview Request&quot;), &quot;Interview Request&quot; + BR(), NULL) +
+IF(INCLUDES(Type__c, &quot;Interview Commitment&quot;), &quot;Interview Commitment&quot; + BR(), NULL) +
+IF(INCLUDES(Type__c, &quot;Interview Invitation Accepted&quot;), &quot;Interview Invitation Accepted&quot; + BR(), NULL) +
+IF(INCLUDES(Type__c, &quot;Outline - Changes&quot;), &quot;Outline - Changes&quot; + BR(), NULL) +
+IF(INCLUDES(Type__c, &quot;Outline - Approval&quot;), &quot;Outline - Approval&quot; + BR(), NULL) +
+IF(INCLUDES(Type__c, &quot;Quote Approval &quot;), &quot;Quote Approval &quot; + BR(), NULL) +
+IF(INCLUDES(Type__c, &quot;Consent &amp; Release Form&quot;), &quot;Consent &amp; Release Form&quot; + BR(), NULL) +
+IF(INCLUDES(Type__c, &quot;Design PDF - Revisions&quot;), &quot;Design PDF - Revisions&quot; + BR(), NULL) +
+IF(INCLUDES(Type__c, &quot;Design PDF - Approval&quot;), &quot;Design PDF - Approval&quot; + BR(), NULL) +
+IF(INCLUDES(Type__c, &quot;Other&quot;), &quot;Other&quot; + BR(), NULL)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Type</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

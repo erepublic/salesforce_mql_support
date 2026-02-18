@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Count</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Contract Count</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url
+  >https://erepublic.my.salesforce.com/00O1O0000095V7K?pv0={!Events__c.Id}</url>
+</WebLink>

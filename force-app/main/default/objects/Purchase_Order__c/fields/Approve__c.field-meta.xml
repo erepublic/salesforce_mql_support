@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approve__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Hidden check box that runs the approval process workflow for the current user.</description>
+    <label>Approve</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

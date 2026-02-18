@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Opportunity__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Primary Opportunity</label>
+    <referenceTo>Opportunity</referenceTo>
+    <relationshipLabel>Invoice PDFs</relationshipLabel>
+    <relationshipName>Invoice_PDFs</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

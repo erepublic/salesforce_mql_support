@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>livestart__c</fullName>
+    <description
+  >This is the time when the lobby “opens” for the live event – when users are able to launch the event console. Typically, this is configured 15 minutes in advance of the published event time. e.g., Thu, 30 Apr 2009 12:19 PDT</description>
+    <inlineHelpText
+  >This is the time when the lobby “opens” for the live event – when users are able to launch the event console. Typically, this is configured 15 minutes in advance of the published event time. e.g., Thu, 30 Apr 2009 12:19 PDT</inlineHelpText>
+    <label>On24 livestart</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

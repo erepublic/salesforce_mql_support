@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Include_Industry__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Check this box to include Industry Attendees in the Attendee Registrations counts for this event.</description>
+    <inlineHelpText
+  >Check this box to include Industry Attendees in the Attendee Registrations counts for this event.</inlineHelpText>
+    <label>Include Industry Attendees</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

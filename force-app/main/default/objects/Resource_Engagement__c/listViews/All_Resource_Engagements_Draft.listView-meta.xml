@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Resource_Engagements_Draft</fullName>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Resource__c</columns>
+    <columns>Type__c</columns>
+    <columns>Topic__c</columns>
+    <columns>Event__c</columns>
+    <columns>Project__c</columns>
+    <columns>Date_Requested__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Draft</value>
+    </filters>
+    <label>All Resource Engagements - Draft</label>
+</ListView>

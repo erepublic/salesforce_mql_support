@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hours_Completed__c</fullName>
+    <description
+  >Sum of the total hours completed across all assignments.</description>
+    <inlineHelpText
+  >Sum of the total hours completed across all assignments.</inlineHelpText>
+    <label>Hours Completed</label>
+    <summarizedField>Project_Assignment__c.Hours_Completed__c</summarizedField>
+    <summaryForeignKey>Project_Assignment__c.Project__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

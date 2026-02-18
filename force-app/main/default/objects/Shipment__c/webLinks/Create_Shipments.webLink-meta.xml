@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Shipments</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Create Shipments</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <requireRowSelection>false</requireRowSelection>
+    <url
+  >/flow/Event_or_Conference_SF_Create_Shipments?recordId={!Events__c.Id}&amp;retURL=https://erepublic.lightning.force.com/lightning/r/Events__c/{!Events__c.Id}/related/Event_Shipments__r/view&amp;{!Events__c.Id}=recordId</url>
+</WebLink>

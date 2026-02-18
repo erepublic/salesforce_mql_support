@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Onsite_Registration_Assignments_Needed</fullName>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Event__c</columns>
+    <columns>Primary__c</columns>
+    <columns>Internal_Contact__c</columns>
+    <columns>Role__c</columns>
+    <columns>Contact_Role_Notes__c</columns>
+    <columns>Role_Not_Needed__c</columns>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Event_Contact_Role__c.Internal_Contact</value>
+    </filters>
+    <filters>
+        <field>Role__c</field>
+        <operation>equals</operation>
+        <value>Onsite Registration Coordinator</value>
+    </filters>
+    <filters>
+        <field>Event_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Cancelled</value>
+    </filters>
+    <filters>
+        <field>Internal_Contact__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Event_Start_Date__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Event__c</field>
+        <operation>notContain</operation>
+        <value>Badge Scanner,Test</value>
+    </filters>
+    <filters>
+        <field>Role_Not_Needed__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Onsite Registration Assignments Needed</label>
+</ListView>

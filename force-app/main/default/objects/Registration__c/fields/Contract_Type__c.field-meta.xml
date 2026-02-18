@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Type__c</fullName>
+    <description
+  >Shows the Payment Type from the Reg Billing Contract related to this registration.</description>
+    <externalId>false</externalId>
+    <formula>TEXT(Contract__r.Payment_Type__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Shows the Payment Type from the Reg Billing Contract related to this registration.</inlineHelpText>
+    <label>Contract Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

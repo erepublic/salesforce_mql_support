@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Unlock_Delivery_Contract</name>
+        <label>Unlock Delivery Contract</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>01214000000AV7yAAG</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Decision_Unlock_Event_Contract</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Unlock_Event_Contract</name>
+        <label>Unlock Event Contract</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>012a0000001RKA9AAO</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Normalize_Activated_Status</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Update_to_Active</name>
+        <label>Update to Active</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Active</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Delivery_Contract_Locked</name>
+        <label>Delivery Contract Locked</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>01214000001RYWeAAO</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Decision_Lock_Event_Contract</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Event_Contract_Locked</name>
+        <label>Event Contract Locked</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>01214000001RYWjAAO</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Decision_Unlock_Delivery_Contract</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Decision_Lock_Delivery_Contract</name>
+        <label>Lock Delivery Contract?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Decision_Lock_Event_Contract</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Locked</defaultConnectorLabel>
+        <rules>
+            <name>Outcome_Lock_Delivery_Contract</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AV7yAAG</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Canceled</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Updated</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Approved</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Delivery_Contract_Locked</targetReference>
+            </connector>
+            <label>Lock Delivery Contract</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Decision_Lock_Event_Contract</name>
+        <label>Lock Event Contract?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Decision_Unlock_Delivery_Contract</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Locked</defaultConnectorLabel>
+        <rules>
+            <name>Lock_Event_Contract</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>012a0000001RKA9AAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Activated</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Canceled</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Updated</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Event_Contract_Locked</targetReference>
+            </connector>
+            <label>Lock Event Contract</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Decision_Unlock_Delivery_Contract</name>
+        <label>Unlock Delivery Contract?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Decision_Unlock_Event_Contract</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Stay Locked</defaultConnectorLabel>
+        <rules>
+            <name>Unlock_Delivery_Contract</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4 OR 5)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000001RYWeAAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Active</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Rejected</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Editing</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Re-Submit</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_Unlock_Delivery_Contract</targetReference>
+            </connector>
+            <label>Unlock Delivery Contract</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Decision_Unlock_Event_Contract</name>
+        <label>Unlock Event Contract?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Normalize_Activated_Status</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Stay Locked</defaultConnectorLabel>
+        <rules>
+            <name>Unlock_Event_Contract</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000001RYWjAAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Editing</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Unlock_Event_Contract</targetReference>
+            </connector>
+            <label>Unlock Event Contract</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Normalize_Activated_Status</name>
+        <label>Normalize Activated Status</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No Status Change</defaultConnectorLabel>
+        <rules>
+            <name>Update_to_Active</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Activated</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AV7yAAG</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AVmNAAW</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AVoOAAW</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Update_to_Active</targetReference>
+            </connector>
+            <label>Update to Active</label>
+        </rules>
+    </decisions>
+    <description>Replaces 5 Workflow Rules:
+- Contract - Record Type Changes - DELIVERY
+- Contract - Record Type Changes - EVENT
+- Contract - Record Type Changes to Unlocked - DELIVERY
+- Contract - Record Type Changes to Unlocked - EVENT
+- Contract: Status Field Update from Activated to Active
+
+Purpose:
+- Automatically locks/unlocks Contract Record Types based on Status transitions.
+- Update Status from &quot;Activated&quot; to &quot;Active&quot; for Rec Types: Delivery Contract, Billing - Internal Only, or Billing - Cancel/Refund, 
+
+Impacted Record Types (RecordTypeId):
+- Delivery_Contract (01214000000AV7yAAG)
+- Delivery_Contract_Locked (01214000001RYWeAAO)
+- Billing - Internal Only (01214000000AVmNAAW)
+- Billing - Cancel/Refund (01214000000AVoOAAW)
+- Event_Contract (012a0000001RKA9AAO)
+- Event_Contract_Locked (01214000001RYWjAAO)
+
+Primary Actions:
+- Convert to Locked when in Approved/Updated/Canceled/Activated
+- Convert to Unlocked when transitioned back to Active/Rejected/Editing/Re-Submit
+- Normalize Activated status to Active</description>
+    <environments>Default</environments>
+    <interviewLabel
+  >Contract - RT BS - Status &amp; Rec Type Updates {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contract - RT BS - Status &amp; Rec Type Updates</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Decision_Lock_Delivery_Contract</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Contract</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

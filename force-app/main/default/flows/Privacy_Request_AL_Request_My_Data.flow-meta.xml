@@ -1,0 +1,1690 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_ADBD_Data_Table</name>
+        <label>Assign ADBD Data Table</label>
+        <locationX>314</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_ADBD_Data</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Headers_ADBD_Data</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_ADBD_Data</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Table_Row_ADBD_Data</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_ADBD_Data</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Headers_ADBD_Data2</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_ADBD_Data</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Table_Row_ADBD_Data2</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_ADBD_Data</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Headers_ADBD_Data3</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_ADBD_Data</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Table_Row_ADBD_Data3</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_ADBD_Data</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>&lt;/table&gt;</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Registrations</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_ADBD_Member_Table</name>
+        <label>Assign ADBD Member Table</label>
+        <locationX>138</locationX>
+        <locationY>674</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_ADBD_Member1</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Table_Row_ADBD_Member</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_ADBD_Member2</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Table_Row_ADBD_Member2</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_ADBD_Member3</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Table_Row_ADBD_Member3</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_ADBD_Member4</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Table_Row_ADBD_Member4</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_Record_Ids</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>{!Loop_Through_ADBDs.Id}; </stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_ADBDs</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_ADBD_Prefix</name>
+        <label>Assign ADBD Prefix</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <assignmentItems>
+            <assignToReference>var_Record_Ids</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Advisory Boards: </stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_ADBDs</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Contact_Enrollment_Prefix</name>
+        <label>Assign Contact Enrollment Prefix</label>
+        <locationX>182</locationX>
+        <locationY>3722</locationY>
+        <assignmentItems>
+            <assignToReference>var_Record_Ids</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Contact Enrollments: </stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_over_Contact_Enrollments</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Contact_Enrollment_Table</name>
+        <label>Assign Contact Enrollment Table</label>
+        <locationX>270</locationX>
+        <locationY>3938</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_Contact_Enrollment</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference
+        >tt_Table_Row_Contact_Enrollment</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_Record_Ids</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>{!Loop_over_Contact_Enrollments.Id}; </stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_over_Contact_Enrollments</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Contact_Enrollment_Table_End</name>
+        <label>Assign Contact Enrollment Table End</label>
+        <locationX>182</locationX>
+        <locationY>4130</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_Contact_Enrollment</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>&lt;/table&gt;</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Membership_Data_Included</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Contact_Table</name>
+        <label>Assign Contact Table</label>
+        <locationX>314</locationX>
+        <locationY>134</locationY>
+        <assignmentItems>
+            <assignToReference>var_Record_Ids</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Contact: {!recordId.Contact__r.Id}; </stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_Contact</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Headers_Contact</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_Contact</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Table_Row_Contact</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_Contact</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Headers_Contact2</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_Contact</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Table_Row_Contact2</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_Contact</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Headers_Contact3</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_Contact</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Table_Row_Contact3</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_Contact</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Headers_Contact4</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_Contact</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Table_Row_Contact4</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Advisory_Board_Membership</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Full_Table</name>
+        <label>Assign Full Table</label>
+        <locationX>314</locationX>
+        <locationY>4922</locationY>
+        <assignmentItems>
+            <assignToReference>var_Display_Full_Table</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>tt_Full_Table</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Membership_Data_Table</name>
+        <label>Assign Membership Data Table</label>
+        <locationX>182</locationX>
+        <locationY>4430</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_Membership_Data</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Headers_Membership_Data</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_Membership_Data</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference
+        >tt_Table_Row_Membership_Data</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Subscribed_to_Newsletters</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Newsletter_Table</name>
+        <label>Assign Newsletter Table</label>
+        <locationX>182</locationX>
+        <locationY>4730</locationY>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_Newsletter</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Headers_Newsletters</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_All_Table_Rows_Newsletter</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Table_Row_Newsletter</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Full_Table</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Paper_Download_Prefix</name>
+        <label>Assign Paper Download Prefix</label>
+        <locationX>182</locationX>
+        <locationY>2090</locationY>
+        <assignmentItems>
+            <assignToReference>var_Record_Ids</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Paper Downloads: </stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Paper_Downloads</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Paper_Download_Table</name>
+        <label>Assign Paper Download Table</label>
+        <locationX>270</locationX>
+        <locationY>2306</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_Paper_Download</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Table_Row_Paper_Download</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_Record_Ids</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>{!Loop_through_Paper_Downloads.Id}; </stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Paper_Downloads</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Paper_Download_Table_End</name>
+        <label>Assign Paper Download Table End</label>
+        <locationX>182</locationX>
+        <locationY>2498</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_Paper_Download</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>&lt;/table&gt;</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Subscriptions</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Registration_Prefix</name>
+        <label>Assign Registration Prefix</label>
+        <locationX>182</locationX>
+        <locationY>1274</locationY>
+        <assignmentItems>
+            <assignToReference>var_Record_Ids</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Registrations: </stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Registrations</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Registration_Table</name>
+        <label>Assign Registration Table</label>
+        <locationX>270</locationX>
+        <locationY>1490</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_Registration</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Table_Row_Registration</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_Record_Ids</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>{!Loop_through_Registrations.Id}; </stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Registrations</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Registration_Table_End</name>
+        <label>Assign Registration Table End</label>
+        <locationX>182</locationX>
+        <locationY>1682</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_Registration</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>&lt;/table&gt;</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Paper_Downloads</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Subscription_Prefix</name>
+        <label>Assign Subscription Prefix</label>
+        <locationX>182</locationX>
+        <locationY>2906</locationY>
+        <assignmentItems>
+            <assignToReference>var_Record_Ids</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Subscriptions:  </stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Subscriptions</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Subscription_Table</name>
+        <label>Assign Subscription Table</label>
+        <locationX>270</locationX>
+        <locationY>3122</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_Subscription</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>tt_Table_Row_Subscription</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_Record_Ids</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>{!Loop_through_Subscriptions.Id}; </stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_Subscriptions</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Subscriptions_Table_End</name>
+        <label>Assign Subscriptions Table End</label>
+        <locationX>182</locationX>
+        <locationY>3314</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_Subscription</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>&lt;/table&gt;</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Contact_Enrollments</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>End_ADBD_Member_Tables</name>
+        <label>End ADBD Member Tables</label>
+        <locationX>50</locationX>
+        <locationY>866</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_ADBD_Member1</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>&lt;/table&gt;</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_ADBD_Member2</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>&lt;/table&gt;</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_ADBD_Member3</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>&lt;/table&gt;</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_All_Table_Rows_ADBD_Member4</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>&lt;/table&gt;</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Get_Registrations</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Advisory_Board_Membership</name>
+        <label>Advisory Board Membership?</label>
+        <locationX>314</locationX>
+        <locationY>350</locationY>
+        <defaultConnector>
+            <targetReference>Get_Registrations</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_ADBD_Membership_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >Get_Advisory_Board_Membership</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_ADBD_Prefix</targetReference>
+            </connector>
+            <label>Yes, ADBD Membership Exists</label>
+        </rules>
+        <rules>
+            <name>ADBD_Data_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >Get_Advisory_Board_Membership</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >recordId.Contact__r.AB_Last_Name__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_ADBD_Data_Table</targetReference>
+            </connector>
+            <label>ADBD Data Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Does_Contact_Enrollment_Exist</name>
+        <label>Does Contact Enrollment Exist?</label>
+        <locationX>314</locationX>
+        <locationY>3614</locationY>
+        <defaultConnector>
+            <targetReference>Membership_Data_Included</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Contact_Enrollment_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Contact_Enrollments</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_Contact_Enrollment_Prefix</targetReference>
+            </connector>
+            <label>Yes, Contact Enrollment Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Does_Paper_Download_Exist</name>
+        <label>Does Paper Download Exist?</label>
+        <locationX>314</locationX>
+        <locationY>1982</locationY>
+        <defaultConnector>
+            <targetReference>Get_Subscriptions</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Paper_Download_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Paper_Downloads</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Paper_Download_Prefix</targetReference>
+            </connector>
+            <label>Yes, Paper Download Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Does_Registration_Exist</name>
+        <label>Does Registration Exist?</label>
+        <locationX>314</locationX>
+        <locationY>1166</locationY>
+        <defaultConnector>
+            <targetReference>Get_Paper_Downloads</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Registration_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Registrations</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Registration_Prefix</targetReference>
+            </connector>
+            <label>Yes, Registration Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Does_Subscription_Exist</name>
+        <label>Does Subscription Exist?</label>
+        <locationX>314</locationX>
+        <locationY>2798</locationY>
+        <defaultConnector>
+            <targetReference>Get_Contact_Enrollments</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Subscription_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Subscriptions</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Subscription_Prefix</targetReference>
+            </connector>
+            <label>Yes, Subscription Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Membership_Data_Included</name>
+        <label>Membership Data Included?</label>
+        <locationX>314</locationX>
+        <locationY>4322</locationY>
+        <defaultConnector>
+            <targetReference>Subscribed_to_Newsletters</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Include_Membership_Data</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>var_Membership_Data</leftValueReference>
+                <operator>IsBlank</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Membership_Data_Table</targetReference>
+            </connector>
+            <label>Yes, Include Membership Data</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Subscribed_to_Newsletters</name>
+        <label>Subscribed to Newsletters?</label>
+        <locationX>314</locationX>
+        <locationY>4622</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Full_Table</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Subscribed_to_Newsletters</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>f_Has_Newsletter</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Newsletter_Table</targetReference>
+            </connector>
+            <label>Yes, Subscribed to Newsletters</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_365_Days_Ago</name>
+        <dataType>Date</dataType>
+        <expression>{!$Flow.CurrentDate}-365</expression>
+    </formulas>
+    <formulas>
+        <name>f_AB_Event_Display_Title_or_Name</name>
+        <dataType>String</dataType>
+        <expression
+    >IF({!Loop_Through_ADBDs.Event__r.Display_Title__c}=null, {!Loop_Through_ADBDs.Event__r.Event_Display_Name__c}, {!Loop_Through_ADBDs.Event__r.Display_Title__c})</expression>
+    </formulas>
+    <formulas>
+        <name>f_Advisory_Board_Date</name>
+        <dataType>Date</dataType>
+        <expression>DATEVALUE({!Loop_Through_ADBDs.CreatedDate})</expression>
+    </formulas>
+    <formulas>
+        <name>f_Contact_Other</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR({!recordId.Contact__r.OtherStreet}&lt;&gt;null,
+      {!recordId.Contact__r.OtherCity}&lt;&gt;null,
+      {!recordId.Contact__r.OtherState}&lt;&gt;null,
+      {!recordId.Contact__r.OtherPostalCode}&lt;&gt;null,
+      {!recordId.Contact__r.OtherCountry}&lt;&gt;null,
+      {!recordId.Contact__r.Second_Email__c}&lt;&gt;null,
+      {!recordId.Contact__r.OtherPhone}&lt;&gt;null)
+, &quot;Contact: Other&quot;, null)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Display_ADBD_Data_Table</name>
+        <dataType>String</dataType>
+        <expression>IF({!var_All_Table_Rows_ADBD_Data}=null, null, 
+{!var_All_Table_Rows_ADBD_Data} &amp; BR() 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Display_ADBD_Member_Table</name>
+        <dataType>String</dataType>
+        <expression>IF({!var_All_Table_Rows_ADBD_Member1}=null, null, 
+{!tt_Headers_ADBD_Member} &amp; BR() &amp; {!var_All_Table_Rows_ADBD_Member1} &amp; BR() &amp; 
+{!tt_Headers_ADBD_Member2} &amp; BR() &amp; {!var_All_Table_Rows_ADBD_Member2} &amp; BR() &amp; 
+{!tt_Headers_ADBD_Member3} &amp; BR() &amp; {!var_All_Table_Rows_ADBD_Member3} &amp; BR() &amp;
+{!tt_Headers_ADBD_Member4} &amp; BR() &amp; {!var_All_Table_Rows_ADBD_Member4} &amp; BR() 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Display_Contact_Enrollment_Table</name>
+        <dataType>String</dataType>
+        <expression>IF({!var_All_Table_Rows_Contact_Enrollment}=null, null, 
+{!tt_Headers_Contact_Enrollment} &amp; BR() &amp; {!var_All_Table_Rows_Contact_Enrollment} &amp; BR() 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Display_Membership_Data_Table</name>
+        <dataType>String</dataType>
+        <expression>IF({!var_All_Table_Rows_Membership_Data}=null, null, 
+{!var_All_Table_Rows_Membership_Data} &amp; BR() 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Display_Newsletter_Table</name>
+        <dataType>String</dataType>
+        <expression>IF({!var_All_Table_Rows_Newsletter}=null, null, 
+{!var_All_Table_Rows_Newsletter} &amp; BR() 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Display_Paper_Download_Table</name>
+        <dataType>String</dataType>
+        <expression>IF({!var_All_Table_Rows_Paper_Download} =null, null, 
+{!tt_Headers_Paper_Download} &amp; BR() &amp; {!var_All_Table_Rows_Paper_Download} &amp; BR() 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Display_Registration_Table</name>
+        <dataType>String</dataType>
+        <expression>IF({!var_All_Table_Rows_Registration} =null, null, 
+{!tt_Headers_Registration} &amp; BR() &amp; {!var_All_Table_Rows_Registration} &amp; BR() 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Display_Subscription_Table</name>
+        <dataType>String</dataType>
+        <expression>IF({!var_All_Table_Rows_Subscription} =null, null, 
+{!tt_Headers_Subscription} &amp; BR() &amp; {!var_All_Table_Rows_Subscription} &amp; BR() 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Has_Newsletter</name>
+        <dataType>Boolean</dataType>
+        <expression
+    >IF({!f_Newsletters_Subscribed_1}&lt;&gt;null, true, false)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Newsletters_Subscribed_1</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(CONTAINS(TEXT({!recordId.Contact__r.Email_Group_News_GT_GovTech_Daily__c}),&quot;Subscribed&quot;), &quot;GovTech Today &lt;br&gt;&quot;, null) &amp;
+IF(CONTAINS(TEXT({!recordId.Contact__r.Email_Group_News_GT_AI__c}),&quot;Subscribed&quot;), &quot;Artificial Intelligence &lt;br&gt;&quot;, null) &amp;
+IF(CONTAINS(TEXT({!recordId.Contact__r.Email_Group_News_GT_Cybersecurity__c}),&quot;Subscribed&quot;), &quot;Cybersecurity &lt;br&gt;&quot;, null) &amp;
+IF(CONTAINS(TEXT({!recordId.Contact__r.Email_Group_News_GT_DC__c}),&quot;Subscribed&quot;), &quot;Digital Communities &lt;br&gt;&quot;, null) &amp;
+IF(CONTAINS(TEXT({!recordId.Contact__r.Email_Group_News_GT_EM_News__c}),&quot;Subscribed&quot;), &quot;Emergency Management &lt;br&gt;&quot;, null) &amp;
+IF(CONTAINS(TEXT({!recordId.Contact__r.Email_Group_News_GT_Biz__c}),&quot;Subscribed&quot;), &quot;Govtech Biz &lt;br&gt;&quot;, null) &amp;
+IF(CONTAINS(TEXT({!recordId.Contact__r.Email_Group_News_GT_Market_Insight__c}),&quot;Subscribed&quot;), &quot;GovTech Market Insights &lt;br&gt;&quot;, null) &amp;
+IF(CONTAINS(TEXT({!recordId.Contact__r.Email_Group_News_CDE_HED__c}),&quot;Subscribed&quot;), &quot;Higher Education &lt;br&gt;&quot;, null) &amp;
+IF(CONTAINS(TEXT({!recordId.Contact__r.Email_Group_News_CDE_K_12__c}),&quot;Subscribed&quot;), &quot;K-12 Education &lt;br&gt;&quot;, null) &amp;
+IF(CONTAINS(TEXT({!recordId.Contact__r.Email_Group_News_GOV_GOV_Daily__c}),&quot;Subscribed&quot;), &quot;Governing Daily &lt;br&gt;&quot;, null) &amp;
+IF(CONTAINS(TEXT({!recordId.Contact__r.Email_Group_News_GOV_Future_of_Fin__c}),&quot;Subscribed&quot;), &quot;Finance Insight &lt;br&gt;&quot;, null) &amp;
+IF(CONTAINS(TEXT({!recordId.Contact__r.Email_Group_News_GOV_Politics__c}),&quot;Subscribed&quot;), &quot;Inside Politics &lt;br&gt;&quot;, null)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Registration_Event_Display_Title_or_Name</name>
+        <dataType>String</dataType>
+        <expression
+    >IF({!Loop_through_Registrations.Event__r.Display_Title__c}=null, {!Loop_through_Registrations.Event__r.Event_Display_Name__c}, {!Loop_through_Registrations.Event__r.Display_Title__c})</expression>
+    </formulas>
+    <interviewLabel
+  >Privacy Request - AL - Request My Data {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Privacy Request - AL - Request My Data</label>
+    <loops>
+        <name>Loop_over_Contact_Enrollments</name>
+        <label>Loop over Contact Enrollments</label>
+        <locationX>182</locationX>
+        <locationY>3830</locationY>
+        <collectionReference>Get_Contact_Enrollments</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Contact_Enrollment_Table</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference
+      >Assign_Contact_Enrollment_Table_End</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_Through_ADBDs</name>
+        <label>Loop Through ADBDs</label>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
+        <collectionReference>Get_Advisory_Board_Membership</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_ADBD_Member_Table</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>End_ADBD_Member_Tables</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_through_Paper_Downloads</name>
+        <label>Loop through Paper Downloads</label>
+        <locationX>182</locationX>
+        <locationY>2198</locationY>
+        <collectionReference>Get_Paper_Downloads</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Paper_Download_Table</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Assign_Paper_Download_Table_End</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_through_Registrations</name>
+        <label>Loop through Registrations</label>
+        <locationX>182</locationX>
+        <locationY>1382</locationY>
+        <collectionReference>Get_Registrations</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Registration_Table</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Assign_Registration_Table_End</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <name>Loop_through_Subscriptions</name>
+        <label>Loop through Subscriptions</label>
+        <locationX>182</locationX>
+        <locationY>3014</locationY>
+        <collectionReference>Get_Subscriptions</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Subscription_Table</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Assign_Subscriptions_Table_End</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Advisory_Board_Membership</name>
+        <label>Get Advisory Board Membership</label>
+        <locationX>314</locationX>
+        <locationY>242</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Advisory_Board_Membership</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Contact__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Contact__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>CreatedDate</field>
+            <operator>GreaterThanOrEqualTo</operator>
+            <value>
+                <elementReference>f_365_Days_Ago</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Advisory_Board_Member__c</object>
+        <sortField>CreatedDate</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Contact_Enrollments</name>
+        <label>Get Contact Enrollments</label>
+        <locationX>314</locationX>
+        <locationY>3506</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Does_Contact_Enrollment_Exist</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Contact__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Contact__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Enrollment_Date__c</field>
+            <operator>GreaterThanOrEqualTo</operator>
+            <value>
+                <elementReference>f_365_Days_Ago</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Contact_Enrollment__c</object>
+        <sortField>Enrollment_Date__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Paper_Downloads</name>
+        <label>Get Paper Downloads</label>
+        <locationX>314</locationX>
+        <locationY>1874</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Does_Paper_Download_Exist</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Registrant__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Contact__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Download_Date__c</field>
+            <operator>GreaterThanOrEqualTo</operator>
+            <value>
+                <elementReference>f_365_Days_Ago</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Paper_Download__c</object>
+        <sortField>Download_Date__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Registrations</name>
+        <label>Get Registrations</label>
+        <locationX>314</locationX>
+        <locationY>1058</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Does_Registration_Exist</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Registrant_Name__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Contact__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Reg_Date__c</field>
+            <operator>GreaterThanOrEqualTo</operator>
+            <value>
+                <elementReference>f_365_Days_Ago</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Registration__c</object>
+        <sortField>Reg_Date__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_Subscriptions</name>
+        <label>Get Subscriptions</label>
+        <locationX>314</locationX>
+        <locationY>2690</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Does_Subscription_Exist</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Subscriber__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId.Contact__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Active</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Subscription__c</object>
+        <sortField>Qual_Date__c</sortField>
+        <sortOrder>Desc</sortOrder>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>188</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_Contact_Table</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Text_AllCellsStyle</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>text-align: left; padding: 8px; font-size: 12px;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Full_Table</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{!var_All_Table_Rows_Contact}
+ {!f_Display_ADBD_Member_Table}{!f_Display_ADBD_Data_Table}{!f_Display_Registration_Table}{!f_Display_Paper_Download_Table}{!f_Display_Subscription_Table}{!f_Display_Contact_Enrollment_Table}{!f_Display_Membership_Data_Table}{!f_Display_Newsletter_Table}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_ADBD_Data</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table class=&quot;TableData&quot;&gt;
+  &lt;colgroup&gt;
+    &lt;col style=&quot;width: 100px;&quot;&gt;
+  &lt;/colgroup&gt;
+&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+      &lt;th&gt;Date&lt;/th&gt;
+      &lt;th&gt;Salutation&lt;/th&gt;
+      &lt;th&gt;First Name&lt;/th&gt;
+      &lt;th&gt;Middle Name&lt;/th&gt;
+      &lt;th&gt;Last Name&lt;/th&gt;
+      &lt;th&gt;Suffix&lt;/th&gt;
+      &lt;th&gt;Title&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_ADBD_Data2</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+      &lt;th&gt;Email&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_ADBD_Data3</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+      &lt;th&gt;Department&lt;/th&gt;
+      &lt;th&gt;Organization&lt;/th&gt;
+      &lt;th&gt;Phone&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_ADBD_Member</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table class=&quot;TableData&quot;&gt;
+  &lt;colgroup&gt;
+    &lt;col style=&quot;width: 100px;&quot;&gt;
+  &lt;/colgroup&gt;
+&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+      &lt;th&gt;AB Date&lt;/th&gt;
+      &lt;th&gt;AB Salutation&lt;/th&gt;
+      &lt;th&gt;AB First Name&lt;/th&gt;
+      &lt;th&gt;AB Middle Name&lt;/th&gt;
+      &lt;th&gt;AB Last Name&lt;/th&gt;
+      &lt;th&gt;AB Suffix&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_ADBD_Member2</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table class=&quot;TableData&quot;&gt;
+  &lt;colgroup&gt;
+    &lt;col style=&quot;width: 100px;&quot;&gt;
+  &lt;/colgroup&gt;
+&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+      &lt;th&gt;AB Title&lt;/th&gt;
+      &lt;th&gt;AB Department&lt;/th&gt;
+      &lt;th&gt;AB Organization&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_ADBD_Member3</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table class=&quot;TableData&quot;&gt;
+  &lt;colgroup&gt;
+    &lt;col style=&quot;width: 100px;&quot;&gt;
+  &lt;/colgroup&gt;
+&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+      &lt;th style=&quot;text-align: left;&quot;&gt;AB Email&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_ADBD_Member4</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table class=&quot;TableData&quot;&gt;
+  &lt;colgroup&gt;
+    &lt;col style=&quot;width: 100px;&quot;&gt;
+  &lt;/colgroup&gt;
+&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+      &lt;th&gt;AB Phone&lt;/th&gt;
+      &lt;th&gt;Event Name/Display Title&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_Contact</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table class=&quot;TableData&quot;&gt;
+&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Salutation&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;First Name&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Last Name&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Middle Name&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Suffix&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_Contact2</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table class=&quot;TableData&quot;&gt;
+&lt;tr class=&quot;header&quot;&gt;
+    &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+    &lt;th style=&quot;width:200px; text-align: left;&quot;&gt;&lt;div style=&quot;text-align: left;&quot;&gt;Email&lt;/div&gt;&lt;/th&gt;
+    &lt;th&gt; &lt;/th&gt;
+    &lt;th style=&quot;width:400px;&quot;&gt; &lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_Contact3</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table class=&quot;TableData&quot;&gt;
+&lt;tr class=&quot;header&quot;&gt;
+    &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Main Phone&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Phone Ext.&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Home Phone&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Mobile Phone&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_Contact4</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table class=&quot;TableData&quot;&gt;
+&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Title&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Department&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Organization&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_Contact5</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table class=&quot;TableData&quot;&gt;
+&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Mailing Street&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Mailing City&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Mailing State/Province&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Mailing Zip/Postal Code&lt;/th&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Mailing Country&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_Contact_Enrollment</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table class=&quot;TableData&quot;&gt;
+  &lt;colgroup&gt;
+    &lt;col style=&quot;width: 100px;&quot;&gt;
+  &lt;/colgroup&gt;
+&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+ &lt;th style=&quot;text-align: left;&quot;&gt;Enrollment Date&lt;/th&gt;
+ &lt;th style=&quot;text-align: left;&quot;&gt;Course Email&lt;/th&gt;
+ &lt;th style=&quot;text-align: left;&quot;&gt;Course Name&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_Membership_Data</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table&gt;
+  &lt;colgroup&gt;
+    &lt;col style=&quot;width: 100px;&quot;&gt;
+  &lt;/colgroup&gt;
+&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Navigator &amp; Insider Subscriptions&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_Newsletters</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table class=&quot;TableData&quot;&gt;
+  &lt;colgroup&gt;
+    &lt;col style=&quot;width: 100px;&quot;&gt;
+  &lt;/colgroup&gt;
+&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;text-align: left;&quot;&gt;Newsletter Subscriptions&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_Paper_Download</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table class=&quot;TableData&quot;&gt;
+  &lt;colgroup&gt;
+    &lt;col style=&quot;width: 100px;&quot;&gt;
+  &lt;/colgroup&gt;
+&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+ &lt;th style=&quot;text-align: left;&quot;&gt;Download Date&lt;/th&gt;
+ &lt;th style=&quot;text-align: left;&quot;&gt;Paper Title&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_Registration</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table class=&quot;TableData&quot;&gt;
+  &lt;colgroup&gt;
+    &lt;col style=&quot;width: 100px;&quot;&gt;
+  &lt;/colgroup&gt;
+&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+ &lt;th style=&quot;text-align: left;&quot;&gt;Reg Date&lt;/th&gt;
+ &lt;th style=&quot;text-align: left;&quot;&gt;Event Name/Display Title&lt;/th&gt;
+ &lt;th style=&quot;text-align: left;&quot;&gt;Event Start Date&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Headers_Subscription</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;table class=&quot;TableData&quot;&gt;
+  &lt;colgroup&gt;
+    &lt;col style=&quot;width: 100px;&quot;&gt;
+  &lt;/colgroup&gt;
+&lt;tr class=&quot;header&quot;&gt;
+     &lt;th style=&quot;width:100px; text-align: left;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Record&lt;/div&gt;&lt;/th&gt;
+ &lt;th style=&quot;text-align: left;&quot;&gt;Qual Date&lt;/th&gt;
+ &lt;th style=&quot;text-align: left;&quot;&gt;Publication Name&lt;/th&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_ADBD_Data</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+      &lt;td style=&quot;width: 100px;&quot;&gt;Advisory Board&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Date__c}&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Salutation__c}&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_First_Name__c}&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Middle_Name__c}&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Last_Name__c}&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Suffix__c}&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Title__c}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_ADBD_Data2</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+      &lt;td style=&quot;width: 100px;&quot;&gt;Advisory Board&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Email__c}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_ADBD_Data3</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+      &lt;td style=&quot;width: 100px;&quot;&gt;Advisory Board&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Department__c}&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Organization__c}&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Phone__c}&lt;/td&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_ADBD_Member</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+      &lt;td style=&quot;width: 100px;&quot;&gt;Advisory Board&lt;/td&gt;
+      &lt;td&gt;{!f_Advisory_Board_Date}&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Salutation__c}&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_First_Name__c}&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Middle_Name__c}&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Last_Name__c}&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Suffix__c}&lt;/td&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_ADBD_Member2</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+      &lt;td style=&quot;width: 100px;&quot;&gt;Advisory Board&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Title__c}&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Department__c}&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Organization__c}&lt;/td&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_ADBD_Member3</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+      &lt;td style=&quot;width: 100px;&quot;&gt;Advisory Board&lt;/td&gt;
+      &lt;td&gt;&lt;div style=&quot;text-align: left;&quot;&gt;{!recordId.Contact__r.AB_Email__c}&lt;/div&gt;&lt;/td&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_ADBD_Member4</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+      &lt;td style=&quot;width: 100px;&quot;&gt;Advisory Board&lt;/td&gt;
+      &lt;td&gt;{!recordId.Contact__r.AB_Phone__c}&lt;/td&gt;
+      &lt;td&gt;{!f_AB_Event_Display_Title_or_Name}&lt;/td&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_Contact</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+     &lt;td style=&quot;width: 100px;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Contact&lt;/div&gt;&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.Salutation}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.FirstName}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.LastName}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.MiddleName}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.Suffix}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_Contact2</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+     &lt;td style=&quot;width: 100px;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;Contact&lt;/div&gt;&lt;/td&gt;
+     &lt;td&gt;&lt;div style=&quot;text-align: left;&quot;&gt;{!recordId.Contact__r.Email}&lt;/div&gt;&lt;/td&gt;
+     &lt;td&gt; &lt;/td&gt;
+     &lt;td&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&quot;data&quot;&gt;
+     &lt;td style=&quot;width: 100px;&quot;&gt;&lt;div style=&quot;width:100px; max-width: 100px; text-align: left;&quot;&gt;{!f_Contact_Other}&lt;/div&gt;&lt;/td&gt;
+     &lt;td&gt;&lt;div style=&quot;text-align: left;&quot;&gt;{!recordId.Contact__r.Second_Email__c}&lt;/div&gt;&lt;/td&gt;
+     &lt;td&gt; &lt;/td&gt;
+     &lt;td&gt; &lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_Contact3</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+     &lt;td style=&quot;width: 100px;&quot;&gt;Contact&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.Phone}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.Phone_Extension__c}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.HomePhone}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.MobilePhone}&lt;/td&gt;&lt;/tr&gt;
+&lt;tr class=&quot;data&quot;&gt;
+     &lt;td&gt;{!f_Contact_Other}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.OtherPhone}&lt;/td&gt;
+     &lt;td&gt;&lt;/td&gt;
+     &lt;td&gt;&lt;/td&gt;
+     &lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_Contact4</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+     &lt;td style=&quot;width: 100px;&quot;&gt;Contact&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.Title}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.Department}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.Company_Name_Holder__c}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_Contact5</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+     &lt;td style=&quot;width: 100px;&quot;&gt;Contact&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.MailingStreet}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.MailingCity}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.MailingState}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.MailingPostalCode}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.MailingCountry}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr class=&quot;data&quot;&gt;
+     &lt;td&gt;{!f_Contact_Other}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.OtherStreet}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.OtherCity}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.OtherState}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.OtherPostalCode}&lt;/td&gt;
+     &lt;td&gt;{!recordId.Contact__r.OtherCountry}&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_Contact_Enrollment</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+ &lt;td style=&quot;width: 100px;&quot;&gt;Certification&lt;/td&gt;
+ &lt;td&gt;{!Loop_over_Contact_Enrollments.Enrollment_Date__c}&lt;/td&gt;
+ &lt;td&gt;{!Loop_over_Contact_Enrollments.Course_Email__c}&lt;/td&gt;
+ &lt;td&gt;{!Loop_over_Contact_Enrollments.Standardized_Course_Name__c}&lt;/td&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_Membership_Data</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+     &lt;td&gt;&lt;div style=&quot;line-height:150%;&quot;&gt;{!var_Membership_Data}&lt;/div&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_Newsletter</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+     &lt;td&gt;&lt;div style=&quot;line-height:150%;&quot;&gt;{!f_Newsletters_Subscribed_1}&lt;/div&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_Paper_Download</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+     &lt;td style=&quot;width: 100px;&quot;&gt;Paper Download&lt;/td&gt;
+     &lt;td&gt;{!Loop_through_Paper_Downloads.Download_Date__c}&lt;/td&gt;
+     &lt;td&gt;{!Loop_through_Paper_Downloads.Paper_Display_Title__c}&lt;/td&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_Registration</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+      &lt;td style=&quot;width:100px;&quot;&gt;Registration&lt;/td&gt;
+      &lt;td&gt;{!Loop_through_Registrations.Reg_Date__c}&lt;/td&gt;
+     &lt;td&gt;{!f_Registration_Event_Display_Title_or_Name}&lt;/td&gt;
+     &lt;td&gt;{!Loop_through_Registrations.Event_Start_Date__c}&lt;/td&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Table_Row_Subscription</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;tr class=&quot;data&quot;&gt;
+ &lt;td style=&quot;width: 100px;&quot;&gt;Magazine Subscription&lt;/td&gt;
+    &lt;td&gt;{!Loop_through_Subscriptions.Qual_Date__c}&lt;/td&gt;
+    &lt;td&gt;{!Loop_through_Subscriptions.Publication_Name__c}&lt;/td&gt;
+&lt;/tr&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>recordId</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Privacy_Request__c</objectType>
+    </variables>
+    <variables>
+        <name>var_All_Table_Rows_ADBD_Data</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_All_Table_Rows_ADBD_Member1</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_All_Table_Rows_ADBD_Member2</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_All_Table_Rows_ADBD_Member3</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_All_Table_Rows_ADBD_Member4</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_All_Table_Rows_Contact</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_All_Table_Rows_Contact_Enrollment</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_All_Table_Rows_Membership_Data</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_All_Table_Rows_Newsletter</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_All_Table_Rows_Opportunities</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_All_Table_Rows_Paper_Download</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_All_Table_Rows_Registration</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_All_Table_Rows_Subscription</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Display_Full_Table</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+    <variables>
+        <name>var_IsEvenRow</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_IsEvenRow_Static</name>
+        <dataType>Boolean</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <booleanValue>false</booleanValue>
+        </value>
+    </variables>
+    <variables>
+        <name>var_Membership_Data</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Record_Ids</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

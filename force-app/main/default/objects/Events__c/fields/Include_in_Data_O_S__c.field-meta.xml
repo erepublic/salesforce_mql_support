@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Include_in_Data_O_S__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Event will appear in the Sponsor Portal.</description>
+    <inlineHelpText>Event will appear in the Sponsor Portal.</inlineHelpText>
+    <label>Include in Data O/S</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

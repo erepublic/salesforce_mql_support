@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Custom_Verification_Queue_State_Detail</fullName>
+    <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Verification_Date__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Job_Role_Title__c</columns>
+    <columns>Job_Role_Mailing_State__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </filters>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>equals</operation>
+        <value>County CIO,County Deputy CIO,County Head</value>
+    </filters>
+    <filters>
+        <field>Verification_Date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>7/8/2025</value>
+    </filters>
+    <filters>
+        <field>Last_Verification_Date_Tier__c</field>
+        <operation>notEqual</operation>
+        <value>02 - 91 - 180 days,01 - 0 - 90 days</value>
+    </filters>
+    <label>Custom Verification Queue - County Award</label>
+</ListView>

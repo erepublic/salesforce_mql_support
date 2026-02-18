@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Expired_Send_Email</name>
+        <label>Expired - Send Email</label>
+        <locationX>440</locationX>
+        <locationY>276</locationY>
+        <actionName
+    >Membership_Contract__c.Membership_Contract_Promo_Expired</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Membership_Contract__c.Membership_Contract_Promo_Expired</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <name>Expiring_3_Days_Send_Email</name>
+        <label>Expiring 3 Days - Send Email</label>
+        <locationX>176</locationX>
+        <locationY>276</locationY>
+        <actionName
+    >Membership_Contract__c.Membership_Contract_Promo_Expiring_3_Days</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Membership_Contract__c.Membership_Contract_Promo_Expiring_3_Days</nameSegment>
+    </actionCalls>
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description>Promo Access Expiring alerts</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>Promo_Access_End_Date</name>
+        <dataType>Date</dataType>
+        <expression>{!$Record.Promo_Access_End__c} + 1</expression>
+    </formulas>
+    <interviewLabel
+  >Membership Contract - RT - Scheduled Paths / Promo Access {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Membership Contract - RT AS - Scheduled Paths / Promo Access</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <filterLogic>1 AND 4 AND (2 OR 3)</filterLogic>
+        <filters>
+            <field>Promo_Access_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Premium</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Stage__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Not Started</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Stage__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Active</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Level__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Premium</stringValue>
+            </value>
+        </filters>
+        <object>Membership_Contract__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <name>Access_Expiring_3_Days</name>
+            <connector>
+                <targetReference>Expiring_3_Days_Send_Email</targetReference>
+            </connector>
+            <label>Access Expiring 3 Days</label>
+            <offsetNumber>-3</offsetNumber>
+            <offsetUnit>Days</offsetUnit>
+            <recordField>Promo_Access_End__c</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <scheduledPaths>
+            <name>Access_Expired</name>
+            <connector>
+                <targetReference>Expired_Send_Email</targetReference>
+            </connector>
+            <label>Access Expired</label>
+            <offsetNumber>1</offsetNumber>
+            <offsetUnit>Days</offsetUnit>
+            <recordField>Promo_Access_End__c</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Subject_Line</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text
+    >{!$Record.Account_Name__c} - {!$Record.Type__c} {!$Record.Level__c} - Remove Premium Promo Access in Navigator</text>
+    </textTemplates>
+</Flow>

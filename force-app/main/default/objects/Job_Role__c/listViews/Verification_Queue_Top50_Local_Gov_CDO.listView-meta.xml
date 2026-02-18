@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verification_Queue_Top50_Local_Gov_CDO</fullName>
+    <booleanFilter>(1 OR 4) AND 2 AND 3</booleanFilter>
+    <columns>Verification_Date__c</columns>
+    <columns>Refresh_Date__c</columns>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Job_Role_Title__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account_Top_50_100_200__c</field>
+        <operation>contains</operation>
+        <value>1-50</value>
+    </filters>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>includes</operation>
+        <value>City Chief Data Officer,County Chief Data Officer</value>
+    </filters>
+    <filters>
+        <field>Verification_Date__c</field>
+        <operation>lessThan</operation>
+        <value>1/16/2025</value>
+    </filters>
+    <filters>
+        <field>Account__c</field>
+        <operation>contains</operation>
+        <value
+    >City of Los Angeles,Los Angeles County,City of Chicago,New York City</value>
+    </filters>
+    <label>Verification Queue - Top50 Local Gov CDO</label>
+</ListView>

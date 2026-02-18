@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Create_a_BD_Request_in_the_past</fullName>
+    <active>false</active>
+    <description
+  >You cannot create a bonus distribution request for an event in the past.</description>
+    <errorConditionFormula
+  >Date_of_Event__c &lt; TODAY()&amp;&amp;ISNEW()</errorConditionFormula>
+    <errorMessage
+  >You cannot create a bonus distribution request for an event in the past.</errorMessage>
+</ValidationRule>

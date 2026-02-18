@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Top_50_100_200__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 1-50 City&quot;), &quot;Top 1-50 City; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 1-50 County&quot;), &quot;Top 1-50 County; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 51-100 City&quot;), &quot;Top 51-100 City; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 51-100 County&quot;), &quot;Top 51-100 County; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 101-200 City&quot;), &quot;Top 101-200 City; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 101-200 County&quot;), &quot;Top 101-200 County; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 1-50 Special District&quot;), &quot;Top 1-50 Special District; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 51-100 Special District&quot;), &quot;Top 51-100 Special District; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 101-200 Special District&quot;), &quot;Top 101-200 Special District; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 1-50 K12 Public School District&quot;), &quot;Top 1-50 K12 Public School District; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 51-100 K12 Public School District&quot;), &quot;Top 51-100 K12 Public School District; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 101-200 K12 Public School District&quot;), &quot;Top 101-200 K12 Public School District; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 1-50 Public University&quot;), &quot;Top 1-50 Public University; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 51-100 Public University&quot;), &quot;Top 51-100 Public University; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 101-200 Public University&quot;), &quot;Top 101-200 Public University; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 1-50 Community College&quot;), &quot;Top 1-50 Community College; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 51-100 Community College&quot;), &quot;Top 51-100 Community College; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 101-200 Community College&quot;), &quot;Top 101-200 Community College; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 1-50 Private University&quot;), &quot;Top 1-50 Private University; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 51-100 Private University&quot;), &quot;Top 51-100 Private University; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 101-200 Private University&quot;), &quot;Top 101-200 Private University; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 1-50 University System&quot;), &quot;Top 1-50 University System; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 51-100 University System&quot;), &quot;Top 51-100 University System; &quot;, &quot;&quot;) &amp;
+IF( INCLUDES(Account__r.Top_100_200__c, &quot;Top 101-200 University System&quot;), &quot;Top 101-200 University System; &quot;, &quot;&quot;)</formula>
+    <label>Account Top 50/100/200</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

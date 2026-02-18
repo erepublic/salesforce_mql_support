@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opt_Out_Email_Group__c</fullName>
+    <inlineHelpText
+  >Please select the email marketing group that will be used for this promotion. Existing opt outs will be excluded from the estimate or list.</inlineHelpText>
+    <label>Opt Out Email Group</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Events - CDE</fullName>
+                <default>false</default>
+                <label>Events - CDE</label>
+            </value>
+            <value>
+                <fullName>Events - CDG</fullName>
+                <default>false</default>
+                <label>Events - CDG</label>
+            </value>
+            <value>
+                <fullName>Events - EE</fullName>
+                <default>false</default>
+                <label>Events - EE</label>
+            </value>
+            <value>
+                <fullName>Events - EM</fullName>
+                <default>false</default>
+                <label>Events - EM</label>
+            </value>
+            <value>
+                <fullName>Events - GOV</fullName>
+                <default>false</default>
+                <label>Events - GOV</label>
+            </value>
+            <value>
+                <fullName>Events - GT</fullName>
+                <default>false</default>
+                <label>Events - GT</label>
+            </value>
+            <value>
+                <fullName>Events - Insider</fullName>
+                <default>false</default>
+                <label>Events - Insider</label>
+            </value>
+            <value>
+                <fullName>Papers - CDE</fullName>
+                <default>false</default>
+                <label>Papers - CDE</label>
+            </value>
+            <value>
+                <fullName>Papers - EM</fullName>
+                <default>false</default>
+                <label>Papers - EM</label>
+            </value>
+            <value>
+                <fullName>Papers - GOV</fullName>
+                <default>false</default>
+                <label>Papers - GOV</label>
+            </value>
+            <value>
+                <fullName>Papers - GT</fullName>
+                <default>false</default>
+                <label>Papers - GT</label>
+            </value>
+            <value>
+                <fullName>Promo - CDE</fullName>
+                <default>false</default>
+                <label>Promo - CDE</label>
+            </value>
+            <value>
+                <fullName>Promo - EM</fullName>
+                <default>false</default>
+                <label>Promo - EM</label>
+            </value>
+            <value>
+                <fullName>Promo - GOV</fullName>
+                <default>false</default>
+                <label>Promo - GOV</label>
+            </value>
+            <value>
+                <fullName>Promo - GT</fullName>
+                <default>false</default>
+                <label>Promo - GT</label>
+            </value>
+            <value>
+                <fullName>Promo - Insider</fullName>
+                <default>false</default>
+                <label>Promo - Insider</label>
+            </value>
+            <value>
+                <fullName>Promo - NAV - Member</fullName>
+                <default>false</default>
+                <label>Promo - NAV - Member</label>
+            </value>
+            <value>
+                <fullName>Surveys - GT</fullName>
+                <default>false</default>
+                <label>Surveys - GT</label>
+            </value>
+            <value>
+                <fullName>News - CDE - HED</fullName>
+                <default>false</default>
+                <label>News - CDE - HED</label>
+            </value>
+            <value>
+                <fullName>News - CDE - K-12</fullName>
+                <default>false</default>
+                <label>News - CDE - K-12</label>
+            </value>
+            <value>
+                <fullName>News - GOV - Finance Weekly</fullName>
+                <default>false</default>
+                <label>News - GOV - Finance Weekly</label>
+            </value>
+            <value>
+                <fullName>News - GOV - GOV Daily</fullName>
+                <default>false</default>
+                <label>News - GOV - GOV Daily</label>
+            </value>
+            <value>
+                <fullName>News - GOV - Politics</fullName>
+                <default>false</default>
+                <label>News - GOV - Politics</label>
+            </value>
+            <value>
+                <fullName>News - GT - Biz</fullName>
+                <default>false</default>
+                <label>News - GT - Biz</label>
+            </value>
+            <value>
+                <fullName>News - GT - Cybersecurity</fullName>
+                <default>false</default>
+                <label>News - GT - Cybersecurity</label>
+            </value>
+            <value>
+                <fullName>News - GT - DC</fullName>
+                <default>false</default>
+                <label>News - GT - DC</label>
+            </value>
+            <value>
+                <fullName>News - GT - EM News</fullName>
+                <default>false</default>
+                <label>News - GT - EM News</label>
+            </value>
+            <value>
+                <fullName>News - GT - Futurestructure</fullName>
+                <default>false</default>
+                <label>News - GT - Futurestructure</label>
+            </value>
+            <value>
+                <fullName>News - GT - GovTech Daily</fullName>
+                <default>false</default>
+                <label>News - GT - GovTech Daily</label>
+            </value>
+            <value>
+                <fullName>News - GT - Special Dist</fullName>
+                <default>false</default>
+                <label>News - GT - Special Dist</label>
+            </value>
+            <value>
+                <fullName>News - Market Insights GT</fullName>
+                <default>false</default>
+                <label>News - Market Insights GT</label>
+            </value>
+            <value>
+                <fullName>Awards - Best of</fullName>
+                <default>false</default>
+                <label>Awards - Best of</label>
+            </value>
+            <value>
+                <fullName>Awards - CDE</fullName>
+                <default>false</default>
+                <label>Awards - CDE</label>
+            </value>
+            <value>
+                <fullName>Awards - CDG</fullName>
+                <default>false</default>
+                <label>Awards - CDG</label>
+            </value>
+            <value>
+                <fullName>Awards - Digital Cities</fullName>
+                <default>false</default>
+                <label>Awards - Digital Cities</label>
+            </value>
+            <value>
+                <fullName>Awards - Digital Counties</fullName>
+                <default>false</default>
+                <label>Awards - Digital Counties</label>
+            </value>
+            <value>
+                <fullName>Awards - GOV</fullName>
+                <default>false</default>
+                <label>Awards - GOV</label>
+            </value>
+            <value>
+                <fullName>Awards - Govt Exp</fullName>
+                <default>false</default>
+                <label>Awards - Govt Exp</label>
+            </value>
+            <value>
+                <fullName>Circ - GT - Renewal</fullName>
+                <default>false</default>
+                <label>Circ - GT - Renewal</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

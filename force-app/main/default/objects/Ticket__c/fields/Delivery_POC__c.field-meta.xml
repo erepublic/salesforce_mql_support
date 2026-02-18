@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Delivery_POC__c</fullName>
+    <description
+  >Sales Admin Request Form Field - Client Delivery POC for Opportunity</description>
+    <inlineHelpText
+  >Sales Admin Request Form Field - Client Delivery POC for Opportunity</inlineHelpText>
+    <label>Delivery POC</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

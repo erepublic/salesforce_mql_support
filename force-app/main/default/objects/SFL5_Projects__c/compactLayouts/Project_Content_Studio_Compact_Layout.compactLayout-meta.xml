@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Content_Studio_Compact_Layout</fullName>
+    <fields>Name</fields>
+    <fields>Client__c</fields>
+    <fields>Project_Owner__c</fields>
+    <fields>Project_Editor__c</fields>
+    <fields>Project_Type__c</fields>
+    <fields>Project_Stage__c</fields>
+    <label>Project - Content Studio (Legacy) - Compact Layout</label>
+</CompactLayout>

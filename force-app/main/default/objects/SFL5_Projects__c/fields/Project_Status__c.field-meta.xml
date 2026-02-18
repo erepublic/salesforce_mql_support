@@ -1,0 +1,857 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Status__c</fullName>
+    <label>Select Project Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Product__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Waiting</fullName>
+                <default>false</default>
+                <label>Waiting</label>
+            </value>
+            <value>
+                <fullName>Case Study: Pre-Production</fullName>
+                <default>false</default>
+                <label>Case Study: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Case Study: In-Production</fullName>
+                <default>false</default>
+                <label>Case Study: In-Production</label>
+            </value>
+            <value>
+                <fullName>Case Study: Product Delivered</fullName>
+                <default>false</default>
+                <label>Case Study: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Custom: Pre-Production</fullName>
+                <default>false</default>
+                <label>Custom: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Custom: In-Production</fullName>
+                <default>false</default>
+                <label>Custom: In-Production</label>
+            </value>
+            <value>
+                <fullName>Custom: Product Delivered</fullName>
+                <default>false</default>
+                <label>Custom: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Custom Event: Pre-Production</fullName>
+                <default>false</default>
+                <label>Custom Event: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Custom Event: In-Production</fullName>
+                <default>false</default>
+                <label>Custom Event: In-Production</label>
+            </value>
+            <value>
+                <fullName>Custom Event: Post-Event Delivery</fullName>
+                <default>false</default>
+                <label>Custom Event: Post-Event Delivery</label>
+            </value>
+            <value>
+                <fullName>Custom Event: Product Delivered</fullName>
+                <default>false</default>
+                <label>Custom Event: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Custom Roundtable: Pre-Production</fullName>
+                <default>false</default>
+                <label>Custom Roundtable: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Custom Roundtable: In-Production</fullName>
+                <default>false</default>
+                <label>Custom Roundtable: In-Production</label>
+            </value>
+            <value>
+                <fullName>Custom Roundtable: Post-Event Delivery</fullName>
+                <default>false</default>
+                <label>Custom Roundtable: Post-Event Delivery</label>
+            </value>
+            <value>
+                <fullName>Custom Roundtable: Product Delivered</fullName>
+                <default>false</default>
+                <label>Custom Roundtable: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Demand Gen: Pre-Production</fullName>
+                <default>false</default>
+                <label>Demand Gen: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Demand Gen: In-Production</fullName>
+                <default>false</default>
+                <label>Demand Gen: In-Production</label>
+            </value>
+            <value>
+                <fullName>Demand Gen: Product Delivered</fullName>
+                <default>false</default>
+                <label>Demand Gen: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Editorial Roundtable: Pre-Production</fullName>
+                <default>false</default>
+                <label>Editorial Roundtable: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Editorial Roundtable: In-Production</fullName>
+                <default>false</default>
+                <label>Editorial Roundtable: In-Production</label>
+            </value>
+            <value>
+                <fullName>Editorial Roundtable: Post-Event Delivery</fullName>
+                <default>false</default>
+                <label>Editorial Roundtable: Post-Event Delivery</label>
+            </value>
+            <value>
+                <fullName>Editorial Roundtable: Product Delivered</fullName>
+                <default>false</default>
+                <label>Editorial Roundtable: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Executive Q&amp;A: Pre-Production</fullName>
+                <default>false</default>
+                <label>Executive Q&amp;A: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Executive Q&amp;A: In-Production</fullName>
+                <default>false</default>
+                <label>Executive Q&amp;A: In-Production</label>
+            </value>
+            <value>
+                <fullName>Executive Q&amp;A: Product Delivered</fullName>
+                <default>false</default>
+                <label>Executive Q&amp;A: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Go-to-Guide: Pre-Production</fullName>
+                <default>false</default>
+                <label>Go-to-Guide: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Go-to-Guide: In-Production</fullName>
+                <default>false</default>
+                <label>Go-to-Guide: In-Production</label>
+            </value>
+            <value>
+                <fullName>Go-to-Guide: Product Delivered</fullName>
+                <default>false</default>
+                <label>Go-to-Guide: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Handbook: Pre-Production</fullName>
+                <default>false</default>
+                <label>Handbook: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Handbook: In-Production</fullName>
+                <default>false</default>
+                <label>Handbook: In-Production</label>
+            </value>
+            <value>
+                <fullName>Handbook: Product Delivered</fullName>
+                <default>false</default>
+                <label>Handbook: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>ICYMI: Pre-Production</fullName>
+                <default>false</default>
+                <label>ICYMI: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>ICYMI: In-Production</fullName>
+                <default>false</default>
+                <label>ICYMI: In-Production</label>
+            </value>
+            <value>
+                <fullName>ICYMI: Product Delivered</fullName>
+                <default>false</default>
+                <label>ICYMI: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Infographic: Pre-Production</fullName>
+                <default>false</default>
+                <label>Infographic: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Infographic: In-Production</fullName>
+                <default>false</default>
+                <label>Infographic: In-Production</label>
+            </value>
+            <value>
+                <fullName>Infographic: Product Delivered</fullName>
+                <default>false</default>
+                <label>Infographic: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Issue Brief: Pre-Production</fullName>
+                <default>false</default>
+                <label>Issue Brief: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Issue Brief: In-Production</fullName>
+                <default>false</default>
+                <label>Issue Brief: In-Production</label>
+            </value>
+            <value>
+                <fullName>Issue Brief: Product Delivered</fullName>
+                <default>false</default>
+                <label>Issue Brief: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Lunch &amp; Lunch Webinar: Pre-Production</fullName>
+                <default>false</default>
+                <label>Lunch &amp; Lunch Webinar: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Lunch &amp; Lunch Webinar: In-Production</fullName>
+                <default>false</default>
+                <label>Lunch &amp; Lunch Webinar: In-Production</label>
+            </value>
+            <value>
+                <fullName
+        >Lunch &amp; Learn Webinar: Post-Event Delivery</fullName>
+                <default>false</default>
+                <label>Lunch &amp; Learn Webinar: Post-Event Delivery</label>
+            </value>
+            <value>
+                <fullName
+        >Lunch &amp; Lunch Webinar: Product Delivered</fullName>
+                <default>false</default>
+                <label>Lunch &amp; Lunch Webinar: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Persona-Based Paper: Pre-Production</fullName>
+                <default>false</default>
+                <label>Persona-Based Paper: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Persona-Based Paper: In-Production</fullName>
+                <default>false</default>
+                <label>Persona-Based Paper: In-Production</label>
+            </value>
+            <value>
+                <fullName>Persona-Based Paper: Product Delivered</fullName>
+                <default>false</default>
+                <label>Persona-Based Paper: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Position Paper: Pre-Production</fullName>
+                <default>false</default>
+                <label>Position Paper: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Position Paper: In-Production</fullName>
+                <default>false</default>
+                <label>Position Paper: In-Production</label>
+            </value>
+            <value>
+                <fullName>Position Paper: Product Delivered</fullName>
+                <default>false</default>
+                <label>Position Paper: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Rapid Roadmap: Pre-Production</fullName>
+                <default>false</default>
+                <label>Rapid Roadmap: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Rapid Roadmap: In-Production</fullName>
+                <default>false</default>
+                <label>Rapid Roadmap: In-Production</label>
+            </value>
+            <value>
+                <fullName>Rapid Roadmap: Product Delivered</fullName>
+                <default>false</default>
+                <label>Rapid Roadmap: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Research Report: Pre-Production</fullName>
+                <default>false</default>
+                <label>Research Report: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Research Report: In-Production</fullName>
+                <default>false</default>
+                <label>Research Report: In-Production</label>
+            </value>
+            <value>
+                <fullName>Research Report: Product Delivered</fullName>
+                <default>false</default>
+                <label>Research Report: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Roundtable: Pre-Production</fullName>
+                <default>false</default>
+                <label>Roundtable: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Roundtable: In-Production</fullName>
+                <default>false</default>
+                <label>Roundtable: In-Production</label>
+            </value>
+            <value>
+                <fullName>Roundtable: Product Delivered</fullName>
+                <default>false</default>
+                <label>Roundtable: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Social Toolkit: Pre-Production</fullName>
+                <default>false</default>
+                <label>Social Toolkit: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Social Toolkit: In-Production</fullName>
+                <default>false</default>
+                <label>Social Toolkit: In-Production</label>
+            </value>
+            <value>
+                <fullName>Social Toolkit: Product Delivered</fullName>
+                <default>false</default>
+                <label>Social Toolkit: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Sponsored Article: Pre-Production</fullName>
+                <default>false</default>
+                <label>Sponsored Article: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Sponsored Article: In-Production</fullName>
+                <default>false</default>
+                <label>Sponsored Article: In-Production</label>
+            </value>
+            <value>
+                <fullName>Sponsored Article: Product Delivered</fullName>
+                <default>false</default>
+                <label>Sponsored Article: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>State-Specific Webinar: Pre-Production</fullName>
+                <default>false</default>
+                <label>State-Specific Webinar: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>State-Specific Webinar: In-Production</fullName>
+                <default>false</default>
+                <label>State-Specific Webinar: In-Production</label>
+            </value>
+            <value>
+                <fullName>State-Specific Webinar: Post-Event Delivery</fullName>
+                <default>false</default>
+                <label>State-Specific Webinar: Post-Event Delivery</label>
+            </value>
+            <value>
+                <fullName>State-Specific Webinar: Product Delivered</fullName>
+                <default>false</default>
+                <label>State-Specific Webinar: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Thought Leadership Paper: Pre-Production</fullName>
+                <default>false</default>
+                <label>Thought Leadership Paper: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Thought Leadership Paper: In-Production</fullName>
+                <default>false</default>
+                <label>Thought Leadership Paper: In-Production</label>
+            </value>
+            <value>
+                <fullName>Thought Leadership Paper: Product Delivered</fullName>
+                <default>false</default>
+                <label>Thought Leadership Paper: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Virtual Conversation: Pre-Production</fullName>
+                <default>false</default>
+                <label>Virtual Conversation: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Virtual Conversation: In-Production</fullName>
+                <default>false</default>
+                <label>Virtual Conversation: In-Production</label>
+            </value>
+            <value>
+                <fullName>Virtual Conversation: Post-Event Delivery</fullName>
+                <default>false</default>
+                <label>Virtual Conversation: Post-Event Delivery</label>
+            </value>
+            <value>
+                <fullName>Virtual Conversation: Product Delivered</fullName>
+                <default>false</default>
+                <label>Virtual Conversation: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Virtual Q&amp;A: Pre-Production</fullName>
+                <default>false</default>
+                <label>Virtual Q&amp;A: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Virtual Q&amp;A: In-Production</fullName>
+                <default>false</default>
+                <label>Virtual Q&amp;A: In-Production</label>
+            </value>
+            <value>
+                <fullName>Virtual Q&amp;A: Product Delivered</fullName>
+                <default>false</default>
+                <label>Virtual Q&amp;A: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Webinar: Pre-Production</fullName>
+                <default>false</default>
+                <label>Webinar: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>Webinar: In-Production</fullName>
+                <default>false</default>
+                <label>Webinar: In-Production</label>
+            </value>
+            <value>
+                <fullName>Webinar: Post-Event Delivery</fullName>
+                <default>false</default>
+                <label>Webinar: Post-Event Delivery</label>
+            </value>
+            <value>
+                <fullName>Webinar: Product Delivered</fullName>
+                <default>false</default>
+                <label>Webinar: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>White Paper: Pre-Production</fullName>
+                <default>false</default>
+                <label>White Paper: Pre-Production</label>
+            </value>
+            <value>
+                <fullName>White Paper: In-Production</fullName>
+                <default>false</default>
+                <label>White Paper: In-Production</label>
+            </value>
+            <value>
+                <fullName>White Paper: Product Delivered</fullName>
+                <default>false</default>
+                <label>White Paper: Product Delivered</label>
+            </value>
+            <value>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+                <label>Cancelled</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Custom Roundtable</controllingFieldValue>
+            <controllingFieldValue>Editorial Roundtable</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue
+      >Account Based Marketing</controllingFieldValue>
+            <controllingFieldValue>Filtered Leads</controllingFieldValue>
+            <controllingFieldValue>Multi-Touch Nurture</controllingFieldValue>
+            <controllingFieldValue>Shared Leads</controllingFieldValue>
+            <controllingFieldValue>Standard Leads</controllingFieldValue>
+            <controllingFieldValue>Two-Step Nurture</controllingFieldValue>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <controllingFieldValue>Go-to-Guide</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper</controllingFieldValue>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <controllingFieldValue>Social Toolkit</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <controllingFieldValue>Custom Event</controllingFieldValue>
+            <controllingFieldValue>Position Paper</controllingFieldValue>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <controllingFieldValue>Executive Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <controllingFieldValue>Research Report</controllingFieldValue>
+            <controllingFieldValue>Persona-Based Paper</controllingFieldValue>
+            <controllingFieldValue>Rapid Roadmap</controllingFieldValue>
+            <valueName>Waiting</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Roundtable</controllingFieldValue>
+            <valueName>Custom Roundtable: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Roundtable</controllingFieldValue>
+            <valueName>Custom Roundtable: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Roundtable</controllingFieldValue>
+            <valueName>Custom Roundtable: Post-Event Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Roundtable</controllingFieldValue>
+            <valueName>Custom Roundtable: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Roundtable</controllingFieldValue>
+            <controllingFieldValue>Editorial Roundtable</controllingFieldValue>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <controllingFieldValue
+      >Account Based Marketing</controllingFieldValue>
+            <controllingFieldValue>Filtered Leads</controllingFieldValue>
+            <controllingFieldValue>Multi-Touch Nurture</controllingFieldValue>
+            <controllingFieldValue>Shared Leads</controllingFieldValue>
+            <controllingFieldValue>Standard Leads</controllingFieldValue>
+            <controllingFieldValue>Two-Step Nurture</controllingFieldValue>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <controllingFieldValue>Go-to-Guide</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper</controllingFieldValue>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <controllingFieldValue>Social Toolkit</controllingFieldValue>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <controllingFieldValue>Custom Event</controllingFieldValue>
+            <controllingFieldValue>Position Paper</controllingFieldValue>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <controllingFieldValue>Executive Q&amp;A</controllingFieldValue>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <controllingFieldValue>Research Report</controllingFieldValue>
+            <controllingFieldValue>Persona-Based Paper</controllingFieldValue>
+            <controllingFieldValue>Rapid Roadmap</controllingFieldValue>
+            <valueName>Cancelled</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Editorial Roundtable</controllingFieldValue>
+            <valueName>Editorial Roundtable: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Editorial Roundtable</controllingFieldValue>
+            <valueName>Editorial Roundtable: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Editorial Roundtable</controllingFieldValue>
+            <valueName>Editorial Roundtable: Post-Event Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Editorial Roundtable</controllingFieldValue>
+            <valueName>Editorial Roundtable: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <valueName>Custom: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <valueName>Custom: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom</controllingFieldValue>
+            <valueName>Custom: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Account Based Marketing</controllingFieldValue>
+            <controllingFieldValue>Filtered Leads</controllingFieldValue>
+            <controllingFieldValue>Multi-Touch Nurture</controllingFieldValue>
+            <controllingFieldValue>Shared Leads</controllingFieldValue>
+            <controllingFieldValue>Standard Leads</controllingFieldValue>
+            <controllingFieldValue>Two-Step Nurture</controllingFieldValue>
+            <valueName>Demand Gen: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Account Based Marketing</controllingFieldValue>
+            <controllingFieldValue>Filtered Leads</controllingFieldValue>
+            <controllingFieldValue>Multi-Touch Nurture</controllingFieldValue>
+            <controllingFieldValue>Shared Leads</controllingFieldValue>
+            <controllingFieldValue>Standard Leads</controllingFieldValue>
+            <controllingFieldValue>Two-Step Nurture</controllingFieldValue>
+            <valueName>Demand Gen: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Account Based Marketing</controllingFieldValue>
+            <controllingFieldValue>Filtered Leads</controllingFieldValue>
+            <controllingFieldValue>Multi-Touch Nurture</controllingFieldValue>
+            <controllingFieldValue>Shared Leads</controllingFieldValue>
+            <controllingFieldValue>Standard Leads</controllingFieldValue>
+            <controllingFieldValue>Two-Step Nurture</controllingFieldValue>
+            <valueName>Demand Gen: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <valueName>Sponsored Article: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <valueName>Sponsored Article: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sponsored Article</controllingFieldValue>
+            <valueName>Sponsored Article: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Go-to-Guide</controllingFieldValue>
+            <valueName>Go-to-Guide: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Go-to-Guide</controllingFieldValue>
+            <valueName>Go-to-Guide: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Go-to-Guide</controllingFieldValue>
+            <valueName>Go-to-Guide: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <valueName>State-Specific Webinar: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <valueName>State-Specific Webinar: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <valueName>State-Specific Webinar: Post-Event Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >State-Specific Webinar</controllingFieldValue>
+            <valueName>State-Specific Webinar: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Thought Leadership Paper</controllingFieldValue>
+            <valueName>Thought Leadership Paper: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Thought Leadership Paper</controllingFieldValue>
+            <valueName>Thought Leadership Paper: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Thought Leadership Paper</controllingFieldValue>
+            <valueName>Thought Leadership Paper: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <valueName>Webinar: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <valueName>Webinar: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <valueName>Webinar: Post-Event Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Webinar</controllingFieldValue>
+            <valueName>Webinar: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Social Toolkit</controllingFieldValue>
+            <valueName>Social Toolkit: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Social Toolkit</controllingFieldValue>
+            <valueName>Social Toolkit: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Social Toolkit</controllingFieldValue>
+            <valueName>Social Toolkit: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <valueName>White Paper: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <valueName>White Paper: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>White Paper</controllingFieldValue>
+            <valueName>White Paper: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <valueName>Virtual Conversation: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <valueName>Virtual Conversation: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <valueName>Virtual Conversation: Post-Event Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Virtual Conversation</controllingFieldValue>
+            <valueName>Virtual Conversation: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Event</controllingFieldValue>
+            <valueName>Custom Event: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Event</controllingFieldValue>
+            <valueName>Custom Event: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Event</controllingFieldValue>
+            <valueName>Custom Event: Post-Event Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom Event</controllingFieldValue>
+            <valueName>Custom Event: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Position Paper</controllingFieldValue>
+            <valueName>Position Paper: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Position Paper</controllingFieldValue>
+            <valueName>Position Paper: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Position Paper</controllingFieldValue>
+            <valueName>Position Paper: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <valueName>Case Study: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <valueName>Case Study: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Case Study</controllingFieldValue>
+            <valueName>Case Study: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Executive Q&amp;A</controllingFieldValue>
+            <valueName>Executive Q&amp;A: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Executive Q&amp;A</controllingFieldValue>
+            <valueName>Executive Q&amp;A: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Executive Q&amp;A</controllingFieldValue>
+            <valueName>Executive Q&amp;A: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <valueName>Handbook: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <valueName>Handbook: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Handbook</controllingFieldValue>
+            <valueName>Handbook: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <valueName>Infographic: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <valueName>Infographic: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Infographic</controllingFieldValue>
+            <valueName>Infographic: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <valueName>Issue Brief: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <valueName>Issue Brief: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Issue Brief</controllingFieldValue>
+            <valueName>Issue Brief: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <valueName>Lunch &amp; Lunch Webinar: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <valueName>Lunch &amp; Lunch Webinar: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <valueName
+      >Lunch &amp; Learn Webinar: Post-Event Delivery</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar</controllingFieldValue>
+            <valueName>Lunch &amp; Lunch Webinar: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Research Report</controllingFieldValue>
+            <valueName>Research Report: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Research Report</controllingFieldValue>
+            <valueName>Research Report: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Research Report</controllingFieldValue>
+            <valueName>Research Report: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Persona-Based Paper</controllingFieldValue>
+            <valueName>Persona-Based Paper: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Persona-Based Paper</controllingFieldValue>
+            <valueName>Persona-Based Paper: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Persona-Based Paper</controllingFieldValue>
+            <valueName>Persona-Based Paper: Product Delivered</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rapid Roadmap</controllingFieldValue>
+            <valueName>Rapid Roadmap: Pre-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rapid Roadmap</controllingFieldValue>
+            <valueName>Rapid Roadmap: In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Rapid Roadmap</controllingFieldValue>
+            <valueName>Rapid Roadmap: Product Delivered</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GOV_Workday_Webinar_04_21_2015</fullName>
+    <columns>Registrant_Name__c</columns>
+    <columns>Registrant_Email__c</columns>
+    <columns>Registrant_Title__c</columns>
+    <columns>Reg_Company_Name__c</columns>
+    <columns>Promo_Code__c</columns>
+    <columns>Non_Qual__c</columns>
+    <columns>Reg_Type__c</columns>
+    <columns>Reg_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event__c</field>
+        <operation>contains</operation>
+        <value>GOV - Workday Webinar - 04/21/2015</value>
+    </filters>
+    <label>GOV - Workday Webinar - 04/21/2015</label>
+</ListView>

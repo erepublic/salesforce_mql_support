@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Promo_Access_Dates_Required</fullName>
+    <active>true</active>
+    <description
+  >When Promo Access Type is filled in, Promo Access Start and Promo Access End fields are required.</description>
+    <errorConditionFormula>AND(
+(NOT(ISBLANK(TEXT(Promo_Access_Type__c)))),
+((ISBLANK(Promo_Access_Start__c))||
+(ISBLANK(Promo_Access_End__c))))</errorConditionFormula>
+    <errorMessage
+  >Must add Promo Access Start and Promo Access End dates</errorMessage>
+</ValidationRule>

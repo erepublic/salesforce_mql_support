@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Delivery_Category__c</fullName>
+    <description
+  >Indicates which category this project falls under for reporting delivery revenue.</description>
+    <inlineHelpText
+  >Indicates which category this project falls under for reporting delivery revenue.</inlineHelpText>
+    <label>Delivery Category</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Converge Special Report Q1 2013</fullName>
+                <default>false</default>
+                <label>Converge Special Report Q1 2013</label>
+            </value>
+            <value>
+                <fullName>Converge Special Report Q2 2013</fullName>
+                <default>false</default>
+                <label>Converge Special Report Q2 2013</label>
+            </value>
+            <value>
+                <fullName>Converge Special Report Q3 2013</fullName>
+                <default>false</default>
+                <label>Converge Special Report Q3 2013</label>
+            </value>
+            <value>
+                <fullName>Converge Special Report Q4 2013</fullName>
+                <default>false</default>
+                <label>Converge Special Report Q4 2013</label>
+            </value>
+            <value>
+                <fullName>Education Lead Gen Surveys</fullName>
+                <default>false</default>
+                <label>Education Lead Gen Surveys</label>
+            </value>
+            <value>
+                <fullName>Education Whitepaper/Custom Media</fullName>
+                <default>false</default>
+                <label>Education Whitepaper/Custom Media</label>
+            </value>
+            <value>
+                <fullName>EM Mag Custom Media</fullName>
+                <default>false</default>
+                <label>EM Mag Custom Media</label>
+            </value>
+            <value>
+                <fullName>GOVERNING</fullName>
+                <default>false</default>
+                <label>GOVERNING</label>
+            </value>
+            <value>
+                <fullName>GT Lead Gen Surveys</fullName>
+                <default>false</default>
+                <label>GT Lead Gen Surveys</label>
+            </value>
+            <value>
+                <fullName>HHS Special Report 2013</fullName>
+                <default>false</default>
+                <label>HHS Special Report 2013</label>
+            </value>
+            <value>
+                <fullName>Public CIO Q3 2013 Special Report</fullName>
+                <default>false</default>
+                <label>Public CIO Q3 2013 Special Report</label>
+            </value>
+            <value>
+                <fullName>Whitepaper/GT Custom Pub Income</fullName>
+                <default>false</default>
+                <label>Whitepaper/GT Custom Pub Income</label>
+            </value>
+            <value>
+                <fullName>Public CIO Q1 2013 Special Report</fullName>
+                <default>false</default>
+                <label>Public CIO Q1 2013 Special Report</label>
+            </value>
+            <value>
+                <fullName>Public CIO Q2 2013 Special Report</fullName>
+                <default>false</default>
+                <label>Public CIO Q2 2013 Special Report</label>
+            </value>
+            <value>
+                <fullName>Public CIO Q4 2013 Special Report</fullName>
+                <default>false</default>
+                <label>Public CIO Q4 2013 Special Report</label>
+            </value>
+            <value>
+                <fullName>Custom Video</fullName>
+                <default>false</default>
+                <label>Custom Video</label>
+            </value>
+            <value>
+                <fullName>GovGirl Video</fullName>
+                <default>false</default>
+                <label>GovGirl Video</label>
+            </value>
+            <value>
+                <fullName>Marketing Video</fullName>
+                <default>false</default>
+                <label>Marketing Video</label>
+            </value>
+            <value>
+                <fullName>Editorial Video</fullName>
+                <default>false</default>
+                <label>Editorial Video</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,1204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow
+  xmlns="http://soap.sforce.com/2006/04/metadata"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Lead_Import_Ticket</name>
+        <label>Assign Lead Import Ticket</label>
+        <locationX>314</locationX>
+        <locationY>866</locationY>
+        <assignmentItems>
+            <assignToReference>var_Ticket_to_Create.Title__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Screen_Title</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Description__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Screen_Description</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Contact_Pull_Contact_Count__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Bulk Import/Update</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Contact_Source__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Screen_Contact_Source</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Account__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >Get_Triggering_Campaign.Account__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Campaign__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Get_Triggering_Campaign.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Distribute_To__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >Screen_Distribute_To.recordId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Due_Date_Requested__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Screen_Due_Date_Requested</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Priority__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Screen_Priority</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>01214000001RYxpAAG</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Requested_By__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >Screen_Requested_By.recordId</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Screen_Status</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Project__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >Get_Triggering_Campaign.Project__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Lead_Import_Ticket</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Related_Event</name>
+        <label>Assign Related Event</label>
+        <locationX>314</locationX>
+        <locationY>674</locationY>
+        <assignmentItems>
+            <assignToReference>var_Ticket_to_Create.Event__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >Get_Triggering_Campaign.Event__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Lead_Import_Ticket</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Related_Paper</name>
+        <label>Assign Related Paper</label>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
+        <assignmentItems>
+            <assignToReference>var_Ticket_to_Create.Paper__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >Get_Triggering_Campaign.Paper__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Lead_Import_Ticket</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Related_Publication</name>
+        <label>Assign Related Publication</label>
+        <locationX>578</locationX>
+        <locationY>674</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Publication__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >Get_Triggering_Campaign.Publication__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Lead_Import_Ticket</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Ticket_Description</name>
+        <label>Assign Ticket Description</label>
+        <locationX>314</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>var_Ticket_Description</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Which_Description_Text_Template</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Screen_Fill_Lead_Import_Ticket</targetReference>
+        </connector>
+    </assignments>
+    <choices>
+        <name>Choice_Hubspot_Leads</name>
+        <choiceText>Hubspot Leads</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Hubspot Leads</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Choice_Telemarketing_Leads</name>
+        <choiceText>Telemarketing Leads</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Telemarketing Leads</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Choice_Telemarketing_Magazine_Subscribers</name>
+        <choiceText>Telemarketing Magazine Subscribers</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Telemarketing Magazine Subscribers</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Choice_Web_Vendor_Lead_Newsletter_Opt_Ins</name>
+        <choiceText>Web Vendor Lead Newsletter Opt Ins</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Web Vendor Lead Newsletter Opt Ins</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Choice_Web_Vendor_Leads</name>
+        <choiceText>Web Vendor Leads</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Web Vendor Leads</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Choice_Web_Vendor_Magazine_Subscribers</name>
+        <choiceText>Web Vendor Magazine Subscribers</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Web Vendor Magazine Subscribers</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Object_Choice_Magazine</name>
+        <choiceText>Magazine</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Magazine</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Object_Choice_Newsletter</name>
+        <choiceText>Newsletter</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Newsletter</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Object_Choice_Paper</name>
+        <choiceText>Paper</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Paper</stringValue>
+        </value>
+    </choices>
+    <choices>
+        <name>Object_Choice_Webinar</name>
+        <choiceText>Webinar</choiceText>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>Webinar</stringValue>
+        </value>
+    </choices>
+    <decisions>
+        <name>Which_Object_was_Selected</name>
+        <label>Which Object was Selected?</label>
+        <locationX>314</locationX>
+        <locationY>566</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Related_Publication</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Publication/Newsletter</defaultConnectorLabel>
+        <rules>
+            <name>Paper</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >Screen_Select_Lead_Object</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Object_Choice_Paper</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Related_Paper</targetReference>
+            </connector>
+            <label>Paper</label>
+        </rules>
+        <rules>
+            <name>Webinar</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >Screen_Select_Lead_Object</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>Object_Choice_Webinar</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Related_Event</targetReference>
+            </connector>
+            <label>Webinar</label>
+        </rules>
+    </decisions>
+    <dynamicChoiceSets>
+        <name>Picklist_Contact_Source</name>
+        <dataType>Multipicklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>Contact_Source__c</picklistField>
+        <picklistObject>Ticket__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>Picklist_Status</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>Status</picklistField>
+        <picklistObject>Campaign</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>Picklist_Ticket_Priority</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>Priority__c</picklistField>
+        <picklistObject>Ticket__c</picklistObject>
+    </dynamicChoiceSets>
+    <dynamicChoiceSets>
+        <name>Picklist_Ticket_Status</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>Status__c</picklistField>
+        <picklistObject>Ticket__c</picklistObject>
+    </dynamicChoiceSets>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Date_if_Not_Weekday</name>
+        <dataType>Date</dataType>
+        <expression>IF(
+OR(WEEKDAY({!f_Due_Date_Requested})=1,WEEKDAY({!f_Due_Date_Requested})=7),  ({!f_Due_Date_Requested}+2), {!f_Due_Date_Requested})</expression>
+    </formulas>
+    <formulas>
+        <name>f_Due_Date_Requested</name>
+        <dataType>Date</dataType>
+        <expression>{!$Flow.CurrentDate}+2</expression>
+    </formulas>
+    <formulas>
+        <name>f_Lead_Type_Magazine</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(TEXT({!Get_Triggering_Campaign.Type})=&quot;Web Vendor Lead&quot;, {!Choice_Web_Vendor_Magazine_Subscribers}, IF(TEXT({!Get_Triggering_Campaign.Type})=&quot;Telemarketing&quot;, {!Choice_Telemarketing_Magazine_Subscribers}, &quot;&quot;))</expression>
+    </formulas>
+    <formulas>
+        <name>f_Lead_Type_Webinar_Paper</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(TEXT({!Get_Triggering_Campaign.Type})=&quot;Web Vendor Lead&quot;, {!Choice_Web_Vendor_Leads}, 
+IF(TEXT({!Get_Triggering_Campaign.Type})=&quot;Telemarketing&quot;, {!Choice_Telemarketing_Leads}, 
+IF(CONTAINS({!Get_Triggering_Campaign.Name},&quot;HubSpot&quot;), {!Choice_Hubspot_Leads}, &quot;&quot;
+)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Link_to_Created_Ticket</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;/lightning/r/Ticket__c/&quot; &amp; {!var_Ticket_to_Create.Id} &amp; &quot;/view&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Related_Attached_Documents_Link</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;/lightning/r/Ticket__c/&quot; &amp; {!var_Ticket_to_Create.Id} &amp; &quot;/related/AttachedContentDocuments/view&quot;</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Build the Ticket Title in the format of &quot;Update - {Object} - {Campaign Name} - Lead Import&quot;
+Add Today&apos;s Date for Publications &amp; Newsletters.</description>
+        <name>f_Ticket_Title</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;Update - &quot; &amp; {!Screen_Select_Lead_Object} &amp; &quot; - &quot; &amp; {!Get_Triggering_Campaign.Name} &amp; &quot; - Lead Import&quot; &amp;
+IF(OR({!Screen_Select_Lead_Object}={!Object_Choice_Magazine}, 
+          {!Screen_Select_Lead_Object}={!Object_Choice_Newsletter}), 
+           &quot; - &quot; &amp; TEXT(Month({!$Flow.CurrentDate})) &amp; &quot;/&quot; &amp; TEXT(DAY({!$Flow.CurrentDate})) &amp; &quot;/&quot; &amp; TEXT(YEAR({!$Flow.CurrentDate})) 
+           ,  &quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Which_Description_Text_Template</name>
+        <dataType>String</dataType>
+        <expression>IF(AND(
+            {!Screen_Select_Lead_Object}={!Object_Choice_Webinar},
+            {!Screen_Lead_Import_Type_Paper_Webinar}={!Choice_Web_Vendor_Leads}), 
+            {!Text_Template_Web_Vendor_Leads_Webinar}, 
+IF(AND(
+            {!Screen_Select_Lead_Object}={!Object_Choice_Paper},
+            {!Screen_Lead_Import_Type_Paper_Webinar}={!Choice_Web_Vendor_Leads}), 
+            {!Text_Template_Web_Vendor_Leads_Paper}, 
+ IF(AND(
+            OR({!Screen_Select_Lead_Object}={!Object_Choice_Paper},
+                  {!Screen_Select_Lead_Object}={!Object_Choice_Webinar}),
+            {!Screen_Lead_Import_Type_Paper_Webinar}={!Choice_Telemarketing_Leads}), 
+            {!Text_Template_Telemarketing_Leads_Paper_Webinar}, 
+IF(AND(
+            OR({!Screen_Select_Lead_Object}={!Object_Choice_Paper},
+                  {!Screen_Select_Lead_Object}={!Object_Choice_Webinar}),
+            {!Screen_Lead_Import_Type_Paper_Webinar}={!Choice_Hubspot_Leads}), 
+            {!Text_Template_HubSpot_Leads_Paper_Webinar}, 
+ IF(
+     {!Screen_Select_Lead_Object}={!Object_Choice_Newsletter},
+     {!Text_Template_Web_Vendor_Lead_Newsletter_Opt_Ins}, 
+IF(
+    AND({!Screen_Select_Lead_Object}={!Object_Choice_Magazine},
+            {!Screen_Lead_Import_Type_Publication}={!Choice_Web_Vendor_Magazine_Subscribers}), 
+            {!Text_Template_Web_Vendor_Magazine_Subscribers}, 
+IF(
+    AND({!Screen_Select_Lead_Object}={!Object_Choice_Magazine},
+            {!Screen_Lead_Import_Type_Publication}={!Choice_Telemarketing_Magazine_Subscribers}), 
+            {!Text_Template_Telemarketing_Magazine_Subscribers}, 
+&quot;&quot;)))))))</expression>
+    </formulas>
+    <formulas>
+        <name>f_Which_Object_Choice</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(AND({!Get_Triggering_Campaign.Paper__c}&lt;&gt;null,{!Get_Triggering_Campaign.Event__c}&lt;&gt;null), &quot;&quot;, 
+IF(OR(CONTAINS({!Get_Triggering_Campaign.Name},&quot;Paper&quot;),
+          TEXT({!Get_Triggering_Campaign.Promotion_Type__c})=&quot;Paper&quot;), {!Object_Choice_Paper}, 
+IF(OR(CONTAINS({!Get_Triggering_Campaign.Name},&quot;Webinar&quot;),
+          TEXT({!Get_Triggering_Campaign.Promotion_Type__c})=&quot;Webinar&quot;), {!Object_Choice_Webinar}, 
+IF(OR(CONTAINS({!Get_Triggering_Campaign.Name},&quot;Magazine&quot;),
+          TEXT({!Get_Triggering_Campaign.Promotion_Type__c})=&quot;Magazine&quot;), {!Object_Choice_Magazine}, 
+IF(OR(CONTAINS({!Get_Triggering_Campaign.Name},&quot;Newsletter&quot;),
+          TEXT({!Get_Triggering_Campaign.Promotion_Type__c})=&quot;Newsletter&quot;), {!Object_Choice_Newsletter}, 
+IF({!Get_Triggering_Campaign.Paper__c}&lt;&gt;null, {!Object_Choice_Paper}, 
+IF({!Get_Triggering_Campaign.Event__c}&lt;&gt;null, {!Object_Choice_Webinar}, 
+&quot;&quot;)))))))</expression>
+    </formulas>
+    <interviewLabel
+  >Campaign - SF - Create Lead Import Ticket {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Campaign - SF - Create Lead Import Ticket</label>
+    <loops>
+        <name>Loop_through_Documents</name>
+        <label>Loop through Documents</label>
+        <locationX>314</locationX>
+        <locationY>1082</locationY>
+        <collectionReference
+    >Screen_Attach_Files_to_Ticket.contentDocIds</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Create_Content_Doc_Links</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Update_Campaign_Record</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Content_Doc_Links</name>
+        <label>Create Content Doc Links</label>
+        <locationX>402</locationX>
+        <locationY>1190</locationY>
+        <connector>
+            <targetReference>Loop_through_Documents</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Fault_Screen_Attachments</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>ContentDocumentId</field>
+            <value>
+                <elementReference>Loop_through_Documents</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>LinkedEntityId</field>
+            <value>
+                <elementReference>var_Ticket_to_Create.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>ContentDocumentLink</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_Lead_Import_Ticket</name>
+        <label>Create Lead Import Ticket</label>
+        <locationX>314</locationX>
+        <locationY>974</locationY>
+        <connector>
+            <targetReference>Loop_through_Documents</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Fault_Screen</targetReference>
+        </faultConnector>
+        <inputReference>var_Ticket_to_Create</inputReference>
+    </recordCreates>
+    <recordLookups>
+        <name>Get_Triggering_Campaign</name>
+        <label>Get Triggering Campaign</label>
+        <locationX>314</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Object_Lead_Type_Selection_Screen</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Campaign</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Campaign_Record</name>
+        <label>Update Campaign Record</label>
+        <locationX>314</locationX>
+        <locationY>1622</locationY>
+        <connector>
+            <targetReference>Success_Screen</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Pending Upload</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Campaign</object>
+    </recordUpdates>
+    <runInMode>SystemModeWithoutSharing</runInMode>
+    <screens>
+        <name>Fault_Screen</name>
+        <label>Fault_Screen</label>
+        <locationX>842</locationX>
+        <locationY>1082</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Fault_Message</name>
+            <fieldText
+      >&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 16px; color: rgb(176, 0, 0);&quot;&gt;Oops! An error has occurred and your ticket could not be created.&lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 14px; color: rgb(176, 0, 0);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Fault_Screen_Attachments</name>
+        <label>Fault Screen Attachments</label>
+        <locationX>666</locationX>
+        <locationY>1298</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Fault_Message_Attachments</name>
+            <fieldText
+      >&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 16px; color: rgb(176, 0, 0);&quot;&gt;Oops! An error has occurred and your attachments could not be created.&lt;/strong&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 14px; color: rgb(176, 0, 0);&quot;&gt;{!$Flow.FaultMessage}&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Object_Lead_Type_Selection_Screen</name>
+        <label>Object &amp; Lead Type Selection</label>
+        <locationX>314</locationX>
+        <locationY>242</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Assign_Ticket_Description</targetReference>
+        </connector>
+        <fields>
+            <name>Screen_Select_Lead_Object</name>
+            <choiceReferences>Object_Choice_Paper</choiceReferences>
+            <choiceReferences>Object_Choice_Webinar</choiceReferences>
+            <choiceReferences>Object_Choice_Magazine</choiceReferences>
+            <choiceReferences>Object_Choice_Newsletter</choiceReferences>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>f_Which_Object_Choice</elementReference>
+            </defaultValue>
+            <fieldText>Select Lead Object:</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Screen_Lead_Import_Type_Paper_Webinar</name>
+            <choiceReferences>Choice_Web_Vendor_Leads</choiceReferences>
+            <choiceReferences>Choice_Telemarketing_Leads</choiceReferences>
+            <choiceReferences>Choice_Hubspot_Leads</choiceReferences>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>f_Lead_Type_Webinar_Paper</elementReference>
+            </defaultValue>
+            <fieldText>Select Lead Import Type:</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>or</conditionLogic>
+                <conditions>
+                    <leftValueReference
+          >Screen_Select_Lead_Object</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <elementReference>Object_Choice_Paper</elementReference>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference
+          >Screen_Select_Lead_Object</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <elementReference
+            >Object_Choice_Webinar</elementReference>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Screen_Lead_Import_Type_Publication</name>
+            <choiceReferences
+      >Choice_Web_Vendor_Magazine_Subscribers</choiceReferences>
+            <choiceReferences
+      >Choice_Telemarketing_Magazine_Subscribers</choiceReferences>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference>f_Lead_Type_Magazine</elementReference>
+            </defaultValue>
+            <fieldText>Select Lead Import Type:</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference
+          >Screen_Select_Lead_Object</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <elementReference
+            >Object_Choice_Magazine</elementReference>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Screen_Lead_Import_Type_Newsletter</name>
+            <choiceReferences
+      >Choice_Web_Vendor_Lead_Newsletter_Opt_Ins</choiceReferences>
+            <dataType>String</dataType>
+            <defaultSelectedChoiceReference
+      >Choice_Web_Vendor_Lead_Newsletter_Opt_Ins</defaultSelectedChoiceReference>
+            <fieldText>Select Lead Import Type:</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference
+          >Screen_Select_Lead_Object</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <elementReference
+            >Object_Choice_Newsletter</elementReference>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Screen_Fill_Lead_Import_Ticket</name>
+        <label>Fill Lead Import Ticket</label>
+        <locationX>314</locationX>
+        <locationY>458</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Which_Object_was_Selected</targetReference>
+        </connector>
+        <fields>
+            <name>Screen_Fill_Lead_Import_Ticket_Section1</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Screen_Fill_Lead_Import_Ticket_Section1_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>Screen_Title</name>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference>f_Ticket_Title</elementReference>
+                    </defaultValue>
+                    <fieldText>Title</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn
+          >UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <fields>
+                    <name>Screen_Description</name>
+                    <defaultValue>
+                        <stringValue>{!var_Ticket_Description}</stringValue>
+                    </defaultValue>
+                    <fieldText>Description</fieldText>
+                    <fieldType>LargeTextArea</fieldType>
+                    <inputsOnNextNavToAssocScrn
+          >UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                    <validationRule>
+                        <errorMessage
+            >&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); font-size: 14px; color: rgb(150, 0, 0);&quot;&gt;Please enter a maximum of 32,000 characters.&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                        <formulaExpression
+            >LEN({!Screen_Description}) &lt;= 32000</formulaExpression>
+                    </validationRule>
+                </fields>
+                <fields>
+                    <name>Screen_Priority</name>
+                    <choiceReferences
+          >Picklist_Ticket_Priority</choiceReferences>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <stringValue>Normal</stringValue>
+                    </defaultValue>
+                    <fieldText>Priority</fieldText>
+                    <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn
+          >UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <fields>
+                    <name>Screen_Contact_Source</name>
+                    <choiceReferences>Picklist_Contact_Source</choiceReferences>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <stringValue />
+                    </defaultValue>
+                    <fieldText>Contact Source</fieldText>
+                    <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn
+          >UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>8</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <fields>
+                <name>Screen_Fill_Lead_Import_Ticket_Section1_Column2</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>Screen_Status</name>
+                    <choiceReferences>Picklist_Ticket_Status</choiceReferences>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <stringValue>Active</stringValue>
+                    </defaultValue>
+                    <fieldText>Status</fieldText>
+                    <fieldType>DropdownBox</fieldType>
+                    <inputsOnNextNavToAssocScrn
+          >UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <fields>
+                    <name>Screen_Due_Date_Requested</name>
+                    <dataType>Date</dataType>
+                    <defaultValue>
+                        <elementReference
+            >f_Date_if_Not_Weekday</elementReference>
+                    </defaultValue>
+                    <fieldText>Due Date Requested</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <inputsOnNextNavToAssocScrn
+          >UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>false</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <fields>
+                    <name>Screen_Requested_By</name>
+                    <extensionName>flowruntime:lookup</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>fieldApiName</name>
+                        <value>
+                            <stringValue>Requested_By__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Requested By</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>objectApiName</name>
+                        <value>
+                            <stringValue>Ticket__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>recordId</name>
+                        <value>
+                            <elementReference>$User.Id</elementReference>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn
+          >UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <fields>
+                    <name>Screen_Distribute_To</name>
+                    <extensionName>flowruntime:lookup</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>fieldApiName</name>
+                        <value>
+                            <stringValue>Distribute_To__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>Distribute to</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>objectApiName</name>
+                        <value>
+                            <stringValue>Ticket__c</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn
+          >UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>4</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Screen_Attach_Files_to_Ticket</name>
+            <extensionName>forceContent:fileUpload</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>Attach Files to Ticket</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>multiple</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Success_Screen</name>
+        <label>Success Screen</label>
+        <locationX>314</locationX>
+        <locationY>1730</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Display_Text_Success_Message</name>
+            <fieldText
+      >&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt;Success! Your ticket has been created.&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;a href=&quot;{!f_Link_to_Created_Ticket}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 16px;&quot;&gt;View Lead Import Ticket&lt;/a&gt;&lt;span style=&quot;font-size: 16px;&quot;&gt; | &lt;/span&gt;&lt;a href=&quot;{!f_Related_Attached_Documents_Link}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 16px;&quot;&gt;View Ticket Attachments&lt;/a&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>188</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Triggering_Campaign</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Text_Template_HubSpot_Leads_Paper_Webinar</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Leads attached
+&lt;br&gt;
+&lt;br&gt;Lead Source = HubSpot
+&lt;br&gt;Form Link = 
+&lt;br&gt;Submission Dates =
+&lt;br&gt;Promo Code = HubSpot
+&lt;br&gt;Contact Source = Web
+&lt;br&gt;Contact Source Detail = {!Screen_Select_Lead_Object}
+&lt;br&gt;Custom Question =</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Text_Template_Telemarketing_Leads_Paper_Webinar</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Leads attached
+&lt;br&gt;
+&lt;br&gt;Lead Source = Telemarketing
+&lt;br&gt;Promo Code = Telemarketing
+&lt;br&gt;Contact Source = Telemarketing
+&lt;br&gt;Contact Source Detail = {!Screen_Select_Lead_Object}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Text_Template_Telemarketing_Magazine_Subscribers</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Leads attached
+&lt;br&gt;
+&lt;br&gt;Lead Source = Telemarketing
+&lt;br&gt;Magazine={!Get_Triggering_Campaign.Publication__r.Name}
+&lt;br&gt;Promo Code = On File
+&lt;br&gt;Batch=YYMMPH-N#
+&lt;br&gt;Version = Digital
+&lt;br&gt;Source=1B
+&lt;br&gt;Qual=Requestor
+&lt;br&gt;Contact Source = Telemarketing
+&lt;br&gt;Contact Source Detail = Magazine
+&lt;br&gt;Special Instructions: 
+&lt;br&gt;-Add to HS Welcome Flow
+&lt;br&gt;-Add to newsletter tracker</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Text_Template_Web_Vendor_Lead_Newsletter_Opt_Ins</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Leads attached
+&lt;br&gt;
+&lt;br&gt;Lead Source = 7 Knots
+&lt;br&gt;Newsletter = {!Get_Triggering_Campaign.Publication__r.Name}
+&lt;br&gt;Contact Source = 7 Knots
+&lt;br&gt;Contact Source Detail = Newsletter</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Text_Template_Web_Vendor_Leads_Paper</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Leads attached
+&lt;br&gt;
+&lt;br&gt;Lead Source = 7 Knots
+&lt;br&gt;Promo Code = 7KnotsDigital
+&lt;br&gt;Contact Source = 7 Knots
+&lt;br&gt;Contact Source Detail = {!Screen_Select_Lead_Object}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Text_Template_Web_Vendor_Leads_Webinar</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Leads attached
+&lt;br&gt;
+&lt;br&gt;Lead Source = 7 Knots
+&lt;br&gt;Promo Code = 7KnotsDigital
+&lt;br&gt;Contact Source = 7 Knots
+&lt;br&gt;Contact Source Detail = {!Screen_Select_Lead_Object}
+&lt;br&gt;Reg Source = W Web Vendor Lead</text>
+    </textTemplates>
+    <textTemplates>
+        <name>Text_Template_Web_Vendor_Magazine_Subscribers</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Leads attached
+&lt;br&gt;
+&lt;br&gt;Lead Source = 7 Knots
+&lt;br&gt;Magazine = {!Get_Triggering_Campaign.Publication__r.Name}
+&lt;br&gt;Promo Code = YYMMEMN-7K#
+&lt;br&gt;Batch=Same as Promo Code
+&lt;br&gt;Version = Digital
+&lt;br&gt;Source=1C
+&lt;br&gt;Qual= Requestor
+&lt;br&gt;Contact Source = 7 Knots
+&lt;br&gt;Contact Source Detail = Magazine
+&lt;br&gt;Special Instructions: 
+&lt;br&gt;-Add to HS Welcome Flow</text>
+    </textTemplates>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Ticket_Description</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Ticket_to_Create</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Ticket__c</objectType>
+    </variables>
+</Flow>

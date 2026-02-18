@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Us</fullName>
+    <active>true</active>
+    <description>Contact Us form submitted on our website.</description>
+    <label>Contact Us</label>
+    <picklistValues>
+        <picklist>Lead_Source__c</picklist>
+        <values>
+            <fullName>MQL Threshold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Trap</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Lead_Status__c</picklist>
+        <values>
+            <fullName>Converted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Discarded</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sent to Sales</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Rejection_Reason__c</picklist>
+        <values>
+            <fullName>Already working with this account</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other - See Notes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

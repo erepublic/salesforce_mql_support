@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Session_2__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Event Session 2</label>
+    <referenceTo>Event_Session2__c</referenceTo>
+    <relationshipLabel>QR Scans</relationshipLabel>
+    <relationshipName>QR_Scans</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

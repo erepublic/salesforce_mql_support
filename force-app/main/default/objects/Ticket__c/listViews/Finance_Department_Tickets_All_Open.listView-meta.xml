@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Finance_Department_Tickets_All_Open</fullName>
+    <columns>NAME</columns>
+    <columns>Assignee__c</columns>
+    <columns>Title__c</columns>
+    <columns>Requested_By__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>Priority_Order__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Finance</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>notEqual</operation>
+        <value>Closed</value>
+    </filters>
+    <label>Finance Department Tickets - All Open</label>
+</ListView>

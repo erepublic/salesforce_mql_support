@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Assessment__c</fullName>
+    <inlineHelpText
+  >Used to assess the probability of the membership being renewed.</inlineHelpText>
+    <label>Renewal Assessment</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Good Standing</fullName>
+                <default>false</default>
+                <label>Good Standing</label>
+            </value>
+            <value>
+                <fullName>Risk</fullName>
+                <default>false</default>
+                <label>Risk</label>
+            </value>
+            <value>
+                <fullName>Danger</fullName>
+                <default>false</default>
+                <label>Danger</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

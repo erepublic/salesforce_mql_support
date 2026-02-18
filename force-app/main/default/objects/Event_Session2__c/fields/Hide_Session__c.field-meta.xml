@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hide_Session__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Hide the session from the vDGS Hub</description>
+    <inlineHelpText>Hide the session from the vDGS Hub</inlineHelpText>
+    <label>Hide from vDGS Hub</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

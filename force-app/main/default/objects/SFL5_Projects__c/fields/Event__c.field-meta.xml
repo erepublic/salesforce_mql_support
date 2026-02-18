@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >Relate this project to an Event or Conference record.</description>
+    <inlineHelpText
+  >Relate this project to an Event or Conference record.</inlineHelpText>
+    <label>Event</label>
+    <referenceTo>Events__c</referenceTo>
+    <relationshipLabel>Projects</relationshipLabel>
+    <relationshipName>Projects</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

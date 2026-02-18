@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Group__c</fullName>
+    <description
+  >Grouping of count data for year over year comparisons.</description>
+    <inlineHelpText
+  >Grouping of count data for year over year comparisons.</inlineHelpText>
+    <label>Group</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Jan 15th</fullName>
+                <default>false</default>
+                <label>Jan 15th</label>
+            </value>
+            <value>
+                <fullName>Jan 31st</fullName>
+                <default>false</default>
+                <label>Jan 31st</label>
+            </value>
+            <value>
+                <fullName>Feb 15th</fullName>
+                <default>false</default>
+                <label>Feb 15th</label>
+            </value>
+            <value>
+                <fullName>Feb 28th</fullName>
+                <default>false</default>
+                <label>Feb 28th</label>
+            </value>
+            <value>
+                <fullName>Mar 15th</fullName>
+                <default>false</default>
+                <label>Mar 15th</label>
+            </value>
+            <value>
+                <fullName>Mar 31st</fullName>
+                <default>false</default>
+                <label>Mar 31st</label>
+            </value>
+            <value>
+                <fullName>Apr 15th</fullName>
+                <default>false</default>
+                <label>Apr 15th</label>
+            </value>
+            <value>
+                <fullName>Apr 30th</fullName>
+                <default>false</default>
+                <label>Apr 30th</label>
+            </value>
+            <value>
+                <fullName>May 15th</fullName>
+                <default>false</default>
+                <label>May 15th</label>
+            </value>
+            <value>
+                <fullName>May 31st</fullName>
+                <default>false</default>
+                <label>May 31st</label>
+            </value>
+            <value>
+                <fullName>Jun 15th</fullName>
+                <default>false</default>
+                <label>Jun 15th</label>
+            </value>
+            <value>
+                <fullName>Jun 30th</fullName>
+                <default>false</default>
+                <label>Jun 30th</label>
+            </value>
+            <value>
+                <fullName>Jul 15th</fullName>
+                <default>false</default>
+                <label>Jul 15th</label>
+            </value>
+            <value>
+                <fullName>Jul 31st</fullName>
+                <default>false</default>
+                <label>Jul 31st</label>
+            </value>
+            <value>
+                <fullName>Aug 15th</fullName>
+                <default>false</default>
+                <label>Aug 15th</label>
+            </value>
+            <value>
+                <fullName>Aug 31st</fullName>
+                <default>false</default>
+                <label>Aug 31st</label>
+            </value>
+            <value>
+                <fullName>Sep 15th</fullName>
+                <default>false</default>
+                <label>Sep 15th</label>
+            </value>
+            <value>
+                <fullName>Sep 30th</fullName>
+                <default>false</default>
+                <label>Sep 30th</label>
+            </value>
+            <value>
+                <fullName>Oct 15th</fullName>
+                <default>false</default>
+                <label>Oct 15th</label>
+            </value>
+            <value>
+                <fullName>Oct 31st</fullName>
+                <default>false</default>
+                <label>Oct 31st</label>
+            </value>
+            <value>
+                <fullName>Nov 15th</fullName>
+                <default>false</default>
+                <label>Nov 15th</label>
+            </value>
+            <value>
+                <fullName>Nov 30th</fullName>
+                <default>false</default>
+                <label>Nov 30th</label>
+            </value>
+            <value>
+                <fullName>Dec 15th</fullName>
+                <default>false</default>
+                <label>Dec 15th</label>
+            </value>
+            <value>
+                <fullName>Dec 31st</fullName>
+                <default>false</default>
+                <label>Dec 31st</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

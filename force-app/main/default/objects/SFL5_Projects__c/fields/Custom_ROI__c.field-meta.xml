@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Custom_ROI__c</fullName>
+    <description
+  >*See list of required products* As requested delivery can provide a custom ROI statement (e.g. ROI unique to this membership)</description>
+    <inlineHelpText
+  >*See list of required products* As requested delivery can provide a custom ROI statement (e.g. ROI unique to this membership)</inlineHelpText>
+    <label>Custom ROI</label>
+    <length>32768</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

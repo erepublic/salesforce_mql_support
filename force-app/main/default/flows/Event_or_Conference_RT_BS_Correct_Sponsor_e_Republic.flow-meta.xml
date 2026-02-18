@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description
+  >When entering an Event Sponsor as &quot;e.Republic&quot; users have had a habit of picking the first account they see, which can be one of the many &quot;e.Republic - Subscriptions&quot; accounts. This corrects those to the proper &quot;e.Republic&quot; value.</description>
+    <environments>Default</environments>
+    <interviewLabel
+  >Event or Conference - RT BS - Correct Sponsor e.Republic {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Event or Conference - RT BS - Correct Sponsor e.Republic</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Sponsor_to_e_Republic</name>
+        <label>Update Sponsor to e.Republic</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <inputAssignments>
+            <field>Sponsor__c</field>
+            <value>
+                <stringValue>0013000000LtZ3U</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Sponsor_to_e_Republic</targetReference>
+        </connector>
+        <filterFormula>OR(
+{!$Record.Sponsor__c} =	&quot;0013000000Y42C8&quot;,
+{!$Record.Sponsor__c} =	&quot;0013000000QfA0n&quot;,
+{!$Record.Sponsor__c} =	&quot;0015Y000050buSE&quot;,
+{!$Record.Sponsor__c} =	&quot;0011O00002LfEJ4&quot;,
+{!$Record.Sponsor__c} =	&quot;0013000000VEA5a&quot;,
+{!$Record.Sponsor__c} =	&quot;0013000000ONDiH&quot;,
+{!$Record.Sponsor__c} =	&quot;0015Y0000396jbn&quot;,
+{!$Record.Sponsor__c} =	&quot;0015Y000050cLux&quot;,
+{!$Record.Sponsor__c} =	&quot;0015Y0000396jbs&quot;,
+{!$Record.Sponsor__c} =	&quot;0015Y0000396jbx&quot;,
+{!$Record.Sponsor__c} =	&quot;0011O00001IzS2S&quot;,
+{!$Record.Sponsor__c} =	&quot;0015Y0000396gjR&quot;,
+{!$Record.Sponsor__c} =	&quot;0015Y0000396gjb&quot;,
+{!$Record.Sponsor__c} =	&quot;0015Y0000396jbt&quot;,
+{!$Record.Sponsor__c} =	&quot;0011400001egVtx&quot;
+)</filterFormula>
+        <object>Events__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Process_Decomp_Diagrams__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(Product_Group__c =&quot;Written&quot;,
+HYPERLINK(&quot;https://erepublic2.sharepoint.com/:b:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Visio%20Process%20Diagrams/Written%20Products%20Process.pdf?csf=1&amp;web=1&amp;e=fDhc8g&quot;,&quot;Process Decomp Diagrams&quot;),
+
+IF(Product_Group__c =&quot;Custom Video&quot;,
+HYPERLINK(&quot;https://erepublic2.sharepoint.com/:b:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Visio%20Process%20Diagrams/Custom%20Video%20Products%20Process.pdf?csf=1&amp;web=1&amp;e=Enfi85&quot;,&quot;Process Decomp Diagrams&quot;),
+
+IF(Product_Group__c =&quot;ICYMI&quot;,
+HYPERLINK(&quot;https://erepublic2.sharepoint.com/:b:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Visio%20Process%20Diagrams/ICYMI%20Products%20Process.pdf?csf=1&amp;web=1&amp;e=yFKeKp&quot;,&quot;Process Decomp Diagrams&quot;),
+
+IF(Product_Group__c =&quot;Roundtable&quot;,
+HYPERLINK(&quot;https://erepublic2.sharepoint.com/:b:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Visio%20Process%20Diagrams/Roundtable%20Products%20Process.pdf?csf=1&amp;web=1&amp;e=5LBIj9&quot;,&quot;Process Decomp Diagrams&quot;),
+
+IF(Product_Group__c =&quot;Virtual Q&amp;A&quot;,
+HYPERLINK(&quot;https://erepublic2.sharepoint.com/:b:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Visio%20Process%20Diagrams/Virtual%20Q_A%20Products%20Process.pdf?csf=1&amp;web=1&amp;e=xIaymM&quot;,&quot;Process Decomp Diagrams&quot;),
+
+IF(Product_Group__c =&quot;Webinar&quot;,
+HYPERLINK(&quot;https://erepublic2.sharepoint.com/:b:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Visio%20Process%20Diagrams/Webinar%20Products%20Process%20.pdf?csf=1&amp;web=1&amp;e=whVXhM&quot;,&quot;Process Decomp Diagrams&quot;),null))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Process Decomp Diagrams</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

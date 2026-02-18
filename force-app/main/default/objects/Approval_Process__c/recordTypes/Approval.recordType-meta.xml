@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Approval</fullName>
+    <active>true</active>
+    <label>Approval</label>
+    <picklistValues>
+        <picklist>Rejection_Reason_s__c</picklist>
+        <values>
+            <fullName>BILLING%3A Bill To Incorrect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BILLING%3A Billing Address Incorrect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BILLING%3A Billing Contact Incorrect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BILLING%3A CC Missing Data</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BILLING%3A Need a CC%2C Check or Credit App</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BILLING%3A PO Needed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BILLING%3A Primary Address Incorrect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BILLING%3A Primary Contact Incorrect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BILLING%3A Review Finance Notes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BILLING%3A Review Invoicing Requirements</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BILLING%3A Should be A%2FP Contact</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>BILLING%3A Wrong Invoicing Method</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FIELD%3A Email Cc Blank</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FIELD%3A Opp Stage not Written</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FIELD%3A PO%23 Missing Data</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>INVOICE%3A Invoicing Descr Missing Data</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>INVOICE%3A Special Bill Ins Missing Data</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MISCELLANOUS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N %26 ATTACHMENTS%3A Cannot Open File</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N %26 ATTACHMENTS%3A Credit Card in SF%2ECom</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N %26 ATTACHMENTS%3A Missing %24 Confirmation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >N %26 ATTACHMENTS%3A Need Proposal %2F Int%2E IO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N %26 ATTACHMENTS%3A no Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>N %26 ATTACHMENTS%3A no Signed Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PRODUCT%3A Incorrect</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PRODUCT%3A Incorrect %24 Amount in Schedule</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PRODUCT%3A Incorrect Billing Date</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PRODUCT%3A Incorrect Billing Year</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PRODUCT%3A Product Missing on Opp</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PRODUCT%3A Schedule Comment missing Detail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PRODUCT%3A no billing schedule</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

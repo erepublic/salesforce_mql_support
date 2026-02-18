@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Description_Required_on_Approved_Expense</fullName>
+    <active>true</active>
+    <description
+  >An item cannot be marked Approved (and therefore sent to Finance) with a blank or &quot;TBD&quot; description.</description>
+    <errorConditionFormula>ISPICKVAL( Payment_Status__c , &quot;Approved&quot;) 
+&amp;&amp;
+OR(
+  ISBLANK( TEXT(Expense_Category__c)),
+  OR(
+    ISBLANK(Description__c), CONTAINS(LOWER(Description__c), &quot;tbd&quot;)
+  ),
+  NOT(Expense_Amount__c&gt;0)
+)</errorConditionFormula>
+    <errorMessage
+  >Cannot approve for payment without providing an Expense Category, Description and Expense Amount.</errorMessage>
+</ValidationRule>

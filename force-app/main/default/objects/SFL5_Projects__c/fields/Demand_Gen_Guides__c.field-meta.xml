@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Demand_Gen_Guides__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >HYPERLINK(&quot;https://erepublic2.sharepoint.com/:o:/r/teams/CustomMedia/Shared%20Documents/DEMAND%20GEN%20RESOURCES/Demand%20Gen%20Process%20Docs/Demand%20Gen%20OneNote?d=w61f4b8f0b6254b21ac30b1340a303e9e&amp;csf=1&amp;web=1&amp;e=8sxk8t&quot;, &quot;Demand Gen Guides&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Demand Gen Guides</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

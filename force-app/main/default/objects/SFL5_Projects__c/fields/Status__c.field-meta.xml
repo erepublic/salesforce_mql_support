@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(RecordTypeId = &quot;0125Y000001RfwH&quot;,
+  IF(Start_Date__c &gt; TODAY(), &quot;Not Started&quot;,
+    IF(End_Date__c &gt; TODAY()-1 &amp;&amp; Hours_Remaining_Formula__c &gt; 0 || Roll_Over_Hours_Expiration__c &gt; TODAY()-1 &amp;&amp; End_Date__c &lt; TODAY()-1 &amp;&amp; Hours_Remaining_Formula__c &gt; 0 , &quot;Active&quot;, 
+  &quot;Completed&quot;
+    )
+  )
+,&quot;&quot;
+)
+/*
+
+If the Record Type is Navigator, then:
+
+  If the Start Date is after today show &quot;Not Started&quot;,
+    
+    OTHERWISE (if the Start Date is not after today)
+      if the End Date is after today and there are hours remaining
+      OR
+      if the Roll Over Hours Expiration date is after today and the end date is before today and there are hours remaining, 
+    show &quot;Active&quot;,
+
+  OTHERWISE (if it&apos;s not an &quot;Active&quot; thing) show &quot;Completed&quot;
+
+OTHERWISE (if the Record Type is not Navigator) show &quot;&quot;
+
+*/</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

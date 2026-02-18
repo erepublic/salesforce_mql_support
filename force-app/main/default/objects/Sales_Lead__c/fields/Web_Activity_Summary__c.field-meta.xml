@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Web_Activity_Summary__c</fullName>
+    <description
+  >Shows a summary of the most recent web activity for this MQL. More history may be available under &quot;View on CMS&quot;.</description>
+    <inlineHelpText
+  >Shows a summary of the most recent web activity for this MQL. More history may be available under &quot;View on CMS&quot;.</inlineHelpText>
+    <label>Web Activity Summary</label>
+    <length>32768</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

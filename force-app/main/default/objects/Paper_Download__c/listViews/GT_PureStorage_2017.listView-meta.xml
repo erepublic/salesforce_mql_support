@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GT_PureStorage_2017</fullName>
+    <columns>Non_Qual__c</columns>
+    <columns>NAME</columns>
+    <columns>Comments__c</columns>
+    <columns>Download_Date__c</columns>
+    <columns>Registrant__c</columns>
+    <columns>Registrant_Company__c</columns>
+    <columns>Registrant_Title__c</columns>
+    <columns>Registrant_Email__c</columns>
+    <columns>Detail_1__c</columns>
+    <columns>Detail_2__c</columns>
+    <columns>Promo_Code__c</columns>
+    <columns>Push_Download_to_CMS__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Paper__c</field>
+        <operation>equals</operation>
+        <value>GT - Google - TLP - 250530</value>
+    </filters>
+    <filters>
+        <field>Non_Qual__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Standard Paper Downloads View - Anthony</label>
+</ListView>

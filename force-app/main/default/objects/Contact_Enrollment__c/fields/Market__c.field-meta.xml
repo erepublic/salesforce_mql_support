@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Market__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >IF(CONTAINS(Course_Nickname__c,&quot;SLG&quot;), &quot;State &amp; Local Government&quot;, 
+  
+    IF(CONTAINS(Course_Nickname__c,&quot;HED&quot;), &quot;Higher Education IT leaders&quot;, 
+
+       IF(CONTAINS(Course_Nickname__c,&quot;K12&quot;), &quot;K-12 Education IT leaders&quot;, 
+
+          IF(CONTAINS(Course_Nickname__c,&quot;K20&quot;), &quot;Education IT leaders&quot;, 
+
+             &quot;&quot;
+
+             )
+          )
+       ) 
+    )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Displays the Market for SLG, K12, HED, and K20 courses.</inlineHelpText>
+    <label>Market</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

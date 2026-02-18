@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attended__c</fullName>
+    <description
+  >For reporting only. Pulls the opposite value of the &quot;No Show / Cancellation&quot; field.</description>
+    <formula>IF(
+  OR(
+    Event__r.Event_Start_Date__c&gt;TODAY(),
+    ISBLANK(Event__r.Event_Start_Date__c),
+    ISPICKVAL(Event__r.Status__c, &quot;Cancelled&quot;)
+  ),
+  FALSE,
+  NOT(Event_No_Show__c)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Attended</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

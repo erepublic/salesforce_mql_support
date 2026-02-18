@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Owner_as_Account_Owner</name>
+        <label>Assign Owner as Account Owner</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >$Record.Contact__r.Account.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Owner_as_Account_Owner_Named</name>
+        <label>Assign Owner as Account Owner_Named</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >$Record.Contact__r.Account.OwnerId</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Owner_as_Sheryl_Winter</name>
+        <label>Assign Owner as Sheryl Winter</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.OwnerId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>0051O00000DAM8dQAH</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Is_this_a_Named_Account</name>
+        <label>Is this a Named Account?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Owner_as_Sheryl_Winter</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Named</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >Get_Account_Public_Sector_e_Republic.Sales_Team_Formula__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>POD</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >Get_Account_Public_Sector_e_Republic.Sales_Team_Formula__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>VP Sales</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_Owner_as_Account_Owner_Named</targetReference>
+            </connector>
+            <label>Named</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>What_Account_Name_RecordType</name>
+        <label>What Account Name / RecordType?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Owner_as_Account_Owner</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Public_Sector_Unassigned_e_Republic</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Contact__r.Account.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>012300000008caWAAQ</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Contact__r.Account.Name</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>e.Republic</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Get_Account_Public_Sector_e_Republic</targetReference>
+            </connector>
+            <label>Public Sector / Unassigned / e.Republic</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel
+  >MQL - RT BS - Owner Changed {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>MQL - RT BS - Owner Changes to Account Owner</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Account_Public_Sector_e_Republic</name>
+        <label>Get Account (Public Sector / e.Republic)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Is_this_a_Named_Account</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference
+        >$Record.Contact__r.AccountId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>What_Account_Name_RecordType</targetReference>
+        </connector>
+        <filterFormula>AND(
+         {!$User.UserRoleId} &lt;&gt; &quot;00E5Y000002pWGI&quot;, /* Exclude BizOps Flow User Role */
+         {!$Record.Owner:User.UserRoleId} &lt;&gt; &quot;00E5Y000002pWGI&quot;, /* Exclude BizOps Owner Role as Owners */
+         OR(
+                {!$Record.OwnerId} &lt;&gt; {!$Record.Contact__r.Account.OwnerId},
+                CONTAINS({!$Record.Contact__r.Account.Name}, &quot;e.Republic&quot;)
+               )
+        )</filterFormula>
+        <object>MQL__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

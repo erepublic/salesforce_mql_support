@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Research_Internal_Projects</fullName>
+    <columns>Internal_External__c</columns>
+    <columns>NAME</columns>
+    <columns>Project_Owner__c</columns>
+    <columns>Project_Stage__c</columns>
+    <columns>Project_Status_Indictator__c</columns>
+    <columns>Project_Type__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>Product_Type_Marketing__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Center_Research</value>
+    </filters>
+    <filters>
+        <field>Internal_External__c</field>
+        <operation>equals</operation>
+        <value>Internal</value>
+    </filters>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>notEqual</operation>
+        <value>Closed,Delivered,Cancelled</value>
+    </filters>
+    <label>Research Internal - Active Projects</label>
+    <sharedTo>
+        <group>CENTERResearch</group>
+    </sharedTo>
+</ListView>

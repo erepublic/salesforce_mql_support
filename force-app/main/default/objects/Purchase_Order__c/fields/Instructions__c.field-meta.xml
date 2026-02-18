@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Instructions__c</fullName>
+    <description
+  >Hidden field used to provide instructions on email templates</description>
+    <externalId>false</externalId>
+    <formula>CASE( Payment_Method__c,
+&quot;Amex&quot;,&quot;You must submit all Amex charges through Concur.&quot;,
+&quot;Billed&quot;, &quot;Please write this on all invoices you submit to Accounts Payable: &quot;&amp;BR() &amp; Name &amp;BR()&amp; LEFT(PO_Category__r.Name , 12),
+&quot;Reimbursement&quot;,&quot;You must submit a completed Reimbursement Form, along with any related receipts to Accounts Payable within 60 days of the date of service in order to be reimbursed.&quot;,
+&quot;Check&quot;,&quot;You must forward this email to Andrea Bandle and include the remit to information for the check.  (Pay to the order of Name, and the address to mail the check to.) If you do not provide this information, we will be unable to process this check request.&quot;, &quot;&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Hidden field used to provide instructions on email templates</inlineHelpText>
+    <label>Instructions</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

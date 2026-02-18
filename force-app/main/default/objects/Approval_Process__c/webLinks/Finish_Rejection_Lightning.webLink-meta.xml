@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Finish_Rejection_Lightning</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Finish Rejection</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url
+  >http://cms.erepublic.com/common/salesforce/salesforce_api/urlhack?object=Approval_Process__c&amp;Id={!Approval_Process__c.Id}&amp;00N1400000BGOwn=Rejected&amp;NOVERIFY=1&amp;LEX=1&amp;retURL=%2F{!Approval_Process__c.Opportunity_Approval_ProcessId__c}</url>
+</WebLink>

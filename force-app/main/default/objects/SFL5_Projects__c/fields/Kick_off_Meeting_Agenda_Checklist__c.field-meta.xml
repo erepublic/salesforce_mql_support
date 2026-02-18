@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Kick_off_Meeting_Agenda_Checklist__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Product_Group__c,
+&quot;Written&quot;,HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/t/CustomMedia/EWVgNEUvdlZNoqgp83bliPsBX5xX8GOE60lnzpZfnNlR8A?e=gdl5lE&amp;wdLOR=c19467BB5-F92B-4455-8BE3-F9733AF52A4C&quot;,&quot;Kick-off Call Checklist&quot;),
+
+&quot;Roundtable&quot;,HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Content%20Studio%20Guidelines/Checklists/Checklist_Kickoff%20Call_Roundtable.docx?d=w62a6ff2cdea6492ead89be82246e4f41&amp;csf=1&amp;web=1&amp;e=9LU9DH&quot;,&quot;Kick-off Call Checklist&quot;),
+
+&quot;Webinar&quot;,HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/t/CustomMedia/EeQN2ap6QQ5FvDBahmK--oYB7gh82a08ttDNXfge2JcelQ?e=dt4kVQ&quot;,&quot;Kick-off Call Checklist&quot;),
+null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Kick-off Meeting Agenda Checklist</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

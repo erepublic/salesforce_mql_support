@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expiration_Risk_Reason__c</fullName>
+    <label>Expiration/Risk Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Renewal_Assessment__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Client Dissatisfied with Service Value</fullName>
+                <default>false</default>
+                <label>Client Dissatisfied with Service Value</label>
+            </value>
+            <value>
+                <fullName>Competitive loss</fullName>
+                <default>false</default>
+                <label>Competitive Loss</label>
+            </value>
+            <value>
+                <fullName>Lack of Funding</fullName>
+                <default>false</default>
+                <label>Lack of Funding</label>
+            </value>
+            <value>
+                <fullName>Low usage</fullName>
+                <default>false</default>
+                <label>Low Usage</label>
+            </value>
+            <value>
+                <fullName>Merger/acquisition</fullName>
+                <default>false</default>
+                <label>Merger / Acquisition</label>
+            </value>
+            <value>
+                <fullName>No longer focused on public sector</fullName>
+                <default>false</default>
+                <label>No longer focused on Public Sector</label>
+            </value>
+            <value>
+                <fullName>POC Not Engaged</fullName>
+                <default>false</default>
+                <label>POC Not Engaged</label>
+            </value>
+            <value>
+                <fullName>POC Recently Changed</fullName>
+                <default>false</default>
+                <label>POC Recently Changed</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Risk</controllingFieldValue>
+            <controllingFieldValue>Danger</controllingFieldValue>
+            <valueName>Client Dissatisfied with Service Value</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk</controllingFieldValue>
+            <controllingFieldValue>Danger</controllingFieldValue>
+            <valueName>Competitive loss</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk</controllingFieldValue>
+            <controllingFieldValue>Danger</controllingFieldValue>
+            <valueName>Lack of Funding</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk</controllingFieldValue>
+            <controllingFieldValue>Danger</controllingFieldValue>
+            <valueName>Low usage</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk</controllingFieldValue>
+            <controllingFieldValue>Danger</controllingFieldValue>
+            <valueName>Merger/acquisition</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk</controllingFieldValue>
+            <controllingFieldValue>Danger</controllingFieldValue>
+            <valueName>No longer focused on public sector</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk</controllingFieldValue>
+            <controllingFieldValue>Danger</controllingFieldValue>
+            <valueName>POC Not Engaged</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk</controllingFieldValue>
+            <controllingFieldValue>Danger</controllingFieldValue>
+            <valueName>POC Recently Changed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Risk</controllingFieldValue>
+            <controllingFieldValue>Danger</controllingFieldValue>
+            <valueName>Other</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

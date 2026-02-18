@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Only_Developers_Can_Set_the_Assignee</fullName>
+    <active>true</active>
+    <errorConditionFormula
+  >/* Added this validation rule as part of Ticket #59714 */
+
+RecordTypeId = &quot;01230000001R3Yk&quot;
+ &amp;&amp;
+(
+ISCHANGED(Assignee__c)
+ || 
+(
+ ISNEW()=true 
+  &amp;&amp; 
+ Assignee__c &lt;&gt; null)
+)
+ &amp;&amp;
+$UserRole.Name &lt;&gt; &quot;Web Development&quot; 
+ &amp;&amp;
+$User.ProfileId &lt;&gt; &quot;00e30000000vQoq&quot; /* System Administrator */
+ &amp;&amp;
+$User.ProfileId &lt;&gt; &quot;00e1O000001ZglH&quot; /* System Administrator - Sales Layouts */
+ &amp;&amp;
+$User.ProfileId &lt;&gt; &quot;00e1O000001x96V&quot; /* System Admin User - Standard Layouts */
+ &amp;&amp;
+$User.Id &lt;&gt; &quot;0051O00000DA5pk&quot; /* Janaya Day - excluded per Ticket #69364 */</errorConditionFormula>
+    <errorDisplayField>Assignee__c</errorDisplayField>
+    <errorMessage>Only Developers can set the Assignee.</errorMessage>
+</ValidationRule>

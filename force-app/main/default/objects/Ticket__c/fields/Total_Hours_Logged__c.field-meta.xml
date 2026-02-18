@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Hours_Logged__c</fullName>
+    <inlineHelpText
+  >Total hours logged to this record. Sub-Ticket hours are not included in this total.</inlineHelpText>
+    <label>Total Hours Logged</label>
+    <summarizedField>Ticket_Hour__c.Hours_Logged__c</summarizedField>
+    <summaryForeignKey>Ticket_Hour__c.Ticket__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

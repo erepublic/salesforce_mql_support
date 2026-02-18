@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Select_Co_Designers__c</fullName>
+    <label>Select Co-Designer(s)</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Crystal Hopson</fullName>
+                <default>false</default>
+                <label>Crystal Hopson</label>
+            </value>
+            <value>
+                <fullName>Kelly Martinelli</fullName>
+                <default>false</default>
+                <label>Kelly Martinelli</label>
+            </value>
+            <value>
+                <fullName>Lisa Zolfarelli</fullName>
+                <default>false</default>
+                <label>Lisa Zolfarelli</label>
+            </value>
+            <value>
+                <fullName>Shelley Botts</fullName>
+                <default>false</default>
+                <label>Shelley Botts</label>
+            </value>
+            <value>
+                <fullName>Trevor Andersen</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Trevor Andersen</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

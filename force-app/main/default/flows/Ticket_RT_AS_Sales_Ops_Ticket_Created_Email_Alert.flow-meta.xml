@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>After_Assign_Ticket_Salesforce_Support_Created_if_assigned</name>
+        <label
+    >After Assign: Ticket - Salesforce Support - Created (if assigned)</label>
+        <locationX>176</locationX>
+        <locationY>623</locationY>
+        <actionName>Ticket__c.Ticket_Created_Salesforce_Support</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Ticket__c.Ticket_Created_Salesforce_Support</nameSegment>
+    </actionCalls>
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Who_Should_be_the_Assignee</name>
+        <label>Who Should be the Assignee?</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Update_Assignee_to_Tiffany</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Assign to Tiffany</defaultConnectorLabel>
+        <rules>
+            <name>Assignee_is_not_null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Assignee__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >After_Assign_Ticket_Salesforce_Support_Created_if_assigned</targetReference>
+            </connector>
+            <label>Assignee is not null</label>
+        </rules>
+        <rules>
+            <name>Assign_to_Lien</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Territory Exception</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Toolkit / Hub Updates</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Event Contract (Excel)</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Assignee_to_Lien</targetReference>
+            </connector>
+            <label>Assign to Lien</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel
+  >Ticket - RT AS - Sales Ops Ticket Created - Email Alert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Ticket - RT AS - Sales Ops Ticket Created - Email Alert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Assignee_to_Lien</name>
+        <label>Update Assignee to Lien</label>
+        <locationX>132</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference
+      >After_Assign_Ticket_Salesforce_Support_Created_if_assigned</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Assignee__c</field>
+            <value>
+                <stringValue>0051O00000CZrLKQA1</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Assignee_to_Tiffany</name>
+        <label>Update Assignee to Tiffany</label>
+        <locationX>396</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference
+      >After_Assign_Ticket_Salesforce_Support_Created_if_assigned</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Assignee__c</field>
+            <value>
+                <stringValue>005a0000009u4TkAAI</stringValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Who_Should_be_the_Assignee</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>0125Y000001wU8LQAU</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Type__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Buffer Queue</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Type__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Marketing Campaign</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Type__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Marketing Project</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Type__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Unlock Request</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Phase__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Closed</stringValue>
+            </value>
+        </filters>
+        <object>Ticket__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

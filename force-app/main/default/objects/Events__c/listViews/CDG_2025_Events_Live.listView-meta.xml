@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CDG_2025_Events_Live</fullName>
+    <columns>NAME</columns>
+    <columns>OneForm_Link__c</columns>
+    <columns>Event_Month__c</columns>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Event_End_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>GL_Code_Finance__c</columns>
+    <columns>Event_Type__c</columns>
+    <columns>Govt_Registrations__c</columns>
+    <columns>Industry_Registrations__c</columns>
+    <columns>Targeted_Registration__c</columns>
+    <columns>Fire_Packet_PageLink__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>CDG,CDG-DC,DS,DC</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>2025</value>
+    </filters>
+    <filters>
+        <field>Brand__c</field>
+        <operation>equals</operation>
+        <value>GOVTECH,CDG,DIGITAL_COMMUNITIES</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>notContain</operation>
+        <value>GT -,Navigator,Washington</value>
+    </filters>
+    <filters>
+        <field>Event_Type__c</field>
+        <operation>notContain</operation>
+        <value
+    >Custom_Event,Custom_Roundtable,Custom_Webinar,Custom,Custom Roundtable,Webinar,Virtual Conversation,Virtual Meeting</value>
+    </filters>
+    <label>CDG - 2025 Events Live</label>
+</ListView>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Role_s__c</fullName>
+    <description
+  >These are the various roles that a contact might have in interacting with the Events team.</description>
+    <inlineHelpText
+  >These are the various roles that a contact might have in interacting with the Events team.</inlineHelpText>
+    <label>Role(s)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Logistics</fullName>
+                <default>false</default>
+                <label>Logistics</label>
+            </value>
+            <value>
+                <fullName>Logo and Profile</fullName>
+                <default>false</default>
+                <label>Logo and Profile</label>
+            </value>
+            <value>
+                <fullName>Ad Board Contact</fullName>
+                <default>false</default>
+                <label>Ad Board Contact</label>
+            </value>
+            <value>
+                <fullName>Speaker Contact</fullName>
+                <default>false</default>
+                <label>Speaker Contact</label>
+            </value>
+            <value>
+                <fullName>Carbon Copy (CC)</fullName>
+                <default>false</default>
+                <label>Carbon Copy (CC)</label>
+            </value>
+            <value>
+                <fullName>Billing</fullName>
+                <default>false</default>
+                <label>Billing</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>6</visibleLines>
+</CustomField>

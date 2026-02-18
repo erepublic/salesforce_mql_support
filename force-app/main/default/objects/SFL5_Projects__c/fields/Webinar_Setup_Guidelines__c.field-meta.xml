@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Webinar_Setup_Guidelines__c</fullName>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(&quot;http://bit.ly/3XHBkgM&quot;,&quot;On24 (CMS)&quot;)
+&amp;BR()&amp;
+HYPERLINK(&quot;http://bit.ly/3E9OJXT&quot;,&quot;WebEx&quot;)
+&amp;BR()&amp;
+HYPERLINK(&quot;http://bit.ly/3YwYDLe&quot;,&quot;Zoom&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Webinar Setup Guidelines</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

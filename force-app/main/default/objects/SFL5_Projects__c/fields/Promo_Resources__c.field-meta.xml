@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Promo_Resources__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(
+    Product_Group__c,
+    &quot;Webinar&quot;, 
+    HYPERLINK(&quot;http://bit.ly/3Id8f8n&quot;, &quot;Client Promo Review&quot;) &amp; BR() &amp; 
+    HYPERLINK(&quot;http://bit.ly/3Xp5Tax&quot;, &quot;Promo Samples&quot;) &amp; BR() &amp; 
+    HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/t/CustomMedia/EVPxSfdD-1NMoCm9yGye4_oBm-FiA2VNTIgaH4raoOMcIg&quot;, &quot;Promo Template&quot;),
+    &quot;Roundtable&quot;, 
+HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Content%20Studio%20Guidelines/Sample%20Email%20Templates/Virtual%20Products/Sample%20Email_Client%20Invite%20Review.docx?d=w542cc777e3e1449eab0f76d0b36bd30c&amp;csf=1&amp;web=1&amp;e=41xXv0&quot;, &quot;Client Promo Review&quot;) &amp; BR() &amp;     HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Content%20Studio%20Guidelines/Virtual%20Product%20Resources/Roundtable_Workgroup%20Resources/Roundtable%20Invite%20Samples.docx?d=w65f56a4be5d0406ba032fb3aacd38c75&amp;csf=1&amp;web=1&amp;e=1xqVKP&quot;, &quot;Promo Samples&quot;),
+    null
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Promo Resources</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

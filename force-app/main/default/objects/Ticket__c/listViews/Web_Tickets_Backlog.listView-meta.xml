@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Web_Tickets_Backlog</fullName>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Assignee__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Phase__c</columns>
+    <columns>System2__c</columns>
+    <columns>Requested_By__c</columns>
+    <columns>Priority__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Web</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>equals</operation>
+        <value>Backlog</value>
+    </filters>
+    <filters>
+        <field>System2__c</field>
+        <operation>notEqual</operation>
+        <value>Navigator,Techwire</value>
+    </filters>
+    <label>Web Tickets Backlog</label>
+</ListView>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ALL_Events_2025_Awards_Deadlines</fullName>
+    <columns>NAME</columns>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Event_End_Date__c</columns>
+    <columns>Certs_Awards_Names_Deadline_12PM__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>2026</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>notContain</operation>
+        <value
+    >REG ONLY,TW,Webinar,Virtual,Dinner,Briefing,Workgroup,Roundtable</value>
+    </filters>
+    <filters>
+        <field>Brand__c</field>
+        <operation>notContain</operation>
+        <value>EREPUBLIC</value>
+    </filters>
+    <filters>
+        <field>Event_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Custom_Event,Custom_Roundtable</value>
+    </filters>
+    <label>ALL - Events 2026 Awards Deadlines</label>
+</ListView>

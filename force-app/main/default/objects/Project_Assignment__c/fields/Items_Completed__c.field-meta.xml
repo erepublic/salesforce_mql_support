@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Items_Completed__c</fullName>
+    <description
+  >Sum of the completed items from all activities under this assignment.  It may be the total number of completed interviews, total number of contacts added, etc.</description>
+    <inlineHelpText
+  >Sum of the completed items from all activities under this assignment.  It may be the total number of completed interviews, total number of contacts added, etc.</inlineHelpText>
+    <label>Items Completed</label>
+    <summarizedField
+  >Assignment_Activity__c.Number_of_Completed_Items__c</summarizedField>
+    <summaryForeignKey
+  >Assignment_Activity__c.Project_Assignment__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

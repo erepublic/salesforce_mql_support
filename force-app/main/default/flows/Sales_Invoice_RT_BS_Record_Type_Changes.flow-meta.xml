@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>61.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Record_Type</name>
+        <label>Assign Record Type</label>
+        <locationX>308</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>01214000000AVm3AAG</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Is_Record_Type_already_Posted</name>
+        <label>Is Record Type already Posted?</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Record_Type</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No, Set Record Type</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Already_Posted</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AVm3AAG</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Yes, Already Posted</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel>Sales Invoice - {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Sales Invoice - RT BS - Record Type Changes</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Record_Type_already_Posted</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>c2g__InvoiceStatus__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Ready to Post</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>c2g__InvoiceStatus__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Complete</stringValue>
+            </value>
+        </filters>
+        <object>c2g__codaInvoice__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

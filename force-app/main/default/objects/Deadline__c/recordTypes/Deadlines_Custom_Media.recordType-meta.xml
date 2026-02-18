@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deadlines_Custom_Media</fullName>
+    <active>true</active>
+    <label>Deadlines - Content Studio</label>
+    <picklistValues>
+        <picklist>Custom_Media__c</picklist>
+        <values>
+            <fullName>General</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Special Report</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Custom_Pub__c</picklist>
+        <values>
+            <fullName
+      >2015 CDE Top 30%3A Technologists%2C Transformers %26 Trailblazers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >2015 Q3 CDE Special Report%3A Big Data in Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >2015 Q4 CDE Special Report%3A Personalized %26 Individualized Learning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >2015 Q4 PCIO Special Report%3A Innovative %26 Evolving Technology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2016 CDG Annual TLP%3A Everything-as-a-Service</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >2016 GOV Guide to Public-Private Partnerships%3A Balancing Risk%2C Reward and Value</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2016 HHS Special Report</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >2016 Q1 CDE Special Report%3A Education Meets the Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >2016 Q1 PCIO Special Report%3A Citizen and Business Engagement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >2016 Q2 PCIO Special Report%3A The Government Enterprise</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >2016 Q3 CDE Special Report%3A Digital Transformation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2016 Q3 PCIO Special Report%3A Government Data</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >2016 Q4 PCIO Special Report%3A Innovative and Evolving Technologies</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>External_Internal__c</picklist>
+        <values>
+            <fullName>External</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Internal</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Call for Nominations End</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Call for Nominations Start</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Complete Draft from Writer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Deliver Survey Results Internally and to Writer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Editorial Briefings End</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Feedback on designed proof due</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Feedback on draft due</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Feedback on outline due</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Final PDF</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Final PDF%2FTo Printer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Final Sales Deadline</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hard Copy Drop Date</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Last Day to Come in with Logo</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >Last day to Provide Materials for Solution Spotlight</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Last day to Submit Completed ad</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Launch Survey</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outline</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Outline from writer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Sector Interviews End</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Report to Design</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Kick-off</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send designed proof to client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send draft to client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Send outline to client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

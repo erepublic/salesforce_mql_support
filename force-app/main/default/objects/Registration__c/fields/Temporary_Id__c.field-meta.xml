@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Temporary_Id__c</fullName>
+    <caseSensitive>true</caseSensitive>
+    <description
+  >Used by offsite registration when there is no internet.   Badge scans will come in with this Id. A trigger will add the real registration id to the scan upon insert.</description>
+    <externalId>true</externalId>
+    <label>Temporary Id</label>
+    <length>15</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

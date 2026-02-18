@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Completion_Percentage__c</fullName>
+    <description
+  >If the project is Cancelled, it stays at 0%. If a project has only one phase, it defaults to 0% until completed. Otherwise, it dynamically calculates progress based on phase position.</description>
+    <formula>CASE(
+    Project_Phase__c ,
+    &quot;Waiting&quot;, 0,
+    &quot;Scheduling Kick-off Call&quot;, 0.04,
+    &quot;Waiting on Client&quot;, 0.08,
+    &quot;Waiting on Content Studio&quot;, 0.12,
+    &quot;Drafting Promo&quot;, 0.16,
+    &quot;Event In Progress&quot;, 0.20,
+    &quot;Engaging Writer&quot;, 0.24,
+    &quot;Conducting SME Interviews&quot;, 0.28,
+    &quot;Developing Outline&quot;, 0.32,
+    &quot;Outline with Editor&quot;, 0.36,
+    &quot;Outline with Client&quot;, 0.40,
+    &quot;Conducting Public Sector Interviews&quot;, 0.44,
+    &quot;Developing Draft&quot;, 0.48,
+    &quot;Draft with Editor&quot;, 0.52,
+    &quot;Draft with Client&quot;, 0.56,
+    &quot;Developing Design&quot;, 0.60,
+    &quot;Design with Editor&quot;, 0.64,
+    &quot;Design with Client&quot;, 0.68,
+    &quot;Pre-Launch&quot;, 0.72,
+    &quot;In-Production&quot;, 0.76,
+    &quot;Final Internal Review&quot;, 0.80,
+    &quot;Delivering Leads&quot;, 0.84,
+    &quot;Post-Production Required&quot;, 0.88,
+    &quot;Completed&quot;, 1.00,
+    &quot;Cancelled&quot;, 0,
+    0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Completion %</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

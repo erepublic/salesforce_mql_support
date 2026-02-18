@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Webinar_Rating__c</fullName>
+    <description
+  >Average rating given when asked the question &quot;On a scale of 1-5 (1=poor / 5 = excellent) please rate the value of the webinar to you.&quot; (Divide the sum of the ratings by the count of how many people rated)</description>
+    <externalId>false</externalId>
+    <formula
+  >IF(AND(Total_of_On24_Survey1answer_numeric__c &lt;&gt;0, Count_of_On24_Survey1answer_numeric__c&lt;&gt;0),
+Total_of_On24_Survey1answer_numeric__c /  Count_of_On24_Survey1answer_numeric__c,
+0
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Average rating given when asked the question &quot;On a scale of 1-5 (1=poor / 5 = excellent) please rate the value of the webinar to you.&quot;</inlineHelpText>
+    <label>On24 Webinar Rating (avg)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

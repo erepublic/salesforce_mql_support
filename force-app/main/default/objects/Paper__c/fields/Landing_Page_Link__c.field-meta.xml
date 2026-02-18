@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Landing_Page_Link__c</fullName>
+    <description
+  >This link redirects you to the landing page for this paper.  Do not right click an copy the link location in order to get the landing page URL.  Click the link and you will be redirected to the landing page.</description>
+    <externalId>false</externalId>
+    <formula>IF(OneForm_ID__c &gt; 1,
+
+HYPERLINK( 
+&quot;http://cms.erepublic.com/common/dynamic_modules/pass_through/&quot; 
+&amp;Id,
+&quot;Redirect to Landing Page&quot;)
+
+,&quot;Not Synced to CMS&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >This link redirects you to the landing page for this paper.  Do not right click an copy the link location in order to get the landing page URL.  Click the link and you will be redirected to the landing page.</inlineHelpText>
+    <label>Landing Page Link</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

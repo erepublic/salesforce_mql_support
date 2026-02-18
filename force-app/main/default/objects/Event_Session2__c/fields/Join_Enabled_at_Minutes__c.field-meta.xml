@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Join_Enabled_at_Minutes__c</fullName>
+    <defaultValue>15</defaultValue>
+    <description
+  >How many minutes before a session should the join button be enabled?</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >How many minutes before a session should the join button be enabled?</inlineHelpText>
+    <label>Join Enabled at Minutes</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

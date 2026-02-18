@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MER_Submitted_Contacts__c</fullName>
+    <description
+  >Number of contacts submitted using the &apos;Submit Contact Enrollments&apos; button on the related Membership Contract.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >Number of contacts submitted using the &apos;Submit Contact Enrollments&apos; button on the related Membership Contract.</inlineHelpText>
+    <label>MER Submitted Contact(s)</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

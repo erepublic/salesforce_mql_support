@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accounting_Category__c</fullName>
+    <description
+  >Hidden field. Returns the GL code to use when invoicing Content Studio expenses.</description>
+    <externalId>false</externalId>
+    <formula>/*- - - - - - - - - -Writer Fees- - - - - - - - - -*/
+
+IF(
+   AND(
+       ISPICKVAL(Expense_Category__c,&quot;Writer Fee&quot;),
+       OR(
+          ISPICKVAL(Category__c,&quot;GT Custom Media&quot;),
+          ISPICKVAL(Category__c,&quot;CDE Custom Media&quot;)
+       )
+   ),
+   &quot;GT-1360-CONT&quot;,
+IF(
+   AND(
+       ISPICKVAL(Expense_Category__c,&quot;Writer Fee&quot;),
+       ISPICKVAL(Category__c,&quot;GOV Custom Media&quot;)
+   ),
+   &quot;GT-1360-CONT&quot;, /*---edited 6/9/2025 from &apos;GV-1360-PRNT&apos; per Ryan Saul request---JF---*/
+
+
+/*- - - - - - - - - -Moderator Fees- - - - - - - - - -*/
+
+IF(
+   AND(
+       ISPICKVAL(Expense_Category__c,&quot;Moderator Fee&quot;),
+       ISPICKVAL(Category__c,&quot;GT Webinar&quot;)
+   ),
+   &quot;GT-8525-MODR&quot;,
+IF(
+   AND(
+       ISPICKVAL(Expense_Category__c,&quot;Moderator Fee&quot;),
+       ISPICKVAL(Category__c,&quot;CDE Webinar&quot;)
+   ),
+   &quot;ED-8525-MODR&quot;,
+IF(
+   AND(
+       ISPICKVAL(Expense_Category__c,&quot;Moderator Fee&quot;),
+       ISPICKVAL(Category__c,&quot;GOV Webinar&quot;)
+   ),
+   &quot;GV-8525-MODR&quot;,
+
+
+/*- - - - - - - - - -Video Production Fees- - - - - - - - - -*/
+
+IF(
+   ISPICKVAL(Expense_Category__c,&quot;Video Production&quot;),
+   &quot;GT-1360-CONT&quot;,
+
+
+/*- - - - - - - - - -Senior Fellow RESEARCH Fees- - - - - - - - - -*/
+
+IF(
+   AND(
+       ISPICKVAL(Expense_Category__c,&quot;Senior Fellow&quot;),
+       ISPICKVAL(Category__c,&quot;GT Research&quot;)
+   ),
+   &quot;GT-6815-0000&quot;,
+IF(
+   AND(
+       ISPICKVAL(Expense_Category__c,&quot;Senior Fellow&quot;),
+       ISPICKVAL(Category__c,&quot;CDE Research&quot;)
+   ),
+   &quot;ED-6815-0000&quot;,
+IF(
+   AND(
+       ISPICKVAL(Expense_Category__c,&quot;Senior Fellow&quot;),
+       ISPICKVAL(Category__c,&quot;GOV Research&quot;)
+   ),
+   &quot;GV-6815-0000&quot;,
+
+
+/*- - - - - - - - - -Senior Fellow CUSTOM MEDIA Fees- - - - - - - - - -*/
+
+IF(
+   AND(
+       ISPICKVAL(Expense_Category__c,&quot;Senior Fellow&quot;),
+       OR(
+          ISPICKVAL(Category__c,&quot;GT Custom Media&quot;),
+          ISPICKVAL(Category__c,&quot;CDE Custom Media&quot;)
+       )
+   ),
+   &quot;GT-1360-CONT&quot;,
+IF(
+   AND(
+       ISPICKVAL(Expense_Category__c,&quot;Senior Fellow&quot;),
+       ISPICKVAL(Category__c,&quot;GOV Custom Media&quot;)
+   ),
+   &quot;GT-1360-CONT&quot;, /*---edited 6/9/2025 from &apos;GV-1360-PRNT&apos; per Ryan Saul request---JF---*/
+
+
+/*- - - - - - - - - -Senior Fellow WEBINAR Fees- - - - - - - - - -*/
+
+IF(
+   AND(
+       ISPICKVAL(Expense_Category__c,&quot;Senior Fellow&quot;),
+       ISPICKVAL(Category__c,&quot;GT Webinar&quot;)
+   ),
+   &quot;GT-6815-CONT&quot;,
+
+IF(
+   AND(
+       ISPICKVAL(Expense_Category__c,&quot;Senior Fellow&quot;),
+       ISPICKVAL(Category__c,&quot;CDE Webinar&quot;)
+   ),
+   &quot;ED-6815-CONT&quot;,
+
+IF(
+   AND(
+       ISPICKVAL(Expense_Category__c,&quot;Senior Fellow&quot;),
+       ISPICKVAL(Category__c,&quot;GOV Webinar&quot;)
+   ),
+   &quot;GV-6815-CONT&quot;,
+
+   &quot;EXCEPTION (determine which GL to use)&quot;
+))))))))))))))</formula>
+    <label>Accounting Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Developer_Unassigned_Tickets</fullName>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Priority__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>Status__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Phase__c</field>
+        <operation>equals</operation>
+        <value>Unassigned</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Web</value>
+    </filters>
+    <label>Developer - Unassigned Tickets</label>
+    <sharedTo>
+        <role>Web_Development</role>
+    </sharedTo>
+</ListView>

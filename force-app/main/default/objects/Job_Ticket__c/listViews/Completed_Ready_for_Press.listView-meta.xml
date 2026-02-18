@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Completed_Ready_for_Press</fullName>
+    <columns>NAME</columns>
+    <columns>Designer__c</columns>
+    <columns>Job_Name__c</columns>
+    <columns>Printer_Custom__c</columns>
+    <columns>Project_Number__c</columns>
+    <columns>Finished_Job_Due__c</columns>
+    <columns>Status__c</columns>
+    <columns>Originator__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Completed - Pending Instructions</value>
+    </filters>
+    <label>Completed - Ready for Press</label>
+</ListView>

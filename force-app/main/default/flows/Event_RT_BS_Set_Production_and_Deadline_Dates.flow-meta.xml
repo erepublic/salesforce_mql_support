@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Production_and_Deadline_Dates</name>
+        <label>Assign Production and Deadline Dates</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Award_Prog_PP_Job_Order_Due__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_27_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Awards_Job_Order_Due__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_34_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Awards_Program_Agenda_Job_Order_Due__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_27_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Cert_Job_Order_Due__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_34_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Certs_Awards_Names_Deadline_12PM__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_35_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Conf_Bag_Sponsor_Deadline_12PM_2__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_49_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Event_Logistics_Job_Order_Due__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_34_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Keynote_Deadline__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_35_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Lanyrd_Notebook_Sponsor_Deadline_12PM__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_49_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Networking_Break_Sponsor_Deadline_12PM__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_35_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Powerpoint_Job_Order_Due__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_27_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Program_Guide_Sponsor_Deadline__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_35_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Schedule_at_a_Glance_Job_Order_Due__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_27_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Sponsor_Guide_Job_Order_Due__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_27_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Custom_Event_Sponsor_Signs_Deadline_EOD__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_35_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Photo_Booth_Sponsor_Deadline_EOD__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_35_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Photo_Booth_Graphics_Job_Order_Due__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_34_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Which_Event_Type</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Program_Due_Date</name>
+        <label>Assign Program Due Date</label>
+        <locationX>182</locationX>
+        <locationY>611</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Program_Due_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_70_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Slides_Job_Order_Due</name>
+        <label>Assign Slides Job Order Due</label>
+        <locationX>446</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Powerpoint_Job_Order_Due__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_17_Days_Before_Event_Start</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Which_Event_Type</name>
+        <label>Which Event Type?</label>
+        <locationX>50</locationX>
+        <locationY>503</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Program_Due_Date</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Custom_Event</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Event_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Custom_Event</stringValue>
+                </rightValue>
+            </conditions>
+            <label>Custom Event (no Website)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Which_Record_Type</name>
+        <label>Which Record Type?</label>
+        <locationX>380</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Standard_Event</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01230000000ueuwAAA</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_Production_and_Deadline_Dates</targetReference>
+            </connector>
+            <label>Standard Event</label>
+        </rules>
+        <rules>
+            <name>Webinar</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AUymAAG</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Slides_Job_Order_Due</targetReference>
+            </connector>
+            <label>Webinar</label>
+        </rules>
+    </decisions>
+    <description
+  >2/5/2026 (v10) - Updated &quot;Keynote Impact Sponsor Deadline EOD&quot; from 28 Days Prior to 35 Days Prior (matching Recharge Break).
+11/26/2025 - Added &quot;Photo Booth Sponsor Deadline EOD&quot; (35 Days prior) and &quot;Photo Booth Graphics Job Order Due&quot; (34 Days Prior) 
+4/22/2025 - Updated &quot;Keynote Sponsor Deadline EOD&quot; due date to 28 Days Prior from 35 Days Prior (+1 week). 
+3/24/2025 - No longer sets &quot;Program Guide Job Order Due&quot; (27 days prior/standard events).
+1/27/2025 - Added &quot;Program Due Date&quot; to all Standard Events except Custom Events without Website (70 days prior). 
+                  - Minor updates to formulas to make them more reader friendly. 
+6/25/2024 - Added &apos;Custom Event Sponsor Signs Deadline EOD&apos; with deadline to match Networking Break deadline (35 days prior). 3/25/2024 - Updated &apos;Sponsor Guide Job Order Due&apos; date (34 days prior) to match the &apos;Program Guide Job Order Due&apos; (27 days prior).</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_17_Days_Before_Event_Start</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!$Record.Event_Start_Date__c}  - 17 - DATE( 1900, 1, 7 ), 7 ),
+0, {!$Record.Event_Start_Date__c} - 16,
+1, {!$Record.Event_Start_Date__c} - 17,
+2, {!$Record.Event_Start_Date__c} - 17,
+3, {!$Record.Event_Start_Date__c} - 17,
+4, {!$Record.Event_Start_Date__c} - 17,
+5, {!$Record.Event_Start_Date__c} - 17,
+6, {!$Record.Event_Start_Date__c} - 18,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_27_Days_Before_Event_Start</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!$Record.Event_Start_Date__c}  - 27 - DATE( 1900, 1, 7 ), 7 ),
+0, {!$Record.Event_Start_Date__c} - 26,
+1, {!$Record.Event_Start_Date__c} - 27,
+2, {!$Record.Event_Start_Date__c} - 27,
+3, {!$Record.Event_Start_Date__c} - 27,
+4, {!$Record.Event_Start_Date__c} - 27,
+5, {!$Record.Event_Start_Date__c} - 27,
+6, {!$Record.Event_Start_Date__c} - 28,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_28_Days_Before_Event_Start</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!$Record.Event_Start_Date__c}  - 28 - DATE( 1900, 1, 7 ), 7 ),
+0, {!$Record.Event_Start_Date__c} - 27,
+1, {!$Record.Event_Start_Date__c} - 28,
+2, {!$Record.Event_Start_Date__c} - 28,
+3, {!$Record.Event_Start_Date__c} - 28,
+4, {!$Record.Event_Start_Date__c} - 28,
+5, {!$Record.Event_Start_Date__c} - 28,
+6, {!$Record.Event_Start_Date__c} - 29,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_34_Days_Before_Event_Start</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!$Record.Event_Start_Date__c}  - 34 - DATE( 1900, 1, 7 ), 7 ),
+0, {!$Record.Event_Start_Date__c} - 33,
+1, {!$Record.Event_Start_Date__c} - 34,
+2, {!$Record.Event_Start_Date__c} - 34,
+3, {!$Record.Event_Start_Date__c} - 34,
+4, {!$Record.Event_Start_Date__c} - 34,
+5, {!$Record.Event_Start_Date__c} - 34,
+6, {!$Record.Event_Start_Date__c} - 35,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_35_Days_Before_Event_Start</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!$Record.Event_Start_Date__c}  - 35 - DATE( 1900, 1, 7 ), 7 ),
+0, {!$Record.Event_Start_Date__c} - 34,
+1, {!$Record.Event_Start_Date__c} - 35,
+2, {!$Record.Event_Start_Date__c} - 35,
+3, {!$Record.Event_Start_Date__c} - 35,
+4, {!$Record.Event_Start_Date__c} - 35,
+5, {!$Record.Event_Start_Date__c} - 35,
+6, {!$Record.Event_Start_Date__c} - 36,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_49_Days_Before_Event_Start</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!$Record.Event_Start_Date__c}  - 49 - DATE( 1900, 1, 7 ), 7 ),
+0, {!$Record.Event_Start_Date__c} - 48,
+1, {!$Record.Event_Start_Date__c} - 49,
+2, {!$Record.Event_Start_Date__c} - 49,
+3, {!$Record.Event_Start_Date__c} - 49,
+4, {!$Record.Event_Start_Date__c} - 49,
+5, {!$Record.Event_Start_Date__c} - 49,
+6, {!$Record.Event_Start_Date__c} - 50,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_70_Days_Before_Event_Start</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!$Record.Event_Start_Date__c}  - 70 - DATE( 1900, 1, 7 ), 7 ),
+0, {!$Record.Event_Start_Date__c} - 69,
+1, {!$Record.Event_Start_Date__c} - 70,
+2, {!$Record.Event_Start_Date__c} - 70,
+3, {!$Record.Event_Start_Date__c} - 70,
+4, {!$Record.Event_Start_Date__c} - 70,
+5, {!$Record.Event_Start_Date__c} - 70,
+6, {!$Record.Event_Start_Date__c} - 71,
+null
+)</expression>
+    </formulas>
+    <interviewLabel
+  >Event - RT BS - Set Production and Deadline Dates {!$Flow.CurrentDateTime}</interviewLabel>
+    <label
+  >Event or Conference - RT BS - Set Production and Deadline Dates</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>254</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Which_Record_Type</targetReference>
+        </connector>
+        <filterLogic>((1 AND 2) OR 3) AND (4 OR 5)</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Event_Start_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Event_Start_Date__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01230000000ueuwAAA</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01214000000AUymAAG</stringValue>
+            </value>
+        </filters>
+        <object>Events__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

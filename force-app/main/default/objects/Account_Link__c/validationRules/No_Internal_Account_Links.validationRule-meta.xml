@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Internal_Account_Links</fullName>
+    <active>true</active>
+    <description
+  >To disallow Account Link records for e.Republic - Subscriptions, e.Republic - Subscriptions (Private Sector), and New Prospects.</description>
+    <errorConditionFormula>OR (
+Account__r.Id = &quot;0013000000ONDiH&quot;, 
+Account__r.Id = &quot;0011O00001IzS2S&quot;,
+Account__r.Id = &quot;0011400001egVtT&quot;
+)</errorConditionFormula>
+    <errorMessage
+  >You can&apos;t add an Account Link for the e.Republic - Subscriptions, e.Republic - Subscriptions (Private Sector), and New Prospects..</errorMessage>
+</ValidationRule>

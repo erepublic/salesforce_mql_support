@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Start_Date_90_Days__c</fullName>
+    <formula>IF(
+  NOT(
+    ISBLANK(Start_Date__c)
+  ),
+  Start_Date__c + 90,
+  null
+)</formula>
+    <label>Start Date+90 Days</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Target_s_Met__c</fullName>
+    <description
+  >Compares target numbers versus actual numbers and tells if target numbers have been reached.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+OR(
+AND(
+ISPICKVAL(Target_Type__c,&quot;Registered&quot;),
+ISBLANK(Targeted_Registration__c),
+Qualified_Non_Sponsor__c &gt;= Registered_Target__c
+),
+AND(
+ISPICKVAL(Target_Type__c,&quot;Registered&quot;),
+Qualified_Non_Sponsor__c &gt;= Targeted_Registration__c
+),
+AND(
+ISPICKVAL(Target_Type__c,&quot;Logged On&quot;),
+Actual_Attended_Qualified__c &gt;= Targeted_Registration__c
+),
+AND(
+ISPICKVAL(Target_Type__c,&quot;Both&quot;),
+Qualified_Non_Sponsor__c &gt;= Registered_Target__c,
+Actual_Attended_Qualified__c &gt;= Targeted_Registration__c
+)
+),
+&quot;Target(s) Met&quot;,
+IF(
+OR(
+AND(
+ISPICKVAL(Target_Type__c,&quot;Registered&quot;),
+ISBLANK(Targeted_Registration__c),
+Qualified_Non_Sponsor__c &lt; Registered_Target__c
+),
+AND(
+ISPICKVAL(Target_Type__c,&quot;Registered&quot;),
+Qualified_Non_Sponsor__c &lt; Targeted_Registration__c
+),
+AND(
+ISPICKVAL(Target_Type__c,&quot;Logged On&quot;),
+Actual_Attended_Qualified__c &lt; Targeted_Registration__c
+),
+AND(
+ISPICKVAL(Target_Type__c,&quot;Both&quot;),
+OR(
+Qualified_Non_Sponsor__c &lt; Registered_Target__c,
+Actual_Attended_Qualified__c &lt; Targeted_Registration__c
+)
+)
+),
+&quot;Target(s) Not Met&quot;,
+&quot;Check Target Criteria&quot;
+)
+)</formula>
+    <label>Event Target(s) Met</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

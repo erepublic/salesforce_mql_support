@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Insider_Memberships_All_Time</fullName>
+    <booleanFilter>(1 OR 2 OR 3) AND 4</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Nav_TW_Login_Report__c</columns>
+    <columns>Account_Name__c</columns>
+    <columns>All_Memberships__c</columns>
+    <columns>Account_Owner__c</columns>
+    <columns>Sales_Engineer__c</columns>
+    <columns>Sales_Admin__c</columns>
+    <columns>NAV_Member_Engagement__c</columns>
+    <columns>TW_End_Date__c</columns>
+    <columns>ICA_Membership_Level__c</columns>
+    <columns>ITX_End_Date__c</columns>
+    <columns>ITX_Membership_Level__c</columns>
+    <columns>IFL_End_Date__c</columns>
+    <columns>IFL_Membership_Level__c</columns>
+    <columns>Insider_Stage__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>TW_End_Date__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>ITX_End_Date__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>IFL_End_Date__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Account_Name__c</field>
+        <operation>notContain</operation>
+        <value>Pretend Computer Company</value>
+    </filters>
+    <label>All Insider Memberships - All Time</label>
+</ListView>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Demand_Gen_ALL</fullName>
+    <columns>NAME</columns>
+    <columns>Project_Owner__c</columns>
+    <columns>Project_Stage__c</columns>
+    <columns>Project_Update_Note__c</columns>
+    <columns>Client__c</columns>
+    <columns>Filters__c</columns>
+    <columns>Contract__c</columns>
+    <columns>Project_Type__c</columns>
+    <columns>Start_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Custom_Media</value>
+    </filters>
+    <filters>
+        <field>Project_Phase__c</field>
+        <operation>notEqual</operation>
+        <value>Post-Production Required</value>
+    </filters>
+    <filters>
+        <field>Project_Type__c</field>
+        <operation>equals</operation>
+        <value
+    >Standard Leads,Filtered Leads,Account Based Marketing,Two-Step Nurture,Multi-Touch Nurture</value>
+    </filters>
+    <label>Demand Gen - Legacy</label>
+</ListView>

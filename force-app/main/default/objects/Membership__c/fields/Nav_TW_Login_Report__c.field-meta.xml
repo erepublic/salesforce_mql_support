@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Nav_TW_Login_Report__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >HYPERLINK(&quot;https://www.governmentnavigator.com/api/salesforce?method=redirect_to_login_report&amp;salesforce_id=&quot;&amp; Account_Name__r.Id, &quot;Last 12 Months&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Nav/Insider Login Report</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

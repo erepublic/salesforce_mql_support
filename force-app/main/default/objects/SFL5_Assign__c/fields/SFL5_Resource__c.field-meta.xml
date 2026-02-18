@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SFL5_Resource__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Internal Requestor</label>
+    <referenceTo>SFL5_Resource__c</referenceTo>
+    <relationshipName>R00N3000000279V9EAI</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

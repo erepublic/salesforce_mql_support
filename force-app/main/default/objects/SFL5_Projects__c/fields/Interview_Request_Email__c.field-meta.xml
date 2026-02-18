@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interview_Request_Email__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/t/CustomMedia/EZkPGPYLDOxCtSFaGQO5XPwB7L-nufCgp78yiDbNqIwmLQ?e=9cf5OS&amp;wdLOR=c0036600D-6D9B-4ACA-A721-AD1C7F714B95&quot;,&quot;Sample SME/Public Sector Interview Request&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Interview Request Email</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>MQL_Date__c</columns>
+    <columns>MQL_Status__c</columns>
+    <columns>NAME</columns>
+    <columns>MQL_Owner__c</columns>
+    <columns>Contact__c</columns>
+    <columns>MQL_Name__c</columns>
+    <columns>Product__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Conversion_Type__c</columns>
+    <columns>Rejection_Type__c</columns>
+    <columns>Rejection_Reason__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All MQLs</label>
+</ListView>

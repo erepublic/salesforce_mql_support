@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Object__c</fullName>
+    <label>Object</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Account</fullName>
+                <default>false</default>
+                <label>Account</label>
+            </value>
+            <value>
+                <fullName>Account Link</fullName>
+                <default>false</default>
+                <label>Account Link</label>
+            </value>
+            <value>
+                <fullName>Activity</fullName>
+                <default>false</default>
+                <label>Activity</label>
+            </value>
+            <value>
+                <fullName>Advisory Board Membership</fullName>
+                <default>false</default>
+                <label>Advisory Board Membership</label>
+            </value>
+            <value>
+                <fullName>Agreement</fullName>
+                <default>false</default>
+                <label>Agreement</label>
+            </value>
+            <value>
+                <fullName>Bucket Fund</fullName>
+                <default>false</default>
+                <label>Bucket Fund</label>
+            </value>
+            <value>
+                <fullName>Bucket Fund Line Item</fullName>
+                <default>false</default>
+                <label>Bucket Fund Line Item</label>
+            </value>
+            <value>
+                <fullName>Campaign</fullName>
+                <default>false</default>
+                <label>Campaign</label>
+            </value>
+            <value>
+                <fullName>Campaign Member</fullName>
+                <default>false</default>
+                <label>Campaign Member</label>
+            </value>
+            <value>
+                <fullName>Case</fullName>
+                <default>false</default>
+                <label>Case</label>
+            </value>
+            <value>
+                <fullName>Change Management</fullName>
+                <default>false</default>
+                <label>Change Management</label>
+            </value>
+            <value>
+                <fullName>Contact</fullName>
+                <default>false</default>
+                <label>Contact</label>
+            </value>
+            <value>
+                <fullName>Contact Enrollment</fullName>
+                <default>false</default>
+                <label>Contact Enrollment</label>
+            </value>
+            <value>
+                <fullName>Contact Us</fullName>
+                <default>false</default>
+                <label>Contact Us</label>
+            </value>
+            <value>
+                <fullName>Contract</fullName>
+                <default>false</default>
+                <label>Contract</label>
+            </value>
+            <value>
+                <fullName>Course Enrollment</fullName>
+                <default>false</default>
+                <label>Course Enrollment</label>
+            </value>
+            <value>
+                <fullName>Employee</fullName>
+                <default>false</default>
+                <label>Employee</label>
+            </value>
+            <value>
+                <fullName>Event Contact Role</fullName>
+                <default>false</default>
+                <label>Event Contact Role</label>
+            </value>
+            <value>
+                <fullName>Event Inventory Detail</fullName>
+                <default>false</default>
+                <label>Event Inventory Detail</label>
+            </value>
+            <value>
+                <fullName>Event or Conference</fullName>
+                <default>false</default>
+                <label>Event or Conference</label>
+            </value>
+            <value>
+                <fullName>Finance Request</fullName>
+                <default>false</default>
+                <label>Finance Request</label>
+            </value>
+            <value>
+                <fullName>General Ledger Account</fullName>
+                <default>false</default>
+                <label>General Ledger Account</label>
+            </value>
+            <value>
+                <fullName>IT Asset</fullName>
+                <default>false</default>
+                <label>IT Asset</label>
+            </value>
+            <value>
+                <fullName>Job Order</fullName>
+                <default>false</default>
+                <label>Job Order</label>
+            </value>
+            <value>
+                <fullName>Job Role</fullName>
+                <default>false</default>
+                <label>Job Role</label>
+            </value>
+            <value>
+                <fullName>Job Ticket</fullName>
+                <default>false</default>
+                <label>Job Ticket</label>
+            </value>
+            <value>
+                <fullName>Journal Line Item</fullName>
+                <default>false</default>
+                <label>Journal Line Item</label>
+            </value>
+            <value>
+                <fullName>License</fullName>
+                <default>false</default>
+                <label>License</label>
+            </value>
+            <value>
+                <fullName>License Contract</fullName>
+                <default>false</default>
+                <label>License Contract</label>
+            </value>
+            <value>
+                <fullName>License Software</fullName>
+                <default>false</default>
+                <label>License Software</label>
+            </value>
+            <value>
+                <fullName>Line Item Schedule</fullName>
+                <default>false</default>
+                <label>Line Item Schedule</label>
+            </value>
+            <value>
+                <fullName>Logistics Financials</fullName>
+                <default>false</default>
+                <label>Logistics Financials</label>
+            </value>
+            <value>
+                <fullName>Membership</fullName>
+                <default>false</default>
+                <label>Membership</label>
+            </value>
+            <value>
+                <fullName>Membership Contract</fullName>
+                <default>false</default>
+                <label>Membership Contract</label>
+            </value>
+            <value>
+                <fullName>Membership Income Schedule Item</fullName>
+                <default>false</default>
+                <label>Membership Income Schedule Item</label>
+            </value>
+            <value>
+                <fullName>Opportunity</fullName>
+                <default>false</default>
+                <label>Opportunity</label>
+            </value>
+            <value>
+                <fullName>Opportunity Contact Role</fullName>
+                <default>false</default>
+                <label>Opportunity Contact Role</label>
+            </value>
+            <value>
+                <fullName>Opportunity Product</fullName>
+                <default>false</default>
+                <label>Opportunity Product</label>
+            </value>
+            <value>
+                <fullName>Paper</fullName>
+                <default>false</default>
+                <label>Paper</label>
+            </value>
+            <value>
+                <fullName>Paper Download</fullName>
+                <default>false</default>
+                <label>Paper Download</label>
+            </value>
+            <value>
+                <fullName>Payable Invoice</fullName>
+                <default>false</default>
+                <label>Payable Invoice</label>
+            </value>
+            <value>
+                <fullName>Price Book Entry</fullName>
+                <default>false</default>
+                <label>Price Book Entry</label>
+            </value>
+            <value>
+                <fullName>Privacy Email</fullName>
+                <default>false</default>
+                <label>Privacy Email</label>
+            </value>
+            <value>
+                <fullName>Privacy Request</fullName>
+                <default>false</default>
+                <label>Privacy Request</label>
+            </value>
+            <value>
+                <fullName>Product</fullName>
+                <default>false</default>
+                <label>Product</label>
+            </value>
+            <value>
+                <fullName>Project</fullName>
+                <default>false</default>
+                <label>Project</label>
+            </value>
+            <value>
+                <fullName>Project Delivery Schedule</fullName>
+                <default>false</default>
+                <label>Project Delivery Schedule</label>
+            </value>
+            <value>
+                <fullName>Purchase Order</fullName>
+                <default>false</default>
+                <label>Purchase Order</label>
+            </value>
+            <value>
+                <fullName>Registration</fullName>
+                <default>false</default>
+                <label>Registration</label>
+            </value>
+            <value>
+                <fullName>Resource Engagement</fullName>
+                <default>false</default>
+                <label>Resource Engagement</label>
+            </value>
+            <value>
+                <fullName>Sales Invoice</fullName>
+                <default>false</default>
+                <label>Sales Invoice</label>
+            </value>
+            <value>
+                <fullName>Sales Invoice Line Item</fullName>
+                <default>false</default>
+                <label>Sales Invoice Line Item</label>
+            </value>
+            <value>
+                <fullName>Shipment</fullName>
+                <default>false</default>
+                <label>Shipment</label>
+            </value>
+            <value>
+                <fullName>Subscription</fullName>
+                <default>false</default>
+                <label>Subscription</label>
+            </value>
+            <value>
+                <fullName>System</fullName>
+                <default>false</default>
+                <label>System</label>
+            </value>
+            <value>
+                <fullName>Task</fullName>
+                <default>false</default>
+                <label>Task</label>
+            </value>
+            <value>
+                <fullName>Template Storage</fullName>
+                <default>false</default>
+                <label>Template Storage</label>
+            </value>
+            <value>
+                <fullName>Ticket</fullName>
+                <default>false</default>
+                <label>Ticket</label>
+            </value>
+            <value>
+                <fullName>Ticket Hour</fullName>
+                <default>false</default>
+                <label>Ticket Hour</label>
+            </value>
+            <value>
+                <fullName>Treatment</fullName>
+                <default>false</default>
+                <label>Treatment</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

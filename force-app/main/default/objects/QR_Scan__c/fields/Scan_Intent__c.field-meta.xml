@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Scan_Intent__c</fullName>
+    <description
+  >Based on the state of the badge scanning app, this will denote the intention of the person scanning the badge.</description>
+    <label>Scan Intent</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>General</fullName>
+                <default>false</default>
+                <label>General</label>
+            </value>
+            <value>
+                <fullName>Registration Check-In</fullName>
+                <default>false</default>
+                <label>Registration Check-In</label>
+            </value>
+            <value>
+                <fullName>Session Attendance</fullName>
+                <default>false</default>
+                <label>Session Attendance</label>
+            </value>
+            <value>
+                <fullName>Registration Mark No-Show</fullName>
+                <default>false</default>
+                <label>Registration Mark No-Show</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

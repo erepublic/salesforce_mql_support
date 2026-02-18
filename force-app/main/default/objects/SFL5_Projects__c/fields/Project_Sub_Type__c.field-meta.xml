@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Sub_Type__c</fullName>
+    <description
+  >Provides additional details about the type of project this is.</description>
+    <inlineHelpText
+  >Provides additional details about the type of project this is.</inlineHelpText>
+    <label>Project Sub Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Surveys</fullName>
+                <default>false</default>
+                <label>Surveys</label>
+            </value>
+            <value>
+                <fullName>Interviews</fullName>
+                <default>false</default>
+                <label>Interviews</label>
+            </value>
+            <value>
+                <fullName>Jurisdictional Profiles</fullName>
+                <default>false</default>
+                <label>Jurisdictional Profiles</label>
+            </value>
+            <value>
+                <fullName>Deck Builds</fullName>
+                <default>false</default>
+                <label>Deck Builds</label>
+            </value>
+            <value>
+                <fullName>Playbooks</fullName>
+                <default>false</default>
+                <label>Playbooks</label>
+            </value>
+            <value>
+                <fullName>Speaking Engagements</fullName>
+                <default>false</default>
+                <label>Speaking Engagements</label>
+            </value>
+            <value>
+                <fullName>Analyst Hours</fullName>
+                <default>false</default>
+                <label>Analyst Hours</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

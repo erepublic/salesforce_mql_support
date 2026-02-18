@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Roundtable_Setup_Guidelines__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Content%20Studio%20Guidelines/Virtual%20Product%20Resources/Roundtable_Workgroup%20Resources/Roundtable%20Set%20Up%20Guidelines.docx?d=wdf13234fd2df4875b2bc977b0c2f888a&amp;csf=1&amp;web=1&amp;e=sxya4N&quot;,&quot;Roundtable Setup Guidelines&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Roundtable Setup Guidelines</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Privacy_Law__c</fullName>
+    <label>Privacy Law</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CA (CCPA)</fullName>
+                <default>false</default>
+                <label>CA (CCPA)</label>
+            </value>
+            <value>
+                <fullName>Colorado CPA</fullName>
+                <default>false</default>
+                <label>Colorado CPA</label>
+            </value>
+            <value>
+                <fullName>GDPR</fullName>
+                <default>false</default>
+                <label>GDPR</label>
+            </value>
+            <value>
+                <fullName>NJ Daniel&apos;s Law</fullName>
+                <default>false</default>
+                <label>NJ Daniel&apos;s Law</label>
+            </value>
+            <value>
+                <fullName>Virginia CDPA</fullName>
+                <default>false</default>
+                <label>Virginia CDPA</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

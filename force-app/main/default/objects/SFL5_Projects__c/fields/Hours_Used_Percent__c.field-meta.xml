@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hours_Used_Percent__c</fullName>
+    <description
+  >Total hours assigned for this project divided by the total hours completed.</description>
+    <formula>Hours_Completed__c /  NAV_Hours_Total_Cx__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Total hours assigned for this project divided by the total hours completed.</inlineHelpText>
+    <label>Hours Used %</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

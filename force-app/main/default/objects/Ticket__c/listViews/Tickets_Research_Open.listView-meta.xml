@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tickets_Research_Open</fullName>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Age__c</columns>
+    <columns>Assignee__c</columns>
+    <columns>Priority__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>012a0000001RVDQ</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed</value>
+    </filters>
+    <label>Tickets - Research: Open</label>
+</ListView>

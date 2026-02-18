@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_Demand_Gen_Kirsten_s_Projects</fullName>
+    <columns>Start_Date__c</columns>
+    <columns>Completion_Date__c</columns>
+    <columns>NAME</columns>
+    <columns>Contract__c</columns>
+    <columns>Project_Stage__c</columns>
+    <columns>Filters__c</columns>
+    <columns>Lead_Guarantee__c</columns>
+    <columns>Total_Leads_Delivered__c</columns>
+    <columns>Leads_Unfulfilled__c</columns>
+    <columns>Paper_Display_Title__c</columns>
+    <columns>Project_Update_Note__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Custom_Media</value>
+    </filters>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>equals</operation>
+        <value
+    >Active,Completed,Pending Client Action,On-hold: Client,On-hold: Internal,Pending Content Studio</value>
+    </filters>
+    <filters>
+        <field>Project_Status_Display__c</field>
+        <operation>notEqual</operation>
+        <value>Product Delivered,Cancelled</value>
+    </filters>
+    <filters>
+        <field>Project_Phase__c</field>
+        <operation>notEqual</operation>
+        <value>Post-Production Required</value>
+    </filters>
+    <filters>
+        <field>Project_Type__c</field>
+        <operation>equals</operation>
+        <value
+    >Standard Leads,Filtered Leads,Account Based Marketing,Two-Step Nurture,Multi-Touch Nurture</value>
+    </filters>
+    <filters>
+        <field>Project_Owner__c</field>
+        <operation>contains</operation>
+        <value>Kirsten</value>
+    </filters>
+    <label>Demand Gen - Kirsten&apos;s Projects</label>
+</ListView>

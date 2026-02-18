@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Assignment__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >Temporary holder of a new assignment, used for quick actions.</description>
+    <label>New Assignment</label>
+    <lookupFilter>
+        <active>true</active>
+        <errorMessage
+    >You may only assign assets to active employees.</errorMessage>
+        <filterItems>
+            <field>Employee__c.Status__c</field>
+            <operation>equals</operation>
+            <value>Active</value>
+        </filterItems>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>Employee__c</referenceTo>
+    <relationshipLabel>New Assignments</relationshipLabel>
+    <relationshipName>IT_Assets</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

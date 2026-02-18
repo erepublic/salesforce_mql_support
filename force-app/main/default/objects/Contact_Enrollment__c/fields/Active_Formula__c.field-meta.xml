@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Formula__c</fullName>
+    <description
+  >A Contact Enrollment is Active if their status is not Deactivated, Unenrolled or Complete.</description>
+    <formula>IF( 
+    OR(
+       ISPICKVAL(Status__c, &quot;Complete&quot;),
+       ISPICKVAL(Status__c, &quot;Deactivated&quot;),
+       ISPICKVAL(Status__c, &quot;Unenrolled&quot;),
+       ISPICKVAL( Assigned_Seat__c , &quot;Deactivated&quot;),
+       Expired__c = True
+       ), 
+  
+    False, 
+
+    True)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >A Contact Enrollment is Active if their status is not Deactivated, Unenrolled or Complete.</inlineHelpText>
+    <label>Active</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

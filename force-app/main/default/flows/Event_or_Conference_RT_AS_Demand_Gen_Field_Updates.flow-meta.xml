@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description
+  >Event Name and Contact Interest Topics fields are updated when a Demand Gen event record is created with a Parent Event linked.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>BrandAcronym</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(ISPICKVAL({!$Record.Brand__c}, &quot;DIGITAL_COMMUNITIES&quot;), &quot;DC&quot;,
+IF(ISPICKVAL({!$Record.Brand__c}, &quot;GOVTECH&quot;), &quot;GT&quot;,
+IF(ISPICKVAL({!$Record.Brand__c}, &quot;GOVERNING&quot;), &quot;GOV&quot;,
+IF(ISPICKVAL({!$Record.Brand__c}, &quot;EMERGENCYMGMT&quot;), &quot;EM&quot;,
+IF(ISPICKVAL({!$Record.Brand__c}, &quot;EREPUBLIC&quot;), &quot;ER&quot;,
+IF(ISPICKVAL({!$Record.Brand__c}, &quot;CDG&quot;), &quot;CDG&quot;,
+IF(ISPICKVAL({!$Record.Brand__c}, &quot;CDE&quot;), &quot;CDE&quot;,null)))))))</expression>
+    </formulas>
+    <formulas>
+        <name>EventStartDate</name>
+        <dataType>String</dataType>
+        <expression>TEXT(MONTH({!$Record.Event_Start_Date__c}))
+&amp;&quot;/&quot;
+&amp;TEXT(DAY({!$Record.Event_Start_Date__c}))
+&amp;&quot;/&quot;
+&amp;TEXT(YEAR({!$Record.Event_Start_Date__c}))</expression>
+    </formulas>
+    <formulas>
+        <name>EventTypeAcronym</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(ISPICKVAL({!$Record.Event_Type__c}, &quot;Account Based Marketing&quot;), &quot;ABM&quot;,
+IF(ISPICKVAL({!$Record.Event_Type__c}, &quot;Two Step Nurture&quot;), &quot;TSN&quot;,
+IF(ISPICKVAL({!$Record.Event_Type__c}, &quot;Multi-Touch Nurture&quot;), &quot;MTN&quot;,null)))</expression>
+    </formulas>
+    <interviewLabel
+  >Event or Conference - RT AS - Demand Gen Field Updates {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Event or Conference - RT AS - Demand Gen Field Updates</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Key_Fields</name>
+        <label>Update Key Fields</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <inputAssignments>
+            <field>Contact_Interest_Topics__c</field>
+            <value>
+                <elementReference
+        >$Record.Parent_Event__r.Contact_Interest_Topics__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Name</field>
+            <value>
+                <elementReference>UpdateEventName</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Key_Fields</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>0125Y000001mYHmQAM</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Parent_Event__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Events__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>UpdateEventName</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text
+    >{!BrandAcronym} - {!$Record.Parent_Event__r.Sponsor__r.Name} - {!$Record.Parent_Event__r.Event_Type__c} - {!EventTypeAcronym} {!EventStartDate}</text>
+    </textTemplates>
+</Flow>

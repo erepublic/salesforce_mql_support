@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Demo_Branch_of_Govt__c</fullName>
+    <description>The registrant&apos;s Demo Branch of Govt.</description>
+    <externalId>false</externalId>
+    <formula>TEXT(Registrant_Name__r.Demo_Branch_of_Govt__c)</formula>
+    <label>Demo Branch of Govt</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Date_must_be_1st_of_the_Month</fullName>
+    <active>true</active>
+    <description
+  >Prevents the schedule Date from being listed on any day except the first of the month.</description>
+    <errorConditionFormula>DAY( Date__c ) &lt;&gt; 1</errorConditionFormula>
+    <errorDisplayField>Date__c</errorDisplayField>
+    <errorMessage
+  >The schedule date must be set to the 1st of the month.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Past_MER</name>
+        <label>Assign Past MER</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Past_NAV_Member_Engagement__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Past_MER_Name</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Did_Prior_Value_Exist</name>
+        <label>Did Prior Value Exist?</label>
+        <locationX>182</locationX>
+        <locationY>311</locationY>
+        <defaultConnectorLabel>No Prior Value</defaultConnectorLabel>
+        <rules>
+            <name>Yes_MER_Prior_Value_Existed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record__Prior.NAV_Member_Engagement__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Past_MER</targetReference>
+            </connector>
+            <label>Yes, MER Prior Value Existed</label>
+        </rules>
+    </decisions>
+    <description
+  >When the Member Engagement Rep is changed, update the Past MER unless the prior value was blank.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Past_MER_Name</name>
+        <dataType>String</dataType>
+        <expression
+    >{!$Record__Prior.NAV_Member_Engagement__r.FirstName} &amp; &quot; &quot; &amp; {!$Record__Prior.NAV_Member_Engagement__r.LastName}</expression>
+    </formulas>
+    <interviewLabel
+  >Account - RT BS - Update Past MER {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Account - RT BS - Update Past MER on Change</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Did_Prior_Value_Exist</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>NAV_Member_Engagement__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Account</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

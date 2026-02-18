@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EE_Wisconsin_Digital_Government_Summit</fullName>
+    <columns>Attendee_Name__c</columns>
+    <columns>NAME</columns>
+    <columns>Registrant_Title__c</columns>
+    <columns>Event_No_Show__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event__c</field>
+        <operation>contains</operation>
+        <value>EE - Wisconsin Digital Government Summit 2014</value>
+    </filters>
+    <label>EE_Wisconsin_Digital_Government_Summit</label>
+</ListView>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Log_a_Call__c</fullName>
+    <externalId>false</externalId>
+    <formula>HYPERLINK(
+
+&quot;/00T/e?title=Call&amp;who_id=&quot;
+&amp;Contact__r.Id&amp;
+&quot;&amp;followup=1&amp;tsk5=Call&amp;retURL=%2F&quot;
+&amp;Id&amp;
+&quot;&amp;RecordType=01230000000POXx&amp;ent=Task&amp;00N30000002ZgQV=Phone Call&quot;,
+&quot;Log a Call&quot;
+
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Log a Call</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

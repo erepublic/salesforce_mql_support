@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Detail_Page__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >keep this unchecked untill the detail page is ready to be shown</description>
+    <inlineHelpText
+  >keep this unchecked untill the detail page is ready to be shown</inlineHelpText>
+    <label>Show Detail Page</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

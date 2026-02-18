@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Session_State__c</fullName>
+    <description
+  >The two letter abbreviation for the state in which the session is being held.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >The two letter abbreviation for the state in which the session is being held.</inlineHelpText>
+    <label>Session State</label>
+    <length>2</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

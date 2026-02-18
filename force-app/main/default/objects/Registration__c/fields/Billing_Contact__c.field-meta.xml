@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Contact__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >Specify the contact that will be billed for this registration. Contact does not need to be in the same account as the Billing Account.</description>
+    <inlineHelpText
+  >Specify the contact that will be billed for this registration. Contact does not need to be in the same account as the Billing Account.</inlineHelpText>
+    <label>Billing Contact</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Registrations (Billing Contact)</relationshipLabel>
+    <relationshipName>Registrations1</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Google_Search_Link__c</fullName>
+    <description>This is a custom Google search link</description>
+    <externalId>false</externalId>
+    <formula
+  >HYPERLINK(&quot;http:www.google.com/search?en&amp;q=&quot;&amp;Job_Role_Title__c&amp;&quot; &quot;&amp;Account__r.Name,&quot;To The Finding Machine!&quot;)</formula>
+    <inlineHelpText>This is a custom Google search link</inlineHelpText>
+    <label>Google Search Link</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

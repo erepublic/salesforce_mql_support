@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>External_Email_Receipt_CC_Auth</name>
+        <label>External Email Receipt: CC Auth</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Contract.Contract_Send_Email_Receipt</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference
+      >Set_Contract_Status_to_Completed_CC_Auth</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Contract.Contract_Send_Email_Receipt</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>External_Email_Receipt_Reg_Billing</name>
+        <label>External Email Receipt: Reg Billing</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Contract.Contract_Send_Email_Receipt</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Check_Billing_Contact</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Contract.Contract_Send_Email_Receipt</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Internal_Email_CC_Auth</name>
+        <label>Internal Email: CC Auth</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Contract.Sent_internal_notification</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>External_Email_Receipt_CC_Auth</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Contract.Sent_internal_notification</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Internal_Registration_CC_Form_Submitted</name>
+        <label>Internal - Registration CC Form Submitted</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName
+    >Contract.Contract_Internal_Email_Registration_Credit_Card_Form_Submitted</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Contract.Contract_Internal_Email_Registration_Credit_Card_Form_Submitted</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Internal_Registration_CC_Form_Submitted_Master_CC</name>
+        <label>Internal - Registration CC Form Submitted (Master CC)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName
+    >Contract.Contract_Internal_Email_Registration_Credit_Card_Form_Submitted_Matser_CC_Form</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Contract.Contract_Internal_Email_Registration_Credit_Card_Form_Submitted_Matser_CC_Form</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>CC_Form_Type</name>
+        <label>CC Form Type</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Master CC Form</defaultConnectorLabel>
+        <rules>
+            <name>CC_Form</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Master_CC_Form__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Create_Task_Email_Receipt_Sent_Reg_Billing</targetReference>
+            </connector>
+            <label>CC Form</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_Billing_Contact</name>
+        <label>Check Billing Contact</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Billing_Contact_Present</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Billing_Contact_Lookup__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Internal_Registration_CC_Form_Submitted</targetReference>
+            </connector>
+            <label>Billing Contact Present</label>
+        </rules>
+        <rules>
+            <name>No_Billing_Contact</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Billing_Contact_Lookup__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Payment_Type__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Credit Card</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Internal_Registration_CC_Form_Submitted_Master_CC</targetReference>
+            </connector>
+            <label>No Billing Contact</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Determine_CC_Scenario</name>
+        <label>Determine CC Scenario</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>CC_Authorization</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000001WIFZAA4</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Create_Task_Email_Receipt_Sent_CC_Auth</targetReference>
+            </connector>
+            <label>CC Authorization</label>
+        </rules>
+        <rules>
+            <name>Registration_Billing</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AVtTAAW</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>CC_Form_Type</targetReference>
+            </connector>
+            <label>Registration Billing</label>
+        </rules>
+    </decisions>
+    <description>This flow replaces 4 Workflow Rules:
+- Contract - Alert - CC Authorization
+- Contract - Alert - CC Authorization (REG)
+- Contract - Alert - Reg CC Payment Received
+- Contract - Alert - Reg CC Payment Received (Master CC Form)
+
+Purpose:
+Sends internal/external email receipts, creates the &quot;Email Receipt Sent&quot; task, and updates Status where applicable.
+
+Impacted Record Types:
+- CC Authorization (01214000001WIFZAA4)
+- Registration Billing (01214000000AVtTAAW)
+
+Actions performed:
+- Email Alerts (Internal &amp; External)
+- Create Task: Email Receipt Sent
+- Status updates when required</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>EmailRcptSent</name>
+        <dataType>String</dataType>
+        <expression>&quot;Email Receipt Sent&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>JasonKwongUserId</name>
+        <dataType>String</dataType>
+        <expression>&quot;00530000007Sp6b&quot;</expression>
+    </formulas>
+    <interviewLabel
+  >Contract - RT AS - CC Auth Alerts {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contract - RT AS - CC Auth Alerts</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Task_Email_Receipt_Sent_CC_Auth</name>
+        <label>Create Task: Email Receipt Sent (CC Auth)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Internal_Email_CC_Auth</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>ActivityDate</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>JasonKwongUserId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority</field>
+            <value>
+                <stringValue>Normal</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <elementReference>EmailRcptSent</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <name>Create_Task_Email_Receipt_Sent_Reg_Billing</name>
+        <label>Create Task: Email Receipt Sent (Reg Billing)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference
+      >External_Email_Receipt_Reg_Billing</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>ActivityDate</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference>JasonKwongUserId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority</field>
+            <value>
+                <stringValue>Normal</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Subject</field>
+            <value>
+                <elementReference>EmailRcptSent</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>WhatId</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Task</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordUpdates>
+        <name>Set_Contract_Status_to_Completed_CC_Auth</name>
+        <label>Set Contract Status to Completed (CC Auth)</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Contract</object>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Determine_CC_Scenario</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria
+    >true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>1 AND (2 OR 3)</filterLogic>
+        <filters>
+            <field>Reference__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01214000001WIFZAA4</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01214000000AVtTAAW</stringValue>
+            </value>
+        </filters>
+        <object>Contract</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

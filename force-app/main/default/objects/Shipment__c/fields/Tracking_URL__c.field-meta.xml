@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tracking_URL__c</fullName>
+    <description
+  >Generates an external link to track the shipment based on the provided Courier and Tracking Number.</description>
+    <externalId>false</externalId>
+    <formula
+  >IF( AND( ISPICKVAL( Courier__c , &quot;UPS&quot;), Tracking_Number__c &lt;&gt;&quot;&quot; ), 
+
+HYPERLINK((&quot;https://www.ups.com/track?loc=en_US&amp;tracknum=&quot; &amp; Tracking_Number__c ), ( TEXT(Courier__c)&amp; &quot; Tracking URL&quot; )), 
+
+    IF( AND( ISPICKVAL( Courier__c , &quot;FedEx&quot;), Tracking_Number__c &lt;&gt;&quot;&quot; ), 
+
+       HYPERLINK((&quot;https://www.fedex.com/apps/fedextrack/?action=track&amp;trackingnumber=&quot; &amp; 
+       Tracking_Number__c ), ( TEXT(Courier__c)&amp; &quot; Tracking URL&quot; )) ,
+
+           IF( AND( ISPICKVAL( Courier__c , &quot;USPS&quot;), Tracking_Number__c &lt;&gt;&quot;&quot; ), 
+
+       HYPERLINK((&quot;https://tools.usps.com/go/TrackConfirmAction?qtc_tLabels1=&quot; &amp; 
+       Tracking_Number__c ), ( TEXT(Courier__c)&amp; &quot; Tracking URL&quot; )) ,
+
+
+ &quot;&quot;) ) )</formula>
+    <inlineHelpText
+  >Opens a link to the Courier&apos;s website to track the shipment.</inlineHelpText>
+    <label>Tracking URL</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

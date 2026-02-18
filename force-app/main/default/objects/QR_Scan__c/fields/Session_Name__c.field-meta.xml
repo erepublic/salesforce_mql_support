@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Session_Name__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >SUBSTITUTE(SUBSTITUTE(Event_Session_2__r.Title__c,&quot;&amp;ndash;&quot;, &quot;-&quot;),&quot;&amp;rsquo;&quot;, &quot;&apos;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Session Title</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

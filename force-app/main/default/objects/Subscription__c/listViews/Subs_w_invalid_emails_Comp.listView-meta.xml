@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Subs_w_invalid_emails_Comp</fullName>
+    <columns>NAME</columns>
+    <columns>Subscriber__c</columns>
+    <columns>Status__c</columns>
+    <columns>Cancellation_Reason__c</columns>
+    <columns>Version__c</columns>
+    <columns>Contact_Email_Group_Digital_Ed__c</columns>
+    <columns>Contact_Email_Hard_Bounce__c</columns>
+    <columns>Contact_Email_Opt_Out__c</columns>
+    <columns>Contact_Email_Opt_Out_Removal_Needed__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </filters>
+    <filters>
+        <field>Contact_Status__c</field>
+        <operation>equals</operation>
+        <value>inactive</value>
+    </filters>
+    <filters>
+        <field>Publication__c</field>
+        <operation>equals</operation>
+        <value>government technology</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Subscription__c.Comp_Sub</value>
+    </filters>
+    <filters>
+        <field>Version__c</field>
+        <operation>equals</operation>
+        <value>Digital</value>
+    </filters>
+    <label>Subs w/ invalid emails  - Comp</label>
+</ListView>

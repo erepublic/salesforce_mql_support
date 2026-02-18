@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EM_All_Hazards_SF_2011</fullName>
+    <columns>NAME</columns>
+    <columns>Event_No_Show__c</columns>
+    <columns>Registrant_Name__c</columns>
+    <columns>Reg_Company_Name__c</columns>
+    <columns>Reg_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event__c</field>
+        <operation>contains</operation>
+        <value
+    >EM - All-Hazards All-Stakeholders Summit San Francisco - 4/26/2011</value>
+    </filters>
+    <label>EM - All-Hazards SF 2011</label>
+</ListView>

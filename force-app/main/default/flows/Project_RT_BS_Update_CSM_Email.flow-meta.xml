@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_CSM_Email</name>
+        <label>Assign CSM Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.CSM_1_Email__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >$Record.Client__r.Concierge_1__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <environments>Default</environments>
+    <interviewLabel>Project - RT BS - {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Project - RT BS - Update CSM Email</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_CSM_Email</targetReference>
+        </connector>
+        <filterFormula>AND(
+         {!$Record.Client__r.Concierge_1__c}&lt;&gt;null,
+         OR(
+                {!$Record.RecordTypeId}=&quot;01230000000PNIkAAO&quot;,
+                {!$Record.RecordTypeId}=&quot;01230000000wS4xAAE&quot;,
+                {!$Record.RecordTypeId}=&quot;0125Y000001RfwHQAS&quot;,
+                {!$Record.RecordTypeId}=&quot;0125Y000001bPG9QAM&quot;
+         )
+)</filterFormula>
+        <object>SFL5_Projects__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

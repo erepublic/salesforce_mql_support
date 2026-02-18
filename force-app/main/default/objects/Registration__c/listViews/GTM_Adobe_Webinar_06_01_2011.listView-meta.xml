@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GTM_Adobe_Webinar_06_01_2011</fullName>
+    <columns>NAME</columns>
+    <columns>Attendee_Name__c</columns>
+    <columns>Reg_Company_Name__c</columns>
+    <columns>Registrant_Name__c</columns>
+    <columns>Event_No_Show__c</columns>
+    <columns>Exclude_From_Mailing_List__c</columns>
+    <columns>Reg_Advisory_Board__c</columns>
+    <columns>Reg_Type__c</columns>
+    <columns>Reg_Source__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Reg_Amount_Due__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event__c</field>
+        <operation>contains</operation>
+        <value>GTM - Adobe - Webinar - 06/01/2011</value>
+    </filters>
+    <label>GTM - Adobe - Webinar - 06/01/2011</label>
+</ListView>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Job_Tickets_Open</fullName>
+    <columns>NAME</columns>
+    <columns>Designer__c</columns>
+    <columns>Job_Name__c</columns>
+    <columns>Finished_Job_Due__c</columns>
+    <columns>Status__c</columns>
+    <columns>Originator__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Pending - New Job,Completed</value>
+    </filters>
+    <filters>
+        <field>OWNER.ALIAS</field>
+        <operation>equals</operation>
+        <value>swidm</value>
+    </filters>
+    <label>Open - Stephan</label>
+</ListView>

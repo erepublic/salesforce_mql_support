@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>State_Details__c</fullName>
+    <description
+  >Contact function details for state level contacts.</description>
+    <inlineHelpText
+  >Contact function details for state level contacts.</inlineHelpText>
+    <label>Key Role</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Adjutant General</fullName>
+                <default>false</default>
+                <label>Adjutant General</label>
+            </value>
+            <value>
+                <fullName>Constitutional Officer</fullName>
+                <default>false</default>
+                <label>Constitutional Officer</label>
+            </value>
+            <value>
+                <fullName>Governor</fullName>
+                <default>false</default>
+                <label>Governor</label>
+            </value>
+            <value>
+                <fullName>Governor&apos;s Cabinet Member</fullName>
+                <default>false</default>
+                <label>Governor&apos;s Cabinet Member</label>
+            </value>
+            <value>
+                <fullName>Lieutenant Governor</fullName>
+                <default>false</default>
+                <label>Lieutenant Governor</label>
+            </value>
+            <value>
+                <fullName>Secretary of State</fullName>
+                <default>false</default>
+                <label>Secretary of State</label>
+            </value>
+            <value>
+                <fullName>State Administrative Officer</fullName>
+                <default>false</default>
+                <label>State Administrative Officer</label>
+            </value>
+            <value>
+                <fullName>State Auditor</fullName>
+                <default>false</default>
+                <label>State Auditor</label>
+            </value>
+            <value>
+                <fullName>State Budget Director</fullName>
+                <default>false</default>
+                <label>State Budget Director</label>
+            </value>
+            <value>
+                <fullName>State Chief Data Officer</fullName>
+                <default>false</default>
+                <label>State Chief Data Officer</label>
+            </value>
+            <value>
+                <fullName>State Chief Financial Officer</fullName>
+                <default>false</default>
+                <label>State Chief Financial Officer</label>
+            </value>
+            <value>
+                <fullName>State Chief Information Officer</fullName>
+                <default>false</default>
+                <label>State Chief Information Officer</label>
+            </value>
+            <value>
+                <fullName>State Chief Technology Officer</fullName>
+                <default>false</default>
+                <label>State Chief Technology Officer</label>
+            </value>
+            <value>
+                <fullName>Deputy State Chief Information Officer</fullName>
+                <default>false</default>
+                <label>Deputy State Chief Information Officer</label>
+            </value>
+            <value>
+                <fullName>State Chief Information Security Officer</fullName>
+                <default>false</default>
+                <label>State Chief Information Security Officer</label>
+            </value>
+            <value>
+                <fullName
+        >Deputy State Chief Information Security Officer</fullName>
+                <default>false</default>
+                <label>Deputy State Chief Information Security Officer</label>
+            </value>
+            <value>
+                <fullName>State Child Welfare Head</fullName>
+                <default>false</default>
+                <label>State Child Welfare Head</label>
+            </value>
+            <value>
+                <fullName>State Comptroller/Controller</fullName>
+                <default>false</default>
+                <label>State Comptroller/Controller</label>
+            </value>
+            <value>
+                <fullName>State Health Officer</fullName>
+                <default>false</default>
+                <label>State Health Officer</label>
+            </value>
+            <value>
+                <fullName>State Human Resources Officer</fullName>
+                <default>false</default>
+                <label>State Human Resources Officer</label>
+            </value>
+            <value>
+                <fullName>State Insurance Commissioner</fullName>
+                <default>false</default>
+                <label>State Insurance Commissioner</label>
+            </value>
+            <value>
+                <fullName>State Medicaid Director</fullName>
+                <default>false</default>
+                <label>State Medicaid Director</label>
+            </value>
+            <value>
+                <fullName>State Procurement/Purchasing Officer</fullName>
+                <default>false</default>
+                <label>State Procurement/Purchasing Officer</label>
+            </value>
+            <value>
+                <fullName>State Treasurer</fullName>
+                <default>false</default>
+                <label>State Treasurer</label>
+            </value>
+            <value>
+                <fullName>State Privacy Officer</fullName>
+                <default>false</default>
+                <label>State Privacy Officer</label>
+            </value>
+            <value>
+                <fullName>State Risk Officer</fullName>
+                <default>false</default>
+                <label>State Risk Officer</label>
+            </value>
+            <value>
+                <fullName>State Superintendent of Education</fullName>
+                <default>false</default>
+                <label>State Superintendent of Education</label>
+            </value>
+            <value>
+                <fullName>State Transportation Director</fullName>
+                <default>false</default>
+                <label>State Transportation Director</label>
+            </value>
+            <value>
+                <fullName>City Chief Data Officer</fullName>
+                <default>false</default>
+                <label>City Chief Data Officer</label>
+            </value>
+            <value>
+                <fullName>City Head</fullName>
+                <default>false</default>
+                <label>City Head</label>
+            </value>
+            <value>
+                <fullName>City CIO</fullName>
+                <default>false</default>
+                <label>City CIO</label>
+            </value>
+            <value>
+                <fullName>City Deputy CIO</fullName>
+                <default>false</default>
+                <label>City Deputy CIO</label>
+            </value>
+            <value>
+                <fullName>City CISO</fullName>
+                <default>false</default>
+                <label>City CISO</label>
+            </value>
+            <value>
+                <fullName>City CTO</fullName>
+                <default>false</default>
+                <label>City CTO</label>
+            </value>
+            <value>
+                <fullName>County Chief Data Officer</fullName>
+                <default>false</default>
+                <label>County Chief Data Officer</label>
+            </value>
+            <value>
+                <fullName>County Head</fullName>
+                <default>false</default>
+                <label>County Head</label>
+            </value>
+            <value>
+                <fullName>County CIO</fullName>
+                <default>false</default>
+                <label>County CIO</label>
+            </value>
+            <value>
+                <fullName>County Deputy CIO</fullName>
+                <default>false</default>
+                <label>County Deputy CIO</label>
+            </value>
+            <value>
+                <fullName>County CISO</fullName>
+                <default>false</default>
+                <label>County CISO</label>
+            </value>
+            <value>
+                <fullName>County CTO</fullName>
+                <default>false</default>
+                <label>County CTO</label>
+            </value>
+            <value>
+                <fullName>Deputy State Privacy Officer</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Deputy State Privacy Officer</label>
+            </value>
+            <value>
+                <fullName>Deputy State Risk Officer</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Deputy State Risk Officer</label>
+            </value>
+            <value>
+                <fullName>State Child Welfare Deputy Head</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>State Child Welfare Deputy Head</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>8</visibleLines>
+</CustomField>

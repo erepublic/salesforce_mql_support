@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Integrations__c</fullName>
+    <description>All external systems this system integrates with.</description>
+    <inlineHelpText
+  >All external systems this system integrates with.</inlineHelpText>
+    <label>Integrations</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Act-On</fullName>
+                <default>false</default>
+                <label>Act-On</label>
+            </value>
+            <value>
+                <fullName>Clickability</fullName>
+                <default>false</default>
+                <label>Clickability</label>
+            </value>
+            <value>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+                <label>Salesforce</label>
+            </value>
+            <value>
+                <fullName>Apple News</fullName>
+                <default>false</default>
+                <label>Apple News</label>
+            </value>
+            <value>
+                <fullName>Alexa Skill</fullName>
+                <default>false</default>
+                <label>Alexa Skill</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

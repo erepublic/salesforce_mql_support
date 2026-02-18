@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Sponsorship__c</fullName>
+    <description
+  >The sponsorship that this contact role is related to.</description>
+    <inlineHelpText
+  >The sponsorship that this contact role is related to.</inlineHelpText>
+    <label>Event Sponsorship</label>
+    <referenceTo>Event_Sponsorship__c</referenceTo>
+    <relationshipLabel>Event Sponsor Contact Roles</relationshipLabel>
+    <relationshipName>Event_Sponsor_Contact_Roles</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

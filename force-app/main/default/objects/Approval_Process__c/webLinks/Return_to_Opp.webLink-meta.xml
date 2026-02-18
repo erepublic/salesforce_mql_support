@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Return_to_Opp</fullName>
+    <availability>online</availability>
+    <description
+  >Returns you to the opportunity and updates the status to &quot;Rejected&quot;</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Finish Rejection</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url
+  >/{!Approval_Process__c.Opportunity_Approval_ProcessId__c}/e?00N1400000BGOwn=Rejected&amp;save=1&amp;retURL=%2F{!Approval_Process__c.Opportunity_Approval_ProcessId__c}</url>
+</WebLink>

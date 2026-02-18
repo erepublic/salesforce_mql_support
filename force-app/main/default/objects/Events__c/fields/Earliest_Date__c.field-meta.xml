@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Earliest_Date__c</fullName>
+    <description
+  >Please do not have your shipments arrive at the venue any earlier than this date. Any packages received before this date will be returned to sender.</description>
+    <inlineHelpText
+  >Please do not have your shipments arrive at the venue any earlier than this date. Any packages received before this date will be returned to sender.</inlineHelpText>
+    <label>Earliest Date Shipments May Arrive</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

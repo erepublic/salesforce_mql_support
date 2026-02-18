@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Requests_Partner_Events</fullName>
+    <columns>View__c</columns>
+    <columns>Date_of_Event__c</columns>
+    <columns>RECORDTYPE</columns>
+    <columns>Event__c</columns>
+    <columns>Issue_Name__c</columns>
+    <columns>QTY__c</columns>
+    <columns>Status__c</columns>
+    <columns>Mark_as_Sent_List_View__c</columns>
+    <columns>Notes__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Sent</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Bonus_Distribution__c.Partner_Event</value>
+    </filters>
+    <label>Open Requests - Partner Events</label>
+</ListView>

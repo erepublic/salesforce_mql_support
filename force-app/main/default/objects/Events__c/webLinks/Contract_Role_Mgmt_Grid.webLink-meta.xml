@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Role_Mgmt_Grid</fullName>
+    <availability>online</availability>
+    <description
+  >Opens a gridbuddy grid that can be used to add/edit contract contact roles.</description>
+    <displayType>link</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Contract Role Mgmt Grid</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url
+  >https://erepublic--gblite.visualforce.com/apex/Grid?gname=Contract%20-%20Contact%20Role%20Mgmt%20Event&amp;fpf=Event__c&amp;fpv={!Events__c.Id}</url>
+</WebLink>

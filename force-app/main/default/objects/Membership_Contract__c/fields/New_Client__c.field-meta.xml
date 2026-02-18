@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_Client__c</fullName>
+    <description
+  >For use in delivery routing email templates [Membership - Navigator/Techwire - Activated]. Will display new client text if this is a net new client, or if the client is new to Insider, Navigator, DEN, DGN, ICA, or ITX respectively.</description>
+    <externalId>false</externalId>
+    <formula>/* Checks the First Won Opp Date to determine if New Client */
+IF(
+TODAY() - Membership_Name__r.Account_Name__r.First_Won_Opp__c &lt;= 30,
+BR()&amp;BR()&amp;&quot;BRAND NEW CLIENT to e.Republic&quot;,
+
+
+/* Checks the NAV First Access Date to determine if New to Navigator */
+IF(
+AND(
+TODAY() - Membership_Name__r.Account_Name__r.NAV_First_Access_Date__c &lt;= 30,
+OR(TEXT(Type__c)=&quot;DEN&quot;,TEXT(Type__c)=&quot;DGN&quot;)
+),
+BR()&amp;BR()&amp;&quot;NEW TO NAVIGATOR&quot;,
+
+
+/* Checks the DEN First Access Date to determine if New to DEN */
+IF(
+AND(
+TODAY() - Membership_Name__r.Account_Name__r.DEN_First_Access_Date__c &lt;= 30,
+TEXT(Type__c)=&quot;DEN&quot;
+),
+BR()&amp;BR()&amp;&quot;NEW TO DEN&quot;,
+
+
+/* Checks the DGN First Access Date to determine if New to DGN */
+IF(
+AND(
+TODAY() - Membership_Name__r.Account_Name__r.DGN_First_Access_Date__c &lt;= 30,
+TEXT(Type__c)=&quot;DGN&quot;
+),
+BR()&amp;BR()&amp;&quot;NEW TO DGN&quot;,
+
+
+/* Checks the Insider First Access Date to determine if New to Insider */
+IF(
+AND(
+TODAY() - Membership_Name__r.Account_Name__r.Insider_First_Access_Date__c &lt;= 30,
+OR(TEXT(Type__c)=&quot;ICA&quot;,TEXT(Type__c)=&quot;ITX&quot;)
+),
+BR()&amp;BR()&amp;&quot;NEW TO INSIDER&quot;,
+
+
+/* Checks the ICA First Access Date to determine if New to ICA */
+IF(
+AND(
+TODAY() - Membership_Name__r.Account_Name__r.ICA_First_Access_Date__c &lt;= 30,
+TEXT(Type__c)=&quot;ICA&quot;
+),
+BR()&amp;BR()&amp;&quot;NEW TO ICA&quot;,
+
+
+/* Checks the ITX First Access Date to determine if New to ITX */
+IF(
+AND(
+TODAY() - Membership_Name__r.Account_Name__r.ITX_First_Access_Date__c &lt;= 30,
+TEXT(Type__c)=&quot;ITX&quot;
+),
+BR()&amp;BR()&amp;&quot;NEW TO ITX&quot;,
+
+
+/* Checks the IFL First Access Date to determine if New to IFL */
+IF(
+AND(
+TODAY() - Membership_Name__r.Account_Name__r.IFL_First_Access_Date__c &lt;= 30,
+TEXT(Type__c)=&quot;IFL&quot;
+),
+BR()&amp;BR()&amp;&quot;NEW TO IFL&quot;,
+&quot;&quot;
+)
+)
+)
+)
+)
+)
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>New Client</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

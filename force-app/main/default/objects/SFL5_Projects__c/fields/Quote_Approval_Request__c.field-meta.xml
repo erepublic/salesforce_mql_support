@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Quote_Approval_Request__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/t/CustomMedia/EV--CBfFp5tCpQBkN-08VywB-s506DNKstG0G788uHl06A?e=KbHPcH&amp;wdLOR=cB0CBC78C-2646-406C-BD2E-09F1F4C909CB&quot;,&quot;Sample Quote Approval Request Email&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Quote Approval Request</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Disable_QR_For_Sponsors__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Blocks sponsors from logging into the QR Scanner Application saying &quot;The Badge Scanning feature is not available for this event&quot;</description>
+    <inlineHelpText
+  >Blocks sponsors from logging into the QR Scanner Application saying &quot;The Badge Scanning feature is not available for this event&quot;</inlineHelpText>
+    <label>Disable QR For Sponsors</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

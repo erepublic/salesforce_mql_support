@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact</fullName>
+    <active>true</active>
+    <compactLayoutAssignment
+  >Event_Contact_Role_Compact_Layout</compactLayoutAssignment>
+    <description
+  >Speakers and contacts not directly employed by e.Republic. Example: A/V Contacts, Senior Fellows, Moderators, Keynotes.</description>
+    <label>Contact</label>
+    <picklistValues>
+        <picklist>Role__c</picklist>
+        <values>
+            <fullName>Audio%2FVisual Contact</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Event Champion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Speaker</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Venue Contact</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

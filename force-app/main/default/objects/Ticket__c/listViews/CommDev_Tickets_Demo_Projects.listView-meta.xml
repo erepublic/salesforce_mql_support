@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CommDev_Tickets_Demo_Projects</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Status__c</columns>
+    <columns>Priority__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>Assignee__c</columns>
+    <columns>Requested_By__c</columns>
+    <columns>Phase__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Contact_Pull_Contact_Count__c</columns>
+    <columns>Frequency__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed,Void</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Government_List_Pull</value>
+    </filters>
+    <filters>
+        <field>Title__c</field>
+        <operation>contains</operation>
+        <value>Demo</value>
+    </filters>
+    <filters>
+        <field>Title__c</field>
+        <operation>notEqual</operation>
+        <value
+    >Stats - Dashboard - Executive Events Demo Breakdown Update,Estimate - Contact - Demographic Breakdown for Events,Stats - Dashboard - Update Ad Ops stats and demographics,Update - Other - Remove Demographics from CMS forms</value>
+    </filters>
+    <label>CommDev Tickets - Demo Projects</label>
+</ListView>

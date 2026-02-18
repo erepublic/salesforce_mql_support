@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Search_Campaign_Data__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <label>Search Campaign</label>
+    <referenceTo>data_sfga_camp__c</referenceTo>
+    <relationshipLabel>data sfga</relationshipLabel>
+    <relationshipName>data_sfga</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

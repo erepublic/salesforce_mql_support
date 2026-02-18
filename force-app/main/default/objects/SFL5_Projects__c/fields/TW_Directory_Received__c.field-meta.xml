@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TW_Directory_Received__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Indicates that the Business Directory Listing was received for the TW Insider membership.</description>
+    <inlineHelpText
+  >Indicates that the Business Directory Listing was received for the TW Insider membership.</inlineHelpText>
+    <label>TW Directory Received</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

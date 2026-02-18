@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Survey_Comment__c</fullName>
+    <description
+  >Answer to the survey question: &apos;Why did you choose this paper? Are you just learning about this topic, conducting research for an upcoming project, putting together an RFP, etc?&apos;</description>
+    <label>Reason for Download</label>
+    <length>1000</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

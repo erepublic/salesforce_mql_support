@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Related_Project__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >This is a project that is related to the current project in some way.  It may be a continuation of the project, or be a similar type of request.</description>
+    <inlineHelpText
+  >This is a project that is related to the current project in some way.  It may be a continuation of the project, or be a similar type of request.</inlineHelpText>
+    <label>Related Project</label>
+    <referenceTo>SFL5_Projects__c</referenceTo>
+    <relationshipLabel>Related Projects</relationshipLabel>
+    <relationshipName>Projects</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

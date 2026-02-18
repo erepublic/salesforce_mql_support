@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Event_Recon_10_day_alert</name>
+        <label>Event - Recon - 10 day alert</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Events__c.Event_Recon_10_day_alert</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Events__c.Event_Recon_10_day_alert</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Event_Recon_30_day_alert</name>
+        <label>Event - Recon - 30 day alert</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Events__c.Event_Recon_30_day_alert</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Events__c.Event_Recon_30_day_alert</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Event_Reconciliation_Recon_Complete</name>
+        <label>Event: Reconciliation - Recon Complete</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Events__c.Event_Reconciliation_Recon_Complete</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Events__c.Event_Reconciliation_Recon_Complete</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>66.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Recon_Completed_Now</name>
+        <label>Recon Completed Now?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Reconciled</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Recon_Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Reconciled</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Recon_Status__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Event_Reconciliation_Recon_Complete</targetReference>
+            </connector>
+            <label>Reconciled</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Recon_Still_Pending_10Days</name>
+        <label>Recon Still Pending?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Send_10_Day_Alert</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FR_ReconStillPending</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Event_Recon_10_day_alert</targetReference>
+            </connector>
+            <label>Send 10 Day Alert</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Recon_Still_Pending_30Days</name>
+        <label>Recon Still Pending?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Send_30_Day_Alert</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FR_ReconStillPending</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Event_Recon_30_day_alert</targetReference>
+            </connector>
+            <label>Send 30 Day Alert</label>
+        </rules>
+    </decisions>
+    <description>Replaces 2 Events__c Workflow Rules:
+- Event - Recon - 10/30 day alerts
+- Event: Reconciliation - Recon Complete
+
+Purpose:
+Manages reconciliation lifecycle notifications for Events, including scheduled reminders and completion confirmation.
+
+Scheduling:
+- Sends a 10-day reminder email after Event_Start_Date__c
+- Sends a 30-day reminder email after Event_Start_Date__c
+- Scheduled paths re-check eligibility at execution time
+
+Immediate Notifications:
+- Sends &quot;Recon Complete&quot; email when Reconciliation Status changes to Reconciled.
+
+Conditions:
+- Event Start Date is in the future
+- Govt Reg Price is non-zero
+- Reconciliation Status is not Submitted to Finance or Reconciled</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>FR_EventStartIsTodayOrFuture</name>
+        <dataType>Boolean</dataType>
+        <expression>$Record.Event_Start_Date__c &gt;= TODAY()</expression>
+    </formulas>
+    <formulas>
+        <description
+    >If I were about to send a recon reminder right now, should I?</description>
+        <name>FR_ReconStillPending</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+    NOT(ISPICKVAL($Record.Recon_Status__c, &quot;Submitted to Finance&quot;)),
+    NOT(ISPICKVAL($Record.Recon_Status__c, &quot;Reconciled&quot;)),
+
+    NOT(ISBLANK($Record.Govt_Reg_Price__c)),
+    $Record.Govt_Reg_Price__c &gt; 0,
+
+    $Record.Event_Start_Date__c &gt;= TODAY()
+)</expression>
+    </formulas>
+    <interviewLabel
+  >Event or Conference - RT AS - {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Event or Conference - RT AS - Reconciliation Alerts</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Recon_Completed_Now</targetReference>
+        </connector>
+        <filterLogic>1 OR (2 AND 3 AND 4 AND 5 AND 6)</filterLogic>
+        <filters>
+            <field>Recon_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Reconciled</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Event_Start_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Govt_Reg_Price__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Govt_Reg_Price__c</field>
+            <operator>GreaterThan</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Recon_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Submitted to Finance</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Recon_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Reconciled</stringValue>
+            </value>
+        </filters>
+        <object>Events__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <scheduledPaths>
+            <name>Recon_10_Days</name>
+            <connector>
+                <targetReference>Recon_Still_Pending_10Days</targetReference>
+            </connector>
+            <label>Recon 10 Days</label>
+            <offsetNumber>10</offsetNumber>
+            <offsetUnit>Days</offsetUnit>
+            <recordField>Event_Start_Date__c</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <scheduledPaths>
+            <name>Recon_30_Days</name>
+            <connector>
+                <targetReference>Recon_Still_Pending_30Days</targetReference>
+            </connector>
+            <label>Recon 30 Days</label>
+            <offsetNumber>30</offsetNumber>
+            <offsetUnit>Days</offsetUnit>
+            <recordField>Event_Start_Date__c</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IT_Asset_Compact_Layout</fullName>
+    <fields>Name</fields>
+    <fields>Type__c</fields>
+    <fields>Acquisition_Date__c</fields>
+    <fields>Assigned_to__c</fields>
+    <fields>Assigned_on__c</fields>
+    <label>IT Asset Compact Layout</label>
+</CompactLayout>

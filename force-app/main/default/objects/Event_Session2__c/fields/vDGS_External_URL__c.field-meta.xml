@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>vDGS_External_URL__c</fullName>
+    <description
+  >If a vDGS session is anything externally linked, this URL is where the button &apos;join now&apos; goes to</description>
+    <inlineHelpText
+  >If a vDGS session is anything externally linked, this URL is where the button &apos;join now&apos; goes to</inlineHelpText>
+    <label>vDGS External URL</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Url</type>
+</CustomField>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Discount_Amt_Must_Be_Positive</fullName>
+    <active>true</active>
+    <description
+  >To prevent users from entering a negative Discount Amt.</description>
+    <errorConditionFormula>Discount_Amt__c &lt; 0</errorConditionFormula>
+    <errorDisplayField>Discount_Amt__c</errorDisplayField>
+    <errorMessage
+  >Enter Discount Amt as a positive number. It will be subtracted to derive the Final Cost.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verification_Queue_Tali_Governors</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Verification_Date__c</columns>
+    <columns>Refresh_Date__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Job_Role_Title__c</columns>
+    <columns>Status__c</columns>
+    <columns>Contact_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Inactive_Reason__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Verification Queue - Governors</label>
+</ListView>

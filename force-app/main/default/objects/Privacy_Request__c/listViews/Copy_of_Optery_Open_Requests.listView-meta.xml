@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_Optery_Open_Requests</fullName>
+    <columns>NAME</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Status__c</columns>
+    <columns>Type__c</columns>
+    <columns>Email__c</columns>
+    <columns>First_Name__c</columns>
+    <columns>Last_Name__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Phone__c</columns>
+    <columns>Address_Line_1__c</columns>
+    <columns>City__c</columns>
+    <columns>State__c</columns>
+    <columns>Zip__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Email__c</field>
+        <operation>contains</operation>
+        <value>atlasmail</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed,Closed,Denied</value>
+    </filters>
+    <label>NJ Daniel&apos;s Law Open Requests</label>
+</ListView>

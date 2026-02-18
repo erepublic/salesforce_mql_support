@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>cannot_create_for_1360</fullName>
+    <active>true</active>
+    <description
+  >You cannot create a PO Category for a 1360 account, use the 8520 account instead.</description>
+    <errorConditionFormula
+  >CONTAINS(General_Ledger_Account__r.Name, &quot;1360&quot;)</errorConditionFormula>
+    <errorDisplayField>General_Ledger_Account__c</errorDisplayField>
+    <errorMessage
+  >You cannot create a PO Category for a 1360 account, use the 8520 account instead.</errorMessage>
+</ValidationRule>

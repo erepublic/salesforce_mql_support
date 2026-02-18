@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Marketing_2018</fullName>
+    <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Event_Type__c</columns>
+    <columns>Delivery_Value__c</columns>
+    <columns>Event_Month__c</columns>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Targeted_Registration__c</columns>
+    <columns>Target_Type__c</columns>
+    <columns>Actual_Attended_Qualified__c</columns>
+    <columns>Qualified_Leads__c</columns>
+    <columns>Industry_Registrations__c</columns>
+    <columns>No_Show_Rate__c</columns>
+    <columns>GL_Code_Finance__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event_Start_Date__c</field>
+        <operation>equals</operation>
+        <value>THIS_YEAR</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Events__c.Webinar</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>Marketing,Executive Teleconference</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Events__c.Marketing_Webinar</value>
+    </filters>
+    <label>Marketing - This Year - Calendar Source</label>
+</ListView>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_of_On24_Survey1answer_numeric__c</fullName>
+    <description
+  >Adds up all of the numeric values in Survey Answer 1. Used to calculate webinar rating.</description>
+    <inlineHelpText
+  >Adds up all of the numeric values in Survey Answer 1. Used to calculate webinar rating.</inlineHelpText>
+    <label>On24 Survey1 Sum</label>
+    <summarizedField
+  >Registration__c.On24_Survey1answer_numeric__c</summarizedField>
+    <summaryForeignKey>Registration__c.Event__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

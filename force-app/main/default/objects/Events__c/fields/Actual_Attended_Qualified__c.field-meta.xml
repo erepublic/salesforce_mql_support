@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Actual_Attended_Qualified__c</fullName>
+    <description
+  >Total count registrations not marked as Non-Qual or No Show, and also do not have &quot;sponsor&quot; in their promo code.</description>
+    <inlineHelpText
+  >Total count registrations not marked as Non-Qual or No Show, and also do not have &quot;sponsor&quot; in their promo code.</inlineHelpText>
+    <label>Total Attended Qualified</label>
+    <summaryFilterItems>
+        <field>Registration__c.Event_No_Show__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Registration__c.Non_Qual__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Registration__c.Promo_Code__c</field>
+        <operation>notContain</operation>
+        <value>sponsor</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Registration__c.Promo_Code__c</field>
+        <operation>notContain</operation>
+        <value>Sponsor</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Registration__c.Event__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

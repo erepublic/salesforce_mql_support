@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Member_Contract_Extensions_In_Progress1</fullName>
+    <columns>NAME</columns>
+    <columns>Type__c</columns>
+    <columns>Extended_Date__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>NAV_Member_Engagement_User__c</columns>
+    <columns>View_Nav_Opps__c</columns>
+    <columns>View_Insider_Opps__c</columns>
+    <columns>Renewal_Status__c</columns>
+    <columns>Renewal_Assessment__c</columns>
+    <columns>Sales_Team__c</columns>
+    <columns>Sales_Rep__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Extended_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>Member Contract Extensions (In Progress)</label>
+</ListView>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Link_Unavailable</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Account Link Unavailable</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url
+  >/flow/Account_SF_Update_Account_Link_Unavailable_Status?AccountId={!Account.Id}&amp;retURL=https://erepublic.lightning.force.com/lightning/r/Account/{!Account.Id}/related/Account_Links__r/view</url>
+</WebLink>

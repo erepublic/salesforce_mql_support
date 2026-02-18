@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Custom_Media</fullName>
+    <active>true</active>
+    <description>Project Delivery Schedule Items for Custom Media</description>
+    <label>Custom Media</label>
+    <picklistValues>
+        <picklist>Category__c</picklist>
+        <values>
+            <fullName>CDE Custom Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CDE Custom Media</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CDE Custom Video</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CDE Demand Gen</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CDE Digital Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CDE Webinar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV Custom Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV Custom Media</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV Demand Gen</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV Digital Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV Webinar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT Custom Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT Custom Media</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT Custom Video</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT Demand Gen</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT Digital Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT Webinar</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Channel__c</picklist>
+        <values>
+            <fullName>CDE - Higher Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CDE - Home Page</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CDE - K-12</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CDE - ROS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EM - Disaster</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EM - Home Page</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EM - Preparedness</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EM - ROS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EM - Safety</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EM - Site</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV - AI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV - Community</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV - Home Page</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV - Infrastructure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV - Policy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV - Politics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV - ROS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV - Resilience</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV - The Future Of Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV - The Future Of Security</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV - The Future Of Work</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV - Transportation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - AI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - Broadband%2FNetwork</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - Budget and Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - Civic</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - Cloud %26 Computing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - CyberSecurity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - Emerging Tech</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - Government Experience</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - Health and Human Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - Home Page</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - Infrastructure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - Justice and Public Safety</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - Lohrmann on CyberSecurity Blog</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - ROS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - Transportation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT - Workforce</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Delivery_Placement__c</picklist>
+        <values>
+            <fullName>Adhesion - 320x100</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Article</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Artificial Intelligence</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Beyond the Booth</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Big Box - 640x480</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Billboard - 970x250</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Blended Banners</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Custom Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cybersecurity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Emergency Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Future of Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GovTech Today</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Governing Daily</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Higher Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>K-12</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Magazine</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Microsite</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rectangle - 300x250</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Resource Module</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Social Media</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Subscription</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TBD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Takeover</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Expense_Category__c</picklist>
+        <values>
+            <fullName>7Knots</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contractor %2F Telemarketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Distribution Cost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Event Expense</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Incentive</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Moderator Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PDF only</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Photographer Filed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Printing Cost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Senior Fellow</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Video Production</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar Hosting Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Writer Fee</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Writing in house</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Income_Category__c</picklist>
+        <values>
+            <fullName>FINAL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PENDING</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Payment_Status__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Processed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Content Studio</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Creative Pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Creative Received</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Posted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Stalled</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

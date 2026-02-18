@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Content_Studio_Virtual_Conv_2022</fullName>
+    <booleanFilter>(1 OR 2) AND (3 OR 4)</booleanFilter>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Event_Manager__c</columns>
+    <columns>NAME</columns>
+    <columns>Display_Title__c</columns>
+    <columns>Sponsor__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event_Start_Date__c</field>
+        <operation>equals</operation>
+        <value>THIS_YEAR</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>2022</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>Virtual Conversation</value>
+    </filters>
+    <filters>
+        <field>Display_Title__c</field>
+        <operation>contains</operation>
+        <value>Virtual Conversation</value>
+    </filters>
+    <label>Content Studio - Virtual Conv - 2022</label>
+</ListView>

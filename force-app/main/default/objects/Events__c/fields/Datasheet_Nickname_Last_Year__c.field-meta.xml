@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Datasheet_Nickname_Last_Year__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >RIGHT( last_years_event__r.Name  , LEN(last_years_event__r.Name )-FIND(&quot; - &quot;, last_years_event__r.Name )-2)</formula>
+    <label>Datasheet Nickname (Last Year)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

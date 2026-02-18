@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Navigator_Competitor__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;Bid Prime&quot;), &quot;Bid Prime&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;BidNet&quot;), &quot;BidNet&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;Bidsync&quot;), &quot;Bidsync&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;Cloverleaf AI&quot;), &quot;Cloverleaf AI&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;Crossbeam&quot;), &quot;Crossbeam&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;GovSignals&quot;), &quot;GovSignals&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;GovSpend&quot;), &quot;GovSpend&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;Govwin&quot;), &quot;Govwin&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;HigherGov&quot;), &quot;HigherGov&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;Leadership Connect&quot;), &quot;Leadership Connect&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;LinkedIn Sales Navigator&quot;), &quot;LinkedIn Sales Navigator&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;Lobbyists&quot;), &quot;Lobbyists&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;Onvia&quot;), &quot;Onvia&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;Periscope&quot;), &quot;Periscope&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;Pursuit&quot;), &quot;Pursuit&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;SmartProcure&quot;), &quot;SmartProcure&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;The Atlas MarketEdge (GovExec)&quot;), &quot;The Atlas MarketEdge (GovExec)&quot; + BR(), NULL) +
+IF(INCLUDES(Account_Name__r.Navigator_Competitor__c , &quot;ZoomInfo&quot;), &quot;ZoomInfo&quot; + BR(), NULL)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >To update this information, go to the related Account record and edit the Navigator Competitor field there.</inlineHelpText>
+    <label>Navigator Competitor</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

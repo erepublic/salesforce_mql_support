@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ACV_Target_All_SS__c</fullName>
+    <description
+  >Used for ACV Target Dash. Overall combined ACV target across all Sub Svcs types. &quot;SS&quot; = Sub Svcs Team, these are Dana/Katrina Individual Targets (each).</description>
+    <formula>case(MONTH( Start_Date__c),
+1,71492,
+2,74552,
+3,77613,
+4,80673,
+5,83733,
+6,86794,
+7,89955,
+8,93117,
+9,96278,
+10,99440,
+11,102601,
+12,105752,
+0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>ACV Target (All, SS Individual)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

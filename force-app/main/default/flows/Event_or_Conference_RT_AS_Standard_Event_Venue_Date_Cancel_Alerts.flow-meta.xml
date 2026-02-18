@@ -1,0 +1,772 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>EventCancelled</name>
+        <label>Event Cancelled</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Events__c.Events_Event_Cancelled</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Determine_Audience</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Events__c.Events_Event_Cancelled</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Events_CDE_Only_Date_Changed</name>
+        <label>Events - CDE Only - Date Changed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Events__c.Events_CDE_Only_Date_Changed</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Events__c.Events_CDE_Only_Date_Changed</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Events_CDE_Only_Venue_Confirmed</name>
+        <label>Events - CDE Only - Venue Confirmed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Events__c.Events_CDE_Only_Venue_Confirmed</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Events__c.Events_CDE_Only_Venue_Confirmed</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Events_CDE_Only_Venue_Name_Changed</name>
+        <label>Events - CDE Only - Venue Name Changed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Events__c.Events_CDE_Only_Venue_Name_Changed</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Events__c.Events_CDE_Only_Venue_Name_Changed</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Events_CDG_Only_Date_Changed</name>
+        <label>Events - CDG Only - Date Changed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Events__c.Events_CDG_Only_Date_Changed</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Events__c.Events_CDG_Only_Date_Changed</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Events_CDG_Only_Venue_Confirmed</name>
+        <label>Events - CDG Only - Venue Confirmed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Events__c.Events_CDG_Only_Venue_Confirmed</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Events__c.Events_CDG_Only_Venue_Confirmed</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Events_CDG_Only_Venue_Name_Changed</name>
+        <label>Events - CDG Only - Venue Name Changed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Events__c.Events_CDG_Only_Venue_Name_Changed</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Events__c.Events_CDG_Only_Venue_Name_Changed</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Events_Date_Changed</name>
+        <label>Events - Date Changed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Events__c.Events_Date_Changed</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Events__c.Events_Date_Changed</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Events_Planned_Month_Changed</name>
+        <label>Events - Planned Month Changed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Events__c.Events_Planned_Month_Changed</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record__Prior.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Events__c.Events_Planned_Month_Changed</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Events_Venue_Confirmed</name>
+        <label>Events - Venue Confirmed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Events__c.Events_Venue_Confirmed</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Events__c.Events_Venue_Confirmed</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Events_Venue_Name_Changed</name>
+        <label>Events - Venue Name Changed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Events__c.Events_Venue_Name_Changed</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Events__c.Events_Venue_Name_Changed</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>CDE_Notifications</name>
+        <label>CDE Notifications</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>CDE_DateChanged</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >FR_StatusIsVenueProgramInProd</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >FR_PriorStatusWasPlannedOrScheduled</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FR_DateChanged</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Events_CDE_Only_Date_Changed</targetReference>
+            </connector>
+            <label>Date Changed</label>
+        </rules>
+        <rules>
+            <name>CDE_VenueConfirmed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >FR_StatusChangedToVenueSetFromPlannedOrScheduled</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Events_CDE_Only_Venue_Confirmed</targetReference>
+            </connector>
+            <label>Venue Confirmed</label>
+        </rules>
+        <rules>
+            <name>CDE_VenueNameChanged</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Venue Set</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record__Prior.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Venue Set</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FR_VenueNameChanged</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Events_CDE_Only_Venue_Name_Changed</targetReference>
+            </connector>
+            <label>Venue Name Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>CDG_DS_DC_Notifications</name>
+        <label>CDG/DS/DC Notifications</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>CDG_DateChanged</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >FR_StatusIsVenueProgramInProd</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >FR_PriorStatusWasPlannedOrScheduled</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FR_DateChanged</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Events_CDG_Only_Date_Changed</targetReference>
+            </connector>
+            <label>Date Changed</label>
+        </rules>
+        <rules>
+            <name>CDG_VenueConfirmed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >FR_StatusChangedToVenueSetFromPlannedOrScheduled</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Events_CDG_Only_Venue_Confirmed</targetReference>
+            </connector>
+            <label>Venue Confirmed</label>
+        </rules>
+        <rules>
+            <name>CDG_VenueNameChanged</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Venue Set</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record__Prior.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Venue Set</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FR_VenueNameChanged</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Events_CDG_Only_Venue_Name_Changed</targetReference>
+            </connector>
+            <label>Venue Name Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Determine_Audience</name>
+        <label>Determine Audience</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>General_Notifications</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel
+    >General Event Notifications</defaultConnectorLabel>
+        <rules>
+            <name>CDE</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FR_NameStartsCDE</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>CDE_Notifications</targetReference>
+            </connector>
+            <label>CDE</label>
+        </rules>
+        <rules>
+            <name>CDG_DS_or_DC</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FR_NameStartsCDG_DS_DC</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>CDG_DS_DC_Notifications</targetReference>
+            </connector>
+            <label>CDG, DS or DC</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Event_Cancelled</name>
+        <label>Event Cancelled</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Determine_Audience</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Cancelled</defaultConnectorLabel>
+        <rules>
+            <name>Send_Cancellation_Alert</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record__Prior.Status__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Cancelled</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Cancelled</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Brand__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>EREPUBLIC</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>EventCancelled</targetReference>
+            </connector>
+            <label>Send Cancellation Alert</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>General_Notifications</name>
+        <label>General Notifications</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>MonthChanged</name>
+            <conditionLogic>(1 OR 2) AND 3 AND 4</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Planned</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Scheduled</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FR_BrandIsEREPUBLIC</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Event_Month__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Events_Planned_Month_Changed</targetReference>
+            </connector>
+            <label>Month Changed</label>
+        </rules>
+        <rules>
+            <name>DateChanged</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >FR_StatusIsVenueProgramInProd</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >FR_PriorStatusWasPlannedOrScheduled</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FR_BrandIsEREPUBLIC</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FR_DateChanged</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Events_Date_Changed</targetReference>
+            </connector>
+            <label>Date Changed</label>
+        </rules>
+        <rules>
+            <name>VenueConfirmed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >FR_StatusChangedToVenueSetFromPlannedOrScheduled</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FR_BrandIsEREPUBLIC</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Events_Venue_Confirmed</targetReference>
+            </connector>
+            <label>Venue Confirmed</label>
+        </rules>
+        <rules>
+            <name>VenueNameChanged</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Venue Set</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record__Prior.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Venue Set</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FR_VenueNameChanged</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FR_BrandIsEREPUBLIC</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Events_Venue_Name_Changed</targetReference>
+            </connector>
+            <label>Venue Name Changed</label>
+        </rules>
+    </decisions>
+    <description>Replaces 11 Events__c Workflow Rules:
+- Event - CDE Only - Date Changed
+- Event - CDE Only - Venue Confirmed
+- Event - CDE Only - Venue Name Changed
+- Event - CDG Only - Date Changed
+- Event - CDG Only - Venue Confirmed
+- Event - CDG Only - Venue Name Changed
+- Event - Date Changed
+- Event - Venue Confirmed
+- Event - Venue Name Changed
+- Event - Event Cancelled
+- Event - Planned Month Changed
+
+Purpose:
+Sends lifecycle notification emails for Standard Events when key milestones or details change, including venue confirmation, venue name updates, event date changes, event month changes and event cancellation.
+
+Impacted Record Types:
+- Standard Event (RecordTypeId: 01230000000ueuwAAA)</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>FR_BrandIsEREPUBLIC</name>
+        <dataType>Boolean</dataType>
+        <expression
+    >ISPICKVAL($Record.Brand__c, &quot;EREPUBLIC&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>FR_DateChanged</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+ISCHANGED($Record.Event_Start_Date__c),
+ISCHANGED($Record.Event_End_Date__c)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>FR_NameStartsCDE</name>
+        <dataType>Boolean</dataType>
+        <expression>LEFT($Record.Name, 3) = &quot;CDE&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>FR_NameStartsCDG_DS_DC</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+LEFT($Record.Name, 3) = &quot;CDG&quot;,
+LEFT($Record.Name, 2) = &quot;DS&quot;,
+LEFT($Record.Name, 2) = &quot;DC&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>FR_PriorStatusNotCancelled</name>
+        <dataType>Boolean</dataType>
+        <expression
+    >TEXT($Record__Prior.Status__c) &lt;&gt; &quot;Cancelled&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>FR_PriorStatusWasPlannedOrScheduled</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+TEXT($Record__Prior.Status__c) = &quot;Planned&quot;,
+TEXT($Record__Prior.Status__c) = &quot;Scheduled&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>FR_PriorStatusWasVenueSet</name>
+        <dataType>Boolean</dataType>
+        <expression
+    >ISPICKVAL($Record__Prior.Status__c, &quot;Venue Set&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>FR_StatusChangedToVenueSetFromPlannedOrScheduled</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISPICKVAL($Record.Status__c, &quot;Venue Set&quot;),
+OR(
+TEXT($Record__Prior.Status__c) = &quot;Planned&quot;,
+TEXT($Record__Prior.Status__c) = &quot;Scheduled&quot;
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>FR_StatusIsVenueProgramInProd</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+ISPICKVAL($Record.Status__c, &quot;Venue Set&quot;),
+ISPICKVAL($Record.Status__c, &quot;Program Set&quot;),
+ISPICKVAL($Record.Status__c, &quot;In-Production&quot;)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>FR_VenueNameChanged</name>
+        <dataType>Boolean</dataType>
+        <expression>ISCHANGED($Record.Venue_Name__c)</expression>
+    </formulas>
+    <interviewLabel
+  >Event or Conference - RT AS - {!$Flow.CurrentDateTime}</interviewLabel>
+    <label
+  >Event or Conference - RT AS - Standard Event Venue/Date/Cancel Alerts</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Event_Cancelled</targetReference>
+        </connector>
+        <filterLogic>1 AND (2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8)</filterLogic>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01230000000ueuwAAA</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Event_Start_Date__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Event_End_Date__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Venue_Name__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Brand__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Name</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Event_Month__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Events__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Select_Sponsors_Only__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Show this session in the vDGS agenda only to specific sponsors and staff.</description>
+    <inlineHelpText
+  >Show this session in the vDGS agenda only to specific sponsors and staff.</inlineHelpText>
+    <label>Select Sponsors Only</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

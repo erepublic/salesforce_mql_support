@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Topic_Contains_Other</fullName>
+    <active>true</active>
+    <description
+  >On a Content Studio project, when the Topic field includes &quot;Other&quot;, the field &quot;Topic - Other&quot; must be filled in.</description>
+    <errorConditionFormula
+  >RecordType.Id = &quot;0125Y000001bPG9&quot; /*Project - Content Studio*/
+&amp;&amp;
+INCLUDES(Topic__c ,&quot;Other&quot;)
+&amp;&amp;
+ISBLANK(Description_OtherTopic__c)</errorConditionFormula>
+    <errorMessage
+  >When Topic includes &quot;Other&quot;, the field &quot;Topic - Other&quot; must be filled in.</errorMessage>
+</ValidationRule>

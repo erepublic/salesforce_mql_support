@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Renewal_Type__c</fullName>
+    <label>Renewal Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Renewed</fullName>
+                <default>false</default>
+                <label>Renewed</label>
+            </value>
+            <value>
+                <fullName>Renewed with Upgrade</fullName>
+                <default>false</default>
+                <label>Renewed with Upgrade</label>
+            </value>
+            <value>
+                <fullName>Renewed with Downgrade</fullName>
+                <default>false</default>
+                <label>Renewed with Downgrade</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

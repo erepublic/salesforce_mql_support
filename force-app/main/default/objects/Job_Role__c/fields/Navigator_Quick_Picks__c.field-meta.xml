@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Navigator_Quick_Picks__c</fullName>
+    <label>Navigator Quick Picks</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>01 - Head of IT (CIO)</fullName>
+                <default>false</default>
+                <label>01 - Head of IT (CIO)</label>
+            </value>
+            <value>
+                <fullName>02 - Deputy Head of IT (Deputy CIO)</fullName>
+                <default>false</default>
+                <label>02 - Deputy Head of IT (Deputy CIO)</label>
+            </value>
+            <value>
+                <fullName>03 - Head of IT Security (CISO)</fullName>
+                <default>false</default>
+                <label>03 - Head of IT Security (CISO)</label>
+            </value>
+            <value>
+                <fullName>04 - Head of Networks/Telecomunications</fullName>
+                <default>false</default>
+                <label>04 - Head of Networks/Telecomunications</label>
+            </value>
+            <value>
+                <fullName>05 - Governor</fullName>
+                <default>false</default>
+                <label>05 - Governor</label>
+            </value>
+            <value>
+                <fullName>06 - Treasurer</fullName>
+                <default>false</default>
+                <label>06 - Treasurer</label>
+            </value>
+            <value>
+                <fullName>07 - Attorney General</fullName>
+                <default>false</default>
+                <label>07 - Attorney General</label>
+            </value>
+            <value>
+                <fullName>08 - Secretary of State</fullName>
+                <default>false</default>
+                <label>08 - Secretary of State</label>
+            </value>
+            <value>
+                <fullName>09 - Mayor</fullName>
+                <default>false</default>
+                <label>09 - Mayor</label>
+            </value>
+            <value>
+                <fullName>10 - County Manager/County Executive</fullName>
+                <default>false</default>
+                <label>10 - County Manager/County Executive</label>
+            </value>
+            <value>
+                <fullName>11 - City Manager</fullName>
+                <default>false</default>
+                <label>11 - City Manager</label>
+            </value>
+            <value>
+                <fullName>12 - Head of Special District</fullName>
+                <default>false</default>
+                <label>12 - Head of Special District</label>
+            </value>
+            <value>
+                <fullName
+        >13 - Head of Agency/Dept. (Dept. Director/Top Administrator)</fullName>
+                <default>false</default>
+                <label
+        >13 - Head of Agency/Dept. (Dept. Director/Top Administrator)</label>
+            </value>
+            <value>
+                <fullName
+        >14 - Deputy Head of Agency/Department (Dept. Deputy)</fullName>
+                <default>false</default>
+                <label
+        >14 - Deputy Head of Agency/Department (Dept. Deputy)</label>
+            </value>
+            <value>
+                <fullName>15 - Head of Finance</fullName>
+                <default>false</default>
+                <label>15 - Head of Finance</label>
+            </value>
+            <value>
+                <fullName>16 - Comptroller/Controller/CFO</fullName>
+                <default>false</default>
+                <label>16 - Comptroller/Controller/CFO</label>
+            </value>
+            <value>
+                <fullName>17 - Head of Budget</fullName>
+                <default>false</default>
+                <label>17 - Head of Budget</label>
+            </value>
+            <value>
+                <fullName>18 - Head of Purchasing</fullName>
+                <default>false</default>
+                <label>18 - Head of Purchasing</label>
+            </value>
+            <value>
+                <fullName>19 - IT Buyer/Purchasing Specialist</fullName>
+                <default>false</default>
+                <label>19 - IT Buyer/Purchasing Specialist</label>
+            </value>
+            <value>
+                <fullName>20 - Head of State Dept. of Education</fullName>
+                <default>false</default>
+                <label>20 - Head of State Dept. of Education</label>
+            </value>
+            <value>
+                <fullName
+        >21 - Head of Public School District (Superintendent)</fullName>
+                <default>false</default>
+                <label
+        >21 - Head of Public School District (Superintendent)</label>
+            </value>
+            <value>
+                <fullName>22 - Head of University System</fullName>
+                <default>false</default>
+                <label>22 - Head of University System</label>
+            </value>
+            <value>
+                <fullName>23 - Head of University (President)</fullName>
+                <default>false</default>
+                <label>23 - Head of University (President)</label>
+            </value>
+            <value>
+                <fullName>24 - Head of Community College District</fullName>
+                <default>false</default>
+                <label>24 - Head of Community College District</label>
+            </value>
+            <value>
+                <fullName
+        >25 - Head of Community College (2 year Institution)</fullName>
+                <default>false</default>
+                <label
+        >25 - Head of Community College (2 year Institution)</label>
+            </value>
+            <value>
+                <fullName>26 - Head of Curriculum</fullName>
+                <default>false</default>
+                <label>26 - Head of Curriculum</label>
+            </value>
+            <value>
+                <fullName>27 - Head of Online Learning</fullName>
+                <default>false</default>
+                <label>27 - Head of Online Learning</label>
+            </value>
+            <value>
+                <fullName>28 - Head of Instructional Technology</fullName>
+                <default>false</default>
+                <label>28 - Head of Instructional Technology</label>
+            </value>
+            <value>
+                <fullName>29 - Head of E-Rate (E-Rate Administrator)</fullName>
+                <default>false</default>
+                <label>29 - Head of E-Rate (E-Rate Administrator)</label>
+            </value>
+            <value>
+                <fullName>30 - E-Rate Technical Contact</fullName>
+                <default>false</default>
+                <label>30 - E-Rate Technical Contact</label>
+            </value>
+            <value>
+                <fullName>31 - Head of Fire Dept.</fullName>
+                <default>false</default>
+                <label>31 - Head of Fire Dept.</label>
+            </value>
+            <value>
+                <fullName>32 - Head of Police/Sheriff Dept.</fullName>
+                <default>false</default>
+                <label>32 - Head of Police/Sheriff Dept.</label>
+            </value>
+            <value>
+                <fullName
+        >33 - Head of Emergency MGMT/Homeland Security</fullName>
+                <default>false</default>
+                <label>33 - Head of Emergency MGMT/Homeland Security</label>
+            </value>
+            <value>
+                <fullName>34 - Head of Other Public Safety Agency</fullName>
+                <default>false</default>
+                <label>34 - Head of Other Public Safety Agency</label>
+            </value>
+            <value>
+                <fullName>35 - Head of Corrections</fullName>
+                <default>false</default>
+                <label>35 - Head of Corrections</label>
+            </value>
+            <value>
+                <fullName>50 - Head of Administration</fullName>
+                <default>false</default>
+                <label>50 - Head of Administration</label>
+            </value>
+            <value>
+                <fullName>51 - Head of Public Works</fullName>
+                <default>false</default>
+                <label>51 - Head of Public Works</label>
+            </value>
+            <value>
+                <fullName>52 - State Chief Privacy Officer</fullName>
+                <default>false</default>
+                <label>52 - State Chief Privacy Officer</label>
+            </value>
+            <value>
+                <fullName>53 - State Chief Risk Officer</fullName>
+                <default>false</default>
+                <label>53 - State Chief Risk Officer</label>
+            </value>
+            <value>
+                <fullName>58 - Head of Innovation</fullName>
+                <default>false</default>
+                <label>58 - Head of Innovation</label>
+            </value>
+            <value>
+                <fullName>59 - Head of Data</fullName>
+                <default>false</default>
+                <label>59 - Head of Data</label>
+            </value>
+            <value>
+                <fullName>60 - Head of Artificial Intelligence</fullName>
+                <default>false</default>
+                <label>60 - Head of Artificial Intelligence</label>
+            </value>
+            <value>
+                <fullName>61 - Chief Technology Officer</fullName>
+                <default>false</default>
+                <label>61 - Chief Technology Officer</label>
+            </value>
+            <value>
+                <fullName>Head of Human Resources</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Head of Human Resources</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

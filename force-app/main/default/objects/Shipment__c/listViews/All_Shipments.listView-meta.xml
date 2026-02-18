@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Shipments</fullName>
+    <columns>NAME</columns>
+    <columns>Event__c</columns>
+    <columns>Courier__c</columns>
+    <columns>Shipment_Contents__c</columns>
+    <columns>Shipment_Direction__c</columns>
+    <columns>Shipment_Method__c</columns>
+    <columns>Date_Shipped__c</columns>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Tracking_Number__c</columns>
+    <columns>Tracking_URL__c</columns>
+    <columns>Staff_Shipper__c</columns>
+    <columns>Shipment_Notes__c</columns>
+    <filterScope>Everything</filterScope>
+    <label>All Shipments</label>
+</ListView>

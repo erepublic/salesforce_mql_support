@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Onsite_Event_Director__c</fullName>
+    <label>Onsite Event Director</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Brian Cohen</fullName>
+                <default>false</default>
+                <label>Brian Cohen</label>
+            </value>
+            <value>
+                <fullName>Danni Chisick</fullName>
+                <default>false</default>
+                <label>Danni Chisick</label>
+            </value>
+            <value>
+                <fullName>Erica Patterson</fullName>
+                <default>false</default>
+                <label>Erica Patterson</label>
+            </value>
+            <value>
+                <fullName>Hansa Bernal</fullName>
+                <default>false</default>
+                <label>Hansa Bernal</label>
+            </value>
+            <value>
+                <fullName>Helen Kang</fullName>
+                <default>false</default>
+                <label>Helen Kang</label>
+            </value>
+            <value>
+                <fullName>Jackie White</fullName>
+                <default>false</default>
+                <label>Jackie White</label>
+            </value>
+            <value>
+                <fullName>Jason Perdue</fullName>
+                <default>false</default>
+                <label>Jason Perdue</label>
+            </value>
+            <value>
+                <fullName>Jessica Byerly</fullName>
+                <default>false</default>
+                <label>Jessica Byerly</label>
+            </value>
+            <value>
+                <fullName>Jordan Wilkins</fullName>
+                <default>false</default>
+                <label>Jordan Wilkins</label>
+            </value>
+            <value>
+                <fullName>Ken Skeen</fullName>
+                <default>false</default>
+                <label>Ken Skeen</label>
+            </value>
+            <value>
+                <fullName>Liese Miller</fullName>
+                <default>false</default>
+                <label>Liese Miller</label>
+            </value>
+            <value>
+                <fullName>Monique Scott</fullName>
+                <default>false</default>
+                <label>Monique Scott</label>
+            </value>
+            <value>
+                <fullName>Phil Bertolini</fullName>
+                <default>false</default>
+                <label>Phil Bertolini</label>
+            </value>
+            <value>
+                <fullName>Teri Takai</fullName>
+                <default>false</default>
+                <label>Teri Takai</label>
+            </value>
+            <value>
+                <fullName>Zach Thorn</fullName>
+                <default>false</default>
+                <label>Zach Thorn</label>
+            </value>
+            <value>
+                <fullName>Corey Bruins</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Corey Bruins</label>
+            </value>
+            <value>
+                <fullName>Mike Driessen</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Mike Driessen</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

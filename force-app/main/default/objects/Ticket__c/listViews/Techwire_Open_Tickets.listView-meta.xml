@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Techwire_Open_Tickets</fullName>
+    <booleanFilter>1 AND 2 AND (3 OR 4)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Phase__c</columns>
+    <columns>Status__c</columns>
+    <columns>Assignee__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <columns>CREATEDBY_USER</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Web</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>notEqual</operation>
+        <value>Closed,Canceled</value>
+    </filters>
+    <filters>
+        <field>Title__c</field>
+        <operation>contains</operation>
+        <value>TW</value>
+    </filters>
+    <filters>
+        <field>System2__c</field>
+        <operation>equals</operation>
+        <value>Techwire</value>
+    </filters>
+    <label>Techwire Open Tickets</label>
+</ListView>

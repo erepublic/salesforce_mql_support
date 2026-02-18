@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Q3_Feel_more_confident_selling_to__c</fullName>
+    <description>Course custom question #3: 
+SLG: Do you feel more confident selling to state and local government? 
+EDU: Do you feel more confident selling to Education IT leaders</description>
+    <externalId>false</externalId>
+    <inlineHelpText>Course custom question #3: 
+SLG: Do you feel more confident selling to state and local government? 
+EDU: Do you feel more confident selling to Education IT leaders</inlineHelpText>
+    <label>Q3: Feel more confident selling to?</label>
+    <length>255</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

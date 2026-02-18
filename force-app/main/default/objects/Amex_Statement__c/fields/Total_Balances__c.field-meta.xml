@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_Balances__c</fullName>
+    <description
+  >Gives the total of the balances for all of the statements for this month for this control group.</description>
+    <inlineHelpText
+  >Gives the total of the balances for all of the statements for this month for this control group.</inlineHelpText>
+    <label>Total Balances</label>
+    <summarizedField>Amex_Card_Statement__c.Balance__c</summarizedField>
+    <summaryForeignKey
+  >Amex_Card_Statement__c.Amex_Statement__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

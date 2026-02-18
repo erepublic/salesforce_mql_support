@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Color_Picker__c</fullName>
+    <description
+  >Sets the column color for both the header and the column.</description>
+    <inlineHelpText
+  >Sets the column color for both the header and the column.</inlineHelpText>
+    <label>Color Picker</label>
+    <required>true</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Shark</fullName>
+                <default>false</default>
+                <label>Shark</label>
+            </value>
+            <value>
+                <fullName>Dog Toothpaste</fullName>
+                <default>false</default>
+                <label>Dog Toothpaste</label>
+            </value>
+            <value>
+                <fullName>Dirty Marshmallow</fullName>
+                <default>false</default>
+                <label>Dirty Marshmallow</label>
+            </value>
+            <value>
+                <fullName>Salmon Egg</fullName>
+                <default>false</default>
+                <label>Salmon Egg</label>
+            </value>
+            <value>
+                <fullName>Olive Gray</fullName>
+                <default>false</default>
+                <label>Olive Gray</label>
+            </value>
+            <value>
+                <fullName>Elephant</fullName>
+                <default>false</default>
+                <label>Elephant</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

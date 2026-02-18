@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Needs_QA__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Check here if the ticket requires a QA person to verify</description>
+    <inlineHelpText
+  >Check here if the ticket requires a QA person to verify</inlineHelpText>
+    <label>Needs QA</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>At_Sponsor_Capacity__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Prevents sponsors who have claimed all of their contract passes from purchasing an additional pass.</description>
+    <inlineHelpText
+  >Prevents sponsors who have claimed all of their contract passes from purchasing an additional pass.</inlineHelpText>
+    <label>At Sponsor Capacity</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reallocation</fullName>
+    <fields>Name</fields>
+    <fields>Account__c</fields>
+    <fields>Status__c</fields>
+    <fields>Amount__c</fields>
+    <fields>Opportunity_Product__c</fields>
+    <fields>Split_Opportunity_Product__c</fields>
+    <fields>Submitted_By__c</fields>
+    <label>Reallocation</label>
+</CompactLayout>

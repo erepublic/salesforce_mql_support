@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>External_LMS_Seats_Enrolled__c</fullName>
+    <label>External LMS Seats (Active)</label>
+    <summaryFilterItems>
+        <field>Contact_Enrollment__c.Learner_Type__c</field>
+        <operation>equals</operation>
+        <value>External LMS</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Contact_Enrollment__c.Active_Formula__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey
+  >Contact_Enrollment__c.Course_Enrollment__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

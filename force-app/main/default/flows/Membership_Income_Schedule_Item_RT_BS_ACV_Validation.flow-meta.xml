@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <collectionProcessors>
+        <name>Filter_Siblings_with_ACV</name>
+        <elementSubtype>FilterCollectionProcessor</elementSubtype>
+        <label>Filter Siblings with ACV</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNextValueToReference
+    >currentItem_Filter_Siblings_with_ACV</assignNextValueToReference>
+        <collectionProcessorType
+    >FilterCollectionProcessor</collectionProcessorType>
+        <collectionReference>Get_Siblings_All</collectionReference>
+        <conditionLogic>and</conditionLogic>
+        <conditions>
+            <leftValueReference
+      >currentItem_Filter_Siblings_with_ACV.ACV_Snapshot__c</leftValueReference>
+            <operator>IsNull</operator>
+            <rightValue>
+                <booleanValue>false</booleanValue>
+            </rightValue>
+        </conditions>
+        <connector>
+            <targetReference>ACV_Validation</targetReference>
+        </connector>
+    </collectionProcessors>
+    <customErrors>
+        <name>ACV_Snapshot_Required</name>
+        <label>ACV Snapshot Required</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage
+      >ACV Snapshot is required when this is the only schedule on that date.</errorMessage>
+            <fieldSelection>ACV_Snapshot__c</fieldSelection>
+            <isFieldError>true</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <customErrors>
+        <name>Cannot_Remove_ACV_Snapshot</name>
+        <label>Cannot Remove ACV Snapshot</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage
+      >Do not remove ACV Snapshot when this would leave no ACV  snapshot value for this date.</errorMessage>
+            <fieldSelection>ACV_Snapshot__c</fieldSelection>
+            <isFieldError>true</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <customErrors>
+        <name>Duplicate_ACV_Snapshot_Error</name>
+        <label>Duplicate ACV Snapshot Error</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage
+      >A duplicate schedule on the same date must leave ACV Snapshot blank because one already exists.</errorMessage>
+            <fieldSelection>ACV_Snapshot__c</fieldSelection>
+            <isFieldError>true</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <customErrors>
+        <name>Past_End_Date_ACV_Must_be_Blank_Error_Message</name>
+        <label>Past End Date - ACV Must be Blank</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage
+      >ACV Snapshot must be blank for schedules in a partial end month or past the contract end date.</errorMessage>
+            <fieldSelection>ACV_Snapshot__c</fieldSelection>
+            <isFieldError>true</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <name>ACV_Validation</name>
+        <label>ACV Validation</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Past_End_Date_ACV_Must_Be_Blank</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Date__c</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference
+          >f_First_of_Month_After_ACV</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ACV_Snapshot__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Membership_Contract__r.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>012Jw000003N8KwIAK</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Past_End_Date_ACV_Must_be_Blank_Error_Message</targetReference>
+            </connector>
+            <label>Past End Date - ACV Must Be Blank</label>
+        </rules>
+        <rules>
+            <name>Require_ACV</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Siblings_All</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ACV_Snapshot__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Date__c</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <elementReference
+          >f_First_of_Month_After_ACV</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>ACV_Snapshot_Required</targetReference>
+            </connector>
+            <label>Require ACV</label>
+        </rules>
+        <rules>
+            <name>Duplicate_ACV</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >Filter_Siblings_with_ACV</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ACV_Snapshot__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Duplicate_ACV_Snapshot_Error</targetReference>
+            </connector>
+            <label>Duplicate ACV</label>
+        </rules>
+        <rules>
+            <name>Cannot_Remove_Last_ACV</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record__Prior.ACV_Snapshot__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.ACV_Snapshot__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >Filter_Siblings_with_ACV</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Date__c</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <elementReference
+          >f_First_of_Month_After_ACV</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Cannot_Remove_ACV_Snapshot</targetReference>
+            </connector>
+            <label>Cannot Remove Last ACV</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description
+    >Bypass the error for Paul Harney, Jennifer Brenner, and Jeff Fahndrich.</description>
+        <name>Error_for_this_User</name>
+        <label>Error for this User?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel
+    >No, bypass error for this user</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Error_for_this_User</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$User.Id</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>00530000003A32O</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$User.Id</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>0055Y00000I0fox</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$User.Id</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>005a0000007Wamb</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Siblings_All</targetReference>
+            </connector>
+            <label>Yes, Error for this User</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <description
+    >Formula that will reflect TRUE if the End Date is on the last day of the month.
+
+If End Date is in December, checks if the End Date = 12/31,
+Otherwise, check if End Date = the result if you subtract 1 from the first of the next month.</description>
+        <name>f_End_Date_is_Last_Day_of_Month</name>
+        <dataType>Boolean</dataType>
+        <expression>{!$Record.Membership_Contract__r.End_Date__c} = 
+     (IF(MONTH({!$Record.Membership_Contract__r.End_Date__c})=12, 
+          DATE(YEAR({!$Record.Membership_Contract__r.End_Date__c}),12,31), 
+          DATE(YEAR({!$Record.Membership_Contract__r.End_Date__c}),MONTH({!$Record.Membership_Contract__r.End_Date__c})+1, 1)-1))</expression>
+    </formulas>
+    <formulas>
+        <description
+    >If the Membership Contract End Date is on the last day of the Year, return the first of the Next Year,
+If the Membership Contract End Date is on the last day of the Month, return the First of the Next Month, 
+otherwise return the First of the End Month.</description>
+        <name>f_First_of_Month_After_ACV</name>
+        <dataType>Date</dataType>
+        <expression
+    >IF({!$Record.Membership_Contract__r.End_Date__c}=DATE(YEAR({!$Record.Membership_Contract__r.End_Date__c}),12,31),
+DATE( 
+          YEAR({!$Record.Membership_Contract__r.End_Date__c})+1, 1, 1
+), 
+IF({!f_End_Date_is_Last_Day_of_Month},
+DATE( 
+          YEAR({!$Record.Membership_Contract__r.End_Date__c}),
+          MONTH({!$Record.Membership_Contract__r.End_Date__c})+1, 1
+), 
+DATE( 
+          YEAR({!$Record.Membership_Contract__r.End_Date__c}),
+          MONTH({!$Record.Membership_Contract__r.End_Date__c}), 1
+)))</expression>
+    </formulas>
+    <interviewLabel
+  >Membership Income Schedule Item - {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Membership Income Schedule Item - RT BS - ACV Validation</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Siblings_All</name>
+        <label>Get Siblings All</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Filter_Siblings_with_ACV</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Date__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Date__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Membership_Contract__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference
+        >$Record.Membership_Contract__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Membership_Income_Schedule_Item__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Error_for_this_User</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>ACV_Snapshot__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Date__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Membership_Income_Schedule_Item__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>currentItem_Filter_Siblings_with_ACV</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Membership_Income_Schedule_Item__c</objectType>
+    </variables>
+    <variables>
+        <name>currentItem_Filter_Siblings_without_ACV</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Membership_Income_Schedule_Item__c</objectType>
+    </variables>
+</Flow>

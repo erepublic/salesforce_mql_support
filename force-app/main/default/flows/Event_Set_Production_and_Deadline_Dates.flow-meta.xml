@@ -1,0 +1,1287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>53.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>myDecision16</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_1</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>Standard Event Date Set or Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision16</name>
+        <label>myDecision16</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_17</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>formula_myRule_17</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_17_A1</targetReference>
+            </connector>
+            <label>Webinar Event Date Set or Changed</label>
+        </rules>
+    </decisions>
+    <description
+  >Updates select date fields based on Event Start Date.</description>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+MOD([Events__c].Event_Start_Date__c  - DATE( 1900, 1, 7 ), 7 ),
+0, [Events__c].Event_Start_Date__c - 34,
+1, [Events__c].Event_Start_Date__c - 35,
+2, [Events__c].Event_Start_Date__c - 35,
+3, [Events__c].Event_Start_Date__c - 35,
+4, [Events__c].Event_Start_Date__c - 35,
+5, [Events__c].Event_Start_Date__c - 35,
+6, [Events__c].Event_Start_Date__c - 36,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_10_myRule_1_A1_1406570166</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!myVariable_current.Event_Start_Date__c}  - DATE( 1900, 1, 7 ), 7 ),
+0, {!myVariable_current.Event_Start_Date__c} - 34,
+1, {!myVariable_current.Event_Start_Date__c} - 35,
+2, {!myVariable_current.Event_Start_Date__c} - 35,
+3, {!myVariable_current.Event_Start_Date__c} - 35,
+4, {!myVariable_current.Event_Start_Date__c} - 35,
+5, {!myVariable_current.Event_Start_Date__c} - 35,
+6, {!myVariable_current.Event_Start_Date__c} - 36,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+MOD([Events__c].Event_Start_Date__c  - DATE( 1900, 1, 7 ), 7 ),
+0, [Events__c].Event_Start_Date__c - 34,
+1, [Events__c].Event_Start_Date__c - 35,
+2, [Events__c].Event_Start_Date__c - 35,
+3, [Events__c].Event_Start_Date__c - 35,
+4, [Events__c].Event_Start_Date__c - 35,
+5, [Events__c].Event_Start_Date__c - 35,
+6, [Events__c].Event_Start_Date__c - 36,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_11_myRule_1_A1_7787154904</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!myVariable_current.Event_Start_Date__c}  - DATE( 1900, 1, 7 ), 7 ),
+0, {!myVariable_current.Event_Start_Date__c} - 34,
+1, {!myVariable_current.Event_Start_Date__c} - 35,
+2, {!myVariable_current.Event_Start_Date__c} - 35,
+3, {!myVariable_current.Event_Start_Date__c} - 35,
+4, {!myVariable_current.Event_Start_Date__c} - 35,
+5, {!myVariable_current.Event_Start_Date__c} - 35,
+6, {!myVariable_current.Event_Start_Date__c} - 36,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+MOD([Events__c].Event_Start_Date__c  - DATE( 1900, 1, 7 ), 7 ),
+0, [Events__c].Event_Start_Date__c - 27,
+1, [Events__c].Event_Start_Date__c - 27,
+2, [Events__c].Event_Start_Date__c - 27,
+3, [Events__c].Event_Start_Date__c - 27,
+4, [Events__c].Event_Start_Date__c - 27,
+5, [Events__c].Event_Start_Date__c - 28,
+6, [Events__c].Event_Start_Date__c - 26,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_12_myRule_1_A1_5964528272</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!myVariable_current.Event_Start_Date__c}  - DATE( 1900, 1, 7 ), 7 ),
+0, {!myVariable_current.Event_Start_Date__c} - 27,
+1, {!myVariable_current.Event_Start_Date__c} - 27,
+2, {!myVariable_current.Event_Start_Date__c} - 27,
+3, {!myVariable_current.Event_Start_Date__c} - 27,
+4, {!myVariable_current.Event_Start_Date__c} - 27,
+5, {!myVariable_current.Event_Start_Date__c} - 28,
+6, {!myVariable_current.Event_Start_Date__c} - 26,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+MOD([Events__c].Event_Start_Date__c  - DATE( 1900, 1, 7 ), 7 ),
+0, [Events__c].Event_Start_Date__c - 27,
+1, [Events__c].Event_Start_Date__c - 27,
+2, [Events__c].Event_Start_Date__c - 27,
+3, [Events__c].Event_Start_Date__c - 27,
+4, [Events__c].Event_Start_Date__c - 27,
+5, [Events__c].Event_Start_Date__c - 28,
+6, [Events__c].Event_Start_Date__c - 26,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_13_myRule_1_A1_9071081170</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!myVariable_current.Event_Start_Date__c}  - DATE( 1900, 1, 7 ), 7 ),
+0, {!myVariable_current.Event_Start_Date__c} - 27,
+1, {!myVariable_current.Event_Start_Date__c} - 27,
+2, {!myVariable_current.Event_Start_Date__c} - 27,
+3, {!myVariable_current.Event_Start_Date__c} - 27,
+4, {!myVariable_current.Event_Start_Date__c} - 27,
+5, {!myVariable_current.Event_Start_Date__c} - 28,
+6, {!myVariable_current.Event_Start_Date__c} - 26,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+MOD([Events__c].Event_Start_Date__c  - DATE( 1900, 1, 7 ), 7 ),
+0, [Events__c].Event_Start_Date__c - 34,
+1, [Events__c].Event_Start_Date__c - 35,
+2, [Events__c].Event_Start_Date__c - 35,
+3, [Events__c].Event_Start_Date__c - 35,
+4, [Events__c].Event_Start_Date__c - 35,
+5, [Events__c].Event_Start_Date__c - 35,
+6, [Events__c].Event_Start_Date__c - 36,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_14_myRule_1_A1_4053574360</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!myVariable_current.Event_Start_Date__c}  - DATE( 1900, 1, 7 ), 7 ),
+0, {!myVariable_current.Event_Start_Date__c} - 34,
+1, {!myVariable_current.Event_Start_Date__c} - 35,
+2, {!myVariable_current.Event_Start_Date__c} - 35,
+3, {!myVariable_current.Event_Start_Date__c} - 35,
+4, {!myVariable_current.Event_Start_Date__c} - 35,
+5, {!myVariable_current.Event_Start_Date__c} - 35,
+6, {!myVariable_current.Event_Start_Date__c} - 36,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+MOD([Events__c].Event_Start_Date__c  - DATE( 1900, 1, 7 ), 7 ),
+0, [Events__c].Event_Start_Date__c - 27,
+1, [Events__c].Event_Start_Date__c - 27,
+2, [Events__c].Event_Start_Date__c - 27,
+3, [Events__c].Event_Start_Date__c - 27,
+4, [Events__c].Event_Start_Date__c - 27,
+5, [Events__c].Event_Start_Date__c - 28,
+6, [Events__c].Event_Start_Date__c - 26,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_15_myRule_1_A1_8117612969</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!myVariable_current.Event_Start_Date__c}  - DATE( 1900, 1, 7 ), 7 ),
+0, {!myVariable_current.Event_Start_Date__c} - 27,
+1, {!myVariable_current.Event_Start_Date__c} - 27,
+2, {!myVariable_current.Event_Start_Date__c} - 27,
+3, {!myVariable_current.Event_Start_Date__c} - 27,
+4, {!myVariable_current.Event_Start_Date__c} - 27,
+5, {!myVariable_current.Event_Start_Date__c} - 28,
+6, {!myVariable_current.Event_Start_Date__c} - 26,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+MOD([Events__c].Event_Start_Date__c  - DATE( 1900, 1, 7 ), 7 ),
+0, [Events__c].Event_Start_Date__c - 17,
+1, [Events__c].Event_Start_Date__c - 17,
+2, [Events__c].Event_Start_Date__c - 18,
+3, [Events__c].Event_Start_Date__c - 16,
+4, [Events__c].Event_Start_Date__c - 17,
+5, [Events__c].Event_Start_Date__c - 17,
+6, [Events__c].Event_Start_Date__c - 17,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_18_myRule_17_A1_8952571503</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!myVariable_current.Event_Start_Date__c}  - DATE( 1900, 1, 7 ), 7 ),
+0, {!myVariable_current.Event_Start_Date__c} - 17,
+1, {!myVariable_current.Event_Start_Date__c} - 17,
+2, {!myVariable_current.Event_Start_Date__c} - 18,
+3, {!myVariable_current.Event_Start_Date__c} - 16,
+4, {!myVariable_current.Event_Start_Date__c} - 17,
+5, {!myVariable_current.Event_Start_Date__c} - 17,
+6, {!myVariable_current.Event_Start_Date__c} - 17,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+MOD([Events__c].Event_Start_Date__c  - DATE( 1900, 1, 7 ), 7 ),
+0, [Events__c].Event_Start_Date__c - 27,
+1, [Events__c].Event_Start_Date__c - 27,
+2, [Events__c].Event_Start_Date__c - 27,
+3, [Events__c].Event_Start_Date__c - 27,
+4, [Events__c].Event_Start_Date__c - 27,
+5, [Events__c].Event_Start_Date__c - 28,
+6, [Events__c].Event_Start_Date__c - 26,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_2_myRule_1_A1_5733479385</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!myVariable_current.Event_Start_Date__c}  - DATE( 1900, 1, 7 ), 7 ),
+0, {!myVariable_current.Event_Start_Date__c} - 27,
+1, {!myVariable_current.Event_Start_Date__c} - 27,
+2, {!myVariable_current.Event_Start_Date__c} - 27,
+3, {!myVariable_current.Event_Start_Date__c} - 27,
+4, {!myVariable_current.Event_Start_Date__c} - 27,
+5, {!myVariable_current.Event_Start_Date__c} - 28,
+6, {!myVariable_current.Event_Start_Date__c} - 26,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+MOD([Events__c].Event_Start_Date__c  - DATE( 1900, 1, 7 ), 7 ),
+0, [Events__c].Event_Start_Date__c - 34,
+1, [Events__c].Event_Start_Date__c - 34,
+2, [Events__c].Event_Start_Date__c - 34,
+3, [Events__c].Event_Start_Date__c - 34,
+4, [Events__c].Event_Start_Date__c - 34,
+5, [Events__c].Event_Start_Date__c - 35,
+6, [Events__c].Event_Start_Date__c - 33,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_3_myRule_1_A1_7588712064</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!myVariable_current.Event_Start_Date__c}  - DATE( 1900, 1, 7 ), 7 ),
+0, {!myVariable_current.Event_Start_Date__c} - 34,
+1, {!myVariable_current.Event_Start_Date__c} - 34,
+2, {!myVariable_current.Event_Start_Date__c} - 34,
+3, {!myVariable_current.Event_Start_Date__c} - 34,
+4, {!myVariable_current.Event_Start_Date__c} - 34,
+5, {!myVariable_current.Event_Start_Date__c} - 35,
+6, {!myVariable_current.Event_Start_Date__c} - 33,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+MOD([Events__c].Event_Start_Date__c  - DATE( 1900, 1, 7 ), 7 ),
+0, [Events__c].Event_Start_Date__c - 27,
+1, [Events__c].Event_Start_Date__c - 27,
+2, [Events__c].Event_Start_Date__c - 27,
+3, [Events__c].Event_Start_Date__c - 27,
+4, [Events__c].Event_Start_Date__c - 27,
+5, [Events__c].Event_Start_Date__c - 28,
+6, [Events__c].Event_Start_Date__c - 26,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_4_myRule_1_A1_2654207768</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!myVariable_current.Event_Start_Date__c}  - DATE( 1900, 1, 7 ), 7 ),
+0, {!myVariable_current.Event_Start_Date__c} - 27,
+1, {!myVariable_current.Event_Start_Date__c} - 27,
+2, {!myVariable_current.Event_Start_Date__c} - 27,
+3, {!myVariable_current.Event_Start_Date__c} - 27,
+4, {!myVariable_current.Event_Start_Date__c} - 27,
+5, {!myVariable_current.Event_Start_Date__c} - 28,
+6, {!myVariable_current.Event_Start_Date__c} - 26,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+MOD([Events__c].Event_Start_Date__c  - DATE( 1900, 1, 7 ), 7 ),
+0, [Events__c].Event_Start_Date__c - 34,
+1, [Events__c].Event_Start_Date__c - 34,
+2, [Events__c].Event_Start_Date__c - 34,
+3, [Events__c].Event_Start_Date__c - 34,
+4, [Events__c].Event_Start_Date__c - 34,
+5, [Events__c].Event_Start_Date__c - 35,
+6, [Events__c].Event_Start_Date__c - 33,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_5_myRule_1_A1_8866094878</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!myVariable_current.Event_Start_Date__c}  - DATE( 1900, 1, 7 ), 7 ),
+0, {!myVariable_current.Event_Start_Date__c} - 34,
+1, {!myVariable_current.Event_Start_Date__c} - 34,
+2, {!myVariable_current.Event_Start_Date__c} - 34,
+3, {!myVariable_current.Event_Start_Date__c} - 34,
+4, {!myVariable_current.Event_Start_Date__c} - 34,
+5, {!myVariable_current.Event_Start_Date__c} - 35,
+6, {!myVariable_current.Event_Start_Date__c} - 33,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+MOD([Events__c].Event_Start_Date__c  - DATE( 1900, 1, 7 ), 7 ),
+0, [Events__c].Event_Start_Date__c - 34,
+1, [Events__c].Event_Start_Date__c - 35,
+2, [Events__c].Event_Start_Date__c - 35,
+3, [Events__c].Event_Start_Date__c - 35,
+4, [Events__c].Event_Start_Date__c - 35,
+5, [Events__c].Event_Start_Date__c - 35,
+6, [Events__c].Event_Start_Date__c - 36,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_6_myRule_1_A1_5444555747</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!myVariable_current.Event_Start_Date__c}  - DATE( 1900, 1, 7 ), 7 ),
+0, {!myVariable_current.Event_Start_Date__c} - 34,
+1, {!myVariable_current.Event_Start_Date__c} - 35,
+2, {!myVariable_current.Event_Start_Date__c} - 35,
+3, {!myVariable_current.Event_Start_Date__c} - 35,
+4, {!myVariable_current.Event_Start_Date__c} - 35,
+5, {!myVariable_current.Event_Start_Date__c} - 35,
+6, {!myVariable_current.Event_Start_Date__c} - 36,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+MOD([Events__c].Event_Start_Date__c  - DATE( 1900, 1, 7 ), 7 ),
+0, [Events__c].Event_Start_Date__c - 48,
+1, [Events__c].Event_Start_Date__c - 49,
+2, [Events__c].Event_Start_Date__c - 49,
+3, [Events__c].Event_Start_Date__c - 49,
+4, [Events__c].Event_Start_Date__c - 49,
+5, [Events__c].Event_Start_Date__c - 49,
+6, [Events__c].Event_Start_Date__c - 50,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_7_myRule_1_A1_3068514949</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!myVariable_current.Event_Start_Date__c}  - DATE( 1900, 1, 7 ), 7 ),
+0, {!myVariable_current.Event_Start_Date__c} - 48,
+1, {!myVariable_current.Event_Start_Date__c} - 49,
+2, {!myVariable_current.Event_Start_Date__c} - 49,
+3, {!myVariable_current.Event_Start_Date__c} - 49,
+4, {!myVariable_current.Event_Start_Date__c} - 49,
+5, {!myVariable_current.Event_Start_Date__c} - 49,
+6, {!myVariable_current.Event_Start_Date__c} - 50,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+MOD([Events__c].Event_Start_Date__c  - DATE( 1900, 1, 7 ), 7 ),
+0, [Events__c].Event_Start_Date__c - 34,
+1, [Events__c].Event_Start_Date__c - 34,
+2, [Events__c].Event_Start_Date__c - 34,
+3, [Events__c].Event_Start_Date__c - 34,
+4, [Events__c].Event_Start_Date__c - 34,
+5, [Events__c].Event_Start_Date__c - 35,
+6, [Events__c].Event_Start_Date__c - 33,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_8_myRule_1_A1_4048677365</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!myVariable_current.Event_Start_Date__c}  - DATE( 1900, 1, 7 ), 7 ),
+0, {!myVariable_current.Event_Start_Date__c} - 34,
+1, {!myVariable_current.Event_Start_Date__c} - 34,
+2, {!myVariable_current.Event_Start_Date__c} - 34,
+3, {!myVariable_current.Event_Start_Date__c} - 34,
+4, {!myVariable_current.Event_Start_Date__c} - 34,
+5, {!myVariable_current.Event_Start_Date__c} - 35,
+6, {!myVariable_current.Event_Start_Date__c} - 33,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE(
+MOD([Events__c].Event_Start_Date__c  - DATE( 1900, 1, 7 ), 7 ),
+0, [Events__c].Event_Start_Date__c - 34,
+1, [Events__c].Event_Start_Date__c - 35,
+2, [Events__c].Event_Start_Date__c - 35,
+3, [Events__c].Event_Start_Date__c - 35,
+4, [Events__c].Event_Start_Date__c - 35,
+5, [Events__c].Event_Start_Date__c - 35,
+6, [Events__c].Event_Start_Date__c - 36,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_9_myRule_1_A1_2838782907</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+MOD({!myVariable_current.Event_Start_Date__c}  - DATE( 1900, 1, 7 ), 7 ),
+0, {!myVariable_current.Event_Start_Date__c} - 34,
+1, {!myVariable_current.Event_Start_Date__c} - 35,
+2, {!myVariable_current.Event_Start_Date__c} - 35,
+3, {!myVariable_current.Event_Start_Date__c} - 35,
+4, {!myVariable_current.Event_Start_Date__c} - 35,
+5, {!myVariable_current.Event_Start_Date__c} - 35,
+6, {!myVariable_current.Event_Start_Date__c} - 36,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue
+        >[Events__c].RecordTypeId = &quot;01230000000ueuwAAA&quot; /*Standard Event*/
+&amp;&amp;
+(
+  (
+    ISNEW() &amp;&amp; NOT(ISBLANK([Events__c].Event_Start_Date__c ))
+  )
+  ||
+  ISCHANGED([Events__c].Event_Start_Date__c )
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_1</name>
+        <dataType>Boolean</dataType>
+        <expression
+    >{!myVariable_current.RecordTypeId} = &quot;01230000000ueuwAAA&quot; /*Standard Event*/
+&amp;&amp;
+(
+  (
+    ISNEW() &amp;&amp; NOT(ISBLANK({!myVariable_current.Event_Start_Date__c} ))
+  )
+  ||
+  ISCHANGED({!myVariable_current.Event_Start_Date__c} )
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue
+        >[Events__c].RecordTypeId = &quot;01214000000AUymAAG&quot; /*Webinar*/
+&amp;&amp;
+(
+  (
+    ISNEW() &amp;&amp; NOT(ISBLANK([Events__c].Event_Start_Date__c ))
+  )
+  ||
+  ISCHANGED([Events__c].Event_Start_Date__c )
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_myRule_17</name>
+        <dataType>Boolean</dataType>
+        <expression
+    >{!myVariable_current.RecordTypeId} = &quot;01214000000AUymAAG&quot; /*Webinar*/
+&amp;&amp;
+(
+  (
+    ISNEW() &amp;&amp; NOT(ISBLANK({!myVariable_current.Event_Start_Date__c} ))
+  )
+  ||
+  ISCHANGED({!myVariable_current.Event_Start_Date__c} )
+)</expression>
+    </formulas>
+    <interviewLabel
+  >Event_Set_Production_and_Deadline_Dates-4_InterviewLabel</interviewLabel>
+    <label>Event - Set Production and Deadline Dates</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>Events__c</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onAllChanges</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[Events__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_17_A1</name>
+        <label>Update Slides Job Order Due</label>
+        <locationX>1700</locationX>
+        <locationY>200</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Slides Job Order Due</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Powerpoint_Job_Order_Due__c</field>
+            <value>
+                <elementReference
+        >formula_18_myRule_17_A1_8952571503</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Events__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[Events__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_1_A1</name>
+        <label>Update All Dates</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Awards Slides Job Order Due</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Award_Prog_PP_Job_Order_Due__c</field>
+            <value>
+                <elementReference
+        >formula_2_myRule_1_A1_5733479385</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Awards Job Order Due</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Awards_Job_Order_Due__c</field>
+            <value>
+                <elementReference
+        >formula_3_myRule_1_A1_7588712064</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue
+          >Awards Program Guide Job Order Due</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Awards_Program_Agenda_Job_Order_Due__c</field>
+            <value>
+                <elementReference
+        >formula_4_myRule_1_A1_2654207768</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Certs Job Order Due</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Cert_Job_Order_Due__c</field>
+            <value>
+                <elementReference
+        >formula_5_myRule_1_A1_8866094878</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue
+          >Certs &amp; Awards Names Deadline 12PM</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Certs_Awards_Names_Deadline_12PM__c</field>
+            <value>
+                <elementReference
+        >formula_6_myRule_1_A1_5444555747</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Conf Bag Sponsor Deadline 12PM</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Conf_Bag_Sponsor_Deadline_12PM_2__c</field>
+            <value>
+                <elementReference
+        >formula_7_myRule_1_A1_3068514949</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue
+          >Event / Logistics Signs Job Order Due</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Event_Logistics_Job_Order_Due__c</field>
+            <value>
+                <elementReference
+        >formula_8_myRule_1_A1_4048677365</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Keynote Sponsor Deadline 12PM</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Keynote_Deadline__c</field>
+            <value>
+                <elementReference
+        >formula_9_myRule_1_A1_2838782907</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue
+          >Lanyrd, Notebook Sponsor Deadline 12PM</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Lanyrd_Notebook_Sponsor_Deadline_12PM__c</field>
+            <value>
+                <elementReference
+        >formula_10_myRule_1_A1_1406570166</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue
+          >Networking Break Sponsor Deadline 12PM</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Networking_Break_Sponsor_Deadline_12PM__c</field>
+            <value>
+                <elementReference
+        >formula_11_myRule_1_A1_7787154904</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Slides Job Order Due</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Powerpoint_Job_Order_Due__c</field>
+            <value>
+                <elementReference
+        >formula_12_myRule_1_A1_5964528272</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Program Guide Job Order Due</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Program_Guide_Job_Order_Due__c</field>
+            <value>
+                <elementReference
+        >formula_13_myRule_1_A1_9071081170</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue
+          >Program Guide Sponsor Deadline 12PM</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Program_Guide_Sponsor_Deadline__c</field>
+            <value>
+                <elementReference
+        >formula_14_myRule_1_A1_4053574360</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue
+          >Schedule at a Glance Job Order Due</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Schedule_at_a_Glance_Job_Order_Due__c</field>
+            <value>
+                <elementReference
+        >formula_15_myRule_1_A1_8117612969</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Events__c</object>
+    </recordUpdates>
+    <startElementReference>myDecision</startElementReference>
+    <status>Obsolete</status>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Events__c</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Events__c</objectType>
+    </variables>
+</Flow>

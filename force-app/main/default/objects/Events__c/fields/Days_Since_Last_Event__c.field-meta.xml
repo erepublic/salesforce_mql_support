@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Days_Since_Last_Event__c</fullName>
+    <description
+  >Hidden field used for creating reports from buttons on the events object.</description>
+    <externalId>false</externalId>
+    <formula
+  >TEXT( Event_Start_Date__c - last_years_event__r.Event_Start_Date__c ) &amp; &quot; DAYS AGO&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Days Since Last Event</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

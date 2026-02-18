@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Premium_DEN_DGN_Course_Enrollments</fullName>
+    <columns>NAME</columns>
+    <columns>Course_Account__c</columns>
+    <columns>Course_Enrollment_Date__c</columns>
+    <columns>Standardized_Course_Name__c</columns>
+    <columns>Premium_Seats__c</columns>
+    <columns>Premium_Seats_Enrolled__c</columns>
+    <columns>Premium_Seats_Inactive__c</columns>
+    <columns>Membership_Contract__c</columns>
+    <columns>Enrollment_Notes__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Membership_Contract__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Premium_Seats__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Course_Account__c</field>
+        <operation>notEqual</operation>
+        <value>Pretend Computer Company Inc.</value>
+    </filters>
+    <label>Course Enrollments (Premium)</label>
+</ListView>

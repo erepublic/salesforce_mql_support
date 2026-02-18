@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Average_No_Show_Rate__c</fullName>
+    <description
+  >Average attendee no-show rate based on past events.</description>
+    <inlineHelpText
+  >Indicate the average no-show rate from past events.</inlineHelpText>
+    <label>Average No-Show Rate</label>
+    <precision>2</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

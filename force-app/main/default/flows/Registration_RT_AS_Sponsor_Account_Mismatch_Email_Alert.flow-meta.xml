@@ -1,0 +1,350 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Email</name>
+        <label>Send Email</label>
+        <locationX>308</locationX>
+        <locationY>695</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>Template_Email_Body_Simple</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <stringValue
+        >krodgers@erepublic.com,hearney@erepublic.com,salesforce@erepublic.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <stringValue>salesforce@erepublic.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>OrgWideEmailAddress</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue
+        >Non-Sponsor Reg Alert: {!$Record.Reg_Company_Name__c} --- {!$Record.Sponsor_Company__c} --- {!$Record.Event_Name_Formula__c}</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+    </actionCalls>
+    <apiVersion>55.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Sponsor_Account_fields</name>
+        <label>Assign Sponsor Account fields</label>
+        <locationX>308</locationX>
+        <locationY>575</locationY>
+        <assignmentItems>
+            <assignToReference>var_Sponsor_Account_Owner</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue
+        >{!Get_Sponsor_Registrant_Account.Owner.FirstName} {!Get_Sponsor_Registrant_Account.Owner.LastName}</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Sponsor_Account_Owner_Email</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >Get_Sponsor_Registrant_Account.Owner.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Send_Email</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Account_is_Mismatched</name>
+        <label>Account is Mismatched?</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <defaultConnector>
+            <targetReference>Get_Sponsor_Registrant_Account</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Account Mismatch</defaultConnectorLabel>
+        <rules>
+            <name>Match</name>
+            <conditionLogic>(1 OR 2 OR 3 OR 4 OR 6) AND 5</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Contract_Account__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference
+          >$Record.Registrant_Name__r.Account.Name</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Sponsor_Company__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference
+          >$Record.Registrant_Name__r.Account.Name</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Sponsor_Company__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference
+          >$Record.Reg_Company_Name__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >f_Reg_Email_Domain_or_Account_Matches_Sponsor</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Test_Account_or_Reg</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Known_Partner</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <label>Account Match</label>
+        </rules>
+    </decisions>
+    <description
+  >Sends an Email Alert to Kristen Rodgers and the Account Owner when a Registrant is with an Account that differs from the Sponsor Company.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Known_Partner</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+        AND(Contains(
+               {!$Record.Registrant_Name__r.Account_Name_Lookup_Formula__c},&quot;Mythics&quot;),
+                  Contains({!$Record.Contract_Account__c},&quot;Oracle&quot;)),
+        AND(Contains(
+                {!$Record.Registrant_Name__r.Account_Name_Lookup_Formula__c}, &quot;Oracle&quot;),
+                  Contains({!$Record.Contract_Account__c},&quot;Mythics&quot;)),
+        AND(Contains(
+               {!$Record.Registrant_Name__r.Account_Name_Lookup_Formula__c},&quot;George P. Johnson&quot;),
+                  Contains({!$Record.Contract_Account__c},&quot;IBM&quot;)),
+        AND(Contains(
+                {!$Record.Registrant_Name__r.Account_Name_Lookup_Formula__c},&quot;George P. Johnson&quot;),
+                  Contains({!$Record.Contract_Account__c},&quot;Kyndryl&quot;)),
+        AND(Contains(
+                {!$Record.Registrant_Name__r.Account_Name_Lookup_Formula__c},&quot;Charter&quot;),
+                  Contains({!$Record.Contract_Account__c},&quot;Spectrum Enterprise&quot;))
+   )</expression>
+    </formulas>
+    <formulas>
+        <name>f_Link_to_Contact</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;https://erepublic.lightning.force.com/lightning/r/Contact/&quot; &amp;{!$Record.Registrant_Name__c} &amp; &quot;/view&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Link_to_Event</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;https://erepublic.lightning.force.com/lightning/r/Events__c/&quot; &amp; {!$Record.Event__c} &amp; &quot;/view&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Link_to_Event_Contract</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;https://erepublic.lightning.force.com/lightning/r/Contract/&quot; &amp; {!$Record.Event_Contract__c} &amp; &quot;/view&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Link_to_Registration</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;https://erepublic.lightning.force.com/lightning/r/Registration__c/&quot; &amp; {!$Record.Id} &amp; &quot;/view&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Link_to_Sponsor_Account</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;https://erepublic.lightning.force.com/lightning/r/Account/&quot; &amp; {!var_Sponsor_Account_Id} &amp; &quot;/view&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Paid_Registration_Text</name>
+        <dataType>String</dataType>
+        <expression>IF(
+(TEXT({!$Record.Transaction_ID__c})=&quot;&quot;), &quot;No&quot;, &quot;Yes&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Reg_Email_Domain_or_Account_Matches_Sponsor</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+        (CONTAINS({!$Record.Sponsor_Company__c},{!$Record.Registrant_Name__r.Account.Name})),
+        (CONTAINS({!$Record.Sponsor_Company__c},{!$Record.Registrant_Name__r.Company_Name_Holder__c})),
+        (CONTAINS(
+            LOWER({!$Record.Sponsor_Company__c}),
+        TRIM(
+            LEFT({!$Record.Registrant_Name__r.Email_Domain__c},
+                (LEN({!$Record.Registrant_Name__r.Email_Domain__c}) - 4))
+                )))
+   )</expression>
+    </formulas>
+    <formulas>
+        <name>f_Test_Account_or_Reg</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+CONTAINS({!$Record.Registrant_Name__r.Account.Name},&quot;TEST&quot;),
+CONTAINS({!$Record.Registrant_Email__c},&quot;@erepublic.com&quot;),
+CONTAINS({!$Record.Registrant_Email__c},&quot;@govtech.com&quot;),
+CONTAINS({!$Record.Registrant_Email__c},&quot;@governing.com&quot;),
+CONTAINS({!$Record.Registrant_Email__c},&quot;@techwire.net&quot;),
+CONTAINS({!$Record.Registrant_Email__c},&quot;@emergencymgmt.com&quot;),
+CONTAINS({!$Record.Registrant_Email__c},&quot;@digitalcommunities.com&quot;),
+CONTAINS({!$Record.Contract_Account__c},&quot;TEST&quot;)
+)</expression>
+    </formulas>
+    <interviewLabel
+  >Registration - RT AS - Registrant Account {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Registration - RT AS - Sponsor Account Mismatch - Email Alert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Sponsor_Registrant_Account</name>
+        <label>Get Sponsor &amp; Registrant Account</label>
+        <locationX>308</locationX>
+        <locationY>455</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Sponsor_Account_fields</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference
+        >$Record.Event_Contract__r.AccountId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Account_is_Mismatched</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Event_Contract__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Reg_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Sponsor</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Event__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Badge Scanner Tech Conference</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Contract_Account__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Pretend Computer Company</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>GSC__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Registration__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>Template_Email_Body_Simple</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text
+    >&lt;div&gt;&lt;a href=&quot;{!f_Link_to_Event}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px;&quot;&gt;&lt;strong&gt;&lt;u&gt;{!$Record.Event_Name_Formula__c}&lt;/u&gt;&lt;/strong&gt;&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;strong style=&quot;color: rgb(50, 50, 50); font-size: 14px;&quot;&gt;Registrant&lt;/strong&gt;&lt;span style=&quot;color: rgb(50, 50, 50); font-size: 14px;&quot;&gt;: {!$Record.Badge_Full_Name__c}&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;strong style=&quot;color: rgb(50, 50, 50); font-size: 14px;&quot;&gt;Registrant Phone: &lt;/strong&gt;&lt;span style=&quot;color: rgb(50, 50, 50); font-size: 14px;&quot;&gt;{!$Record.Registrant_Phone__c}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;strong style=&quot;color: rgb(50, 50, 50); font-size: 14px;&quot;&gt;Registrant Email&lt;/strong&gt;&lt;span style=&quot;color: rgb(50, 50, 50); font-size: 14px;&quot;&gt;: {!$Record.Registrant_Email__c}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;a href=&quot;{!f_Link_to_Registration}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px;&quot;&gt;&lt;strong&gt;&lt;u&gt;Registration Information&lt;/u&gt;&lt;/strong&gt;&lt;/a&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;:&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;color: rgb(50, 50, 50); font-size: 14px;&quot;&gt;Registrant Company&lt;/strong&gt;&lt;span style=&quot;color: rgb(50, 50, 50); font-size: 14px;&quot;&gt;: {!$Record.Reg_Company_Name__c}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;strong style=&quot;color: rgb(50, 50, 50); font-size: 14px;&quot;&gt;Registrant Account&lt;/strong&gt;&lt;span style=&quot;color: rgb(50, 50, 50); font-size: 14px;&quot;&gt;: {!$Record.Registrant_Name__r.Account_Name_Lookup_Formula__c}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; background-color: rgb(255, 255, 255); color: rgb(50, 50, 50);&quot;&gt;Registrant Account Owner&lt;/strong&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255); color: rgb(50, 50, 50);&quot;&gt;: {!$Record.Account_Owner__c}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; background-color: rgb(255, 255, 255); color: rgb(50, 50, 50);&quot;&gt;Paid Pass?&lt;/strong&gt;:&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255); color: rgb(50, 50, 50);&quot;&gt; {!f_Paid_Registration_Text}&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;div&gt;&lt;a href=&quot;{!f_Link_to_Event_Contract}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px;&quot;&gt;&lt;strong&gt;&lt;u&gt;Sponsorship Information&lt;/u&gt;&lt;/strong&gt;&lt;/a&gt;&lt;span style=&quot;font-size: 14px;&quot;&gt;:&amp;nbsp;&lt;/span&gt;&lt;/div&gt;&lt;ul&gt;&lt;li&gt;&lt;strong style=&quot;color: rgb(50, 50, 50); font-size: 14px;&quot;&gt;Sponsor Company&lt;/strong&gt;&lt;span style=&quot;color: rgb(50, 50, 50); font-size: 14px;&quot;&gt;: {!$Record.Sponsor_Company__c}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;strong style=&quot;color: rgb(50, 50, 50); font-size: 14px;&quot;&gt;Sponsor Account&lt;/strong&gt;&lt;span style=&quot;color: rgb(50, 50, 50); font-size: 14px;&quot;&gt;: {!$Record.Contract_Account__c}&lt;/span&gt;&lt;/li&gt;&lt;li&gt;&lt;strong style=&quot;font-size: 14px; background-color: rgb(255, 255, 255); color: rgb(50, 50, 50);&quot;&gt;Sponsor Account Owner&lt;/strong&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255); color: rgb(50, 50, 50);&quot;&gt;: {!var_Sponsor_Account_Owner}&lt;/span&gt;&lt;/li&gt;&lt;/ul&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;a href=&quot;https://erepublic.lightning.force.com/lightning/r/Report/00O5Y00000Dk1lBUAR/view?queryScope=userFolders&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;Sponsor Account Mismatches - This Week&lt;/strong&gt;&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;a href=&quot;https://erepublic.lightning.force.com/lightning/setup/Flows/page?address=%2F3005Y000000UUwhQAG%3FretUrl%3D%2Flightning%2Fsetup%2FFlows%2Fhome&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 11px;&quot;&gt;Email Alert - Flow&lt;/a&gt;&lt;/div&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>var_Sponsor_Account_Id</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Sponsor_Account_Owner</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Sponsor_Account_Owner_Email</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

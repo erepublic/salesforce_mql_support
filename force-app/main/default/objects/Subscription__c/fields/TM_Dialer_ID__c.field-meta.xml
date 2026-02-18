@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TM_Dialer_ID__c</fullName>
+    <description
+  >The ID of the telemarketing transaction for the subscription.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >The ID of the telemarketing transaction for the subscription.</inlineHelpText>
+    <label>TM Dialer ID</label>
+    <length>100</length>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

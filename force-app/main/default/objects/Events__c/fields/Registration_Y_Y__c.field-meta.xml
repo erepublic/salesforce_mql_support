@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Registration_Y_Y__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( last_years_event__c &lt;&gt; null,
+
+HYPERLINK(&quot;https://erepublic.lightning.force.com/lightning/r/Report/00O1O0000088cuuUAA/view?fv0=&quot; &amp; 
+
+SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Name, &quot; &quot;, &quot;%20&quot;), &quot;&apos;&quot;, &quot;%27&quot;), &quot;,&quot;, &quot;%2C&quot;)     &amp;
+
+&quot;&amp;fv1=&quot; &amp; SUBSTITUTE( last_years_event__r.Name , &quot; &quot;, &quot;%20&quot;)  &amp;
+
+&quot;&amp;fv2=&quot; &amp; SUBSTITUTE( Days_Since_Last_Event__c , &quot; &quot;, &quot;%20&quot;), &quot;Today&quot;),null) &amp; 
+
+IF(AND( last_years_event__c  &lt;&gt; null, Standardized_Event_Name__c  &lt;&gt; null ), &quot; | &quot;, null) &amp; 
+
+IF( AND( Standardized_Event_Name__c &lt;&gt; null, last_years_event__c &lt;&gt; null ),
+
+HYPERLINK(&quot;https://erepublic.lightning.force.com/lightning/r/Report/00OJw00000A0pzFMAR/view?fv0=&quot; &amp; 
+
+SUBSTITUTE(SUBSTITUTE(SUBSTITUTE(Standardized_Event_Name__c, &quot; &quot;, &quot;%20&quot;), &quot;&apos;&quot;, &quot;%27&quot;), &quot;,&quot;, &quot;%2C&quot;), &quot;12 weeks&quot;),null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Registration Y/Y</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

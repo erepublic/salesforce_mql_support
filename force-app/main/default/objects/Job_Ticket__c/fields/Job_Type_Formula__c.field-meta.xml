@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Job_Type_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >IF (ISPICKVAL(Job_Type__c,&quot;Awards&quot;),&quot;a4P1O000000q0fw&quot;,
+IF (ISPICKVAL(Job_Type__c,&quot;Conference Bags&quot;),&quot;a4P1O000000q0gG&quot;,
+IF (ISPICKVAL(Job_Type__c,&quot;Estimate&quot;),&quot;a4P1O000000q0ga&quot;,
+IF (ISPICKVAL(Job_Type__c,&quot;Estimate Request&quot;),&quot;a4P1O000000q0gf&quot;,
+IF (ISPICKVAL(Job_Type__c,&quot;General&quot;),&quot;a4P1O000000q0g6&quot;,
+IF (ISPICKVAL(Job_Type__c,&quot;Glasses and Napkins&quot;),&quot;a4P1O000000q0gB&quot;,
+IF (ISPICKVAL(Job_Type__c,&quot;Lanyards and Notebooks&quot;),&quot;a4P1O000000q0gL&quot;,
+IF (ISPICKVAL(Job_Type__c,&quot;Mail Services Order&quot;),&quot;a4P1O000000q0gk&quot;,
+IF (ISPICKVAL(Job_Type__c,&quot;Print Order Production&quot;),&quot;a4P1O000000q0gp&quot;,
+IF (ISPICKVAL(Job_Type__c,&quot;Print Order Production - Signs&quot;),&quot;a4P5Y000000rfep&quot;,
+IF (ISPICKVAL(Job_Type__c,&quot;Design&quot;),&quot;a4P1O000000q0g1&quot;,&quot;a4P1O000000q0g1&quot;)
+)
+)
+)
+)
+)
+)
+)
+)
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Job Type Formula</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

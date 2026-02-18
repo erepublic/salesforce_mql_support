@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Webinars_2026</fullName>
+    <booleanFilter>(1 OR 5) AND 2 AND 3 AND 4</booleanFilter>
+    <columns>Event_Type__c</columns>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Event_Month__c</columns>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Targeted_Registration__c</columns>
+    <columns>Target_Type__c</columns>
+    <columns>Actual_Attended_Qualified__c</columns>
+    <columns>Qualified_Leads__c</columns>
+    <columns>Industry_Registrations__c</columns>
+    <columns>No_Show_Rate__c</columns>
+    <columns>GL_Code_Finance__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>2026</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Events__c.Marketing_Webinar,Events__c.Webinar</value>
+    </filters>
+    <filters>
+        <field>Event_Type__c</field>
+        <operation>equals</operation>
+        <value
+    >Custom,Custom Roundtable,Lunch &amp; Learn Webinar,State Editorial Roundtable,State-Specific Webinar,Webinar,Virtual Conversation</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>notContain</operation>
+        <value>TEST,EE. CANCELLED,Workgroup</value>
+    </filters>
+    <filters>
+        <field>Event_Year__c</field>
+        <operation>equals</operation>
+        <value>2026</value>
+    </filters>
+    <label>Webinars 2026</label>
+</ListView>

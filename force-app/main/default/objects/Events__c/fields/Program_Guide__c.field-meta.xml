@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Program_Guide__c</fullName>
+    <label>Program Guide</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>External Print</fullName>
+                <default>false</default>
+                <label>Large Event</label>
+            </value>
+            <value>
+                <fullName>In-house Print</fullName>
+                <default>false</default>
+                <label>Small Event</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

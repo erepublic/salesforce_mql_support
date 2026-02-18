@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Add_Reason_for_Escalation</fullName>
+    <active>true</active>
+    <description
+  >Must specify a reason for escalating a web ticket priority to High or Critical.</description>
+    <errorConditionFormula>AND(
+    $UserRole.Name &lt;&gt; &quot;Web Development&quot;,
+    $User.ProfileId &lt;&gt; &quot;00e30000000vQoq&quot;, /* System Administrator */
+    RecordTypeId = &quot;01230000001R3Yk&quot;,
+    Reason_for_Escalation__c = null,
+    OR(
+       AND(
+           ISCHANGED(Priority__c) = True,
+           DATEVALUE(CreatedDate) &gt; DATE(2025,06,16),
+           OR(
+              ISPICKVAL(Priority__c, &quot;Critical&quot;),
+              AND(
+                  ISPICKVAL(Priority__c, &quot;High&quot;),           
+                  NOT(ISPICKVAL(PRIORVALUE(Priority__c),&quot;Critical&quot;))
+              )
+           )
+       ),
+       AND(
+           ISNEW(),
+           OR(
+              ISPICKVAL(Priority__c, &quot;Critical&quot;),
+              ISPICKVAL(Priority__c, &quot;High&quot;)
+           )
+      )
+    )
+)</errorConditionFormula>
+    <errorDisplayField>Reason_for_Escalation__c</errorDisplayField>
+    <errorMessage
+  >Please specify a reason for escalating this ticket to &quot;High&quot; or &quot;Critical&quot; priority.</errorMessage>
+</ValidationRule>

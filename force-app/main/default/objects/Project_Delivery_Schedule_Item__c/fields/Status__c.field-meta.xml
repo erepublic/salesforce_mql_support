@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <description>For tracking Digital Marketing deliverables.</description>
+    <label>Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Posted</fullName>
+                <default>false</default>
+                <label>Posted</label>
+            </value>
+            <value>
+                <fullName>Creative Received</fullName>
+                <default>false</default>
+                <label>Creative Received</label>
+            </value>
+            <value>
+                <fullName>Creative Pending</fullName>
+                <default>false</default>
+                <label>Creative Pending</label>
+            </value>
+            <value>
+                <fullName>Content Studio</fullName>
+                <default>false</default>
+                <label>Content Studio</label>
+            </value>
+            <value>
+                <fullName>Stalled</fullName>
+                <default>false</default>
+                <label>Stalled</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

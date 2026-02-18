@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description
+  >Updates the Exp Code, Exp Year, and Ramp Id from the Line Reference.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>ExpCode</name>
+        <dataType>String</dataType>
+        <expression>CASE(
+  MID({!$Record.c2g__LineReference__c}, FIND(&quot;Flow.C&quot;, {!$Record.c2g__LineReference__c}) + 6, 3),
+  &quot;110&quot;, &quot;Staff Travel&quot;,
+  &quot;120&quot;, &quot;A/V&quot;,
+  &quot;130&quot;, &quot;Advisory Board Meetings&quot;,
+  &quot;140&quot;, &quot;Advisory Board Travel&quot;,
+  &quot;150&quot;, &quot;Awards&quot;,
+  &quot;160&quot;, &quot;Bags&quot;,
+  &quot;170&quot;, &quot;Caterer&quot;,
+  &quot;180&quot;, &quot;Decorator&quot;,
+  &quot;190&quot;, &quot;Electrical&quot;,
+  &quot;200&quot;, &quot;Event Parking (Sponsor)&quot;,
+  &quot;210&quot;, &quot;Facility&quot;,
+  &quot;220&quot;, &quot;Interpreter&quot;,
+  &quot;230&quot;, &quot;Keynote (Fee + Travel)&quot;,
+  &quot;240&quot;, &quot;Lanyards&quot;,
+  &quot;250&quot;, &quot;Moderator(s) + Travel&quot;,
+  &quot;260&quot;, &quot;Notebooks&quot;,
+  &quot;270&quot;, &quot;Parking (Not Sponsored)&quot;,
+  &quot;280&quot;, &quot;Photographer&quot;,
+  &quot;290&quot;, &quot;Plants&quot;,
+  &quot;300&quot;, &quot;Power Banks&quot;,
+  &quot;310&quot;, &quot;Program Printing&quot;,
+  &quot;320&quot;, &quot;Reception&quot;,
+  &quot;330&quot;, &quot;Security&quot;,
+  &quot;340&quot;, &quot;Shipping Fees&quot;,
+  &quot;350&quot;, &quot;Signage&quot;,
+  &quot;360&quot;, &quot;Stage Sign&quot;,
+  &quot;370&quot;, &quot;Temp Fees&quot;,
+  &quot;380&quot;, &quot;Temps&quot;,
+  &quot;390&quot;, &quot;Wi-Fi (Not Sponsored)&quot;,
+  &quot;400&quot;, &quot;Wi-Fi (Sponsor)&quot;,
+  &quot;410&quot;, &quot;Other 1&quot;,
+  &quot;185&quot;, &quot;Deposit&quot;,
+  &quot;385&quot;, &quot;Travel Scholarships&quot;,
+  &quot;388&quot;, &quot;Unused Travel&quot;,
+  &quot;412&quot;, &quot;Other 2&quot;,
+  &quot;413&quot;, &quot;Other 3&quot;,
+  &quot;414&quot;, &quot;Other 4&quot;,
+  &quot;415&quot;, &quot;Other 5&quot;,
+  &quot;&quot; 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>ExpYr</name>
+        <dataType>String</dataType>
+        <expression
+    >MID({!$Record.c2g__LineReference__c}, FIND(&quot;Y&quot;, {!$Record.c2g__LineReference__c}) + 1, 4)</expression>
+    </formulas>
+    <formulas>
+        <name>RampId</name>
+        <dataType>String</dataType>
+        <expression
+    >MID({!$Record.c2g__LineReference__c}, FIND(&quot;RAMP.&quot;, {!$Record.c2g__LineReference__c}) + 5, 36)</expression>
+    </formulas>
+    <interviewLabel
+  >Transaction Line Item - RT BS - Update Expense Codes {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Transaction Line Item - RT BS - Update Expense Codes</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Transaction_Line_Item</name>
+        <label>Update Transaction Line Item</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <inputAssignments>
+            <field>Exp_Code__c</field>
+            <value>
+                <elementReference>ExpCode</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Exp_Year__c</field>
+            <value>
+                <elementReference>ExpYr</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Ramp_Id__c</field>
+            <value>
+                <elementReference>RampId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Transaction_Line_Item</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>c2g__LineReference__c</field>
+            <operator>StartsWith</operator>
+            <value>
+                <stringValue>Flow</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Ramp_Id__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue />
+            </value>
+        </filters>
+        <object>c2g__codaTransactionLineItem__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

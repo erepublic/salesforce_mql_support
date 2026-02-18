@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sacramento_County__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText
+  >Used to indicate that this person or location is in Sacramento County for property tax purposes.</inlineHelpText>
+    <label>Sacramento County</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

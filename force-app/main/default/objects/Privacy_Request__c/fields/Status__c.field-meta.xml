@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <defaultValue>&quot;New&quot;</defaultValue>
+    <label>Status</label>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>New</fullName>
+                <default>false</default>
+                <label>New</label>
+            </value>
+            <value>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+                <label>In Progress</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+            <value>
+                <fullName>Closed</fullName>
+                <default>false</default>
+                <label>Closed</label>
+            </value>
+            <value>
+                <fullName>Duplicate Request</fullName>
+                <default>false</default>
+                <label>Duplicate Request</label>
+            </value>
+            <value>
+                <fullName>Denied</fullName>
+                <default>false</default>
+                <label>Denied</label>
+            </value>
+            <value>
+                <fullName>Closed – Cannot Verify Validity</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Closed – Cannot Verify Validity</label>
+            </value>
+            <value>
+                <fullName>Closed – Not a CA resident</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Closed – Not a CA resident</label>
+            </value>
+            <value>
+                <fullName
+        >Closed – Not in database / Cannot provide copy of information</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label
+        >Closed – Not in database / Cannot provide copy of information</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

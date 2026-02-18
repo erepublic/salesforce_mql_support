@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Requested_By__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <inlineHelpText
+  >User requesting Treatment, or the user claiming an available Treatment</inlineHelpText>
+    <label>Requested By</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Treatments3</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

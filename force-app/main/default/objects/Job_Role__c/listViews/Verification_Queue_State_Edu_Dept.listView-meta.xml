@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verification_Queue_State_Edu_Dept</fullName>
+    <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+    <columns>Verification_Date__c</columns>
+    <columns>Refresh_Date__c</columns>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Job_Role_Title__c</columns>
+    <columns>State_Details__c</columns>
+    <columns>Contact_Status__c</columns>
+    <columns>Queue__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>includes</operation>
+        <value>State Superintendent of Education</value>
+    </filters>
+    <filters>
+        <field>Target_Role_Comm_Dev__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Jurisdiction_State_Details__c</field>
+        <operation>contains</operation>
+        <value>State Education Department</value>
+    </filters>
+    <label>Verification Queue - State Edu Dept</label>
+</ListView>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Qual__c</fullName>
+    <description>Qualification status of the subscription.</description>
+    <inlineHelpText>Qualification status of the subscription.</inlineHelpText>
+    <label>Qual</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Requestor</fullName>
+                <default>false</default>
+                <label>Requestor</label>
+            </value>
+            <value>
+                <fullName>Non-Requestor</fullName>
+                <default>false</default>
+                <label>Non-Requestor</label>
+            </value>
+            <value>
+                <fullName>Paid Requestor</fullName>
+                <default>false</default>
+                <label>Paid Requestor</label>
+            </value>
+            <value>
+                <fullName>Lifetime Requestor</fullName>
+                <default>false</default>
+                <label>Lifetime Requestor</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

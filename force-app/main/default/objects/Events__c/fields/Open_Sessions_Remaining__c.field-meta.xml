@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Sessions_Remaining__c</fullName>
+    <description
+  >Filed to indicate which sessions are still open for this event. Field displays on inventory tracker.</description>
+    <inlineHelpText
+  >Filed to indicate which sessions are still open for this event. Field displays on inventory tracker.</inlineHelpText>
+    <label>Open Sessions Remaining</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

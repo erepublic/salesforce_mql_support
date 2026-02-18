@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <customErrors>
+        <name>Oops_Cannot_Delete_Project_Record</name>
+        <label>Oops Cannot Delete Project Record</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <customErrorMessages>
+            <errorMessage
+      >Cannot delete record. Please submit a request to salesforce@erepublic.com.</errorMessage>
+            <isFieldError>false</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <description
+  >Custom Error displayed when a user attempts to delete a Content Studio or Center Research project record. Excludes Business Optimization Role.</description>
+    <environments>Default</environments>
+    <interviewLabel
+  >Project - BD - Cannot Delete Project Record {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Project - BD - Cannot Delete Project Record</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Oops_Cannot_Delete_Project_Record</targetReference>
+        </connector>
+        <filterFormula>OR(
+      {!$Record.RecordTypeId} = &quot;01230000000PNIk&quot;,   /* Project - Center Research */
+      {!$Record.RecordTypeId} = &quot;0125Y000001bPG9&quot;, /* Project - Content Studio */
+      {!$Record.RecordTypeId} = &quot;01230000000wS4x&quot;    /* Project - Content Studio (Legacy) */
+)
+&amp;&amp;
+{!$UserRole.Name} &lt;&gt; &quot;Business Optimization&quot;</filterFormula>
+        <object>SFL5_Projects__c</object>
+        <recordTriggerType>Delete</recordTriggerType>
+        <triggerType>RecordBeforeDelete</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

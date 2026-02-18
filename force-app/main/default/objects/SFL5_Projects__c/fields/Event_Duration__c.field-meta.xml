@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Duration__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  ISBLANK(TEXT(Event__r.Duration_minutes__c)),
+  &quot;&quot;,
+  TEXT( Event__r.Duration_minutes__c )&amp;&quot; minutes&quot;
+)</formula>
+    <label>Event Duration</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

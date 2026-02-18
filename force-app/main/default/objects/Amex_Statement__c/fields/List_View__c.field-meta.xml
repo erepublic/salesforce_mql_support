@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>List_View__c</fullName>
+    <description
+  >Link to List Views for statements closing on either the 16th or the 29th based on control number.</description>
+    <externalId>false</externalId>
+    <formula>CASE(Control__c, 
+&quot;11004&quot;, HYPERLINK(&quot;/lightning/o/Amex_Card_Statement__c/list?filterName=00B1400000AX8EQ&quot;, &quot;Closing 28th&quot;),
+&quot;11007&quot;, HYPERLINK(&quot;/lightning/o/Amex_Card_Statement__c/list?filterName=00B1400000AX8EQ&quot;, &quot;Closing 28th&quot;),
+&quot;21005&quot;, HYPERLINK(&quot;/lightning/o/Amex_Card_Statement__c/list?filterName=00B1400000AX8Ea&quot;, &quot;Closing 23rd&quot;),
+&quot;21006&quot;, HYPERLINK(&quot;/lightning/o/Amex_Card_Statement__c/list?filterName=00B1400000AX8Ea&quot;, &quot;Closing 23rd&quot;),
+&quot;21009&quot;, HYPERLINK(&quot;/lightning/o/Amex_Card_Statement__c/list?filterName=00B1400000AX8Ea&quot;, &quot;Closing 23rd&quot;),
+&quot;51002&quot;, HYPERLINK(&quot;/lightning/o/Amex_Card_Statement__c/list?filterName=00B1400000AX8Ea&quot;, &quot;Closing 23rd&quot;),
+&quot;61003&quot;, HYPERLINK(&quot;/lightning/o/Amex_Card_Statement__c/list?filterName=00B1400000AX8Ea&quot;, &quot;Closing 23rd&quot;)
+,&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Link to List Views for statements closing on either the 16th or the 29th based on control number.</inlineHelpText>
+    <label>List View</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

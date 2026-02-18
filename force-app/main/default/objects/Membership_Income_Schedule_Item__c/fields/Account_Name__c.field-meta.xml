@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Name__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >IF( Monthly_Account_Name__c &lt;&gt; &quot;&quot;, Monthly_Account_Name__c,  Membership_Contract__r.Membership_Name__r.Account_Name__r.Name )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Account Name (Income)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Queue__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( 
+    OR(INCLUDES(State_Details__c , &quot;State Chief Information Officer&quot;),
+       INCLUDES(State_Details__c , &quot;State Chief Technology Officer&quot;),
+       INCLUDES(State_Details__c , &quot;Deputy State Chief Information Officer&quot;),
+       INCLUDES(State_Details__c , &quot;State Chief Information Security Officer&quot;),
+       INCLUDES(State_Details__c , &quot;Deputy State Chief Information Security Officer&quot;)
+       ), 
+    &quot;Queue 1&quot;, 
+IF( 
+    AND(
+        OR(INCLUDES(State_Details__c , &quot;City Chief Data Officer&quot;),
+           INCLUDES(State_Details__c , &quot;City Head&quot;),
+           INCLUDES(State_Details__c , &quot;City CIO&quot;),
+           INCLUDES(State_Details__c , &quot;City Deputy CIO&quot;),
+           INCLUDES(State_Details__c , &quot;City CISO&quot;),
+           INCLUDES(State_Details__c , &quot;City CTO&quot;),
+           INCLUDES(State_Details__c , &quot;County Chief Data Officer&quot;),
+           INCLUDES(State_Details__c , &quot;County Head&quot;),
+           INCLUDES(State_Details__c , &quot;County CIO&quot;),
+           INCLUDES(State_Details__c , &quot;County Deputy CIO&quot;),
+           INCLUDES(State_Details__c , &quot;County CISO&quot;),
+           INCLUDES(State_Details__c , &quot;County CTO&quot;)
+           ),
+          Account__r.Top_200_City_or_County__c = True 
+    ), 
+    &quot;Queue 2&quot;, 
+IF(
+   ISBLANK(State_Details__c)=False, 
+   &quot;Queue 3&quot;, 
+IF( 
+    OR(INCLUDES(Quick_Picks__c , &quot;01.01 - Head of IT&quot;),
+       INCLUDES(Quick_Picks__c , &quot;01.02 - Deputy Head of IT&quot;),
+       INCLUDES(Quick_Picks__c , &quot;01.03 - Chief Technology Officer&quot;),
+       INCLUDES(Quick_Picks__c , &quot;01.04 - Head of IT Security&quot;),
+       INCLUDES(Quick_Picks__c , &quot;01.05 - Deputy Head of IT Security&quot;),
+       INCLUDES(Quick_Picks__c , &quot;01.06 - Head of Privacy&quot;),
+       INCLUDES(Quick_Picks__c , &quot;01.07 - Deputy Head of Privacy&quot;),
+       INCLUDES(Quick_Picks__c , &quot;01.08 - Head of Risk&quot;),
+       INCLUDES(Quick_Picks__c , &quot;01.09 - Deputy Head of Risk&quot;),
+       INCLUDES(Quick_Picks__c , &quot;01.10 - Head of Data&quot;),
+       INCLUDES(Quick_Picks__c , &quot;01.11 - Deputy Head of Data&quot;),
+       INCLUDES(Quick_Picks__c , &quot;01.12 - Head of Networks/Telecomunications&quot;),
+       INCLUDES(Quick_Picks__c , &quot;01.13 - Deputy Head of Networks/Telecomunications&quot;),
+       INCLUDES(Quick_Picks__c , &quot;01.14 - Head of Innovation&quot;),
+       INCLUDES(Quick_Picks__c , &quot;01.15 - Deputy Head of Innovation&quot;),
+       INCLUDES(Quick_Picks__c , &quot;01.16 - Head of AI&quot;)
+    ), 
+    &quot;Queue 4&quot;, 
+IF( 
+   Queue_Type__c = &quot;Salesforce Queue&quot;, 
+   &quot;Queue 5&quot;, 
+
+&quot;Queue 6&quot;
+) 
+)
+)
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Queue</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

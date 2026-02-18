@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>File__c</fullName>
+    <label>File</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName
+        >output from CD - indd file + high res PDF (offset crop marks .25)</fullName>
+                <default>false</default>
+                <label
+        >output from CD - indd file + high res PDF (offset crop marks .25)</label>
+            </value>
+            <value>
+                <fullName
+        >FTP - indd file + high res PDF (offset crop marks .25)</fullName>
+                <default>false</default>
+                <label
+        >FTP - indd file + high res PDF (offset crop marks .25)</label>
+            </value>
+            <value>
+                <fullName>FTP - high res PDF (offset crop marks .25)</fullName>
+                <default>false</default>
+                <label>FTP - high res PDF (offset crop marks .25)</label>
+            </value>
+            <value>
+                <fullName>mag .pdf</fullName>
+                <default>false</default>
+                <label>mag .pdf</label>
+            </value>
+            <value>
+                <fullName>viewable .pdf (single pg)</fullName>
+                <default>false</default>
+                <label>viewable .pdf (single pg)</label>
+            </value>
+            <value>
+                <fullName>printable .pdf (single pg)</fullName>
+                <default>false</default>
+                <label>printable .pdf (single pg)</label>
+            </value>
+            <value>
+                <fullName>printable .pdf (printer SPRD)</fullName>
+                <default>false</default>
+                <label>printable .pdf (printer SPRD)</label>
+            </value>
+            <value>
+                <fullName>viewable and printable .pdfs (single pg)</fullName>
+                <default>false</default>
+                <label>viewable and printable .pdfs (single pg)</label>
+            </value>
+            <value>
+                <fullName
+        >viewable .pdf (single pg) + printable .pdf (printer SPRD)</fullName>
+                <default>false</default>
+                <label
+        >viewable .pdf (single pg) + printable .pdf (printer SPRD)</label>
+            </value>
+            <value>
+                <fullName>.jpg file</fullName>
+                <default>false</default>
+                <label>.jpg file</label>
+            </value>
+            <value>
+                <fullName>HIGH RES .jpg file</fullName>
+                <default>false</default>
+                <label>HIGH RES .jpg file</label>
+            </value>
+            <value>
+                <fullName>.jpg file (30K max)</fullName>
+                <default>false</default>
+                <label>.jpg file (30K max)</label>
+            </value>
+            <value>
+                <fullName>.svg file</fullName>
+                <default>false</default>
+                <label>.svg file</label>
+            </value>
+            <value>
+                <fullName>.eps file</fullName>
+                <default>false</default>
+                <label>.eps file</label>
+            </value>
+            <value>
+                <fullName>.png file</fullName>
+                <default>false</default>
+                <label>.png file</label>
+            </value>
+            <value>
+                <fullName>.tif file</fullName>
+                <default>false</default>
+                <label>.tif file</label>
+            </value>
+            <value>
+                <fullName>.gif file</fullName>
+                <default>false</default>
+                <label>.gif file</label>
+            </value>
+            <value>
+                <fullName>.pptx file</fullName>
+                <default>false</default>
+                <label>.pptx file</label>
+            </value>
+            <value>
+                <fullName>InDesign file</fullName>
+                <default>false</default>
+                <label>InDesign file</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <environments>Default</environments>
+    <interviewLabel
+  >Paper Download - RT BS - Non-Qual Private Sector {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Paper Download - RT BS - Non-Qual Private Sector</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description
+    >Marks non-qual TRUE if contact (&quot;registrant&quot;) has a Private Sector record type.</description>
+        <name>Non_Qual_Paper_Download</name>
+        <label>Non-Qual Paper Download</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <inputAssignments>
+            <field>Non_Qual__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Non_Qual_Paper_Download</targetReference>
+        </connector>
+        <filterFormula
+    >{!$Record.Registrant__r.RecordTypeId} = &quot;012300000008caR&quot; /*Private Sector*/
+&amp;&amp;
+{!$Record.Non_Qual__c} &lt;&gt; TRUE
+&amp;&amp;
+{!$Record.Registrant__r.Title_Filter_Public_Sector_1__c} &lt;&gt; TRUE
+&amp;&amp;
+NOT(LOWER(RIGHT({!$Record.Registrant__r.Email_Domain__c},4))=&quot;.gov&quot;)
+&amp;&amp;
+NOT(LOWER(RIGHT({!$Record.Registrant__r.Email_Domain__c},4))=&quot;.edu&quot;)
+&amp;&amp;
+NOT(CONTAINS(LOWER({!$Record.Registrant__r.Email_Domain__c}),&quot;state.&quot;))
+&amp;&amp;
+{!$Record.Paper__r.Allow_Private_Sector__c} &lt;&gt; TRUE</filterFormula>
+        <object>Paper_Download__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Paid_Learners</fullName>
+    <columns>NAME</columns>
+    <columns>Username__c</columns>
+    <columns>Active_Formula__c</columns>
+    <columns>Expired__c</columns>
+    <columns>Learner_Type__c</columns>
+    <columns>Assigned_Seat__c</columns>
+    <columns>Status__c</columns>
+    <columns>Standardized_Course_Name__c</columns>
+    <columns>Enrollment_Key_Sent_Date__c</columns>
+    <columns>Enrollment_Date__c</columns>
+    <columns>Date_Expires__c</columns>
+    <columns>Completed_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Learner_Type__c</field>
+        <operation>equals</operation>
+        <value>Paid</value>
+    </filters>
+    <filters>
+        <field>Course_Account_Name__c</field>
+        <operation>notEqual</operation>
+        <value>Pretend Computer Company Inc.,e.Republic</value>
+    </filters>
+    <label>Paid Learners</label>
+</ListView>

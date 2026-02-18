@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Guidelines__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/t/CustomMedia/EXXbfVkhFwxLvZpItjRi-zQBUeLzZZvlslUHVJunWhahxw?e=Z4L7fc&amp;wdLOR=c02F5005C-871D-4FB3-BC50-CC25DBCB4EE7&quot;,&quot;Payment Guidelines&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Payment Guidelines</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

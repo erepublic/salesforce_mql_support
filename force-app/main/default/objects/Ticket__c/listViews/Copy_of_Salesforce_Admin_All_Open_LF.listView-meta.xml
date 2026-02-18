@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_Salesforce_Admin_All_Open_LF</fullName>
+    <booleanFilter
+  >1 AND 2 AND 3 AND 4 AND 6 AND (5 OR 7) AND 8 AND 9</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Type__c</columns>
+    <columns>Phase__c</columns>
+    <columns>Age__c</columns>
+    <columns>Total_Hours_Logged__c</columns>
+    <columns>Estimated_Hours_to_Complete__c</columns>
+    <columns>Title__c</columns>
+    <columns>Working_Date__c</columns>
+    <columns>Most_Recent_Note__c</columns>
+    <columns>Requested_By__c</columns>
+    <columns>ETA__c</columns>
+    <columns>Created_Date__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Salesforce</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>notEqual</operation>
+        <value
+    >Closed,Contract Cycle Finished,Canceled,Waiting on DEV,Waiting Room,On Hold,Hopper,Needs Review</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed,Void</value>
+    </filters>
+    <filters>
+        <field>Assignee__c</field>
+        <operation>equals</operation>
+        <value>Lauren Fahndrich</value>
+    </filters>
+    <filters>
+        <field>Working_Date__c</field>
+        <operation>lessThan</operation>
+        <value>NEXT_MONTH</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>notEqual</operation>
+        <value
+    >Ticket #85738,Ticket #85159,Ticket #85018,Ticket #66779,Ticket #55519,Ticket #72124,Ticket #81620</value>
+    </filters>
+    <filters>
+        <field>Working_Date__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Parent_Ticket__c</field>
+        <operation>notEqual</operation>
+        <value>Ticket #66684</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>notEqual</operation>
+        <value>Waiting on Response</value>
+    </filters>
+    <label>Salesforce Admin - Open LF (ex. waiting)</label>
+    <sharedTo>
+        <role>Business_Optimization</role>
+    </sharedTo>
+</ListView>

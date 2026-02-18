@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GT_Magazine_Subscribers__c</fullName>
+    <description>Active GT Magazine Subscribers</description>
+    <inlineHelpText>Active GT Magazine Subscribers</inlineHelpText>
+    <label>GT Magazine Subscribers</label>
+    <summaryFilterItems>
+        <field>Subscription__c.Status__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Subscription__c.Id</field>
+        <operation>equals</operation>
+        <value>Government Technology</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Subscription__c.RecordTypeId</field>
+        <operation>equals</operation>
+        <value>Qualified Sub</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Subscription__c.Publication__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

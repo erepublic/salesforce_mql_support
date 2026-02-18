@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inventory_Event_Type__c</fullName>
+    <description
+  >Specifies the type of event this is for use on the inventory tracker.</description>
+    <externalId>false</externalId>
+    <formula
+  >IF(Name = &quot;EE - California Public Sector CIO Academy 2024&quot;,&quot;Live&quot;,
+IF(Name = &quot;CDG - Chief Data Officer Summit 2024&quot;,&quot;Exclude&quot;,
+IF(Name = &quot;CDE - Higher Education CIO Leadership Council Meeting and Dinner 2024&quot;,&quot;Exclude&quot;,
+IF(CONTAINS(Name, &quot;Briefing&quot;), &quot;Exclude&quot;,
+CASE(Event_Type__c,
+&quot;Virtual Summit&quot;, &quot;Virtual&quot;,
+&quot;Standard_Invitation only&quot;, &quot;Live&quot;,
+&quot;Standard_Invitation only w/ Hub&quot;, &quot;Live&quot;,
+&quot;Standard_Public Sector only w/ Hub&quot;, &quot;Live&quot;,
+&quot;Standard_Private and Public Sector&quot;, &quot;Live&quot;,
+&quot;Standard_Public Sector only&quot;, &quot;Live&quot;,
+&quot;&quot;)))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Specifies the type of event this is for use on the inventory tracker.</inlineHelpText>
+    <label>Inventory Event Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amex_Card_Admin__c</fullName>
+    <description
+  >Displays the user that will submit Amex reports on behalf of the Card Holder.</description>
+    <externalId>false</externalId>
+    <formula
+  >Amex_Card_Holder__r.Email_Alert_First_Name__c &amp;&quot; &quot;&amp; Amex_Card_Holder__r.Email_Alert_Last_Name__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Displays the user that will submit Amex reports on behalf of the Card Holder.</inlineHelpText>
+    <label>Amex Card Admin</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

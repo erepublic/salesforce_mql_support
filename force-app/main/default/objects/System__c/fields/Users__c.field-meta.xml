@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Users__c</fullName>
+    <description
+  >The users or audience of the system. Can be a business vertical, can be an audience (eg. Govtech website visitors) or can be specific user names/emails.</description>
+    <label>Users</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

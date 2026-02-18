@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_Month_GT</fullName>
+    <columns>Project__c</columns>
+    <columns>Amount__c</columns>
+    <columns>Income_Category__c</columns>
+    <columns>PM_Note__c</columns>
+    <columns>Expense_Amount__c</columns>
+    <columns>Description__c</columns>
+    <columns>Category__c</columns>
+    <columns>Date__c</columns>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Date__c</field>
+        <operation>equals</operation>
+        <value>THIS_MONTH</value>
+    </filters>
+    <filters>
+        <field>Category__c</field>
+        <operation>equals</operation>
+        <value>GT Custom Event,GT Custom Media,GT Demand Gen,GT Webinar</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Project_Delivery_Schedule_Item__c.Custom_Media</value>
+    </filters>
+    <label>Current Month - 1. GT Custom Media</label>
+</ListView>

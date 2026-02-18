@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Cancel_a_Lifetime_Requestor</fullName>
+    <active>true</active>
+    <description
+  >Prevents a subscription with a qual of &quot;Lifetime Requestor&quot; from being set to Cancelled or Expired.</description>
+    <errorConditionFormula>AND(
+ISPICKVAL(Qual__c,&quot;Lifetime Requestor&quot;),
+
+OR(ISPICKVAL(Status__c,&quot;Cancelled&quot;),ISPICKVAL(Status__c,&quot;Expired&quot;))
+
+)</errorConditionFormula>
+    <errorMessage
+  >You cannot cancel or expire a subscription with a Qual of Lifetime Requestor.</errorMessage>
+</ValidationRule>

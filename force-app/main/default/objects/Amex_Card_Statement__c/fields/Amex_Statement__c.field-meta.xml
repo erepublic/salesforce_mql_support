@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amex_Statement__c</fullName>
+    <description
+  >The Consolidated Billing Remittance from American Express that this individual card statement is a part of.</description>
+    <inlineHelpText
+  >The Consolidated Billing Remittance from American Express that this individual card statement is a part of.</inlineHelpText>
+    <label>Amex Statement</label>
+    <referenceTo>Amex_Statement__c</referenceTo>
+    <relationshipName>Amex_Card_Statements</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Director_POD__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF( Event_Director_Lookup__c=&quot;&quot;, &quot;Unassigned&quot;,
+
+CASE( Event_Director_Lookup__c ,
+
+&quot;00530000006Ba2u&quot;, &quot;POD: Erica Patterson&quot;, /*Erica Patterson*/
+&quot;0051O00000D9n84&quot;, &quot;POD: Erica Patterson&quot;, /*Zach Thorn*/
+&quot;00530000003A32J&quot;, &quot;POD: Erica Patterson&quot;, /*Liese Miller*/
+&quot;0055Y00000I08ta&quot;, &quot;POD: Erica Patterson&quot;, /*Jessica Byerly*/
+&quot;00514000009tRCS&quot;, &quot;POD: Erica Patterson&quot;, /*Danni Chisick*/
+
+&quot;00530000003A32J&quot;, &quot;POD: Liese Miller&quot;, /*Liese Miller*/
+&quot;005Jw00000AMu5p&quot;, &quot;POD: Liese Miller&quot;, /*Monique Scott*/
+&quot;005Jw000011JXqQ&quot;, &quot;POD: Liese Miller&quot;, /*Mindy Lejune*/
+&quot;005Jw00000TXjKE&quot;, &quot;POD: Liese Miller&quot;, /*Jordan Wilkins*/
+
+&quot;0051O00000D9n84&quot;, &quot;POD: Zach Thorn&quot;, /*Zach Thorn*/
+&quot;0055Y00000I090C&quot;, &quot;POD: Zach Thorn&quot;, /*Helen Kang*/
+&quot;0055Y00000IQPQ4&quot;, &quot;POD: Zach Thorn&quot;, /*Ken Skeen*/
+&quot;0051O00000CqEGA&quot;, &quot;POD: Zach Thorn&quot;, /*Mark Androvich*/
+
+Event_Director_Lookup__r.FirstName &amp; &quot; &quot; &amp; Event_Director_Lookup__r.LastName))</formula>
+    <label>Event Director POD</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

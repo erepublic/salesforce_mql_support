@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Change_Status_to_Completed</fullName>
+    <active>true</active>
+    <description
+  >If the job order type is &quot;Custom Webinar Headers&quot; or &quot;Event Headers&quot;, status cannot change to Completed.</description>
+    <errorConditionFormula>AND(
+ISBLANK(Highlight_Color__c),
+OR(
+Job_Order_Type__c = &quot;Custom Webinar Headers&quot;,
+Job_Order_Type__c = &quot;Event Headers&quot;)&amp;&amp;
+ISPICKVAL( Status__c, &quot;Completed&quot;))</errorConditionFormula>
+    <errorDisplayField>Highlight_Color__c</errorDisplayField>
+    <errorMessage>Must add Highlight Color</errorMessage>
+</ValidationRule>

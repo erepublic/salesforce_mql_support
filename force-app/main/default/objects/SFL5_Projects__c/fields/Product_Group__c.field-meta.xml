@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Group__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(
+Product__c,
+&quot;Account Based Marketing&quot;, &quot;Demand Gen&quot;,
+&quot;Filtered Leads&quot;, &quot;Demand Gen&quot;,
+&quot;Multi-Touch Nurture&quot;, &quot;Demand Gen&quot;,
+&quot;Shared Leads&quot;, &quot;Demand Gen&quot;,
+&quot;Standard Leads&quot;, &quot;Demand Gen&quot;,
+&quot;Two-Step Nurture&quot;, &quot;Demand Gen&quot;,
+&quot;Case Study&quot;, &quot;Written&quot;,
+&quot;Executive Q&amp;A&quot;, &quot;Written&quot;,
+&quot;Go-to-Guide&quot;, &quot;Written&quot;,
+&quot;Handbook&quot;, &quot;Written&quot;,
+&quot;Infographic&quot;, &quot;Written&quot;,
+&quot;Issue Brief&quot;, &quot;Written&quot;,
+&quot;Persona-Based Paper&quot;, &quot;Written&quot;,
+&quot;Position Paper&quot;, &quot;Written&quot;,
+&quot;Rapid Roadmap&quot;, &quot;Written&quot;,
+&quot;Research Report&quot;, &quot;Written&quot;,
+&quot;Sponsored Article&quot;, &quot;Written&quot;,
+&quot;Thought Leadership Paper&quot;, &quot;Written&quot;,
+&quot;White Paper&quot;, &quot;Written&quot;,
+&quot;Custom Event&quot;, &quot;Webinar&quot;,
+&quot;Lunch &amp; Learn Webinar&quot;, &quot;Webinar&quot;,
+&quot;State-Specific Webinar&quot;, &quot;Webinar&quot;,
+&quot;Virtual Conversation&quot;, &quot;Webinar&quot;,
+&quot;Webinar&quot;, &quot;Webinar&quot;,
+&quot;Custom Roundtable&quot;, &quot;Roundtable&quot;,
+&quot;Editorial Roundtable&quot;, &quot;Roundtable&quot;,
+&quot;Custom&quot;, &quot;Custom&quot;,
+&quot;Social Toolkit&quot;, &quot;Custom&quot;,
+NULL
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >This field is used in filters throughout Content Studio Project Lightning Page</inlineHelpText>
+    <label>Product Group</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Number_of_Outstanding_Statements__c</fullName>
+    <description
+  >Shows the number of statements that are still outstanding for this month for this control group.</description>
+    <label>Reports Outstanding</label>
+    <summaryFilterItems>
+        <field>Amex_Card_Statement__c.Report_Status__c</field>
+        <operation>equals</operation>
+        <value>Outstanding</value>
+    </summaryFilterItems>
+    <summaryForeignKey
+  >Amex_Card_Statement__c.Amex_Statement__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

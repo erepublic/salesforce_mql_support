@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Update_Existing_File_Display__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >IF(ISBLANK(Update_Existing_File_URL__c),&quot; &quot;,HYPERLINK(Update_Existing_File_URL__c , &quot;View File&quot;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Update Existing File</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

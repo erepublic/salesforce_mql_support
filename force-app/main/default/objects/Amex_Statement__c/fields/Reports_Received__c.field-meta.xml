@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reports_Received__c</fullName>
+    <description
+  >The number of reports that have been received so far for this Amex Statement.</description>
+    <inlineHelpText
+  >The number of reports that have been received so far for this Amex Statement.</inlineHelpText>
+    <label>Reports Received</label>
+    <summaryFilterItems>
+        <field>Amex_Card_Statement__c.Report_Status__c</field>
+        <operation>equals</operation>
+        <value>Received - On-time, Received - Late</value>
+    </summaryFilterItems>
+    <summaryForeignKey
+  >Amex_Card_Statement__c.Amex_Statement__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

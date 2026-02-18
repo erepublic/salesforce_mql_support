@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Change_Log</name>
+        <label>Assign Change Log</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Change_Log__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Change_Log</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Current_Event_Name</name>
+        <label>Assign Current Event Name</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>var_Current_Event_Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Through_Events.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Events</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Prior_Event_Name</name>
+        <label>Assign Prior Event Name</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>var_Prior_Event_Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Loop_Through_Events.Name</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_Through_Events</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Current_or_Prior_Event</name>
+        <label>Current or Prior Event?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Loop_Through_Events</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Current_Event</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Through_Events.Id</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record.Event__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Current_Event_Name</targetReference>
+            </connector>
+            <label>Current Event</label>
+        </rules>
+        <rules>
+            <name>Prior_Event</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Loop_Through_Events.Id</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference>$Record__Prior.Event__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Prior_Event_Name</targetReference>
+            </connector>
+            <label>Prior Event</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Event_Changed</name>
+        <label>Event Changed?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Change_Log</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Event_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Event__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Current_Prior_Event</targetReference>
+            </connector>
+            <label>Yes, Event Changed</label>
+        </rules>
+    </decisions>
+    <description
+  >Updates the Contract&apos;s Change log whenever the Status, Event, Type, Sponsorship Level, Level Change, Branding Guidelines, Website, Special Terms, Event Passes, or Contact Role Changes are updated.
+1/6/2026 (v3): Updated Contact Role Change log to use Current Date instead of Last Modified Date.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Change_Log</name>
+        <dataType>String</dataType>
+        <expression>&quot;[&quot;
+&amp;TEXT(MONTH({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(DAY({!$Flow.CurrentDate}))
+&amp;&quot; &quot;
+&amp;UPPER(LEFT({!$User.Alias},2))
+&amp;&quot;] &quot;
+&amp;
+IF(ISCHANGED({!$Record.Event__c})=TRUE,&quot;Event was changed from &quot;&amp; {!var_Prior_Event_Name} &amp;&quot; to &quot;&amp; {!var_Current_Event_Name} &amp;&quot;.&quot; &amp;BR(),&quot;&quot;)
+&amp;
+IF(ISCHANGED( {!$Record.Type__c} )=TRUE,&quot;Type was changed to &quot;&amp; TEXT({!$Record.Type__c})&amp;&quot;.&quot; &amp;BR(),&quot;&quot;)
+&amp;
+IF(ISCHANGED( {!$Record.Sponsorship_Level__c})=TRUE,&quot;Sponsorship Level was changed from &quot;&amp;TEXT(PRIORVALUE({!$Record.Sponsorship_Level__c}))&amp;&quot; to &quot;&amp; TEXT({!$Record.Sponsorship_Level__c})&amp;&quot;.&quot; &amp;BR(),&quot;&quot;)
+&amp;
+IF(ISCHANGED( {!$Record.Level_Change__c} )=TRUE,&quot;Level Changed due to &quot;&amp; TEXT({!$Record.Level_Change__c})&amp;&quot;.&quot; &amp;BR(),&quot;&quot;)
+&amp;
+IF(ISCHANGED( {!$Record.Branding_Guidelines__c})=TRUE,&quot;Branding Guidelines was changed to &quot;&amp; {!$Record.Branding_Guidelines__c}&amp;&quot;.&quot; &amp;BR(),&quot;&quot;)
+&amp;
+IF(ISCHANGED( {!$Record.Website_Manual__c} )=TRUE,&quot;Website was changed to &quot;&amp; {!$Record.Website_Manual__c} &amp;&quot;.&quot; &amp;BR(),&quot;&quot;)
+&amp;
+IF(ISCHANGED( {!$Record.Sales_Rep_Contracts__c} )=TRUE,&quot;Sales Rep changed to &quot;&amp;{!$Record.Sales_Rep_Contracts__r.FirstName}&amp;&quot; &quot;&amp; {!$Record.Sales_Rep_Contracts__r.LastName}&amp;&quot;.&quot; &amp;BR(),&quot;&quot;)
+&amp;
+IF(ISCHANGED( {!$Record.Event_Passes__c} )=TRUE,&quot;Event Passes was changed from &quot;&amp;TEXT({!$Record__Prior.Event_Passes__c})&amp;&quot; to &quot;&amp; TEXT({!$Record.Event_Passes__c}) &amp;&quot;.&quot; &amp;BR(),&quot;&quot;)
+&amp;
+IF(ISCHANGED( {!$Record.SpecialTerms} )=TRUE,&quot;Special Terms updated.&quot;&amp;BR(),&quot;&quot;)
+&amp;
+IF(ISCHANGED( {!$Record.Contact_Role_Changes__c} )=TRUE,&quot;Contact Roles updated: &quot;&amp; {!$Record.Contact_Role_Changes__c} &amp;BR(),&quot;&quot;)
+&amp;
+{!$Record.Change_Log__c}</expression>
+    </formulas>
+    <formulas>
+        <name>f_Clear_Contact_Roles</name>
+        <dataType>String</dataType>
+        <expression
+    >IF({!$Record__Prior.Contact_Role_Changes__c}=null, &quot; &quot;, null)</expression>
+    </formulas>
+    <interviewLabel
+  >Contract - RT BS - Update Change Log {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contract - RT BS - Update Change Log</label>
+    <loops>
+        <name>Loop_Through_Events</name>
+        <label>Loop Through Events</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <collectionReference>Get_Current_Prior_Event</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Current_or_Prior_Event</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Assign_Change_Log</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Current_Prior_Event</name>
+        <label>Get Current/Prior Event</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Loop_Through_Events</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Event__c</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record__Prior.Event__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>Events__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Event_Changed</targetReference>
+        </connector>
+        <filterLogic
+    >1 AND (2 OR 3 OR 4 OR 5 OR 6 OR 7 OR 8 OR 9 OR 10)</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Draft</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Event__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Type__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Sponsorship_Level__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Level_Change__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Branding_Guidelines__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Website_Manual__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>SpecialTerms</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Event_Passes__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Contact_Role_Changes__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Contract</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>var_Current_Event_Name</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Prior_Event_Name</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

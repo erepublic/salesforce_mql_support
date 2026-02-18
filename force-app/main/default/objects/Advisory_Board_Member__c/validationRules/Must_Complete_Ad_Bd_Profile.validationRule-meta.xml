@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Must_Complete_Ad_Bd_Profile</fullName>
+    <active>false</active>
+    <errorConditionFormula>ISBLANK(Type__c)||
+ISBLANK(Title__c)||
+ISBLANK(Organization__c)||
+ISBLANK(Contact__c)</errorConditionFormula>
+    <errorMessage
+  >You must complete the Advisory Board profile for this contact before creating an Advisory Board membership.</errorMessage>
+</ValidationRule>

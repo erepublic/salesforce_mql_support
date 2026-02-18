@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CommDev_Tickets_ALl</fullName>
+    <booleanFilter>1 AND 2</booleanFilter>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Assignee__c</columns>
+    <columns>Assignee_2__c</columns>
+    <columns>Requested_By__c</columns>
+    <columns>Frequency__c</columns>
+    <columns>Contact_Pull_Contact_Count__c</columns>
+    <columns>Priority__c</columns>
+    <columns>Project_Notes__c</columns>
+    <columns>New_Note__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed,Void</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Government_List_Pull</value>
+    </filters>
+    <label>CommDev Tickets - All</label>
+</ListView>

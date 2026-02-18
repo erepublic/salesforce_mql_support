@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Webinar_Reg_Sponsor_Link_Required</fullName>
+    <active>true</active>
+    <description
+  >Webinar Registration Order Form Ticket requires the Sponsor-Coded Link field when status changes to &quot;Invite Sent for Approval&quot;</description>
+    <errorConditionFormula>AND(
+RecordTypeId = &apos;0121O000001lst2&apos; /*Webinar Registration Order Form*/,
+ISBLANK(Sponsor_Coded_Link__c ),
+ISCHANGED (Phase__c),
+TEXT(PRIORVALUE (Phase__c)) = &quot;In Progress&quot;,
+ISPICKVAL(Phase__c, &quot;Invite Sent for Approval&quot;)
+)</errorConditionFormula>
+    <errorMessage>Must add Sponsor-Coded Link</errorMessage>
+</ValidationRule>

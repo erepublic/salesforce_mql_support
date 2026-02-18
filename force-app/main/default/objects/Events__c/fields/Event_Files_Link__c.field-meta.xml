@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Files_Link__c</fullName>
+    <description>Links to an event&apos;s Files page.</description>
+    <externalId>false</externalId>
+    <formula>IF(
+  RecordTypeId = &quot;01214000000AUym&quot;,
+  HYPERLINK(&quot;https://erepublic.lightning.force.com/lightning/r/SFL5_Projects__c/&quot;&amp;Id&amp;&quot;/related/Projects__r/view&quot;, &quot;View Project Files&quot; , &quot;_blank&quot;),
+  HYPERLINK(&quot;https://erepublic.lightning.force.com/lightning/r/AttachedContentDocument/&quot;&amp;Id&amp;&quot;/related/AttachedContentDocuments/view&quot;, &quot;View Event Lists and Files&quot; , &quot;_blank&quot;)
+)</formula>
+    <label>Event Files Link</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

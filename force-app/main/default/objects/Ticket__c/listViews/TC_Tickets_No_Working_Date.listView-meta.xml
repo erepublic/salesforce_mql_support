@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TC_Tickets_No_Working_Date</fullName>
+    <columns>Priority__c</columns>
+    <columns>NAME</columns>
+    <columns>Requested_By__c</columns>
+    <columns>Type__c</columns>
+    <columns>Title__c</columns>
+    <columns>Phase__c</columns>
+    <columns>Project_Notes__c</columns>
+    <columns>Review__c</columns>
+    <columns>Created_Date__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>Working_Date__c</columns>
+    <columns>ETA__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Assignee__c</field>
+        <operation>equals</operation>
+        <value>,Tiffany Cianci</value>
+    </filters>
+    <filters>
+        <field>Working_Date__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>notEqual</operation>
+        <value
+    >Waiting on Response,Waiting on DEV,Waiting on SF Ops,On Hold,Canceled,Closed</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Sales_Operations</value>
+    </filters>
+    <label>TC Tickets (New / No Working Date)</label>
+</ListView>

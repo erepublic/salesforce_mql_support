@@ -1,0 +1,634 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow
+  xmlns="http://soap.sforce.com/2006/04/metadata"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+    <actionCalls>
+        <description
+    >Sends an email to Finance when cost is reduced.</description>
+        <name>Logistics_Financials_Estimated_Cost_Reduced</name>
+        <label>Logistics Financials - Estimated Cost Reduced</label>
+        <locationX>50</locationX>
+        <locationY>674</locationY>
+        <actionName
+    >Logistics_Financials__c.Logistics_Financials_Estimated_Cost_Reduced</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Logistics_Financials__c.Logistics_Financials_Estimated_Cost_Reduced</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <customProperties>
+        <name>ScreenProgressIndicator</name>
+        <value>
+            <stringValue
+      >{&quot;location&quot;:&quot;top&quot;,&quot;type&quot;:&quot;simple&quot;}</stringValue>
+        </value>
+    </customProperties>
+    <decisions>
+        <name>How_does_new_cost_compare_to_the_existing_one</name>
+        <label>How does new cost compare to the existing one?</label>
+        <locationX>446</locationX>
+        <locationY>350</locationY>
+        <defaultConnector>
+            <targetReference>Error_No_Change</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Equal to</defaultConnectorLabel>
+        <rules>
+            <name>Less_Than</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>New_Estimated_Cost</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <elementReference
+          >Triggering_LF_Record.Estimated_Cost__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Are_you_sure_you_want_to_reduce_estimate</targetReference>
+            </connector>
+            <label>Less Than</label>
+        </rules>
+        <rules>
+            <name>Greater_Than</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>New_Estimated_Cost</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <elementReference
+          >Triggering_LF_Record.Estimated_Cost__c</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Sure_you_want_to_send_PO</targetReference>
+            </connector>
+            <label>Greater Than</label>
+        </rules>
+    </decisions>
+    <dynamicChoiceSets>
+        <name>Payment_Method_Picklist_Set</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>Payment_Method__c</picklistField>
+        <picklistObject>Purchase_Order__c</picklistObject>
+    </dynamicChoiceSets>
+    <environments>Default</environments>
+    <formulas>
+        <name>EstimatedCostHistoryUpdateAfterPOCreated</name>
+        <dataType>String</dataType>
+        <expression>TEXT(TODAY()) &amp; &quot; - &quot; &amp;
+&quot; &quot; &amp; {!$User.FirstName} &amp; &quot; &quot; &amp; {!$User.LastName} &amp;
+&quot; submitted PO to increase estimated cost to $&quot; &amp;
+IF( {!New_Estimated_Cost}&gt;= 1000000, TEXT(FLOOR({!New_Estimated_Cost} / 1000000)) &amp; &quot;,&quot;, &quot;&quot; 
+) &amp; IF({!New_Estimated_Cost} &gt;= 1000,  RIGHT(TEXT(FLOOR({!New_Estimated_Cost} / 1000)), 3) &amp; &quot;,&quot;,  &quot;&quot; ) &amp; 
+RIGHT(TEXT(FLOOR({!New_Estimated_Cost})), 3) &amp; &quot;.&quot; &amp; 
+IF( MOD({!New_Estimated_Cost}, 1) * 100 &lt; 10, 
+  &quot;0&quot; &amp; TEXT(ROUND(MOD({!New_Estimated_Cost}, 1), 2) * 100), 
+  TEXT(MIN(ROUND(MOD({!New_Estimated_Cost}, 1), 2) * 100, 99)))
+
+
+ &amp;
+BR() &amp;
+{!Triggering_LF_Record.Estimated_Cost_History__c}</expression>
+    </formulas>
+    <formulas>
+        <description
+    >fills in the note with the reason for the change if not is blank on an increase</description>
+        <name>f_Other_Note</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    CONTAINS(
+        LOWER(TEXT({!Triggering_LF_Record.Category__c})),
+        &quot;other&quot;
+    ) &amp;&amp;
+    ISBLANK({!Triggering_LF_Record.Notes__c}),
+    {!Reason_for_Estimated_Cost_Change},
+    {!Triggering_LF_Record.Notes__c}
+)</expression>
+    </formulas>
+    <formulas>
+        <name>NullValueFormula</name>
+        <dataType>String</dataType>
+        <expression>NULL</expression>
+    </formulas>
+    <formulas>
+        <name>PurchaseOrderAmountFormula</name>
+        <dataType>Currency</dataType>
+        <expression
+    >IF(ISNULL({!Triggering_LF_Record.Estimated_Cost__c})&amp;&amp;ISNULL({!Triggering_LF_Record.Budget__c}), {!New_Estimated_Cost},
+IF(ISNULL({!Triggering_LF_Record.Estimated_Cost__c}), {!New_Estimated_Cost}-{!Triggering_LF_Record.Budget__c},
+{!New_Estimated_Cost}-{!Triggering_LF_Record.Estimated_Cost__c}
+))</expression>
+        <scale>2</scale>
+    </formulas>
+    <formulas>
+        <name>PurchaseOrderItemDescriptionFormula</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;Increase in &quot;&amp;TEXT({!Triggering_LF_Record.Category__c})&amp;&quot; cost due to: &quot;&amp;{!Reason_for_Estimated_Cost_Change}</expression>
+    </formulas>
+    <formulas>
+        <name>UpdateEstimatedCostHistory</name>
+        <dataType>String</dataType>
+        <expression>TEXT(TODAY()) &amp; &quot; - &quot; &amp;
+&quot; &quot; &amp; {!$User.FirstName} &amp; &quot; &quot; &amp; {!$User.LastName} &amp;
+&quot; reduced estimated cost to $&quot; &amp;
+IF( {!New_Estimated_Cost}&gt;= 1000000, TEXT(FLOOR({!New_Estimated_Cost} / 1000000)) &amp; &quot;,&quot;, &quot;&quot; 
+) &amp; IF({!New_Estimated_Cost} &gt;= 1000,  RIGHT(TEXT(FLOOR({!New_Estimated_Cost} / 1000)), 3) &amp; &quot;,&quot;,  &quot;&quot; ) &amp; 
+RIGHT(TEXT(FLOOR({!New_Estimated_Cost})), 3) &amp; &quot;.&quot; &amp; 
+IF( MOD({!New_Estimated_Cost}, 1) * 100 &lt; 10, 
+  &quot;0&quot; &amp; TEXT(ROUND(MOD({!New_Estimated_Cost}, 1), 2) * 100), 
+  TEXT(MIN(ROUND(MOD({!New_Estimated_Cost}, 1), 2) * 100, 99)))
+
+
+&amp;
+&quot;. Reason: &quot; &amp; {!Reason_for_Estimated_Cost_Change} &amp;
+BR() &amp;
+{!Triggering_LF_Record.Estimated_Cost_History__c}</expression>
+    </formulas>
+    <interviewLabel
+  >Logistics Financials - SF - Change Estimated Cost {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Logistics Financials - SF - Change Estimated Cost</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Purchase_Order</name>
+        <label>Create Purchase Order</label>
+        <locationX>314</locationX>
+        <locationY>566</locationY>
+        <assignRecordIdToReference
+    >CreatedPurchaseOrderRecordId</assignRecordIdToReference>
+        <connector>
+            <targetReference>Update_PO_on_LF_Record</targetReference>
+        </connector>
+        <faultConnector>
+            <targetReference>Error_Cannot_Create_PO</targetReference>
+        </faultConnector>
+        <inputAssignments>
+            <field>Amount__c</field>
+            <value>
+                <elementReference>PurchaseOrderAmountFormula</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Comments__c</field>
+            <value>
+                <elementReference
+        >Reason_for_Estimated_Cost_Change</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Event_Logistics_Financials__c</field>
+            <value>
+                <elementReference>Triggering_LF_Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Item_or_Service_Requested__c</field>
+            <value>
+                <elementReference
+        >Triggering_LF_Record.Category__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Originator__c</field>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>PO_Category__c</field>
+            <value>
+                <elementReference
+        >Screen_PO_Category_Lookup.recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Payment_Method__c</field>
+            <value>
+                <elementReference>Payment_Method</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Submit_to__c</field>
+            <value>
+                <elementReference>$User.PO_Submit_to__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Purchase_Order__c</object>
+    </recordCreates>
+    <recordLookups>
+        <name>Triggering_LF_Record</name>
+        <label>Triggering LF Record</label>
+        <locationX>446</locationX>
+        <locationY>134</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Change_Estimated_Cost_Screen</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Logistics_Financials__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Estimated_Cost_History</name>
+        <label>Update Estimated Cost &amp; History</label>
+        <locationX>50</locationX>
+        <locationY>566</locationY>
+        <connector>
+            <targetReference
+      >Logistics_Financials_Estimated_Cost_Reduced</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Estimated_Cost_History__c</field>
+            <value>
+                <elementReference>UpdateEstimatedCostHistory</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Estimated_Cost__c</field>
+            <value>
+                <elementReference>New_Estimated_Cost</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Logistics_Financials__c</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_PO_on_LF_Record</name>
+        <label>Update PO &amp; History on LF Record</label>
+        <locationX>314</locationX>
+        <locationY>674</locationY>
+        <connector>
+            <targetReference>PO_Created_Success_Message_Screen</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Estimated_Cost_History__c</field>
+            <value>
+                <elementReference
+        >EstimatedCostHistoryUpdateAfterPOCreated</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Notes__c</field>
+            <value>
+                <elementReference>f_Other_Note</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Logistics_Financials__c</object>
+    </recordUpdates>
+    <screens>
+        <name>Are_you_sure_you_want_to_reduce_estimate</name>
+        <label>Are you sure you want to reduce estimate?</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Update_Estimated_Cost_History</targetReference>
+        </connector>
+        <fields>
+            <name>sure_you_want_to_reduce_estimate</name>
+            <fieldText
+      >&lt;p&gt;Are you sure you want to reduce the estimated cost?&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Item or Service:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!Triggering_LF_Record.Category__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;New Estimated Cost:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!New_Estimated_Cost}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Reason for Estimated Cost Change:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!Reason_for_Estimated_Cost_Change}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <nextOrFinishButtonLabel>Submit</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Change_Estimated_Cost_Screen</name>
+        <label>Change Estimated Cost Screen</label>
+        <locationX>446</locationX>
+        <locationY>242</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference
+      >How_does_new_cost_compare_to_the_existing_one</targetReference>
+        </connector>
+        <fields>
+            <name>New_Estimated_Cost_Screen</name>
+            <fieldText
+      >&lt;p&gt;&lt;strong style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;PLEASE NOTE:&lt;/strong&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt; &lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;An &lt;/span&gt;&lt;em style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;increase &lt;/em&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;in the estimated cost will result in a &lt;/span&gt;&lt;strong style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;Purchase Order&lt;/strong&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt; being generated for approval.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;A &lt;/span&gt;&lt;em style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;decrease &lt;/em&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;in the estimated cost will not require a Purchase Order, but an &lt;/span&gt;&lt;strong style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt;email alert&lt;/strong&gt;&lt;span style=&quot;font-size: 14px; background-color: rgb(255, 255, 255);&quot;&gt; will be sent to finance.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>New_Estimated_Cost</name>
+            <dataType>Currency</dataType>
+            <fieldText>New Estimated Cost</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <scale>2</scale>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Reason_for_Estimated_Cost_Change</name>
+            <dataType>String</dataType>
+            <fieldText>Reason for Estimated Cost Change</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <nextOrFinishButtonLabel>Submit</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Error_Cannot_Create_PO</name>
+        <label>Error: Cannot Create PO</label>
+        <locationX>578</locationX>
+        <locationY>674</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <backButtonLabel>Go Back</backButtonLabel>
+        <fields>
+            <name>Cannot_Create_PO_Error_Message</name>
+            <fieldText
+      >&lt;p&gt;Error: Unable to create Purchase Order.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <nextOrFinishButtonLabel>Cancel</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Error_No_Change</name>
+        <label>Error: No Change</label>
+        <locationX>842</locationX>
+        <locationY>458</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <backButtonLabel>Go Back</backButtonLabel>
+        <fields>
+            <name>Equal_Message</name>
+            <fieldText
+      >&lt;p&gt;New Estimated Cost is the same as the existing Estimated Cost.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <nextOrFinishButtonLabel>Cancel</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>PO_Created_Success_Message_Screen</name>
+        <label>PO_Created_Success_Message</label>
+        <locationX>314</locationX>
+        <locationY>782</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>PO_Created_Success_Message</name>
+            <fieldText
+      >&lt;p&gt;&lt;strong&gt;Success! &lt;/strong&gt;Estimated Cost will update when the PO is approved.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <nextOrFinishButtonLabel>Close</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Sure_you_want_to_send_PO</name>
+        <label>Sure you want to create PO?</label>
+        <locationX>314</locationX>
+        <locationY>458</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <backButtonLabel>Go Back</backButtonLabel>
+        <connector>
+            <targetReference>Create_Purchase_Order</targetReference>
+        </connector>
+        <fields>
+            <name>Update_Estimated_Cost_Check_Screen</name>
+            <fieldText
+      >&lt;p&gt;Are you sure you want to submit a purchase order?&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Item or Service:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!Triggering_LF_Record.Category__c}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Amount of Increase:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!PurchaseOrderAmountFormula}&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Comments:&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;{!Reason_for_Estimated_Cost_Change}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Screen_PO_Category_Lookup</name>
+            <extensionName>flowruntime:lookup</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>fieldApiName</name>
+                <value>
+                    <stringValue>PO_Category__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue>PO Category</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>objectApiName</name>
+                <value>
+                    <stringValue>Purchase_Order__c</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>required</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>recordId</name>
+                <value>
+                    <elementReference
+          >Triggering_LF_Record.Event__r.PO_Category__r.Id</elementReference>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Payment_Method</name>
+            <choiceReferences>Payment_Method_Picklist_Set</choiceReferences>
+            <dataType>String</dataType>
+            <defaultValue>
+                <stringValue>Ramp Card</stringValue>
+            </defaultValue>
+            <fieldText>Payment Method</fieldText>
+            <fieldType>DropdownBox</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <nextOrFinishButtonLabel>Create PO</nextOrFinishButtonLabel>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>320</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Triggering_LF_Record</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>EstimatedCostReducedEmail</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text
+    >&lt;p&gt;&lt;strong&gt;Change in Estimated Cost&lt;/strong&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Category:&lt;/strong&gt;&amp;nbsp;{!Triggering_LF_Record.Category__c}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Event:&lt;/strong&gt;&amp;nbsp;{!&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Triggering_LF_Record&lt;/span&gt;.Event__c}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;New Estimated Cost: &lt;/strong&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!New_Estimated_Cost}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Reason: &lt;/strong&gt;&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!Reason_for_Estimated_Cost_Change}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong&gt;View Details:&lt;/strong&gt; https://erepublic.lightning.force.com/&lt;span style=&quot;background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!Triggering_LF_Record.Id}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://erepublic.lightning.force.com/builder_platform_interaction/flowBuilder.app?flowId=301Jw00000kQrarIAC&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 8px;&quot;&gt;Triggered from Flow&lt;/a&gt;&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>CreatedPurchaseOrderRecordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

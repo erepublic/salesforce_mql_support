@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Current_Month_EM</fullName>
+    <columns>Project__c</columns>
+    <columns>Amount__c</columns>
+    <columns>Description__c</columns>
+    <columns>Category__c</columns>
+    <columns>Date__c</columns>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Date__c</field>
+        <operation>equals</operation>
+        <value>THIS_MONTH</value>
+    </filters>
+    <filters>
+        <field>Category__c</field>
+        <operation>equals</operation>
+        <value>EM Custom Media,EM Custom Video,EM Webinar</value>
+    </filters>
+    <label>Current Month - 3. EM Custom Media</label>
+</ListView>

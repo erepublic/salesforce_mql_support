@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Printer__c</fullName>
+    <label>Printer</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Delta Print</fullName>
+                <default>false</default>
+                <label>Delta Print</label>
+            </value>
+            <value>
+                <fullName>GotPrint</fullName>
+                <default>false</default>
+                <label>GotPrint</label>
+            </value>
+            <value>
+                <fullName>RUSH Imprint</fullName>
+                <default>false</default>
+                <label>RUSH Imprint</label>
+            </value>
+            <value>
+                <fullName>Quad</fullName>
+                <default>false</default>
+                <label>Quad</label>
+            </value>
+            <value>
+                <fullName>Eclipse Awards</fullName>
+                <default>false</default>
+                <label>Eclipse Awards</label>
+            </value>
+            <value>
+                <fullName>FALCOR</fullName>
+                <default>false</default>
+                <label>FALCOR</label>
+            </value>
+            <value>
+                <fullName>Kinkos</fullName>
+                <default>false</default>
+                <label>Kinkos</label>
+            </value>
+            <value>
+                <fullName>Fabric Sign Guys</fullName>
+                <default>false</default>
+                <label>Fabric Sign Guys</label>
+            </value>
+            <value>
+                <fullName>ARC</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ARC</label>
+            </value>
+            <value>
+                <fullName>Fry Communications</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Fry Communications</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

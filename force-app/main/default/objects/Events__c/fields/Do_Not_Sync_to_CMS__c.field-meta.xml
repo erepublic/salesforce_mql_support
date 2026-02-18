@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Do_Not_Sync_to_CMS__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >If this is selected, this record will not sync to the e.Republic CMS system when this record is saved.</description>
+    <inlineHelpText
+  >If this is selected, this record will not sync to the e.Republic CMS system when this record is saved.</inlineHelpText>
+    <label>Do Not Sync to CMS</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

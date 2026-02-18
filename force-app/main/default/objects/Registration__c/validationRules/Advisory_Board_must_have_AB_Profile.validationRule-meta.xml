@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Advisory_Board_must_have_AB_Profile</fullName>
+    <active>true</active>
+    <errorConditionFormula>ISBLANK ( Registrant_Name__r.AB_Last_Name__c )
+&amp;&amp; 
+Reg_Advisory_Board__c = True</errorConditionFormula>
+    <errorMessage
+  >You must complete the Contact&apos;s Advisory Board Profile in order to register them as an Advisory Board member for this event.</errorMessage>
+</ValidationRule>

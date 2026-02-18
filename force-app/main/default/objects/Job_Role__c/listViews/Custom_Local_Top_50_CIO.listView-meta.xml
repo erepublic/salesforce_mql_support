@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Custom_Local_Top_50_CIO</fullName>
+    <booleanFilter>1 AND ((2 AND 3) OR 4) AND (5 OR 6)</booleanFilter>
+    <columns>Verification_Date__c</columns>
+    <columns>Refresh_Date__c</columns>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Job_Role_Title__c</columns>
+    <columns>State_Details__c</columns>
+    <columns>Contact_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>includes</operation>
+        <value>City CIO,County CIO</value>
+    </filters>
+    <filters>
+        <field>Account_Top_50_100_200__c</field>
+        <operation>contains</operation>
+        <value>50</value>
+    </filters>
+    <filters>
+        <field>Account_Jurisdiction_Level__c</field>
+        <operation>equals</operation>
+        <value
+    >City,City Department,Consolidated,County,County Department</value>
+    </filters>
+    <filters>
+        <field>Parent_Account__c</field>
+        <operation>contains</operation>
+        <value>Los Angeles,New York City,City of Chicago</value>
+    </filters>
+    <filters>
+        <field>Verification_Date__c</field>
+        <operation>lessThan</operation>
+        <value>LAST_N_MONTHS:6</value>
+    </filters>
+    <filters>
+        <field>Last_Verification_Date_Tier__c</field>
+        <operation>equals</operation>
+        <value>03 - 180 - 364 days,04 - 365+ days,Unverified</value>
+    </filters>
+    <label>Custom - Local Top 50 CIO</label>
+</ListView>

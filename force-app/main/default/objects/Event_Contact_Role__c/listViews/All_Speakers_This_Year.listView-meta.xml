@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Speakers_This_Year</fullName>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Event__c</columns>
+    <columns>Role__c</columns>
+    <columns>Contact_Role_Notes__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Title__c</columns>
+    <columns>Primary__c</columns>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Event_Contact_Role__c.Contact</value>
+    </filters>
+    <filters>
+        <field>Role__c</field>
+        <operation>equals</operation>
+        <value>Speaker</value>
+    </filters>
+    <filters>
+        <field>Event_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Cancelled</value>
+    </filters>
+    <filters>
+        <field>Event_Start_Date__c</field>
+        <operation>equals</operation>
+        <value>THIS_YEAR</value>
+    </filters>
+    <filters>
+        <field>Role_Not_Needed__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <filters>
+        <field>Event__c</field>
+        <operation>notContain</operation>
+        <value>Badge Scanner,TEST</value>
+    </filters>
+    <label>All Speakers - This Year</label>
+</ListView>

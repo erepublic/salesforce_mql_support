@@ -1,0 +1,1788 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Alpha_A_C</name>
+        <label>Assign Alpha A - C</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Territory_Strategic__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_A_C_Strategic</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Territory_Growth__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_A_C_Growth</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Alpha_D_F</name>
+        <label>Assign Alpha D - F</label>
+        <locationX>314</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Territory_Strategic__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_D_F_Strategic</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Territory_Growth__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_D_F_Growth</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Alpha_G_H</name>
+        <label>Assign Alpha G - H</label>
+        <locationX>578</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Territory_Strategic__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_G_H_Strategic</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Territory_Growth__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_G_H_Growth</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Alpha_I_M</name>
+        <label>Assign Alpha I - M</label>
+        <locationX>842</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Territory_Strategic__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_I_M_Strategic</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Territory_Growth__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_I_M_Growth</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Alpha_N_P</name>
+        <label>Assign Alpha N - P</label>
+        <locationX>1106</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Territory_Strategic__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_N_P_Strategic</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Territory_Growth__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_N_P_Growth</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Alpha_Other</name>
+        <label>Assign Alpha Other</label>
+        <locationX>2162</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Territory_Strategic__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_Other_Strategic</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Territory_Growth__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_Other_Growth</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Alpha_Q_R</name>
+        <label>Assign Alpha Q - R</label>
+        <locationX>1370</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Territory_Strategic__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_Q_R_Strategic</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Territory_Growth__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_Q_R_Growth</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Alpha_S_T</name>
+        <label>Assign Alpha S - T</label>
+        <locationX>1634</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Territory_Strategic__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_S_T_Strategic</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Territory_Growth__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_S_T_Growth</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Alpha_U_Z</name>
+        <label>Assign Alpha U - Z</label>
+        <locationX>1898</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Territory_Strategic__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_U_Z_Strategic</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Territory_Growth__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Route_U_Z_Growth</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Which_first_character</name>
+        <label>Which first character?</label>
+        <locationX>1106</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Alpha_Other</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel># or Symbol</defaultConnectorLabel>
+        <rules>
+            <name>A_C</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>A</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>B</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>C</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Alpha_A_C</targetReference>
+            </connector>
+            <label>A - C</label>
+        </rules>
+        <rules>
+            <name>D_F</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>D</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>E</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>F</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Alpha_D_F</targetReference>
+            </connector>
+            <label>D - F</label>
+        </rules>
+        <rules>
+            <name>G_H</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>G</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>H</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Alpha_G_H</targetReference>
+            </connector>
+            <label>G - H</label>
+        </rules>
+        <rules>
+            <name>I_M</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>I</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>J</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>K</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>L</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>M</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Alpha_I_M</targetReference>
+            </connector>
+            <label>I - M</label>
+        </rules>
+        <rules>
+            <name>N_P</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>N</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>O</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>P</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Alpha_N_P</targetReference>
+            </connector>
+            <label>N - P</label>
+        </rules>
+        <rules>
+            <name>Q_R</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Q</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>R</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Alpha_Q_R</targetReference>
+            </connector>
+            <label>Q - R</label>
+        </rules>
+        <rules>
+            <name>S_T</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>S</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>T</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Alpha_S_T</targetReference>
+            </connector>
+            <label>S - T</label>
+        </rules>
+        <rules>
+            <name>U_Z</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>U</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>V</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>W</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>X</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Y</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Account_First_Char</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Z</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Alpha_U_Z</targetReference>
+            </connector>
+            <label>U - Z</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Account_First_Char</name>
+        <dataType>String</dataType>
+        <expression>LEFT({!$Record.Name}, 1)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Growth_1_Ce</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(
+    OR(
+       AND(
+           REGEX(LEFT({!$Record.Name},1),&quot;[cC]&quot;),
+           REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[f-zF-Z]&quot;)
+       ),
+       REGEX(LEFT({!$Record.Name},1),&quot;[d-zD-Z]&quot;)
+   )
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Growth_Cf_Fi</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+   AND(
+       REGEX(LEFT({!$Record.Name},1),&quot;[cC]&quot;),
+       REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[f-zF-Z]&quot;)
+   ),
+       REGEX(LEFT({!$Record.Name},1),&quot;[d-eD-E]&quot;),
+   AND(
+       REGEX(LEFT({!$Record.Name},1),&quot;[fF]&quot;),
+       OR(
+       LEN({!$Record.Name})=1, /* Allows for account named &quot;F&quot; */
+       REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[^j-zJ-Z]&quot;)
+       )
+  )
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Growth_Fj_H</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+   AND(
+       REGEX(LEFT({!$Record.Name},1),&quot;[fF]&quot;),
+       REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[j-zJ-Z]&quot;)
+   ),
+   REGEX(LEFT({!$Record.Name},1),&quot;[g-hG-H]&quot;)
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Growth_I_M</name>
+        <dataType>Boolean</dataType>
+        <expression
+    >REGEX(LEFT({!$Record.Name},1),&quot;[i-mI-M]&quot;)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Growth_N_P</name>
+        <dataType>Boolean</dataType>
+        <expression
+    >REGEX(LEFT({!$Record.Name},1),&quot;[n-pN-P]&quot;)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Growth_Q_R</name>
+        <dataType>Boolean</dataType>
+        <expression
+    >REGEX(LEFT({!$Record.Name},1),&quot;[q-rQ-R]&quot;)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Growth_S</name>
+        <dataType>Boolean</dataType>
+        <expression>REGEX(LEFT({!$Record.Name},1),&quot;[sS]&quot;)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Growth_T_Un</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+   REGEX(LEFT({!$Record.Name},1),&quot;[tT]&quot;),
+   AND(
+       REGEX(LEFT({!$Record.Name},1),&quot;[uU]&quot;),
+       OR(
+          LEN({!$Record.Name})=1, /* Allows for account named &quot;U&quot; */
+          REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[^o-zO-Z]&quot;)
+       )
+  )
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Growth_Uo_Z</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+   AND(
+       REGEX(LEFT({!$Record.Name},1),&quot;[uU]&quot;),
+       REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[o-zO-Z]&quot;)
+   ),
+   REGEX(LEFT({!$Record.Name},1),&quot;[v-zV-Z]&quot;)
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Growth Alphas that include Account Names starting with A, B, or C.</description>
+        <name>f_Route_A_C_Growth</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!f_Growth_1_Ce} = True, 
+    &quot;# - Ce&quot;, 
+IF(
+   {!f_Growth_Cf_Fi} = True,
+   &quot;Cf - Fi&quot;,
+   &quot;Error&quot;
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Strategic Alphas that include Account Names starting with A, B, or C.</description>
+        <name>f_Route_A_C_Strategic</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!f_Strategic_1_At} = True, 
+    &quot;# - At&quot;,  
+IF(
+    {!f_Strategic_Au_Cf} = True, 
+    &quot;Au - Cf&quot;,
+IF(
+   {!f_Strategic_Cg_Cz} = True,
+   &quot;Cg - Cz&quot;,
+   &quot;Error&quot;
+)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Growth Alphas that include Account Names starting with D, E, or F.</description>
+        <name>f_Route_D_F_Growth</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!f_Growth_Cf_Fi} = True, 
+    &quot;Cf - Fi&quot;, 
+IF(
+   {!f_Growth_Fj_H} = True,
+   &quot;Fj - H&quot;,
+   &quot;Error&quot;
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Strategic Alphas that include Account Names starting with D, E, or F.</description>
+        <name>f_Route_D_F_Strategic</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!f_Strategic_D_Er}= True, 
+    &quot;D - Er&quot;,  
+IF(
+    {!f_Strategic_Es_Gn}= True, 
+    &quot;Es - Gn&quot;,
+IF(
+   {!f_Strategic_Go_Ic} = True,
+   &quot;Go - Ic&quot;,
+   &quot;Error&quot;
+)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Growth Alphas that include Account Names starting with G, or H.</description>
+        <name>f_Route_G_H_Growth</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!f_Growth_Fj_H} = True, 
+    &quot;Fj - H&quot;, 
+   &quot;Error&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Strategic Alphas that include Account Names starting with G, or H.</description>
+        <name>f_Route_G_H_Strategic</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!f_Strategic_Es_Gn} = True, 
+    &quot;Es - Gn&quot;,  
+IF(
+    {!f_Strategic_Go_Ic} = True, 
+    &quot;Go - Ic&quot;,
+   &quot;Error&quot;
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Growth Alphas that include Account Names starting with I, J, K, L, or M.</description>
+        <name>f_Route_I_M_Growth</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!f_Growth_I_M} = True, 
+    &quot;I - M&quot;, 
+   &quot;Error&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Strategic Alphas that include Account Names starting with I, J, K, L, or M.</description>
+        <name>f_Route_I_M_Strategic</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!f_Strategic_Go_Ic} = True, 
+    &quot;Go - Ic&quot;,  
+IF(
+   {!f_Strategic_Id_Ln} = True,
+   &quot;Id - Ln&quot;,
+IF(
+   {!f_Strategic_Lo_Nh} = True,
+   &quot;Lo - Nh&quot;,
+   &quot;Error&quot;
+)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Growth Alphas that include Account Names starting with N, O, or P.</description>
+        <name>f_Route_N_P_Growth</name>
+        <dataType>String</dataType>
+        <expression>IF(
+   {!f_Growth_N_P} = True,
+   &quot;N - P&quot;,
+   &quot;Error&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Strategic Alphas that include Account Names starting with N, O, or P.</description>
+        <name>f_Route_N_P_Strategic</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!f_Strategic_Lo_Nh} = True, 
+    &quot;Lo - Nh&quot;,  
+IF(
+    {!f_Strategic_Ni_Pk} = True, 
+    &quot;Ni - Pk&quot;,
+IF(
+   {!f_Strategic_Pl_R} = True,
+   &quot;Pl - R&quot;,
+   &quot;Error&quot;
+)
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Growth Alphas that include Account Names starting with a Number or a Symbol.</description>
+        <name>f_Route_Other_Growth</name>
+        <dataType>String</dataType>
+        <expression>IF(
+   {!f_Growth_1_Ce},
+   &quot;# - Ce&quot;,  
+  &quot;Error&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Strategic Alphas that include Account Names starting with a Number or a Symbol.</description>
+        <name>f_Route_Other_Strategic</name>
+        <dataType>String</dataType>
+        <expression>IF(
+   {!f_Strategic_1_At},
+   &quot;# - At&quot;,  
+  &quot;Error&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Growth Alphas that include Account Names starting with Q or R.</description>
+        <name>f_Route_Q_R_Growth</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!f_Growth_Q_R} = True, 
+    &quot;Q - R&quot;, 
+   &quot;Error&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Strategic Alphas that include Account Names starting with Q or R.</description>
+        <name>f_Route_Q_R_Strategic</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!f_Strategic_Pl_R} = True, 
+    &quot;Pl - R&quot;,  
+   &quot;Error&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Growth Alphas that include Account Names starting with S or T.</description>
+        <name>f_Route_S_T_Growth</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!f_Growth_S} = True, 
+    &quot;S&quot;, 
+IF(
+   {!f_Growth_T_Un} = True,
+   &quot;T - Un&quot;,
+   &quot;Error&quot;
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Strategic Alphas that include Account Names starting with S or T.</description>
+        <name>f_Route_S_T_Strategic</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!f_Strategic_Sa_So} = True, 
+    &quot;Sa - So&quot;,  
+IF(
+    {!f_Strategic_Sp_T} = True, 
+    &quot;Sp - T&quot;,
+   &quot;Error&quot;
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Growth Alphas that include Account Names starting with U, V, W, X, Y, or Z.</description>
+        <name>f_Route_U_Z_Growth</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!f_Growth_T_Un} = True, 
+    &quot;T - Un&quot;, 
+IF(
+   {!f_Growth_Uo_Z} = True,
+   &quot;Uo - Z&quot;,
+   &quot;Error&quot;
+)
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Include any Strategic Alphas that include Account Names starting with U, V, W, X, Y, or Z.</description>
+        <name>f_Route_U_Z_Strategic</name>
+        <dataType>String</dataType>
+        <expression>IF(
+    {!f_Strategic_U_Z} = True, 
+    &quot;U - Z&quot;,  
+   &quot;Error&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Strategic_1_At</name>
+        <dataType>Boolean</dataType>
+        <expression>/* Alpha [# - At] */
+  NOT(
+          OR(
+               AND( REGEX(LEFT({!$Record.Name},1),&quot;[aA]&quot;),
+                         REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[u-zU-Z]&quot;) ),
+               REGEX(LEFT({!$Record.Name},1),&quot;[b-zB-Z]&quot;) ) )</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Strategic_Au_Cf</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+       AND( REGEX(LEFT({!$Record.Name},1),&quot;[aA]&quot;),
+                 REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[u-zU-Z]&quot;) ),
+      REGEX(LEFT({!$Record.Name},1),&quot;[bB]&quot;),
+      AND( REGEX(LEFT({!$Record.Name},1),&quot;[cC]&quot;),
+              OR( LEN({!$Record.Name}) = 1, /* Allows for account named &quot;C&quot; */
+                     REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[^g-zG-Z]&quot;) ) ) )</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Strategic_Cg_Cz</name>
+        <dataType>Boolean</dataType>
+        <expression>AND( REGEX(LEFT({!$Record.Name},1),&quot;[cC]&quot;),
+              REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[g-zG-Z]&quot;) )</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Strategic_D_Er</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+   REGEX(LEFT({!$Record.Name},1),&quot;[dD]&quot;),
+   AND(
+       REGEX(LEFT({!$Record.Name},1),&quot;[eE]&quot;),
+       OR(
+          LEN({!$Record.Name})=1, /* Allows for account named &quot;E&quot; */
+          REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[^s-zS-Z]&quot;)
+      )
+   )
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Strategic_Es_Gn</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+   AND(
+       REGEX(LEFT({!$Record.Name},1),&quot;[eE]&quot;),
+       REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[s-zS-Z]&quot;)
+      ),
+   REGEX(LEFT({!$Record.Name},1),&quot;[fF]&quot;),
+   AND(
+       REGEX(LEFT({!$Record.Name},1),&quot;[gG]&quot;),       
+       OR(
+          LEN({!$Record.Name})=1, /* Allows for account named &quot;G&quot; */
+          REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[^o-zO-Z]&quot;)
+         )
+      )
+  )</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Strategic_Go_Ic</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+   AND(
+       REGEX(LEFT({!$Record.Name},1),&quot;[gG]&quot;),
+       REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[o-zO-Z]&quot;)
+      ),
+   REGEX(LEFT({!$Record.Name},1),&quot;[hH]&quot;),
+   AND(
+       REGEX(LEFT({!$Record.Name},1),&quot;[iI]&quot;),
+       OR( 
+       LEN({!$Record.Name})=1, /* Allows for account named &quot;I&quot; */
+       REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[^d-zD-Z]&quot;)
+        )
+      )
+  )</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Strategic_Id_Ln</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+   AND(
+       REGEX(LEFT({!$Record.Name},1),&quot;[iI]&quot;),
+       REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[d-zD-Z]&quot;)
+      ),
+   REGEX(LEFT({!$Record.Name},1),&quot;[j-kJ-K]&quot;),
+   AND(
+       REGEX(LEFT({!$Record.Name},1),&quot;[lL]&quot;),
+       OR(
+          LEN({!$Record.Name})=1, /* Allows for account named &quot;L&quot; */
+          REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[^o-zO-Z]&quot;)
+        )
+      )
+   )</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Strategic_Lo_Nh</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+  AND(
+      REGEX(LEFT({!$Record.Name},1),&quot;[lL]&quot;),
+      REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[o-zO-Z]&quot;)
+    ),
+    REGEX(LEFT({!$Record.Name},1),&quot;[mM]&quot;),
+    AND(
+        REGEX(LEFT({!$Record.Name}, 1), &quot;[nN]&quot;),
+        OR(
+           LEN({!$Record.Name}) = 1, /* Allows for accounts named &quot;N&quot; */
+           REGEX(MID({!$Record.Name}, 2, 1), &quot;[^i-zI-Z]&quot;)
+           )
+       )
+  )</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Strategic_Ni_Pk</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+  AND(
+    REGEX(LEFT({!$Record.Name},1),&quot;[nN]&quot;),
+    REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[i-zI-Z]&quot;)
+   ),
+   REGEX(LEFT({!$Record.Name},1),&quot;[oO]&quot;),
+   AND(
+       REGEX(LEFT({!$Record.Name},1),&quot;[pP]&quot;),
+       OR( 
+          LEN({!$Record.Name})=1, /* Allows for Account named &quot;P&quot; */
+          REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[^l-zL-Z]&quot;)
+         )
+   )
+ )</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Strategic_Pl_R</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+  AND(
+    REGEX(LEFT({!$Record.Name},1),&quot;[pP]&quot;),
+    REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[l-zL-Z]&quot;)
+   ),
+    REGEX(LEFT({!$Record.Name},1),&quot;[q-rQ-R]&quot;)
+  )</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Strategic_Sa_So</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+    REGEX(LEFT({!$Record.Name},1),&quot;[sS]&quot;),
+    OR(
+       LEN({!$Record.Name})=1, /* Allows for account named &quot;S&quot; */
+       REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+     )
+  )</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Strategic_Sp_T</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+   AND(
+       REGEX(LEFT({!$Record.Name},1),&quot;[sS]&quot;),
+       REGEX(MID({!$Record.Name}, 2, 1) ,&quot;[p-zP-Z]&quot;)
+     ),
+   REGEX(LEFT({!$Record.Name},1),&quot;[tT]&quot; )
+ )</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Note 1: This formula intentionally written inefficiently to make it easy to adjust any alpha group.
+
+    Pattern:
+    IF(
+        OR(
+              AND(
+                       REGEX(LEFT(Name,1),&quot;[cC]&quot;), &lt;-FIRST CHAR
+                       REGEX(MID(Name, 2, 1) ,&quot;[f-zF-Z]&quot;) &lt;-RANGE OF SECOND CHAR
+              ),
+              REGEX(LEFT(Name,1),&quot;[d-eD-E]&quot;), &lt;-RANGE OF OTHER FIRST CHARS (&quot;IN BETWEEN&quot; FIRST CHARS)
+             AND(
+                      REGEX(LEFT(Name,1),&quot;[fF]&quot;), &lt;-LAST ALLOWED FIRST CHAR
+                      REGEX(MID(Name, 2, 1) ,&quot;[^j-zJ-Z]&quot;) &lt;-SECOND CHAR AFTER LAST ALLOWED FIRST CHAR CAN BE ANY CHAR 
+                                                                                    (INCLUDING NUMBERS AND SYMBOLS) *EXCEPT* THIS RANGE
+             )
+       ),
+       &quot;Cf - Fi&quot;, &lt;-OUTPUT TEXT
+
+Note 2: A period (.) means &apos;any character&apos; so the following means first character h or H followed by any character:
+
+    REGEX(LEFT(Name,1),&quot;[hH]&quot;),
+    REGEX(MID(Name, 2, 1) ,&quot;.&quot;)
+
+Note 2.1: This also means there MUST be a second character, so we can add LEN(Name)=1 to allow for single character names:
+
+    IF(
+    AND(
+             REGEX(LEFT(Name,1),&quot;[sS]&quot;),
+             OR(
+                   LEN(Name)=1,
+                   REGEX(MID(Name, 2, 1) ,&quot;[^p-zP-Z]&quot;)
+             )
+    ),
+    &quot;Sa - So&quot;, &lt;----- This will now include account names like &quot;S&quot;, &quot;S!Uper&quot;, &quot;Salad&quot;, or &quot;Soap&quot;, but not &quot;Spirit&quot;.</description>
+        <name>f_Strategic_U_Z</name>
+        <dataType>Boolean</dataType>
+        <expression
+    >REGEX(LEFT({!$Record.Name},1),&quot;[u-zU-Z]&quot;)</expression>
+    </formulas>
+    <interviewLabel
+  >Account - RT BS - Assign Alpha Territory {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Account - RT BS - Assign Alpha Territory</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>980</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Which_first_character</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Name</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Account</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

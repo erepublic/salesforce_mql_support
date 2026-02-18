@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>54.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description
+  >Fills Inactive Date when Contact Status is changed to Inactive; clears Inactive Date &amp; Inactive Reason when Contact Status is changed from Inactive.</description>
+    <interviewLabel
+  >Contact - Update Inactive Date &amp; Inactive Reason {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contact - Update Inactive Date &amp; Inactive Reason</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description
+    >Fill Inactive Date with today&apos;s date when Contact Status changed to Inactive.</description>
+        <name>Update_Field_Inactive_Date_fill</name>
+        <label>Update Field - Inactive Date (fill)</label>
+        <locationX>176</locationX>
+        <locationY>311</locationY>
+        <connector>
+            <targetReference
+      >Update_Fields_Inactive_Date_Inactive_Reason_clear</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Contact_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Inactive</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Inactive_Date__c</field>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description
+    >Clear Inactive Date and Inactive Reason when Contact Status changed from Inactive.</description>
+        <name>Update_Fields_Inactive_Date_Inactive_Reason_clear</name>
+        <label
+    >Update Fields - Inactive Date &amp; Inactive Reason (clear)</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Contact_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Inactive</stringValue>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Inactive_Date__c</field>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Inactive_Reason__c</field>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Field_Inactive_Date_fill</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Contact_Status__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

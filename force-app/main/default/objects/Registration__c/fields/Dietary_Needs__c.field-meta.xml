@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Dietary_Needs__c</fullName>
+    <label>Dietary Needs</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Kosher</fullName>
+                <default>false</default>
+                <label>Kosher</label>
+            </value>
+            <value>
+                <fullName>Other Food Allergy - See Reg Notes</fullName>
+                <default>false</default>
+                <label>Other Food Allergy - See Reg Notes</label>
+            </value>
+            <value>
+                <fullName>Peanut Allergy</fullName>
+                <default>false</default>
+                <label>Peanut Allergy</label>
+            </value>
+            <value>
+                <fullName>Seafood/Shellfish Allergy</fullName>
+                <default>false</default>
+                <label>Seafood/Shellfish Allergy</label>
+            </value>
+            <value>
+                <fullName>Vegan</fullName>
+                <default>false</default>
+                <label>Vegan</label>
+            </value>
+            <value>
+                <fullName>Vegetarian</fullName>
+                <default>false</default>
+                <label>Vegetarian</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

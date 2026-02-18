@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Moved_to_Final__c</fullName>
+    <inlineHelpText
+  >Date the Income Category field changed to &quot;FINAL&quot;</inlineHelpText>
+    <label>Moved to Final</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

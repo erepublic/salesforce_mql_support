@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Conga_Workflow_Send_Check_in_Email</name>
+        <label>Conga Workflow - Send Check in Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName
+    >c2g__codaInvoice__c.Conga_Workflow_Send_Check_inEmail</actionName>
+        <actionType>outboundMessage</actionType>
+        <connector>
+            <targetReference>Assign_Email_Sent</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <nameSegment
+    >c2g__codaInvoice__c.Conga_Workflow_Send_Check_inEmail</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Clear_Check_In_Email_Date</name>
+        <label>Assign - Clear Check In Email Date</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Sales_Invoice.Check_In_Email_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>NullDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Update_Sales_Invoice_from_Sales_Invoice_Variable</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Email_Sent</name>
+        <label>Assign - Email Sent</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Sales_Invoice.Check_In_Email_History__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Update_History_Email_Sent</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Clear_Check_In_Email_Date</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_No_Past_Due</name>
+        <label>Assign - No Past Due</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Sales_Invoice.Check_In_Email_History__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >Update_History_No_Check_In_Emails</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Clear_Check_In_Email_Date</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Paid_or_Credited</name>
+        <label>Assign - Paid or Credited</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Sales_Invoice.Check_In_Email_History__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >Update_History_Invoice_Paid_or_Credited</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Clear_Check_In_Email_Date</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Sales_Invoice_to_Variable</name>
+        <label>Assign Sales Invoice to Variable</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>var_Sales_Invoice</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Knockout_Questions</targetReference>
+        </connector>
+    </assignments>
+    <constants>
+        <name>NullDate</name>
+        <dataType>Date</dataType>
+    </constants>
+    <decisions>
+        <name>Knockout_Questions</name>
+        <label>Knockout Questions</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference
+      >Conga_Workflow_Send_Check_in_Email</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No Knock Out Criteria Met</defaultConnectorLabel>
+        <rules>
+            <name>No_Check_In_Emails_is_checked</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.c2g__Account__r.No_Check_In_Emails__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_No_Past_Due</targetReference>
+            </connector>
+            <label>No Check In Emails is checked</label>
+        </rules>
+        <rules>
+            <name>Invoice_is_Paid_or_Credited</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Payment_Status_Formula__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Paid</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Payment_Status_Formula__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Credited</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Payment_Status_Formula__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>CWO (Matched)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Payment_Status_Formula__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>CC Payment Received</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Paid_or_Credited</targetReference>
+            </connector>
+            <label>Invoice is Paid or Credited</label>
+        </rules>
+    </decisions>
+    <description
+  >Sends a &quot;Check In&quot; email to the client on the date specified.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>Update_History_Email_Sent</name>
+        <dataType>String</dataType>
+        <expression>LEFT(
+TEXT(TODAY())&amp;&quot; - &quot;&amp;&quot;Check In email sent.&quot;&amp;BR()
+&amp;{!$Record.Check_In_Email_History__c}
+,255)</expression>
+    </formulas>
+    <formulas>
+        <name>Update_History_Invoice_Paid_or_Credited</name>
+        <dataType>String</dataType>
+        <expression>LEFT(
+TEXT(TODAY())&amp;&quot; - &quot;&amp;&quot;Check In not sent. Invoice is Paid or Credited.&quot;&amp;BR()
+&amp;{!$Record.Check_In_Email_History__c}
+,255)</expression>
+    </formulas>
+    <formulas>
+        <name>Update_History_No_Check_In_Emails</name>
+        <dataType>String</dataType>
+        <expression>LEFT(
+TEXT(TODAY())&amp;&quot; - &quot;&amp;&quot;Check In not sent. &apos;No Check In Emails&apos; is checked.&quot;&amp;BR()
+&amp;{!$Record.Check_In_Email_History__c}
+,255)</expression>
+    </formulas>
+    <interviewLabel
+  >Sales Invoice - RT AS - Send Check In Email {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Sales Invoice - RT AS - Send Check In Email</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Sales_Invoice_from_Sales_Invoice_Variable</name>
+        <label>Update Sales Invoice from Sales Invoice Variable</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputReference>var_Sales_Invoice</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Check_In_Email_Date__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>c2g__codaInvoice__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <name>Run_on_Check_In_Email_Date</name>
+            <connector>
+                <targetReference
+        >Assign_Sales_Invoice_to_Variable</targetReference>
+            </connector>
+            <label>Run on Check In Email Date</label>
+            <offsetNumber>550</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>Check_In_Email_Date__c</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>var_Sales_Invoice</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>c2g__codaInvoice__c</objectType>
+    </variables>
+</Flow>

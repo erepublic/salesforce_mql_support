@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Inventory_LC</fullName>
+    <availability>online</availability>
+    <description
+  >Links over to the Event Inventory Tracker for this type of event. (Lightning and Classic compatible)</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Inventory Tracker</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url
+  >http://cms.erepublic.com/common/admin/event/inventory_grid?year={!Events__c.Event_Year__c}&amp;brand={!Events__c.Brand__c}</url>
+</WebLink>

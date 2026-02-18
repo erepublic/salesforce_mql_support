@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Job_Tickets_Lisa_Zolfarelli</fullName>
+    <columns>NAME</columns>
+    <columns>Job_Name__c</columns>
+    <columns>Co_Designer_Formula__c</columns>
+    <columns>Finished_Job_Due__c</columns>
+    <columns>Status__c</columns>
+    <columns>Originator__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Pending - New Job,Completed</value>
+    </filters>
+    <filters>
+        <field>Designer__c</field>
+        <operation>equals</operation>
+        <value>Lisa Zolfarelli</value>
+    </filters>
+    <label>Open Job Tickets: Lisa Zolfarelli</label>
+</ListView>

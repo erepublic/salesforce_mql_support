@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verification_Queue_GOV_Tape_1</fullName>
+    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+    <columns>Last_Verification_Date_Tier__c</columns>
+    <columns>Verification_Date__c</columns>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Job_Role_Title__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Target_Role_Governing_Mag__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Verification_Date__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Job_Role_Mailing_State__c</field>
+        <operation>equals</operation>
+        <value>AK,AL,AR,AZ,CA,CO,CT,DC,DE,FL,GA,OH,OK,OR,PA,RI,SC,SD</value>
+    </filters>
+    <label>Verification Queue - GOV Tape 1</label>
+</ListView>

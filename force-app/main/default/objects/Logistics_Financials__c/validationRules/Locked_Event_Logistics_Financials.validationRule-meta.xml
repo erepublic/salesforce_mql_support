@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Locked_Event_Logistics_Financials</fullName>
+    <active>true</active>
+    <description
+  >When the &quot;Lock Logistics Financials&quot; checkbox on an Event is checked, all fields within the Logistics Financials are locked except for &quot;Next Year Budget&quot; field. To make the fields editable again, go to Event and click &quot;Unlock Logistics Financials&quot; button.</description>
+    <errorConditionFormula>AND(
+
+  NOT(ISNEW()), /* Allows record creation */
+
+   Event__r.Lock_Logistics_Financials__c = TRUE,
+
+  OR(
+
+    ISCHANGED(Category__c),
+
+    ISCHANGED(Budget__c),
+
+    ISCHANGED(Estimated_Cost__c),
+
+    ISCHANGED(Actual_Cost__c),
+
+    ISCHANGED(Notes__c),
+
+    ISCHANGED(Estimated_Cost_History__c),
+
+    ISCHANGED(Observations__c),
+
+    ISCHANGED(Last_Year_Actual__c)
+
+  )
+
+)</errorConditionFormula>
+    <errorMessage
+  >This Event&apos;s Logistics Financials have been locked by Finance. Please reach out to Jennifer Brenner to unlock.</errorMessage>
+</ValidationRule>

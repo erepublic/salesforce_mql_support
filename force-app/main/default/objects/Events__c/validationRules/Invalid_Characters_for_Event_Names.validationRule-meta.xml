@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Invalid_Characters_for_Event_Names</fullName>
+    <active>true</active>
+    <description
+  >This rule prevents event names from containing characters which might cause problems with reporting.</description>
+    <errorConditionFormula>CONTAINS(Name ,&quot;,&quot;)</errorConditionFormula>
+    <errorDisplayField>Name</errorDisplayField>
+    <errorMessage
+  >An Event Name cannot contain the following characters: ,</errorMessage>
+</ValidationRule>

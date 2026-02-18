@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Closed_Tickets</fullName>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Priority__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Requested_By__c</columns>
+    <columns>System2__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Assignee_is_Current_User__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>equals</operation>
+        <value>Closed,Canceled</value>
+    </filters>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value>Project</value>
+    </filters>
+    <label>My Closed Tickets</label>
+</ListView>

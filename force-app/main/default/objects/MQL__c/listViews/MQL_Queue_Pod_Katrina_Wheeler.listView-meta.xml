@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MQL_Queue_Pod_Katrina_Wheeler</fullName>
+    <columns>MQL_Owner_is_Current_User__c</columns>
+    <columns>NAME</columns>
+    <columns>MQL_Date__c</columns>
+    <columns>MQL_Owner__c</columns>
+    <columns>Contact__c</columns>
+    <columns>MQL_Name__c</columns>
+    <columns>Product__c</columns>
+    <columns>Lead_Source_Detail__c</columns>
+    <columns>Lead_Notes__c</columns>
+    <columns>Lead_Detail_1__c</columns>
+    <columns>Lead_Detail_2__c</columns>
+    <columns>Lead_Detail_3__c</columns>
+    <columns>Subscription_Memberships_All_Time__c</columns>
+    <columns>Engagement_AI_Summary__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>MQL_Status__c</field>
+        <operation>equals</operation>
+        <value>New</value>
+    </filters>
+    <filters>
+        <field>Sales_Team_MQLs__c</field>
+        <operation>equals</operation>
+        <value>Pod: Katrina Wheeler</value>
+    </filters>
+    <label>MQL Queue - Pod: Katrina Wheeler</label>
+</ListView>

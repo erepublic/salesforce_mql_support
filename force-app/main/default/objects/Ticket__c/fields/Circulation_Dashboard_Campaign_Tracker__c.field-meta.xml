@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Circulation_Dashboard_Campaign_Tracker__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >LPAD(Text(MONTH(Due_Date_Requested__c)),2,&apos;0&apos;)+&quot;/&quot; +LPAD(TEXT(DAY(Due_Date_Requested__c)),2,&apos;0&apos;)+&quot;/&quot; +LPAD(TEXT(YEAR(Due_Date_Requested__c)),4,&apos;0&apos;) &amp; &quot; - &quot; &amp;  Title__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Circulation Dashboard Ticket Tracker</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

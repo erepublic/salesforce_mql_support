@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_Second_Notice_del__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Checking this box will email out the second notice to the Card Holder or Admin for all outstanding Amex Card Statements, and copy management.</description>
+    <inlineHelpText
+  >Checking this box will email out the second notice to the Card Holder or Admin for all outstanding Amex Card Statements, and copy management.</inlineHelpText>
+    <label>Second Notices Sent</label>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

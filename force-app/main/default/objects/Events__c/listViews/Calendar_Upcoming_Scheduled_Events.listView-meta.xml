@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Calendar_Upcoming_Scheduled_Events</fullName>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Brand__c</columns>
+    <columns>Event_Type__c</columns>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Event_End_Date__c</columns>
+    <columns>Venue_City__c</columns>
+    <columns>Venue_State__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event_Start_Date__c</field>
+        <operation>equals</operation>
+        <value>THIS_YEAR</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Cancelled</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>notContain</operation>
+        <value
+    >Test,REG ONLY,Marketing,Market,Executive Teleconference,AGENDA,Badge Scanner Tech</value>
+    </filters>
+    <filters>
+        <field>Event_Type__c</field>
+        <operation>notEqual</operation>
+        <value
+    >Registration only,Webinar,Custom_Event,Custom_Event w/ Website,Standard_Program_Custom Event,Standard_Program_Custom Event w/ Website,Standard_Program_Custom Roundtable</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Events__c.Standard_Event</value>
+    </filters>
+    <label>Calendar - Standard Events This Year</label>
+</ListView>

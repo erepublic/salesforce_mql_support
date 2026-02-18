@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Statements__c</fullName>
+    <description
+  >Shows the number of statements for this month for this control group.</description>
+    <label>Number of Statements</label>
+    <summaryForeignKey
+  >Amex_Card_Statement__c.Amex_Statement__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

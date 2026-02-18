@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Webinars_2019</fullName>
+    <booleanFilter>3 AND (1 OR 2) AND 4 AND 5</booleanFilter>
+    <columns>Event_Type__c</columns>
+    <columns>NAME</columns>
+    <columns>Delivery_Value__c</columns>
+    <columns>Event_Month__c</columns>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Targeted_Registration__c</columns>
+    <columns>Target_Type__c</columns>
+    <columns>Actual_Attended_Qualified__c</columns>
+    <columns>Qualified_Leads__c</columns>
+    <columns>Industry_Registrations__c</columns>
+    <columns>No_Show_Rate__c</columns>
+    <columns>GL_Code_Finance__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event_Start_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2019</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>2019,/2019./19</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Events__c.Marketing_Webinar,Events__c.Webinar</value>
+    </filters>
+    <filters>
+        <field>Event_Type__c</field>
+        <operation>equals</operation>
+        <value
+    >Custom_Roundtable,Custom_Webinar,Standard_Teleconference_Marketing - no website,Standard_Teleconference - no website,Standard_Webinar_Marketing - no website,Standard_Webinar_Program - no website,Teleconference,Webinar,Virtual Meeting</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>notContain</operation>
+        <value>TEST,EE</value>
+    </filters>
+    <label>Webinars 2019</label>
+</ListView>

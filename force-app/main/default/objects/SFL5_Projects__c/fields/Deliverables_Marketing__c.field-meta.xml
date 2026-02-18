@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deliverables_Marketing__c</fullName>
+    <description
+  >This is a multi-select list of deliverables that will result from this marketing project.</description>
+    <inlineHelpText
+  >This is a multi-select list of deliverables that will result from this marketing project.</inlineHelpText>
+    <label>Deliverables</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>API Integration</fullName>
+                <default>false</default>
+                <label>API Integration</label>
+            </value>
+            <value>
+                <fullName>Automatic Program</fullName>
+                <default>false</default>
+                <label>Automatic Program</label>
+            </value>
+            <value>
+                <fullName>Brochure</fullName>
+                <default>false</default>
+                <label>Brochure</label>
+            </value>
+            <value>
+                <fullName>Campaign Outline</fullName>
+                <default>false</default>
+                <label>Campaign Outline</label>
+            </value>
+            <value>
+                <fullName>Data Sheet</fullName>
+                <default>false</default>
+                <label>Data Sheet</label>
+            </value>
+            <value>
+                <fullName>Documentation/Hat</fullName>
+                <default>false</default>
+                <label>Documentation/Hat</label>
+            </value>
+            <value>
+                <fullName>Door Opener</fullName>
+                <default>false</default>
+                <label>Door Opener</label>
+            </value>
+            <value>
+                <fullName>Email(s)</fullName>
+                <default>false</default>
+                <label>Email(s)</label>
+            </value>
+            <value>
+                <fullName>Form</fullName>
+                <default>false</default>
+                <label>Form</label>
+            </value>
+            <value>
+                <fullName>Landing Page</fullName>
+                <default>false</default>
+                <label>Landing Page</label>
+            </value>
+            <value>
+                <fullName>Marketing Calendar</fullName>
+                <default>false</default>
+                <label>Marketing Calendar</label>
+            </value>
+            <value>
+                <fullName>Media Kit</fullName>
+                <default>false</default>
+                <label>Media Kit</label>
+            </value>
+            <value>
+                <fullName>Plan/Report</fullName>
+                <default>false</default>
+                <label>Plan/Report</label>
+            </value>
+            <value>
+                <fullName>Policy</fullName>
+                <default>false</default>
+                <label>Policy</label>
+            </value>
+            <value>
+                <fullName>PowerPoint</fullName>
+                <default>false</default>
+                <label>PowerPoint</label>
+            </value>
+            <value>
+                <fullName>Print Ad(s)</fullName>
+                <default>false</default>
+                <label>Print Ad(s)</label>
+            </value>
+            <value>
+                <fullName>Process</fullName>
+                <default>false</default>
+                <label>Process</label>
+            </value>
+            <value>
+                <fullName>Project Scope</fullName>
+                <default>false</default>
+                <label>Project Scope</label>
+            </value>
+            <value>
+                <fullName>Research Data</fullName>
+                <default>false</default>
+                <label>Research Data</label>
+            </value>
+            <value>
+                <fullName>Signage/Booth Materials</fullName>
+                <default>false</default>
+                <label>Signage/Booth Materials</label>
+            </value>
+            <value>
+                <fullName>Support</fullName>
+                <default>false</default>
+                <label>Support</label>
+            </value>
+            <value>
+                <fullName>Swag</fullName>
+                <default>false</default>
+                <label>Swag</label>
+            </value>
+            <value>
+                <fullName>System</fullName>
+                <default>false</default>
+                <label>System</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+            <value>
+                <fullName>Web Ad(s)</fullName>
+                <default>false</default>
+                <label>Web Ad(s)</label>
+            </value>
+            <value>
+                <fullName>Web Content</fullName>
+                <default>false</default>
+                <label>Web Content</label>
+            </value>
+            <value>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+                <label>Webinar</label>
+            </value>
+            <value>
+                <fullName>Website</fullName>
+                <default>false</default>
+                <label>Website</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

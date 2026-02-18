@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Add_to_Collection</name>
+        <label>Add to Collection</label>
+        <locationX>242</locationX>
+        <locationY>600</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Logistics_Financials_Collection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference
+        >var_Logsitics_Financial_record</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference
+      >Assign_Logistics_Financial_Records</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Adjust_Loop_Counts</name>
+        <label>Adjust Loop Counts</label>
+        <locationX>242</locationX>
+        <locationY>384</locationY>
+        <assignmentItems>
+            <assignToReference>var_Count_Up</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_Categories_to_Assign</assignToReference>
+            <operator>Subtract</operator>
+            <value>
+                <numberValue>1.0</numberValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Logistics_Financial_Record</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Logistics_Financial_Record</name>
+        <label>Assign Logistics Financial Record</label>
+        <locationX>242</locationX>
+        <locationY>492</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Logsitics_Financial_record.Category__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Category_by_Count</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Logsitics_Financial_record.Event__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Add_to_Collection</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Assign_Logistics_Financial_Records</name>
+        <label>Assign Logistics Financial Records?</label>
+        <locationX>374</locationX>
+        <locationY>276</locationY>
+        <defaultConnector>
+            <targetReference
+      >Create_Logistics_Financial_Records</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>All Done</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Assign_more_Records</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >var_Categories_to_Assign</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <numberValue>0.0</numberValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Adjust_Loop_Counts</targetReference>
+            </connector>
+            <label>Yes, Assign more Records</label>
+        </rules>
+    </decisions>
+    <description>10/14/2025: v10 - Added Deposit as a new category</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Category_by_Count</name>
+        <dataType>String</dataType>
+        <expression>CASE({!var_Count_Up},
+1, &quot;A/V&quot;,
+2, &quot;Advisory Board Meetings&quot;,
+3, &quot;Advisory Board Travel&quot;,
+4, &quot;Awards&quot;,
+5, &quot;Bags&quot;,
+6, &quot;Caterer&quot;,
+7, &quot;Decorator&quot;,
+8, &quot;Deposit&quot;,
+9, &quot;Electrical&quot;,
+10, &quot;Event Parking (Sponsor)&quot;,
+11, &quot;Facility&quot;,
+12, &quot;Interpreter&quot;,
+13, &quot;Keynote (Fee + Travel)&quot;,
+14, &quot;Lanyards&quot;,
+15, &quot;Moderator(s) + Travel&quot;,
+16, &quot;Notebooks&quot;,
+17, &quot;Parking (Not Sponsored)&quot;,
+18, &quot;Photographer&quot;,
+19, &quot;Plants&quot;,
+20, &quot;Power Banks&quot;,
+21, &quot;Program Printing&quot;,
+22, &quot;Reception&quot;,
+23, &quot;Security&quot;,
+24, &quot;Shipping Fees&quot;,
+25, &quot;Signage&quot;,
+26, &quot;Staff Travel&quot;,
+27, &quot;Stage Sign&quot;,
+28, &quot;Temp Fees&quot;,
+29, &quot;Temps&quot;,
+30, &quot;Travel Scholarships&quot;,
+31, &quot;Unused Travel&quot;,
+32, &quot;Wi-Fi (Not Sponsored)&quot;,
+33, &quot;Wi-Fi (Sponsor)&quot;,
+34, &quot;Other 1&quot;,
+35, &quot;Other 2&quot;,
+36, &quot;Other 3&quot;,
+37, &quot;Other 4&quot;,
+38, &quot;Other 5&quot;,
+39, &quot;Uncoded&quot;,
+null)</expression>
+    </formulas>
+    <interviewLabel
+  >Event or Conference - RT AS - Create Logistics Financials {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Event or Conference - RT AS - Create Logistics Financials</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Logistics_Financial_Records</name>
+        <label>Create Logistics Financial Records</label>
+        <locationX>506</locationX>
+        <locationY>384</locationY>
+        <inputReference>var_Logistics_Financials_Collection</inputReference>
+    </recordCreates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01230000000ueuwAAA</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Event_Type__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Standard_Test Event</stringValue>
+            </value>
+        </filters>
+        <object>Events__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <scheduledPaths>
+            <connector>
+                <targetReference
+        >Assign_Logistics_Financial_Records</targetReference>
+            </connector>
+            <pathType>AsyncAfterCommit</pathType>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>var_Categories_to_Assign</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>39.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>var_Count_Up</name>
+        <dataType>Number</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <scale>0</scale>
+        <value>
+            <numberValue>0.0</numberValue>
+        </value>
+    </variables>
+    <variables>
+        <name>var_Logistics_Financials_Collection</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Logistics_Financials__c</objectType>
+    </variables>
+    <variables>
+        <name>var_Logsitics_Financial_record</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Logistics_Financials__c</objectType>
+    </variables>
+</Flow>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description
+  >Enables Read/Write access to Admin Login fields, (otherwise not visible to ANY users). + &quot;Known Challenges&quot;/&quot;Admin MFA Details&quot;/&quot;Admin Login Notes&quot; (License Software) + &quot;Most Recent End Date&quot; (Employee)</description>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Employee__c.End_Date__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>License_Software__c.Admin_Login_Notes__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>License_Software__c.Admin_MFA_Details__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>License_Software__c.Admin_Password__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>License_Software__c.Admin_Username__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>License_Software__c.Known_Challenges__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>License Software - *SENSITIVE* Admin Login Access</label>
+    <license>Salesforce</license>
+</PermissionSet>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Content_Studio_Projects_with_Final_PDF</fullName>
+    <booleanFilter>2 AND (1 OR 3)</booleanFilter>
+    <columns>Client__c</columns>
+    <columns>NAME</columns>
+    <columns>Final_PDF__c</columns>
+    <columns>Completion_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Custom_Media</value>
+    </filters>
+    <filters>
+        <field>Final_PDF__c</field>
+        <operation>contains</operation>
+        <value>View Final PDF</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Content_Studio</value>
+    </filters>
+    <label>Content Studio - Projects with Final PDF</label>
+</ListView>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Demographic_Questions__c</fullName>
+    <label>Show Demographic Questions</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Show Demographic Questions</fullName>
+                <default>true</default>
+                <label>Show Demographic Questions</label>
+            </value>
+            <value>
+                <fullName>Public - No Questions</fullName>
+                <default>false</default>
+                <label>Public - No Questions</label>
+            </value>
+            <value>
+                <fullName>Private - No Questions</fullName>
+                <default>false</default>
+                <label>Private - No Questions</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

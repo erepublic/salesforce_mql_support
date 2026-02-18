@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RAD_Paid_Projects_Closing</fullName>
+    <columns>NAME</columns>
+    <columns>Project_Owner__c</columns>
+    <columns>ITB_Contract__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>Due_Date__c</columns>
+    <columns>Completion_Date__c</columns>
+    <columns>Project_Stage__c</columns>
+    <columns>Project_Status_Indictator__c</columns>
+    <columns>Project_Update_Note__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>greaterThan</operation>
+        <value>5/29/2014 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Center_Research</value>
+    </filters>
+    <filters>
+        <field>Internal_External__c</field>
+        <operation>equals</operation>
+        <value>External</value>
+    </filters>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>equals</operation>
+        <value>Closing,Closed</value>
+    </filters>
+    <filters>
+        <field>Research_Group__c</field>
+        <operation>notEqual</operation>
+        <value>Navigator</value>
+    </filters>
+    <label>Research Paid Projects - Closing</label>
+    <sharedTo>
+        <group>CENTERResearch</group>
+    </sharedTo>
+</ListView>

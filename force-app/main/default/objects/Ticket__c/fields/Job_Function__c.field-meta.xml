@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Job_Function__c</fullName>
+    <label>Job Function</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>01 - Elected Official/Legislative</fullName>
+                <default>false</default>
+                <label>01 - Elected Official/Legislative</label>
+            </value>
+            <value>
+                <fullName>02 - Finance/Procurement/Budget/Auditor</fullName>
+                <default>false</default>
+                <label>02 - Finance/Procurement/Budget/Auditor</label>
+            </value>
+            <value>
+                <fullName>03 - Information Technology</fullName>
+                <default>false</default>
+                <label>03 - Information Technology</label>
+            </value>
+            <value>
+                <fullName>04 - Engineering/Technical</fullName>
+                <default>false</default>
+                <label>04 - Engineering/Technical</label>
+            </value>
+            <value>
+                <fullName>05 - Operations/Administration</fullName>
+                <default>false</default>
+                <label>05 - Operations/Administration</label>
+            </value>
+            <value>
+                <fullName
+        >06 - Human Resource/Workforce/Training/Benefits</fullName>
+                <default>false</default>
+                <label>06 - Human Resource/Workforce/Training/Benefits</label>
+            </value>
+            <value>
+                <fullName>07 - First Responder (Police/Fire/EMS)</fullName>
+                <default>false</default>
+                <label>07 - First Responder (Police/Fire/EMS)</label>
+            </value>
+            <value>
+                <fullName>08 - Emergency Management</fullName>
+                <default>false</default>
+                <label>08 - Emergency Management</label>
+            </value>
+            <value>
+                <fullName>09 - Marketing/Sales</fullName>
+                <default>false</default>
+                <label>09 - Marketing/Sales</label>
+            </value>
+            <value>
+                <fullName>10 - Education/Library Services</fullName>
+                <default>false</default>
+                <label>10 - Education/Library Services</label>
+            </value>
+            <value>
+                <fullName>99 - Other</fullName>
+                <default>false</default>
+                <label>99 - Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

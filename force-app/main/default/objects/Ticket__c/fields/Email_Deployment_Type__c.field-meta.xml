@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Deployment_Type__c</fullName>
+    <label>Email Deployment Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Contact_Pull_Contact_Count__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Awards Call for Entry</fullName>
+                <default>false</default>
+                <label>Awards Call for Entry</label>
+            </value>
+            <value>
+                <fullName>Event</fullName>
+                <default>false</default>
+                <label>Event</label>
+            </value>
+            <value>
+                <fullName>Interview</fullName>
+                <default>false</default>
+                <label>Interview</label>
+            </value>
+            <value>
+                <fullName>Magazine</fullName>
+                <default>false</default>
+                <label>Magazine</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
+            </value>
+            <value>
+                <fullName>Member Services</fullName>
+                <default>false</default>
+                <label>Member Services</label>
+            </value>
+            <value>
+                <fullName>Navigator Bid Emails</fullName>
+                <default>false</default>
+                <label>Navigator Bid Emails</label>
+            </value>
+            <value>
+                <fullName>Newsletter</fullName>
+                <default>false</default>
+                <label>Newsletter</label>
+            </value>
+            <value>
+                <fullName>Paper</fullName>
+                <default>false</default>
+                <label>Paper</label>
+            </value>
+            <value>
+                <fullName>Publisher Email</fullName>
+                <default>false</default>
+                <label>Publisher Email</label>
+            </value>
+            <value>
+                <fullName>Sales (ELMO)</fullName>
+                <default>false</default>
+                <label>Sales (ELMO)</label>
+            </value>
+            <value>
+                <fullName>Survey_Client</fullName>
+                <default>false</default>
+                <label>Survey (Client)</label>
+            </value>
+            <value>
+                <fullName>Survey (Internal)</fullName>
+                <default>false</default>
+                <label>Survey (Internal)</label>
+            </value>
+            <value>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+                <label>Webinar</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Email Deployment</controllingFieldValue>
+            <valueName>Awards Call for Entry</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Email Deployment</controllingFieldValue>
+            <valueName>Event</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Email Deployment</controllingFieldValue>
+            <valueName>Interview</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Email Deployment</controllingFieldValue>
+            <valueName>Magazine</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Email Deployment</controllingFieldValue>
+            <valueName>Marketing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Email Deployment</controllingFieldValue>
+            <valueName>Member Services</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Email Deployment</controllingFieldValue>
+            <valueName>Navigator Bid Emails</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Email Deployment</controllingFieldValue>
+            <valueName>Newsletter</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Email Deployment</controllingFieldValue>
+            <valueName>Paper</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Email Deployment</controllingFieldValue>
+            <valueName>Publisher Email</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Email Deployment</controllingFieldValue>
+            <valueName>Sales (ELMO)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Email Deployment</controllingFieldValue>
+            <valueName>Survey_Client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Email Deployment</controllingFieldValue>
+            <valueName>Survey (Internal)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Email Deployment</controllingFieldValue>
+            <valueName>Webinar</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

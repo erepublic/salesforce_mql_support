@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>BPA_Qual_Year__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >IF ( Qual_Date__c &gt;= ( Publication__r.Audit_Cycle_Date__c - 365),&quot;1 Year&quot;, 
+(IF ( Qual_Date__c &gt;= ( Publication__r.Audit_Cycle_Date__c - 730),&quot;2 Year&quot;, 
+(IF ( Qual_Date__c &gt;= ( Publication__r.Audit_Cycle_Date__c - 1095),&quot;3 Year&quot;,
+(IF ( Qual_Date__c &gt;= ( Publication__r.Audit_Cycle_Date__c - 1460),&quot;4 Year&quot;, 
+&quot;5 Year&quot;)))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>BPA Qual Year</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

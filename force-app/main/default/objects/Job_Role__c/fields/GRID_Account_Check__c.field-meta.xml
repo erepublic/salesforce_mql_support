@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GRID_Account_Check__c</fullName>
+    <description
+  >Formula evaluates to TRUE if the contact is in an account different from the assigned GRID account.</description>
+    <formula
+  >IF(Account__r.Id &lt;&gt; Contact__r.AccountId, TRUE, FALSE)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Formula evaluates to TRUE if the contact is in an account different from the assigned GRID account.</inlineHelpText>
+    <label>GRID Account Check</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reg_Type__c</fullName>
+    <inlineHelpText
+  >Enter the type of registration i.e. Sponsor, Speaker, etc.</inlineHelpText>
+    <label>Reg Type</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Association</fullName>
+                <default>false</default>
+                <label>Association</label>
+            </value>
+            <value>
+                <fullName>Govt Attendee</fullName>
+                <default>true</default>
+                <label>Govt Attendee</label>
+            </value>
+            <value>
+                <fullName>Industry Attendee</fullName>
+                <default>false</default>
+                <label>Industry Attendee</label>
+            </value>
+            <value>
+                <fullName>Sponsor</fullName>
+                <default>false</default>
+                <label>Sponsor</label>
+            </value>
+            <value>
+                <fullName>Press</fullName>
+                <default>false</default>
+                <label>Press</label>
+            </value>
+            <value>
+                <fullName>Staff</fullName>
+                <default>false</default>
+                <label>Staff</label>
+            </value>
+            <value>
+                <fullName>0</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>0</label>
+            </value>
+            <value>
+                <fullName>1</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>1</label>
+            </value>
+            <value>
+                <fullName>ABSPON</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ABSPON</label>
+            </value>
+            <value>
+                <fullName>ADBD</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ADBD</label>
+            </value>
+            <value>
+                <fullName>ADBD/SPKR</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ADBD/SPKR</label>
+            </value>
+            <value>
+                <fullName>Advisory Board</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Advisory Board</label>
+            </value>
+            <value>
+                <fullName>GOVCOMP</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>GOVCOMP</label>
+            </value>
+            <value>
+                <fullName>GOVPAID</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>GOVPAID</label>
+            </value>
+            <value>
+                <fullName>Gov Attendee</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Gov Attendee</label>
+            </value>
+            <value>
+                <fullName>Government Attendee</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Government Attendee</label>
+            </value>
+            <value>
+                <fullName>Government Complimentary</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Government Complimentary</label>
+            </value>
+            <value>
+                <fullName>Government Paid</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Government Paid</label>
+            </value>
+            <value>
+                <fullName>INDCOMP</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>INDCOMP</label>
+            </value>
+            <value>
+                <fullName>INDPAID</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>INDPAID</label>
+            </value>
+            <value>
+                <fullName>Industry</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Industry</label>
+            </value>
+            <value>
+                <fullName>Industry Atendee</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Industry Atendee</label>
+            </value>
+            <value>
+                <fullName>Industry Complimentary</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Industry Complimentary</label>
+            </value>
+            <value>
+                <fullName>Industry Paid</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Industry Paid</label>
+            </value>
+            <value>
+                <fullName>Item Created</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Item Created</label>
+            </value>
+            <value>
+                <fullName>O Online</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>O Online</label>
+            </value>
+            <value>
+                <fullName>PRES</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>PRES</label>
+            </value>
+            <value>
+                <fullName>Private</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Private</label>
+            </value>
+            <value>
+                <fullName>Private Sector</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Private Sector</label>
+            </value>
+            <value>
+                <fullName>Public</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Public</label>
+            </value>
+            <value>
+                <fullName>Public Sector</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Public Sector</label>
+            </value>
+            <value>
+                <fullName>SPKR</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>SPKR</label>
+            </value>
+            <value>
+                <fullName>STAF</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>STAF</label>
+            </value>
+            <value>
+                <fullName>Speaker</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Speaker</label>
+            </value>
+            <value>
+                <fullName>Sponsor Attendee</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Sponsor Attendee</label>
+            </value>
+            <value>
+                <fullName>on</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>on</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

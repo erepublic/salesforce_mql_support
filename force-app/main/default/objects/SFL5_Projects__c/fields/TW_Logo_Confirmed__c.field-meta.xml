@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TW_Logo_Confirmed__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Indicates that TW Member Services confirmed with the TW Member that the logo has been posted on Techwire.net.</description>
+    <inlineHelpText
+  >Indicates that TW Member Services confirmed with the TW Member that the logo has been posted on Techwire.net.</inlineHelpText>
+    <label>TW Logo Confirmed</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

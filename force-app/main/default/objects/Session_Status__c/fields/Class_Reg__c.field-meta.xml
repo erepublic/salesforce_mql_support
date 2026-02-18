@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Class_Reg__c</fullName>
+    <description>The student who is engaging in the session.</description>
+    <inlineHelpText>The student who is engaging in the session.</inlineHelpText>
+    <label>Class Reg</label>
+    <referenceTo>Class_Reg__c</referenceTo>
+    <relationshipLabel>Session Status</relationshipLabel>
+    <relationshipName>Class_Status</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MasterDetail</type>
+    <writeRequiresMasterRead>false</writeRequiresMasterRead>
+</CustomField>

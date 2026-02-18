@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Split_Internal_Action__c</fullName>
+    <label>Split Internal Action</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Client Make Good</fullName>
+                <default>false</default>
+                <label>Client Make Good</label>
+            </value>
+            <value>
+                <fullName
+        >Credit on the Books - Client to Decide on Product</fullName>
+                <default>false</default>
+                <label>Credit: Client to Decide on Product</label>
+            </value>
+            <value>
+                <fullName>Credit on the Books - Invoice Open</fullName>
+                <default>false</default>
+                <label>Credit: Invoice Open</label>
+            </value>
+            <value>
+                <fullName>Misc - Waiting on New Product Creation</fullName>
+                <default>false</default>
+                <label>Misc - Waiting on New Product Creation</label>
+            </value>
+            <value>
+                <fullName>Product - TBD Print</fullName>
+                <default>false</default>
+                <label>Product - TBD Print</label>
+            </value>
+            <value>
+                <fullName>Service Value</fullName>
+                <default>false</default>
+                <label>Service Value</label>
+            </value>
+            <value>
+                <fullName>Value Add - Client to Decide on Product</fullName>
+                <default>false</default>
+                <label>Value Add - Client to Decide on Product</label>
+            </value>
+            <value>
+                <fullName>Credit Used in Full</fullName>
+                <default>false</default>
+                <label>Credit Used in Full</label>
+            </value>
+            <value>
+                <fullName>Canceled Invoice (cannot delete)</fullName>
+                <default>false</default>
+                <label>Canceled Invoice (cannot delete)</label>
+            </value>
+            <value>
+                <fullName>Not a Credit</fullName>
+                <default>false</default>
+                <label>Not a Credit</label>
+            </value>
+            <value>
+                <fullName>Written Off to Other Income</fullName>
+                <default>false</default>
+                <label>Written Off to Other Income</label>
+            </value>
+            <value>
+                <fullName>Credit Applied to Q4 2024 Delivery Target</fullName>
+                <default>false</default>
+                <label>Credit Applied to Q4 2024 Delivery Target</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

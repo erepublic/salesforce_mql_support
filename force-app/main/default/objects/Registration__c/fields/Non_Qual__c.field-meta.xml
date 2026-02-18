@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Qual__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >This field indicates that a registration is not qualified to count as a lead for this event or webinar campaign. Examples include staff, students, test records, or people that are not meeting filter requirements.</description>
+    <inlineHelpText
+  >This field indicates that a registration is not qualified to count as a lead for this event or webinar campaign. Examples include staff, students, test records, or people that are not meeting filter requirements.</inlineHelpText>
+    <label>Non-Qual</label>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

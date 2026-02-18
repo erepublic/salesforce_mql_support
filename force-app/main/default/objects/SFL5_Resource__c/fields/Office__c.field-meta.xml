@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Office__c</fullName>
+    <label>Office</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Resource_Region__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Miami</fullName>
+                <default>false</default>
+                <label>Miami</label>
+            </value>
+            <value>
+                <fullName>London</fullName>
+                <default>false</default>
+                <label>London</label>
+            </value>
+            <value>
+                <fullName>New York</fullName>
+                <default>false</default>
+                <label>New York</label>
+            </value>
+            <value>
+                <fullName>Dallas</fullName>
+                <default>false</default>
+                <label>Dallas</label>
+            </value>
+            <value>
+                <fullName>San Francisco</fullName>
+                <default>false</default>
+                <label>San Francisco</label>
+            </value>
+            <value>
+                <fullName>Vancover</fullName>
+                <default>false</default>
+                <label>Vancover</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>East</controllingFieldValue>
+            <valueName>Miami</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>East</controllingFieldValue>
+            <valueName>London</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>East</controllingFieldValue>
+            <valueName>New York</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>West</controllingFieldValue>
+            <valueName>Dallas</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>West</controllingFieldValue>
+            <valueName>San Francisco</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>West</controllingFieldValue>
+            <valueName>Vancover</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

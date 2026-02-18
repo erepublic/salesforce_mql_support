@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Privacy_Email_Compact_Layout</fullName>
+    <fields>Privacy_Email_Address__c</fields>
+    <fields>Most_Recent_Privacy_Request__c</fields>
+    <fields>Most_Recent_Date_Received__c</fields>
+    <label>Privacy Email Compact Layout</label>
+</CompactLayout>

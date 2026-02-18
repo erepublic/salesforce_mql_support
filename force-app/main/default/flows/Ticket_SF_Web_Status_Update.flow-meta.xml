@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Status_Update_Email</name>
+        <label>Send Status Update Email</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference
+        >tt_Email_Recipients_Standard</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>tt_Status_Update_Subject</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference
+        >tt_Status_Update_Email_Display</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>ccRecipientAddressList</name>
+            <value>
+                <elementReference>f_Recipients_by_Priority</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>62.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Ticket_Updates</name>
+        <label>Assign Ticket Updates</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <assignmentItems>
+            <assignToReference>recordId.New_Note__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Screen_New_Note</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >recordId.Estimated_Timeline__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Screen_Estimated_Timeline</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Ticket</targetReference>
+        </connector>
+    </assignments>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Assignee_Email</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(OR({!recordId.Assignee__r.Email}=null,{!recordId.Assignee__r.IsActive}=False), &quot;&quot;, {!recordId.Assignee__r.Email})</expression>
+    </formulas>
+    <formulas>
+        <name>f_Recipients_by_Priority</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(OR(TEXT({!recordId.Priority__c})=&quot;High&quot;,TEXT({!recordId.Priority__c})=&quot;Critical&quot;), 
+{!tt_CC_Email_Recipient_Critical_or_High_Priority}, 
+null)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Requested_By_Comma</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(OR({!recordId.Requested_By__r.Email}=null,{!recordId.Requested_By__r.IsActive}=False), &quot;&quot;, {!recordId.Requested_By__r.Email} &amp; &quot;,&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Requested_On_Behalf_Comma</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(OR({!recordId.Requested_on_behalf_of__r.Email}=null,{!recordId.Requested_on_behalf_of__r.IsActive}=False), &quot;&quot;, {!recordId.Requested_on_behalf_of__r.Email} &amp; &quot;,&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Requirements</name>
+        <dataType>String</dataType>
+        <expression
+    >IF({!recordId.Requirements_From_Requestor__c}=null, null, &quot;&lt;br&gt;&quot; &amp; &quot;• Please take the following steps: &quot; &amp; {!recordId.Requirements_From_Requestor__c})</expression>
+    </formulas>
+    <formulas>
+        <name>f_Stakeholder_Comma</name>
+        <dataType>String</dataType>
+        <expression
+    >IF({!recordId.Stakeholder_Email__c}=null, &quot;&quot;, {!recordId.Stakeholder_Email__c} &amp; &quot;,&quot;)</expression>
+    </formulas>
+    <interviewLabel
+  >Ticket - SF - Web - Status Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Ticket - SF - Web - Status Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordUpdates>
+        <name>Update_Ticket</name>
+        <label>Update Ticket</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <connector>
+            <targetReference>Send_Status_Update_Email</targetReference>
+        </connector>
+        <inputReference>recordId</inputReference>
+    </recordUpdates>
+    <screens>
+        <name>Status_Update_Screen</name>
+        <label>Status Update</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>Assign_Ticket_Updates</targetReference>
+        </connector>
+        <fields>
+            <name>Screen_New_Note</name>
+            <dataType>String</dataType>
+            <fieldText>Action Item (New Note)</fieldText>
+            <fieldType>InputField</fieldType>
+            <helpText
+      >&lt;p&gt;This action item for resolving the ticket will be added to &quot;Project Notes&quot; as a New Note.&lt;/p&gt;</helpText>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <validationRule>
+                <errorMessage
+        >&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;Please enter a max of 255 characters, including spaces.&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                <formulaExpression
+        >LEN({!Screen_New_Note})&lt;=255</formulaExpression>
+            </validationRule>
+        </fields>
+        <fields>
+            <name>Screen_Estimated_Timeline</name>
+            <dataType>String</dataType>
+            <defaultValue>
+                <elementReference
+        >recordId.Estimated_Timeline__c</elementReference>
+            </defaultValue>
+            <fieldText>Estimated Timeline</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference
+      >recordId.Stakeholder_Email__c</objectFieldReference>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference
+      >recordId.Requirements_From_Requestor__c</objectFieldReference>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Status_Update_Screen</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>tt_CC_Email_Recipient_Critical_or_High_Priority</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text
+    >afawad@erepublic.com, bevans@erepublic.com, pbertolini@erepublic.com</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Email_Recipients_Standard</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text
+    >{!f_Stakeholder_Comma} {!f_Requested_By_Comma} {!f_Assignee_Email}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Status_Update_Email</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;html&gt;
+&lt;body style=&quot;padding: 10px;&quot;&gt;
+&lt;div bgcolor=&quot;#ffffff;&quot; padding=&quot;10px&quot; style=&quot;background-color: #ffffff; padding: 10px; border-radius: 10px; color: #333333;&quot;&gt;
+&lt;table style=&quot;font-size: 12px; font-family: arial, sans-sarif; background-color: #ffffff; vertical-align: top; text-align: left;&quot;&gt;
+&lt;tr&gt;
+    &lt;td style=&quot;font-size: 14px; font-family: arial, sans-sarif;&quot; colspan=&apos;2&apos;&gt;
+Update regarding your IT support ticket &lt;a href=&quot;https://erepublic.lightning.force.com/lightning/r/Ticket__c/{!recordId.Id}/view&quot;&gt;{!recordId.Name}&lt;/a&gt;:&lt;br&gt;&lt;br&gt;
+We have completed our initial review of your request. &lt;br&gt;&lt;br&gt;
+Here are the next steps:&lt;br&gt;
+• Action Item: {!Screen_New_Note}&lt;br&gt;
+• Estimated Timeline: {!Screen_Estimated_Timeline}
+{!f_Requirements}&lt;br&gt;&lt;br&gt;
+
+Please reply to this message if you have any questions or additional information to provide. &lt;br&gt;&lt;br&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;table cellpadding=&quot;5&quot; style=&quot;border-collapse: collapse; border: 1px solid black; font-size: 12px; font-family: arial, sans-sarif; background-color: #ffffff; vertical-align: top; text-align: left;&quot;&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot; width=&quot;140&quot;&gt;&lt;b&gt;Created Date:&lt;/b&gt; &lt;/td&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;{!recordId.CreatedDate}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot; width=&quot;140&quot;&gt;&lt;b&gt;Created By:&lt;/b&gt; &lt;/td&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;{!recordId.Owner:User.FirstName} {!recordId.Owner:User.LastName}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;&lt;b&gt;Title: &lt;/b&gt;&lt;/td&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;{!recordId.Title__c}&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;tr&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;&lt;b&gt;URL: &lt;/b&gt;&lt;/td&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;&lt;a href=&quot;{!recordId.URL__c}&quot;&gt;{!recordId.URL__c}&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;border: 1px solid black; vertical-align:top;&quot;&gt;&lt;b&gt;Description:&lt;/b&gt;&lt;/td&gt;
+        &lt;td style=&quot;border: 1px solid black; vertical-align:top;margin-right:8px;&quot;&gt;{!recordId.Description__c}&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td style=&quot;border: 1px solid black;&quot; width=&quot;140&quot;&gt;View your ticket at: &lt;/td&gt;
+    &lt;td style=&quot;border: 1px solid black;&quot;&gt;&lt;a href=&quot;https://erepublic.lightning.force.com/lightning/r/Ticket__c/{!recordId.Id}/view&quot;&gt;{!recordId.Name}&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Status_Update_Email_Display</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;{!tt_Status_Update_Email}&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Status_Update_Subject</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Status Update - IT Support {!recordId.Name}</text>
+    </textTemplates>
+    <variables>
+        <name>recordId</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Ticket__c</objectType>
+    </variables>
+    <variables>
+        <name>var_Ticket_to_Update</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Ticket__c</objectType>
+    </variables>
+</Flow>

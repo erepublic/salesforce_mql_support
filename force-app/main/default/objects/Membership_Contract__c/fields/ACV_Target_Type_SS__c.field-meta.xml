@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ACV_Target_Type_SS__c</fullName>
+    <description
+  >Used for ACV Target Dash. Only use one Type at a time in reports. &quot;SS&quot; = Sub Svcs Team, these are Dana/Katrina Individual Targets (each).</description>
+    <formula>CASE( TEXT(Type__c),
+
+&quot;DGN&quot;,(
+case(MONTH( Start_Date__c),
+1,31261,
+2,32599,
+3,33937,
+4,35275,
+5,36613,
+6,37951,
+7,39334,
+8,40716,
+9,42099,
+10,43481,
+11,44863,
+12,46241,
+0)),
+
+&quot;DEN&quot;,(
+case(MONTH( Start_Date__c),
+1,17209,
+2,17945,
+3,18682,
+4,19419,
+5,20155,
+6,20892,
+7,21653,
+8,22414,
+9,23175,
+10,23936,
+11,24697,
+12,25455,
+0)),
+
+&quot;ICA&quot;,(
+case(MONTH( Start_Date__c),
+1,6059,
+2,6318,
+3,6577,
+4,6837,
+5,7096,
+6,7355,
+7,7623,
+8,7891,
+9,8159,
+10,8427,
+11,8695,
+12,8962,
+0)),
+
+&quot;ITX&quot;,(
+case(MONTH( Start_Date__c),
+1,8886,
+2,9266,
+3,9647,
+4,10027,
+5,10408,
+6,10788,
+7,11181,
+8,11574,
+9,11967,
+10,12360,
+11,12753,
+12,13144,
+0)),
+
+&quot;IFL&quot;,(
+case(MONTH( Start_Date__c),
+1,8078,
+2,8424,
+3,8770,
+4,9116,
+5,9461,
+6,9807,
+7,10164,
+8,10522,
+9,10879,
+10,11236,
+11,11593,
+12,11949,
+0)),0)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>ACV Target (Type, SS Individual)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

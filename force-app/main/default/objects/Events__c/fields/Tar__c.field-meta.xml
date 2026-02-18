@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tar__c</fullName>
+    <formula>IF(ISBLANK(Targeted_Registration__c),0,
+Qualified_Leads__c / Registered_Target__c )
+
+
+/* As of 01-15-2020:
+
+formula formerly written:
+
+IF(ISNULL(Targeted_Registration__c) = TRUE,0,
+Qualified_Leads__c / Registered_Target__c )
+ 
+Changed Blank Field Handling to &quot;Treat blank fields as blanks&quot; to avoid #Error result in reports due to dividing by 0.
+
+-Jeff
+
+*/</formula>
+    <label>Tar %</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

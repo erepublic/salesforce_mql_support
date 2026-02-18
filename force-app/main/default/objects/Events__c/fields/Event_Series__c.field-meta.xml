@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Series__c</fullName>
+    <inlineHelpText
+  >This field is used in the Events Portal to group Events by Series name.</inlineHelpText>
+    <label>Event Series</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CDG Events</fullName>
+                <default>false</default>
+                <label>CDG Events</label>
+            </value>
+            <value>
+                <fullName>Cybersecurity Summits</fullName>
+                <default>false</default>
+                <label>Cybersecurity Summits</label>
+            </value>
+            <value>
+                <fullName>Digital Government Summits</fullName>
+                <default>false</default>
+                <label>Digital Government Summits</label>
+            </value>
+            <value>
+                <fullName>Emerging Tech; Data and AI</fullName>
+                <default>false</default>
+                <label>Emerging Tech; Data and AI</label>
+            </value>
+            <value>
+                <fullName>Higher Education Events</fullName>
+                <default>false</default>
+                <label>Higher Education Events</label>
+            </value>
+            <value>
+                <fullName>Industry Insider Events</fullName>
+                <default>false</default>
+                <label>Industry Insider Events</label>
+            </value>
+            <value>
+                <fullName>IT Leadership Forums</fullName>
+                <default>false</default>
+                <label>IT Leadership Forums</label>
+            </value>
+            <value>
+                <fullName>K-12 Education Events</fullName>
+                <default>false</default>
+                <label>K-12 Education Events</label>
+            </value>
+            <value>
+                <fullName>CDG Program</fullName>
+                <default>false</default>
+                <label>CDG Program</label>
+            </value>
+            <value>
+                <fullName>CDE Program</fullName>
+                <default>false</default>
+                <label>CDE Program</label>
+            </value>
+            <value>
+                <fullName>GOV Program</fullName>
+                <default>false</default>
+                <label>GOV Program</label>
+            </value>
+            <value>
+                <fullName>GT Program</fullName>
+                <default>false</default>
+                <label>GT Program</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

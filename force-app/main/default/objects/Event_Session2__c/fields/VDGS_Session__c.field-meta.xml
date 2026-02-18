@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VDGS_Session__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >Identifies the Webinar event which implements this session (Designed for VDGS)</description>
+    <inlineHelpText
+  >Identifies the Webinar event which implements this session (Designed for VDGS)</inlineHelpText>
+    <label>VDGS Session</label>
+    <referenceTo>Events__c</referenceTo>
+    <relationshipLabel>EF3 Event Sessions (VDGS Session)</relationshipLabel>
+    <relationshipName>VDGS_Session</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

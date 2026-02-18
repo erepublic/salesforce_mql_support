@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Projects_Custom_Media_Webinars</fullName>
+    <booleanFilter>(1 AND 2 AND 3) OR (4 AND 5 AND 6)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Project_Owner__c</columns>
+    <columns>Event__c</columns>
+    <columns>Project_Phase__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>Client__c</columns>
+    <columns>Product_ProjectType_TransitionDisplay__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Opportunity__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Custom_Media</value>
+    </filters>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>notEqual</operation>
+        <value>Delivered,Completed,Cancelled</value>
+    </filters>
+    <filters>
+        <field>Project_Type__c</field>
+        <operation>equals</operation>
+        <value>Webinar</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Content_Studio</value>
+    </filters>
+    <filters>
+        <field>Project_Status_Display__c</field>
+        <operation>notEqual</operation>
+        <value>Product Delivered,Cancelled</value>
+    </filters>
+    <filters>
+        <field>Product_Group__c</field>
+        <operation>equals</operation>
+        <value>Webinar</value>
+    </filters>
+    <label>Content Studio - Webinars</label>
+</ListView>

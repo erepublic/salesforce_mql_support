@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ticket_Hours_LF</fullName>
+    <columns>NAME</columns>
+    <columns>Ticket__c</columns>
+    <columns>Notes__c</columns>
+    <columns>Hours_Logged_Date__c</columns>
+    <columns>Hours_Logged__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>CREATEDBY_USER</field>
+        <operation>equals</operation>
+        <value>Lauren Fahndrich</value>
+    </filters>
+    <label>Ticket Hours - LF</label>
+</ListView>

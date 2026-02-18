@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CDG_Industry_Summit_2013</fullName>
+    <columns>Event__c</columns>
+    <columns>Attendee_Name__c</columns>
+    <columns>Event_No_Show__c</columns>
+    <columns>NAME</columns>
+    <columns>Registrant_Name__c</columns>
+    <columns>Reg_Date__c</columns>
+    <columns>Reg_Type__c</columns>
+    <columns>Reg_Source__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event__c</field>
+        <operation>contains</operation>
+        <value>CDG - Industry Summit - 2013</value>
+    </filters>
+    <label>CDG - Industry Summit - 2013</label>
+</ListView>

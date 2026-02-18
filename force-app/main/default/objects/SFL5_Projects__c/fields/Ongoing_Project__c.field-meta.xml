@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ongoing_Project__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >This indicates that a project is used as a bucket for regular tasks that do not call for the creation of their own project, but have a general similarity and should be grouped together.</description>
+    <inlineHelpText
+  >This indicates that a project is used as a bucket for regular tasks that do not call for the creation of their own project, but have a general similarity and should be grouped together.</inlineHelpText>
+    <label>Ongoing Project</label>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

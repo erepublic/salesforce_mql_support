@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Event_Event_Completed_Review_Files</name>
+        <label>Event - Event Completed Review Files</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Events__c.Event_Event_Completed_Review_Files</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Events__c.Event_Event_Completed_Review_Files</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Completed_With_Coordinator</name>
+        <label>Completed With Coordinator?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No Email</defaultConnectorLabel>
+        <rules>
+            <name>Send_Email</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Completed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Registration_Coordinator__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01230000000ueuwAAA</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Event_Event_Completed_Review_Files</targetReference>
+            </connector>
+            <label>Send Email</label>
+        </rules>
+    </decisions>
+    <description>Replaces Events__c time-dependent Workflow Rule:
+- Event - Event Completed Review Files
+
+Purpose:
+Sends a follow-up notification email 4 days after an Event’s End Date when the Event is completed and a Registration Coordinator is assigned.
+
+Impacted Record Types:
+- Standard Event (01230000000ueuwAAA)
+
+Scheduling:
+- Email is scheduled for 4 days after Event_End_Date__c.
+- Eligibility is re-evaluated at execution time to prevent stale notifications.
+
+Conditions:
+- Status = Completed
+- Registration Coordinator is not null</description>
+    <environments>Default</environments>
+    <interviewLabel
+  >Event or Conference - RT AS - Event Completed Review Files {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Event or Conference - RT AS - Event Completed Review Files</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01230000000ueuwAAA</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Registration_Coordinator__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Events__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <scheduledPaths>
+            <name>X4_Days_After_End_Date</name>
+            <connector>
+                <targetReference>Completed_With_Coordinator</targetReference>
+            </connector>
+            <label>4 Days After End Date</label>
+            <offsetNumber>4</offsetNumber>
+            <offsetUnit>Days</offsetUnit>
+            <recordField>Event_End_Date__c</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

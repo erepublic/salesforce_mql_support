@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NAV_Analyst_Note__c</fullName>
+    <inlineHelpText
+  >Used by Navigator Analyst to communicate latest note (this also pulls over to the Account as a field called &quot;NAV Analyst Status&quot;)</inlineHelpText>
+    <label>NAV Analyst Note [DELETE]</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

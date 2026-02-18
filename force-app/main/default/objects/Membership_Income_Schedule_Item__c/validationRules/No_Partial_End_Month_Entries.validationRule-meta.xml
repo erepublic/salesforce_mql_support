@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Partial_End_Month_Entries</fullName>
+    <active>true</active>
+    <description
+  >To prevent ACV entries in the final month of a contract with a mid-month Start Date.</description>
+    <errorConditionFormula
+  >Membership_Contract__r.RecordTypeId = &quot;0121O000001CFny&quot;
+&amp;&amp;
+MONTH( Date__c ) = MONTH ( Membership_Contract__r.End_Date__c )
+&amp;&amp;
+YEAR( Date__c ) = YEAR( Membership_Contract__r.End_Date__c )
+&amp;&amp;
+DAY(Membership_Contract__r.End_Date__c) &lt;&gt;
+IF(Month(Membership_Contract__r.End_Date__c)=12, 31, DAY(DATE(YEAR(Membership_Contract__r.End_Date__c),MONTH(Membership_Contract__r.End_Date__c)+1,1) - 1))
+&amp;&amp;
+$User.Id &lt;&gt; &apos;00530000003A32O&apos; /*Paul Harney*/
+&amp;&amp;
+$User.Id &lt;&gt; &apos;005a0000007Wamb&apos; /*Jeff Fahndrich*/
+&amp;&amp;
+$User.Id &lt;&gt; &apos;00530000001YEiF&apos; /*Jennifer Valdez*/
+&amp;&amp;
+$User.Id &lt;&gt; &apos;0055Y00000I0fox&apos; /*Jennifer Brenner*/</errorConditionFormula>
+    <errorDisplayField>Date__c</errorDisplayField>
+    <errorMessage
+  >An ACV entry cannot be created for a partial end month. Please contact salesforce@erepublic.com if you need assistance.</errorMessage>
+</ValidationRule>

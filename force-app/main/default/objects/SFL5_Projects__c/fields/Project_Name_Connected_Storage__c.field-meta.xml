@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Name_Connected_Storage__c</fullName>
+    <description>Folder Name Field for sFiles:
+https://erepublic.lightning.force.com/lightning/setup/CustomMetadata/page?address=%2Fm0e5Y000000TZIJ%3FappLayout%3Dsetup%26tour%3D%26sfdcIFrameOrigin%3Dhttps%253A%252F%252Ferepublic.lightning.force.com%26sfdcIFrameHost%3Dweb%26nonce%3Deebbebcfa5650e62fa8fde5c5be46e0cb9352c20d2857bf158442b5ac2bb059e%26clc%3D1</description>
+    <externalId>false</externalId>
+    <formula
+  >Name &amp; &quot; [&quot;&amp; Project_Number__c &amp;&quot;]&quot;</formula>
+    <label>Project Name [Connected Storage]</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

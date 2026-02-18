@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GSC__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >is a &quot;Government Solution Center&quot; registrant</description>
+    <inlineHelpText
+  >is a &quot;Government Solution Center&quot; registrant</inlineHelpText>
+    <label>GSC</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

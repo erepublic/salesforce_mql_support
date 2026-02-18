@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Card_Holder_First_Last__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >Amex_Card_Holder__r.Card_Holder_First_Name__c &amp; &quot; &quot; &amp;  Amex_Card_Holder__r.Card_Holder_Last_Name__c</formula>
+    <label>Card Holder (First Last)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

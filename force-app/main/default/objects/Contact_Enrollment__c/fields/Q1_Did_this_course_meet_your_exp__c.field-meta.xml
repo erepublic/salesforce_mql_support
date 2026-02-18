@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Q1_Did_this_course_meet_your_exp__c</fullName>
+    <description
+  >Course custom question #1: Did this course meet your expectations?</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >Course custom question #1: Did this course meet your expectations?</inlineHelpText>
+    <label>Q1: Did course meet your expectations?</label>
+    <length>100</length>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

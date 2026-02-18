@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Membership_Status__c</fullName>
+    <label>Membership Status</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>New Member</fullName>
+                <default>false</default>
+                <label>New Member</label>
+            </value>
+            <value>
+                <fullName>Renewing Member</fullName>
+                <default>false</default>
+                <label>Renewing Member</label>
+            </value>
+            <value>
+                <fullName>Upgrading Member</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Upgrading Member</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

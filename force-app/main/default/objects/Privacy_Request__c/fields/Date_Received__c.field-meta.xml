@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Date_Received__c</fullName>
+    <description
+  >Pre-populated by a flow for records created by the Privacy Request Site Guest User (Id: 0051O00000DEiE2QAL). 
+Flow: [Privacy Request (Custom) - RT BS - Date Received] 
+Ticket #80334</description>
+    <label>Date Received</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

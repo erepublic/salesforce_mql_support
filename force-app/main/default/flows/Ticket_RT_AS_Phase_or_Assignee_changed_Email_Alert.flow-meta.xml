@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Ticket_Salesforce_Email_when_Updated</name>
+        <label>Ticket - Salesforce - Email when Updated</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <actionName>Ticket__c.Ticket_Salesforce_Email_when_Updated</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Ticket__c.Ticket_Salesforce_Email_when_Updated</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Is_Assignee_is_Active_and_not_Null</name>
+        <label>Is Assignee is Active and not Null?</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Assignee_is_Active</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Assignee__r.IsActive</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Assignee__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Ticket_Salesforce_Email_when_Updated</targetReference>
+            </connector>
+            <label>Yes, Assignee is Active</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <interviewLabel
+  >Ticket - RT AS - Phase or Assignee changed - Email Alert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label
+  >Ticket - RT AS - Sales Ops Ticket - Phase or Assignee changed - Email Alert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference
+      >Is_Assignee_is_Active_and_not_Null</targetReference>
+        </connector>
+        <filterLogic>1 AND (2 OR 3) AND 4 AND 5 AND 6</filterLogic>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>0125Y000001wU8LQAU</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Phase__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Assignee__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Phase__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Cancel/Rebill Needed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Phase__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Contract Cycle Finished</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Type__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Unlock Request</stringValue>
+            </value>
+        </filters>
+        <object>Ticket__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

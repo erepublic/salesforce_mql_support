@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LL_Tickets_High_Priority</fullName>
+    <booleanFilter>1 AND 2 AND 3 and 4</booleanFilter>
+    <columns>Priority__c</columns>
+    <columns>NAME</columns>
+    <columns>Requested_By__c</columns>
+    <columns>Type__c</columns>
+    <columns>Title__c</columns>
+    <columns>Phase__c</columns>
+    <columns>Project_Notes__c</columns>
+    <columns>Created_Date__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>Working_Date__c</columns>
+    <columns>ETA__c</columns>
+    <columns>Age__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Assignee__c</field>
+        <operation>equals</operation>
+        <value>Lien Largent</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>notEqual</operation>
+        <value>Closed,Contract Cycle Finished,Canceled</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Sales_Operations</value>
+    </filters>
+    <filters>
+        <field>Priority__c</field>
+        <operation>equals</operation>
+        <value>Critical,High</value>
+    </filters>
+    <label>LL Tickets (High Priority)</label>
+</ListView>

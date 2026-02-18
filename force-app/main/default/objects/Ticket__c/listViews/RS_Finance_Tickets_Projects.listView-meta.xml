@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RS_Finance_Tickets_Projects</fullName>
+    <columns>NAME</columns>
+    <columns>Phase__c</columns>
+    <columns>Title__c</columns>
+    <columns>Working_Date__c</columns>
+    <columns>ETA__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>Requested_By__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Assignee__c</field>
+        <operation>equals</operation>
+        <value>Ryan Saul</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>notEqual</operation>
+        <value>Closed,Canceled</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Finance</value>
+    </filters>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value>Project</value>
+    </filters>
+    <label>RS - Finance Tickets (Projects)</label>
+</ListView>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CSM_1_Email__c</fullName>
+    <description
+  >Hidden field used to contain the email address of the CSM 1 user specified on the account.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >Hidden field used to contain the email address of the CSM 1 user specified on the account.</inlineHelpText>
+    <label>CSM 1 Email</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Email</type>
+    <unique>false</unique>
+</CustomField>

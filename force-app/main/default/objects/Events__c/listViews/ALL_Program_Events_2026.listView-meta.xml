@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ALL_Program_Events_2026</fullName>
+    <booleanFilter
+  >(1 AND 2 AND 3 AND 4) or (1 AND 2 AND 5 AND 6)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Event_Month__c</columns>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Event_End_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>OneForm_Link__c</columns>
+    <columns>Event_Series__c</columns>
+    <columns>Event_Type__c</columns>
+    <columns>RECORDTYPE</columns>
+    <columns>GL_Code_Finance__c</columns>
+    <columns>Venue_City__c</columns>
+    <columns>Event_Website__c</columns>
+    <columns>Onsite_Event_Director__c</columns>
+    <columns>Onsite_Logistics_Staff__c</columns>
+    <columns>Onsite_Registration_Staff__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Cancelled</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>2026</value>
+    </filters>
+    <filters>
+        <field>Event_Type__c</field>
+        <operation>contains</operation>
+        <value
+    >Standard_Program,Standard_Program_Invitation only,Standard_Program_Invitation only_no website,Standard_Program - no website</value>
+    </filters>
+    <filters>
+        <field>Brand__c</field>
+        <operation>notContain</operation>
+        <value>EREPUBLIC</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value
+    >CDG,CDG-DC,DS,Digital States,DC,CDE,AI Council,Future of Data,Government Efficiency,GT</value>
+    </filters>
+    <filters>
+        <field>Event_Type__c</field>
+        <operation>contains</operation>
+        <value
+    >Standard_Program_Custom Event,Standard_Program_Custom Event w/ Website,Standard_Program_Invitation only,Standard_Program_Public Sector only,Standard_Program_Custom Roundtable,Standard_Program_Webinar</value>
+    </filters>
+    <label>ALL - Program Events 2026</label>
+</ListView>

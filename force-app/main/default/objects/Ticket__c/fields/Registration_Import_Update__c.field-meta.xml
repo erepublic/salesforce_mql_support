@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Registration_Import_Update__c</fullName>
+    <businessStatus>Active</businessStatus>
+    <inlineHelpText
+  >For Registration imports only, please select the type of updates needed.</inlineHelpText>
+    <label>Registration Import/Update</label>
+    <required>false</required>
+    <securityClassification>Public</securityClassification>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <controllingField>Contact_Pull_Contact_Count__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Clear contact&apos;s department field</fullName>
+                <default>false</default>
+                <label>Clear contact’s department field</label>
+            </value>
+            <value>
+                <fullName>Delete registrations</fullName>
+                <default>false</default>
+                <label>Delete registrations</label>
+            </value>
+            <value>
+                <fullName>File includes multiple events</fullName>
+                <default>false</default>
+                <label>File includes multiple events</label>
+            </value>
+            <value>
+                <fullName>Gift card recipients</fullName>
+                <default>false</default>
+                <label>Gift card recipients</label>
+            </value>
+            <value>
+                <fullName>Import new registrations</fullName>
+                <default>false</default>
+                <label>Import new registrations</label>
+            </value>
+            <value>
+                <fullName>Import payment</fullName>
+                <default>false</default>
+                <label>Import payment</label>
+            </value>
+            <value>
+                <fullName>Move contacts into Accounts</fullName>
+                <default>false</default>
+                <label>Move contacts into Accounts</label>
+            </value>
+            <value>
+                <fullName
+        >Update contact&apos;s title/organization/department</fullName>
+                <default>false</default>
+                <label
+        >Update contact&apos;s title/organization/department</label>
+            </value>
+            <value>
+                <fullName
+        >Update existing registrations  (e.g. Reg Type or No Show)</fullName>
+                <default>false</default>
+                <label
+        >Update existing registrations (e.g. Reg Type or No Show)</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue
+      >Registration Import/Update</controllingFieldValue>
+            <valueName>Clear contact&apos;s department field</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Registration Import/Update</controllingFieldValue>
+            <valueName>Delete registrations</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Registration Import/Update</controllingFieldValue>
+            <valueName>File includes multiple events</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Registration Import/Update</controllingFieldValue>
+            <valueName>Import new registrations</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Registration Import/Update</controllingFieldValue>
+            <valueName>Import payment</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Registration Import/Update</controllingFieldValue>
+            <valueName>Move contacts into Accounts</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Registration Import/Update</controllingFieldValue>
+            <valueName
+      >Update contact&apos;s title/organization/department</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Registration Import/Update</controllingFieldValue>
+            <valueName
+      >Update existing registrations  (e.g. Reg Type or No Show)</valueName>
+        </valueSettings>
+    </valueSet>
+    <visibleLines>8</visibleLines>
+</CustomField>

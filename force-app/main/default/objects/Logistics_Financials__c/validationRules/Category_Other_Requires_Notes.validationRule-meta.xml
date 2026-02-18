@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category_Other_Requires_Notes</fullName>
+    <active>false</active>
+    <description
+  >When Category is &quot;Other&quot;, the field &quot;Notes&quot; must be filled in.</description>
+    <errorConditionFormula>ISPICKVAL(Category__c, &quot;Other&quot;)
+&amp;&amp;
+ISBLANK(Notes__c)</errorConditionFormula>
+    <errorMessage
+  >When Category is &quot;Other&quot;, the field &quot;Notes&quot; must be filled in.</errorMessage>
+</ValidationRule>

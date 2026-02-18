@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sync_To_CMS</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Sync To CMS</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>//  makes a simple ajax call to call download_event_registration()
+var url = &quot;https://cms.erepublic.com/common/queue/add?interface=salesforce&amp;method=download_event_registration&amp;bypass=1&amp;salesforce_id={!Registration__c.Id}&quot;
+
+var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+    if (xhttp.readyState == 4 &amp;&amp; xhttp.status == 200) {
+        alert(&apos;result: &apos;+ xhttp.responseText );
+    }
+};
+
+xhttp.open(&quot;GET&quot;, url, true);
+xhttp.send();</url>
+</WebLink>

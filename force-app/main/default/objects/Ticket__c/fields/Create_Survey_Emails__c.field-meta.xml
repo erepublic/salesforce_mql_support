@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Create_Survey_Emails__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Field is used by process builder to automatically created survey campaigns on a new project.</description>
+    <inlineHelpText
+  >Field is used by process builder to automatically created survey campaigns on a new project.</inlineHelpText>
+    <label>Create Survey Emails</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

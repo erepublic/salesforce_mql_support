@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Email_to_Advisory_Board_Coordinator</name>
+        <label>Send Email to Advisory Board Coordinator</label>
+        <locationX>176</locationX>
+        <locationY>431</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>var_ADBD_Coord_Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderAddress</name>
+            <value>
+                <elementReference>$User.Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>f_Subject_Line</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>var_Email_Body</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>ccRecipientAddressList</name>
+            <value>
+                <stringValue>salesforce@erepublic.com</stringValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Email_Email_Body</name>
+        <label>Assign Email &amp; Email Body</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <assignmentItems>
+            <assignToReference>var_ADBD_Coord_Email</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >$Record.Event__r.Advisory_Board_Coordinator__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_Email_Body</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>tt_Email_Body</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Send_Email_to_Advisory_Board_Coordinator</targetReference>
+        </connector>
+    </assignments>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Advisory_Board_Date</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.Shipment_Contents__c}, 
+&quot;Ad Board #1 Materials&quot;, &quot;Advisory Board #1: &quot; &amp; IF(ISBLANK({!$Record.Event__r.Advisory_Board_1__c}), 
+                                        &quot;No Date&quot;,
+                                         TEXT(MONTH({!$Record.Event__r.Advisory_Board_1__c})) &amp; &quot;/&quot; &amp;
+                                         TEXT(DAY({!$Record.Event__r.Advisory_Board_1__c})) &amp; &quot;/&quot; &amp;
+                                         TEXT(YEAR({!$Record.Event__r.Advisory_Board_1__c}))), 
+&quot;Ad Board #2 Materials&quot;,  &quot;Advisory Board #2: &quot; &amp; IF(ISBLANK({!$Record.Event__r.Advisory_Board_2__c}), 
+                                        &quot;No Date&quot;,
+                                         TEXT(MONTH({!$Record.Event__r.Advisory_Board_2__c})) &amp; &quot;/&quot; &amp;
+                                         TEXT(DAY({!$Record.Event__r.Advisory_Board_2__c})) &amp; &quot;/&quot; &amp;
+                                         TEXT(YEAR({!$Record.Event__r.Advisory_Board_2__c}))), 
+&quot;Ad Board #3 Materials&quot;,  &quot;Advisory Board #3: &quot; &amp; IF(ISBLANK({!$Record.Event__r.Advisory_Board_3__c}), 
+                                        &quot;No Date&quot;,
+                                         TEXT(MONTH({!$Record.Event__r.Advisory_Board_3__c})) &amp; &quot;/&quot; &amp;
+                                         TEXT(DAY({!$Record.Event__r.Advisory_Board_3__c})) &amp; &quot;/&quot; &amp;
+                                         TEXT(YEAR({!$Record.Event__r.Advisory_Board_3__c}))), 
+&quot;Not Applicable&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Advisory_Board_Status</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.Shipment_Contents__c}, 
+&quot;Ad Board #1 Materials&quot;, &quot;Status: &quot; &amp; TEXT({!$Record.Event__r.Ad_Bd_1_Status__c}), 
+&quot;Ad Board #2 Materials&quot;,  &quot;Status: &quot; &amp; TEXT({!$Record.Event__r.Ad_Bd_2_Status__c}), 
+&quot;Ad Board #3 Materials&quot;,  &quot;Status: &quot; &amp; TEXT({!$Record.Event__r.Ad_Bd_3_Status__c}), 
+&quot;Not Applicable&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Created_Date</name>
+        <dataType>String</dataType>
+        <expression
+    >TEXT(MONTH(DATEVALUE({!$Record.CreatedDate})))&amp;&quot;/&quot;&amp;
+TEXT(DAY(DATEVALUE({!$Record.CreatedDate})))&amp;&quot;/&quot;&amp;
+TEXT(YEAR(DATEVALUE({!$Record.CreatedDate})))</expression>
+    </formulas>
+    <formulas>
+        <name>f_Created_or_New</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(ISNEW(), &quot;Created&quot;, &quot;Updated&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Subject_Line</name>
+        <dataType>String</dataType>
+        <expression
+    >TEXT({!$Record.Shipment_Contents__c}) &amp; &quot; Shipment &quot; &amp; {!f_Created_or_New} &amp; &quot;: &quot; &amp; {!$Record.Event__r.Name}</expression>
+    </formulas>
+    <formulas>
+        <name>f_Tracking_URL</name>
+        <dataType>String</dataType>
+        <expression
+    >IF( AND( ISPICKVAL( {!$Record.Courier__c}, &quot;UPS&quot;), {!$Record.Tracking_Number__c} &lt;&gt;&quot;&quot; ),
+     &quot;https://www.ups.com/track?loc=en_US&amp;tracknum=&quot; &amp; {!$Record.Tracking_Number__c}, 
+
+IF( AND( ISPICKVAL( {!$Record.Courier__c}, &quot;FedEx&quot;), {!$Record.Tracking_Number__c} &lt;&gt;&quot;&quot; ),
+     &quot;https://www.fedex.com/apps/fedextrack/?action=track&amp;trackingnumber=&quot; &amp; {!$Record.Tracking_Number__c}, 
+
+IF( AND( ISPICKVAL( {!$Record.Courier__c} , &quot;USPS&quot;), {!$Record.Tracking_Number__c} &lt;&gt;&quot;&quot; ),
+     &quot;https://tools.usps.com/go/TrackConfirmAction?qtc_tLabels1=&quot; &amp; {!$Record.Tracking_Number__c},
+&quot;&quot;) ) )</expression>
+    </formulas>
+    <interviewLabel
+  >Shipment - RT AS - Ad Board Shipment Added {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Shipment - RT AS - Ad Board Shipment Added</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_Email_Email_Body</targetReference>
+        </connector>
+        <filterLogic>1 AND 2 AND (3 OR 4 OR 5) AND 6</filterLogic>
+        <filters>
+            <field>Shipment_Direction__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>To Ad Board</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Tracking_Number__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Tracking_Number__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CreatedDate</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Shipment_Direction__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Event_Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Cancelled</stringValue>
+            </value>
+        </filters>
+        <object>Shipment__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>tt_Email_Body</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text
+    >&lt;table class=&quot;ql-table-blob&quot;&gt;&lt;tbody&gt;&lt;tr style=&quot;font-size: 14px; font-family: sans-serif;&quot;&gt;&lt;td&gt;&lt;div style=&quot;font-size: 14px; font-family: sans-serif;&quot;&gt;An Advisory Board shipment has been {!f_Created_or_New} for &lt;a href=&quot;https://erepublic.lightning.force.com/lightning/r/Events__c/{!$Record.Event__c}/view&quot;&gt;{!$Record.Event__r.Name}&lt;/a&gt;: &lt;br&gt;&lt;br&gt;{!f_Advisory_Board_Date}&lt;br&gt;{!f_Advisory_Board_Status}&lt;br&gt;&lt;br&gt;&lt;/div&gt;&lt;div style=&quot;font-size: 14px; font-family: sans-serif;&quot;&gt;&lt;b&gt;Shipment Details: &lt;/b&gt;&lt;ul&gt;&lt;li&gt;Contents: {!$Record.Shipment_Contents__c}&lt;/li&gt;&lt;li&gt;Courier: {!$Record.Courier__c}&lt;/li&gt;&lt;li&gt;Tracking Number: {!$Record.Tracking_Number__c}&lt;/li&gt;&lt;li&gt;Tracking URL: &lt;a href=&quot;{!f_Tracking_URL}&quot;&gt;{!f_Tracking_URL}&lt;/a&gt;&lt;/li&gt;&lt;li&gt;Direction: {!$Record.Shipment_Direction__c}&lt;/li&gt;&lt;li&gt;Created: {!f_Created_Date}&lt;/li&gt;&lt;/ul&gt;{!$User.FirstName} {!$User.LastName}&lt;br&gt;{!$User.Title}&lt;br&gt;{!$User.Email}&lt;br&gt;&lt;p style=&quot;font-family:Segoe UI&quot;&gt;
+&lt;font size=&quot;1&quot;&gt;
+&lt;br&gt;&lt;br&gt;&lt;a href=&quot;https://erepublic.lightning.force.com/lightning/setup/Flows/page?address=%2F300Jw00000gx6HLIAY%3FretUrl%3D%2Flightning%2Fsetup%2FFlows%2Fhome&quot;&gt;Flow&lt;/a&gt;
+&lt;/font&gt;&lt;/p&gt;&lt;/div&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>var_ADBD_Coord_Email</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Email_Body</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CC_on_Approval__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >To add an internal CC contact upon purchase order approval.</description>
+    <inlineHelpText
+  >(optional) Adds internal CC contact upon approval.</inlineHelpText>
+    <label>CC on Approval</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Purchase_Orders2</relationshipName>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

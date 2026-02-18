@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Convert</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <linkType>javascript</linkType>
+    <masterLabel>Convert</masterLabel>
+    <openType>onClickJavaScript</openType>
+    <protected>false</protected>
+    <url>{!REQUIRESCRIPT(&apos;//code.jquery.com/jquery-2.0.3.min.js&apos;)}
+
+var URL =
+  &quot;https://cms.erepublic.com/common/salesforce/salesforce_api/convert_sales_lead/?Id={!Sales_Lead__c.Id}&amp;sfuser={!$User.Id}&quot;;
+
+jQuery.ajax(
+  {
+    type: &quot;GET&quot;,
+    url: &quot;/services/proxy&quot;,
+    headers:
+      {
+        &quot;SalesforceProxy-Endpoint&quot; : URL
+      },
+    success :
+      function(response) {
+        var res = JSON.parse(response);
+        if( res.JavaScript ) {
+          eval(res.JavaScript);
+        } else {
+          console.log(res);
+        }
+      },
+    error :
+      function(response) {
+        console.log(response);
+      }
+  }
+);</url>
+</WebLink>

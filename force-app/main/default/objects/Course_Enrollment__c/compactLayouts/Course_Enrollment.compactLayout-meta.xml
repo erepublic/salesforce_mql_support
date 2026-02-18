@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Course_Enrollment</fullName>
+    <fields>Name</fields>
+    <fields>Course__c</fields>
+    <fields>Course_Account__c</fields>
+    <fields>Delivery_Contract__c</fields>
+    <fields>Total_Seats_Enrolled__c</fields>
+    <label>Course Enrollment</label>
+</CompactLayout>

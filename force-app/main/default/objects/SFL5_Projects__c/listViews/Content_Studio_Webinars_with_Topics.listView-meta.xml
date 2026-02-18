@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Content_Studio_Webinars_with_Topics</fullName>
+    <booleanFilter
+  >(1 AND 2 AND (3 OR 4) AND 5 AND 6) OR (6 AND 7 AND 8 AND 9)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Project_Stage__c</columns>
+    <columns>Project_Phase__c</columns>
+    <columns>Completion_Date__c</columns>
+    <columns>Vertical__c</columns>
+    <columns>Topic__c</columns>
+    <columns>Description_OtherTopic__c</columns>
+    <columns>Paper_Description__c</columns>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Event__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Custom_Media</value>
+    </filters>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>notEqual</operation>
+        <value>Cancelled</value>
+    </filters>
+    <filters>
+        <field>Completion_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2018</value>
+    </filters>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2018 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>Project_Type__c</field>
+        <operation>equals</operation>
+        <value>Webinar</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>notContain</operation>
+        <value
+    >DC -,DSPI,Digital Communities,Digital States,Marketing,Digital Cities</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Content_Studio</value>
+    </filters>
+    <filters>
+        <field>Product__c</field>
+        <operation>equals</operation>
+        <value>Webinar</value>
+    </filters>
+    <filters>
+        <field>Project_Status_Display__c</field>
+        <operation>notEqual</operation>
+        <value>Cancelled</value>
+    </filters>
+    <label>Content Studio - Webinars with Topics</label>
+</ListView>

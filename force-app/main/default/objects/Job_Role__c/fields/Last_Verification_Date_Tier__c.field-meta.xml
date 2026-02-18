@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Verification_Date_Tier__c</fullName>
+    <description
+  >No. of days tier dependent on the job role&apos;s verified date</description>
+    <externalId>false</externalId>
+    <formula
+  >IF(TODAY() - Verification_Date__c &lt;= 90, &quot;01 - 0 - 90 days&quot;,
+IF(TODAY() - Verification_Date__c &lt;= 180, &quot;02 - 91 - 180 days&quot;,
+IF(TODAY() - Verification_Date__c &lt;= 364, &quot;03 - 180 - 364 days&quot;,
+IF(TODAY() - Verification_Date__c &gt;= 365, &quot;04 - 365+ days&quot;,
+&quot;Unverified&quot;
+))))</formula>
+    <inlineHelpText
+  >No. of days tier dependent on the job role&apos;s verified date</inlineHelpText>
+    <label>Last Verification Date Tier</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

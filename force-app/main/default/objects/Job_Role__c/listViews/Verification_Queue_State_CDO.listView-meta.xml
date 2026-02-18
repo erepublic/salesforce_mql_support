@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verification_Queue_State_CDO</fullName>
+    <booleanFilter>1 AND 2</booleanFilter>
+    <columns>Verification_Date__c</columns>
+    <columns>Refresh_Date__c</columns>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Job_Role_Title__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>includes</operation>
+        <value>State Chief Data Officer</value>
+    </filters>
+    <filters>
+        <field>Verification_Date__c</field>
+        <operation>lessThan</operation>
+        <value>1/17/2025</value>
+    </filters>
+    <label>Verification Queue - State CDO</label>
+</ListView>

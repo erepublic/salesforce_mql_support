@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>X3_Business_Days_Before_Event__c</fullName>
+    <description
+  >3 business days prior to the Event Start Date, excluding weekends and holidays.</description>
+    <formula
+  >/* Check for holidays based on Event Start, avoid displaying a date on a holiday or weekend. */
+
+/* NOTE: This won&apos;t work for 2 holiday days in a row, like Thanksgiving. */
+
+/* Event Start is Sunday and 4 days prior has a holiday */
+
+
+IF( AND(
+          WEEKDAY(Event_Start_Date__c) = 1, 
+          OR(
+             CONTAINS( $Label.Holiday_List , TEXT(Event_Start_Date__c - 4)),
+             CONTAINS( $Label.Holiday_List , TEXT(Event_Start_Date__c - 3)),
+             CONTAINS( $Label.Holiday_List , TEXT(Event_Start_Date__c - 2))
+            )
+        ), 
+
+     Event_Start_Date__c - 5,
+
+/* Event Start is Mon, Tues, Wed or Thurs and 5 days prior has a holiday */
+
+ IF(    AND(
+            OR( 
+               WEEKDAY(Event_Start_Date__c) = 2,
+               WEEKDAY(Event_Start_Date__c) = 3,
+               WEEKDAY(Event_Start_Date__c) = 4,
+               WEEKDAY(Event_Start_Date__c) = 5
+              ),
+            OR(
+               CONTAINS( $Label.Holiday_List , TEXT(Event_Start_Date__c - 5)),
+               CONTAINS( $Label.Holiday_List , TEXT(Event_Start_Date__c - 4)),
+               CONTAINS( $Label.Holiday_List , TEXT(Event_Start_Date__c - 3)),
+               CONTAINS( $Label.Holiday_List , TEXT(Event_Start_Date__c - 2)),
+               CONTAINS( $Label.Holiday_List , TEXT(Event_Start_Date__c - 1))
+               )
+           ),
+
+    Event_Start_Date__c - 6,
+
+
+/* Event Start is Fri or Sat and 3 days prior has a holiday */
+
+IF( AND(
+        OR( 
+           WEEKDAY(Event_Start_Date__c) = 6, 
+           WEEKDAY(Event_Start_Date__c) = 7
+          ),
+        OR(
+           CONTAINS( $Label.Holiday_List , TEXT(Event_Start_Date__c - 3)),
+           CONTAINS( $Label.Holiday_List , TEXT(Event_Start_Date__c - 2)),
+           CONTAINS( $Label.Holiday_List , TEXT(Event_Start_Date__c - 1))
+          )
+        ), 
+
+    Event_Start_Date__c - 4,
+
+/* No holidays, just avoid weekends */
+
+     CASE(MOD((Event_Start_Date__c - 3) - DATE(1900, 1, 7), 7),
+     0, (Event_Start_Date__c - 5), /* Sunday */
+     1, (Event_Start_Date__c - 3), /* Monday */
+     2, (Event_Start_Date__c - 3), /* Tuesday */
+     3, (Event_Start_Date__c - 3), /* Wednesday */
+     4, (Event_Start_Date__c - 4), /* Thursday */
+     5, (Event_Start_Date__c - 5), /* Friday */
+     6, (Event_Start_Date__c - 5), /* Saturday */
+     null)
+
+)))</formula>
+    <inlineHelpText
+  >3 business days prior to the Event Start Date, excluding weekends and holidays.</inlineHelpText>
+    <label>3 Business Days Before Event</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

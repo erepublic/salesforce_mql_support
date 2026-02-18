@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Accepted_At__c</fullName>
+    <description>The time the award was accepted by the recipient</description>
+    <inlineHelpText
+  >The time the award was accepted by the recipient</inlineHelpText>
+    <label>Accepted At</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

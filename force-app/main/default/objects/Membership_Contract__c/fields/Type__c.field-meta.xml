@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <label>Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>DEN</fullName>
+                <default>false</default>
+                <label>DEN</label>
+            </value>
+            <value>
+                <fullName>DGN</fullName>
+                <default>false</default>
+                <label>DGN</label>
+            </value>
+            <value>
+                <fullName>ICA</fullName>
+                <default>false</default>
+                <label>ICA</label>
+            </value>
+            <value>
+                <fullName>ITX</fullName>
+                <default>false</default>
+                <label>ITX</label>
+            </value>
+            <value>
+                <fullName>AI</fullName>
+                <default>false</default>
+                <label>AI</label>
+            </value>
+            <value>
+                <fullName>CJIS Council</fullName>
+                <default>false</default>
+                <label>CJIS Council</label>
+            </value>
+            <value>
+                <fullName>Cybersecurity Council</fullName>
+                <default>false</default>
+                <label>Cybersecurity Council</label>
+            </value>
+            <value>
+                <fullName>DC Large City County</fullName>
+                <default>false</default>
+                <label>DC Large City County</label>
+            </value>
+            <value>
+                <fullName>Digital States</fullName>
+                <default>false</default>
+                <label>Digital States</label>
+            </value>
+            <value>
+                <fullName>Future of Data</fullName>
+                <default>false</default>
+                <label>Future of Data</label>
+            </value>
+            <value>
+                <fullName>GE Council</fullName>
+                <default>false</default>
+                <label>GE Council</label>
+            </value>
+            <value>
+                <fullName>HE CIO</fullName>
+                <default>false</default>
+                <label>HE Council</label>
+            </value>
+            <value>
+                <fullName>HE AI Council</fullName>
+                <default>false</default>
+                <label>HE AI Council</label>
+            </value>
+            <value>
+                <fullName>K-12 Council</fullName>
+                <default>false</default>
+                <label>K-12 Council</label>
+            </value>
+            <value>
+                <fullName>MaaS</fullName>
+                <default>false</default>
+                <label>MaaS</label>
+            </value>
+            <value>
+                <fullName>IFL</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>IFL</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

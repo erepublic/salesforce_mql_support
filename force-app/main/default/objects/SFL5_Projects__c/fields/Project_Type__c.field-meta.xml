@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Type__c</fullName>
+    <label>Project Type</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Digital Marketing</fullName>
+                <default>false</default>
+                <label>Digital Marketing</label>
+            </value>
+            <value>
+                <fullName>Infographic</fullName>
+                <default>false</default>
+                <label>Infographic</label>
+            </value>
+            <value>
+                <fullName>Thought Leadership Profile</fullName>
+                <default>false</default>
+                <label>Thought Leadership Profile</label>
+            </value>
+            <value>
+                <fullName>Q&amp;A</fullName>
+                <default>false</default>
+                <label>Q&amp;A</label>
+            </value>
+            <value>
+                <fullName>Publishable Report</fullName>
+                <default>false</default>
+                <label>Publishable Report</label>
+            </value>
+            <value>
+                <fullName>White Paper</fullName>
+                <default>false</default>
+                <label>White Paper</label>
+            </value>
+            <value>
+                <fullName>Issue Brief</fullName>
+                <default>false</default>
+                <label>Issue Brief</label>
+            </value>
+            <value>
+                <fullName>Handbook</fullName>
+                <default>false</default>
+                <label>Handbook</label>
+            </value>
+            <value>
+                <fullName>Special Report</fullName>
+                <default>false</default>
+                <label>Special Report</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>Annual TLP</fullName>
+                <default>false</default>
+                <label>Annual TLP</label>
+            </value>
+            <value>
+                <fullName>Battlecards and Playbooks</fullName>
+                <default>false</default>
+                <label>Battlecards and Playbooks</label>
+            </value>
+            <value>
+                <fullName>Other Strategy/Training</fullName>
+                <default>false</default>
+                <label>Other Strategy/Training</label>
+            </value>
+            <value>
+                <fullName>Jurisdictional Profiles</fullName>
+                <default>false</default>
+                <label>Jurisdictional Profiles</label>
+            </value>
+            <value>
+                <fullName>Marketing Services</fullName>
+                <default>false</default>
+                <label>Marketing Services</label>
+            </value>
+            <value>
+                <fullName>Navigator</fullName>
+                <default>false</default>
+                <label>Navigator</label>
+            </value>
+            <value>
+                <fullName>Custom Report</fullName>
+                <default>false</default>
+                <label>Custom Report</label>
+            </value>
+            <value>
+                <fullName>Custom Event</fullName>
+                <default>false</default>
+                <label>Custom Event</label>
+            </value>
+            <value>
+                <fullName>Contact Lists</fullName>
+                <default>false</default>
+                <label>Contact Lists</label>
+            </value>
+            <value>
+                <fullName>Contracts Inventory / Analysis</fullName>
+                <default>false</default>
+                <label>Contracts Inventory / Analysis</label>
+            </value>
+            <value>
+                <fullName>Exchange Communities</fullName>
+                <default>false</default>
+                <label>Exchange Communities</label>
+            </value>
+            <value>
+                <fullName>Lead Metrics</fullName>
+                <default>false</default>
+                <label>Lead Metrics</label>
+            </value>
+            <value>
+                <fullName>Mailing List Rental</fullName>
+                <default>false</default>
+                <label>Mailing List Rental</label>
+            </value>
+            <value>
+                <fullName>Market Presentations</fullName>
+                <default>false</default>
+                <label>Market Presentations</label>
+            </value>
+            <value>
+                <fullName>Market Strategy</fullName>
+                <default>false</default>
+                <label>Market Strategy</label>
+            </value>
+            <value>
+                <fullName>Newsletter Ad</fullName>
+                <default>false</default>
+                <label>Newsletter Ad</label>
+            </value>
+            <value>
+                <fullName>Newsletter Metrics</fullName>
+                <default>false</default>
+                <label>Newsletter Metrics</label>
+            </value>
+            <value>
+                <fullName>Newsletter Paper Promo</fullName>
+                <default>false</default>
+                <label>Newsletter Paper Promo</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Partner Opt In Email List Rental</fullName>
+                <default>false</default>
+                <label>Partner Opt In Email List Rental</label>
+            </value>
+            <value>
+                <fullName>Thank You Page Promo</fullName>
+                <default>false</default>
+                <label>Thank You Page Promo</label>
+            </value>
+            <value>
+                <fullName>Video Metrics</fullName>
+                <default>false</default>
+                <label>Video Metrics</label>
+            </value>
+            <value>
+                <fullName>Website Ad</fullName>
+                <default>false</default>
+                <label>Website Ad</label>
+            </value>
+            <value>
+                <fullName>Website Metrics</fullName>
+                <default>false</default>
+                <label>Website Metrics</label>
+            </value>
+            <value>
+                <fullName>Research Request</fullName>
+                <default>false</default>
+                <label>Research Request</label>
+            </value>
+            <value>
+                <fullName>Maintenance/Updates</fullName>
+                <default>false</default>
+                <label>Maintenance/Updates</label>
+            </value>
+            <value>
+                <fullName>All of the Above</fullName>
+                <default>false</default>
+                <label>All of the Above</label>
+            </value>
+            <value>
+                <fullName>Promo Video</fullName>
+                <default>false</default>
+                <label>Promo Video</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
+            </value>
+            <value>
+                <fullName>CDE Special Report</fullName>
+                <default>false</default>
+                <label>CDE Special Report</label>
+            </value>
+            <value>
+                <fullName>Data Highlight</fullName>
+                <default>false</default>
+                <label>Data Highlight</label>
+            </value>
+            <value>
+                <fullName>SP Research Deliverables</fullName>
+                <default>false</default>
+                <label>SP Research Deliverables</label>
+            </value>
+            <value>
+                <fullName>SP Sales Training</fullName>
+                <default>false</default>
+                <label>SP Sales Training</label>
+            </value>
+            <value>
+                <fullName>Delivery Overview</fullName>
+                <default>false</default>
+                <label>Delivery Overview</label>
+            </value>
+            <value>
+                <fullName>Project Delivery Routing form</fullName>
+                <default>false</default>
+                <label>Project Delivery Routing form</label>
+            </value>
+            <value>
+                <fullName>Senior Fellow Expansion</fullName>
+                <default>false</default>
+                <label>Senior Fellow Expansion</label>
+            </value>
+            <value>
+                <fullName>Events</fullName>
+                <default>false</default>
+                <label>Events</label>
+            </value>
+            <value>
+                <fullName>Proposal Templates</fullName>
+                <default>false</default>
+                <label>Proposal Templates</label>
+            </value>
+            <value>
+                <fullName>CDE Tracking System</fullName>
+                <default>false</default>
+                <label>CDE Tracking System</label>
+            </value>
+            <value>
+                <fullName>Partnerships</fullName>
+                <default>false</default>
+                <label>Partnerships</label>
+            </value>
+            <value>
+                <fullName>Audience &amp; Lists</fullName>
+                <default>false</default>
+                <label>Audience &amp; Lists</label>
+            </value>
+            <value>
+                <fullName>Centerdigitaled.com</fullName>
+                <default>false</default>
+                <label>Centerdigitaled.com</label>
+            </value>
+            <value>
+                <fullName>Social Media</fullName>
+                <default>false</default>
+                <label>Social Media</label>
+            </value>
+            <value>
+                <fullName>Lead Delivery</fullName>
+                <default>false</default>
+                <label>Lead Delivery</label>
+            </value>
+            <value>
+                <fullName>GovGirl Event Coverage</fullName>
+                <default>false</default>
+                <label>GovGirl Event Coverage</label>
+            </value>
+            <value>
+                <fullName>Video</fullName>
+                <default>false</default>
+                <label>Video</label>
+            </value>
+            <value>
+                <fullName>Lead-Gen Poll</fullName>
+                <default>false</default>
+                <label>Lead-Gen Poll</label>
+            </value>
+            <value>
+                <fullName>Custom Consulting/Training</fullName>
+                <default>false</default>
+                <label>Custom Consulting/Training</label>
+            </value>
+            <value>
+                <fullName>Custom Interview</fullName>
+                <default>false</default>
+                <label>Custom Interview</label>
+            </value>
+            <value>
+                <fullName>Custom Speaking Engagement</fullName>
+                <default>false</default>
+                <label>Custom Speaking Engagement</label>
+            </value>
+            <value>
+                <fullName>Custom Special Report</fullName>
+                <default>false</default>
+                <label>Custom Special Report</label>
+            </value>
+            <value>
+                <fullName>National Survey</fullName>
+                <default>false</default>
+                <label>National Survey</label>
+            </value>
+            <value>
+                <fullName>Navigator Premium</fullName>
+                <default>false</default>
+                <label>Navigator Premium</label>
+            </value>
+            <value>
+                <fullName>Navigator Custom Project</fullName>
+                <default>false</default>
+                <label>Navigator Custom Project</label>
+            </value>
+            <value>
+                <fullName>Navigator Systems Watch</fullName>
+                <default>false</default>
+                <label>Navigator Systems Watch</label>
+            </value>
+            <value>
+                <fullName>Navigator Vertical Brief</fullName>
+                <default>false</default>
+                <label>Navigator Vertical Brief</label>
+            </value>
+            <value>
+                <fullName>Masterclass</fullName>
+                <default>false</default>
+                <label>Masterclass</label>
+            </value>
+            <value>
+                <fullName>ICYMI</fullName>
+                <default>false</default>
+                <label>ICYMI</label>
+            </value>
+            <value>
+                <fullName>Virtual Q&amp;A</fullName>
+                <default>false</default>
+                <label>Virtual Q&amp;A</label>
+            </value>
+            <value>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+                <label>Webinar</label>
+            </value>
+            <value>
+                <fullName>Lunch &amp; Learn Webinar</fullName>
+                <default>false</default>
+                <label>Lunch &amp; Learn Webinar</label>
+            </value>
+            <value>
+                <fullName>State-Specific Webinar</fullName>
+                <default>false</default>
+                <label>State-Specific Webinar</label>
+            </value>
+            <value>
+                <fullName>Virtual Conversation</fullName>
+                <default>false</default>
+                <label>Virtual Conversation</label>
+            </value>
+            <value>
+                <fullName>Custom Roundtables</fullName>
+                <default>false</default>
+                <label>Custom Roundtables</label>
+            </value>
+            <value>
+                <fullName>Editorial Roundtables</fullName>
+                <default>false</default>
+                <label>Editorial Roundtables</label>
+            </value>
+            <value>
+                <fullName>Sponsored Article</fullName>
+                <default>false</default>
+                <label>Sponsored Article</label>
+            </value>
+            <value>
+                <fullName>Case Study</fullName>
+                <default>false</default>
+                <label>Case Study</label>
+            </value>
+            <value>
+                <fullName>Custom Newsletter</fullName>
+                <default>false</default>
+                <label>Custom Newsletter</label>
+            </value>
+            <value>
+                <fullName>Custom / Other</fullName>
+                <default>false</default>
+                <label>Custom / Other</label>
+            </value>
+            <value>
+                <fullName>Custom Survey</fullName>
+                <default>false</default>
+                <label>Custom Survey</label>
+            </value>
+            <value>
+                <fullName>Standard Leads</fullName>
+                <default>false</default>
+                <label>Standard Leads</label>
+            </value>
+            <value>
+                <fullName>Filtered Leads</fullName>
+                <default>false</default>
+                <label>Filtered Leads</label>
+            </value>
+            <value>
+                <fullName>Account Based Marketing</fullName>
+                <default>false</default>
+                <label>Account Based Marketing</label>
+            </value>
+            <value>
+                <fullName>Two-Step Nurture</fullName>
+                <default>false</default>
+                <label>Two-Step Nurture</label>
+            </value>
+            <value>
+                <fullName>Multi-Touch Nurture</fullName>
+                <default>false</default>
+                <label>Multi-Touch Nurture</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

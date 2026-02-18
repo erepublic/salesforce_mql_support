@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Client_Type__c</fullName>
+    <label>Client Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Paid</fullName>
+                <default>false</default>
+                <label>Paid</label>
+            </value>
+            <value>
+                <fullName>Value Add</fullName>
+                <default>false</default>
+                <label>Value Add</label>
+            </value>
+            <value>
+                <fullName>Trade</fullName>
+                <default>false</default>
+                <label>Trade</label>
+            </value>
+            <value>
+                <fullName>House</fullName>
+                <default>false</default>
+                <label>House</label>
+            </value>
+            <value>
+                <fullName>Paper Promo</fullName>
+                <default>false</default>
+                <label>Paper Promo</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

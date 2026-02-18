@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>printed</fullName>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>Agreement_Link__c</columns>
+    <columns>Unsigned_PDF__c</columns>
+    <columns>Link_to_PDF__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Printed</value>
+    </filters>
+    <label>printed</label>
+</ListView>

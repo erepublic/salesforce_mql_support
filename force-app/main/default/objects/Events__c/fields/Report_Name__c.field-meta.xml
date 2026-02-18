@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Report_Name__c</fullName>
+    <description
+  >Appends the quarter of the event to the Nickname for reporting purposes.</description>
+    <externalId>false</externalId>
+    <formula>CASE( 
+TEXT(Event_Month__c), 
+&quot;January&quot;, &quot;Q1&quot;,
+&quot;February&quot;, &quot;Q1&quot;,
+&quot;March&quot;, &quot;Q1&quot;,
+&quot;April&quot;, &quot;Q2&quot;,
+&quot;May&quot;, &quot;Q2&quot;,
+&quot;June&quot;, &quot;Q2&quot;,
+&quot;July&quot;, &quot;Q3&quot;,
+&quot;August&quot;, &quot;Q3&quot;,
+&quot;September&quot;, &quot;Q3&quot;,
+&quot;October&quot;, &quot;Q4&quot;,
+&quot;November&quot;, &quot;Q4&quot;,
+&quot;December&quot;, &quot;Q4&quot;,
+&quot;TBD&quot;)
+&amp;&quot; &quot;&amp; Nickname__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Appends the quarter of the event to the Nickname for reporting purposes.</inlineHelpText>
+    <label>Report Name</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

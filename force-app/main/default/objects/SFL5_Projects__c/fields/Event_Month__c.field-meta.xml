@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Month__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >IF(ISPICKVAL( Event__r.Event_Month__c, &quot;January&quot;)=TRUE, &quot;01 - January&quot;, 
+IF(ISPICKVAL( Event__r.Event_Month__c, &quot;February&quot;)=TRUE, &quot;02 - February&quot;, 
+IF(ISPICKVAL( Event__r.Event_Month__c, &quot;March&quot;)=TRUE, &quot;03 - March&quot;, 
+IF(ISPICKVAL( Event__r.Event_Month__c, &quot;April&quot;)=TRUE, &quot;04 - April&quot;, 
+IF(ISPICKVAL( Event__r.Event_Month__c, &quot;May&quot;)=TRUE, &quot;05 - May&quot;, 
+IF(ISPICKVAL( Event__r.Event_Month__c, &quot;June&quot;)=TRUE, &quot;06 - June&quot;, 
+IF(ISPICKVAL( Event__r.Event_Month__c, &quot;July&quot;)=TRUE, &quot;07 - July&quot;, 
+IF(ISPICKVAL( Event__r.Event_Month__c, &quot;August&quot;)=TRUE, &quot;08 - August&quot;, 
+IF(ISPICKVAL( Event__r.Event_Month__c, &quot;September&quot;)=TRUE, &quot;09 - September&quot;, 
+IF(ISPICKVAL( Event__r.Event_Month__c, &quot;October&quot;)=TRUE, &quot;10 - October&quot;, 
+IF(ISPICKVAL( Event__r.Event_Month__c, &quot;November&quot;)=TRUE, &quot;11 - November&quot;, 
+IF(ISPICKVAL( Event__r.Event_Month__c, &quot;December&quot;)=TRUE, &quot;12 - December&quot;, 
+&quot;TBD&quot; 
+))))))))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Event Month</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

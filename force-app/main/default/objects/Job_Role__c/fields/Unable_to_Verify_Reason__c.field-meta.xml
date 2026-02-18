@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Unable_to_Verify_Reason__c</fullName>
+    <description>Reason role is determined as unable to verify</description>
+    <inlineHelpText
+  >Reason role is determined as unable to verify</inlineHelpText>
+    <label>Unable to Verify Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Unable to verify role online</fullName>
+                <default>false</default>
+                <label>Unable to verify role online</label>
+            </value>
+            <value>
+                <fullName>Role not found</fullName>
+                <default>false</default>
+                <label>Role not found</label>
+            </value>
+            <value>
+                <fullName>Role does not exist</fullName>
+                <default>false</default>
+                <label>Role does not exist</label>
+            </value>
+            <value>
+                <fullName>Role fulfilled by 3rd party</fullName>
+                <default>false</default>
+                <label>Role fulfilled by 3rd party</label>
+            </value>
+            <value>
+                <fullName>Role in development stages</fullName>
+                <default>false</default>
+                <label>Role in development stages</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

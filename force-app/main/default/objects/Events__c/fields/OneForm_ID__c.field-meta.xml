@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>OneForm_ID__c</fullName>
+    <description
+  >This is the product ID for this webinar in OneForm. This field is used to generate the Open in OneForm link.</description>
+    <externalId>true</externalId>
+    <inlineHelpText
+  >This is the product ID for this webinar in OneForm. This field is used to generate the Open in OneForm link.</inlineHelpText>
+    <label>OneForm ID</label>
+    <precision>10</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

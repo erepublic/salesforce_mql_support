@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Interest_Topics__c</fullName>
+    <inlineHelpText
+  >If this event covers any of the specific topics listed, select those topics here to make it show up under any registering contact&apos;s &quot;Topics Interested In&quot; field. (A way to capture that they&apos;ve expressed interest in a particular topic.)</inlineHelpText>
+    <label>Contact Interest Topics</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Contact_Interest_Topics</valueSetName>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

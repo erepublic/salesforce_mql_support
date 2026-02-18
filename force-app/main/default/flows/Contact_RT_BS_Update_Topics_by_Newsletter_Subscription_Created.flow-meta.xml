@@ -1,0 +1,1094 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description
+    >Begin with a semicolon so that added topics will be viewed as &quot;;[TOPIC];&quot; for the purposes of performing a unique search.</description>
+        <name>Add_SemiColon_to_Start_of_Topics</name>
+        <label>Add SemiColon to Start of Topics</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Previous_Topics_Interested_In_with_SemiColons</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>;</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Contact_subscribed_to_CDE_HED</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description
+    >Update the Previous Topics Interested In variable with semicolons in preparation for next search. Update Topics list to be created.</description>
+        <name>Add_to_Previous_Topics</name>
+        <label>Add to Previous Topics</label>
+        <locationX>446</locationX>
+        <locationY>3911</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Previous_Topics_Interested_In_with_SemiColons</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference
+        >Loop_Over_News_Topics_Interested_In</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Previous_Topics_Interested_In_with_SemiColons</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>;</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Create_New_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>;</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Create_New_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference
+        >Loop_Over_News_Topics_Interested_In</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Loop_Over_News_Topics_Interested_In</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>CDE - HED Topics --- Higher Education</description>
+        <name>Assign_CDE_HED_Topics</name>
+        <label>Assign CDE - HED Topics</label>
+        <locationX>50</locationX>
+        <locationY>695</locationY>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Higher Education</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Contact_subscribed_to_CDE_K_12</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>CDE - K-12 ---  K-12 Education</description>
+        <name>Assign_CDE_K_12_Topics</name>
+        <label>Assign CDE - K-12 Topics</label>
+        <locationX>50</locationX>
+        <locationY>995</locationY>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>K-12 Education</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Contact_subscribed_to_GOV_Future_of_Fin</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description
+    >GOV - Future of Fin --- Budget, Finance and HR | Finance</description>
+        <name>Assign_GOV_Future_of_Fin_Topics</name>
+        <label>Assign GOV - Future of Fin Topics</label>
+        <locationX>50</locationX>
+        <locationY>1295</locationY>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Budget, Finance and HR</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Finance</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Contact_subscribed_to_GOV_GOV_Daily</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description
+    >GOV - GOV Daily --- | Citizen Engagement | Policy |</description>
+        <name>Assign_GOV_GOV_Daily_Topics</name>
+        <label>Assign GOV - GOV Daily Topics</label>
+        <locationX>50</locationX>
+        <locationY>1595</locationY>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Citizen Engagement</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Policy</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Contact_subscribed_to_GOV_Politics</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description
+    >GOV - Politics --- | Citizen Engagement | Policy |</description>
+        <name>Assign_GOV_Politics_Topics</name>
+        <label>Assign GOV - Politics Topics</label>
+        <locationX>50</locationX>
+        <locationY>1895</locationY>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Citizen Engagement</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Policy</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Contact_subscribed_to_GT_Cybersecurity</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description>GT - AI --- | Artificial Intelligence |</description>
+        <name>Assign_GT_AI_Topics</name>
+        <label>Assign GT - AI Topics</label>
+        <locationX>50</locationX>
+        <locationY>3395</locationY>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Artificial Intelligence</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Loop_Over_News_Topics_Interested_In</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description
+    >GT - Cybersecurity --- | Cybersecurity | IT Infrastructure | IT Modernization | Networking |</description>
+        <name>Assign_GT_Cybersecurity_Topics</name>
+        <label>Assign GT - Cybersecurity Topics</label>
+        <locationX>50</locationX>
+        <locationY>2195</locationY>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Cybersecurity</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>IT Infrastructure</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>IT Modernization</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Networking</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Contact_subscribed_to_GT_DC</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description
+    >GT - DC --- | Citizen Engagement | Civic Innovation | IoT and Smart Cities | Local |</description>
+        <name>Assign_GT_DC_Topics</name>
+        <label>Assign GT - DC Topics</label>
+        <locationX>50</locationX>
+        <locationY>2495</locationY>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Citizen Engagement</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Civic Innovation</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>IoT and Smart Cities</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Local</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Contact_subscribed_to_GT_EM_News</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description
+    >GT - EM News --- | Cybersecurity | Emergency Management | Law Enforcement and Fire |</description>
+        <name>Assign_GT_EM_News_Topics</name>
+        <label>Assign GT - EM News Topics</label>
+        <locationX>50</locationX>
+        <locationY>2795</locationY>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Cybersecurity</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Emergency Management</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Law Enforcement and Fire</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Contact_subscribed_to_GT_GovTech_Daily</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description
+    >GT - GovTech Daily --- | Cloud | Cybersecurity | Data and Analytics | Emerging Tech | IT Infrastructure | IT Modernization |</description>
+        <name>Assign_GT_GovTech_Daily_Topics</name>
+        <label>Assign GT - GovTech Daily Topics</label>
+        <locationX>50</locationX>
+        <locationY>3095</locationY>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Cloud</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Cybersecurity</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Data and Analytics</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>Emerging Tech</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>IT Infrastructure</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_News_Topics_Interested_In</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>IT Modernization</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Contact_subscribed_to_GT_AI</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Newsletter_Opt_In_Date</name>
+        <label>Assign Newsletter Opt-In Date</label>
+        <locationX>50</locationX>
+        <locationY>4595</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Last_Newsletter_Opt_In_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Newsletter_Opt_In_Date</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description
+    >Null the variable and add the current Topic with surrounding semicolons to prepare for unique search within Topics Interested In field.</description>
+        <name>Assign_Topic_Variable</name>
+        <label>Assign Topic Variable</label>
+        <locationX>358</locationX>
+        <locationY>3695</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Topic_Variable_to_add_with_SemiColons</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Topic_Variable_to_add_with_SemiColons</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>;</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Topic_Variable_to_add_with_SemiColons</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference
+        >Loop_Over_News_Topics_Interested_In</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Topic_Variable_to_add_with_SemiColons</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>;</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Is_Loop_Topic_Interested_In_contained_within_Previous_Topics_Interested</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description
+    >Add leading and trailing semicolons to the Topics Interested In field so that searches for topic within the field will be unique, even with similar names. Example: &quot;;Budget and Finance;&quot; will be unique when determining if Topics Interested In contains &quot;;Finance;&quot;. 
+
+Assign a variable without leading and trailing semicolons to be used for updating the contact record.</description>
+        <name>Assign_Topics_Interested_Variable</name>
+        <label>Assign Topics Interested Variable</label>
+        <locationX>314</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Previous_Topics_Interested_In_with_SemiColons</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>;</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Previous_Topics_Interested_In_with_SemiColons</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference
+        >$Record.Topics_Interested_In__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Previous_Topics_Interested_In_with_SemiColons</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>;</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Create_New_Topics_Interested_In</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >$Record.Topics_Interested_In__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Contact_subscribed_to_CDE_HED</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Contact_subscribed_to_CDE_HED</name>
+        <label>Contact subscribed to CDE - HED?</label>
+        <locationX>182</locationX>
+        <locationY>587</locationY>
+        <defaultConnector>
+            <targetReference>Contact_subscribed_to_CDE_K_12</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Subscribed</defaultConnectorLabel>
+        <rules>
+            <name>CDE_HED_Subscribed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Email_Group_News_CDE_HED__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Subscribed (Customer)</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_CDE_HED_Topics</targetReference>
+            </connector>
+            <label>CDE - HED: Subscribed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Contact_subscribed_to_CDE_K_12</name>
+        <label>Contact subscribed to CDE - K-12?</label>
+        <locationX>182</locationX>
+        <locationY>887</locationY>
+        <defaultConnector>
+            <targetReference
+      >Contact_subscribed_to_GOV_Future_of_Fin</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Subscribed</defaultConnectorLabel>
+        <rules>
+            <name>CDE_K_12_Subscribed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Email_Group_News_CDE_K_12__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Subscribed (Customer)</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_CDE_K_12_Topics</targetReference>
+            </connector>
+            <label>CDE - K-12: Subscribed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Contact_subscribed_to_GOV_Future_of_Fin</name>
+        <label>Contact subscribed to GOV - Future of Fin?</label>
+        <locationX>182</locationX>
+        <locationY>1187</locationY>
+        <defaultConnector>
+            <targetReference
+      >Contact_subscribed_to_GOV_GOV_Daily</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Subscribed</defaultConnectorLabel>
+        <rules>
+            <name>GOV_Future_of_Fin_Subscribed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Email_Group_News_GOV_Future_of_Fin__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Subscribed (Customer)</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_GOV_Future_of_Fin_Topics</targetReference>
+            </connector>
+            <label>GOV - Future of Fin: Subscribed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Contact_subscribed_to_GOV_GOV_Daily</name>
+        <label>Contact subscribed to GOV - GOV Daily?</label>
+        <locationX>182</locationX>
+        <locationY>1487</locationY>
+        <defaultConnector>
+            <targetReference
+      >Contact_subscribed_to_GOV_Politics</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Subscribed</defaultConnectorLabel>
+        <rules>
+            <name>GOV_GOV_Daily_Subscribed</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Email_Group_News_GOV_GOV_Daily__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Subscribed (Customer)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Email_Group_News_GOV_GOV_Daily__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Subscribed (Customer) - Weekly</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_GOV_GOV_Daily_Topics</targetReference>
+            </connector>
+            <label>GOV - GOV Daily: Subscribed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Contact_subscribed_to_GOV_Politics</name>
+        <label>Contact subscribed to GOV - Politics?</label>
+        <locationX>182</locationX>
+        <locationY>1787</locationY>
+        <defaultConnector>
+            <targetReference
+      >Contact_subscribed_to_GT_Cybersecurity</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Subscribed</defaultConnectorLabel>
+        <rules>
+            <name>GOV_Politics_Subscribed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Email_Group_News_GOV_Politics__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Subscribed (Customer)</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_GOV_Politics_Topics</targetReference>
+            </connector>
+            <label>GOV - Politics: Subscribed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Contact_subscribed_to_GT_AI</name>
+        <label>Contact subscribed to GT - AI?</label>
+        <locationX>182</locationX>
+        <locationY>3287</locationY>
+        <defaultConnector>
+            <targetReference
+      >Loop_Over_News_Topics_Interested_In</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Subscribed</defaultConnectorLabel>
+        <rules>
+            <name>GT_AI_Subscribed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Email_Group_News_GT_AI__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Subscribed (Customer)</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_GT_AI_Topics</targetReference>
+            </connector>
+            <label>GT - AI: Subscribed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Contact_subscribed_to_GT_Cybersecurity</name>
+        <label>Contact subscribed to GT - Cybersecurity?</label>
+        <locationX>182</locationX>
+        <locationY>2087</locationY>
+        <defaultConnector>
+            <targetReference>Contact_subscribed_to_GT_DC</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Subscribed</defaultConnectorLabel>
+        <rules>
+            <name>GT_Cybersecurity_Subscribed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Email_Group_News_GT_Cybersecurity__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Subscribed (Customer)</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_GT_Cybersecurity_Topics</targetReference>
+            </connector>
+            <label>GT - Cybersecurity: Subscribed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Contact_subscribed_to_GT_DC</name>
+        <label>Contact subscribed to GT - DC?</label>
+        <locationX>182</locationX>
+        <locationY>2387</locationY>
+        <defaultConnector>
+            <targetReference>Contact_subscribed_to_GT_EM_News</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Subscribed</defaultConnectorLabel>
+        <rules>
+            <name>GT_DC_Subscribed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Email_Group_News_GT_DC__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Subscribed (Customer)</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_GT_DC_Topics</targetReference>
+            </connector>
+            <label>GT - DC: Subscribed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Contact_subscribed_to_GT_EM_News</name>
+        <label>Contact subscribed to GT - EM News?</label>
+        <locationX>182</locationX>
+        <locationY>2687</locationY>
+        <defaultConnector>
+            <targetReference
+      >Contact_subscribed_to_GT_GovTech_Daily</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Subscribed</defaultConnectorLabel>
+        <rules>
+            <name>GT_EM_News_Subscribed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Email_Group_News_GT_EM_News__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Subscribed (Customer)</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_GT_EM_News_Topics</targetReference>
+            </connector>
+            <label>GT - EM News: Subscribed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Contact_subscribed_to_GT_GovTech_Daily</name>
+        <label>Contact subscribed to GT - GovTech Daily?</label>
+        <locationX>182</locationX>
+        <locationY>2987</locationY>
+        <defaultConnector>
+            <targetReference>Contact_subscribed_to_GT_AI</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Subscribed</defaultConnectorLabel>
+        <rules>
+            <name>GT_GovTech_Daily_Subscribed</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Email_Group_News_GT_GovTech_Daily__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Subscribed (Customer)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Email_Group_News_GT_GovTech_Daily__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Subscribed (Customer) - Weekly</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_GT_GovTech_Daily_Topics</targetReference>
+            </connector>
+            <label>GT - GovTech Daily: Subscribed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description
+    >Check if the topics list actually changed before performing a DML/update.</description>
+        <name>Did_Topics_Interested_In_Change</name>
+        <label>Did Topics Interested In Change?</label>
+        <locationX>182</locationX>
+        <locationY>4187</locationY>
+        <defaultConnector>
+            <targetReference>Set_Newsletter_Opt_In_Date</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Topics_Interested_In_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Topics_Interested_In__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference
+          >var_Create_New_Topics_Interested_In</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Triggering_Contact</targetReference>
+            </connector>
+            <label>Topics Interested In Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name
+    >Is_Loop_Topic_Interested_In_contained_within_Previous_Topics_Interested</name>
+        <label
+    >Is Loop Topic Interested In contained within Previous Topics Interested?</label>
+        <locationX>358</locationX>
+        <locationY>3803</locationY>
+        <defaultConnector>
+            <targetReference>Add_to_Previous_Topics</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>New Topic</defaultConnectorLabel>
+        <rules>
+            <name>Topic_is_in_Previous_Topics</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >var_Previous_Topics_Interested_In_with_SemiColons</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference
+          >var_Topic_Variable_to_add_with_SemiColons</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Loop_Over_News_Topics_Interested_In</targetReference>
+            </connector>
+            <label>Topic is in Previous Topics</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description
+    >Check if the Topics Interested In field is null before adding any necessary leading or trailing semicolons.</description>
+        <name>Is_Topics_Interested_In_Null</name>
+        <label>Is Topics Interested In Null?</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Assign_Topics_Interested_Variable</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Not Null</defaultConnectorLabel>
+        <rules>
+            <name>Topics_Interested_in_is_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Topics_Interested_In__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Add_SemiColon_to_Start_of_Topics</targetReference>
+            </connector>
+            <label>Topics Interested in is Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Set_Newsletter_Opt_In_Date</name>
+        <label>Set Newsletter Opt-In Date?</label>
+        <locationX>182</locationX>
+        <locationY>4487</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Set_Newsletter_Opt_In_Date</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Last_Newsletter_Opt_In_Date__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Newsletter_Opt_In_Date</targetReference>
+            </connector>
+            <label>Yes, Set Newsletter Opt-In Date</label>
+        </rules>
+    </decisions>
+    <description
+  >On Creation: Before save, if any Newsletter Subscription changed to (Subscribed - Customer), update the contact&apos;s Topics Interested In field accordingly. Update Last Newsletter Opt-In Date if not already provided.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Newsletter_Opt_In_Date</name>
+        <dataType>Date</dataType>
+        <expression>IF(
+    {!$Record.Last_Newsletter_Opt_In_Date__c}&lt;&gt;null,
+    {!$Record.Last_Newsletter_Opt_In_Date__c}, 
+    {!$Flow.CurrentDate}
+)</expression>
+    </formulas>
+    <interviewLabel
+  >Contact - RT BS - Update Topics by Newsletter Subscription (Created) {!$Flow.CurrentDateTime}</interviewLabel>
+    <label
+  >Contact - RT BS - Update Topics by Newsletter Subscription (Created)</label>
+    <loops>
+        <description
+    >A loop to check each added Topic to determine if it is included within the contact&apos;s original Topics Interested In field.</description>
+        <name>Loop_Over_News_Topics_Interested_In</name>
+        <label>Loop Over News Topics Interested In</label>
+        <locationX>182</locationX>
+        <locationY>3587</locationY>
+        <collectionReference>var_News_Topics_Interested_In</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Assign_Topic_Variable</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Did_Topics_Interested_In_Change</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Triggering_Contact</name>
+        <label>Update Triggering Contact</label>
+        <locationX>50</locationX>
+        <locationY>4295</locationY>
+        <connector>
+            <targetReference>Set_Newsletter_Opt_In_Date</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Topics_Interested_In__c</field>
+            <value>
+                <elementReference
+        >var_Create_New_Topics_Interested_In</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_Topics_Interested_In_Null</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Email_Group_News_CDE_HED__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Subscribed (Customer)</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email_Group_News_CDE_K_12__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Subscribed (Customer)</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email_Group_News_GOV_Future_of_Fin__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Subscribed (Customer)</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email_Group_News_GOV_GOV_Daily__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Subscribed (Customer)</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email_Group_News_GOV_Politics__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Subscribed (Customer)</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email_Group_News_GT_AI__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Subscribed (Customer)</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email_Group_News_GT_Cybersecurity__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Subscribed (Customer)</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email_Group_News_GT_DC__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Subscribed (Customer)</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email_Group_News_GT_EM_News__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Subscribed (Customer)</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email_Group_News_GT_GovTech_Daily__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Subscribed (Customer)</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email_Group_News_GOV_GOV_Daily__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Subscribed (Customer) - Weekly</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email_Group_News_GT_GovTech_Daily__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Subscribed (Customer) - Weekly</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email_Group_News_GT_Market_Insight__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Subscribed (Customer)</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email_Group_News_GT_Biz__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Subscribed (Customer)</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Email_Group_News_ER_SLED__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Subscribed (Customer)</stringValue>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>var_Create_New_Topics_Interested_In</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_MSP_Topics_Picklist</name>
+        <dataType>Multipicklist</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_News_Topics_Interested_In</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Previous_Topics_Interested_In_with_SemiColons</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Topic_Variable_to_add</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Topic_Variable_to_add_with_SemiColons</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

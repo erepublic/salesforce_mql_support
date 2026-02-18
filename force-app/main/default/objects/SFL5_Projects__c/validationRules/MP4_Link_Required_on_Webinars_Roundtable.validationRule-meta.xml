@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>MP4_Link_Required_on_Webinars_Roundtable</fullName>
+    <active>true</active>
+    <description
+  >MP4 Link is required to change status to &quot;Product Delivered&quot; when product group is &quot;Webinar&quot; or &quot;Roundtable&quot;</description>
+    <errorConditionFormula>RecordType.Id = &quot;0125Y000001bPG9&quot;
+&amp;&amp;
+OR(
+ISBLANK(Completion_Date__c),
+Completion_Date__c &gt;= DATEVALUE( &quot;2022-01-01&quot; )
+)
+&amp;&amp;
+(
+Product_Group__c = &quot;Webinar&quot;
+||
+Product_Group__c = &quot;Roundtable&quot;
+)
+&amp;&amp;
+(Project_Status_Display__c = &quot;Product Delivered&quot;)
+&amp;&amp;
+ISBLANK(MP4_Link__c)</errorConditionFormula>
+    <errorDisplayField>MP4_Link__c</errorDisplayField>
+    <errorMessage>MP4 Link is required</errorMessage>
+</ValidationRule>

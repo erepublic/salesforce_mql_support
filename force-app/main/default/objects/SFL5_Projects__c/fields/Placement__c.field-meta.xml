@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Placement__c</fullName>
+    <label>Placement</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>2-Step Nurture</fullName>
+                <default>false</default>
+                <label>2-Step Nurture</label>
+            </value>
+            <value>
+                <fullName>Channel</fullName>
+                <default>false</default>
+                <label>Channel</label>
+            </value>
+            <value>
+                <fullName>Client Content</fullName>
+                <default>false</default>
+                <label>Client Content</label>
+            </value>
+            <value>
+                <fullName>eRepublic Content</fullName>
+                <default>false</default>
+                <label>eRepublic Content</label>
+            </value>
+            <value>
+                <fullName>Initiative</fullName>
+                <default>false</default>
+                <label>Initiative</label>
+            </value>
+            <value>
+                <fullName>Initiative - Shared</fullName>
+                <default>false</default>
+                <label>Initiative - Shared</label>
+            </value>
+            <value>
+                <fullName>Lead Nurture</fullName>
+                <default>false</default>
+                <label>Lead Nurture</label>
+            </value>
+            <value>
+                <fullName>Adhesion</fullName>
+                <default>false</default>
+                <label>Adhesion</label>
+            </value>
+            <value>
+                <fullName>Artificial Intelligence</fullName>
+                <default>false</default>
+                <label>Artificial Intelligence</label>
+            </value>
+            <value>
+                <fullName>Big Box</fullName>
+                <default>false</default>
+                <label>Big Box</label>
+            </value>
+            <value>
+                <fullName>Billboard</fullName>
+                <default>false</default>
+                <label>Billboard</label>
+            </value>
+            <value>
+                <fullName>Channel Sponsorship</fullName>
+                <default>false</default>
+                <label>Channel Sponsorship</label>
+            </value>
+            <value>
+                <fullName>Emergency Management</fullName>
+                <default>false</default>
+                <label>Emergency Management</label>
+            </value>
+            <value>
+                <fullName>Future of Finance</fullName>
+                <default>false</default>
+                <label>Future of Finance</label>
+            </value>
+            <value>
+                <fullName>GOVERNING Daily</fullName>
+                <default>false</default>
+                <label>GOVERNING Daily</label>
+            </value>
+            <value>
+                <fullName>GovTech Cybersecurity</fullName>
+                <default>false</default>
+                <label>GovTech Cybersecurity</label>
+            </value>
+            <value>
+                <fullName>GovTech Today</fullName>
+                <default>false</default>
+                <label>GovTech Today</label>
+            </value>
+            <value>
+                <fullName>HED</fullName>
+                <default>false</default>
+                <label>HED</label>
+            </value>
+            <value>
+                <fullName>Homepage Takeover</fullName>
+                <default>false</default>
+                <label>Homepage Takeover</label>
+            </value>
+            <value>
+                <fullName>K-12</fullName>
+                <default>false</default>
+                <label>K-12</label>
+            </value>
+            <value>
+                <fullName>Leaderboard</fullName>
+                <default>false</default>
+                <label>Leaderboard</label>
+            </value>
+            <value>
+                <fullName>Magazine</fullName>
+                <default>false</default>
+                <label>Magazine</label>
+            </value>
+            <value>
+                <fullName>Microsite</fullName>
+                <default>false</default>
+                <label>Microsite</label>
+            </value>
+            <value>
+                <fullName>Multi-Touch</fullName>
+                <default>false</default>
+                <label>Multi-Touch</label>
+            </value>
+            <value>
+                <fullName>Rectangle</fullName>
+                <default>false</default>
+                <label>Rectangle</label>
+            </value>
+            <value>
+                <fullName>Resource Module</fullName>
+                <default>false</default>
+                <label>Resource Module</label>
+            </value>
+            <value>
+                <fullName>Social Media</fullName>
+                <default>false</default>
+                <label>Social Media</label>
+            </value>
+            <value>
+                <fullName>Special Issue</fullName>
+                <default>false</default>
+                <label>Special Issue</label>
+            </value>
+            <value>
+                <fullName>Sponsored Article</fullName>
+                <default>false</default>
+                <label>Sponsored Article</label>
+            </value>
+            <value>
+                <fullName>TBD</fullName>
+                <default>false</default>
+                <label>TBD</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

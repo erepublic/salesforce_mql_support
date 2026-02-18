@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Custom_Pub__c</fullName>
+    <label>Custom Pub</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName
+        >2015 CDE Top 30: Technologists, Transformers &amp; Trailblazers</fullName>
+                <default>false</default>
+                <label
+        >2015 CDE Top 30: Technologists, Transformers &amp; Trailblazers</label>
+            </value>
+            <value>
+                <fullName
+        >2015 Q3 CDE Special Report: Big Data in Education</fullName>
+                <default>false</default>
+                <label>2015 Q3 CDE Special Report: Big Data in Education</label>
+            </value>
+            <value>
+                <fullName
+        >2015 Q4 CDE Special Report: Personalized &amp; Individualized Learning</fullName>
+                <default>false</default>
+                <label
+        >2015 Q4 CDE Special Report: Personalized &amp; Individualized Learning</label>
+            </value>
+            <value>
+                <fullName
+        >2015 Q4 PCIO Special Report: Innovative &amp; Evolving Technology</fullName>
+                <default>false</default>
+                <label
+        >2015 Q4 PCIO Special Report: Innovative &amp; Evolving Technology</label>
+            </value>
+            <value>
+                <fullName
+        >2016 CDG Annual TLP: Everything-as-a-Service</fullName>
+                <default>false</default>
+                <label>2016 CDG Annual TLP: Everything-as-a-Service</label>
+            </value>
+            <value>
+                <fullName
+        >2016 GOV Guide to Public-Private Partnerships: Balancing Risk, Reward and Value</fullName>
+                <default>false</default>
+                <label
+        >2016 GOV Guide to Public-Private Partnerships: Balancing Risk, Reward and Value</label>
+            </value>
+            <value>
+                <fullName
+        >2016 Q1 CDE Special Report: Education Meets the Cloud</fullName>
+                <default>false</default>
+                <label
+        >2016 Q1 CDE Special Report: Education Meets the Cloud</label>
+            </value>
+            <value>
+                <fullName
+        >2016 Q3 CDE Special Report: Digital Transformation</fullName>
+                <default>false</default>
+                <label
+        >2016 Q3 CDE Special Report: Digital Transformation</label>
+            </value>
+            <value>
+                <fullName
+        >2016 Q1 PCIO Special Report: Citizen and Business Engagement</fullName>
+                <default>false</default>
+                <label
+        >2016 Q1 PCIO Special Report: Citizen and Business Engagement</label>
+            </value>
+            <value>
+                <fullName
+        >2016 Q2 PCIO Special Report: The Government Enterprise</fullName>
+                <default>false</default>
+                <label
+        >2016 Q2 PCIO Special Report: The Government Enterprise</label>
+            </value>
+            <value>
+                <fullName
+        >2016 Q3 PCIO Special Report: Government Data</fullName>
+                <default>false</default>
+                <label>2016 Q3 PCIO Special Report: Government Data</label>
+            </value>
+            <value>
+                <fullName
+        >2016 Q4 PCIO Special Report: Innovative and Evolving Technologies</fullName>
+                <default>false</default>
+                <label
+        >2016 Q4 PCIO Special Report: Innovative and Evolving Technologies</label>
+            </value>
+            <value>
+                <fullName>2016 HHS Special Report</fullName>
+                <default>false</default>
+                <label>2016 HHS Special Report</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

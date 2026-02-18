@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recently_Assigned_Assets</fullName>
+    <columns>Current_Assignment__c</columns>
+    <columns>NAME</columns>
+    <columns>Assigned_to__c</columns>
+    <columns>Assigned_on__c</columns>
+    <columns>Formerly__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Assigned_to__c</field>
+        <operation>notEqual</operation>
+        <value>Disposed</value>
+    </filters>
+    <label>Recently Assigned Assets</label>
+</ListView>

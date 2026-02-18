@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_ID__c</fullName>
+    <description
+  >Used to provide a unique ID for each event record so as to coordinate delivery.</description>
+    <displayFormat>EV-{0000}</displayFormat>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >Used to provide a unique ID for each event record so as to coordinate delivery.</inlineHelpText>
+    <label>EVN</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>AutoNumber</type>
+</CustomField>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sample_Timeline__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Product__c,
+&quot;Case Study&quot;,HYPERLINK(&quot;https://bit.ly/3QJrN5r&quot;,&quot;Sample Timeline&quot;),
+&quot;Custom Video&quot;,HYPERLINK(&quot;https://bit.ly/3C8ywlr&quot;,&quot;Sample Timeline&quot;),
+&quot;Executive Q&amp;A&quot;,HYPERLINK(&quot;https://bit.ly/3AmTY4P&quot;,&quot;Sample Timeline&quot;),
+&quot;Handbook&quot;,HYPERLINK(&quot;https://bit.ly/3K3z1iH&quot;,&quot;Sample Timeline&quot;),
+&quot;ICYMI&quot;,HYPERLINK(&quot;https://bit.ly/3Qq7oTu&quot;,&quot;Sample Timeline&quot;),
+&quot;Infographic&quot;,HYPERLINK(&quot;https://bit.ly/3dy8dL7&quot;,&quot;Sample Timeline&quot;),
+&quot;Issue Brief&quot;,HYPERLINK(&quot;https://bit.ly/3QI78Pp&quot;,&quot;Sample Timeline&quot;),
+&quot;Lunch &amp; Learn Webinar&quot;,HYPERLINK(&quot;https://bit.ly/3dqGDiV&quot;,&quot;Sample Timeline&quot;),
+&quot;Publishable Report&quot;,HYPERLINK(&quot;https://bit.ly/3K3NH1q&quot;,&quot;Sample Timeline&quot;),
+&quot;Roundtable&quot;,HYPERLINK(&quot;https://bit.ly/3JTuWh3&quot;,&quot;Sample Timeline&quot;),
+&quot;State-Specific Webinar&quot;,HYPERLINK(&quot;https://bit.ly/3dqGDiV&quot;,&quot;Sample Timeline&quot;),
+&quot;Thought Leadership Paper&quot;,HYPERLINK(&quot;https://bit.ly/3QI78Pp&quot;,&quot;Sample Timeline&quot;),
+&quot;Virtual Q&amp;A&quot;,HYPERLINK(&quot;https://bit.ly/3A1HyxY&quot;,&quot;Sample Timeline&quot;),
+&quot;Webinar&quot;,HYPERLINK(&quot;https://bit.ly/3piVIGf&quot;,&quot;Sample Timeline&quot;),
+&quot;White Paper&quot;,HYPERLINK(&quot;https://bit.ly/3w6pwcZ&quot;,&quot;Sample Timeline&quot;),
+null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sample Timeline</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

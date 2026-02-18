@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Subs_w_foreign_country_Main</fullName>
+    <columns>NAME</columns>
+    <columns>Subscriber__c</columns>
+    <columns>Status__c</columns>
+    <columns>Cancellation_Reason__c</columns>
+    <columns>Version__c</columns>
+    <columns>Contact_Mailing_Country__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </filters>
+    <filters>
+        <field>Publication__c</field>
+        <operation>equals</operation>
+        <value>government technology</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Subscription__c.Qualified_Sub</value>
+    </filters>
+    <filters>
+        <field>Contact_Mailing_Country__c</field>
+        <operation>notEqual</operation>
+        <value>,USA,US,United States</value>
+    </filters>
+    <filters>
+        <field>Version__c</field>
+        <operation>equals</operation>
+        <value>Print</value>
+    </filters>
+    <label>Subs w/ foreign country - Main</label>
+</ListView>

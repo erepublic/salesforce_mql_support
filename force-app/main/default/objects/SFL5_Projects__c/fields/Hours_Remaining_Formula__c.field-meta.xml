@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hours_Remaining_Formula__c</fullName>
+    <description
+  >Number of hours remaining to complete the project.</description>
+    <externalId>false</externalId>
+    <formula>NAV_Hours_Total_Cx__c - Total_Hours_Assigned__c
+/*changed to Hours Assigned on 6/28/2021 per Ticket #31492; formerly subtracting Hours_Completed__c */</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Number of hours remaining to complete the project.</inlineHelpText>
+    <label>Hours Remaining</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

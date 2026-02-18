@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Registrant_Org_Dept__c</fullName>
+    <externalId>false</externalId>
+    <formula>Registration__r.Badge_Org_Dept__c</formula>
+    <label>Registrant Org / Dept</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

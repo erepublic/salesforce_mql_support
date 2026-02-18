@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Activate</fullName>
+    <availability>online</availability>
+    <description
+  >Activate from &quot;Draft&quot; status to &quot;In Progress&quot; status</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Activate</masterLabel>
+    <openType>noSidebar</openType>
+    <protected>false</protected>
+    <url>/{!Partnerships__c.Status__c}=&quot;In Process&quot;</url>
+</WebLink>

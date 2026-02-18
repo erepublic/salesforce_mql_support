@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Job_Type_Owner__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >IF(ISPICKVAL(Job_Type__c, &quot;Business Cards&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Custom Webinar Headers - PPT and CERT&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Client Web Ads&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Corporate Event Signs&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Corporate Miscellaneous&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Event Headers&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Event Materials&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Event Promo Cards&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Innovation Miscellaneous&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Magazine Publisher&apos;s Sworn Statement&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Marketing Datasheet Offerings&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Marketing Miscellaneous&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Marketing Webinar Headers &amp; PPT&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;People &amp; Culture Docs, Forms, Headers&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Staff Headshots&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Surveys &amp; Awards Images&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Task Force for Fun&quot;), &quot;Kelli Widmaier&quot;,
+IF(ISPICKVAL(Job_Type__c, &quot;Website Mock Up / Banners / Images&quot;), &quot;Kelli Widmaier&quot;, &quot;Stephan Widmaier&quot;))))))))))))))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Job Type Owner</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

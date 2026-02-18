@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Employees_by_Department</fullName>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>View_Assets__c</columns>
+    <columns>State__c</columns>
+    <columns>Time_Zone__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>Department__c</columns>
+    <columns>View_Dept_Licenses__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Active</value>
+    </filters>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value>Employee,Contractor,Temp</value>
+    </filters>
+    <label>Employee Lookup</label>
+</ListView>

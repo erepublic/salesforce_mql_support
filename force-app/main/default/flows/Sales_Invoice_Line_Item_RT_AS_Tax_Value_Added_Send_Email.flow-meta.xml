@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Email</name>
+        <label>Send Email</label>
+        <locationX>176</locationX>
+        <locationY>323</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <stringValue
+        >rsaul@erepublic.com,salesforce@erepublic.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>CurrentUser</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>f_Subject_Line</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>tt_Email_Body</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>61.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Link_to_Account</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;https://erepublic.lightning.force.com/lightning/r/Account/&quot; &amp; {!$Record.c2g__Invoice__r.c2g__Account__c} &amp; &quot;/view&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Link_to_Opportunity</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;https://erepublic.lightning.force.com/lightning/r/Opportunity/&quot; &amp; {!$Record.c2g__Invoice__r.c2g__Opportunity__c} &amp; &quot;/view&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Link_to_Product</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;https://erepublic.lightning.force.com/lightning/r/Product2/&quot; &amp; {!$Record.c2g__Product__c} &amp; &quot;/view&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Link_to_Sales_Invoice</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;https://erepublic.lightning.force.com/lightning/r/c2g__codaInvoice__c/&quot; &amp; {!$Record.c2g__Invoice__r.Id} &amp; &quot;/view&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Link_to_Sales_Invoice_Line_Item</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;https://erepublic.lightning.force.com/lightning/r/c2g__codaInvoiceLineItem__c/&quot; &amp; {!$Record.Id} &amp; &quot;/view&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Subject_Line</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;Tax Added: &quot; &amp; {!$Record.c2g__Invoice__r.c2g__Account__r.Name} &amp; &quot; - &quot; &amp; {!$Record.c2g__Invoice__r.Name}</expression>
+    </formulas>
+    <interviewLabel
+  >Sales Invoice Line Item - RT AS - Tax Value Added - Send Email {!$Flow.CurrentDateTime}</interviewLabel>
+    <label
+  >Sales Invoice Line Item - RT AS - Tax Value Added - Send Email</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Send_Email</targetReference>
+        </connector>
+        <filterLogic>1 AND (2 OR 3)</filterLogic>
+        <filters>
+            <field>c2g__TaxValue1__c</field>
+            <operator>GreaterThan</operator>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CreatedDate</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>c2g__TaxValue1__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>c2g__codaInvoiceLineItem__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>tt_Email_Body</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text
+    >&lt;div&gt;&lt;strong&gt;Account&lt;/strong&gt;: &lt;a href=&quot;{!f_Link_to_Account}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!$Record.c2g__Invoice__r.c2g__Account__r.Name}&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Opportunity&lt;/strong&gt;: &lt;a href=&quot;{!f_Link_to_Opportunity}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!$Record.c2g__Invoice__r.c2g__Opportunity__r.Name}&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Billing State&lt;/strong&gt;: {!$Record.c2g__Invoice__r.Validated_Billing_State_Province__c}&lt;/div&gt;&lt;div&gt;&lt;strong&gt;CWO Type&lt;/strong&gt;: {!$Record.c2g__Invoice__r.CWO_Type__c}&lt;/div&gt;&lt;div&gt;&lt;strong&gt;PO#&lt;/strong&gt;: {!$Record.c2g__Invoice__r.PO_Number__c}&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Invoicing Method&lt;/strong&gt;: {!$Record.c2g__Invoice__r.Invoicing_Method__c}&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Finance Notes&lt;/strong&gt;: {!$Record.c2g__Invoice__r.Finance_Notes_SIN__c}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Invoice Number&lt;/strong&gt;: &lt;a href=&quot;{!f_Link_to_Sales_Invoice}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!$Record.c2g__Invoice__r.Name}&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Line Item Id&lt;/strong&gt;: &lt;a href=&quot;https://erepublic.lightning.force.com/builder_platform_interaction/{!f_Link_to_Sales_Invoice_Line_Item}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!$Record.Name}&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Product Name&lt;/strong&gt;: &lt;a href=&quot;{!f_Link_to_Product}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;{!$Record.c2g__Product__r.Name}&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Net Value&lt;/strong&gt;: {!$Record.c2g__NetValue__c}&lt;/div&gt;&lt;div&gt;&lt;strong&gt;Tax Value&lt;/strong&gt;: {!$Record.c2g__TaxValue1__c}&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;Thank you!&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;a href=&quot;https://erepublic.lightning.force.com/lightning/setup/Flows/page?address=%2F300Jw00000YRzLeIAL%3FretUrl%3D%2Flightning%2Fsetup%2FFlows%2Fhome&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 9px;&quot;&gt;Flow&lt;/a&gt;&lt;/div&gt;</text>
+    </textTemplates>
+</Flow>

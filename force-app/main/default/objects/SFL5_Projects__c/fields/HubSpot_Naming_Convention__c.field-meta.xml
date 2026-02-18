@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>HubSpot_Naming_Convention__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >HYPERLINK(&quot;https://erepublic2.sharepoint.com/:x:/r/sites/CommDev/Shared%20Documents/Circulation%20Share/Emails/HubSpot%20Naming%20Conventions%20for%207%20Knots.xlsx?d=wa5a9ed220b4b41f7be95688c944d4f49&amp;csf=1&amp;web=1&amp;e=L71JdI&quot;,
+&quot;Build Name&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>HubSpot Naming Convention</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

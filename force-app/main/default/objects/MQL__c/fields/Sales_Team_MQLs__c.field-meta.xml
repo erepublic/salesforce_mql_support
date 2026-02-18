@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Team_MQLs__c</fullName>
+    <externalId>false</externalId>
+    <formula>Case ( Owner:User.UserRole.Name,
+&quot;Sales Team 114 - Sales Manager&quot;, &quot;Pod: Carmen Besirevic&quot;,
+&quot;Sales Team 114 - Sales Reps&quot;, &quot;Pod: Carmen Besirevic&quot;,
+&quot;Sales Team 116 - Sales Manager&quot;, &quot;Pod: Lara Roebbelen&quot;,
+&quot;Sales Team 116 - Sales Reps&quot;, &quot;Pod: Lara Roebbelen&quot;,
+&quot;Sales Team 117 - Sales Manager&quot;, &quot;Pod: Karen Hardison&quot;,
+&quot;Sales Team 117 - Sales Reps&quot;, &quot;Pod: Karen Hardison&quot;,
+&quot;Sales Team 118 - Sales Manager&quot;, &quot;Pod: Lynn Gallagher&quot;,
+&quot;Sales Team 118 - Sales Reps&quot;, &quot;Pod: Lynn Gallagher&quot;,
+&quot;Sales Team 127 - Sales Manager&quot;, &quot;Pod: Katrina Wheeler&quot;,
+&quot;Sales Team 127 - Sales Reps&quot;, &quot;Pod: Katrina Wheeler&quot;,
+&quot;Sales Team 128 - Sales Manager&quot;, &quot;Pod: Dana Kansa&quot;,
+&quot;Sales Team 128 - Sales Reps&quot;, &quot;Pod: Dana Kansa&quot;,
+&quot;Sales Team 129 - Sales Manager&quot;, &quot;Pod: Michelle Nasab&quot;,
+
+&quot;VP Sales&quot;, &quot;Pod: Kelly Schieding&quot;,
+IF(CONTAINS(Owner:User.Alias,&quot;emoli&quot;),&quot;Marketing Owned&quot;,
+&quot;Acct Unassigned&quot;
+)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sales Team (MQLs)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

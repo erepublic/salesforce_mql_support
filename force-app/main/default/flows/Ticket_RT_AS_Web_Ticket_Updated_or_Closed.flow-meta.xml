@@ -1,0 +1,654 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Closed_Email</name>
+        <label>Send Closed Email</label>
+        <locationX>446</locationX>
+        <locationY>731</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Which_System</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference>tt_Closed_Recipients</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>tt_Subject_Line_Closed</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference>tt_Closed_Email_Display</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Escalation_Notice</name>
+        <label>Send Escalation Notice</label>
+        <locationX>138</locationX>
+        <locationY>1331</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <elementReference
+        >tt_Escalation_Email_Recipients</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <elementReference>tt_Subject_Line_Escalation</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference
+        >tt_Priority_Escalation_Email_Display</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>ccRecipientAddressList</name>
+            <value>
+                <elementReference>tt_Escalation_CC_Recipients</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Ticket_Web_Assigned</name>
+        <label>Ticket - Web - Assigned</label>
+        <locationX>270</locationX>
+        <locationY>431</locationY>
+        <actionName>Ticket__c.Ticket_Assigned</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Which_Phase</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Ticket__c.Ticket_Assigned</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Ticket_Web_Navigator_Insider_Closed</name>
+        <label>Ticket - Web - Navigator/Insider Closed</label>
+        <locationX>314</locationX>
+        <locationY>947</locationY>
+        <actionName>Ticket__c.Ticket_Web_Navigator_Insider_Closed</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Did_Priority_Escalate</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Ticket__c.Ticket_Web_Navigator_Insider_Closed</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Ticket_Web_QA_Phase</name>
+        <label>Ticket - Web - QA Phase</label>
+        <locationX>50</locationX>
+        <locationY>731</locationY>
+        <actionName>Ticket__c.Ticket_Web_QA_Phase</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Did_Priority_Escalate</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Ticket__c.Ticket_Web_QA_Phase</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>60.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Did_Priority_Escalate</name>
+        <label>Did Priority Escalate?</label>
+        <locationX>402</locationX>
+        <locationY>1223</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Escalate_to_High</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Priority__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>High</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Priority__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record__Prior.Priority__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Critical</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Phase__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Phase__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Canceled</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Escalation_Notice</targetReference>
+            </connector>
+            <label>Yes, Escalate to High</label>
+        </rules>
+        <rules>
+            <name>Yes_Escalate_to_Critical</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Priority__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Critical</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Priority__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Phase__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Phase__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Canceled</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <isGoTo>true</isGoTo>
+                <targetReference>Send_Escalation_Notice</targetReference>
+            </connector>
+            <label>Yes, Escalate to Critical</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_Ticket_Assigned</name>
+        <label>Was Ticket Assigned</label>
+        <locationX>402</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Which_Phase</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Assignee_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Assignee__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Assignee__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Ticket_Web_Assigned</targetReference>
+            </connector>
+            <label>Yes, Assignee Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Which_Phase</name>
+        <label>Which Phase?</label>
+        <locationX>402</locationX>
+        <locationY>623</locationY>
+        <defaultConnector>
+            <targetReference>Did_Priority_Escalate</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>QA</name>
+            <conditionLogic>(1 OR 2) AND 3</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Phase__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>QA (Requestor)</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Phase__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>QAd - Ready for live</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Phase__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Ticket_Web_QA_Phase</targetReference>
+            </connector>
+            <label>QA / Ready for Live</label>
+        </rules>
+        <rules>
+            <name>Closed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Phase__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Phase__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_Closed_Email</targetReference>
+            </connector>
+            <label>Closed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Which_System</name>
+        <label>Which System?</label>
+        <locationX>446</locationX>
+        <locationY>839</locationY>
+        <defaultConnector>
+            <targetReference>Did_Priority_Escalate</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Navigator_Insider</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.System2__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Navigator</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.System2__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Techwire</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Ticket_Web_Navigator_Insider_Closed</targetReference>
+            </connector>
+            <label>Navigator / Insider</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Assignee</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(OR({!$Record.Assignee__r.Email}=null,{!$Record.Assignee__r.IsActive}=False), &quot;&quot;, {!$Record.Assignee__r.Email})</expression>
+    </formulas>
+    <formulas>
+        <name>f_Copy_on_Nav_II_Critical_High_Comma</name>
+        <dataType>String</dataType>
+        <expression>IF(
+AND(
+        OR( TEXT({!$Record.System2__c})=&quot;Navigator&quot;,
+               TEXT({!$Record.System2__c})=&quot;Insider&quot;,
+               TEXT({!$Record.System2__c})=&quot;Techwire&quot;),
+       OR( TEXT({!$Record.Priority__c})=&quot;High&quot;,
+              TEXT({!$Record.Priority__c})=&quot;Critical&quot;)),
+&quot;ehall@erepublic.com, hpope@erepublic.com, &quot;, &quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Follow_Up_Instructions</name>
+        <dataType>String</dataType>
+        <expression
+    >IF({!$Record.Follow_Up_Instructions__c}=null, null, &quot;&lt;br&gt;&quot; &amp; BR() &amp; &quot;• Additional Notes: &quot; &amp; {!$Record.Follow_Up_Instructions__c})</expression>
+    </formulas>
+    <formulas>
+        <name>f_Requested_By_Comma</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(OR({!$Record.Requested_By__r.Email}=null,{!$Record.Requested_By__r.IsActive}=False), &quot;&quot;, {!$Record.Requested_By__r.Email} &amp; &quot;,&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Requested_On_Behalf_Comma</name>
+        <dataType>String</dataType>
+        <expression>IF(OR(
+          {!$Record.Requested_on_behalf_of__r.Email}=null,
+          {!$Record.Requested_on_behalf_of__r.IsActive}=False),
+     &quot;&quot;, 
+   {!$Record.Requested_on_behalf_of__r.Email} &amp; &quot;,&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Stakeholder_Email_Comma</name>
+        <dataType>String</dataType>
+        <expression
+    >IF({!$Record.Stakeholder_Email__c}=null, &quot;&quot;, {!$Record.Stakeholder_Email__c} &amp; &quot;,&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Ticket_Current_User_Comma</name>
+        <dataType>String</dataType>
+        <expression>{!$User.Email} &amp; &quot;,&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Ticket_Owner_Comma</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(OR({!$Record.Owner:User.Email}=null,{!$Record.Owner:User.IsActive}=False), &quot;&quot;, {!$Record.Owner:User.Email} &amp; &quot;,&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Web_Dev_Email</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(TEXT({!$Record.Priority__c})=&quot;Critical&quot;, &quot;web_dev@erepublic.com,&quot;, null)</expression>
+    </formulas>
+    <interviewLabel
+  >Ticket - RT AS - Web - Ticket Updated or Closed {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Ticket - RT AS - Web - Ticket Updated / Closed</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>276</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Was_Ticket_Assigned</targetReference>
+        </connector>
+        <filterLogic>1 AND (2 OR 3 OR 4)</filterLogic>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01230000001R3YkAAK</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Phase__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Assignee__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Priority__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Ticket__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>tt_Closed_Email</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;html&gt;
+&lt;body style=&quot;padding: 10px;&quot;&gt;
+&lt;div bgcolor=&quot;#ffffff;&quot; padding=&quot;10px&quot; style=&quot;background-color: #ffffff; padding: 10px; border-radius: 10px; color: #333333;&quot;&gt;
+&lt;table style=&quot;font-size: 12px; font-family: arial, sans-sarif; background-color: #ffffff; vertical-align: top; text-align: left;&quot;&gt;
+&lt;tr&gt;
+    &lt;td style=&quot;font-size: 14px; font-family: arial, sans-sarif;&quot; colspan=&apos;2&apos;&gt;
+Your IT support ticket &lt;a href=&quot;https://erepublic.lightning.force.com/lightning/r/Ticket__c/{!$Record.Id}/view&quot;&gt;{!$Record.Name}&lt;/a&gt; has been resolved.&lt;br&gt;&lt;br&gt;
+Resolution Details:&lt;br&gt;
+• Ticket: &lt;a href=&quot;https://erepublic.lightning.force.com/lightning/r/Ticket__c/{!$Record.Id}/view&quot;&gt;{!$Record.Name}&lt;/a&gt;&lt;br&gt;
+• Action Taken: {!$Record.Resolution__c}&lt;br&gt;
+• Completion Date: {!$Flow.CurrentDate}
+{!f_Follow_Up_Instructions}&lt;br&gt;&lt;br&gt;
+
+Please test/verify that everything is working as expected.&lt;br&gt;&lt;br&gt;
+
+If you experience any further issues, please: &lt;br&gt;
+1. Reference this ticket number in your response.&lt;br&gt;
+2. Provide details about any new or remaining issues.
+&lt;br&gt;&lt;br&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;table cellpadding=&quot;5&quot; style=&quot;border-collapse: collapse; border: 1px solid black; font-size: 12px; font-family: arial, sans-sarif; background-color: #ffffff; vertical-align: top; text-align: left;&quot;&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot; width=&quot;140&quot;&gt;&lt;b&gt;Created Date:&lt;/b&gt; &lt;/td&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;{!$Record.CreatedDate}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot; width=&quot;140&quot;&gt;&lt;b&gt;Created By:&lt;/b&gt; &lt;/td&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;{!$Record.Owner:User.FirstName} {!$Record.Owner:User.LastName}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;&lt;b&gt;Title: &lt;/b&gt;&lt;/td&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;{!$Record.Title__c}&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;tr&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;&lt;b&gt;URL: &lt;/b&gt;&lt;/td&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;&lt;a href=&quot;{!$Record.URL__c}&quot;&gt;{!$Record.URL__c}&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;border: 1px solid black; vertical-align:top;&quot;&gt;&lt;b&gt;Description:&lt;/b&gt;&lt;/td&gt;
+        &lt;td style=&quot;border: 1px solid black; vertical-align:top;margin-right:8px;&quot;&gt;{!$Record.Description__c}&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td style=&quot;border: 1px solid black;&quot; width=&quot;140&quot;&gt;View your ticket at: &lt;/td&gt;
+    &lt;td style=&quot;border: 1px solid black;&quot;&gt;&lt;a href=&quot;https://erepublic.lightning.force.com/lightning/r/Ticket__c/{!$Record.Id}/view&quot;&gt;{!$Record.Name}&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;p style=&quot;font-family:Segoe UI&quot;&gt;
+&lt;font size=&quot;1&quot;&gt;
+&lt;br&gt;&lt;br&gt;&lt;a href=&quot;https://erepublic.lightning.force.com/lightning/setup/Flows/page?address=%2F300Jw00000blGf9IAE%3FretUrl%3D%2Flightning%2Fsetup%2FFlows%2Fhome&quot;&gt;Flow&lt;/a&gt;
+&lt;/font&gt;&lt;/p&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Closed_Email_Display</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;{!tt_Closed_Email}&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <description
+    >Ticket Owner, Requested By, Requested on Behalf of, and Assignee</description>
+        <name>tt_Closed_Recipients</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text
+    >{!f_Ticket_Current_User_Comma} {!f_Ticket_Owner_Comma} {!f_Requested_By_Comma} {!f_Copy_on_Nav_II_Critical_High_Comma}{!f_Requested_On_Behalf_Comma} {!f_Stakeholder_Email_Comma} {!f_Assignee}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Escalation_CC_Recipients</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text
+    >{!f_Requested_By_Comma}{!f_Requested_On_Behalf_Comma}{!f_Stakeholder_Email_Comma}{!f_Web_Dev_Email}{!f_Copy_on_Nav_II_Critical_High_Comma} afawad@erepublic.com, bevans@erepublic.com, pbertolini@erepublic.com</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Escalation_Email_Recipients</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>{!f_Assignee}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Priority_Escalation_Email</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;html&gt;
+&lt;body style=&quot;padding: 10px;&quot;&gt;
+&lt;div bgcolor=&quot;#ffffff;&quot; padding=&quot;10px&quot; style=&quot;background-color: #ffffff; padding: 10px; border-radius: 10px; color: #333333;&quot;&gt;
+&lt;table style=&quot;font-size: 12px; font-family: arial, sans-sarif; background-color: #ffffff; vertical-align: top; text-align: left;&quot;&gt;
+&lt;tr&gt;
+    &lt;td style=&quot;font-size: 14px; font-family: arial, sans-sarif;&quot; colspan=&apos;2&apos;&gt;
+TICKET ESCALATION NOTICE&lt;br&gt;&lt;br&gt;
+
+Your ticket has been escalated to {!$Record.Priority__c} Priority due to: {!$Record.Reason_for_Escalation__c}&lt;br&gt;&lt;br&gt;
+
+Ticket Details:&lt;br&gt;
+• Ticket: &lt;a href=&quot;https://erepublic.lightning.force.com/lightning/r/Ticket__c/{!$Record.Id}/view&quot;&gt;{!$Record.Name}&lt;/a&gt;&lt;br&gt;
+• New Priority Level: {!$Record.Priority__c}&lt;br&gt;
+• Status: Escalated to CIO&lt;br&gt;
+• Expected Initial Response: ASAP&lt;br&gt;&lt;br&gt;
+
+We will provide updates as soon as we have more information.&lt;br&gt;&lt;br&gt;
+
+If you need immediate assistance, please contact:&lt;br&gt;&lt;br&gt;
+Bill Evans, CIO&lt;br&gt; 
+&lt;a href=&quot;mailto:bevans@erepublic.com&quot;&gt; bevans@erepublic.com&lt;/a&gt;&lt;br&gt;&lt;br&gt;
+&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/table&gt;
+&lt;table cellpadding=&quot;5&quot; style=&quot;border-collapse: collapse; border: 1px solid black; font-size: 12px; font-family: arial, sans-sarif; background-color: #ffffff; vertical-align: top; text-align: left;&quot;&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot; width=&quot;140&quot;&gt;&lt;b&gt;Created Date:&lt;/b&gt; &lt;/td&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;{!$Record.CreatedDate}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot; width=&quot;140&quot;&gt;&lt;b&gt;Created By:&lt;/b&gt; &lt;/td&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;{!$Record.Owner:User.FirstName} {!$Record.Owner:User.LastName}&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;&lt;b&gt;Title: &lt;/b&gt;&lt;/td&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;{!$Record.Title__c}&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;tr&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;&lt;b&gt;URL: &lt;/b&gt;&lt;/td&gt;
+        &lt;td style=&quot;border: 1px solid black;&quot;&gt;&lt;a href=&quot;{!$Record.URL__c}&quot;&gt;{!$Record.URL__c}&lt;/a&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;border: 1px solid black; vertical-align:top;&quot;&gt;&lt;b&gt;Description:&lt;/b&gt;&lt;/td&gt;
+        &lt;td style=&quot;border: 1px solid black; vertical-align:top;margin-right:8px;&quot;&gt;{!$Record.Description__c}&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;tr&gt;
+    &lt;td style=&quot;border: 1px solid black;&quot; width=&quot;140&quot;&gt;View your ticket at: &lt;/td&gt;
+    &lt;td style=&quot;border: 1px solid black;&quot;&gt;&lt;a href=&quot;https://erepublic.lightning.force.com/lightning/r/Ticket__c/{!$Record.Id}/view&quot;&gt;{!$Record.Name}&lt;/a&gt;&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;/table&gt;
+&lt;p style=&quot;font-family:Segoe UI&quot;&gt;
+&lt;font size=&quot;1&quot;&gt;
+&lt;br&gt;&lt;br&gt;&lt;a href=&quot;https://erepublic.lightning.force.com/lightning/setup/Flows/page?address=%2F300Jw00000blGf9IAE%3FretUrl%3D%2Flightning%2Fsetup%2FFlows%2Fhome&quot;&gt;Flow&lt;/a&gt;
+&lt;/font&gt;&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Priority_Escalation_Email_Display</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p&gt;{!tt_Priority_Escalation_Email}&lt;/p&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Subject_Line_Closed</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text
+    >Resolution - IT Support Ticket [{!$Record.Name}] {!$Record.Title__c}</text>
+    </textTemplates>
+    <textTemplates>
+        <name>tt_Subject_Line_Escalation</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>Escalation Notice - IT Support Ticket {!$Record.Name}</text>
+    </textTemplates>
+    <variables>
+        <name>var_Escalation_CC_Recipients</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

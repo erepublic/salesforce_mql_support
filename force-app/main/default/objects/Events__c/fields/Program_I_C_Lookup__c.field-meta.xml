@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Program_I_C_Lookup__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >The person in charge of running the program for an event.</description>
+    <inlineHelpText
+  >The person in charge of running the program for an event.</inlineHelpText>
+    <label>Program Contact</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Events_and_Conferences4</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

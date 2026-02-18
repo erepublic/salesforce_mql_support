@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Client_Testimonial__c</fullName>
+    <description
+  >Optional field for delivery to enter positive feedback from client if acquired</description>
+    <inlineHelpText
+  >Optional field for delivery to enter positive feedback from client if acquired</inlineHelpText>
+    <label>Client Testimonial</label>
+    <length>3000</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_History_Type__c</fullName>
+    <inlineHelpText
+  >[Annual = Consecutive]: Event was held each year without interruption.
+[Historical = Non-Consecutive]: There were one or more gaps of at least one year between dates the event was held.</inlineHelpText>
+    <label>Event History Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Annual</fullName>
+                <default>false</default>
+                <label>Annual</label>
+            </value>
+            <value>
+                <fullName>Historical</fullName>
+                <default>false</default>
+                <label>Historical</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

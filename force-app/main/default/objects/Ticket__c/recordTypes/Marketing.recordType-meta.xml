@@ -1,0 +1,2680 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Marketing</fullName>
+    <active>true</active>
+    <label>Marketing</label>
+    <picklistValues>
+        <picklist>Agency_Function__c</picklist>
+        <values>
+            <fullName>01 - Elected Official%2FLegislative</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02 - Finance%2FTaxation%2FBudgeting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >03 - Information Technology%2FTelecommunications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >04 - Public Works%2FTransportation%2FInfrastructure%2FUtility%2FPlanning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>05 - Health%2FHuman Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>06 - Human Resources%2FBenefits%2FPersonnel</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>07 - Environment%2FEnergy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >08 - Administration%2FOperations%2FGeneral Services%2FPurchasing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >09 - Economic Development%2FWorkforce Development</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >10 - Agriculture%2FParks %26 Rec%2FLand Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11 - Courts%2FCorrections%2FJustice</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12 - Law Enforcement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>13 - Fire%2FEmergency Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>14 - Emergency Operations Center</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>15 - Homeland Security%2FDefense</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>16 - Education%2FLibrary Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>99 - Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Audience_Type__c</picklist>
+        <values>
+            <fullName>Government</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Industry</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Backlog_Status__c</picklist>
+        <values>
+            <fullName>Needs More info</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shovel Ready</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Branch_of_Government__c</picklist>
+        <values>
+            <fullName>01 - Federal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02 - State</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>03 - County</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>04 - Municipal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>05 - Special District</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>06 - Government Association</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>07 - Higher Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>08 - K-12 Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>09 - Private Sector</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>99 - Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Brand__c</picklist>
+        <values>
+            <fullName>CDE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PCIO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>e%2ERepublic Combined Audience</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contact_Pull_Contact_Count__c</picklist>
+        <values>
+            <fullName>Audience Estimate%2FCount</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Audience List</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contact_Recency__c</picklist>
+        <values>
+            <fullName>1 Year</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2 Years</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contact_Source__c</picklist>
+        <values>
+            <fullName>Engaged Internal Contacts</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Harvested</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>List Rental</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Navigator</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Department__c</picklist>
+        <values>
+            <fullName>Audience Operations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Community Development</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Content Studio</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Corporate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Design %2F Production</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Editorial</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Event Logistics %26 Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Member Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Registration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Research</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Web Development</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Discounts__c</picklist>
+        <values>
+            <fullName>Discounts Included%3A Approval Attached</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Discounts Included%3A No Approval Needed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No Discounts Included</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>EM_Quadrant__c</picklist>
+        <values>
+            <fullName>1%2E Important %2F Urgent %28Do%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%2E Important %2F Not-Urgent %28Schedule%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%2E Not Important %2F Urgent %28Delegate%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%2E Not Important %2F Not-Urgent %28Delete%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Education_Job_Function__c</picklist>
+        <values>
+            <fullName>10%2E1 - Edu - President</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E10 - Edu - Dean</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E11 - Edu - School Principal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E12 - Edu - Curriculum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E13 - Edu - Department Chair</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E14 - Edu - Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E15 - Edu - E-Rate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E16 - Edu - Faculty Senate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E17 - Edu - Instructional Technology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E18 - Edu - Library%2FMedia Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E19 - Edu - Online%2FDistance Learning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E2 - Edu - Vice President</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E20 - Edu - Research</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E21 - Edu - Special Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E22 - Edu - Student</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E23 - Edu - Teacher%2FProfessor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E3 - Edu - Chancellor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E4 - Edu - Superintendent of Schools</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E4 - Edu - Vice Chancellor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >10%2E6 - Edu - Deputy%2FAssistant Superintendent of Schools</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E7 - Edu - Provost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E8 - Edu - Vice Provost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E9 - Edu - Chief Academic Officer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>99%2E1 - Other - Unkown</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Email_Deployment_Type__c</picklist>
+        <values>
+            <fullName>Awards Call for Entry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Interview</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Magazine</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Member Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Newsletter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paper</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Publisher Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales %28ELMO%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Survey %28Internal%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Survey_Client</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Event_Topic__c</picklist>
+        <values>
+            <fullName>Budget%2C Finance and HR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Citizen Engagement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Constituent Experience</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cybersecurity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Data and Analytics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Digital Workflows</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Emergency Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Grants</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Health and Human Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Higher Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>K-12 Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Policy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Social and Mobile</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transportation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Workforce</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Frequency__c</picklist>
+        <values>
+            <fullName>Annual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Biannual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Biweekly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Monthly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Once</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Quarterly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Weekly</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Gift_Card_Type__c</picklist>
+        <values>
+            <fullName>Amazon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Target</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Implied_Interest__c</picklist>
+        <values>
+            <fullName>Education HED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Education K-12</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Emergency Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HHS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Infrastructure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technology</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Industry_Job_Function__c</picklist>
+        <values>
+            <fullName>01%2E01 - Marketing - Brand Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>01%2E02 - Marketing - Chief Marketing Officer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>01%2E03 - Marketing - Content Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>01%2E04 - Marketing - Customer Experience</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >01%2E05 - Marketing - Demand Generation %2F Lead Generation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>01%2E06 - Marketing - Digital Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>01%2E07 - Marketing - eCommerce</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>01%2E08 - Marketing - Event Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>01%2E09 - Marketing - Field Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>01%2E10 - Marketing - Graphic Design</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >01%2E11 - Marketing - Growth %2F Performance Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>01%2E12 - Marketing - Marketing Analytics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>01%2E13 - Marketing - Marketing Operations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>01%2E15 - Marketing - Product Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >01%2E16 - Marketing - Search Engine Optimization %28SEO%29 %2F Pay Per Click %28PPC%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>01%2E17 - Marketing - Social Media Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>01%2E18 - Marketing - Technical Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >01%2E19 - Marketing - Vertical Marketing %28HED%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >01%2E20 - Marketing - Vertical Marketing %28HHS%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >01%2E21 - Marketing - Vertical Marketing %28K-12%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >01%2E22 - Marketing - Vertical Marketing %28Other%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >01%2E23 - Marketing - Vertical Marketing %28Public Safety%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >01%2E24 - Marketing - Vertical Marketing %28Public Sector%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >01%2E25 - Marketing - Vertical Marketing %28Transportation%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>01%2E99 - Marketing - Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E01 - Sales - Account Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E02 - Sales - Business Development</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E03 - Sales - Channel %2F Partner Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E05 - Sales - Customer Success</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E06 - Sales - Enterprise Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E07 - Sales - Inside Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E08 - Sales - Outside %2F Field Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E09 - Sales - Partnerships</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E10 - Sales - Public Sector Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E11 - Sales - Public Sector Sales Head</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E12 - Sales - Regional Sales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E13 - Sales - Revenue Operations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E14 - Sales - Sales Enablement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >02%2E15 - Sales - Sales Engineering %2F Solutions Consulting</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E16 - Sales - Sales Operations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02%2E99 - Sales - Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>03%2E01 - Executive - Chief Executive Officer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>03%2E02 - Executive - Chief Operating Officer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>03%2E99 - Executive - Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>04%2E01 - Communications%2FPublic Relations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>05%2E01 - Consultant</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>06%2E01 - Finance - Chief Financial Officer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>06%2E99 - Finance - Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>07%2E01 - Government Affairs%2FRelations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>08%2E01 - Human Resources</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>09%2E01 - Information Technology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>09%2E02 - Information Technology - Database</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E01 - Legal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%2E01 - Operations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>99%2E01 - Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Industry_Job_Level__c</picklist>
+        <values>
+            <fullName>C-Level</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Director</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Non-Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VP-Level</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Job_Function_Detail__c</picklist>
+        <values>
+            <fullName>1%2E1 - Elected - Governor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%2E10 - Elected - Deputy Mayor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%2E11 - Elected - City Council Member</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%2E12 - Elected - Elections</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%2E2 - Elected - Lieutenant Governor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%2E3 - Elected - State Representative</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%2E4 - Elected - State Senator</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%2E5 - Elected - Secretary of State</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%2E6 - Elected - Attorney General</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >1%2E7 - Elected - State Education Superintendent</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >1%2E8 - Elected - County Commissioner%2FSupervisor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%2E9 - Elected - Mayor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E1 - Edu - President</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E10 - Edu - Dean</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E11 - Edu - School Principal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E12 - Edu - Curriculum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E13 - Edu - Department Chair</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E14 - Edu - Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E15 - Edu - E-Rate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E16 - Edu - Faculty Senate</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E17 - Edu - Instructional Technology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E18 - Edu - Library%2FMedia Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E19 - Edu - Online%2FDistance Learning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E2 - Edu - Vice President</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E20 - Edu - Research</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E21 - Edu - Special Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E22 - Edu - Student</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E23 - Edu - Teacher%2FProfessor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E3 - Edu - Chancellor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E4 - Edu - Vice Chancellor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E5 - Edu - Superintendent of Schools</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >10%2E6 - Edu - Deputy%2FAssistant Superintendent of Schools</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E7 - Edu - Provost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E8 - Edu - Vice Provost</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%2E9 - Edu - Chief Academic Officer</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%2E1 - Finance - Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%2E10 - Finance - Treasury</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%2E3 - Finance - Audit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%2E4 - Finance - Budget</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%2E5 - Finance - Controller%2FComptroller</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%2E6 - Finance - Insurance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%2E7 - Finance - Purchasing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%2E8 - Finance - Retirement%2FPension</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%2E9 - Finance - Revenue%2FTax</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%2E1 - IT - Information Technology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%2E2 - IT - Information Security</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%2E3 - IT - Data Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%2E4 - IT - GIS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%2E5 - IT - Innovation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%2E6 - IT - Network%2FTelecommunications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%2E7 - IT - Software%2FApps</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%2E8 - IT - Web%2FCloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%2E1 - Eng%2FTech - Engineering%2FTechnical</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E1 - Admin - Administration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E10 - Admin - Policy%2FAdvisor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E11 - Admin - Dev - Commerce</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E12 - Admin - Dev - Community Development</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E13 - Admin - Dev - Economic Development</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E14 - Admin - Nat Res - Agriculture%2FFood</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E15 - Admin - Nat Res - Environment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E16 - Admin - Nat Res - Parks %26 Recreation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >5%2E17 - Admin - HHS - Health %26 Human Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >5%2E18 - Admin - HHS - Children %26 Family Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E19 - Admin - HHS - Housing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E2 - Admin - General Services%2FOperations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E20 - Admin - HHS - Veteran Affairs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E21 - Admin - Law - Corrections</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E22 - Admin - Law - Judicial%2FCourts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E23 - Admin - Law - Legal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E24 - Admin - Law - Licensing%2FRegulation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E25 - Admin - Pub Works - Public Works</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >5%2E26 - Admin - Pub Works - Code Enforcement%2FZoning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E27 - Admin - Pub Works - Energy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E28 - Admin - Pub Works - Planning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E29 - Admin - Pub Works - Transportation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E3 - Admin - County Administrator</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E30 - Admin - Pub Works - Utilities</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E4 - Admin - Deputy County Administrator</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E5 - Admin - City Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E6 - Admin - Deputy City Manager</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E7 - Admin - Chief of Staff</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E8 - Admin - Communications</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%2E9 - Admin - Facilities%2FBuildings</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%2E1 - Workforce - Benefits</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%2E2 - Workforce - Human Resources</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%2E3 - Workforce - Labor%2FWorkforce</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%2E1 - First Resp - Fire</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%2E2 - First Resp - Police</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%2E3 - First Resp - Public Safety</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%2E4 - First Resp - Sheriff</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%2E1 - EMS - Emergency%2F911</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%2E1 - Sales - Marketing%2FSales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>99%2E1 - Other - Unknown</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>99%2E2 - Other - Admin Asst%2FClerical Support</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>99%2E3 - Other - Private Sector</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>99%2E4 - Other - Retired</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>99%2E5 - Other - Invalid%2FFake Information</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Job_Function__c</picklist>
+        <values>
+            <fullName>01 - Elected Official%2FLegislative</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02 - Finance%2FProcurement%2FBudget%2FAuditor</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>03 - Information Technology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>04 - Engineering%2FTechnical</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>05 - Operations%2FAdministration</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >06 - Human Resource%2FWorkforce%2FTraining%2FBenefits</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>07 - First Responder %28Police%2FFire%2FEMS%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>08 - Emergency Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>09 - Marketing%2FSales</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>99 - Other</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Job_Role__c</picklist>
+        <values>
+            <fullName>01 - Elected Official</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02 - Executive%2FC-Level</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>03 - Senior Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>04 - Supervision</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>05 - Subject Matter Expert%2FPractitioner</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Mailing_City_Radius__c</picklist>
+        <values>
+            <fullName>100 Miles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>150 Miles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>200 Miles</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>50 Miles</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Mailing_State__c</picklist>
+        <values>
+            <fullName>AK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AZ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ID</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>KS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>KY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>LA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ME</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ND</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NJ</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>NY</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>National</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OK</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TN</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>TX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>VT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>WY</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Navigator_Employee_Range__c</picklist>
+        <values>
+            <fullName>01 - 1 - 250</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02 - 251 - 500</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>03 - 501 - 1%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>04 - 1%2C001 - 3%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>05 - 3%2C001 - 5%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>06 - 5%2C001 - 10%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>07 - 10%2C001 - 25%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>08 - 25%2C001 - 50%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>09 - %3E 50%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>99 - Unknown</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Navigator_Enrollment_Range__c</picklist>
+        <values>
+            <fullName>01 - 1 - 5%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02 - 5%2C001 %E2%80%93 10%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>03 - 10%2C001 %E2%80%93 15%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>04 - %3E15%2C001</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>99 - Unknown</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Navigator_Population_Range__c</picklist>
+        <values>
+            <fullName>01 - 1 - 25%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>02 - 25%2C001 - 50%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>03 - 50%2C001 - 75%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>04 - 75%2C001 - 100%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>05 - 100%2C001 - 250%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>06 - 250%2C001 - 500%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>07 - 500%2C001 - 750%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>08 - 750%2C001 - 1%2C000%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>09 - 1%2C000%2C001 - 5%2C000%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10 - %3E5%2C000%2C000</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>99 - Unknown</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Opt_Out_Email_Group__c</picklist>
+        <values>
+            <fullName>Awards - Best of</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Awards - CDE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Awards - CDG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Awards - Digital Cities</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Awards - Digital Counties</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Awards - GOV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Awards - Govt Exp</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Circ - GT - Renewal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Events - CDE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Events - CDG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Events - EE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Events - EM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Events - GOV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Events - GT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Events - Insider</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>News - CDE - HED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>News - CDE - K-12</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>News - GOV - Finance Weekly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>News - GOV - GOV Daily</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>News - GOV - Politics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>News - GT - Biz</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>News - GT - Cybersecurity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>News - GT - DC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>News - GT - EM News</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>News - GT - Futurestructure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>News - GT - GovTech Daily</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>News - GT - Special Dist</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>News - Market Insights GT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Papers - CDE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Papers - EM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Papers - GOV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Papers - GT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Promo - CDE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Promo - EM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Promo - GOV</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Promo - GT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Promo - Insider</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Promo - NAV - Member</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Surveys - GT</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Phase__c</picklist>
+        <values>
+            <fullName>Approved</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Approved with Changes</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Assigned</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Copy Edit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Fact Check</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Needs Approval</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending Approval</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revise and Resend</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Unassigned</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Priority_Order__c</picklist>
+        <values>
+            <fullName>First</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Second</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Third</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Priority__c</picklist>
+        <values>
+            <fullName>Critical</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Normal</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Product_Type__c</picklist>
+        <values>
+            <fullName>Custom Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Magazine Lot Split</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mailing List</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Marketing Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Overall Audience</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paper</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Special Edition Newsletter</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standard Event</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Survey</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Project_Scale__c</picklist>
+        <values>
+            <fullName>Large</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Small</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Promo_Source__c</picklist>
+        <values>
+            <fullName>Live</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Demand</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Promotion_Type__c</picklist>
+        <values>
+            <fullName>Email</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Phone</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Proposed_Event_Time__c</picklist>
+        <values>
+            <fullName>1%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Qualifier_view_time_req_d__c</picklist>
+        <values>
+            <fullName>Registered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Viewed %28any length%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Viewed %28full length%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>ROI__c</picklist>
+        <values>
+            <fullName>Enhancement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Maintenance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Revenue Generating</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Registration_Import_Update__c</picklist>
+        <values>
+            <fullName>Clear contact%27s department field</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Delete registrations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>File includes multiple events</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Import new registrations</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Import payment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Move contacts into Accounts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >Update contact%27s title%2Forganization%2Fdepartment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >Update existing registrations  %28e%2Eg%2E Reg Type or No Show%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Release_Risk__c</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Medium</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Request_Priority__c</picklist>
+        <values>
+            <fullName>Critical</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Normal</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Request_Type__c</picklist>
+        <values>
+            <fullName>Contract Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Proposal Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Proposal w%2FContract Page Request</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Routing Request</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Research_Project_Priority__c</picklist>
+        <values>
+            <fullName>1st Priority</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2nd Priority</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3rd Priority</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4th Priority</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5th Priority</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Review_Priority__c</picklist>
+        <values>
+            <fullName>High</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Normal</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Review__c</picklist>
+        <values>
+            <fullName>Kim</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lien</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SF Ops</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tiff</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Routing_Type__c</picklist>
+        <values>
+            <fullName>LOI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Signed Contract</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Start_Quarter__c</picklist>
+        <values>
+            <fullName>Q1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Q2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Q3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Q4</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Active</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Void</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting for Input</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Waiting on Internal Contract</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Survey_Status__c</picklist>
+        <values>
+            <fullName>Closed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Incentive Distribution</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Promotion</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Survey_Topic__c</picklist>
+        <values>
+            <fullName>Artificial Intelligence</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Budget%2C Finance and HR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Citizen Engagement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Constituent Experience</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cybersecurity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Data and Analytics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Digital Workflows</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Emergency Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Grants</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Health and Human Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Higher Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IT Infrastructure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IT Modernization</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>K-12 Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Policy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Social and Mobile</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transportation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Workforce</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>System2__c</picklist>
+        <values>
+            <fullName>CMS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Events</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Governing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Govtech</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Navigator</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other%2F Not Sure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Techwire</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>Marketing Campaign</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Paid Social Campaign</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sales Enablement Materials</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

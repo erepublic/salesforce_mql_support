@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Integrated__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText
+  >Projects that are integrated with another department (i.e. Content Studio and Research)</inlineHelpText>
+    <label>Integrated Project</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

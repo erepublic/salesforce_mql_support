@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Jurisdiction_State_Details__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;Adjutant General&apos;s Office&quot;) , &quot;Adjutant General&apos;s Office; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;Governor&apos;s Cabinet&quot;) , &quot;Governor&apos;s Cabinet; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;Governor&apos;s Office&quot;) , &quot;Governor&apos;s Office; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;Lieutenant Governor&apos;s Office&quot;) , &quot;Lieutenant Governor&apos;s Office; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;Secretary of State&apos;s Office&quot;) , &quot;Secretary of State&apos;s Office; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Administration Department&quot;) , &quot;State Administration Department; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Auditor&apos;s Office&quot;) , &quot;State Auditor&apos;s Office; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Budget Office&quot;) , &quot;State Budget Office; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Child Welfare Department&quot;) , &quot;State Child Welfare Department; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Comptroller/Controller&apos;s Office&quot;) , &quot;State Comptroller/Controller&apos;s Office; &quot; &amp; BR(), &quot;&quot;) &amp; 
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Data Office&quot;) , &quot;State Data Office; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Education Department&quot;) , &quot;State Education Department; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Finance Department&quot;) , &quot;State Finance Department; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Health Department&quot;) , &quot;State Health Department; &quot; &amp; BR(), &quot;&quot;) &amp; 
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Human Resources Department&quot;) , &quot;State Human Resources Department; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Information Security Office&quot;) , &quot;State Information Security Office; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Insurance Department&quot;) , &quot;State Insurance Department; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Medicaid Office&quot;) , &quot;State Medicaid Office; &quot; &amp; BR(), &quot;&quot;) &amp; 
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Privacy Office&quot;) , &quot;State Privacy Office; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Procurement/Purchasing Department&quot;) , &quot;State Procurement/Purchasing Department; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Risk Office&quot;) , &quot;State Risk Office; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Technology Department&quot;) , &quot;State Technology Department; &quot; &amp; BR(), &quot;&quot;) &amp; 
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Transportation Department&quot;) , &quot;State Transportation Department; &quot; &amp; BR(), &quot;&quot;) &amp;
+ IF(INCLUDES( Account__r.Jurisdiction_State_Details__c , &quot;State Treasurer&apos;s Office&quot;) , &quot;State Treasurer&apos;s Office; &quot; &amp; BR(), &quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Jurisdiction State Details</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

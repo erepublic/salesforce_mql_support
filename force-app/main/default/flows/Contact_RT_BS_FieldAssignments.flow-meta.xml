@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>ClearEvalReason</name>
+        <label>ClearEvalReason</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Contact_Evaluation_Reason__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Reset_Email_Verification_Fields</name>
+        <label>Reset Email Verification Fields</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Email_Hard_Bounce__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Inactive_Email_Address__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Verification_Status__c</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Verification_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>varNullDate</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>CMS_Needs_to_Sync_on_Edit</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>SetCMSSyncNow</name>
+        <label>SetCMSSyncNow</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.CMS_Needs_to_Sync__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>CMS_Needs_to_Sync_on_Create</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>SetCMSSyncNowOnCreate</name>
+        <label>SetCMSSyncNowOnCreate</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.CMS_Needs_to_Sync__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDateTime</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Email_Opt_out</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>SetOptOutTimestamp</name>
+        <label>SetOptOutTimestamp</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Opt_Out_Timestamp__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>FR_UTC_Timestamp_Text</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Evaluation_Needed_Unchecked</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>CMS_Needs_to_Sync_on_Create</name>
+        <label>CMS Needs to Sync on Create</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Email_Opt_out</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>CMS_Needs_to_Sync_Create</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FR_CMS_Sync_Create</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>SetCMSSyncNowOnCreate</targetReference>
+            </connector>
+            <label>CMS Needs to Sync (Create)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>CMS_Needs_to_Sync_on_Edit</name>
+        <label>CMS Needs to Sync on Edit</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>CMS_Needs_to_Sync_on_Create</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>CMS_Needs_to_Sync_edit</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FR_CMS_Sync_Edit</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>SetCMSSyncNow</targetReference>
+            </connector>
+            <label>CMS Needs to Sync (edit)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Email_Changed</name>
+        <label>Email Changed?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>CMS_Needs_to_Sync_on_Edit</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>EmailChanged</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FR_EmailChanged</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Reset_Email_Verification_Fields</targetReference>
+            </connector>
+            <label>EmailChanged</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Email_Opt_out</name>
+        <label>Email Opt-out?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Evaluation_Needed_Unchecked</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Email_Opted_out</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FR_OptOutTrue</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>SetOptOutTimestamp</targetReference>
+            </connector>
+            <label>Email Opted-out</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Evaluation_Needed_Unchecked</name>
+        <label>Evaluation Needed Unchecked?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>EvaluationNeededUnchecked</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FR_EvalNeededIsNull</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>ClearEvalReason</targetReference>
+            </connector>
+            <label>Evaluation Needed Unchecked</label>
+        </rules>
+    </decisions>
+    <description>Migrating following WFs to Flow:
+Contact - Clear Inactive &amp; Hard Bounce Email on new email
+Contact - CMS Needs to Sync (created)
+Contact - CMS Needs to Sync (edited)
+Contact - Email Opt Out Timestamp
+Contact - Clears Evaluation Reason</description>
+    <environments>Default</environments>
+    <formulas>
+        <description
+    >Email not blank, not created by &apos;OneForm Admin&apos;</description>
+        <name>FR_CMS_Sync_Create</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+  NOT(ISBLANK($Record.Email)),
+  $User.Id &lt;&gt; &apos;005a000000B8cGM&apos;
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Email not blank, not edited by OneForm Admin and any of the tracked field(s) changed</description>
+        <name>FR_CMS_Sync_Edit</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+  NOT(ISBLANK($Record.Email)),
+  $User.Id &lt;&gt; &apos;005a000000B8cGM&apos;,
+  {!FR_W2_AnyTrackedFieldChanged}
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Checks if Email field changed</description>
+        <name>FR_EmailChanged</name>
+        <dataType>Boolean</dataType>
+        <expression
+    >{!$Record.Email} &lt;&gt; {!$Record__Prior.Email}</expression>
+    </formulas>
+    <formulas>
+        <description>Checks if Email is not blank</description>
+        <name>FR_EmailNotBlank</name>
+        <dataType>Boolean</dataType>
+        <expression>NOT(ISBLANK($Record.Email))</expression>
+    </formulas>
+    <formulas>
+        <description>Contact Evaluation checkbox unchecked</description>
+        <name>FR_EvalNeededIsNull</name>
+        <dataType>Boolean</dataType>
+        <expression>$Record.Contact_Evaluation_Needed__c = FALSE</expression>
+    </formulas>
+    <formulas>
+        <description>Checks if Email Opt Out is Checked</description>
+        <name>FR_OptOutTrue</name>
+        <dataType>Boolean</dataType>
+        <expression>$Record.HasOptedOutOfEmail = TRUE</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Generates UTC timestamp string in ISO format (yyyy-MM-dd HH:mm:ssZ)</description>
+        <name>FR_UTC_Timestamp_Text</name>
+        <dataType>String</dataType>
+        <expression
+    >TEXT(YEAR(DATEVALUE($Flow.CurrentDateTime))) &amp; &quot;-&quot; &amp;
+RIGHT(&quot;0&quot; &amp; TEXT(MONTH(DATEVALUE($Flow.CurrentDateTime))), 2) &amp; &quot;-&quot; &amp;
+RIGHT(&quot;0&quot; &amp; TEXT(DAY(DATEVALUE($Flow.CurrentDateTime))), 2) &amp; &quot; &quot; &amp;
+RIGHT(&quot;0&quot; &amp; TEXT(HOUR(TIMEVALUE($Flow.CurrentDateTime))), 2) &amp; &quot;:&quot; &amp;
+RIGHT(&quot;0&quot; &amp; TEXT(MINUTE(TIMEVALUE($Flow.CurrentDateTime))), 2) &amp; &quot;:&quot; &amp;
+RIGHT(&quot;0&quot; &amp; TEXT(SECOND(TIMEVALUE($Flow.CurrentDateTime))), 2) &amp; &quot;Z&quot;</expression>
+    </formulas>
+    <formulas>
+        <description>Checks if any of multiple fields changed</description>
+        <name>FR_W2_AnyTrackedFieldChanged</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+  $Record.Email &lt;&gt; $Record__Prior.Email,
+  $Record.FirstName &lt;&gt; $Record__Prior.FirstName,
+  $Record.LastName &lt;&gt; $Record__Prior.LastName,
+  $Record.AccountId &lt;&gt; $Record__Prior.AccountId,
+  $Record.Company_Name_Holder__c &lt;&gt; $Record__Prior.Company_Name_Holder__c,
+  $Record.RecordTypeId &lt;&gt; $Record__Prior.RecordTypeId,
+  $Record.Title &lt;&gt; $Record__Prior.Title,
+  $Record.Department &lt;&gt; $Record__Prior.Department,
+  $Record.Phone &lt;&gt; $Record__Prior.Phone,
+  $Record.MailingStreet &lt;&gt; $Record__Prior.MailingStreet,
+  $Record.MailingCity &lt;&gt; $Record__Prior.MailingCity,
+  $Record.MailingState &lt;&gt; $Record__Prior.MailingState,
+  $Record.MailingCountry &lt;&gt; $Record__Prior.MailingCountry,
+  $Record.MailingPostalCode &lt;&gt; $Record__Prior.MailingPostalCode,
+  TEXT($Record.Demo_Branch_of_Govt__c) &lt;&gt; TEXT($Record__Prior.Demo_Branch_of_Govt__c),
+  TEXT($Record.Demo_Agency_Function__c) &lt;&gt; TEXT($Record__Prior.Demo_Agency_Function__c),
+  TEXT($Record.Demo_Job_Function__c) &lt;&gt; TEXT($Record__Prior.Demo_Job_Function__c),
+  TEXT($Record.Demo_Job_Role__c) &lt;&gt; TEXT($Record__Prior.Demo_Job_Role__c),
+  TEXT($Record.Agency_Institution_Size__c) &lt;&gt; TEXT($Record__Prior.Agency_Institution_Size__c),
+  TEXT($Record.Demo_Type__c) &lt;&gt; TEXT($Record__Prior.Demo_Type__c),
+  $Record.Demo_Transaction_ID__c &lt;&gt; $Record__Prior.Demo_Transaction_ID__c,
+  $Record.Demo_Date__c &lt;&gt; $Record__Prior.Demo_Date__c,
+  $Record.Demo_Refresh__c &lt;&gt; $Record__Prior.Demo_Refresh__c,
+  $Record.HasOptedOutOfEmail &lt;&gt; $Record__Prior.HasOptedOutOfEmail,
+  $Record.TW_User_Registered_Date__c &lt;&gt; $Record__Prior.TW_User_Registered_Date__c,
+  $Record.TW_User_Expired__c &lt;&gt; $Record__Prior.TW_User_Expired__c,
+  $Record.TW_Send_Welcome_Email__c &lt;&gt; $Record__Prior.TW_Send_Welcome_Email__c,
+  $Record.TW_Gets_Newsletter__c &lt;&gt; $Record__Prior.TW_Gets_Newsletter__c,
+  TEXT($Record.TW_Member_Type__c) &lt;&gt; TEXT($Record__Prior.TW_Member_Type__c)
+)</expression>
+    </formulas>
+    <interviewLabel
+  >Contact - RT BS - Field Assignments {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contact - RT BS - Field Assignments</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Email_Changed</targetReference>
+        </connector>
+        <object>Contact</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description
+    >Returns a null value to clear date fields in assignments.</description>
+        <name>varNullDate</name>
+        <dataType>Date</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

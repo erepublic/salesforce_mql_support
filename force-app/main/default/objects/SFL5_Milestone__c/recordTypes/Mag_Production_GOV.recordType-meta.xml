@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mag_Production_GOV</fullName>
+    <active>true</active>
+    <label>Mag Production - GOV</label>
+    <picklistValues>
+        <picklist>Billing_Status__c</picklist>
+        <values>
+            <fullName>Draft</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Posted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Received</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sent</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Milestone_Status__c</picklist>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Started</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Production_Step__c</picklist>
+        <values>
+            <fullName>Ad PDFs Due</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>All Editorial In</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>All Layout Working</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Approx Home Delivery</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Approx Home Delivery - Late</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bible</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Bonus Distribution Due</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CO MAIL Start</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>COLOR PROOFS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Completion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Design Start</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Editorial Briefing</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Editorial Close</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Extended Ad PDFs Due</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Extended Space Close</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Inserts PDFs InSite</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mag Files InSite</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mid Proofs As Needed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pre Printed Due</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Print Order%2FMail Tape</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Space Close</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>To PRESS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>To Prepress</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

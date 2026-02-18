@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Delivery_Placement__c</fullName>
+    <label>Delivery Placement</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Adhesion - 320x100</fullName>
+                <default>false</default>
+                <label>Adhesion - 320x100</label>
+            </value>
+            <value>
+                <fullName>Article</fullName>
+                <default>false</default>
+                <label>Article</label>
+            </value>
+            <value>
+                <fullName>Artificial Intelligence</fullName>
+                <default>false</default>
+                <label>Artificial Intelligence</label>
+            </value>
+            <value>
+                <fullName>Beyond the Booth</fullName>
+                <default>false</default>
+                <label>Beyond the Booth</label>
+            </value>
+            <value>
+                <fullName>Big Box - 640x480</fullName>
+                <default>false</default>
+                <label>Big Box - 640x480</label>
+            </value>
+            <value>
+                <fullName>Billboard - 970x250</fullName>
+                <default>false</default>
+                <label>Billboard - 970x250</label>
+            </value>
+            <value>
+                <fullName>Blended Banners</fullName>
+                <default>false</default>
+                <label>Blended Banners</label>
+            </value>
+            <value>
+                <fullName>Custom Email</fullName>
+                <default>false</default>
+                <label>Custom Email</label>
+            </value>
+            <value>
+                <fullName>Cybersecurity</fullName>
+                <default>false</default>
+                <label>Cybersecurity</label>
+            </value>
+            <value>
+                <fullName>Emergency Management</fullName>
+                <default>false</default>
+                <label>Emergency Management</label>
+            </value>
+            <value>
+                <fullName>Future of Finance</fullName>
+                <default>false</default>
+                <label>Future of Finance</label>
+            </value>
+            <value>
+                <fullName>Governing Daily</fullName>
+                <default>false</default>
+                <label>Governing Daily</label>
+            </value>
+            <value>
+                <fullName>GovTech Today</fullName>
+                <default>false</default>
+                <label>GovTech Today</label>
+            </value>
+            <value>
+                <fullName>Higher Education</fullName>
+                <default>false</default>
+                <label>Higher Education</label>
+            </value>
+            <value>
+                <fullName>K-12</fullName>
+                <default>false</default>
+                <label>K-12</label>
+            </value>
+            <value>
+                <fullName>Magazine</fullName>
+                <default>false</default>
+                <label>Magazine</label>
+            </value>
+            <value>
+                <fullName>Microsite</fullName>
+                <default>false</default>
+                <label>Microsite</label>
+            </value>
+            <value>
+                <fullName>Rectangle - 300x250</fullName>
+                <default>false</default>
+                <label>Rectangle - 300x250</label>
+            </value>
+            <value>
+                <fullName>Resource Module</fullName>
+                <default>false</default>
+                <label>Resource Module</label>
+            </value>
+            <value>
+                <fullName>Social Media</fullName>
+                <default>false</default>
+                <label>Social Media</label>
+            </value>
+            <value>
+                <fullName>Subscription</fullName>
+                <default>false</default>
+                <label>Subscription</label>
+            </value>
+            <value>
+                <fullName>Takeover</fullName>
+                <default>false</default>
+                <label>Takeover</label>
+            </value>
+            <value>
+                <fullName>TBD</fullName>
+                <default>false</default>
+                <label>TBD</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

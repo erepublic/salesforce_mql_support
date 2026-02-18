@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Conf_Bag_Sponsor_Deadline_12PM_2__c</fullName>
+    <description
+  >Deadline to sponsor the conference bags for this event.</description>
+    <inlineHelpText
+  >Deadline to sponsor the conference bags for this event.</inlineHelpText>
+    <label>Conf Bag Sponsor Deadline EOD</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

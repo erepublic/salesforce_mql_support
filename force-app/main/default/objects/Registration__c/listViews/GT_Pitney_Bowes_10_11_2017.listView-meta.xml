@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GT_Pitney_Bowes_10_11_2017</fullName>
+    <columns>Attendee_Name__c</columns>
+    <columns>Registrant_Title__c</columns>
+    <columns>Reg_Company_Name__c</columns>
+    <columns>Non_Qual__c</columns>
+    <columns>Reg_Type__c</columns>
+    <columns>Gift_Card_Recipient__c</columns>
+    <columns>Reg_Notes__c</columns>
+    <columns>Event_No_Show__c</columns>
+    <columns>Batch__c</columns>
+    <columns>Reg_Advisory_Board__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event__c</field>
+        <operation>contains</operation>
+        <value>CDE - FireEye - 04/23/2019</value>
+    </filters>
+    <label>Marketing - Techwire - Webinar #1 - 2018</label>
+</ListView>

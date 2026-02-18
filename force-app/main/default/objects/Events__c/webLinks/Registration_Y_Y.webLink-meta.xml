@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Registration_Y_Y</fullName>
+    <availability>online</availability>
+    <description
+  >If Standardized Event Name is utilized, compares registration over 12 weeks for This Year, Last Year, and 2 Years Ago. 
+
+Otherwise, compares the year to date registration count based on the number of days out from the event we are.</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Registration - Y/Y</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/lightning/r/Report/{!IF(
+    ISBLANK(Events__c.Standardized_Event_Name__c),
+    &quot;00O1O0000088cuuUAA&quot;,
+    &quot;00OJw00000A0pzFMAR&quot;
+)}/view?fv0={!IF(
+    ISBLANK(Events__c.Standardized_Event_Name__c),
+    Events__c.Name,
+    Events__c.Standardized_Event_Name__c
+)}&amp;fv1={!IF(
+    ISBLANK(Events__c.Standardized_Event_Name__c),
+    Events__c.last_years_event__c,
+    &quot;False&quot;
+)}&amp;fv2={!IF(
+    ISBLANK(Events__c.Standardized_Event_Name__c),
+    Events__c.Days_Since_Last_Event__c,
+    &quot;Industry Attendee, Sponsor, Staff&quot;
+)}</url>
+</WebLink>

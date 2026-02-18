@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>How_Heard__c</fullName>
+    <label>How did you hear about this event?</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>A Postcard</fullName>
+                <default>false</default>
+                <label>A Postcard</label>
+            </value>
+            <value>
+                <fullName>B Brochure</fullName>
+                <default>false</default>
+                <label>B Brochure</label>
+            </value>
+            <value>
+                <fullName>C Email</fullName>
+                <default>false</default>
+                <label>C Email</label>
+            </value>
+            <value>
+                <fullName>D Phone Call</fullName>
+                <default>false</default>
+                <label>D Phone Call</label>
+            </value>
+            <value>
+                <fullName>E Event Web Page</fullName>
+                <default>false</default>
+                <label>E Event Web Page</label>
+            </value>
+            <value>
+                <fullName>F Memo From Management</fullName>
+                <default>false</default>
+                <label>F Memo From Management</label>
+            </value>
+            <value>
+                <fullName>G Staff Meeting</fullName>
+                <default>false</default>
+                <label>G Staff Meeting</label>
+            </value>
+            <value>
+                <fullName>H User Group</fullName>
+                <default>false</default>
+                <label>H User Group</label>
+            </value>
+            <value>
+                <fullName>I Training Office</fullName>
+                <default>false</default>
+                <label>I Training Office</label>
+            </value>
+            <value>
+                <fullName>Z Other</fullName>
+                <default>false</default>
+                <label>Z Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

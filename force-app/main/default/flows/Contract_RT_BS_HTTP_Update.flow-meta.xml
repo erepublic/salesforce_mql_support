@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Add_HTTP</name>
+        <label>Add HTTP</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Website_Manual__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>FR_WebsiteWithHttp</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Website_Needs_HTTP</name>
+        <label>Website Needs HTTP?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No</defaultConnectorLabel>
+        <rules>
+            <name>Yes</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FR_WebsiteMissingHTTP</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Add_HTTP</targetReference>
+            </connector>
+            <label>Yes</label>
+        </rules>
+    </decisions>
+    <description>Replaces Workflow Rule:
+- Event Contract - Append http to website
+
+Purpose:
+Ensures Website field starts with &quot;http://&quot; when missing.
+
+Impacted Record Types:
+- Event Contract (012a0000001RKA9AAO)
+- Event Contract - Locked (01214000001RYWjAAO)</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>FR_WebsiteMissingHTTP</name>
+        <dataType>Boolean</dataType>
+        <expression
+    >NOT( CONTAINS( LOWER($Record.Website_Manual__c), &quot;http&quot; ) )</expression>
+    </formulas>
+    <formulas>
+        <name>FR_WebsiteWithHttp</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;http://&quot; &amp; $Record.Website_Manual__c</expression>
+    </formulas>
+    <interviewLabel
+  >Contract - RT BS - HTTP Update {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contract - RT BS - HTTP Update</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Website_Needs_HTTP</targetReference>
+        </connector>
+        <filterLogic>(1 OR 2) AND 3</filterLogic>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>012a0000001RKA9AAO</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01214000001RYWjAAO</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Website_Manual__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Contract</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

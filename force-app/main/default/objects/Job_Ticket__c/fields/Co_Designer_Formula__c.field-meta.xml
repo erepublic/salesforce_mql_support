@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Co_Designer_Formula__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >IF(INCLUDES(Select_Co_Designers__c, &quot;Crystal Hopson&quot;), &quot;Crystal Hopson&quot; + BR(), NULL) +
+IF(INCLUDES(Select_Co_Designers__c, &quot;Kelly Martinelli&quot;), &quot;Kelly Martinelli&quot; + BR(), NULL) +
+IF(INCLUDES(Select_Co_Designers__c, &quot;Lisa Zolfarelli&quot;), &quot;Lisa Zolfarelli&quot; + BR(), NULL) +
+IF(INCLUDES(Select_Co_Designers__c, &quot;Shelley Botts&quot;), &quot;Shelley Botts&quot; + BR(), NULL) +
+IF(INCLUDES(Select_Co_Designers__c, &quot;Trevor Andersen&quot;), &quot;Trevor Andersen&quot; + BR(), NULL)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Co-Designer(s)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

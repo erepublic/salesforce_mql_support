@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Zone__c</fullName>
+    <description
+  >Delineates the time zone for the locale in which the event is taking place.</description>
+    <inlineHelpText
+  >Delineates the time zone for the locale in which the event is taking place.</inlineHelpText>
+    <label>Time Zone</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Eastern</fullName>
+                <default>false</default>
+                <label>Eastern</label>
+            </value>
+            <value>
+                <fullName>Central</fullName>
+                <default>false</default>
+                <label>Central</label>
+            </value>
+            <value>
+                <fullName>Mountain</fullName>
+                <default>false</default>
+                <label>Mountain</label>
+            </value>
+            <value>
+                <fullName>Mountain no DST</fullName>
+                <default>false</default>
+                <label>Mountain no DST</label>
+            </value>
+            <value>
+                <fullName>Pacific</fullName>
+                <default>false</default>
+                <label>Pacific</label>
+            </value>
+            <value>
+                <fullName>Alaska</fullName>
+                <default>false</default>
+                <label>Alaska</label>
+            </value>
+            <value>
+                <fullName>Hawaii</fullName>
+                <default>false</default>
+                <label>Hawaii</label>
+            </value>
+            <value>
+                <fullName>Hawaii no DST</fullName>
+                <default>false</default>
+                <label>Hawaii no DST</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

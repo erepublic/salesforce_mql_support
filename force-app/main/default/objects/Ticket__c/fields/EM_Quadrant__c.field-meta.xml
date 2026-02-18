@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EM_Quadrant__c</fullName>
+    <description
+  >Eisenhower Matrix quadrant values. Used for prioritizing tickets based on this method.</description>
+    <inlineHelpText
+  >Eisenhower Matrix quadrant values. Used for prioritizing tickets based on this method.</inlineHelpText>
+    <label>EM Quadrant</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1. Important / Urgent (Do)</fullName>
+                <default>false</default>
+                <label>1. Important / Urgent (Do)</label>
+            </value>
+            <value>
+                <fullName>2. Important / Not-Urgent (Schedule)</fullName>
+                <default>false</default>
+                <label>2. Important / Not-Urgent (Schedule)</label>
+            </value>
+            <value>
+                <fullName>3. Not Important / Urgent (Delegate)</fullName>
+                <default>false</default>
+                <label>3. Not Important / Urgent (Delegate)</label>
+            </value>
+            <value>
+                <fullName>4. Not Important / Not-Urgent (Delete)</fullName>
+                <default>false</default>
+                <label>4. Not Important / Not-Urgent (Delete)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

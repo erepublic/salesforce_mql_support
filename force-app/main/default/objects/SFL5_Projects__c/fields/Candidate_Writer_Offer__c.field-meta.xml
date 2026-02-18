@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Candidate_Writer_Offer__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/t/CustomMedia/EX3ysveLOcRJniK4HKJtZY0B-hrCJY93sZoVxe64vy4B_w?e=fVGkOa&amp;wdLOR=c64B0C50F-96BD-42ED-8788-C2EB122FDAE5&quot;,&quot;Sample Writer Request Email&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Candidate Writer Offer</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

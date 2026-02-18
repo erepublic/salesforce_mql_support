@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Treatment_Expiration_Less_Than_Opp</fullName>
+    <active>true</active>
+    <description
+  >Treatment expiration date cannot be equal or less than Pending Opportunity expiration date.</description>
+    <errorConditionFormula>AND(
+Expiration_Date__c  &lt;=  Pending_Opp_Expiration__c,
+ISCHANGED (Status__c),
+OR(
+TEXT(PRIORVALUE (Status__c)) = &quot;Available&quot;,
+TEXT(PRIORVALUE (Status__c)) = &quot;Creating Treatment&quot;),
+ISPICKVAL(Status__c, &quot;Pending Opportunity&quot;))</errorConditionFormula>
+    <errorMessage
+  >Treatment Expiration Date must be greater than Pending Opp Expiration Date.</errorMessage>
+</ValidationRule>

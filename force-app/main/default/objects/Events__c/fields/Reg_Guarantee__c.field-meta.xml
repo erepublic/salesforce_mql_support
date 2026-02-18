@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reg_Guarantee__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Used to indicate if there is a registration guarantee give to the sponsor for the event.</description>
+    <inlineHelpText
+  >Used to indicate if there is a registration guarantee give to the sponsor for the event.</inlineHelpText>
+    <label>Reg Guarantee</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

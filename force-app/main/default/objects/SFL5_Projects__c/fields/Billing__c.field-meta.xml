@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing__c</fullName>
+    <label>Billing</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Fixed Bid Project</fullName>
+                <default>false</default>
+                <label>Fixed Bid Project</label>
+            </value>
+            <value>
+                <fullName>Time &amp; Materials</fullName>
+                <default>false</default>
+                <label>Time &amp; Materials</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

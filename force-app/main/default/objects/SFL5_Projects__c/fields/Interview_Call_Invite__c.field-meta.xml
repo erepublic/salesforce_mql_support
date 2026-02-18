@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interview_Call_Invite__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/t/CustomMedia/EUDkVsIXov5MhXSIihIdG0IBfEYqCCVBH4Aulo1-N1OnLA?e=dQT53T&amp;wdLOR=c8BD57BFA-A4CF-49A7-921D-95839690A9B8&quot;,&quot;Sample SME/Public Sector Interview Call Invite&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Interview Call Invite</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

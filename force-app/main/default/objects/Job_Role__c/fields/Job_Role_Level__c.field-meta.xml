@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Job_Role_Level__c</fullName>
+    <label>Job Role Level</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Jurisdiction Head</fullName>
+                <default>false</default>
+                <label>Jurisdiction Head</label>
+            </value>
+            <value>
+                <fullName>Jurisdiction Deputy Head</fullName>
+                <default>false</default>
+                <label>Jurisdiction Deputy Head</label>
+            </value>
+            <value>
+                <fullName>Jurisdiction Function Head</fullName>
+                <default>false</default>
+                <label>Jurisdiction Function Head</label>
+            </value>
+            <value>
+                <fullName>Jurisdiction Function Deputy Head</fullName>
+                <default>false</default>
+                <label>Jurisdiction Function Deputy Head</label>
+            </value>
+            <value>
+                <fullName>Department Head</fullName>
+                <default>false</default>
+                <label>Department Head</label>
+            </value>
+            <value>
+                <fullName>Department Deputy Head</fullName>
+                <default>false</default>
+                <label>Department Deputy Head</label>
+            </value>
+            <value>
+                <fullName>Manager</fullName>
+                <default>false</default>
+                <label>Manager</label>
+            </value>
+            <value>
+                <fullName>Staff (Non-Management)</fullName>
+                <default>false</default>
+                <label>Staff (Non-Management)</label>
+            </value>
+            <value>
+                <fullName>Public School District Head</fullName>
+                <default>false</default>
+                <label>Public School District Head</label>
+            </value>
+            <value>
+                <fullName>Public School District Deputy Head</fullName>
+                <default>false</default>
+                <label>Public School District Deputy Head</label>
+            </value>
+            <value>
+                <fullName>University System Head</fullName>
+                <default>false</default>
+                <label>University System Head</label>
+            </value>
+            <value>
+                <fullName>University System Deputy Head</fullName>
+                <default>false</default>
+                <label>University System Deputy Head</label>
+            </value>
+            <value>
+                <fullName>University/College (4-Year) Head</fullName>
+                <default>false</default>
+                <label>University/College (4-Year) Head</label>
+            </value>
+            <value>
+                <fullName>University/College (4-Year) Deputy Head</fullName>
+                <default>false</default>
+                <label>University/College (4-Year) Deputy Head</label>
+            </value>
+            <value>
+                <fullName>Community College District Head</fullName>
+                <default>false</default>
+                <label>Community College District Head</label>
+            </value>
+            <value>
+                <fullName>Community College District Deputy Head</fullName>
+                <default>false</default>
+                <label>Community College District Deputy Head</label>
+            </value>
+            <value>
+                <fullName>Community College (2-Year) Head</fullName>
+                <default>false</default>
+                <label>Community College (2-Year) Head</label>
+            </value>
+            <value>
+                <fullName>Community College (2-Year) Deputy Head</fullName>
+                <default>false</default>
+                <label>Community College (2-Year) Deputy Head</label>
+            </value>
+            <value>
+                <fullName>State Legislator</fullName>
+                <default>false</default>
+                <label>State Legislator</label>
+            </value>
+            <value>
+                <fullName>Deputy</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Deputy</label>
+            </value>
+            <value>
+                <fullName>Head</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Head</label>
+            </value>
+            <value>
+                <fullName>State Representative</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>State Representative</label>
+            </value>
+            <value>
+                <fullName>State Senator</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>State Senator</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

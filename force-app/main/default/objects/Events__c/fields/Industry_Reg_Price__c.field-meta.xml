@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Industry_Reg_Price__c</fullName>
+    <description>Price for industry to register for the event.</description>
+    <inlineHelpText
+  >Price for industry to register for the event.</inlineHelpText>
+    <label>Industry Reg Price</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

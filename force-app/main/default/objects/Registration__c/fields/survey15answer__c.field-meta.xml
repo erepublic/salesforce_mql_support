@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>survey15answer__c</fullName>
+    <description>User-submitted answer to the survey question.</description>
+    <inlineHelpText
+  >User-submitted answer to the survey question.</inlineHelpText>
+    <label>On24 survey15answer</label>
+    <length>1500</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

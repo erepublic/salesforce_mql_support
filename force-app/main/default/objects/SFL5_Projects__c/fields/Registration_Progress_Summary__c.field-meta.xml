@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Registration_Progress_Summary__c</fullName>
+    <description>For reporting.</description>
+    <externalId>false</externalId>
+    <formula>IF(ISBLANK(Event_Registered_Target__c),
+&quot;Reg Target: &quot;  &amp; &quot;  &quot; /*invisible whitespace characters*/
+  &amp; &quot; --- Qual Regs: &quot; &amp; 
+
+IF(
+  AND(
+    Event_Qualified_Non_Sponsor__c&lt;100,
+    Event_Qualified_Non_Sponsor__c&gt;9
+  ),
+  &quot; &quot;&amp;TEXT(Event_Qualified_Non_Sponsor__c),
+  IF(
+    Event_Qualified_Non_Sponsor__c&lt;10,
+    &quot;  &quot;&amp;TEXT(Event_Qualified_Non_Sponsor__c)
+    ,
+    TEXT(Event_Qualified_Non_Sponsor__c)
+)
+)
+
+  &amp; &quot; --- Guarantee: &quot; &amp; 
+IF(
+  AND(
+    Event_Target__c&lt;100,
+    Event_Target__c&gt;9
+  ),
+  &quot; &quot;&amp;TEXT(Event_Target__c),
+  IF(
+    Event_Target__c&lt;10,
+    &quot;  &quot;&amp;TEXT(Event_Target__c)
+    ,
+    TEXT(Event_Target__c)
+)
+)
+,
+IF(Event_Registered_Target__c&lt;100,
+&quot;Reg Target: &quot;  &amp; &quot; &quot; /*invisible whitespace character*/
+  &amp; TEXT( Event_Registered_Target__c )
+  &amp; &quot; --- Qual Regs: &quot; &amp; 
+
+
+IF(
+  AND(
+    Event_Qualified_Non_Sponsor__c&lt;100,
+    Event_Qualified_Non_Sponsor__c&gt;9
+  ),
+  &quot; &quot;&amp;TEXT(Event_Qualified_Non_Sponsor__c),
+  IF(
+    Event_Qualified_Non_Sponsor__c&lt;10,
+    &quot;  &quot;&amp;TEXT(Event_Qualified_Non_Sponsor__c)
+    ,
+    TEXT(Event_Qualified_Non_Sponsor__c)
+)
+)
+
+  &amp; &quot; --- Guarantee: &quot; &amp; 
+IF(
+  AND(
+    Event_Target__c&lt;100,
+    Event_Target__c&gt;9
+  ),
+  &quot; &quot;&amp;TEXT(Event_Target__c),
+  IF(
+    Event_Target__c&lt;10,
+    &quot;  &quot;&amp;TEXT(Event_Target__c)
+    ,
+    TEXT(Event_Target__c)
+)
+)
+,
+&quot;Reg Target: &quot; &amp; TEXT( Event_Registered_Target__c )
+  &amp; &quot; --- Qual Regs: &quot; &amp; 
+
+IF(
+  AND(
+    Event_Qualified_Non_Sponsor__c&lt;100,
+    Event_Qualified_Non_Sponsor__c&gt;9
+  ),
+  &quot; &quot;&amp;TEXT(Event_Qualified_Non_Sponsor__c),
+  IF(
+    Event_Qualified_Non_Sponsor__c&lt;10,
+    &quot;  &quot;&amp;TEXT(Event_Qualified_Non_Sponsor__c)
+    ,
+    TEXT(Event_Qualified_Non_Sponsor__c)
+)
+)
+
+
+  &amp; &quot; --- Guarantee: &quot; &amp; 
+IF(
+  AND(
+    Event_Target__c&lt;100,
+    Event_Target__c&gt;9
+  ),
+  &quot; &quot;&amp;TEXT(Event_Target__c),
+  IF(
+    Event_Target__c&lt;10,
+    &quot;  &quot;&amp;TEXT(Event_Target__c)
+    ,
+    TEXT(Event_Target__c)
+)
+)
+)
+)</formula>
+    <label>Registration Progress Summary</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

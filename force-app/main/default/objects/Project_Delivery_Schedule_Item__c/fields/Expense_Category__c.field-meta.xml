@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expense_Category__c</fullName>
+    <description>The category for this expense line item.</description>
+    <inlineHelpText>The category for this expense line item.</inlineHelpText>
+    <label>Expense Category</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>7Knots</fullName>
+                <default>false</default>
+                <label>7Knots</label>
+            </value>
+            <value>
+                <fullName>Contractor / Telemarketing</fullName>
+                <default>false</default>
+                <label>Contractor / Telemarketing</label>
+            </value>
+            <value>
+                <fullName>Distribution Cost</fullName>
+                <default>false</default>
+                <label>Distribution Cost</label>
+            </value>
+            <value>
+                <fullName>Event Expense</fullName>
+                <default>false</default>
+                <label>Event Expense</label>
+            </value>
+            <value>
+                <fullName>Incentive</fullName>
+                <default>false</default>
+                <label>Incentive</label>
+            </value>
+            <value>
+                <fullName>Moderator Fee</fullName>
+                <default>false</default>
+                <label>Moderator Fee</label>
+            </value>
+            <value>
+                <fullName>PDF only</fullName>
+                <default>false</default>
+                <label>PDF only</label>
+            </value>
+            <value>
+                <fullName>Photographer Filed</fullName>
+                <default>false</default>
+                <label>Photographer Filed</label>
+            </value>
+            <value>
+                <fullName>Printing Cost</fullName>
+                <default>false</default>
+                <label>Printing Cost</label>
+            </value>
+            <value>
+                <fullName>Senior Fellow</fullName>
+                <default>false</default>
+                <label>Senior Fellow</label>
+            </value>
+            <value>
+                <fullName>Video Production</fullName>
+                <default>false</default>
+                <label>Video Production</label>
+            </value>
+            <value>
+                <fullName>Webinar Hosting Fee</fullName>
+                <default>false</default>
+                <label>Webinar Hosting Fee</label>
+            </value>
+            <value>
+                <fullName>Writer Fee</fullName>
+                <default>false</default>
+                <label>Writer Fee</label>
+            </value>
+            <value>
+                <fullName>Writing in house</fullName>
+                <default>false</default>
+                <label>Writing in house</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

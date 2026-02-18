@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Reference__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >When a contact is merged, this refers to the &apos;winning&apos; record.</description>
+    <inlineHelpText
+  >When a contact is merged, this refers to the &apos;winning&apos; record.</inlineHelpText>
+    <label>Contact Reference</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Contacts Durable History</relationshipLabel>
+    <relationshipName>Contacts_Durable_History</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

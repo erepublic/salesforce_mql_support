@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sponsor_Level_Order__c</fullName>
+    <defaultValue
+  >&quot;{\&quot;Underwriter\&quot;: \&quot;Underwriter\&quot;,\&quot;Roundtable w/ Session Sponsor\&quot;: \&quot;Roundtable Sponsor\&quot;,\&quot;Roundtable Sponsor\&quot;: \&quot;Roundtable Sponsor\&quot;,\&quot;Anchor Sponsor\&quot;: \&quot;Anchor Sponsor\&quot;,\&quot;Heroes Highlights Underwriter\&quot;: \&quot;Heroes Highlights Underwriter\&quot;,\&quot;Ambassador Sponsor\&quot;: \&quot;Ambassador Sponsor\&quot;,\&quot;Keynote Sponsor\&quot;: \&quot;Keynote Sponsor\&quot;,\&quot;Patron Sponsor\&quot;: \&quot;Patron Sponsor\&quot;}&quot;</defaultValue>
+    <description
+  >The order of sponsorship levels with their labels for display in the vDGS hub</description>
+    <inlineHelpText
+  >The order of sponsorship levels with their labels for display in the vDGS hub</inlineHelpText>
+    <label>Sponsor Level Order</label>
+    <length>131072</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Session_Type__c</fullName>
+    <description
+  >For VDGS this controls what type of webinar is created</description>
+    <inlineHelpText
+  >For VDGS this controls what type of webinar is created</inlineHelpText>
+    <label>Session Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Concurrent</fullName>
+                <default>false</default>
+                <label>Concurrent</label>
+            </value>
+            <value>
+                <fullName>Keynote</fullName>
+                <default>false</default>
+                <label>Keynote</label>
+            </value>
+            <value>
+                <fullName>Executive Briefing</fullName>
+                <default>false</default>
+                <label>Executive Briefing</label>
+            </value>
+            <value>
+                <fullName>Networking</fullName>
+                <default>false</default>
+                <label>Networking</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

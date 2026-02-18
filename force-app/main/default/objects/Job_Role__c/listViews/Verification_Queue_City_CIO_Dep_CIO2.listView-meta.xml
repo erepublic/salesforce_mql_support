@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verification_Queue_City_CIO_Dep_CIO2</fullName>
+    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Verification_Date__c</columns>
+    <columns>Refresh_Date__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Job_Role_Title__c</columns>
+    <columns>Status__c</columns>
+    <columns>Contact_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>includes</operation>
+        <value
+    >State Chief Information Officer,State Chief Information Security Officer</value>
+    </filters>
+    <filters>
+        <field>Last_Verification_Date_Tier__c</field>
+        <operation>equals</operation>
+        <value>03 - 180 - 364 days,04 - 365+ days,Unverified</value>
+    </filters>
+    <filters>
+        <field>Verification_Date__c</field>
+        <operation>equals</operation>
+        <value>9/30/2024</value>
+    </filters>
+    <label>Verification Queue - State CIO/CISO</label>
+</ListView>

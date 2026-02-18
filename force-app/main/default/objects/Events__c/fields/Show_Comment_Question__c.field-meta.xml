@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Show_Comment_Question__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Check this Comments/Questions field should be displayed on event Reg. pages.
+Ex.: &quot;Please let us know if you have a question for one of our speakers or a comment regarding an important issue facing agencies in your area.
+We will set aside time during the summit for a live Q&amp;A and discussion with our key government speakers to address as many questions/comments as possible. Please note your questions will be anonymous.&quot;</description>
+    <label>Show Comment Question</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

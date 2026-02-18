@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Int_Reallocations_Bulk_Complete</fullName>
+    <columns>Account__c</columns>
+    <columns>NAME</columns>
+    <columns>Finance_Status__c</columns>
+    <columns>Amount__c</columns>
+    <columns>Date_Reallocation_Completed_Opp__c</columns>
+    <columns>Original_Product_GL__c</columns>
+    <columns>New_Product_GL__c</columns>
+    <columns>Split_Account__c</columns>
+    <columns>Finance_Request_Report__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>Finance_Status__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Finance_Request__c.Reallocation</value>
+    </filters>
+    <label>Active Int. Reallocations: Bulk Complete</label>
+</ListView>

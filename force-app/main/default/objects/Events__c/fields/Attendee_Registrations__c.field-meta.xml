@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Attendee_Registrations__c</fullName>
+    <description
+  >This is the number of attendee registrations for this event. This does not include sponsors, staff, or press.</description>
+    <inlineHelpText
+  >This is the number of attendee registrations for this event. This does not include sponsors, staff, or press.</inlineHelpText>
+    <label>Attendee Reg Roll-Up Summary</label>
+    <summaryFilterItems>
+        <field>Registration__c.Reg_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Sponsor, Press, Staff</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Registration__c.Event__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

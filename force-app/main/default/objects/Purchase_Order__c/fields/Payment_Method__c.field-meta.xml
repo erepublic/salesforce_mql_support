@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Method__c</fullName>
+    <inlineHelpText>[Ramp Card: Charge will be on a Ramp card] 
+[Billed: An invoice will be provided to AP] 
+[Ramp Reimbursement : Item will be paid for by employee and then reimbursed through Ramp]</inlineHelpText>
+    <label>Payment Method</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Ramp Card</fullName>
+                <default>true</default>
+                <label>Ramp Card</label>
+            </value>
+            <value>
+                <fullName>Billed</fullName>
+                <default>false</default>
+                <label>Billed</label>
+            </value>
+            <value>
+                <fullName>Ramp Reimbursement</fullName>
+                <default>false</default>
+                <label>Ramp Reimbursement</label>
+            </value>
+            <value>
+                <fullName>Check</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Check</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

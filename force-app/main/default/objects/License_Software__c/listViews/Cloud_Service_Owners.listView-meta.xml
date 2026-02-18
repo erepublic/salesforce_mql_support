@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cloud_Service_Owners</fullName>
+    <columns>NAME</columns>
+    <columns>What_is_this_for__c</columns>
+    <columns>Admin__c</columns>
+    <columns>Contract_End_Date__c</columns>
+    <columns>Current_Contract__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Contract_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed,Renewed,Not Renewing</value>
+    </filters>
+    <label>Cloud Service Lookup</label>
+</ListView>

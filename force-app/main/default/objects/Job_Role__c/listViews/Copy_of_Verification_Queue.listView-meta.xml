@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_Verification_Queue</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Status__c</columns>
+    <columns>Job_Role_Mailing_State__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Job_Role_Mailing_State__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Job Roles Missing Mailing State</label>
+</ListView>

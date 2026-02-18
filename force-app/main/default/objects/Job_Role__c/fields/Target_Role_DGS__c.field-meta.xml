@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Target_Role_DGS__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >A targeted job role for the GT DGS events and promotions</description>
+    <inlineHelpText
+  >A targeted job role for the GT DGS events and promotions</inlineHelpText>
+    <label>Target Role - DGS</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

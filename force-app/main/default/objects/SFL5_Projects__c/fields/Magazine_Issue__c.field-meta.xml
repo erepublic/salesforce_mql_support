@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Magazine_Issue__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >The issue of the magazine (project) that a custom media print project is associated with.</description>
+    <inlineHelpText
+  >The issue of the magazine (project) that a custom media print project is associated with.</inlineHelpText>
+    <label>Magazine Issue</label>
+    <lookupFilter>
+        <active>true</active>
+        <filterItems>
+            <field>SFL5_Projects__c.RecordTypeId</field>
+            <operation>equals</operation>
+            <value
+      >Project - Magazine - PCIO, Project - Magazine - GT Mag, Project - Magazine - GOV, Project - Magazine - EM</value>
+        </filterItems>
+        <infoMessage
+    >This lookup is limited to Magazine Issue Projects for GT, GOV, PCIO and EM.</infoMessage>
+        <isOptional>false</isOptional>
+    </lookupFilter>
+    <referenceTo>SFL5_Projects__c</referenceTo>
+    <relationshipLabel>Projects (Magazine Issue)</relationshipLabel>
+    <relationshipName>Custom_Media_Print_Projects</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

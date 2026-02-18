@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sponsorships_Y_Y</fullName>
+    <availability>online</availability>
+    <description
+  >If Standardized Event Name is utilized, compares Sponsorship Revenue over 12 Months for This Year, Last Year, and 2 Years Ago. 
+
+Otherwise, compares the year to date Sponsorship Revenue based on the number of days out from the event we are.</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <hasMenubar>false</hasMenubar>
+    <hasScrollbars>true</hasScrollbars>
+    <hasToolbar>false</hasToolbar>
+    <height>600</height>
+    <isResizable>true</isResizable>
+    <linkType>url</linkType>
+    <masterLabel>Sponsorships - Y/Y</masterLabel>
+    <openType>newWindow</openType>
+    <position>none</position>
+    <protected>false</protected>
+    <showsLocation>false</showsLocation>
+    <showsStatus>false</showsStatus>
+    <url>/lightning/r/Report/{!IF(
+
+  ISBLANK(Events__c.Standardized_Event_Name__c),
+
+  &quot;00O1O0000088cvJUAQ&quot;, /* Old Y/Y as of Today Report */
+
+  &quot;00OJw00000ADl7FMAT&quot; /* New Cumulative Y/Y Report by Month */
+
+)}/view?fv0={!IF(
+
+  ISBLANK(Events__c.Standardized_Event_Name__c),
+
+  Events__c.Name,
+
+  Events__c.Standardized_Event_Name__c
+
+)}&amp;fv1={!IF(
+
+  ISBLANK(Events__c.Standardized_Event_Name__c),
+
+  Events__c.last_years_event__c,
+
+  &quot;Events&quot;
+
+)}&amp;fv2={!IF(
+
+  ISBLANK(Events__c.Standardized_Event_Name__c),
+
+  Events__c.Days_Since_Last_Event__c,
+
+  &quot;Pretend Computer Company Inc.&quot;
+
+)}</url>
+</WebLink>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Level__c</fullName>
+    <label>Level</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Basic</fullName>
+                <default>false</default>
+                <label>Basic</label>
+            </value>
+            <value>
+                <fullName>Professional</fullName>
+                <default>false</default>
+                <label>Professional</label>
+            </value>
+            <value>
+                <fullName>Plus</fullName>
+                <default>false</default>
+                <label>Plus</label>
+            </value>
+            <value>
+                <fullName>Premium</fullName>
+                <default>false</default>
+                <label>Premium</label>
+            </value>
+            <value>
+                <fullName>Standard</fullName>
+                <default>false</default>
+                <label>Standard</label>
+            </value>
+            <value>
+                <fullName>Premier</fullName>
+                <default>false</default>
+                <label>Premier</label>
+            </value>
+            <value>
+                <fullName>SMB Basic</fullName>
+                <default>false</default>
+                <label>Growth - Basic</label>
+            </value>
+            <value>
+                <fullName>Add-On</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Add-On</label>
+            </value>
+            <value>
+                <fullName>Individual Monthly</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Individual Monthly</label>
+            </value>
+            <value>
+                <fullName>Monthly</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Monthly</label>
+            </value>
+            <value>
+                <fullName>Old Nav</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Old Nav</label>
+            </value>
+            <value>
+                <fullName>Techwire</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Techwire</label>
+            </value>
+            <value>
+                <fullName>Umbrella - Premium</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Umbrella - Premium</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>K-12 Council</controllingFieldValue>
+            <controllingFieldValue>MaaS</controllingFieldValue>
+            <controllingFieldValue>HE AI Council</controllingFieldValue>
+            <controllingFieldValue>GE Council</controllingFieldValue>
+            <controllingFieldValue>CJIS Council</controllingFieldValue>
+            <controllingFieldValue>Cybersecurity Council</controllingFieldValue>
+            <controllingFieldValue>AI</controllingFieldValue>
+            <controllingFieldValue>DC Large City County</controllingFieldValue>
+            <controllingFieldValue>Digital States</controllingFieldValue>
+            <controllingFieldValue>Future of Data</controllingFieldValue>
+            <controllingFieldValue>HE CIO</controllingFieldValue>
+            <valueName>Standard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>DEN</controllingFieldValue>
+            <controllingFieldValue>DGN</controllingFieldValue>
+            <controllingFieldValue>ICA</controllingFieldValue>
+            <controllingFieldValue>ITX</controllingFieldValue>
+            <valueName>Basic</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>DEN</controllingFieldValue>
+            <controllingFieldValue>DGN</controllingFieldValue>
+            <valueName>Professional</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>DEN</controllingFieldValue>
+            <controllingFieldValue>DGN</controllingFieldValue>
+            <valueName>Plus</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>DEN</controllingFieldValue>
+            <controllingFieldValue>DGN</controllingFieldValue>
+            <valueName>Premium</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ICA</controllingFieldValue>
+            <controllingFieldValue>ITX</controllingFieldValue>
+            <controllingFieldValue>DC Large City County</controllingFieldValue>
+            <valueName>Premier</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ICA</controllingFieldValue>
+            <controllingFieldValue>ITX</controllingFieldValue>
+            <valueName>SMB Basic</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

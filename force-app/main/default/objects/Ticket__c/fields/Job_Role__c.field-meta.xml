@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Job_Role__c</fullName>
+    <label>Job Role</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>01 - Elected Official</fullName>
+                <default>false</default>
+                <label>01 - Elected Official</label>
+            </value>
+            <value>
+                <fullName>02 - Executive/C-Level</fullName>
+                <default>false</default>
+                <label>02 - Executive/C-Level</label>
+            </value>
+            <value>
+                <fullName>03 - Senior Management</fullName>
+                <default>false</default>
+                <label>03 - Senior Management</label>
+            </value>
+            <value>
+                <fullName>04 - Supervision</fullName>
+                <default>false</default>
+                <label>04 - Supervision</label>
+            </value>
+            <value>
+                <fullName>05 - Subject Matter Expert/Practitioner</fullName>
+                <default>false</default>
+                <label>05 - Subject Matter Expert/Practitioner</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

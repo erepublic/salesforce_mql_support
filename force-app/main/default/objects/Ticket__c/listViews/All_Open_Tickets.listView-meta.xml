@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All_Open_Tickets</fullName>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Phase__c</columns>
+    <columns>Status__c</columns>
+    <columns>Assignee__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>navigator_version__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Web</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>notEqual</operation>
+        <value>Closed,Canceled</value>
+    </filters>
+    <filters>
+        <field>Assignee__c</field>
+        <operation>equals</operation>
+        <value>Michael Tel</value>
+    </filters>
+    <label>Tickets - All Open</label>
+</ListView>

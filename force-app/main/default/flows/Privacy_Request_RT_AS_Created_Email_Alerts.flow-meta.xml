@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Privacy_Request_New</name>
+        <label>Privacy Request - New (Internal Alert)</label>
+        <locationX>314</locationX>
+        <locationY>431</locationY>
+        <actionName>Privacy_Request__c.Privacy_Request_New</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference>Send_Confirmation_External</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Privacy_Request__c.Privacy_Request_New</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Privacy_Request_New_Confirmation_External</name>
+        <label>Privacy Request - New (Confirmation - External)</label>
+        <locationX>50</locationX>
+        <locationY>731</locationY>
+        <actionName
+    >Privacy_Request__c.Privacy_Request_New_Confirmation_External</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Privacy_Request__c.Privacy_Request_New_Confirmation_External</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Send_Confirmation_External</name>
+        <label>Send Confirmation (External)?</label>
+        <locationX>182</locationX>
+        <locationY>623</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Outcome_1_of_Form_Submission</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Source__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Electronic Form</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.CreatedById</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>0051O00000DEiE2QAL</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Privacy_Request_New_Confirmation_External</targetReference>
+            </connector>
+            <label>Yes, Send Confirmation</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Send_Internal_Email_Alert_on_Creation</name>
+        <label>Send Internal Email Alert on Creation?</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Privacy_Request_New</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Yes, Send Email Alert</defaultConnectorLabel>
+        <rules>
+            <name>No_Email_Alert</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.No_Email_Alert__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Clear_No_Email_Alert</targetReference>
+            </connector>
+            <label>No Email Alert</label>
+        </rules>
+    </decisions>
+    <description
+  >On creation, sends an internal alert to CommDev and if submitted via a form, sends a confirmation of receipt to the external requestor.</description>
+    <environments>Default</environments>
+    <interviewLabel
+  >Privacy Request - RT AS - Created Email Alerts {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Privacy Request - RT AS - Created Email Alerts</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Clear_No_Email_Alert</name>
+        <label>Clear &quot;No Email Alert&quot;</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <connector>
+            <targetReference>Send_Confirmation_External</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>No_Email_Alert__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference
+      >Send_Internal_Email_Alert_on_Creation</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Privacy_Request__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Content_Studio_Projects_with_Topics</fullName>
+    <booleanFilter
+  >(1 AND 5 AND 6 AND (2 OR 3 OR 4)) OR (5 AND 6 AND 7 AND (3 OR 4 OR 8))</booleanFilter>
+    <columns>Client__c</columns>
+    <columns>Project_Type__c</columns>
+    <columns>Product__c</columns>
+    <columns>Completion_Date__c</columns>
+    <columns>Topic__c</columns>
+    <columns>Description_OtherTopic__c</columns>
+    <columns>NAME</columns>
+    <columns>Event__c</columns>
+    <columns>Project_Stage__c</columns>
+    <columns>Project_Phase__c</columns>
+    <columns>Sales_Rep__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Custom_Media</value>
+    </filters>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>notEqual</operation>
+        <value>Completed,Cancelled,Delivered</value>
+    </filters>
+    <filters>
+        <field>Completion_Date__c</field>
+        <operation>equals</operation>
+        <value>LAST_N_MONTHS:12</value>
+    </filters>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>LAST_N_MONTHS:12</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>notContain</operation>
+        <value
+    >house ad,newsletter,PCIO report,PCIO special report,solution spotlight,solutions spotlight</value>
+    </filters>
+    <filters>
+        <field>Topic__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Content_Studio</value>
+    </filters>
+    <filters>
+        <field>Project_Status_Display__c</field>
+        <operation>notEqual</operation>
+        <value>Product Delivered,Cancelled</value>
+    </filters>
+    <label>Content Studio - Projects with Topics</label>
+</ListView>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>userquestions__c</fullName>
+    <description>This tag lists the questions asked by the user.</description>
+    <inlineHelpText
+  >This tag lists the questions asked by the user.</inlineHelpText>
+    <label>On24 userquestions</label>
+    <length>3600</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

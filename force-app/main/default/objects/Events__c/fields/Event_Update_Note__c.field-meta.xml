@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Update_Note__c</fullName>
+    <description
+  >Ticket #81824 - 3/12/2025 - LF: Updated to Event Note. Previously used as &quot;Event Manager Note&quot; 
+Enter in an update about what has happened recently for this event. Each note about the event will be stored in the Event Manager Notes History.</description>
+    <inlineHelpText
+  >Enter an update about this event. Each note about the event will be stored in the Event Notes History.</inlineHelpText>
+    <label>Event Note</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Navigator_Member__c</fullName>
+    <formula
+  >IF(OR(CONTAINS(Course_Account__r.Navigator_Stage__c,&quot;Not Started&quot;),CONTAINS(Course_Account__r.Navigator_Stage__c,&quot;Active&quot;)), 
+
+    True, 
+
+    False)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Active Navigator Member</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

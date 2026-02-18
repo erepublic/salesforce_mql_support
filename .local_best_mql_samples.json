@@ -1,0 +1,477 @@
+{
+  "targetOrg": "mql-sandbox",
+  "sinceDays": 365,
+  "limit": 200,
+  "top": 12,
+  "results": [
+    {
+      "mqlId": "a0kVE000008yK2UYAU",
+      "contactId": "003Jw00000TgrYkIAJ",
+      "createdDate": "2026-02-06T17:27:43.000+0000",
+      "leadSource": "Submitted a Form",
+      "status": "Converted",
+      "totalScore": 33,
+      "activityCounts": {
+        "tasks": 21,
+        "events": 0,
+        "emails": 0,
+        "campaignMembers": 0
+      },
+      "why": [
+        {
+          "points": 6,
+          "why": "activityCounts={\"tasks\":21,\"events\":0,\"emails\":0,\"campaignMembers\":0}"
+        },
+        { "points": 4, "why": "MQL_Status__c Converted" },
+        { "points": 3, "why": "linked Contact_Us__c" },
+        { "points": 3, "why": "linked Opportunity__c" },
+        { "points": 2, "why": "has Lead_Source_Detail__c" },
+        { "points": 2, "why": "linked Campaign__c" },
+        { "points": 2, "why": "has behavior score" },
+        { "points": 2, "why": "has contact fit score" },
+        { "points": 2, "why": "has contact fit threshold" },
+        { "points": 1, "why": "has Lead_Detail_*" },
+        { "points": 1, "why": "has Conversion_Type__c" },
+        { "points": 1, "why": "has Product" },
+        { "points": 1, "why": "has engagement score" },
+        { "points": 1, "why": "has engagement score threshold" },
+        {
+          "points": 1,
+          "why": "contact qualified (Private_Sector_Non_Qual__c=false)"
+        },
+        {
+          "points": 1,
+          "why": "account qualified flag on contact (Private_Sector_Acct_Non_Qual__c=false)"
+        }
+      ]
+    },
+    {
+      "mqlId": "a0kVE000008jPCAYA2",
+      "contactId": "003Jw00000whR5DIAU",
+      "createdDate": "2026-01-23T18:11:36.000+0000",
+      "leadSource": "Submitted a Form",
+      "status": "Converted",
+      "totalScore": 32.4,
+      "activityCounts": {
+        "tasks": 9,
+        "events": 0,
+        "emails": 0,
+        "campaignMembers": 0
+      },
+      "why": [
+        {
+          "points": 5.3999999999999995,
+          "why": "activityCounts={\"tasks\":9,\"events\":0,\"emails\":0,\"campaignMembers\":0}"
+        },
+        { "points": 4, "why": "MQL_Status__c Converted" },
+        { "points": 3, "why": "linked Contact_Us__c" },
+        { "points": 3, "why": "linked Opportunity__c" },
+        { "points": 2, "why": "has Lead_Source_Detail__c" },
+        { "points": 2, "why": "linked Campaign__c" },
+        { "points": 2, "why": "has behavior score" },
+        { "points": 2, "why": "has contact fit score" },
+        { "points": 2, "why": "has contact fit threshold" },
+        { "points": 1, "why": "has Lead_Detail_*" },
+        { "points": 1, "why": "has Conversion_Type__c" },
+        { "points": 1, "why": "has Product" },
+        { "points": 1, "why": "has engagement score" },
+        { "points": 1, "why": "has engagement score threshold" },
+        {
+          "points": 1,
+          "why": "contact qualified (Private_Sector_Non_Qual__c=false)"
+        },
+        {
+          "points": 1,
+          "why": "account qualified flag on contact (Private_Sector_Acct_Non_Qual__c=false)"
+        }
+      ]
+    },
+    {
+      "mqlId": "a0kVE000008jPH1YAM",
+      "contactId": "003Jw00000vhtgNIAQ",
+      "createdDate": "2026-01-23T18:27:45.000+0000",
+      "leadSource": "Submitted a Form",
+      "status": "Converted",
+      "totalScore": 31.2,
+      "activityCounts": {
+        "tasks": 7,
+        "events": 0,
+        "emails": 0,
+        "campaignMembers": 0
+      },
+      "why": [
+        {
+          "points": 4.2,
+          "why": "activityCounts={\"tasks\":7,\"events\":0,\"emails\":0,\"campaignMembers\":0}"
+        },
+        { "points": 4, "why": "MQL_Status__c Converted" },
+        { "points": 3, "why": "linked Contact_Us__c" },
+        { "points": 3, "why": "linked Opportunity__c" },
+        { "points": 2, "why": "has Lead_Source_Detail__c" },
+        { "points": 2, "why": "linked Campaign__c" },
+        { "points": 2, "why": "has behavior score" },
+        { "points": 2, "why": "has contact fit score" },
+        { "points": 2, "why": "has contact fit threshold" },
+        { "points": 1, "why": "has Lead_Detail_*" },
+        { "points": 1, "why": "has Conversion_Type__c" },
+        { "points": 1, "why": "has Product" },
+        { "points": 1, "why": "has engagement score" },
+        { "points": 1, "why": "has engagement score threshold" },
+        {
+          "points": 1,
+          "why": "contact qualified (Private_Sector_Non_Qual__c=false)"
+        },
+        {
+          "points": 1,
+          "why": "account qualified flag on contact (Private_Sector_Acct_Non_Qual__c=false)"
+        }
+      ]
+    },
+    {
+      "mqlId": "a0kVE000008jM6DYAU",
+      "contactId": "003Jw00000uVmbBIAS",
+      "createdDate": "2026-01-23T17:11:27.000+0000",
+      "leadSource": "Submitted a Form",
+      "status": "Converted",
+      "totalScore": 29.6,
+      "activityCounts": {
+        "tasks": 6,
+        "events": 0,
+        "emails": 0,
+        "campaignMembers": 0
+      },
+      "why": [
+        { "points": 4, "why": "MQL_Status__c Converted" },
+        {
+          "points": 3.5999999999999996,
+          "why": "activityCounts={\"tasks\":6,\"events\":0,\"emails\":0,\"campaignMembers\":0}"
+        },
+        { "points": 3, "why": "linked Contact_Us__c" },
+        { "points": 3, "why": "linked Opportunity__c" },
+        { "points": 2, "why": "has Lead_Source_Detail__c" },
+        { "points": 2, "why": "linked Campaign__c" },
+        { "points": 2, "why": "has behavior score" },
+        { "points": 2, "why": "has contact fit score" },
+        { "points": 2, "why": "has contact fit threshold" },
+        { "points": 1, "why": "has Lead_Detail_*" },
+        { "points": 1, "why": "has Conversion_Type__c" },
+        { "points": 1, "why": "has Product" },
+        { "points": 1, "why": "has engagement score" },
+        { "points": 1, "why": "has engagement score threshold" },
+        {
+          "points": 1,
+          "why": "account qualified flag on contact (Private_Sector_Acct_Non_Qual__c=false)"
+        }
+      ]
+    },
+    {
+      "mqlId": "a0kVE000008gnPVYAY",
+      "contactId": "003Jw00000vpFU1IAM",
+      "createdDate": "2026-01-21T20:22:21.000+0000",
+      "leadSource": "Email",
+      "status": "Converted",
+      "totalScore": 29,
+      "activityCounts": {
+        "tasks": 0,
+        "events": 0,
+        "emails": 0,
+        "campaignMembers": 0
+      },
+      "why": [
+        { "points": 4, "why": "has Lead_Notes__c" },
+        { "points": 4, "why": "MQL_Status__c Converted" },
+        { "points": 3, "why": "linked Contact_Us__c" },
+        { "points": 3, "why": "linked Opportunity__c" },
+        { "points": 2, "why": "has Lead_Source_Detail__c" },
+        { "points": 2, "why": "linked Campaign__c" },
+        { "points": 2, "why": "has behavior score" },
+        { "points": 2, "why": "has contact fit score" },
+        { "points": 2, "why": "has contact fit threshold" },
+        { "points": 1, "why": "has Lead_Detail_*" },
+        { "points": 1, "why": "has Conversion_Type__c" },
+        { "points": 1, "why": "has Product" },
+        { "points": 1, "why": "has engagement score" },
+        { "points": 1, "why": "has engagement score threshold" },
+        {
+          "points": 0,
+          "why": "activityCounts={\"tasks\":0,\"events\":0,\"emails\":0,\"campaignMembers\":0}"
+        }
+      ]
+    },
+    {
+      "mqlId": "a0kVE000008ft2LYAQ",
+      "contactId": "003Jw00000vpKWwIAM",
+      "createdDate": "2026-01-20T22:45:16.000+0000",
+      "leadSource": "Email",
+      "status": "Converted",
+      "totalScore": 29,
+      "activityCounts": {
+        "tasks": 0,
+        "events": 0,
+        "emails": 0,
+        "campaignMembers": 0
+      },
+      "why": [
+        { "points": 4, "why": "has Lead_Notes__c" },
+        { "points": 4, "why": "MQL_Status__c Converted" },
+        { "points": 3, "why": "linked Contact_Us__c" },
+        { "points": 3, "why": "linked Opportunity__c" },
+        { "points": 2, "why": "has Lead_Source_Detail__c" },
+        { "points": 2, "why": "linked Campaign__c" },
+        { "points": 2, "why": "has behavior score" },
+        { "points": 2, "why": "has contact fit score" },
+        { "points": 2, "why": "has contact fit threshold" },
+        { "points": 1, "why": "has Lead_Detail_*" },
+        { "points": 1, "why": "has Conversion_Type__c" },
+        { "points": 1, "why": "has Product" },
+        { "points": 1, "why": "has engagement score" },
+        { "points": 1, "why": "has engagement score threshold" },
+        {
+          "points": 0,
+          "why": "activityCounts={\"tasks\":0,\"events\":0,\"emails\":0,\"campaignMembers\":0}"
+        }
+      ]
+    },
+    {
+      "mqlId": "a0kVE000008j6xWYAQ",
+      "contactId": "003Jw000011cvqdIAA",
+      "createdDate": "2026-01-23T17:10:48.000+0000",
+      "leadSource": "Submitted a Form",
+      "status": "Converted",
+      "totalScore": 28.8,
+      "activityCounts": {
+        "tasks": 3,
+        "events": 0,
+        "emails": 0,
+        "campaignMembers": 0
+      },
+      "why": [
+        { "points": 4, "why": "MQL_Status__c Converted" },
+        { "points": 3, "why": "linked Contact_Us__c" },
+        { "points": 3, "why": "linked Opportunity__c" },
+        { "points": 2, "why": "has Lead_Source_Detail__c" },
+        { "points": 2, "why": "linked Campaign__c" },
+        { "points": 2, "why": "has behavior score" },
+        { "points": 2, "why": "has contact fit score" },
+        { "points": 2, "why": "has contact fit threshold" },
+        {
+          "points": 1.7999999999999998,
+          "why": "activityCounts={\"tasks\":3,\"events\":0,\"emails\":0,\"campaignMembers\":0}"
+        },
+        { "points": 1, "why": "has Lead_Detail_*" },
+        { "points": 1, "why": "has Conversion_Type__c" },
+        { "points": 1, "why": "has Product" },
+        { "points": 1, "why": "has engagement score" },
+        { "points": 1, "why": "has engagement score threshold" },
+        {
+          "points": 1,
+          "why": "contact qualified (Private_Sector_Non_Qual__c=false)"
+        },
+        {
+          "points": 1,
+          "why": "account qualified flag on contact (Private_Sector_Acct_Non_Qual__c=false)"
+        }
+      ]
+    },
+    {
+      "mqlId": "a0kVE000008yK2VYAU",
+      "contactId": "003Jw00000n3zFmIAI",
+      "createdDate": "2026-02-06T17:27:43.000+0000",
+      "leadSource": "Submitted a Form",
+      "status": "Converted",
+      "totalScore": 27,
+      "activityCounts": {
+        "tasks": 0,
+        "events": 0,
+        "emails": 0,
+        "campaignMembers": 0
+      },
+      "why": [
+        { "points": 4, "why": "MQL_Status__c Converted" },
+        { "points": 3, "why": "linked Contact_Us__c" },
+        { "points": 3, "why": "linked Opportunity__c" },
+        { "points": 2, "why": "has Lead_Source_Detail__c" },
+        { "points": 2, "why": "linked Campaign__c" },
+        { "points": 2, "why": "has behavior score" },
+        { "points": 2, "why": "has contact fit score" },
+        { "points": 2, "why": "has contact fit threshold" },
+        { "points": 1, "why": "has Lead_Detail_*" },
+        { "points": 1, "why": "has Conversion_Type__c" },
+        { "points": 1, "why": "has Product" },
+        { "points": 1, "why": "has engagement score" },
+        { "points": 1, "why": "has engagement score threshold" },
+        {
+          "points": 1,
+          "why": "contact qualified (Private_Sector_Non_Qual__c=false)"
+        },
+        {
+          "points": 1,
+          "why": "account qualified flag on contact (Private_Sector_Acct_Non_Qual__c=false)"
+        },
+        {
+          "points": 0,
+          "why": "activityCounts={\"tasks\":0,\"events\":0,\"emails\":0,\"campaignMembers\":0}"
+        }
+      ]
+    },
+    {
+      "mqlId": "a0kVE000008tmXGYAY",
+      "contactId": "0035Y00003krl9DQAQ",
+      "createdDate": "2026-02-03T00:30:55.000+0000",
+      "leadSource": "Submitted a Form",
+      "status": "Converted",
+      "totalScore": 27,
+      "activityCounts": {
+        "tasks": 0,
+        "events": 0,
+        "emails": 0,
+        "campaignMembers": 0
+      },
+      "why": [
+        { "points": 4, "why": "MQL_Status__c Converted" },
+        { "points": 3, "why": "linked Contact_Us__c" },
+        { "points": 3, "why": "linked Opportunity__c" },
+        { "points": 2, "why": "has Lead_Source_Detail__c" },
+        { "points": 2, "why": "linked Campaign__c" },
+        { "points": 2, "why": "has behavior score" },
+        { "points": 2, "why": "has contact fit score" },
+        { "points": 2, "why": "has contact fit threshold" },
+        { "points": 1, "why": "has Lead_Detail_*" },
+        { "points": 1, "why": "has Conversion_Type__c" },
+        { "points": 1, "why": "has Product" },
+        { "points": 1, "why": "has engagement score" },
+        { "points": 1, "why": "has engagement score threshold" },
+        {
+          "points": 1,
+          "why": "contact qualified (Private_Sector_Non_Qual__c=false)"
+        },
+        {
+          "points": 1,
+          "why": "account qualified flag on contact (Private_Sector_Acct_Non_Qual__c=false)"
+        },
+        {
+          "points": 0,
+          "why": "activityCounts={\"tasks\":0,\"events\":0,\"emails\":0,\"campaignMembers\":0}"
+        }
+      ]
+    },
+    {
+      "mqlId": "a0kVE000008tkP2YAI",
+      "contactId": "003Jw00000wKiukIAC",
+      "createdDate": "2026-02-03T00:26:30.000+0000",
+      "leadSource": "Submitted a Form",
+      "status": "Converted",
+      "totalScore": 26.6,
+      "activityCounts": {
+        "tasks": 1,
+        "events": 0,
+        "emails": 0,
+        "campaignMembers": 0
+      },
+      "why": [
+        { "points": 4, "why": "MQL_Status__c Converted" },
+        { "points": 3, "why": "linked Contact_Us__c" },
+        { "points": 3, "why": "linked Opportunity__c" },
+        { "points": 2, "why": "has Lead_Source_Detail__c" },
+        { "points": 2, "why": "linked Campaign__c" },
+        { "points": 2, "why": "has behavior score" },
+        { "points": 2, "why": "has contact fit score" },
+        { "points": 2, "why": "has contact fit threshold" },
+        { "points": 1, "why": "has Lead_Detail_*" },
+        { "points": 1, "why": "has Conversion_Type__c" },
+        { "points": 1, "why": "has Product" },
+        { "points": 1, "why": "has engagement score" },
+        { "points": 1, "why": "has engagement score threshold" },
+        {
+          "points": 1,
+          "why": "contact qualified (Private_Sector_Non_Qual__c=false)"
+        },
+        {
+          "points": 0.6,
+          "why": "activityCounts={\"tasks\":1,\"events\":0,\"emails\":0,\"campaignMembers\":0}"
+        }
+      ]
+    },
+    {
+      "mqlId": "a0kVE000008qrziYAA",
+      "contactId": "0035Y00006Yq0PqQAJ",
+      "createdDate": "2026-01-30T23:28:27.000+0000",
+      "leadSource": "Email",
+      "status": "Converted",
+      "totalScore": 26.4,
+      "activityCounts": {
+        "tasks": 4,
+        "events": 0,
+        "emails": 0,
+        "campaignMembers": 0
+      },
+      "why": [
+        { "points": 4, "why": "MQL_Status__c Converted" },
+        { "points": 3, "why": "linked Opportunity__c" },
+        {
+          "points": 2.4,
+          "why": "activityCounts={\"tasks\":4,\"events\":0,\"emails\":0,\"campaignMembers\":0}"
+        },
+        { "points": 2, "why": "has Lead_Source_Detail__c" },
+        { "points": 2, "why": "linked Campaign__c" },
+        { "points": 2, "why": "has behavior score" },
+        { "points": 2, "why": "has contact fit score" },
+        { "points": 2, "why": "has contact fit threshold" },
+        { "points": 1, "why": "has Lead_Detail_*" },
+        { "points": 1, "why": "has Conversion_Type__c" },
+        { "points": 1, "why": "has Product" },
+        { "points": 1, "why": "has engagement score" },
+        { "points": 1, "why": "has engagement score threshold" },
+        {
+          "points": 1,
+          "why": "contact qualified (Private_Sector_Non_Qual__c=false)"
+        },
+        {
+          "points": 1,
+          "why": "account qualified flag on contact (Private_Sector_Acct_Non_Qual__c=false)"
+        }
+      ]
+    },
+    {
+      "mqlId": "a0kVE000008pswHYAQ",
+      "contactId": "003Jw00000dK5JiIAK",
+      "createdDate": "2026-01-30T01:05:17.000+0000",
+      "leadSource": "Email",
+      "status": "Converted",
+      "totalScore": 25,
+      "activityCounts": {
+        "tasks": 0,
+        "events": 0,
+        "emails": 0,
+        "campaignMembers": 0
+      },
+      "why": [
+        { "points": 4, "why": "MQL_Status__c Converted" },
+        { "points": 3, "why": "linked Opportunity__c" },
+        { "points": 2, "why": "has Lead_Source_Detail__c" },
+        { "points": 2, "why": "linked Campaign__c" },
+        { "points": 2, "why": "has behavior score" },
+        { "points": 2, "why": "has contact fit score" },
+        { "points": 2, "why": "has contact fit threshold" },
+        { "points": 1, "why": "has Lead_Detail_*" },
+        { "points": 1, "why": "has Conversion_Type__c" },
+        { "points": 1, "why": "has Product" },
+        { "points": 1, "why": "has behavior score date" },
+        { "points": 1, "why": "has engagement score" },
+        { "points": 1, "why": "has engagement score threshold" },
+        {
+          "points": 1,
+          "why": "contact qualified (Private_Sector_Non_Qual__c=false)"
+        },
+        {
+          "points": 1,
+          "why": "account qualified flag on contact (Private_Sector_Acct_Non_Qual__c=false)"
+        },
+        {
+          "points": 0,
+          "why": "activityCounts={\"tasks\":0,\"events\":0,\"emails\":0,\"campaignMembers\":0}"
+        }
+      ]
+    }
+  ]
+}

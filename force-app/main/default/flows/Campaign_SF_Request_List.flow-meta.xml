@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Ticket_to_Create</name>
+        <label>Assign Ticket to Create</label>
+        <locationX>176</locationX>
+        <locationY>242</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.RecordTypeId</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>01214000001RYxpAAG</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Campaign__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>recordId.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_Ticket_to_Create.Title__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Ticket_Title</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Description__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue
+        >Please see Marketing Segment on campaign</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Contact_Pull_Contact_Count__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Audience List</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Audience_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Industry</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Promotion_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Email</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Requested_By__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Priority__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Normal</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_Ticket_to_Create.Event__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>recordId.Event__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ticket_to_Create.Due_Date_Requested__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Screen_Due_Date_Requested</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Ticket</targetReference>
+        </connector>
+    </assignments>
+    <description
+  >Screen flow from Marketing Campaigns to create a &apos;Request List&apos; ticket.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Date_if_Not_Weekday</name>
+        <dataType>Date</dataType>
+        <expression>IF(
+  AND(
+         WEEKDAY({!f_Due_Date_Campaign_Start_Date})=1, ISNULL({!recordId.StartDate})=FALSE),  
+         ({!f_Due_Date_Campaign_Start_Date} - 2), 
+IF(
+   AND(
+         WEEKDAY({!f_Due_Date_Campaign_Start_Date})=7, ISNULL({!recordId.StartDate})=FALSE),  
+                         ({!f_Due_Date_Campaign_Start_Date}-1), 
+IF(
+     AND(
+         WEEKDAY({!f_Due_Date_Campaign_Start_Date})&lt;&gt;7, WEEKDAY({!f_Due_Date_Campaign_Start_Date})&lt;&gt;1, 
+         ISNULL({!recordId.StartDate})=FALSE),  
+                         {!f_Due_Date_Campaign_Start_Date}, 
+IF(
+     AND(WEEKDAY({!f_Due_Date_Today_Plus_2})=1,ISNULL({!recordId.StartDate})=TRUE),  ({!f_Due_Date_Today_Plus_2}+1), 
+IF(
+    AND(WEEKDAY({!f_Due_Date_Today_Plus_2})=7, ISNULL({!recordId.StartDate})=TRUE), ({!f_Due_Date_Today_Plus_2}+2), {!f_Due_Date_Today_Plus_2})))))</expression>
+    </formulas>
+    <formulas>
+        <name>f_Due_Date_Campaign_Start_Date</name>
+        <dataType>Date</dataType>
+        <expression>{!recordId.StartDate} - 2</expression>
+    </formulas>
+    <formulas>
+        <name>f_Due_Date_Today_Plus_2</name>
+        <dataType>Date</dataType>
+        <expression>{!$Flow.CurrentDate}+12</expression>
+    </formulas>
+    <formulas>
+        <name>f_Link_to_Ticket</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;https://erepublic.lightning.force.com/lightning/r/Ticket__c/&quot; &amp; {!var_Ticket_to_Create.Id} &amp; &quot;/view&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Ticket_Title</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;List - Contact - &quot; &amp; {!recordId.Name}</expression>
+    </formulas>
+    <interviewLabel>Campaign - {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Campaign - SF - Request List</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <name>Create_Ticket</name>
+        <label>Create Ticket</label>
+        <locationX>176</locationX>
+        <locationY>350</locationY>
+        <connector>
+            <targetReference>Success_Screen</targetReference>
+        </connector>
+        <inputReference>var_Ticket_to_Create</inputReference>
+    </recordCreates>
+    <screens>
+        <name>Success_Screen</name>
+        <label>Success Screen</label>
+        <locationX>176</locationX>
+        <locationY>458</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Display_Text_Success</name>
+            <fieldText
+      >&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;color: rgb(0, 215, 32); font-size: 14px;&quot;&gt;Success! Your request has been submitted.&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;a href=&quot;{!f_Link_to_Ticket}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 14px;&quot;&gt;&lt;u&gt;View Ticket&lt;/u&gt;&lt;/a&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Update_Requested_Due_Date_Screen</name>
+        <label>Update Requested Due Date</label>
+        <locationX>176</locationX>
+        <locationY>134</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Assign_Ticket_to_Create</targetReference>
+        </connector>
+        <fields>
+            <name>dt_Requesting_List_For</name>
+            <fieldText
+      >&lt;p&gt;&lt;strong&gt;Campaign&lt;/strong&gt;: {!recordId.Name}&lt;/p&gt;&lt;p&gt;&lt;strong&gt;Start Date&lt;/strong&gt;: {!recordId.StartDate}&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Screen_Due_Date_Requested</name>
+            <dataType>Date</dataType>
+            <defaultValue>
+                <elementReference>f_Date_if_Not_Weekday</elementReference>
+            </defaultValue>
+            <fieldText>Due Date Requested</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <validationRule>
+                <errorMessage
+        >&lt;p&gt;&lt;span style=&quot;color: rgb(255, 0, 0);&quot;&gt;Oops! The requested due date cannot be in the past.&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                <formulaExpression
+        >{!Screen_Due_Date_Requested}&gt;={!$Flow.CurrentDate}</formulaExpression>
+            </validationRule>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Requested_Due_Date_Screen</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>recordId</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Campaign</objectType>
+    </variables>
+    <variables>
+        <name>var_Ticket_to_Create</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Ticket__c</objectType>
+    </variables>
+</Flow>

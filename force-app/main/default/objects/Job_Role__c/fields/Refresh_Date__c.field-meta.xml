@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Refresh_Date__c</fullName>
+    <description
+  >The date the job role needs to be reviewed/refreshed.</description>
+    <formula>IF(
+AND(
+ISPICKVAL( Status__c ,&quot;Active&quot;),
+( Target_Role_Nav__c = True)
+),
+DATE( YEAR( Verification_Date__c ) + FLOOR( ( MONTH ( Verification_Date__c ) + 6 - 1 ) / 12 ), MOD( MONTH ( Verification_Date__c ) + 6 - 1 + IF( DAY ( Verification_Date__c ) &gt; CASE( MOD( MONTH( Verification_Date__c ) + 6 - 1, 12 ) + 1, 2, 28, 4, 30, 6, 30, 9, 30, 11, 30, 31 ), 1, 0 ), 12 ) + 1, IF( DAY( Verification_Date__c) &gt; CASE( MOD( MONTH( Verification_Date__c ) + 6 - 1, 12 ) + 1, 2, 28, 4, 30, 6, 30, 9, 30, 11, 30, 31 ), 1, DAY( Verification_Date__c ) ) )
+,
+IF(
+AND(
+ISPICKVAL( Status__c ,&quot;Active&quot;),
+( Target_Role_Industry_Insider__c = True)
+),DATE( YEAR( Verification_Date__c ) + FLOOR( ( MONTH ( Verification_Date__c ) + 6 - 1 ) / 12 ), MOD( MONTH ( Verification_Date__c ) + 6 - 1 + IF( DAY ( Verification_Date__c ) &gt; CASE( MOD( MONTH( Verification_Date__c ) + 6 - 1, 12 ) + 1, 2, 28, 4, 30, 6, 30, 9, 30, 11, 30, 31 ), 1, 0 ), 12 ) + 1, IF( DAY( Verification_Date__c) &gt; CASE( MOD( MONTH( Verification_Date__c ) + 6 - 1, 12 ) + 1, 2, 28, 4, 30, 6, 30, 9, 30, 11, 30, 31 ), 1, DAY( Verification_Date__c ) ) )
+,
+IF(
+AND(
+ISPICKVAL( Status__c ,&quot;Active&quot;),
+( Target_Role_Governing_Mag__c = True)
+),
+DATE( YEAR( Verification_Date__c ) + FLOOR( ( MONTH ( Verification_Date__c ) + 6 - 1 ) / 12 ), MOD( MONTH ( Verification_Date__c ) + 6 - 1 + IF( DAY ( Verification_Date__c ) &gt; CASE( MOD( MONTH( Verification_Date__c ) + 6 - 1, 12 ) + 1, 2, 28, 4, 30, 6, 30, 9, 30, 11, 30, 31 ), 1, 0 ), 12 ) + 1, IF( DAY( Verification_Date__c) &gt; CASE( MOD( MONTH( Verification_Date__c ) + 6 - 1, 12 ) + 1, 2, 28, 4, 30, 6, 30, 9, 30, 11, 30, 31 ), 1, DAY( Verification_Date__c ) ) )
+,
+IF(
+AND(
+ISPICKVAL( Status__c ,&quot;Active&quot;),
+(Target_Role_Nav__c = False)
+),
+DATE( YEAR( Verification_Date__c ) + FLOOR( ( MONTH ( Verification_Date__c ) + 12 - 1 ) / 12 ), MOD( MONTH ( Verification_Date__c ) + 12 - 1 + IF( DAY ( Verification_Date__c ) &gt; CASE( MOD( MONTH( Verification_Date__c ) + 12 - 1, 12 ) + 1, 2, 28, 4, 30, 6, 30, 9, 30, 11, 30, 31 ), 1, 0 ), 12 ) + 1, IF( DAY( Verification_Date__c) &gt; CASE( MOD( MONTH( Verification_Date__c ) + 12 - 1, 12 ) + 1, 2, 28, 4, 30, 6, 30, 9, 30, 11, 30, 31 ), 1, DAY( Verification_Date__c ) ) )
+,
+IF(
+AND(
+ISPICKVAL( Status__c , &quot;Inactive&quot;), 
+(Target_Role_Nav__c = False)
+),
+Null
+,
+IF(
+AND(
+ISPICKVAL( Status__c , &quot;Inactive&quot;), 
+(Target_Role_Industry_Insider__c = False)
+),
+Null
+,
+Null
+
+))))))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >The date the job role needs to be reviewed/refreshed.</inlineHelpText>
+    <label>Refresh Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

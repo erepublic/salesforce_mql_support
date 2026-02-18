@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Non_Qual</name>
+        <label>Assign Non-Qual</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Non_Qual__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Reg_Notes__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Reg_Notes</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Reg_Notes</name>
+        <dataType>String</dataType>
+        <expression
+    >IF({!$Record.Reg_Notes__c}=&quot;&quot;, &quot;Non-qual due to Personal or Free Email Domain&quot;, 
+&quot;Non-Qual due to Personal or Free Email Domain&quot; &amp; BR() &amp; BR() &amp; {!$Record.Reg_Notes__c})</expression>
+    </formulas>
+    <interviewLabel
+  >Registration - RT BS - Non-Qual Personal or Free Email Domain {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Registration - RT BS - Non-Qual Personal or Free Email Domain</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_Non_Qual</targetReference>
+        </connector>
+        <filterFormula
+    >AND({!$Record.Registrant_Name__r.Personal_or_Free_Email_Domain__c}=True, 
+         OR({!$Record.Event__r.RecordTypeId}=&quot;01214000000AUym&quot;,
+               {!$Record.Event__r.RecordTypeId}=&quot;01214000000AVlo&quot;
+         )
+)</filterFormula>
+        <object>Registration__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

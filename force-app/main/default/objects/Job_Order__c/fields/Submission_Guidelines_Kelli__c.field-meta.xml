@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submission_Guidelines_Kelli__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Job_Type__c,
+&quot;Business Cards&quot;, $Label.JO_Business_Cards,
+&quot;Client Web Ads&quot;,  $Label.JO_Client_Web_Ads,
+&quot;Corporate Event Signs&quot;, $Label.JO_Corporate_Event_Signs,
+&quot;Corporate Miscellaneous&quot;, $Label.JO_Corporate_Miscellaneous,
+&quot;Custom Webinar Headers - PPT and CERT&quot;, $Label.JO_Custom_Webinar_Headers_PPT_and_CERT,
+&quot;Event Headers&quot;, $Label.JO_Event_Headers,
+&quot;Event Materials&quot;, $Label.JO_Event_Materials,
+&quot;Event Promo Cards&quot;, $Label.JO_Event_Promo_Cards,
+&quot;Innovation Miscellaneous&quot;, $Label.JO_Innovation_Miscellaneous,
+&quot;Magazine Publisher&apos;s Sworn Statement&quot;, $Label.JO_Magazine_Publisher_Sworn_Statement,
+&quot;Marketing Datasheet Offerings&quot;, $Label.JO_Marketing_Datasheet_Offerings,
+&quot;Marketing Miscellaneous&quot;, $Label.JO_Marketing_Miscellaneous,
+&quot;Marketing Webinar Headers &amp; PPT&quot;, $Label.JO_Marketing_Webinar_Headers_PPT,
+&quot;People &amp; Culture Docs, Forms, Headers&quot;, $Label.JO_People_Culture_Docs_Forms_Headers,
+&quot;Staff Headshots&quot;, $Label.JO_Staff_Headshots,
+&quot;Surveys &amp; Awards Images&quot;, $Label.JO_Surveys_Awards_Images,
+&quot;Task Force for Fun&quot;, $Label.JO_Task_Force_for_Fun,
+&quot;Website Mock Up / Banners / Images&quot;, $Label.JO_Website_Mock_Up_Banners_Images,
+null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Submission Guidelines</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

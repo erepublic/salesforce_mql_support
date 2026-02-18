@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TW_Members_in_Wordpress__c</fullName>
+    <description
+  >Indicates date that TW members were added to Wordpress and will begin receiving TW Insider Content.</description>
+    <inlineHelpText
+  >Indicates date that TW members were added to Wordpress and will begin receiving TW Insider Content.</inlineHelpText>
+    <label>TW Members in Wordpress</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

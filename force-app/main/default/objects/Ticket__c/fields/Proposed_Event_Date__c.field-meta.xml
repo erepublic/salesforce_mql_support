@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Proposed_Event_Date__c</fullName>
+    <description
+  >The date that is being proposed as the event start date. Only used by Webinar Registration Order Form record type. Removed from page layout 2/16/2022 per Ticket #35071. Likely to backup/DELETE in the future.</description>
+    <label>Proposed Event Date</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

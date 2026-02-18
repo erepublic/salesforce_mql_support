@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <label>Category</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>A/V</fullName>
+                <default>false</default>
+                <label>A/V</label>
+            </value>
+            <value>
+                <fullName>Advisory Board Meetings</fullName>
+                <default>false</default>
+                <label>Advisory Board Meetings</label>
+            </value>
+            <value>
+                <fullName>Advisory Board Travel</fullName>
+                <default>false</default>
+                <label>Advisory Board Travel</label>
+            </value>
+            <value>
+                <fullName>Awards</fullName>
+                <default>false</default>
+                <label>Awards</label>
+            </value>
+            <value>
+                <fullName>Bags</fullName>
+                <default>false</default>
+                <label>Bags</label>
+            </value>
+            <value>
+                <fullName>Caterer</fullName>
+                <default>false</default>
+                <label>Caterer</label>
+            </value>
+            <value>
+                <fullName>Decorator</fullName>
+                <default>false</default>
+                <label>Decorator</label>
+            </value>
+            <value>
+                <fullName>Deposit</fullName>
+                <default>false</default>
+                <label>Deposit</label>
+            </value>
+            <value>
+                <fullName>Electrical</fullName>
+                <default>false</default>
+                <label>Electrical</label>
+            </value>
+            <value>
+                <fullName>Event Parking (Sponsor)</fullName>
+                <default>false</default>
+                <label>Event Parking (Sponsor)</label>
+            </value>
+            <value>
+                <fullName>Facility</fullName>
+                <default>false</default>
+                <label>Facility</label>
+            </value>
+            <value>
+                <fullName>Interpreter</fullName>
+                <default>false</default>
+                <label>Interpreter</label>
+            </value>
+            <value>
+                <fullName>Keynote (Fee + Travel)</fullName>
+                <default>false</default>
+                <label>Keynote (Fee + Travel)</label>
+            </value>
+            <value>
+                <fullName>Lanyards</fullName>
+                <default>false</default>
+                <label>Lanyards</label>
+            </value>
+            <value>
+                <fullName>Moderator(s) + Travel</fullName>
+                <default>false</default>
+                <label>Moderator(s) + Travel</label>
+            </value>
+            <value>
+                <fullName>Notebooks</fullName>
+                <default>false</default>
+                <label>Notebooks</label>
+            </value>
+            <value>
+                <fullName>Parking (Not Sponsored)</fullName>
+                <default>false</default>
+                <label>Parking (Not Sponsored)</label>
+            </value>
+            <value>
+                <fullName>Photographer</fullName>
+                <default>false</default>
+                <label>Photographer</label>
+            </value>
+            <value>
+                <fullName>Plants</fullName>
+                <default>false</default>
+                <label>Plants</label>
+            </value>
+            <value>
+                <fullName>Power Banks</fullName>
+                <default>false</default>
+                <label>Power Banks</label>
+            </value>
+            <value>
+                <fullName>Program Printing</fullName>
+                <default>false</default>
+                <label>Program Printing</label>
+            </value>
+            <value>
+                <fullName>Reception</fullName>
+                <default>false</default>
+                <label>Reception</label>
+            </value>
+            <value>
+                <fullName>Security</fullName>
+                <default>false</default>
+                <label>Security</label>
+            </value>
+            <value>
+                <fullName>Shipping Fees</fullName>
+                <default>false</default>
+                <label>Shipping Fees</label>
+            </value>
+            <value>
+                <fullName>Signage</fullName>
+                <default>false</default>
+                <label>Signage</label>
+            </value>
+            <value>
+                <fullName>Staff Travel</fullName>
+                <default>false</default>
+                <label>Staff Travel</label>
+            </value>
+            <value>
+                <fullName>Stage Sign</fullName>
+                <default>false</default>
+                <label>Stage Sign</label>
+            </value>
+            <value>
+                <fullName>Temp Fees</fullName>
+                <default>false</default>
+                <label>Temp Fees</label>
+            </value>
+            <value>
+                <fullName>Temps</fullName>
+                <default>false</default>
+                <label>Temps</label>
+            </value>
+            <value>
+                <fullName>Travel Scholarships</fullName>
+                <default>false</default>
+                <label>Travel Scholarships</label>
+            </value>
+            <value>
+                <fullName>Unused Travel</fullName>
+                <default>false</default>
+                <label>Unused Travel</label>
+            </value>
+            <value>
+                <fullName>Wi-Fi (Not Sponsored)</fullName>
+                <default>false</default>
+                <label>Wi-Fi (Not Sponsored)</label>
+            </value>
+            <value>
+                <fullName>Wi-Fi (Sponsor)</fullName>
+                <default>false</default>
+                <label>Wi-Fi (Sponsor)</label>
+            </value>
+            <value>
+                <fullName>Other 1</fullName>
+                <default>false</default>
+                <label>Other 1</label>
+            </value>
+            <value>
+                <fullName>Other 2</fullName>
+                <default>false</default>
+                <label>Other 2</label>
+            </value>
+            <value>
+                <fullName>Other 3</fullName>
+                <default>false</default>
+                <label>Other 3</label>
+            </value>
+            <value>
+                <fullName>Other 4</fullName>
+                <default>false</default>
+                <label>Other 4</label>
+            </value>
+            <value>
+                <fullName>Other 5</fullName>
+                <default>false</default>
+                <label>Other 5</label>
+            </value>
+            <value>
+                <fullName>Uncoded</fullName>
+                <default>false</default>
+                <label>Uncoded</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

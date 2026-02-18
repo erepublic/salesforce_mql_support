@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sample_Client_Pre_Reg_Report__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(
+    Product_Group__c,
+    &quot;Webinar&quot;, 
+    HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Content%20Studio%20Guidelines/Sample%20Email%20Templates/Webinars/Sample%20Email_Client%20Pre-Reg%20Report.docx?d=wc6b3286fbe7946a49574333da2191473&amp;csf=1&amp;web=1&amp;e=JGwAjy&quot;, &quot;Sample Client Pre-Reg Report&quot;),
+    &quot;Roundtable&quot;, 
+    HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Content%20Studio%20Guidelines/Sample%20Email%20Templates/Virtual%20Products/Sample%20Email_Client%20Pre-Reg%20Report_Roundtable.docx?d=wd1ff62c51d0848b0bddb41f06aec092d&amp;csf=1&amp;web=1&amp;e=RVN5ut&quot;, &quot;Sample Client Pre-Reg Report&quot;),
+    null
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sample Client Pre-Reg Report</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

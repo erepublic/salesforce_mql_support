@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sponsor_Logo_Grid</fullName>
+    <availability>online</availability>
+    <description>Manage sponsor logos</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Sponsor Logo Grid</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url
+  >/one/one.app#/alohaRedirect/apex/pagename/SponsorLogoGrid?id={!Events__c.Id}</url>
+</WebLink>

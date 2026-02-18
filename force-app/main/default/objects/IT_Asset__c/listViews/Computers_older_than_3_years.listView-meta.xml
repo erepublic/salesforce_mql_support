@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Computers_older_than_3_years</fullName>
+    <columns>NAME</columns>
+    <columns>Type__c</columns>
+    <columns>Vendor__c</columns>
+    <columns>Model__c</columns>
+    <columns>Purchase_Price__c</columns>
+    <columns>Acquisition_Date__c</columns>
+    <columns>Assigned_to__c</columns>
+    <columns>Assigned_on__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Acquisition_Date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>4/1/2015</value>
+    </filters>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value>Desktop,Laptop</value>
+    </filters>
+    <label>Computers older than 3 years</label>
+</ListView>

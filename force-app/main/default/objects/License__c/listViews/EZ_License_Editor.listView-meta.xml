@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EZ_License_Editor</fullName>
+    <columns>NAME</columns>
+    <columns>License_Software__c</columns>
+    <columns>Level_NEW__c</columns>
+    <columns>License_User__c</columns>
+    <columns>User_Email__c</columns>
+    <columns>License_User_Status__c</columns>
+    <columns>Status__c</columns>
+    <columns>Notes__c</columns>
+    <columns>Annual_Price_Per_License__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>License_Software__c</field>
+        <operation>equals</operation>
+        <value>Adobe</value>
+    </filters>
+    <filters>
+        <field>Level_NEW__c</field>
+        <operation>equals</operation>
+        <value>Photoshop</value>
+    </filters>
+    <label>EZ License Editor</label>
+</ListView>

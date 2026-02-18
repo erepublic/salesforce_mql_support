@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Bill_To__c</fullName>
+    <label>Bill To</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Government Technology Executive Events</fullName>
+                <default>false</default>
+                <label>Government Technology Executive Events</label>
+            </value>
+            <value>
+                <fullName>Government Technology</fullName>
+                <default>false</default>
+                <label>Government Technology</label>
+            </value>
+            <value>
+                <fullName>Governing</fullName>
+                <default>false</default>
+                <label>Governing</label>
+            </value>
+            <value>
+                <fullName>Center for Digital Government</fullName>
+                <default>false</default>
+                <label>Center for Digital Government</label>
+            </value>
+            <value>
+                <fullName>Center for Digital Education</fullName>
+                <default>false</default>
+                <label>Center for Digital Education</label>
+            </value>
+            <value>
+                <fullName>e.Republic</fullName>
+                <default>false</default>
+                <label>e.Republic</label>
+            </value>
+            <value>
+                <fullName>Use Amex on File (Kelli Widmaier)</fullName>
+                <default>false</default>
+                <label>Use Amex on File (Kelli Widmaier)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

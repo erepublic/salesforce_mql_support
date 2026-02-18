@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Demo_Branch_of_Govt__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Branch_of_Govt_Detail__c, 
+&quot;1.1 - Federal&quot;,&quot;01 - Federal&quot;,
+&quot;2.1 - State&quot;,&quot;02 - State&quot;, 
+&quot;2.2 - State - Department&quot;,&quot;02 - State&quot;, 
+&quot;2.3 - State - House&quot;,&quot;02 - State&quot;, 
+&quot;2.4 - State - Senate&quot;,&quot;02 - State&quot;,
+&quot;3.1 - County&quot;,&quot;03 - County&quot;,
+&quot;3.2 - County - Consolidated&quot;,&quot;03 - County&quot;,
+&quot;4.1 - City&quot;,&quot;04 - Municipal&quot;,
+&quot;4.2 - City - Consolidated&quot;,&quot;04 - Municipal&quot;,
+&quot;5.1 - Special District&quot;,&quot;05 - Special District&quot;,
+&quot;7.1 - HED - Higher Ed Community College&quot;,&quot;07 - Higher Education&quot;,
+&quot;7.2 - HED - Higher Ed Private 2 Year College&quot;,&quot;07 - Higher Education&quot;,
+&quot;7.2 - HED - Higher Ed University&quot;,&quot;07 - Higher Education&quot;,
+&quot;7.3 - HED - Higher Ed Private University (For Profit)&quot;,&quot;07 - Higher Education&quot;,
+&quot;7.4 - HED - Higher Ed Private University (Non Profit)&quot;,&quot;07 - Higher Education&quot;,
+&quot;7.5 - HED - Higher Ed Public University&quot;,&quot;07 - Higher Education&quot;,
+&quot;8.1 - K12 - K-12 Public School District&quot;,&quot;08 - K-12 Education&quot;,
+&quot;10.1 - US Territory&quot;,&quot;01 - Federal&quot;,
+&quot;6.1 - Government Association&quot;,&quot;06 - Government Association&quot;,
+&quot;9.1 - Private Sector&quot;,&quot;09 - Private Sector&quot;,
+&quot;99.1 - Other&quot;,&quot;99 - Other&quot;,
+&quot; &quot;)</formula>
+    <label>Demo Branch of Govt</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

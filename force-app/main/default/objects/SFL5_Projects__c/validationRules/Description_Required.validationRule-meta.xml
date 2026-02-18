@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Description_Required</fullName>
+    <active>false</active>
+    <description
+  >On a Content Studio project, when a Topic value of &quot;Other (see Description)&quot; is selected, there must be something in the Description field.</description>
+    <errorConditionFormula>RecordType.Id = &quot;01230000000wS4x&quot;
+&amp;&amp;
+OR(
+  ISBLANK(Completion_Date__c),
+  Completion_Date__c &gt;= DATEVALUE( &quot;2018-01-01&quot; )
+)
+&amp;&amp;
+ISPICKVAL( Project_Stage__c , &quot;Completed&quot;)
+&amp;&amp;
+ISPICKVAL( Topic__c  , &quot;Other (see Description)&quot;)
+&amp;&amp;
+OR(
+  AND(
+    LEN( Description_OtherTopic__c )&lt;4,
+    CONTAINS(LOWER(Description_OtherTopic__c), &quot;tbd&quot;)  /*To prevent them from just putting &quot;TBD&quot;*/
+  ),
+  ISBLANK(Description_OtherTopic__c)
+)</errorConditionFormula>
+    <errorDisplayField>Description_OtherTopic__c</errorDisplayField>
+    <errorMessage
+  >A Description must be provided if the Topic is &quot;Other (see Description)&quot;.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Demand_Gen_Completed_All</fullName>
+    <columns>NAME</columns>
+    <columns>Project_Owner__c</columns>
+    <columns>Product__c</columns>
+    <columns>Project_Phase__c</columns>
+    <columns>Filters__c</columns>
+    <columns>Lead_Delivery_Status__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>Completion_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Content_Studio</value>
+    </filters>
+    <filters>
+        <field>Project_Status_Display__c</field>
+        <operation>equals</operation>
+        <value>Product Delivered</value>
+    </filters>
+    <filters>
+        <field>Product_Group__c</field>
+        <operation>equals</operation>
+        <value>Demand Gen</value>
+    </filters>
+    <label>Demand Gen - Completed - All</label>
+</ListView>

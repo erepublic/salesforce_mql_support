@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Non_Qual</name>
+        <label>Assign Non-Qual</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Non_Qual__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Comments__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Comments</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Comments</name>
+        <dataType>String</dataType>
+        <expression
+    >IF({!$Record.Comments__c}=&quot;&quot;, &quot;Personal Email&quot;, 
+{!$Record.Comments__c} &amp; &quot; / Personal Email&quot;)</expression>
+    </formulas>
+    <interviewLabel
+  >Paper Download - RT BS - Non-Qual Personal or Free Email Domain {!$Flow.CurrentDateTime}</interviewLabel>
+    <label
+  >Paper Download - RT BS - Non-Qual Personal or Free Email Domain</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_Non_Qual</targetReference>
+        </connector>
+        <filterFormula
+    >{!$Record.Registrant__r.Personal_or_Free_Email_Domain__c}=True</filterFormula>
+        <object>Paper_Download__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

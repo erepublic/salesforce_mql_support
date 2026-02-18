@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tickets_by_Dept_Navigator_Open1</fullName>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Phase__c</columns>
+    <columns>navigator_version__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Priority__c</columns>
+    <columns>Assignee__c</columns>
+    <columns>Type__c</columns>
+    <columns>Backlog_Status__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value>Data Pull (Navigator)</value>
+    </filters>
+    <label>Tickets by Dept - Navigator Data Pull</label>
+</ListView>

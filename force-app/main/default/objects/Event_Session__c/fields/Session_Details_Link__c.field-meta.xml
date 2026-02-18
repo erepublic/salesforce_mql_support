@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Session_Details_Link__c</fullName>
+    <description
+  >This URL would link to a web page, Google doc, or hosted data on details for the session.</description>
+    <inlineHelpText
+  >This URL would link to a web page, Google doc, or hosted data on details for the session.</inlineHelpText>
+    <label>Session Details Link</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Url</type>
+</CustomField>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EM_CDWG_Roadshow_Houston_TX_06_07</fullName>
+    <columns>NAME</columns>
+    <columns>Attendee_Name__c</columns>
+    <columns>Event_No_Show__c</columns>
+    <columns>Reg_Company_Name__c</columns>
+    <columns>Reg_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event__c</field>
+        <operation>contains</operation>
+        <value>EM - CDWG Roadshow - Houston TX - 06/07/2012</value>
+    </filters>
+    <label>EM - CDWG Roadshow - Houston TX - 06/07/</label>
+</ListView>

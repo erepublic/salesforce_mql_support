@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Audit_Cycle_Date__c</fullName>
+    <description
+  >This is the date that the audit cycle begins for the current year.</description>
+    <inlineHelpText
+  >This is the date that the audit cycle begins for the current year.</inlineHelpText>
+    <label>Audit Cycle Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

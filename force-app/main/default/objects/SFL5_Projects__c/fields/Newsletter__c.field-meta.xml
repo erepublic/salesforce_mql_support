@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Newsletter__c</fullName>
+    <label>Newsletter</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>GovTech Today</fullName>
+                <default>false</default>
+                <label>GovTech Today</label>
+            </value>
+            <value>
+                <fullName>Justice and Public Safety (JPS)</fullName>
+                <default>false</default>
+                <label>Justice and Public Safety (JPS)</label>
+            </value>
+            <value>
+                <fullName>GovTech Security News (GTSN)</fullName>
+                <default>false</default>
+                <label>GovTech Security News (GTSN)</label>
+            </value>
+            <value>
+                <fullName>DC</fullName>
+                <default>false</default>
+                <label>DC</label>
+            </value>
+            <value>
+                <fullName>PCIO</fullName>
+                <default>false</default>
+                <label>PCIO</label>
+            </value>
+            <value>
+                <fullName>EM</fullName>
+                <default>false</default>
+                <label>EM</label>
+            </value>
+            <value>
+                <fullName>Ed Roundup</fullName>
+                <default>false</default>
+                <label>Ed Roundup</label>
+            </value>
+            <value>
+                <fullName>Higher Ed Roundup</fullName>
+                <default>false</default>
+                <label>Higher Ed Roundup</label>
+            </value>
+            <value>
+                <fullName>K-12 Roundup</fullName>
+                <default>false</default>
+                <label>K-12 Roundup</label>
+            </value>
+            <value>
+                <fullName>GOVERNING Daily</fullName>
+                <default>false</default>
+                <label>GOVERNING Daily</label>
+            </value>
+            <value>
+                <fullName>GOVERNING Insider</fullName>
+                <default>false</default>
+                <label>GOVERNING Insider</label>
+            </value>
+            <value>
+                <fullName>Management</fullName>
+                <default>false</default>
+                <label>Management</label>
+            </value>
+            <value>
+                <fullName>Technology</fullName>
+                <default>false</default>
+                <label>Technology</label>
+            </value>
+            <value>
+                <fullName>Human Services</fullName>
+                <default>false</default>
+                <label>Human Services</label>
+            </value>
+            <value>
+                <fullName>Finance</fullName>
+                <default>false</default>
+                <label>Finance</label>
+            </value>
+            <value>
+                <fullName>Public Workforce</fullName>
+                <default>false</default>
+                <label>Public Workforce</label>
+            </value>
+            <value>
+                <fullName>Tax and Revenue</fullName>
+                <default>false</default>
+                <label>Tax and Revenue</label>
+            </value>
+            <value>
+                <fullName>Efficiency</fullName>
+                <default>false</default>
+                <label>Efficiency</label>
+            </value>
+            <value>
+                <fullName>Health</fullName>
+                <default>false</default>
+                <label>Health</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>3</visibleLines>
+</CustomField>

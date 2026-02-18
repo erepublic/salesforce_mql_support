@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reg_Fee__c</fullName>
+    <description
+  >This is the total of all of the registration line items and discounts applied to this registration.</description>
+    <inlineHelpText
+  >This is the total of all of the registration line items and discounts applied to this registration.</inlineHelpText>
+    <label>Registration Fee</label>
+    <summarizedField>Registration_Line_Item__c.Cost__c</summarizedField>
+    <summaryForeignKey
+  >Registration_Line_Item__c.Registration__c</summaryForeignKey>
+    <summaryOperation>sum</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

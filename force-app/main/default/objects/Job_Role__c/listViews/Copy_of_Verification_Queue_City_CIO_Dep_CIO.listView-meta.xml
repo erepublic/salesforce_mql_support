@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_Verification_Queue_City_CIO_Dep_CIO</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Verification_Date__c</columns>
+    <columns>Refresh_Date__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Job_Role_Title__c</columns>
+    <columns>Status__c</columns>
+    <columns>Contact_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>includes</operation>
+        <value
+    >City Chief Data Officer,City CIO,City Deputy CIO,City CISO,City CTO,County Chief Data Officer,County CIO,County Deputy CIO,County CISO,County CTO</value>
+    </filters>
+    <filters>
+        <field>Account_Top_50_100_200__c</field>
+        <operation>contains</operation>
+        <value>50,100</value>
+    </filters>
+    <filters>
+        <field>Last_Verification_Date_Tier__c</field>
+        <operation>equals</operation>
+        <value>03 - 180 - 364 days,04 - 365+ days,Unverified</value>
+    </filters>
+    <label>Verification Queue - City/County IT</label>
+</ListView>

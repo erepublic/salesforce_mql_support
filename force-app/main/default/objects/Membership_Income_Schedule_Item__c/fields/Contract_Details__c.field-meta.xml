@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Details__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >IF(  Monthly_Account_Name__c &lt;&gt;&quot;&quot;, &quot;Monthly&quot;&amp;BR()&amp;
+HYPERLINK(&quot;https://erepublic.lightning.force.com/lightning/r/Membership_Contract__c/&quot;&amp;Membership_Contract__r.Id&amp;&quot;/view&quot;,Membership_Contract__r.Name)
+,
+TEXT(Membership_Contract__r.Start_Date__c) &amp; &quot; - &quot;&amp; TEXT(Membership_Contract__r.End_Date__c) &amp;BR()&amp;
+HYPERLINK(&quot;https://erepublic.lightning.force.com/lightning/r/Membership_Contract__c/&quot;&amp;Membership_Contract__r.Id&amp;&quot;/view&quot;,Membership_Contract__r.Name)
+&amp;&quot; | &quot;&amp; TEXT(Membership_Contract__r.Level__c) &amp;&quot; | $&quot;&amp; TEXT(Membership_Contract__r.Total_Value__c)
+
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Contract Details (w/Links)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

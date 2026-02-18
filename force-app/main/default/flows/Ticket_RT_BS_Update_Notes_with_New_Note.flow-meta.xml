@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Project_Notes_Most_Recent_Note</name>
+        <label>Assign Project Notes &amp; Most Recent Note</label>
+        <locationX>1106</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Project_Notes__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Project_Notes</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Most_Recent_Note__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Most_Recent_Note</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Most_Recent_Note_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Most_Recent_Note_Date</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Project_Notes_Most_Recent_Note_CommDev_Normal</name>
+        <label
+    >Assign Project Notes &amp; Most Recent Note (CommDev - Normal)</label>
+        <locationX>578</locationX>
+        <locationY>611</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Project_Notes__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Project_Notes</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Most_Recent_Note__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Most_Recent_Note</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>CommDev_Assign_Closed_Project_Notes_Most_Recent_Note</name>
+        <label>(CommDev) Closed Project Notes &amp; Most Recent Note</label>
+        <locationX>314</locationX>
+        <locationY>611</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Project_Notes__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Project_Notes_CommDev_Closed</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Most_Recent_Note__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Most_Recent_Note_CommDev_Closed</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>CommDev_Requestor_Project_Notes_Most_Recent_Note</name>
+        <label>(CommDev) Requestor Project Notes &amp; Most Recent Note</label>
+        <locationX>50</locationX>
+        <locationY>611</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Project_Notes__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Project_Notes_CommDev_Requestor</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Most_Recent_Note__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Most_Recent_Note_CommDev_Requestor</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Was_a_New_Note_Added</name>
+        <label>Was a New Note Added?</label>
+        <locationX>578</locationX>
+        <locationY>395</locationY>
+        <defaultConnectorLabel>No Update</defaultConnectorLabel>
+        <rules>
+            <name>Yes_New_Note_is_Not_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.New_Note__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>What_Type_of_Note</targetReference>
+            </connector>
+            <label>Yes - New Note is Not Null</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_a_New_Note_Added_Other</name>
+        <label>Was a New Note Added?</label>
+        <locationX>1238</locationX>
+        <locationY>395</locationY>
+        <defaultConnectorLabel>No Update</defaultConnectorLabel>
+        <rules>
+            <name>New_Note_Exists</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.New_Note__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>f_Space</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.New_Note__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_Project_Notes_Most_Recent_Note</targetReference>
+            </connector>
+            <label>New Note Exists</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>What_Ticket_Record_Type</name>
+        <label>What Ticket Record Type?</label>
+        <locationX>908</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Was_a_New_Note_Added_Other</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Other Ticket Record Types</defaultConnectorLabel>
+        <rules>
+            <name>CommDev</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000001RYxpAAG</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Was_a_New_Note_Added</targetReference>
+            </connector>
+            <label>CommDev</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>What_Type_of_Note</name>
+        <label>What Type of Note?</label>
+        <locationX>314</locationX>
+        <locationY>503</locationY>
+        <defaultConnector>
+            <targetReference
+      >Assign_Project_Notes_Most_Recent_Note_CommDev_Normal</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Normal Note</defaultConnectorLabel>
+        <rules>
+            <name>Send_to_Requestor_Note</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Send_Email_to_Requestor__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Phase__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >CommDev_Requestor_Project_Notes_Most_Recent_Note</targetReference>
+            </connector>
+            <label>Send to Requestor Note</label>
+        </rules>
+        <rules>
+            <name>Closed_Phase_Note</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Phase__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >CommDev_Assign_Closed_Project_Notes_Most_Recent_Note</targetReference>
+            </connector>
+            <label>Closed Phase Note</label>
+        </rules>
+    </decisions>
+    <description
+  >When a New Note is added, update Project Notes &amp; Most Recent Note.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Most_Recent_Note</name>
+        <dataType>String</dataType>
+        <expression>TEXT(MONTH({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(DAY({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(YEAR({!$Flow.CurrentDate}))
+&amp;&quot; &quot;
+&amp;UPPER(LEFT({!$User.Alias},2))
+&amp;&quot;: &quot;
+&amp;
+{!$Record.New_Note__c}</expression>
+    </formulas>
+    <formulas>
+        <name>f_Most_Recent_Note_CommDev_Closed</name>
+        <dataType>String</dataType>
+        <expression>TEXT(MONTH({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(DAY({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(YEAR({!$Flow.CurrentDate}))
+&amp;&quot; &quot;
+&amp;UPPER(LEFT({!$User.Alias},2))
+&amp;&quot;: [Ticket Closed] &quot;
+&amp;
+{!$Record.New_Note__c}</expression>
+    </formulas>
+    <formulas>
+        <name>f_Most_Recent_Note_CommDev_Requestor</name>
+        <dataType>String</dataType>
+        <expression>TEXT(MONTH({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(DAY({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(YEAR({!$Flow.CurrentDate}))
+&amp;&quot; &quot;
+&amp;UPPER(LEFT({!$User.Alias},2))
+&amp;&quot;: [Update Sent] &quot;
+&amp;
+{!$Record.New_Note__c}</expression>
+    </formulas>
+    <formulas>
+        <name>f_Most_Recent_Note_Date</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <name>f_Project_Notes</name>
+        <dataType>String</dataType>
+        <expression>TEXT(MONTH({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(DAY({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(YEAR({!$Flow.CurrentDate}))
+&amp;&quot; &quot;
+&amp;UPPER(LEFT({!$User.Alias},2))
+&amp;&quot;: &quot;
+&amp;
+{!$Record.New_Note__c} &amp; BR() &amp;
+{!$Record.Project_Notes__c}</expression>
+    </formulas>
+    <formulas>
+        <name>f_Project_Notes_CommDev_Closed</name>
+        <dataType>String</dataType>
+        <expression>TEXT(MONTH({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(DAY({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(YEAR({!$Flow.CurrentDate}))
+&amp;&quot; &quot;
+&amp;UPPER(LEFT({!$User.Alias},2))
+&amp;&quot;: [Ticket Closed] &quot;
+&amp;
+{!$Record.New_Note__c}  &amp; BR() &amp;
+{!$Record.Project_Notes__c}</expression>
+    </formulas>
+    <formulas>
+        <name>f_Project_Notes_CommDev_Requestor</name>
+        <dataType>String</dataType>
+        <expression>TEXT(MONTH({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(DAY({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(YEAR({!$Flow.CurrentDate}))
+&amp;&quot; &quot;
+&amp;UPPER(LEFT({!$User.Alias},2))
+&amp;&quot;: [Update Sent] &quot;
+&amp;
+{!$Record.New_Note__c}  &amp; BR() &amp;
+{!$Record.Project_Notes__c}</expression>
+    </formulas>
+    <formulas>
+        <name>f_Space</name>
+        <dataType>String</dataType>
+        <expression>&quot; &quot;</expression>
+    </formulas>
+    <interviewLabel>Ticket - RT BS - {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Ticket - RT BS - Update Notes with New Note</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>782</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>What_Ticket_Record_Type</targetReference>
+        </connector>
+        <filterLogic>1 OR (2 AND 3)</filterLogic>
+        <filters>
+            <field>New_Note__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>New_Note__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Ticket__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

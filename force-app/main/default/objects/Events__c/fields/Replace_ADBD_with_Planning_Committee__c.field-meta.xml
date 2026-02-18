@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Replace_ADBD_with_Planning_Committee__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Syncs to CMS and ERMS to replace the Advisory Board Language on the Event Website and Registrant Badges with “Planning Committee”.</description>
+    <inlineHelpText
+  >Replaces “Advisory Board” language on the Event Website and Registrants’ Badges with “Planning Committee”.</inlineHelpText>
+    <label>Replace ADBD with Planning Committee</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

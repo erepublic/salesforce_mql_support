@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Project_Assignments</fullName>
+    <booleanFilter>(1 OR 2) AND 3</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Start_Date__c</columns>
+    <columns>Adjusted_Completion_Date__c</columns>
+    <columns>Hours_Assigned__c</columns>
+    <columns>Hours_Completed__c</columns>
+    <columns>Hours_Remaining__c</columns>
+    <columns>Project__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Is_Project_Resource_Current_User__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Is_Project_Resource_2_Current_User__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Hours_Remaining__c</field>
+        <operation>greaterThan</operation>
+        <value>0</value>
+    </filters>
+    <label>My Open Project Assignments</label>
+</ListView>

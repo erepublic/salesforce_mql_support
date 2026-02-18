@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Date_Mismatch_1__c</fullName>
+    <description
+  >Event Start Date does not match Event Year or Event Quarter or Event Month.</description>
+    <formula>OR(
+  AND(
+    NOT(
+      ISBLANK( Event_Start_Date__c )
+    ),
+    NOT(
+      ISBLANK(  Event_Year__c )
+    ),
+    YEAR(Event_Start_Date__c) &lt;&gt; Event_Year__c
+  ),
+  AND(
+    NOT(
+      ISBLANK( Event_Start_Date__c )
+    ),
+    NOT(
+      ISBLANK( TEXT(Event_Month__c) )
+    ),
+    CASE( MONTH(Event_Start_Date__c),
+      1, IF (TEXT(Event_Month__c) &lt;&gt; &quot;January&quot;, &quot;1&quot;, &quot;&quot;),
+      2, IF (TEXT(Event_Month__c) &lt;&gt; &quot;February&quot;, &quot;1&quot;, &quot;&quot;),
+      3, IF (TEXT(Event_Month__c) &lt;&gt; &quot;March&quot;, &quot;1&quot;, &quot;&quot;),
+      4, IF (TEXT(Event_Month__c) &lt;&gt; &quot;April&quot;, &quot;1&quot;, &quot;&quot;),
+      5, IF (TEXT(Event_Month__c) &lt;&gt; &quot;May&quot;, &quot;1&quot;, &quot;&quot;),
+      6, IF (TEXT(Event_Month__c) &lt;&gt; &quot;June&quot;, &quot;1&quot;, &quot;&quot;),
+      7, IF (TEXT(Event_Month__c) &lt;&gt; &quot;July&quot;, &quot;1&quot;, &quot;&quot;),
+      8, IF (TEXT(Event_Month__c) &lt;&gt; &quot;August&quot;, &quot;1&quot;, &quot;&quot;),
+      9, IF (TEXT(Event_Month__c) &lt;&gt; &quot;September&quot;, &quot;1&quot;, &quot;&quot;),
+      10,IF (TEXT(Event_Month__c) &lt;&gt; &quot;October&quot;, &quot;1&quot;, &quot;&quot;),
+      11,IF (TEXT(Event_Month__c) &lt;&gt; &quot;November&quot;, &quot;1&quot;, &quot;&quot;),
+      12,IF (TEXT(Event_Month__c) &lt;&gt; &quot;December&quot;, &quot;1&quot;, &quot;&quot;),
+    &quot;&quot;)
+    = &quot;1&quot;
+  ),
+  AND(
+    NOT(
+      ISBLANK( Event_Start_Date__c )
+    ),
+    NOT(
+      ISBLANK( TEXT(Event_Quarter__c) )
+    ),
+    CASE( MONTH(Event_Start_Date__c),
+      1, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q1&quot;, &quot;1&quot;, &quot;&quot;),
+      2, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q1&quot;, &quot;1&quot;, &quot;&quot;),
+      3, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q1&quot;, &quot;1&quot;, &quot;&quot;),
+      4, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q2&quot;, &quot;1&quot;, &quot;&quot;),
+      5, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q2&quot;, &quot;1&quot;, &quot;&quot;),
+      6, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q2&quot;, &quot;1&quot;, &quot;&quot;),
+      7, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q3&quot;, &quot;1&quot;, &quot;&quot;),
+      8, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q3&quot;, &quot;1&quot;, &quot;&quot;),
+      9, IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q3&quot;, &quot;1&quot;, &quot;&quot;),
+      10,IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q4&quot;, &quot;1&quot;, &quot;&quot;),
+      11,IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q4&quot;, &quot;1&quot;, &quot;&quot;),
+      12,IF (TEXT(Event_Quarter__c) &lt;&gt; &quot;Q4&quot;, &quot;1&quot;, &quot;&quot;),
+    &quot;&quot;)
+    = &quot;1&quot;
+  )
+)</formula>
+    <inlineHelpText
+  >Event Start Date does not match Event Year or Event Quarter or Event Month.</inlineHelpText>
+    <label>Date Mismatch 1</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

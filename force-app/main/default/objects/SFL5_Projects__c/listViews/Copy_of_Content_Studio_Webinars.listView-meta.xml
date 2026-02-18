@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_Content_Studio_Webinars</fullName>
+    <columns>NAME</columns>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Project_Update_Note__c</columns>
+    <columns>PM_Note_Date__c</columns>
+    <columns>PM_Note__c</columns>
+    <columns>Event__c</columns>
+    <columns>Project_Phase__c</columns>
+    <columns>LAST_UPDATE</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Client__c</columns>
+    <columns>Product_ProjectType_TransitionDisplay__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Project_Owner__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Content_Studio</value>
+    </filters>
+    <filters>
+        <field>Project_Status_Display__c</field>
+        <operation>notEqual</operation>
+        <value>Product Delivered,Cancelled</value>
+    </filters>
+    <filters>
+        <field>Product_Group__c</field>
+        <operation>equals</operation>
+        <value>Webinar</value>
+    </filters>
+    <filters>
+        <field>Event_Start_Date__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Content Studio - Webinars_LG</label>
+</ListView>

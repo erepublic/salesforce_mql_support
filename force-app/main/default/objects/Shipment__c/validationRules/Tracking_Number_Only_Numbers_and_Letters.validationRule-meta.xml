@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tracking_Number_Only_Numbers_and_Letters</fullName>
+    <active>true</active>
+    <description
+  >Triggers an error when a character other than a letter or number is entered in the Tracking Number field.</description>
+    <errorConditionFormula
+  >NOT(REGEX( Tracking_Number__c , &quot;^[a-zA-Z0-9]*$&quot;))</errorConditionFormula>
+    <errorDisplayField>Tracking_Number__c</errorDisplayField>
+    <errorMessage>Tracking Numbers can only contain letters or numbers.
+Example: 1Z8322080198112860</errorMessage>
+</ValidationRule>

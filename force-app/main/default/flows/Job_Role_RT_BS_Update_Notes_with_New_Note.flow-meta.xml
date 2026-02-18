@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Job_Role_Notes_Most_Recent_Note</name>
+        <label>Assign Job Role Notes &amp; Most Recent Note</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Job_Role_Notes__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Job_Role_Notes</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Most_Recent_Note_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Most_Recent_Note_Date</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Most_Recent_Note__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Most_Recent_Note</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Add_New_Note</name>
+        <label>Add New Note?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Add_New_Note</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.New_Note__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>f_Space</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.New_Note__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_Job_Role_Notes_Most_Recent_Note</targetReference>
+            </connector>
+            <label>Yes, Add New Note</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Job_Role_Notes</name>
+        <dataType>String</dataType>
+        <expression>TEXT(MONTH({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(DAY({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(YEAR({!$Flow.CurrentDate}))
+&amp;&quot; &quot;
+&amp;UPPER(LEFT({!$User.Alias},2))
+&amp;&quot;: &quot;
+&amp;
+{!$Record.New_Note__c} &amp; BR() &amp;
+{!$Record.Job_Role_Notes__c}</expression>
+    </formulas>
+    <formulas>
+        <name>f_Most_Recent_Note</name>
+        <dataType>String</dataType>
+        <expression>TEXT(MONTH({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(DAY({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(YEAR({!$Flow.CurrentDate}))
+&amp;&quot; &quot;
+&amp;UPPER(LEFT({!$User.Alias},2))
+&amp;&quot;: &quot;
+&amp;
+{!$Record.New_Note__c}</expression>
+    </formulas>
+    <formulas>
+        <name>f_Most_Recent_Note_Date</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()</expression>
+    </formulas>
+    <formulas>
+        <name>f_Space</name>
+        <dataType>String</dataType>
+        <expression>&quot; &quot;</expression>
+    </formulas>
+    <interviewLabel
+  >Job Role - RT BS - New Note {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Job Role - RT BS - Update Notes with New Note</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Add_New_Note</targetReference>
+        </connector>
+        <filterLogic>(1 OR 2) AND 3</filterLogic>
+        <filters>
+            <field>New_Note__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>New_Note__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Job_Role__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

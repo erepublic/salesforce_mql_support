@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sponsor_Reg_Marketing_Eligible</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Sponsor Reg - Marketing Eligible</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/lightning/r/Report/00O5Y00000Dq162UAB/view?fv0={!Events__c.Id}</url>
+</WebLink>

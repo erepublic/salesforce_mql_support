@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>URL_Exceeds_255_Char</fullName>
+    <active>true</active>
+    <description
+  >To prevent users from pasting URLs that get cut off after 255 characters. Triggers at 255 characters (assuming the intended URL is larger).</description>
+    <errorConditionFormula>(
+LEN( Final_PDF_URL__c ) = 255 /*Final PDF URL*/
+||
+LEN( Kick_off_Meeting_Agenda_Doc__c ) = 255 /*Kick-off Meeting Agenda Doc*/
+||
+LEN( Kick_off_Meeting_MP4__c ) = 255 /*Kick-off Meeting MP4*/
+||
+LEN( MP4_Link__c ) = 255 /*MP4 Link*/
+||
+LEN( Client_Wishlist__c ) = 255 /*Client Wishlist*/
+||
+LEN( Panel_Questions__c ) = 255 /*Panel Questions*/
+||
+LEN( Sponsored_Article_Govtech_URL__c ) = 255 /*Sponsored Article Govtech URL*/
+||
+LEN( Recorded_Interview_Folder__c ) = 255 /*Recorded Interview Folder*/
+||
+LEN( Govtech_URL__c ) = 255 /*Govtech URL*/
+||
+LEN( Publisher_Email_Doc__c ) = 255 /*Publisher Email Doc*/
+||
+LEN(Final_Delivery_Email_Link__c) = 255 /* Final Delivery Email Link*/
+||
+LEN(Final_Lead_Report__c) = 255 /* Final Lead Report*/
+||
+LEN(Topline_Report_URL__c) = 255 /* Topline Report URL*/
+||
+LEN(Sponsored_Article_Internal_URL__c) = 255 /* Sponsored Article Internal URL*/
+||
+LEN( Social_Media_Kit_URL__c ) = 255 /*Social Media Kit URL*/
+)
+&amp;&amp;
+Id &lt;&gt; &quot;a0M5Y00000dtHkHUAU&quot; /*Temp will remove once this record is fixed*/</errorConditionFormula>
+    <errorMessage
+  >A URL exceeds 255 characters. For SharePoint links, use the Share link instead of the browser URL. Email salesforce@erepublic.com for help.</errorMessage>
+</ValidationRule>

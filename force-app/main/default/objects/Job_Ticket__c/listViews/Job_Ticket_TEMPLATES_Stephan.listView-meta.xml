@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Job_Ticket_TEMPLATES_Stephan</fullName>
+    <columns>NAME</columns>
+    <columns>Designer__c</columns>
+    <columns>Job_Name__c</columns>
+    <columns>Date_to_Design__c</columns>
+    <columns>Finished_Job_Due__c</columns>
+    <columns>Date_Completed__c</columns>
+    <columns>Status__c</columns>
+    <columns>Originator__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Pending - New Job</value>
+    </filters>
+    <filters>
+        <field>Job_Name__c</field>
+        <operation>contains</operation>
+        <value>TEMPLATE</value>
+    </filters>
+    <filters>
+        <field>OWNER.FIRST_NAME</field>
+        <operation>equals</operation>
+        <value>Stephan</value>
+    </filters>
+    <label>Job Ticket - TEMPLATES - Stephan</label>
+</ListView>

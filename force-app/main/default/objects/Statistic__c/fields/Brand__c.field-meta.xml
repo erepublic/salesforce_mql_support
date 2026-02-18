@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Brand__c</fullName>
+    <description
+  >Generates a Brand based on the Title of the record.</description>
+    <externalId>false</externalId>
+    <formula>CASE( 
+Title__c, 
+&quot;Government Technology&quot;, &quot;GT&quot;,
+&quot;GOVERNING&quot;, &quot;GOV&quot;,
+&quot;Emergency Management&quot;, &quot;EM&quot;,
+&quot;Public CIO&quot;, &quot;GT&quot;,
+&quot;CDE Special Report&quot;, &quot;CDE&quot;,
+&quot;Higher Ed&quot;, &quot;CDE&quot;,
+&quot;K-12&quot;, &quot;CDE&quot;,
+&quot;GovTech Today&quot;, &quot;GT&quot;,
+&quot;GovTech Social&quot;, &quot;GT&quot;,
+&quot;Digital Communities&quot;, &quot;GT&quot;,
+&quot;Public CIO Newsletter&quot;, &quot;GT&quot;,
+&quot;EM News&quot;, &quot;EM&quot;,
+&quot;Futurestructure&quot;, &quot;GOV&quot;,
+&quot;Governing Daily&quot;, &quot;GOV&quot;,
+&quot;Better, Faster, Cheaper&quot;, &quot;GOV&quot;,
+&quot;Data&quot;, &quot;GOV&quot;,
+&quot;Finance&quot;, &quot;GOV&quot;,
+&quot;Health&quot;, &quot;GOV&quot;,
+&quot;Human Services&quot;, &quot;GOV&quot;,
+&quot;Infrastructure&quot;, &quot;GOV&quot;,
+&quot;Insider&quot;, &quot;GOV&quot;,
+&quot;Management&quot;, &quot;GOV&quot;,
+&quot;Technology&quot;, &quot;GOV&quot;,
+&quot;TechWire Weekly&quot;, &quot;GT&quot;,
+&quot;Industry Insider&quot;, &quot;ER&quot;,
+&quot;&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Generates a Brand based on the Title of the record.</inlineHelpText>
+    <label>Brand</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

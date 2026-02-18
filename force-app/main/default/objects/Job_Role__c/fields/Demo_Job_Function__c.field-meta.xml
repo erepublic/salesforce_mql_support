@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Demo_Job_Function__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+  LEFT(TEXT(Primary_Job_Function_Detail__c), 4) = &quot;1.12&quot;,
+  &quot;05 - Operations/Administration&quot;,
+    IF
+     (LEFT(TEXT(Primary_Job_Function_Detail__c), 5) = &quot;10.17&quot;,
+       &quot;03 - Information Technology&quot;,
+IF(
+  LEFT(TEXT(Primary_Job_Function_Detail__c), 2) = &quot;1.&quot;,
+  &quot;01 - Elected Official/Legislative&quot;,
+  IF(
+    LEFT(TEXT(Primary_Job_Function_Detail__c), 2) = &quot;2.&quot;,
+    &quot;02 - Finance/Procurement/Budget/Auditor&quot;,
+    IF(
+     LEFT(TEXT(Primary_Job_Function_Detail__c), 2) = &quot;3.&quot;,
+     &quot;03 - Information Technology&quot;,
+     IF(
+      LEFT(TEXT(Primary_Job_Function_Detail__c), 2) = &quot;4.&quot;,
+      &quot;04 - Engineering/Technical&quot;,
+      IF(
+       LEFT(TEXT(Primary_Job_Function_Detail__c), 2) = &quot;6.&quot;,
+       &quot;06 - Human Resource/Workforce/Training/Benefits&quot;,
+       IF(
+        LEFT(TEXT(Primary_Job_Function_Detail__c), 2) = &quot;7.&quot;,
+        &quot;07 - First Responder (Police/Fire/EMS)&quot;,
+        IF(
+         LEFT(TEXT(Primary_Job_Function_Detail__c), 2) = &quot;8.&quot;,
+         &quot;07 - First Responder (Police/Fire/EMS)&quot;,
+         IF(
+          LEFT(TEXT(Primary_Job_Function_Detail__c), 2) = &quot;9.&quot;,
+          &quot;09 - Marketing/Sale&quot;,
+          IF(
+           LEFT(TEXT(Primary_Job_Function_Detail__c), 3) = &quot;99.&quot;,
+           &quot;99 - Other&quot;,
+           IF(
+            LEFT(TEXT(Primary_Job_Function_Detail__c), 2) = &quot;5.&quot;,
+            &quot;05 - Operations/Administration&quot;,
+            IF(
+             LEFT(TEXT(Primary_Job_Function_Detail__c), 3) = &quot;10.&quot;,
+             &quot;10 - Education/Library Services&quot;,
+&quot;&quot;
+)))))))))))))</formula>
+    <label>Demo Job Function</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

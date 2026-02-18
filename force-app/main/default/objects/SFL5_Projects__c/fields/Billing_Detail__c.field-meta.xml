@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing_Detail__c</fullName>
+    <label>Billing Conditions</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Billing__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Fixed Floor/Fixed Ceiling</fullName>
+                <default>false</default>
+                <label>Fixed Floor/Fixed Ceiling</label>
+            </value>
+            <value>
+                <fullName>Percent Complete</fullName>
+                <default>false</default>
+                <label>Percent Complete</label>
+            </value>
+            <value>
+                <fullName>Date</fullName>
+                <default>false</default>
+                <label>Date</label>
+            </value>
+            <value>
+                <fullName>Milestone</fullName>
+                <default>false</default>
+                <label>Milestone</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Fixed Bid Project</controllingFieldValue>
+            <valueName>Percent Complete</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fixed Bid Project</controllingFieldValue>
+            <valueName>Date</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Fixed Bid Project</controllingFieldValue>
+            <valueName>Milestone</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Time &amp; Materials</controllingFieldValue>
+            <valueName>Fixed Floor/Fixed Ceiling</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Preference__c</fullName>
+    <label>Project Preference</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>System Integration</fullName>
+                <default>false</default>
+                <label>System Integration</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+            <value>
+                <fullName>Business Process Review/Design</fullName>
+                <default>false</default>
+                <label>Business Process Review/Design</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

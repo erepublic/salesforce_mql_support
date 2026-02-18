@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Final_Cost__c</fullName>
+    <description># Cards Sent x $ Per Gift Card - Discount Amt</description>
+    <formula>IF(
+  OR(
+    ISPICKVAL( Gift_Card_Type__c , &quot;Funds Transfer&quot;),
+    ISPICKVAL( Gift_Card_Type__c , &quot;Carry Over&quot;)
+  ),
+  0,
+  Cards_Sent__c * Per_Gift_Card__c - Discount_Amt__c
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  ># Cards Sent x $ Per Gift Card - Discount Amt</inlineHelpText>
+    <label>Final Cost</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Topic__c</fullName>
+    <label>Topic</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Article Submissions</fullName>
+                <default>false</default>
+                <label>Article Submissions</label>
+            </value>
+            <value>
+                <fullName>Editorial</fullName>
+                <default>false</default>
+                <label>Editorial</label>
+            </value>
+            <value>
+                <fullName>Events</fullName>
+                <default>false</default>
+                <label>Events</label>
+            </value>
+            <value>
+                <fullName>Sales &amp; Advertising</fullName>
+                <default>false</default>
+                <label>Sales &amp; Advertising</label>
+            </value>
+            <value>
+                <fullName>Subscriptions</fullName>
+                <default>false</default>
+                <label>Subscriptions</label>
+            </value>
+            <value>
+                <fullName>Editorial and Article Submissions</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Editorial and Article Submissions</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Press Releases</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Press Releases</label>
+            </value>
+            <value>
+                <fullName>Website Bugs</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Website Bugs</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

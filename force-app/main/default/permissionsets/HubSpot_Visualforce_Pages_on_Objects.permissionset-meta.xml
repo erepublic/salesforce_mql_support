@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>HubSpot Visualforce Pages on Objects</label>
+    <pageAccesses>
+        <apexPage>HubSpot_Embed_Account_V2</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>HubSpot_Embed_Contact_V2</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>HubSpot_Embed_Lead_V2</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+    <pageAccesses>
+        <apexPage>HubSpot_Embed_Opportunity_V2</apexPage>
+        <enabled>true</enabled>
+    </pageAccesses>
+</PermissionSet>

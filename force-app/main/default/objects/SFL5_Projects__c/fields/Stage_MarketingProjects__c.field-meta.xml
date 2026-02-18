@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage_MarketingProjects__c</fullName>
+    <description
+  >These are the stages for Marketing Projects. They are used by marketers across e.Republic.</description>
+    <inlineHelpText
+  >These are the stages for Marketing Projects. They are used by marketers across e.Republic.</inlineHelpText>
+    <label>Stage</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>01 - Observation/Watching</fullName>
+                <default>true</default>
+                <label>01 - Observation/Watching</label>
+            </value>
+            <value>
+                <fullName>02 - Data Collection</fullName>
+                <default>false</default>
+                <label>02 - Data Collection</label>
+            </value>
+            <value>
+                <fullName>03 - Planning</fullName>
+                <default>false</default>
+                <label>03 - Planning</label>
+            </value>
+            <value>
+                <fullName>04 - Communication</fullName>
+                <default>false</default>
+                <label>04 - Communication</label>
+            </value>
+            <value>
+                <fullName>05 - Supervision</fullName>
+                <default>false</default>
+                <label>05 - Supervision</label>
+            </value>
+            <value>
+                <fullName>06 - Production</fullName>
+                <default>false</default>
+                <label>06 - Production</label>
+            </value>
+            <value>
+                <fullName>07 - QA/ Review</fullName>
+                <default>false</default>
+                <label>07 - QA/ Review</label>
+            </value>
+            <value>
+                <fullName>08 - Acceptance</fullName>
+                <default>false</default>
+                <label>08 - Acceptance</label>
+            </value>
+            <value>
+                <fullName>09 - Completed</fullName>
+                <default>false</default>
+                <label>09 - Completed</label>
+            </value>
+            <value>
+                <fullName>10 - Cancelled</fullName>
+                <default>false</default>
+                <label>10 - Cancelled</label>
+            </value>
+            <value>
+                <fullName>11 - On Hold</fullName>
+                <default>false</default>
+                <label>11 - On Hold</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

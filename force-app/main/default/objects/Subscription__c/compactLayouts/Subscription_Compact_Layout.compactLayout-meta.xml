@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Subscription_Compact_Layout</fullName>
+    <fields>Publication__c</fields>
+    <fields>Status__c</fields>
+    <fields>Qual_Date__c</fields>
+    <fields>BPA_Qual_Year__c</fields>
+    <fields>Version__c</fields>
+    <fields>RecordTypeId</fields>
+    <fields>Qual__c</fields>
+    <label>Subscription Compact Layout</label>
+</CompactLayout>

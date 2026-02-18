@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Covid_Status__c</fullName>
+    <description
+  >Temporary pick-list used to track event changes due to COVID-19</description>
+    <inlineHelpText
+  >Temporary pick-list used to track event changes due to COVID-19</inlineHelpText>
+    <label>Covid Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Event Start Cancelled</fullName>
+                <default>false</default>
+                <label>Event Start Cancelled</label>
+            </value>
+            <value>
+                <fullName>Moved to Virtual</fullName>
+                <default>false</default>
+                <label>Moved to Virtual</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

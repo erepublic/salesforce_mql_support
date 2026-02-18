@@ -1,0 +1,966 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>52.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <description
+    >Saves the ids of the file uploaded to a collection variable.</description>
+        <name>Save_File_Attachment_Ids</name>
+        <label>Save File Attachment Ids</label>
+        <locationX>828</locationX>
+        <locationY>641</locationY>
+        <assignmentItems>
+            <assignToReference>FileAttachmentIds</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Attachment.contentDocIds</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Is_File_Attached</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description
+    >Sets the Empty Collection Variable to [] in order to make is so that the &quot;Is File Attached?&quot; dialog will work.</description>
+        <name>Set_Empty_Collection_Variable</name>
+        <label>Set Empty Collection Variable</label>
+        <locationX>682</locationX>
+        <locationY>447</locationY>
+        <assignmentItems>
+            <assignToReference>EmptyCollectionVariable</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Attachment.contentDocIds</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Territory_Exception</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Check_Account_Ownership</name>
+        <label>Check Account Ownership</label>
+        <locationX>682</locationX>
+        <locationY>222</locationY>
+        <defaultConnector>
+            <targetReference
+      >Assign_Unnamed_or_Submit_Territory_Exception</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Un-Named Account</defaultConnectorLabel>
+        <rules>
+            <name>Named_Account</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >Get_Account.Sales_Team_Formula__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Marketing Owned</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >Get_Account.Sales_Team_Formula__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Acct Unassigned</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >Get_Account.Sales_Team_Formula__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Partnership</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Set_Empty_Collection_Variable</targetReference>
+            </connector>
+            <label>Named Account</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description
+    >Checks if the Alpha matches the Type, if the Revenue Category matches the team, and excludes Kelly Schieding as a free agent.</description>
+        <name>Check_Alpha_Territory</name>
+        <label>Check Alpha Territory</label>
+        <locationX>1383</locationX>
+        <locationY>379</locationY>
+        <defaultConnector>
+            <targetReference>Set_Empty_Collection_Variable</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Needs Territory Exception</defaultConnectorLabel>
+        <rules>
+            <name>Correct_Alpha</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >f_New_Account_Owner_Alpha</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference
+          >f_Account_Alpha_by_New_Owner_Type</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Revenue_Category</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference
+          >f_New_Owner_Sales_Team_Type</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >Get_New_Account_Owner_User_Record.Id</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>005a0000009wMXUAA2</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Update_Account_with_Territory_Exception</targetReference>
+            </connector>
+            <label>Correct Alpha, not Revenue</label>
+        </rules>
+        <rules>
+            <name>Correct_Alpha_Revenue_Category</name>
+            <conditionLogic>1 AND (2 OR 3)</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >f_New_Account_Owner_Alpha</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference
+          >f_Account_Alpha_by_New_Owner_Type</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Revenue_Category</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <elementReference
+          >f_New_Owner_Sales_Team_Type</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >Get_New_Account_Owner_User_Record.Id</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>005a0000009wMXUAA2</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Update_Account_Owner_No_Territory_Exception</targetReference>
+            </connector>
+            <label>Correct Alpha &amp; Revenue Category</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Check_User_Role</name>
+        <label>Check User Role</label>
+        <locationX>1264</locationX>
+        <locationY>221</locationY>
+        <defaultConnector>
+            <targetReference
+      >Oops_This_user_is_not_on_the_Sales_Team</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Non-Sales</defaultConnectorLabel>
+        <rules>
+            <name>Sales_Role</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >Get_New_Account_Owner_User_Record.UserRole.Name</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>Sales Team</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >Get_New_Account_Owner_User_Record.UserRole.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>VP Sales</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >Get_New_Account_Owner_User_Record.UserRole.Name</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Director of Growth Sales</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Check_Alpha_Territory</targetReference>
+            </connector>
+            <label>Sales Role</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description
+    >Checks to see if the user attached a file in the previous screen.</description>
+        <name>Is_File_Attached</name>
+        <label>Is File Attached?</label>
+        <locationX>945</locationX>
+        <locationY>792</locationY>
+        <defaultConnector>
+            <targetReference>You_Must_Attach_Email_Error</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>File Not Attached</defaultConnectorLabel>
+        <rules>
+            <name>File_Attached</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FileAttachmentIds</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference>EmptyCollectionVariable</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Ticket</targetReference>
+            </connector>
+            <label>File Attached</label>
+        </rules>
+    </decisions>
+    <description
+  >Flow accessed from a button on Accounts. Allows users to request an exception to account ownership territory policy. 
+1/8/26 (v20) - Added Sales Team 129 &amp; added Cristin Codding&apos;s territory. 
+9/25/25 - Removed Scott Hogg / Director of Growth Sales from &apos;Check Alpha Territory&apos; decision &amp; &apos;New Owner Sales Team Type&apos;. 
+6/24/25 - Added Stephanie Ciotola in place of Andrene during LOA, Kael Ramsey-Ackerson replaced Robert Grecco&apos;s territory, and Selena Wallace took over Scott Hogg&apos;s temporary territory. Updated &quot;Check User Role&quot; decision to correctly route for Scott Hogg. 
+3/24/25 - Updated for Scott Hogg, TBD for new Growth Rep territory 
+1/9/25 - Updated for new Alphas &amp; Teams.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Account_Alpha_by_New_Owner_Type</name>
+        <dataType>String</dataType>
+        <expression>CASE({!f_New_Owner_Sales_Team_Type}, 
+           &quot;Strategic&quot;, &quot;|&quot; &amp; {!Get_Account.Territory_Strategic__c} &amp; &quot;|&quot;, 
+           &quot;Growth&quot;,  &quot;|&quot; &amp; {!Get_Account.Territory_Growth__c} &amp; &quot;|&quot;,
+&quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_New_Account_Owner_Alpha</name>
+        <dataType>String</dataType>
+        <expression>CASE({!Get_New_Account_Owner_User_Record.Id}, 
+          &quot;00530000003LlbxAAC&quot;, &quot;|# - At|&quot;, /* ---Arlene Boeger--- */
+          &quot;005a0000009uBIUAA2&quot;, &quot;|Au - Cf|&quot;, /* ---Carmen Besirevic--- */
+          &quot;00514000009tHIBAA2&quot;, &quot;|Cg - Cz|&quot;, /* ---Karen Hardison--- */
+          &quot;00530000001nvSHAAY&quot;, &quot;|D - Er|&quot;, /* ---Lara Roebbelen--- */
+          &quot;0051400000BhsfwAAB&quot;, &quot;|Es - Gn|&quot;, /* ---Lynn Gallagher--- */
+          &quot;0051400000BzzsFAAR&quot;, &quot;|Go - Ic|&quot;, /* ---Rebecca Regrut--- */
+          &quot;005Jw00000g9vTVIAY&quot;, &quot;|Id - Ln|&quot;, /* ---Stephanie Ciotola--- */ 
+          &quot;0055Y00000G6staQAB&quot;, &quot;|Id - Ln|&quot;, /* ---Andrene Potts-Dierkes--- */ 
+          &quot;0055Y00000G6stzQAB&quot;, &quot;|Lo - Nh|&quot;, /* ---Charles Hughes--- */
+          &quot;0055Y00000G5w2wQAB&quot;, &quot;|Ni - Pk|&quot;, /* ---Katie Dunlap--- */
+          &quot;0055Y00000IQe2ZQAT&quot;, &quot;|Pl - R|&quot;, /* ---Kelly Jaquish--- */
+          &quot;0055Y00000HOZK6QAP&quot;, &quot;|Sa - So|&quot;, /* ---Mia Gilmore--- */
+          &quot;0051O000009Qov0QAC&quot;, &quot;|U - Z|&quot;, /* ---Lisa Blackie--- */
+          &quot;0051O00000D5vWuQAJ&quot;, &quot;|# - Ce|, |T - Un|&quot;, /* ---Dana Kansa--- */
+          &quot;0055Y00000HOnV4QAL&quot;, &quot;|Uo - Z|&quot;, /* ---Cristin Codding--- */
+          &quot;005Jw00000h6fCbIAI&quot;, &quot;|Cf - Fi|&quot;,  /* ---Selena Wallace  --- */
+          &quot;0051O000009R33IQAS&quot;, &quot;|Fj - H|, |N - P|, |Q - R|&quot;, /* ---Katrina Wheeler--- */
+          &quot;0055Y00000HPAI8QAP&quot;, &quot;|I - M|&quot;, /* ---Michelle Nasab--- */
+          &quot;005Jw00000gcF5tIAE&quot;, &quot;|S|&quot;, /* ---Kael Ramsey-Ackerson--- */
+          &quot;0055Y00000HOpHnQAL&quot;, &quot;|Sp - T|&quot;,/* ---Christopher Burress--- */  
+          &quot;005a0000009wMXUAA2&quot;, /* ---Kelly Schieding--- */  
+&quot;|# - At|, |Au - Cf|, |Au - Cf|, |D - Er|, |Es - Gn|, |Go - Ic|, |Id - Ln|, |Lo - Nh|, |Ni - Pk|, |Pl - R|, |Sa - So|, |Sp - T|, |U - Z|, |# - Ce|, |Cf - Fi|, |Fj - H|, |I - M|, |N - P|, |Q - R|, |S|, |T - Un|, |Uo - Z|&quot;,
+          &quot;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_New_Owner_Sales_Team_Type</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(CONTAINS({!Get_New_Account_Owner_User_Record.UserRole.Name},&quot;Sales Team 114&quot;), &quot;Strategic&quot;, 
+IF(CONTAINS({!Get_New_Account_Owner_User_Record.UserRole.Name},&quot;Sales Team 116&quot;), &quot;Strategic&quot;, 
+IF(CONTAINS({!Get_New_Account_Owner_User_Record.UserRole.Name},&quot;Sales Team 117&quot;), &quot;Strategic&quot;, 
+IF(CONTAINS({!Get_New_Account_Owner_User_Record.UserRole.Name},&quot;Sales Team 118&quot;), &quot;Strategic&quot;, 
+IF(AND(CONTAINS({!Get_New_Account_Owner_User_Record.UserRole.Name},&quot;VP Sales&quot;), 
+             NOT(CONTAINS({!Get_New_Account_Owner_User_Record.UserRole.Name},&quot;SVP&quot;))), &quot;Strategic&quot;, 
+IF(CONTAINS({!Get_New_Account_Owner_User_Record.UserRole.Name},&quot;Sales Team 127&quot;), &quot;Growth&quot;, 
+IF(CONTAINS({!Get_New_Account_Owner_User_Record.UserRole.Name},&quot;Sales Team 128&quot;), &quot;Growth&quot;, 
+IF(CONTAINS({!Get_New_Account_Owner_User_Record.UserRole.Name},&quot;Sales Team 129&quot;), &quot;Growth&quot;, 
+&quot;&quot;
+))))))))</expression>
+    </formulas>
+    <formulas>
+        <name>f_Revenue_Category</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(OR({!Get_Account.Revenue_Category__c}=&quot;Unknown&quot;,{!Get_Account.Revenue_Category__c}=&quot;Under $50M&quot;), &quot;Growth&quot;, &quot;Strategic&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Territory_Exception_Note</name>
+        <dataType>String</dataType>
+        <expression
+    >IF({!Get_Account.Territory_Exception_Notes__c}=&quot;&quot;, 
+TEXT(MONTH({!$Flow.CurrentDate})) &amp; &quot;/&quot; &amp; 
+TEXT(DAY({!$Flow.CurrentDate})) &amp; &quot;/&quot; &amp; 
+TEXT(YEAR({!$Flow.CurrentDate})) &amp; &quot; &quot; &amp;
+UPPER(LEFT({!$User.Alias},2)) &amp; &quot;:  Un-named account assigned with blanket revenue approval.&quot;, 
+
+TEXT(MONTH({!$Flow.CurrentDate})) &amp; &quot;/&quot; &amp; 
+TEXT(DAY({!$Flow.CurrentDate})) &amp; &quot;/&quot; &amp; 
+TEXT(YEAR({!$Flow.CurrentDate})) &amp; &quot; &quot; &amp;
+UPPER(LEFT({!$User.Alias},2)) &amp; &quot;:  Un-named account assigned with blanket revenue approval.&quot; &amp; BR() &amp; {!Get_Account.Territory_Exception_Notes__c})</expression>
+    </formulas>
+    <interviewLabel
+  >Account - Territory Exception {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Account - Territory Exception</label>
+    <loops>
+        <name>File_Attachment_Loop</name>
+        <label>File Attachment Loop</label>
+        <locationX>600</locationX>
+        <locationY>919</locationY>
+        <collectionReference>FileAttachmentIds</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference>Create_CDL</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference>Thank_you_screen</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>FREE_FORM_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordCreates>
+        <description
+    >Creates a Content Document Link record for the file attachment (AKA &quot;attaches&quot; it to the ticket that we just created.)</description>
+        <name>Create_CDL</name>
+        <label>Create CDL</label>
+        <locationX>771</locationX>
+        <locationY>920</locationY>
+        <connector>
+            <targetReference>File_Attachment_Loop</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>ContentDocumentId</field>
+            <value>
+                <elementReference>File_Attachment_Loop</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>LinkedEntityId</field>
+            <value>
+                <elementReference>Ticket</elementReference>
+            </value>
+        </inputAssignments>
+        <object>ContentDocumentLink</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordCreates>
+        <description
+    >Creates a new ticket for the approval email to be attached to.</description>
+        <name>Ticket</name>
+        <label>Ticket</label>
+        <locationX>465</locationX>
+        <locationY>795</locationY>
+        <connector>
+            <targetReference>File_Attachment_Loop</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Account__c</field>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description__c</field>
+            <value>
+                <stringValue
+        >&lt;b&gt;Account Name:&lt;/b&gt; {!Get_Account.Name}&lt;BR&gt;&lt;b&gt;New Owner Requested:&lt;/b&gt; {!New_Owner_Name}&lt;BR&gt;&lt;b&gt;Notes: &lt;/b&gt;{!Notes}</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <stringValue>0125Y000001wU8LQAU</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Requested_By__c</field>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Title__c</field>
+            <value>
+                <stringValue
+        >Territory Exception: {!Get_Account.Name}</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Type__c</field>
+            <value>
+                <stringValue>Territory Exception</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Ticket__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordLookups>
+        <description
+    >This step gets the record of the account that the user clicks into this flow from.</description>
+        <name>Get_Account</name>
+        <label>Get Account</label>
+        <locationX>499</locationX>
+        <locationY>220</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_Account_Ownership</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Account</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordLookups>
+        <name>Get_New_Account_Owner_User_Record</name>
+        <label>Get New Account Owner User Record</label>
+        <locationX>1075</locationX>
+        <locationY>219</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Check_User_Role</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference
+        >Screen_New_Account_Owner.recordId</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <recordUpdates>
+        <name>Update_Account_Owner_No_Territory_Exception</name>
+        <label>Update Account Owner - No Territory Exception</label>
+        <locationX>1392</locationX>
+        <locationY>589</locationY>
+        <connector>
+            <targetReference>Success_Screen_Account_Assigned_0</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference
+        >Screen_New_Account_Owner.recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Account_with_Territory_Exception</name>
+        <label>Update Account with Territory Exception</label>
+        <locationX>1608</locationX>
+        <locationY>369</locationY>
+        <connector>
+            <targetReference>Success_Screen_Account_Assigned</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>recordId</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>OwnerId</field>
+            <value>
+                <elementReference
+        >Screen_New_Account_Owner.recordId</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Territory_Exception_Notes__c</field>
+            <value>
+                <elementReference>f_Territory_Exception_Note</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Territory_Exception__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Account</object>
+    </recordUpdates>
+    <runInMode>SystemModeWithoutSharing</runInMode>
+    <screens>
+        <name>Assign_Unnamed_or_Submit_Territory_Exception</name>
+        <label>Assign Unnamed or Submit Territory Exception</label>
+        <locationX>906</locationX>
+        <locationY>219</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Get_New_Account_Owner_User_Record</targetReference>
+        </connector>
+        <fields>
+            <name>Display_Text_Choose_Route</name>
+            <fieldText
+      >&lt;p&gt;&lt;span style=&quot;font-size: 14px; color: rgb(79, 79, 79);&quot;&gt;Great news! Strategic and Growth reps can own &lt;/span&gt;&lt;strong style=&quot;font-size: 14px; color: rgb(79, 79, 79);&quot;&gt;{!Get_Account.Name}&lt;/strong&gt;&lt;span style=&quot;font-size: 14px; color: rgb(79, 79, 79);&quot;&gt; regardless of the revenue amount, as long as it is in their alpha.&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;color: rgb(79, 79, 79); background-color: rgb(255, 255, 255); font-size: 14px;&quot;&gt;Select the &lt;/span&gt;&lt;strong style=&quot;color: rgb(79, 79, 79); background-color: rgb(255, 255, 255); font-size: 14px;&quot;&gt;New Account Owner&lt;/strong&gt;&lt;span style=&quot;color: rgb(79, 79, 79); background-color: rgb(255, 255, 255); font-size: 14px;&quot;&gt; to assign to the account. &lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Assign_Unnamed_or_Submit_Territory_Exception_Section1</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name
+        >Assign_Unnamed_or_Submit_Territory_Exception_Section1_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>Screen_New_Account_Owner</name>
+                    <extensionName>flowruntime:lookup</extensionName>
+                    <fieldType>ComponentInstance</fieldType>
+                    <inputParameters>
+                        <name>fieldApiName</name>
+                        <value>
+                            <stringValue>OwnerId</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>label</name>
+                        <value>
+                            <stringValue>New Account Owner</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>objectApiName</name>
+                        <value>
+                            <stringValue>Account</stringValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>maxValues</name>
+                        <value>
+                            <numberValue>1.0</numberValue>
+                        </value>
+                    </inputParameters>
+                    <inputParameters>
+                        <name>required</name>
+                        <value>
+                            <booleanValue>true</booleanValue>
+                        </value>
+                    </inputParameters>
+                    <inputsOnNextNavToAssocScrn
+          >UseStoredValues</inputsOnNextNavToAssocScrn>
+                    <isRequired>true</isRequired>
+                    <storeOutputAutomatically>true</storeOutputAutomatically>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Territory_Information</name>
+            <fieldText>Territory Information</fieldText>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Territory_Information_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>Display_Text_Strategic</name>
+                    <fieldText
+          >&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;color: rgb(79, 79, 79); font-size: 14px;&quot;&gt;Account Name&lt;/strong&gt;&lt;span style=&quot;color: rgb(79, 79, 79); font-size: 14px;&quot;&gt;: {!Get_Account.Name}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;color: rgb(79, 79, 79); font-size: 14px;&quot;&gt;Revenue Category&lt;/strong&gt;&lt;span style=&quot;color: rgb(79, 79, 79); font-size: 14px;&quot;&gt;: {!Get_Account.Revenue_Category__c}&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 14px; color: rgb(79, 79, 79);&quot;&gt;Strategic Territory Owner&lt;/strong&gt;&lt;span style=&quot;font-size: 14px; color: rgb(79, 79, 79);&quot;&gt;: {!Get_Account.Territory_Owner_Strategic__c} ({!Get_Account.Territory_Strategic__c})&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;strong style=&quot;font-size: 14px; color: rgb(79, 79, 79); background-color: rgb(255, 255, 255);&quot;&gt;Growth Territory Owner&lt;/strong&gt;&lt;span style=&quot;font-size: 14px; color: rgb(79, 79, 79); background-color: rgb(255, 255, 255);&quot;&gt;: {!Get_Account.Territory_Owner_Growth__c} ({!Get_Account.Territory_Growth__c})&lt;/span&gt;&lt;/p&gt;</fieldText>
+                    <fieldType>DisplayText</fieldType>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Oops_This_user_is_not_on_the_Sales_Team</name>
+        <label>Oops - This user is not on the Sales Team</label>
+        <locationX>1531</locationX>
+        <locationY>134</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>false</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Display_Text_Not_Sales_Team</name>
+            <fieldText
+      >&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;color: rgb(234, 0, 0); font-size: 16px;&quot;&gt;Oops! The selected user is not on the Sales Team.&lt;/span&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;br&gt;&lt;/p&gt;&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;color: rgb(234, 0, 0); font-size: 16px;&quot;&gt;Please go back and select a Sales Rep to own the Account.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Success_Screen_Account_Assigned</name>
+        <label>Success Screen - Account Assigned</label>
+        <locationX>1760</locationX>
+        <locationY>369</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Display_Text_Success_Screen</name>
+            <fieldText
+      >&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;color: rgb(0, 189, 13); font-size: 14px;&quot;&gt;Success! The account has been reassigned to &lt;/span&gt;&lt;strong style=&quot;color: rgb(0, 189, 13); font-size: 14px;&quot;&gt;{!Get_New_Account_Owner_User_Record.FirstName} {!Get_New_Account_Owner_User_Record.LastName} &lt;/strong&gt;&lt;span style=&quot;color: rgb(0, 189, 13); font-size: 14px;&quot;&gt;with a territory exception.&lt;/span&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Success_Screen_Account_Assigned_0</name>
+        <label>Success Screen - Account Assigned</label>
+        <locationX>1604</locationX>
+        <locationY>589</locationY>
+        <allowBack>false</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <fields>
+            <name>Display_Text_Success_Screen_0</name>
+            <fieldText
+      >&lt;p style=&quot;text-align: center;&quot;&gt;&lt;span style=&quot;font-size: 14px; color: rgb(0, 189, 13);&quot;&gt;Success! The account has been reassigned to &lt;/span&gt;&lt;strong style=&quot;font-size: 14px; color: rgb(0, 189, 13);&quot;&gt;{!Get_New_Account_Owner_User_Record.FirstName} {!Get_New_Account_Owner_User_Record.LastName}.&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <screens>
+        <name>Territory_Exception</name>
+        <label>Territory Exception</label>
+        <locationX>682</locationX>
+        <locationY>641</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <connector>
+            <targetReference>Save_File_Attachment_Ids</targetReference>
+        </connector>
+        <fields>
+            <name>Display_Text_Territory_Exception_Required</name>
+            <fieldText
+      >&lt;p style=&quot;text-align: center;&quot;&gt;&lt;strong style=&quot;font-size: 14px;&quot;&gt;Territory Exception Required&lt;/strong&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>Named_Account</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <booleanValue>false</booleanValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Instructions</name>
+            <fieldText
+      >&lt;p&gt;&lt;b style=&quot;font-size: 11pt; font-family: Calibri; color: rgb(237, 125, 49);&quot;&gt;1. Email Kim Frame with:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: Arial; font-size: 11pt;&quot;&gt;• &lt;/span&gt;&lt;span style=&quot;font-family: Calibri; font-size: 11pt; color: rgb(64, 64, 64);&quot;&gt;Why &lt;/span&gt;a territory exception should be granted&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: Arial; font-size: 11pt;&quot;&gt;• &lt;/span&gt;&lt;span style=&quot;font-family: Calibri; font-size: 11pt; color: rgb(64, 64, 64);&quot;&gt;Who currently owns the account&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: Arial; font-size: 11pt;&quot;&gt;• &lt;/span&gt;&lt;span style=&quot;font-family: Calibri; font-size: 11pt; color: rgb(64, 64, 64);&quot;&gt;When was the last written opp&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: Arial; font-size: 11pt;&quot;&gt;• &lt;/span&gt;&lt;span style=&quot;font-family: Calibri; font-size: 11pt; color: rgb(64, 64, 64);&quot;&gt;Are there any open opps&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: Arial; font-size: 11pt;&quot;&gt;• &lt;/span&gt;&lt;span style=&quot;font-family: Calibri; font-size: 11pt; color: rgb(64, 64, 64);&quot;&gt;When was the last activity on the account&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;font-family: Arial; font-size: 11pt; color: rgb(62, 62, 60); background-color: rgb(255, 255, 255);&quot;&gt;• &lt;/span&gt;The account’s annual revenue (Check “Revenue (USD)” field in the Territory Assignment Section. If blank or outdated check ZI or email Gosia to verify for you.)&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;b style=&quot;font-size: 11pt; font-family: Calibri; color: rgb(237, 125, 49);&quot;&gt;2. Attach Kim’s approval email below:&lt;/b&gt;&lt;/p&gt;&lt;p&gt;The account will be tagged as an exception in salesforce and the account ownership will be updated. Without an approval attached your request will be kicked back.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Attachment</name>
+            <extensionName>forceContent:fileUpload</extensionName>
+            <fieldType>ComponentInstance</fieldType>
+            <inputParameters>
+                <name>label</name>
+                <value>
+                    <stringValue
+          >Upload Email Approval (.msg format)</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>accept</name>
+                <value>
+                    <stringValue>.msg</stringValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>multiple</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </inputParameters>
+            <inputParameters>
+                <name>contentDocIds</name>
+                <value>
+                    <elementReference>FileAttachmentIds</elementReference>
+                </value>
+            </inputParameters>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <storeOutputAutomatically>true</storeOutputAutomatically>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>New_Owner_Name</name>
+            <dataType>String</dataType>
+            <fieldText>Approved Account Owner:</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Notes</name>
+            <dataType>String</dataType>
+            <fieldText>Notes:</fieldText>
+            <fieldType>InputField</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>Thank_you_screen</name>
+        <label>Thank_you_screen</label>
+        <locationX>374</locationX>
+        <locationY>1019</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Thank_you</name>
+            <fieldText
+      >&lt;p&gt;&lt;b&gt;Thank you&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;A ticket has been created to update the account ownership.&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://erepublic.lightning.force.com/{!Ticket}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot;&gt;View Ticket&lt;/a&gt;&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>false</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <screens>
+        <name>You_Must_Attach_Email_Error</name>
+        <label>You_Must_Attach_Email_Error</label>
+        <locationX>1178</locationX>
+        <locationY>793</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>true</allowPause>
+        <fields>
+            <name>Error_Message</name>
+            <fieldText
+      >&lt;p&gt;&lt;b&gt;ERROR: You must attach an approval email (.msg format) to continue.&lt;/b&gt;&lt;/p&gt;&lt;p&gt;&lt;br&gt;&lt;/p&gt;&lt;p&gt;Click &lt;b&gt;Previous &lt;/b&gt;to go back or &lt;b&gt;Finish &lt;/b&gt;to close this window without submitting your request.&lt;/p&gt;</fieldText>
+            <fieldType>DisplayText</fieldType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>false</showHeader>
+    </screens>
+    <start>
+        <locationX>372</locationX>
+        <locationY>50</locationY>
+        <connector>
+            <targetReference>Get_Account</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <variables>
+        <description
+    >This is just a collection variable that I am going to assign no records to because it&apos;s the only way I could figure out how to make the &quot;Is File Attached?&quot; Decision Element work.</description>
+        <name>EmptyCollectionVariable</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description
+    >This is a collection containing the ids of all the files uploaded on the first screen.  I&apos;m only allowing one file to be attached and it must be .msg format.</description>
+        <name>FileAttachmentIds</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <description
+    >This is the record id for the account record that you click into the flow from.</description>
+        <name>recordId</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+    </variables>
+</Flow>

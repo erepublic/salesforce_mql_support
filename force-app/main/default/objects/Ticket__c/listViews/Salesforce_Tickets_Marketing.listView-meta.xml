@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Salesforce_Tickets_Marketing</fullName>
+    <booleanFilter>1 AND 2</booleanFilter>
+    <columns>OWNER.FIRST_NAME</columns>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>Type__c</columns>
+    <columns>Phase__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Salesforce</value>
+    </filters>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value>Marketing Cycle,Marketing Chatter Group,Buffer Queue</value>
+    </filters>
+    <label>Salesforce Tickets - Marketing Queue</label>
+</ListView>

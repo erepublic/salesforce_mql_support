@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Salesforce_Admin_Project_Tracker_JV</fullName>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Assignee__c</columns>
+    <columns>Department__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>ETA_Closed_Date__c</columns>
+    <columns>Phase__c</columns>
+    <columns>Working_Date__c</columns>
+    <columns>Most_Recent_Note__c</columns>
+    <columns>Project_Tracker__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Salesforce</value>
+    </filters>
+    <filters>
+        <field>Project_Tracker__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Assignee__c</field>
+        <operation>equals</operation>
+        <value>Jennifer Valdez</value>
+    </filters>
+    <label>Salesforce Admin - Project Tracker JV</label>
+</ListView>

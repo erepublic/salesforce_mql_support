@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CC_Exp_Date_Format</fullName>
+    <active>false</active>
+    <description>CC Exp Date must be formatted MM/YY</description>
+    <errorConditionFormula>NOT(ISBLANK( CC_Exp_Date__c ))
+
+/* Figure this out later.
+
+Need format to be: MM/YY where MM can only be 01-12
+
+*/</errorConditionFormula>
+    <errorDisplayField>CC_Exp_Date__c</errorDisplayField>
+    <errorMessage>Must format date as MM/YY</errorMessage>
+</ValidationRule>

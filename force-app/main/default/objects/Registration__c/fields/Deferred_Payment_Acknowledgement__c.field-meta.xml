@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deferred_Payment_Acknowledgement__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >The user was presented with a &quot;I acknowledge that a payment is required and I will be billed later&quot; and checked it.</description>
+    <label>Deferred Payment Acknowledgement</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

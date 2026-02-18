@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Marketing_Papers</fullName>
+    <columns>NAME</columns>
+    <columns>Asset_Title__c</columns>
+    <columns>Date_Up__c</columns>
+    <columns>Contract_End_Date__c</columns>
+    <columns>Total_Downloads__c</columns>
+    <columns>Qualified_Leads__c</columns>
+    <columns>Lead_Guarantee__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Asset_Type__c</field>
+        <operation>equals</operation>
+        <value>Marketing Content</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Active,Completed</value>
+    </filters>
+    <label>Marketing Papers</label>
+</ListView>

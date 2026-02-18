@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Custom_Events</fullName>
+    <columns>NAME</columns>
+    <columns>Event_Type__c</columns>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Powerpoint_Job_Order_Due__c</columns>
+    <columns>Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Events__c.Standard_Event</value>
+    </filters>
+    <filters>
+        <field>Event_Type__c</field>
+        <operation>equals</operation>
+        <value>Custom_Event</value>
+    </filters>
+    <filters>
+        <field>Event_Start_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2023</value>
+    </filters>
+    <filters>
+        <field>Event_Start_Date__c</field>
+        <operation>lessOrEqual</operation>
+        <value>12/31/2023</value>
+    </filters>
+    <label>Custom Events - 2023</label>
+</ListView>

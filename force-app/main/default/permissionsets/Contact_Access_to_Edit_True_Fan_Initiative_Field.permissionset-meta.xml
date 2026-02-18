@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <hasActivationRequired>false</hasActivationRequired>
+    <label
+  >Contact - Access to Edit &quot;True Fan Initiative&quot; Field</label>
+</PermissionSet>

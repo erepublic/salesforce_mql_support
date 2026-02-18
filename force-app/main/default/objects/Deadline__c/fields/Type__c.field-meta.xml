@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <label>Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Custom_Media__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Call for Nominations End</fullName>
+                <default>false</default>
+                <label>Call for Nominations End</label>
+            </value>
+            <value>
+                <fullName>Call for Nominations Start</fullName>
+                <default>false</default>
+                <label>Call for Nominations Start</label>
+            </value>
+            <value>
+                <fullName>Complete Draft from Writer</fullName>
+                <default>false</default>
+                <label>Complete Draft from Writer</label>
+            </value>
+            <value>
+                <fullName
+        >Deliver Survey Results Internally and to Writer</fullName>
+                <default>false</default>
+                <label>Deliver Survey Results Internally and to Writer</label>
+            </value>
+            <value>
+                <fullName>Editorial Briefings End</fullName>
+                <default>false</default>
+                <label>Editorial Briefings End</label>
+            </value>
+            <value>
+                <fullName>Feedback on designed proof due</fullName>
+                <default>false</default>
+                <label>Feedback on designed proof due</label>
+            </value>
+            <value>
+                <fullName>Feedback on draft due</fullName>
+                <default>false</default>
+                <label>Feedback on draft due</label>
+            </value>
+            <value>
+                <fullName>Feedback on outline due</fullName>
+                <default>false</default>
+                <label>Feedback on outline due</label>
+            </value>
+            <value>
+                <fullName>Final PDF</fullName>
+                <default>false</default>
+                <label>Final PDF</label>
+            </value>
+            <value>
+                <fullName>Final PDF/To Printer</fullName>
+                <default>false</default>
+                <label>Final PDF/To Printer</label>
+            </value>
+            <value>
+                <fullName>Final Sales Deadline</fullName>
+                <default>false</default>
+                <label>Final Sales Deadline</label>
+            </value>
+            <value>
+                <fullName>Hard Copy Drop Date</fullName>
+                <default>false</default>
+                <label>Hard Copy Drop Date</label>
+            </value>
+            <value>
+                <fullName>Last Day to Come in with Logo</fullName>
+                <default>false</default>
+                <label>Last Day to Come in with Logo</label>
+            </value>
+            <value>
+                <fullName
+        >Last day to Provide Materials for Solution Spotlight</fullName>
+                <default>false</default>
+                <label
+        >Last day to Provide Materials for Solution Spotlight</label>
+            </value>
+            <value>
+                <fullName>Last day to Submit Completed ad</fullName>
+                <default>false</default>
+                <label>Last day to Submit Completed ad</label>
+            </value>
+            <value>
+                <fullName>Launch Survey</fullName>
+                <default>false</default>
+                <label>Launch Survey</label>
+            </value>
+            <value>
+                <fullName>Outline</fullName>
+                <default>false</default>
+                <label>Outline</label>
+            </value>
+            <value>
+                <fullName>Outline from writer</fullName>
+                <default>false</default>
+                <label>Outline from writer</label>
+            </value>
+            <value>
+                <fullName>Public Sector Interviews End</fullName>
+                <default>false</default>
+                <label>Public Sector Interviews End</label>
+            </value>
+            <value>
+                <fullName>Report to Design</fullName>
+                <default>false</default>
+                <label>Report to Design</label>
+            </value>
+            <value>
+                <fullName>Sales Kick-off</fullName>
+                <default>false</default>
+                <label>Sales Kick-off</label>
+            </value>
+            <value>
+                <fullName>Send designed proof to client</fullName>
+                <default>false</default>
+                <label>Send designed proof to client</label>
+            </value>
+            <value>
+                <fullName>Send draft to client</fullName>
+                <default>false</default>
+                <label>Send draft to client</label>
+            </value>
+            <value>
+                <fullName>Send outline to client</fullName>
+                <default>false</default>
+                <label>Send outline to client</label>
+            </value>
+            <value>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+                <label>Webinar</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <valueName>Call for Nominations End</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <valueName>Call for Nominations Start</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>General</controllingFieldValue>
+            <valueName>Complete Draft from Writer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <valueName
+      >Deliver Survey Results Internally and to Writer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <valueName>Editorial Briefings End</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <valueName>Final PDF/To Printer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <valueName>Final Sales Deadline</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <valueName>Hard Copy Drop Date</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <valueName>Last Day to Come in with Logo</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <valueName
+      >Last day to Provide Materials for Solution Spotlight</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <valueName>Last day to Submit Completed ad</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <valueName>Launch Survey</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <valueName>Outline</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>General</controllingFieldValue>
+            <valueName>Public Sector Interviews End</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <controllingFieldValue>General</controllingFieldValue>
+            <valueName>Report to Design</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <valueName>Sales Kick-off</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Special Report</controllingFieldValue>
+            <valueName>Webinar</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>General</controllingFieldValue>
+            <valueName>Feedback on designed proof due</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>General</controllingFieldValue>
+            <valueName>Feedback on draft due</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>General</controllingFieldValue>
+            <valueName>Feedback on outline due</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>General</controllingFieldValue>
+            <valueName>Final PDF</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>General</controllingFieldValue>
+            <valueName>Outline from writer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>General</controllingFieldValue>
+            <valueName>Send designed proof to client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>General</controllingFieldValue>
+            <valueName>Send draft to client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>General</controllingFieldValue>
+            <valueName>Send outline to client</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

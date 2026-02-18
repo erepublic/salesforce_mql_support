@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Control__c</fullName>
+    <description
+  >Displays the control number for the group this statement is a part of.</description>
+    <externalId>false</externalId>
+    <formula>TEXT(Amex_Statement__r.Control__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Displays the control number for the group this statement is a part of.</inlineHelpText>
+    <label>Control</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

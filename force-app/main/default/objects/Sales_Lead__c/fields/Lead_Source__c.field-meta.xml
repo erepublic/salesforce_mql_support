@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Source__c</fullName>
+    <description
+  >Displays the source of the MQL record as having passed an activity threshold, or done an action that bypasses that threshold (trap).</description>
+    <inlineHelpText
+  >Displays the source of the MQL record as having passed an activity threshold, or done an action that bypasses that threshold (trap).</inlineHelpText>
+    <label>Lead Source</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>MQL Threshold</fullName>
+                <default>false</default>
+                <label>MQL Threshold</label>
+            </value>
+            <value>
+                <fullName>Trap</fullName>
+                <default>false</default>
+                <label>Trap</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

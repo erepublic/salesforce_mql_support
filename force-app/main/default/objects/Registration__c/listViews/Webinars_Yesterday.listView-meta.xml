@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Webinars_Yesterday</fullName>
+    <columns>NAME</columns>
+    <columns>Registrant_Name__c</columns>
+    <columns>Registrant_Title__c</columns>
+    <columns>Reg_Company_Name__c</columns>
+    <columns>Department__c</columns>
+    <columns>Reg_Type__c</columns>
+    <columns>Non_Qual__c</columns>
+    <columns>Promo_Code__c</columns>
+    <columns>Event_No_Show__c</columns>
+    <columns>Reg_Date__c</columns>
+    <columns>Finance_Batch__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Reg_Date__c</field>
+        <operation>equals</operation>
+        <value>7/29/2015</value>
+    </filters>
+    <filters>
+        <field>Event__c</field>
+        <operation>contains</operation>
+        <value>webinar</value>
+    </filters>
+    <label>Webinars Yesterday</label>
+</ListView>

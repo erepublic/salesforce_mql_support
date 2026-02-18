@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exclude_Datasheet__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >If this field is checked, datasheets will not appear on the Events Portal or Fire Packet.</description>
+    <inlineHelpText
+  >If this field is checked, datasheets will not appear on the Events Portal or Fire Packet.</inlineHelpText>
+    <label>Exclude Datasheet</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

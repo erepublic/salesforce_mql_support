@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Date_and_Name_Link__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(RecordTypeId,
+&quot;01214000000AX7T&quot;,LPAD(TEXT(MONTH(Date_of_Event__c )), 2,&quot;0&quot;)&amp;&quot;-&quot;&amp; 
+LPAD(TEXT(DAY(Date_of_Event__c)), 2,&quot;0&quot;)&amp;&quot; &quot;&amp;HYPERLINK(&quot;/&quot;&amp;Event_Name__r.Id , Event_Name__r.Name),
+&quot;01214000000AX7O&quot;,LPAD(TEXT(MONTH(Date_of_Event__c )), 2,&quot;0&quot;)&amp;&quot;-&quot;&amp; 
+LPAD(TEXT(DAY(Date_of_Event__c)), 2,&quot;0&quot;)&amp;&quot; &quot;&amp;HYPERLINK(&quot;/&quot;&amp;Partner_Event__r.Id, Partner_Event__r.Name),
+NULL
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Date and Name Link</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

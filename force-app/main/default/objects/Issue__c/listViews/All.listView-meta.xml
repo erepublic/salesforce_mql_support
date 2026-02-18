@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Max_QTY__c</columns>
+    <columns>Bonus_Distribution_QTY__c</columns>
+    <columns>Balance_Print_QTY__c</columns>
+    <columns>Bonus_Distribution_Requests__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value>Content Studio</value>
+    </filters>
+    <filters>
+        <field>Year__c</field>
+        <operation>equals</operation>
+        <value>2017</value>
+    </filters>
+    <label>Content Studio - 2017</label>
+</ListView>

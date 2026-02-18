@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TW_Logo_Received__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Indicates that the member logo was received for the TW Insider membership.</description>
+    <inlineHelpText
+  >Indicates that the member logo was received for the TW Insider membership.</inlineHelpText>
+    <label>TW Logo Received</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Prevent_Uncheck_Registration_Closed</fullName>
+    <active>true</active>
+    <description
+  >Registration Closed cannot be unchecked. User must submit a request to salesforce@erepublic.com to deactivate VR if registration needs to be reopened. This is also currently utilized for DEV QC on system sync overriding this field.</description>
+    <errorConditionFormula>AND(
+  ISCHANGED(Registration_Closed__c),
+  PRIORVALUE(Registration_Closed__c) = TRUE,
+  NOT(Registration_Closed__c)
+)</errorConditionFormula>
+    <errorDisplayField>Registration_Closed__c</errorDisplayField>
+    <errorMessage
+  >Registration Closed cannot be unchecked. Submit a request to salesforce@erepublic.com if registration needs to be reopened.</errorMessage>
+</ValidationRule>

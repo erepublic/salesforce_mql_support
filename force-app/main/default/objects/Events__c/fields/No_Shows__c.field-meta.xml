@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Shows__c</fullName>
+    <description
+  >This is the number of people who registered, but did not attend.  This includes both cancellations, and people who just didn&apos;t show up. This does not include Sponsors, Press or Staff.</description>
+    <inlineHelpText
+  >This is the number of people who registered, but did not attend.  This includes both cancellations, and people who just didn&apos;t show up. This does not include Sponsors, Press or Staff.</inlineHelpText>
+    <label>No Shows / Cancellations Roll-Up Summary</label>
+    <summaryFilterItems>
+        <field>Registration__c.Event_No_Show__c</field>
+        <operation>equals</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Registration__c.Reg_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Sponsor, Press, Staff</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Registration__c.Event__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

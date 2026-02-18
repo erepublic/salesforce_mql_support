@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Warning__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >&quot;You are about to send out email notices to the Amex users with outstanding reports for this control group.&quot;&amp;BR()&amp;BR()&amp;  &quot;Click &apos;Save&apos; to send the emails.&quot;</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Warning</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

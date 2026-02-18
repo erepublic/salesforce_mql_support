@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Category__c</fullName>
+    <description
+  >Categories that group events together based on size, pricing and/or deliverables. Used for event contract &amp; material management. Select all options that apply.</description>
+    <inlineHelpText
+  >Categories that group events together based on size, pricing and/or deliverables. Used for event contract &amp; material management. Select all options that apply.</inlineHelpText>
+    <label>Event Category</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>GT DGS Tier 1</fullName>
+                <default>false</default>
+                <label>GT DGS Tier 1</label>
+            </value>
+            <value>
+                <fullName>GT DGS Tier 2</fullName>
+                <default>false</default>
+                <label>GT DGS Tier 2</label>
+            </value>
+            <value>
+                <fullName>GT DGS Tier 3</fullName>
+                <default>false</default>
+                <label>GT DGS Tier 3</label>
+            </value>
+            <value>
+                <fullName>GT ITL Tier 1</fullName>
+                <default>false</default>
+                <label>GT ITL Tier 1</label>
+            </value>
+            <value>
+                <fullName>GT Cyber Summit Tier 1</fullName>
+                <default>false</default>
+                <label>GT Cyber Summit Tier 1</label>
+            </value>
+            <value>
+                <fullName>GT Cyber Summit Tier 2</fullName>
+                <default>false</default>
+                <label>GT Cyber Summit Tier 2</label>
+            </value>
+            <value>
+                <fullName>GT Cyber Summit Tier 3</fullName>
+                <default>false</default>
+                <label>GT Cyber Summit Tier 3</label>
+            </value>
+            <value>
+                <fullName>GT Emerging Tech</fullName>
+                <default>false</default>
+                <label>GT Emerging Tech</label>
+            </value>
+            <value>
+                <fullName>GT Custom Levels / Pricing</fullName>
+                <default>false</default>
+                <label>GT Custom</label>
+            </value>
+            <value>
+                <fullName>CDG Custom Levels / Pricing</fullName>
+                <default>false</default>
+                <label>CDG Custom</label>
+            </value>
+            <value>
+                <fullName>CDE HE ITLF</fullName>
+                <default>false</default>
+                <label>CDE HE ITLF</label>
+            </value>
+            <value>
+                <fullName>CDE Custom Levels / Pricing</fullName>
+                <default>false</default>
+                <label>CDE Custom</label>
+            </value>
+            <value>
+                <fullName>Insider</fullName>
+                <default>false</default>
+                <label>Insider</label>
+            </value>
+            <value>
+                <fullName>w/Terrace</fullName>
+                <default>false</default>
+                <label>w/Terrace</label>
+            </value>
+            <value>
+                <fullName>w/Pavilion</fullName>
+                <default>false</default>
+                <label>w/Pavilion</label>
+            </value>
+            <value>
+                <fullName>w/Cocktail Round</fullName>
+                <default>false</default>
+                <label>w/Cocktail Round</label>
+            </value>
+            <value>
+                <fullName>Without Roundtable</fullName>
+                <default>false</default>
+                <label>w/o Roundtable</label>
+            </value>
+            <value>
+                <fullName>Without Conference Bag</fullName>
+                <default>false</default>
+                <label>w/o Conference Bag</label>
+            </value>
+            <value>
+                <fullName>Without Notebook</fullName>
+                <default>false</default>
+                <label>w/o Notebook</label>
+            </value>
+            <value>
+                <fullName>GT Large</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>GT Large</label>
+            </value>
+            <value>
+                <fullName>GT Small</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>GT Small</label>
+            </value>
+            <value>
+                <fullName>ITLF</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>ITLF</label>
+            </value>
+            <value>
+                <fullName>With Cocktail Round</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>With Cocktail Round</label>
+            </value>
+            <value>
+                <fullName>With RT Breakfast / Exhibitor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>With RT Breakfast / Exhibitor</label>
+            </value>
+            <value>
+                <fullName>With RT Lunch / Anchor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>With RT Lunch / Anchor</label>
+            </value>
+            <value>
+                <fullName>with Bob Bullock</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>with Bob Bullock</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

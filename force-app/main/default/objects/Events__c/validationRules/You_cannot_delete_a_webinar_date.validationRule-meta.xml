@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>You_cannot_delete_a_webinar_date</fullName>
+    <active>true</active>
+    <errorConditionFormula>RecordType.Id =&quot;01214000000AUym&quot; 
+&amp;&amp;ISBLANK(Event_Start_Date__c)=TRUE 
+&amp;&amp;ISBLANK(PRIORVALUE(Event_Start_Date__c))=FALSE</errorConditionFormula>
+    <errorMessage>You cannot delete a webinar date.</errorMessage>
+</ValidationRule>

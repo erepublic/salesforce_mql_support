@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Display_Title__c</fullName>
+    <description
+  >Display title for the event, for use in listing pages, and landing page headlines on the website.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >Display title for the event, for use in listing pages, and landing page headlines on the website.</inlineHelpText>
+    <label>Display Title</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

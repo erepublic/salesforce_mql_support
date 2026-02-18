@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Role__c</fullName>
+    <label>Role</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Onsite Event Director</fullName>
+                <default>false</default>
+                <label>Onsite Event Director</label>
+            </value>
+            <value>
+                <fullName>Onsite Logistics Coordinator</fullName>
+                <default>false</default>
+                <label>Onsite Logistics Coordinator</label>
+            </value>
+            <value>
+                <fullName>Onsite Registration Coordinator</fullName>
+                <default>false</default>
+                <label>Onsite Registration Coordinator</label>
+            </value>
+            <value>
+                <fullName>Onsite Sales Rep</fullName>
+                <default>false</default>
+                <label>Onsite Sales Rep</label>
+            </value>
+            <value>
+                <fullName>Onsite Event Admin Coordinator</fullName>
+                <default>false</default>
+                <label>Onsite Event Admin Coordinator</label>
+            </value>
+            <value>
+                <fullName>Onsite Client Relations Specialist</fullName>
+                <default>false</default>
+                <label>Onsite Client Relations Specialist</label>
+            </value>
+            <value>
+                <fullName>Other Onsite Staff</fullName>
+                <default>false</default>
+                <label>Other Onsite Staff</label>
+            </value>
+            <value>
+                <fullName>Speaker</fullName>
+                <default>false</default>
+                <label>Speaker</label>
+            </value>
+            <value>
+                <fullName>Event Champion</fullName>
+                <default>false</default>
+                <label>Event Champion</label>
+            </value>
+            <value>
+                <fullName>Audio/Visual Contact</fullName>
+                <default>false</default>
+                <label>Audio/Visual Contact</label>
+            </value>
+            <value>
+                <fullName>Venue Contact</fullName>
+                <default>false</default>
+                <label>Venue Contact</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

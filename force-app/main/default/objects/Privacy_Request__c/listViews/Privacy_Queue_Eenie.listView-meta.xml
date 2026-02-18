@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Privacy_Queue_Eenie</fullName>
+    <booleanFilter
+  >1 OR (2 AND 3) OR (2 AND 4 AND 5) OR (6 AND 7 AND 8 AND 2) OR (9 AND 2 AND 6)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Date_Received__c</columns>
+    <columns>Closed_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>Type__c</columns>
+    <columns>Email__c</columns>
+    <columns>First_Name__c</columns>
+    <columns>Last_Name__c</columns>
+    <columns>Notes__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Privacy_Status_Contact__c</columns>
+    <columns>Privacy_Status_Date_Contact__c</columns>
+    <columns>Confirmation_Email_Send_Date__c</columns>
+    <columns>Confirmation_Email_Sent_By__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>In Progress,Duplicate Request</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>New</value>
+    </filters>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value
+    >Request a copy of my personal information,Correct my personal information,Limit the use of my sensitive personal information</value>
+    </filters>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value>Erase my personal information</value>
+    </filters>
+    <filters>
+        <field>Contact__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value
+    >Opt-out of the sale of my information,Erase my personal information</value>
+    </filters>
+    <filters>
+        <field>Email__c</field>
+        <operation>contains</operation>
+        <value>atlas</value>
+    </filters>
+    <filters>
+        <field>Last_Name__c</field>
+        <operation>startsWith</operation>
+        <value
+    >#,0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,z</value>
+    </filters>
+    <filters>
+        <field>Last_Name__c</field>
+        <operation>startsWith</operation>
+        <value>w,x,y,z</value>
+    </filters>
+    <label>Privacy Queue - Eenie</label>
+</ListView>

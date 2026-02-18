@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Memberships_Contracts_Program_Expired</fullName>
+    <columns>NAME</columns>
+    <columns>Account_Name__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Extended_Date__c</columns>
+    <columns>Type__c</columns>
+    <columns>Level__c</columns>
+    <columns>Membership_Status__c</columns>
+    <columns>Stage__c</columns>
+    <columns>Renewal_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Stage__c</field>
+        <operation>equals</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Membership_Contract__c.Program</value>
+    </filters>
+    <filters>
+        <field>Renewal_Status__c</field>
+        <operation>equals</operation>
+        <value>Expired</value>
+    </filters>
+    <label>Memberships Contracts - Program-Expired</label>
+</ListView>

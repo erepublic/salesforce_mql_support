@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EE_Events_This_Year</fullName>
+    <columns>NAME</columns>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Event_End_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>Event_Director_Lookup__c</columns>
+    <columns>Event_Manager__c</columns>
+    <columns>Program_I_C_Lookup__c</columns>
+    <columns>Registration_Coordinator__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event_Start_Date__c</field>
+        <operation>equals</operation>
+        <value>THIS_YEAR</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Events__c.Standard_Event</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>startsWith</operation>
+        <value>EE -</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Cancelled</value>
+    </filters>
+    <label>EE - Events This Year</label>
+</ListView>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Memberships_Active_Brittany_Siebel</fullName>
+    <booleanFilter>1 AND (2 OR 3 OR 4 OR 5 OR 6)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Nav_TW_Login_Report__c</columns>
+    <columns>All_Memberships__c</columns>
+    <columns>Account_Name__c</columns>
+    <columns>Account_Owner__c</columns>
+    <columns>Sales_Admin__c</columns>
+    <columns>DGN_End_Date__c</columns>
+    <columns>DGN_Membership_Level__c</columns>
+    <columns>DEN_End_Date__c</columns>
+    <columns>DEN_Membership_Level__c</columns>
+    <columns>TW_End_Date__c</columns>
+    <columns>ITX_End_Date__c</columns>
+    <columns>IFL_End_Date__c</columns>
+    <columns>NAV_Member_Engagement__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>NAV_Member_Engagement__c</field>
+        <operation>equals</operation>
+        <value>Brittany Siebel</value>
+    </filters>
+    <filters>
+        <field>DEN_Stage__c</field>
+        <operation>equals</operation>
+        <value>Active,Not Started</value>
+    </filters>
+    <filters>
+        <field>DGN_Stage__c</field>
+        <operation>equals</operation>
+        <value>Active,Not Started</value>
+    </filters>
+    <filters>
+        <field>TW_Stage__c</field>
+        <operation>equals</operation>
+        <value>Active,Not Started</value>
+    </filters>
+    <filters>
+        <field>ITX_Stage__c</field>
+        <operation>equals</operation>
+        <value>Active,Not Started</value>
+    </filters>
+    <filters>
+        <field>IFL_Stage__c</field>
+        <operation>equals</operation>
+        <value>Active,Not Started</value>
+    </filters>
+    <label>Memberships - Active - Brittany Siebel</label>
+</ListView>

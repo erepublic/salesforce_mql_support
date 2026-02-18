@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Former__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText>Contact is no longer in this role.</inlineHelpText>
+    <label>Former</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

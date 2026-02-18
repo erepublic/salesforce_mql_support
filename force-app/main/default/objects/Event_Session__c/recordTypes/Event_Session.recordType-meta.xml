@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Session</fullName>
+    <active>true</active>
+    <description>Used when creating event sessions.</description>
+    <label>Event Session</label>
+    <picklistValues>
+        <picklist>Session_Format__c</picklist>
+        <values>
+            <fullName>Case study with customer%28s%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Demo with customer%28s%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hands-on training</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Panel with customers</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Presentation without customer%28s%29</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Session_Slot_Number__c</picklist>
+        <values>
+            <fullName>1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Session_Status__c</picklist>
+        <values>
+            <fullName>Abstract - Copy Edited</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Abstract - Finalized</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Abstract - Pending</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Abstract - Submitted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Creative Brief - Submitted</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dry Run - Complete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Dry Run - Scheduled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Slides - Locked</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Slides - Submitted</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Session_Theme__c</picklist>
+        <values>
+            <fullName>Apex</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>AppExchange</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Core Needs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Marketing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mobile</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>New Release</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PRM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product Roadmap</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>SSS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>UE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Vertical</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Session_Type__c</picklist>
+        <values>
+            <fullName>Cafe</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Class</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Keynote</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Session</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Track__c</picklist>
+        <values>
+            <fullName>Business Analysis</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Communication</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Contracting and Procurement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Data</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Leadership</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mobility</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Project Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Security</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Software%2FTechnical Skills</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technical</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technology</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

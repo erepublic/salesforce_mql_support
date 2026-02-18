@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Change_Past_Date</fullName>
+    <active>true</active>
+    <description
+  >Users cannot change the Date on a Project Delivery Schedule Item if it has already passed. Excludes Business Optimization Role, and the following users: Becki Johnson, Rachel Eckert and Anthony Yanez.</description>
+    <errorConditionFormula>ISCHANGED(Date__c) 
+  &amp;&amp; 
+ PRIORVALUE(Date__c ) &lt; TODAY() 
+  &amp;&amp;
+ $UserRole.Name &lt;&gt; &quot;Business Optimization&quot;
+  &amp;&amp;
+ $User.Id &lt;&gt; &apos;00530000003biB7&apos; /*Rebecca Johnson*/
+  &amp;&amp;
+ $User.Id &lt;&gt; &apos;0055Y00000INeH1&apos; /*Rachel Eckert*/
+  &amp;&amp;
+ $User.Id &lt;&gt; &apos;00530000003A32G&apos; /*Anthony Yanez*/</errorConditionFormula>
+    <errorDisplayField>Date__c</errorDisplayField>
+    <errorMessage
+  >Cannot change past Date. Submit request to salesforce@erepublic.com</errorMessage>
+</ValidationRule>

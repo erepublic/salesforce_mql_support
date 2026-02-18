@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Send_a_Reply</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Send a Reply</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url
+  >/_ui/core/email/author/EmailAuthor?p2_lkid={!Ticket__c.Requested_ById__c}&amp;rtype=003&amp;p3_lkid={!Ticket__c.Id}&amp;retURL=%2F{!Ticket__c.Id}</url>
+</WebLink>

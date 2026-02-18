@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Topic_Required_Legacy</fullName>
+    <active>true</active>
+    <description
+  >Requires a completed Content Studio project to have the &quot;Topic&quot; field populated.</description>
+    <errorConditionFormula>RecordType.Id = &quot;01230000000wS4x&quot;
+&amp;&amp;
+OR(
+ISBLANK(Completion_Date__c),
+Completion_Date__c &gt;= DATEVALUE( &quot;2018-01-01&quot; )
+)
+&amp;&amp;
+ISPICKVAL( Project_Stage__c , &quot;Completed&quot;)
+&amp;&amp;
+ISNULL(Topic__c )
+&amp;&amp;
+NOT(
+ISPICKVAL(Project_Type__c , &quot;Digital Marketing&quot;)
+||
+ISPICKVAL(Project_Type__c , &quot;Standard Leads&quot;)
+||
+ISPICKVAL(Project_Type__c , &quot;Filtered Leads&quot;)
+||
+ISPICKVAL(Project_Type__c , &quot;Account Based Marketing&quot;)
+||
+ISPICKVAL(Project_Type__c , &quot;Two-Step Nurture&quot;)
+||
+ISPICKVAL(Project_Type__c , &quot;Multi-Touch Nurture&quot;)
+)</errorConditionFormula>
+    <errorDisplayField>Topic__c</errorDisplayField>
+    <errorMessage>Enter a Topic for this completed project.</errorMessage>
+</ValidationRule>

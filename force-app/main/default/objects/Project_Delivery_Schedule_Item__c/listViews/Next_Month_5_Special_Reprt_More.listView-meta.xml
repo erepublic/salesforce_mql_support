@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Next_Month_5_Special_Reprt_More</fullName>
+    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+    <columns>Project__c</columns>
+    <columns>Amount__c</columns>
+    <columns>Description__c</columns>
+    <columns>Category__c</columns>
+    <columns>Date__c</columns>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Date__c</field>
+        <operation>equals</operation>
+        <value>NEXT_MONTH</value>
+    </filters>
+    <filters>
+        <field>Category__c</field>
+        <operation>equals</operation>
+        <value
+    >GOV HHS Special Report,GT HHS Special Report,FutureStructure</value>
+    </filters>
+    <filters>
+        <field>Category__c</field>
+        <operation>equals</operation>
+        <value
+    >Financial Literacy,Cost of Government,PCIO Special Report,CDE Special Report</value>
+    </filters>
+    <label>Next Month - 5. Special Reprt &amp; More</label>
+</ListView>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ad_Board_Invitees__c</fullName>
+    <description
+  >Used in Event Datasheet automation to override last year&apos;s ad board attendee list when that list needs to be edited. Once uploaded, this year&apos;s final confirmed ad board list will override this field in the datasheet automation.</description>
+    <inlineHelpText
+  >Used in Event Datasheet automation to override last year&apos;s ad board attendee list when that list needs to be edited. Once uploaded, this year&apos;s final confirmed ad board list will override this field in the datasheet automation.</inlineHelpText>
+    <label>LY Ad Bd Member Override</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Secondary_Brand_s_Distribution__c</fullName>
+    <description
+  >Other brands or magazine distribution under which a custom media project will be included.</description>
+    <inlineHelpText
+  >Other brands or magazine distribution under which a custom media project will be included.</inlineHelpText>
+    <label>Secondary Brand(s) / Distribution</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>GT</fullName>
+                <default>false</default>
+                <label>GT</label>
+            </value>
+            <value>
+                <fullName>GOV</fullName>
+                <default>false</default>
+                <label>GOV</label>
+            </value>
+            <value>
+                <fullName>PCIO</fullName>
+                <default>false</default>
+                <label>PCIO</label>
+            </value>
+            <value>
+                <fullName>EM</fullName>
+                <default>false</default>
+                <label>EM</label>
+            </value>
+            <value>
+                <fullName>DC</fullName>
+                <default>false</default>
+                <label>DC</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>5</visibleLines>
+</CustomField>

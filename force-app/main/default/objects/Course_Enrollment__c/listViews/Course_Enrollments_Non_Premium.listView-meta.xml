@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Course_Enrollments_Non_Premium</fullName>
+    <columns>NAME</columns>
+    <columns>Course_Account__c</columns>
+    <columns>Course_Enrollment_Date__c</columns>
+    <columns>Standardized_Course_Name__c</columns>
+    <columns>Total_Seats_Enrolled__c</columns>
+    <columns>Total_Seats_Inactive__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Membership_Contract__c</field>
+        <operation>equals</operation>
+    </filters>
+    <label>Course Enrollments (Non-Premium)</label>
+</ListView>

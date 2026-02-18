@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Synced_with_On24__c</fullName>
+    <description
+  >Shows the date and time that data was synced for this event from On24.</description>
+    <inlineHelpText
+  >Shows the date and time that data was synced for this event from On24.</inlineHelpText>
+    <label>On24 Event Last Sync</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

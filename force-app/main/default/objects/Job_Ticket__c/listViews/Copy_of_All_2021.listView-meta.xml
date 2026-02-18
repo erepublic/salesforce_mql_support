@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_All_2021</fullName>
+    <columns>NAME</columns>
+    <columns>Designer__c</columns>
+    <columns>Job_Name__c</columns>
+    <columns>Finished_Job_Due__c</columns>
+    <columns>Date_Completed__c</columns>
+    <columns>Status__c</columns>
+    <columns>Originator__c</columns>
+    <columns>OWNER.FIRST_NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Date_Completed__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2021</value>
+    </filters>
+    <filters>
+        <field>Date_Completed__c</field>
+        <operation>lessOrEqual</operation>
+        <value>12/31/2021</value>
+    </filters>
+    <label>All 2021</label>
+</ListView>

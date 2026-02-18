@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Job_Type__c</fullName>
+    <label>Job Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Awards</fullName>
+                <default>false</default>
+                <label>Awards</label>
+            </value>
+            <value>
+                <fullName>Conference Bags</fullName>
+                <default>false</default>
+                <label>Conference Bags</label>
+            </value>
+            <value>
+                <fullName>Design</fullName>
+                <default>false</default>
+                <label>Design</label>
+            </value>
+            <value>
+                <fullName>Glasses and Napkins</fullName>
+                <default>false</default>
+                <label>Glasses and Napkins</label>
+            </value>
+            <value>
+                <fullName>Lanyards and Notebooks</fullName>
+                <default>false</default>
+                <label>Lanyards and Notebooks</label>
+            </value>
+            <value>
+                <fullName>Mail Services Order</fullName>
+                <default>false</default>
+                <label>Mail Services Order</label>
+            </value>
+            <value>
+                <fullName>Print Order Production</fullName>
+                <default>false</default>
+                <label>Print Order Production</label>
+            </value>
+            <value>
+                <fullName>Print Order Production - Signs</fullName>
+                <default>false</default>
+                <label>Print Order Production - Signs</label>
+            </value>
+            <value>
+                <fullName>Estimate</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Estimate</label>
+            </value>
+            <value>
+                <fullName>Estimate Request</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Estimate Request</label>
+            </value>
+            <value>
+                <fullName>General</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>General</label>
+            </value>
+            <value>
+                <fullName>Signs (Kelli)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Signs (Kelli)</label>
+            </value>
+            <value>
+                <fullName>Signs (Stephan)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Signs (Stephan)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

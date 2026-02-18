@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Support_Tag__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <description
+  >Unique identifier used for getting support from the company producing the hardware (such as Dell)</description>
+    <externalId>false</externalId>
+    <label>Support Tag</label>
+    <length>255</length>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

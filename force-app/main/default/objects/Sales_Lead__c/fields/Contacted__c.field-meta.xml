@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contacted__c</fullName>
+    <description
+  >Shows if the contact has any activity since being identified as an MQL.</description>
+    <formula>Contact_Last_Activity__c  &gt;=  Lead_Date__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Shows if the contact has any activity since being identified as an MQL.</inlineHelpText>
+    <label>Contacted</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

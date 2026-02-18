@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Be_Earlier_Than_Contract_Start_Dt</fullName>
+    <active>true</active>
+    <description
+  >Cannot create a schedule item in the month prior to the membership contract&apos;s Start Date.</description>
+    <errorConditionFormula>Date__c &lt; Membership_Contract__r.Start_Date__c
+&amp;&amp;
+MONTH(Date__c) &lt;&gt; MONTH(Membership_Contract__r.Start_Date__c)
+&amp;&amp;
+$User.Id &lt;&gt; &apos;00530000003A32O&apos; /*Paul Harney*/
+&amp;&amp;
+$User.Id &lt;&gt; &apos;0055Y00000I0fox&apos; /*Jennifer Brenner*/
+&amp;&amp;
+Income__c &lt;&gt; 0</errorConditionFormula>
+    <errorDisplayField>Date__c</errorDisplayField>
+    <errorMessage
+  >Cannot create a schedule item in the month prior to the membership contract&apos;s Start Date.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Custom_Research_Closed_Projects</fullName>
+    <columns>Client__c</columns>
+    <columns>Internal_External__c</columns>
+    <columns>NAME</columns>
+    <columns>Total_Delivered__c</columns>
+    <columns>Project_Status_Indictator__c</columns>
+    <columns>Project_Stage__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Project_Age__c</columns>
+    <columns>Project_Owner__c</columns>
+    <columns>Project_Type__c</columns>
+    <columns>Completion_Date__c</columns>
+    <columns>Project_Update_Note__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Center_Research</value>
+    </filters>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>equals</operation>
+        <value>Completed,100% Complete,Closed</value>
+    </filters>
+    <filters>
+        <field>Research_Group__c</field>
+        <operation>notEqual</operation>
+        <value>Navigator</value>
+    </filters>
+    <filters>
+        <field>Completion_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2024</value>
+    </filters>
+    <label>Research - Closed Projects CY</label>
+</ListView>

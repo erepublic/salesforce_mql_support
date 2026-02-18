@@ -1,0 +1,535 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sponsorship_Level__c</fullName>
+    <label>Sponsorship Level</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Additional Event Pass(es)</fullName>
+                <default>false</default>
+                <label>Additional Event Pass(es)</label>
+            </value>
+            <value>
+                <fullName>Additional Reception Pass(es)</fullName>
+                <default>false</default>
+                <label>Additional Reception Pass(es)</label>
+            </value>
+            <value>
+                <fullName>Anchor Exhibitor (Harvard)</fullName>
+                <default>false</default>
+                <label>Anchor Exhibitor (Harvard)</label>
+            </value>
+            <value>
+                <fullName>Anchor Sponsor</fullName>
+                <default>false</default>
+                <label>Anchor Sponsor</label>
+            </value>
+            <value>
+                <fullName>Anchor Sponsor (Cocktail Round)</fullName>
+                <default>false</default>
+                <label>Anchor Sponsor (Cocktail Round)</label>
+            </value>
+            <value>
+                <fullName>Attendee</fullName>
+                <default>false</default>
+                <label>Attendee</label>
+            </value>
+            <value>
+                <fullName>Awards Reception Underwriter</fullName>
+                <default>false</default>
+                <label>Awards Reception Underwriter</label>
+            </value>
+            <value>
+                <fullName>Bronze Sponsor</fullName>
+                <default>false</default>
+                <label>Bronze Sponsor</label>
+            </value>
+            <value>
+                <fullName>Conference Bag Provider (Harvard)</fullName>
+                <default>false</default>
+                <label>Conference Bag Provider (Harvard)</label>
+            </value>
+            <value>
+                <fullName>Co-Sponsor</fullName>
+                <default>false</default>
+                <label>Co-Sponsor</label>
+            </value>
+            <value>
+                <fullName>DC Premier Sponsor</fullName>
+                <default>false</default>
+                <label>DC Premier Sponsor</label>
+            </value>
+            <value>
+                <fullName>DC Standard Sponsor</fullName>
+                <default>false</default>
+                <label>DC Standard Sponsor</label>
+            </value>
+            <value>
+                <fullName>Dinner Sponsor</fullName>
+                <default>false</default>
+                <label>Dinner Sponsor</label>
+            </value>
+            <value>
+                <fullName>Display Exhibitor (Harvard)</fullName>
+                <default>false</default>
+                <label>Display Exhibitor (Harvard)</label>
+            </value>
+            <value>
+                <fullName>DSPI Sponsor</fullName>
+                <default>false</default>
+                <label>DSPI Sponsor</label>
+            </value>
+            <value>
+                <fullName>Exhibitor Sponsor</fullName>
+                <default>false</default>
+                <label>Exhibitor Sponsor</label>
+            </value>
+            <value>
+                <fullName>Exhibitor Sponsor (Booth)</fullName>
+                <default>false</default>
+                <label>Exhibitor Sponsor (Booth)</label>
+            </value>
+            <value>
+                <fullName>Exhibitor Sponsor (Cocktail Round)</fullName>
+                <default>false</default>
+                <label>Exhibitor Sponsor (Cocktail Round)</label>
+            </value>
+            <value>
+                <fullName>Exhibitor Sponsor (Tabletop)</fullName>
+                <default>false</default>
+                <label>Exhibitor Sponsor (Tabletop)</label>
+            </value>
+            <value>
+                <fullName>Gold Sponsor</fullName>
+                <default>false</default>
+                <label>Gold Sponsor</label>
+            </value>
+            <value>
+                <fullName>Headshots &amp; Highlights Booth Sponsor</fullName>
+                <default>false</default>
+                <label>Headshots &amp; Highlights Booth Sponsor</label>
+            </value>
+            <value>
+                <fullName>Hugh L. Carey Reception Sponsor</fullName>
+                <default>false</default>
+                <label>Hugh L. Carey Reception Sponsor</label>
+            </value>
+            <value>
+                <fullName>Hugh L. Carey Reception Underwriter</fullName>
+                <default>false</default>
+                <label>Hugh L. Carey Reception Underwriter</label>
+            </value>
+            <value>
+                <fullName>Keynote Sponsor</fullName>
+                <default>false</default>
+                <label>Keynote Sponsor</label>
+            </value>
+            <value>
+                <fullName>Keynote Underwriter</fullName>
+                <default>false</default>
+                <label>Keynote Underwriter</label>
+            </value>
+            <value>
+                <fullName>Lanyard Sponsor</fullName>
+                <default>false</default>
+                <label>Lanyard Sponsor</label>
+            </value>
+            <value>
+                <fullName>Miscellaneous</fullName>
+                <default>false</default>
+                <label>Miscellaneous</label>
+            </value>
+            <value>
+                <fullName>Networking Breaks Exhibitor (Harvard)</fullName>
+                <default>false</default>
+                <label>Networking Breaks Exhibitor (Harvard)</label>
+            </value>
+            <value>
+                <fullName>Networking Breaks Sponsor</fullName>
+                <default>false</default>
+                <label>Networking Breaks Sponsor</label>
+            </value>
+            <value>
+                <fullName>Notebook Provider (Harvard)</fullName>
+                <default>false</default>
+                <label>Notebook Provider (Harvard)</label>
+            </value>
+            <value>
+                <fullName>Notebook Sponsor</fullName>
+                <default>false</default>
+                <label>Notebook Sponsor</label>
+            </value>
+            <value>
+                <fullName>Patron Exhibitor (Harvard)</fullName>
+                <default>false</default>
+                <label>Patron Exhibitor (Harvard)</label>
+            </value>
+            <value>
+                <fullName>Patron Plus Exhibitor (Harvard)</fullName>
+                <default>false</default>
+                <label>Patron Plus Exhibitor (Harvard)</label>
+            </value>
+            <value>
+                <fullName>Patron Plus Sponsor</fullName>
+                <default>false</default>
+                <label>Patron Plus Sponsor</label>
+            </value>
+            <value>
+                <fullName>Patron Sponsor</fullName>
+                <default>false</default>
+                <label>Patron Sponsor</label>
+            </value>
+            <value>
+                <fullName>Pavilion Exhibitor</fullName>
+                <default>false</default>
+                <label>Pavilion Exhibitor</label>
+            </value>
+            <value>
+                <fullName>Photo Booth Sponsor</fullName>
+                <default>false</default>
+                <label>Photo Booth Sponsor</label>
+            </value>
+            <value>
+                <fullName>Power Bank Sponsor</fullName>
+                <default>false</default>
+                <label>Power Bank Sponsor</label>
+            </value>
+            <value>
+                <fullName>Roundtable Breakfast/Anchor Sponsor</fullName>
+                <default>false</default>
+                <label>Roundtable Breakfast/Anchor Sponsor</label>
+            </value>
+            <value>
+                <fullName>Roundtable Breakfast/Exhibitor Sponsor</fullName>
+                <default>false</default>
+                <label>Roundtable Breakfast/Exhibitor Sponsor</label>
+            </value>
+            <value>
+                <fullName>Roundtable Breakfast Sponsor</fullName>
+                <default>false</default>
+                <label>Roundtable Breakfast Sponsor</label>
+            </value>
+            <value>
+                <fullName>Roundtable Lunch/Anchor Sponsor</fullName>
+                <default>false</default>
+                <label>Roundtable Lunch/Anchor Sponsor</label>
+            </value>
+            <value>
+                <fullName>Silver Sponsor</fullName>
+                <default>false</default>
+                <label>Silver Sponsor</label>
+            </value>
+            <value>
+                <fullName>Small Business Exhibitor Sponsor</fullName>
+                <default>false</default>
+                <label>Small Business Exhibitor Sponsor</label>
+            </value>
+            <value>
+                <fullName>Sponsor</fullName>
+                <default>false</default>
+                <label>Sponsor</label>
+            </value>
+            <value>
+                <fullName>Terrace Exhibitor</fullName>
+                <default>false</default>
+                <label>Terrace Exhibitor</label>
+            </value>
+            <value>
+                <fullName>Underwriter</fullName>
+                <default>false</default>
+                <label>Underwriter</label>
+            </value>
+            <value>
+                <fullName>Underwriter without Speaking Role</fullName>
+                <default>false</default>
+                <label>Underwriter without Speaking Role</label>
+            </value>
+            <value>
+                <fullName>Welcome Reception Sponsor</fullName>
+                <default>false</default>
+                <label>Welcome Reception Sponsor</label>
+            </value>
+            <value>
+                <fullName>Conference Bag Sponsor</fullName>
+                <default>false</default>
+                <label>Conference Bag Sponsor</label>
+            </value>
+            <value>
+                <fullName>Afternoon Roundtable Session Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Afternoon Roundtable Session Sponsor</label>
+            </value>
+            <value>
+                <fullName>Ambassador Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Ambassador Sponsor</label>
+            </value>
+            <value>
+                <fullName>Ambassador Sponsor w/ Speaking Role</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Ambassador Sponsor w/ Speaking Role</label>
+            </value>
+            <value>
+                <fullName>Awards Reception Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Awards Reception Sponsor</label>
+            </value>
+            <value>
+                <fullName>Best of Reception Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Best of Reception Sponsor</label>
+            </value>
+            <value>
+                <fullName>Best of Reception Underwriter</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Best of Reception Underwriter</label>
+            </value>
+            <value>
+                <fullName>Bob Bullock Reception/Dinner Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Bob Bullock Reception/Dinner Sponsor</label>
+            </value>
+            <value>
+                <fullName>Bob Bullock Reception/Dinner Underwriter</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Bob Bullock Reception/Dinner Underwriter</label>
+            </value>
+            <value>
+                <fullName>Book Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Book Sponsor</label>
+            </value>
+            <value>
+                <fullName>CivStart Co-hort Startup</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>CivStart Co-hort Startup</label>
+            </value>
+            <value>
+                <fullName>Continental Breakfast Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Continental Breakfast Sponsor</label>
+            </value>
+            <value>
+                <fullName>DC Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>DC Sponsor</label>
+            </value>
+            <value>
+                <fullName>DC Sponsor w/ Speaking Role</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>DC Sponsor w/ Speaking Role</label>
+            </value>
+            <value>
+                <fullName>Early Bird Session/Anchor Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Early Bird Session/Anchor Sponsor</label>
+            </value>
+            <value>
+                <fullName>Entertainment Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Entertainment Sponsor</label>
+            </value>
+            <value>
+                <fullName>Event Supporter</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Event Supporter</label>
+            </value>
+            <value>
+                <fullName>Exhibitor (Booth)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Exhibitor (Booth)</label>
+            </value>
+            <value>
+                <fullName>Exhibitor Sponsor (2)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Exhibitor Sponsor (2)</label>
+            </value>
+            <value>
+                <fullName>Founding Member</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Founding Member</label>
+            </value>
+            <value>
+                <fullName>Government Solutions Center</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Government Solutions Center</label>
+            </value>
+            <value>
+                <fullName>Heroes Highlights Underwriter</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Heroes Highlights Underwriter</label>
+            </value>
+            <value>
+                <fullName>Innovation Lab Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Innovation Lab Sponsor</label>
+            </value>
+            <value>
+                <fullName>Innovator Networking Session/Anchor Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Innovator Networking Session/Anchor Sponsor</label>
+            </value>
+            <value>
+                <fullName>Knowledge Partner</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Knowledge Partner</label>
+            </value>
+            <value>
+                <fullName>Main Event Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Main Event Sponsor</label>
+            </value>
+            <value>
+                <fullName>Member</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Member</label>
+            </value>
+            <value>
+                <fullName>Misc Expense</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Misc Expense</label>
+            </value>
+            <value>
+                <fullName>Networking Reception Underwriter</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Networking Reception Underwriter</label>
+            </value>
+            <value>
+                <fullName>Partner</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Partner</label>
+            </value>
+            <value>
+                <fullName>Program Guide Display Ad (BC)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Program Guide Display Ad (BC)</label>
+            </value>
+            <value>
+                <fullName>Program Guide Display Ad (IBC)</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Program Guide Display Ad (IBC)</label>
+            </value>
+            <value>
+                <fullName>Registration Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Registration Sponsor</label>
+            </value>
+            <value>
+                <fullName>Roundtable Breakfast/Main Event Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Roundtable Breakfast/Main Event Sponsor</label>
+            </value>
+            <value>
+                <fullName>Roundtable Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Roundtable Sponsor</label>
+            </value>
+            <value>
+                <fullName>Roundtable w/ Session Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Roundtable w/ Session Sponsor</label>
+            </value>
+            <value>
+                <fullName>Roundtable/Ambassador Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Roundtable/Ambassador Sponsor</label>
+            </value>
+            <value>
+                <fullName>Roundtable/Anchor Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Roundtable/Anchor Sponsor</label>
+            </value>
+            <value>
+                <fullName>Roundtable/Patron Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Roundtable/Patron Sponsor</label>
+            </value>
+            <value>
+                <fullName>Roundtable/Underwriter Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Roundtable/Underwriter Sponsor</label>
+            </value>
+            <value>
+                <fullName>Sponsor w/ Speaking Role</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Sponsor w/ Speaking Role</label>
+            </value>
+            <value>
+                <fullName>Tabletop Sponsor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Tabletop Sponsor</label>
+            </value>
+            <value>
+                <fullName>Underwriter w/ Speaking Role</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Underwriter w/ Speaking Role</label>
+            </value>
+            <value>
+                <fullName>Waitlist</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Waitlist</label>
+            </value>
+            <value>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Webinar</label>
+            </value>
+            <value>
+                <fullName>Welcome Reception Underwriter</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Welcome Reception Underwriter</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

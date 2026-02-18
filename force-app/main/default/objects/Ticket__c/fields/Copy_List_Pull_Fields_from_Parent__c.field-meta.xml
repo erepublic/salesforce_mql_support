@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_List_Pull_Fields_from_Parent__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText
+  >Hidden field used by Clone List Pull Ticket action button to start Process Builder.</inlineHelpText>
+    <label>Copy List Pull Fields from Parent</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

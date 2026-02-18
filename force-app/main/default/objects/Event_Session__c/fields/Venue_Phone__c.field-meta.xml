@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Venue_Phone__c</fullName>
+    <description
+  >This is the main phone number that should be dialed if trying to coordinate on details at the venue.</description>
+    <inlineHelpText
+  >This is the main phone number that should be dialed if trying to coordinate on details at the venue.</inlineHelpText>
+    <label>Venue Phone</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Phone</type>
+</CustomField>

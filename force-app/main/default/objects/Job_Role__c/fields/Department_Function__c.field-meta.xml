@@ -1,0 +1,650 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Department_Function__c</fullName>
+    <label>Department Function</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1a - State - Governor</fullName>
+                <default>false</default>
+                <label>1a - State - Governor</label>
+            </value>
+            <value>
+                <fullName>1b - State - Lieutenant Governor</fullName>
+                <default>false</default>
+                <label>1b - State - Lieutenant Governor</label>
+            </value>
+            <value>
+                <fullName>1c - State - Legislative</fullName>
+                <default>false</default>
+                <label>1c - State - Legislative</label>
+            </value>
+            <value>
+                <fullName>1d - State - Secretary of State</fullName>
+                <default>false</default>
+                <label>1d - State - Secretary of State</label>
+            </value>
+            <value>
+                <fullName>1e - State - Attorney General</fullName>
+                <default>false</default>
+                <label>1e - State - Attorney General</label>
+            </value>
+            <value>
+                <fullName>2a - County - County Administrator</fullName>
+                <default>false</default>
+                <label>2a - County - County Administrator</label>
+            </value>
+            <value>
+                <fullName
+        >2b - County - Board of Commissioners/Supervisors</fullName>
+                <default>false</default>
+                <label>2b - County - Board of Commissioners/Supervisors</label>
+            </value>
+            <value>
+                <fullName>3a - City - Mayor</fullName>
+                <default>false</default>
+                <label>3a - City - Mayor</label>
+            </value>
+            <value>
+                <fullName>3b - City - City Manager</fullName>
+                <default>false</default>
+                <label>3b - City - City Manager</label>
+            </value>
+            <value>
+                <fullName>3c - City - City Council</fullName>
+                <default>false</default>
+                <label>3c - City - City Council</label>
+            </value>
+            <value>
+                <fullName>4a - IT - Information Technology</fullName>
+                <default>false</default>
+                <label>4a - IT - Information Technology</label>
+            </value>
+            <value>
+                <fullName>4b - IT - Information Security</fullName>
+                <default>false</default>
+                <label>4b - IT - Information Security</label>
+            </value>
+            <value>
+                <fullName>4c - IT - Networks/Telecommunications</fullName>
+                <default>false</default>
+                <label>4c - IT - Networks/Telecommunications</label>
+            </value>
+            <value>
+                <fullName>5a - Finance - Finance</fullName>
+                <default>false</default>
+                <label>5a - Finance - Finance</label>
+            </value>
+            <value>
+                <fullName>5b - Finance - Treasury</fullName>
+                <default>false</default>
+                <label>5b - Finance - Treasury</label>
+            </value>
+            <value>
+                <fullName>5c - Finance - Controller/Comptroller</fullName>
+                <default>false</default>
+                <label>5c - Finance - Controller/Comptroller</label>
+            </value>
+            <value>
+                <fullName>5d - Finance - Budget</fullName>
+                <default>false</default>
+                <label>5d - Finance - Budget</label>
+            </value>
+            <value>
+                <fullName>5e - Finance - Purchasing/Procurement</fullName>
+                <default>false</default>
+                <label>5e - Finance - Purchasing/Procurement</label>
+            </value>
+            <value>
+                <fullName>5f - Finance - Audit</fullName>
+                <default>false</default>
+                <label>5f - Finance - Audit</label>
+            </value>
+            <value>
+                <fullName>5g - Finance - Revenue</fullName>
+                <default>false</default>
+                <label>5g - Finance - Revenue</label>
+            </value>
+            <value>
+                <fullName>5h - Finance - Insurance</fullName>
+                <default>false</default>
+                <label>5h - Finance - Insurance</label>
+            </value>
+            <value>
+                <fullName>5i - Finance - Retirement/Pension</fullName>
+                <default>false</default>
+                <label>5i - Finance - Retirement/Pension</label>
+            </value>
+            <value>
+                <fullName>6a - Edu - Education</fullName>
+                <default>false</default>
+                <label>6a - Edu - Education</label>
+            </value>
+            <value>
+                <fullName>6b - Edu - Curriculum</fullName>
+                <default>false</default>
+                <label>6b - Edu - Curriculum</label>
+            </value>
+            <value>
+                <fullName>6c - Edu - Instructional Technology</fullName>
+                <default>false</default>
+                <label>6c - Edu - Instructional Technology</label>
+            </value>
+            <value>
+                <fullName>6d - Edu - Research</fullName>
+                <default>false</default>
+                <label>6d - Edu - Research</label>
+            </value>
+            <value>
+                <fullName>6e - Edu - Library</fullName>
+                <default>false</default>
+                <label>6e - Edu - Library</label>
+            </value>
+            <value>
+                <fullName>7a - Pub Safety - Sheriff</fullName>
+                <default>false</default>
+                <label>7a - Pub Safety - Sheriff</label>
+            </value>
+            <value>
+                <fullName>7b - Pub Safety - Fire</fullName>
+                <default>false</default>
+                <label>7b - Pub Safety - Fire</label>
+            </value>
+            <value>
+                <fullName>7c - Pub Safety - Police</fullName>
+                <default>false</default>
+                <label>7c - Pub Safety - Police</label>
+            </value>
+            <value>
+                <fullName
+        >7d - Pub Safety - Emergency Mgmt/Homeland Security</fullName>
+                <default>false</default>
+                <label
+        >7d - Pub Safety - Emergency Mgmt/Homeland Security</label>
+            </value>
+            <value>
+                <fullName>7e - Pub Safety - Other Public Safety</fullName>
+                <default>false</default>
+                <label>7e - Pub Safety - Other Public Safety</label>
+            </value>
+            <value>
+                <fullName>8a - Admin - Administration</fullName>
+                <default>false</default>
+                <label>8a - Admin - Administration</label>
+            </value>
+            <value>
+                <fullName>8b - Admin - General Services/Operations</fullName>
+                <default>false</default>
+                <label>8b - Admin - General Services/Operations</label>
+            </value>
+            <value>
+                <fullName>8c - Admin - Facilities/Buildings</fullName>
+                <default>false</default>
+                <label>8c - Admin - Facilities/Buildings</label>
+            </value>
+            <value>
+                <fullName>8d - Admin - Elections</fullName>
+                <default>false</default>
+                <label>8d - Admin - Elections</label>
+            </value>
+            <value>
+                <fullName>8e - Admin - Communications</fullName>
+                <default>false</default>
+                <label>8e - Admin - Communications</label>
+            </value>
+            <value>
+                <fullName>8f - Admin - Board/Commission</fullName>
+                <default>false</default>
+                <label>8f - Admin - Board/Commission</label>
+            </value>
+            <value>
+                <fullName>8g - Admin - Other</fullName>
+                <default>false</default>
+                <label>8g - Admin - Other</label>
+            </value>
+            <value>
+                <fullName>9a - Workforce - Labor/Workforce</fullName>
+                <default>false</default>
+                <label>9a - Workforce - Labor/Workforce</label>
+            </value>
+            <value>
+                <fullName>9b - Workforce - Human Resources</fullName>
+                <default>false</default>
+                <label>9b - Workforce - Human Resources</label>
+            </value>
+            <value>
+                <fullName>9c - Workforce - Benefits</fullName>
+                <default>false</default>
+                <label>9c - Workforce - Benefits</label>
+            </value>
+            <value>
+                <fullName>10a - Nat Res - Agriculture/Food</fullName>
+                <default>false</default>
+                <label>10a - Nat Res - Agriculture/Food</label>
+            </value>
+            <value>
+                <fullName>10b - Nat Res - Environment</fullName>
+                <default>false</default>
+                <label>10b - Nat Res - Environment</label>
+            </value>
+            <value>
+                <fullName>10c - Nat Res - Parks &amp; Recreation</fullName>
+                <default>false</default>
+                <label>10c - Nat Res - Parks &amp; Recreation</label>
+            </value>
+            <value>
+                <fullName>11a - Pub Works - Public Works</fullName>
+                <default>false</default>
+                <label>11a - Pub Works - Public Works</label>
+            </value>
+            <value>
+                <fullName>11b - Pub Works - Planning</fullName>
+                <default>false</default>
+                <label>11b - Pub Works - Planning</label>
+            </value>
+            <value>
+                <fullName>11c - Pub Works - Transportation</fullName>
+                <default>false</default>
+                <label>11c - Pub Works - Transportation</label>
+            </value>
+            <value>
+                <fullName>11d - Pub Works - Utilities</fullName>
+                <default>false</default>
+                <label>11d - Pub Works - Utilities</label>
+            </value>
+            <value>
+                <fullName>11e - Pub Works - Energy</fullName>
+                <default>false</default>
+                <label>11e - Pub Works - Energy</label>
+            </value>
+            <value>
+                <fullName>11f - Pub Works - Code Enforcement/Zoning</fullName>
+                <default>false</default>
+                <label>11f - Pub Works - Code Enforcement/Zoning</label>
+            </value>
+            <value>
+                <fullName>11g - Pub Works - Engineering</fullName>
+                <default>false</default>
+                <label>11g - Pub Works - Engineering</label>
+            </value>
+            <value>
+                <fullName>12a - HHS - Health &amp; Human Services</fullName>
+                <default>false</default>
+                <label>12a - HHS - Health &amp; Human Services</label>
+            </value>
+            <value>
+                <fullName>12b - HHS - Children &amp; Family Services</fullName>
+                <default>false</default>
+                <label>12b - HHS - Children &amp; Family Services</label>
+            </value>
+            <value>
+                <fullName>12c - HHS - Housing</fullName>
+                <default>false</default>
+                <label>12c - HHS - Housing</label>
+            </value>
+            <value>
+                <fullName>12d - HHS - Veteran Affairs</fullName>
+                <default>false</default>
+                <label>12d - HHS - Veteran Affairs</label>
+            </value>
+            <value>
+                <fullName>13a - Law - Judicial/Courts</fullName>
+                <default>false</default>
+                <label>13a - Law - Judicial/Courts</label>
+            </value>
+            <value>
+                <fullName>13b - Law - Legal</fullName>
+                <default>false</default>
+                <label>13b - Law - Legal</label>
+            </value>
+            <value>
+                <fullName>13c - Law - Corrections</fullName>
+                <default>false</default>
+                <label>13c - Law - Corrections</label>
+            </value>
+            <value>
+                <fullName>13d - Law - Policy</fullName>
+                <default>false</default>
+                <label>13d - Law - Policy</label>
+            </value>
+            <value>
+                <fullName>13e - Law - Licensing/Regulation</fullName>
+                <default>false</default>
+                <label>13e - Law - Licensing/Regulation</label>
+            </value>
+            <value>
+                <fullName>14a - Dev - Commerce</fullName>
+                <default>false</default>
+                <label>14a - Dev - Commerce</label>
+            </value>
+            <value>
+                <fullName>14b - Dev - Economic Development</fullName>
+                <default>false</default>
+                <label>14b - Dev - Economic Development</label>
+            </value>
+            <value>
+                <fullName>14c - Dev - Community Development</fullName>
+                <default>false</default>
+                <label>14c - Dev - Community Development</label>
+            </value>
+            <value>
+                <fullName>15a - Special Dist - Special District</fullName>
+                <default>false</default>
+                <label>15a - Special Dist - Special District</label>
+            </value>
+            <value>
+                <fullName>Administration</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Administration</label>
+            </value>
+            <value>
+                <fullName>Agriculture/Food</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Agriculture/Food</label>
+            </value>
+            <value>
+                <fullName>Attorney General</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Attorney General</label>
+            </value>
+            <value>
+                <fullName>Audit</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Audit</label>
+            </value>
+            <value>
+                <fullName>Board of Commissioners/Supervisors</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Board of Commissioners/Supervisors</label>
+            </value>
+            <value>
+                <fullName>Budget</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Budget</label>
+            </value>
+            <value>
+                <fullName>City Council</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>City Council</label>
+            </value>
+            <value>
+                <fullName>City Manager</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>City Manager</label>
+            </value>
+            <value>
+                <fullName>Commerce</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Commerce</label>
+            </value>
+            <value>
+                <fullName>Communications</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Communications</label>
+            </value>
+            <value>
+                <fullName>Community Development</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Community Development</label>
+            </value>
+            <value>
+                <fullName>Controller/Comptroller</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Controller/Comptroller</label>
+            </value>
+            <value>
+                <fullName>Corrections</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Corrections</label>
+            </value>
+            <value>
+                <fullName>County Administrator</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>County Administrator</label>
+            </value>
+            <value>
+                <fullName>Curriculum</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Curriculum</label>
+            </value>
+            <value>
+                <fullName>Economic Development</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Economic Development</label>
+            </value>
+            <value>
+                <fullName>Education</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Education</label>
+            </value>
+            <value>
+                <fullName>Elections</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Elections</label>
+            </value>
+            <value>
+                <fullName>Energy</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Energy</label>
+            </value>
+            <value>
+                <fullName>Enforcement</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Enforcement</label>
+            </value>
+            <value>
+                <fullName>Engineering</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Engineering</label>
+            </value>
+            <value>
+                <fullName>Environment</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Environment</label>
+            </value>
+            <value>
+                <fullName>Facilities/Buildings</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Facilities/Buildings</label>
+            </value>
+            <value>
+                <fullName>Finance</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Finance</label>
+            </value>
+            <value>
+                <fullName>General Services/Operations</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>General Services/Operations</label>
+            </value>
+            <value>
+                <fullName>Governor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Governor</label>
+            </value>
+            <value>
+                <fullName>Health &amp; Human Services</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Health &amp; Human Services</label>
+            </value>
+            <value>
+                <fullName>Housing</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Housing</label>
+            </value>
+            <value>
+                <fullName>Human Resources</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Human Resources</label>
+            </value>
+            <value>
+                <fullName>Information Technology</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Information Technology</label>
+            </value>
+            <value>
+                <fullName>Instructional Technology</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Instructional Technology</label>
+            </value>
+            <value>
+                <fullName>Insurance</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Insurance</label>
+            </value>
+            <value>
+                <fullName>Judicial</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Judicial</label>
+            </value>
+            <value>
+                <fullName>Legal</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Legal</label>
+            </value>
+            <value>
+                <fullName>Legislative</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Legislative</label>
+            </value>
+            <value>
+                <fullName>Lieutenant Governor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Lieutenant Governor</label>
+            </value>
+            <value>
+                <fullName>Mayor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Mayor</label>
+            </value>
+            <value>
+                <fullName>Parks &amp; Recreation</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Parks &amp; Recreation</label>
+            </value>
+            <value>
+                <fullName>Planning/Zoning</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Planning/Zoning</label>
+            </value>
+            <value>
+                <fullName>Public Safety</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Public Safety</label>
+            </value>
+            <value>
+                <fullName>Public Works</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Public Works</label>
+            </value>
+            <value>
+                <fullName>Purchasing/Procurement</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Purchasing/Procurement</label>
+            </value>
+            <value>
+                <fullName>Research</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Research</label>
+            </value>
+            <value>
+                <fullName>Retirement/Pension</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Retirement/Pension</label>
+            </value>
+            <value>
+                <fullName>Revenue</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Revenue</label>
+            </value>
+            <value>
+                <fullName>Secretary of State</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Secretary of State</label>
+            </value>
+            <value>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Transportation</label>
+            </value>
+            <value>
+                <fullName>Treasury</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Treasury</label>
+            </value>
+            <value>
+                <fullName>Utilities</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Utilities</label>
+            </value>
+            <value>
+                <fullName>Veteran Affairs</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Veteran Affairs</label>
+            </value>
+            <value>
+                <fullName>Workforce</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Workforce</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

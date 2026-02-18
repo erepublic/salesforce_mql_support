@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>63.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Event_Note_History</name>
+        <label>Assign Event Note History</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Event_Manager_Note_Last_Updated__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Event_Note_Last_Updated</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Event_Manager_Notes_History__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Event_Note_History</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Event_Note_Date__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>$Record.Event_Update_Note__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Event_Note</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Even_Note_Date</name>
+        <dataType>Date</dataType>
+        <expression>{!$Flow.CurrentDate}</expression>
+    </formulas>
+    <formulas>
+        <name>f_Event_Note</name>
+        <dataType>String</dataType>
+        <expression>&quot;[&quot;
+&amp;TEXT(MONTH({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(DAY({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(YEAR({!$Flow.CurrentDate}))
+&amp;&quot; &quot;
+&amp;UPPER(LEFT({!$User.Alias},2))
+&amp;&quot;] &quot;
+&amp; {!$Record.Event_Update_Note__c}</expression>
+    </formulas>
+    <formulas>
+        <name>f_Event_Note_History</name>
+        <dataType>String</dataType>
+        <expression>&quot;[&quot;
+&amp;TEXT(MONTH({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(DAY({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(YEAR({!$Flow.CurrentDate}))
+&amp;&quot; &quot;
+&amp;UPPER(LEFT({!$User.Alias},2))
+&amp;&quot;] &quot;
+&amp; {!$Record.Event_Update_Note__c} + BR() + BR() + {!$Record.Event_Manager_Notes_History__c}</expression>
+    </formulas>
+    <formulas>
+        <name>f_Event_Note_Last_Updated</name>
+        <dataType>String</dataType>
+        <expression>&quot;[&quot;
+&amp;TEXT(MONTH({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(DAY({!$Flow.CurrentDate}))
+&amp;&quot;-&quot;
+&amp;TEXT(YEAR({!$Flow.CurrentDate}))
+&amp;&quot; &quot;
+&amp;UPPER(LEFT({!$User.Alias},2))
+&amp;&quot;] &quot;</expression>
+    </formulas>
+    <interviewLabel
+  >Event or Conference - RT BS - Event Note History {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Event or Conference - RT BS - Event Note History</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Assign_Event_Note_History</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Event_Update_Note__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Events__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

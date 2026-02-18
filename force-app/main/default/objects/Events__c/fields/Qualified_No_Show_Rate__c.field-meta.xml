@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Qualified_No_Show_Rate__c</fullName>
+    <description
+  >The Qualified No Shows / Qualified Non-Sponsor for the event.</description>
+    <formula
+  >IF(AND(Qualified_No_Show__c &gt; 0,Qualified_Non_Sponsor__c&gt;0), Qualified_No_Show__c /  Qualified_Non_Sponsor__c,0)
+
+/* Changed 06/10/2020. Formerly:
+
+IF(AND(Qualified_No_Show__c &gt; 0,Qualified_Leads__c&gt;0), Qualified_No_Show__c /  Qualified_Leads__c,0)
+
+This excluded sponsors (promo code containing &quot;sponsor&quot;) in the numerator but not the denominator.
+*/</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >The Qualified No Shows / Qualified Non-Sponsor for the event.</inlineHelpText>
+    <label>Qualified No Show Rate</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>1</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Percent</type>
+</CustomField>

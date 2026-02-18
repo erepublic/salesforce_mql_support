@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sample_Kick_off_Call_Script__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Product_Group__c,
+&quot;Written&quot;,HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/t/CustomMedia/EeXpbiiBf2RNkXEMHRwRiqABSXZ-txtmUw7Z0THjeRRRtQ?e=6uDm54&amp;wdLOR=cB580B439-4AC9-4676-8C7E-42713F50052B&quot;,&quot;Sample Kick-off Call Script&quot;),
+
+&quot;Roundtable&quot;,HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Content%20Studio%20Guidelines/Sample%20Script%20Templates/Sample%20Script_Kickoff%20Call_Roundtable.docx?d=w544c03409dc041d6a889a19e1629ab81&amp;csf=1&amp;web=1&amp;e=Zk9cn7&quot;,&quot;Sample Kick-off Call Script&quot;),
+
+&quot;Webinar&quot;,HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Content%20Studio%20Guidelines/Sample%20Script%20Templates/Sample%20Script_Kickoff%20Call_Webinar.docx?d=w64d77a4bfe2148718ceba19a9142269c&amp;csf=1&amp;web=1&amp;e=Xer4su&quot;,&quot;Sample Kick-off Call Script&quot;),
+null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Sample Kick-off Call Script</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

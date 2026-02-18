@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Privacy_Status_Evaluation_Period__c</fullName>
+    <description
+  >If the Download Date is greater than the Privacy Status Date OR if the Download Date falls within the last 365 days of the Privacy Status Date.</description>
+    <formula>OR(
+  Download_Date__c &gt; Registrant__r.Privacy_Status_Date__c,
+  AND(
+    0 &lt;= (Registrant__r.Privacy_Status_Date__c - Download_Date__c),
+    (Registrant__r.Privacy_Status_Date__c - Download_Date__c) &lt;= 365
+  )
+)</formula>
+    <inlineHelpText
+  >If the Download Date is greater than the Privacy Status Date OR if the Download Date falls within the last 365 days of the Privacy Status Date.</inlineHelpText>
+    <label>Privacy Status Evaluation Period</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

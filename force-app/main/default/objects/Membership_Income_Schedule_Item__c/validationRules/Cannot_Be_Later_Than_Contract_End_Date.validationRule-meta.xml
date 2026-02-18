@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Be_Later_Than_Contract_End_Date</fullName>
+    <active>true</active>
+    <description
+  >To prevent us from attaching new entries to old membership contracts.</description>
+    <errorConditionFormula>Date__c &gt; Membership_Contract__r.End_Date__c
+&amp;&amp;
+$User.Id &lt;&gt; &apos;00530000003A32O&apos; /*Paul Harney*/
+&amp;&amp;
+$User.Id &lt;&gt; &apos;005a0000007Wamb&apos; /*Jeff Fahndrich*/
+&amp;&amp;
+$User.Id &lt;&gt; &apos;00530000001YEiF&apos; /*Jennifer Valdez*/
+&amp;&amp;
+$User.Id &lt;&gt; &apos;0055Y00000I0fox&apos; /*Jennifer Brenner*/
+&amp;&amp;
+$User.Id &lt;&gt; &apos;00530000003biB7&apos; /*Rebecca Johnson*/</errorConditionFormula>
+    <errorMessage
+  >Cannot create a schedule past the membership contract&apos;s End Date.</errorMessage>
+</ValidationRule>

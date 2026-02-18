@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CC_Exp_Date__c</fullName>
+    <description
+  >May be easier to work with this as a date field. Change later if this is the case. -Jeff</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >The expiration date (MM/YY) of the credit card currently on file with the vendor.</inlineHelpText>
+    <label>CC Exp Date</label>
+    <length>5</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

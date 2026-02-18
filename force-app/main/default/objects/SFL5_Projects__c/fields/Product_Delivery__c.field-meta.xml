@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Delivery__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Product_Group__c,
+&quot;Written&quot;,HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/t/CustomMedia/ERN3Sl4fNttAi8wlfY-O950BJ2eTm_ddi8lkWGyitNi0Qg?e=H5rOs7&amp;wdLOR=c5D47F92C-E8CD-4B8C-9138-3E24D691E889&quot;,&quot;Sample Written Product Client Delivery Email&quot;),
+
+&quot;Custom&quot;,HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/t/CustomMedia/ERN3Sl4fNttAi8wlfY-O950BJ2eTm_ddi8lkWGyitNi0Qg?e=H5rOs7&amp;wdLOR=c5D47F92C-E8CD-4B8C-9138-3E24D691E889&quot;,&quot;Sample Product Client Delivery Email&quot;),
+
+&quot;Roundtable&quot;,HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Content%20Studio%20Guidelines/Sample%20Email%20Templates/Virtual%20Products/Sample%20Email_Roundtable%20Client%20Delivery.docx?d=w6c092cdd76bd476a84474ae0f7ca044f&amp;csf=1&amp;web=1&amp;e=QY9wn8&quot;,&quot;Sample Roundtable Product Client Delivery Email&quot;),
+
+&quot;Webinar&quot;,HYPERLINK(&quot;https://erepublic2.sharepoint.com/:w:/r/teams/CustomMedia/Shared%20Documents/CSM%20RESOURCES/Content%20Studio%20Guidelines/Sample%20Email%20Templates/Webinars/Sample%20Email_Webinar%20Product%20Client%20Delivery.docx?d=w159c1d39188f4a35a2008004517d0409&amp;csf=1&amp;web=1&amp;e=eYcBrW&quot;,&quot;Sample Webinar Product Client Delivery Email&quot;),
+null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Product Delivery</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

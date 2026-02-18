@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Submission_Guidelines_Stephan__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(Job_Type__c,
+&quot;Comm Dev - Other&quot;, $Label.JO_Comm_Dev_Other,
+&quot;Content Studio Advertorials&quot;, $Label.JO_Content_Studio_Advertorials,
+&quot;Content Studio Case Study&quot;,  $Label.JO_Content_Studio_Case_Study,
+&quot;Content Studio Event Package&quot;, $Label.JO_Content_Studio_Event_Package,
+&quot;Content Studio Handbook&quot;, $Label.JO_Content_Studio_Handbook,
+&quot;Content Studio Infographics&quot;, $Label.JO_Content_Studio_Infographics,
+&quot;Content Studio Issue Brief&quot;, $Label.JO_Content_Studio_Issue_Brief,
+&quot;Content Studio Miscellaneous&quot;, $Label.JO_Content_Studio_Miscellaneous,
+&quot;Content Studio Print Distribution&quot;, $Label.JO_Content_Studio_Print_Distribution,
+&quot;Content Studio Publishable Report&quot;, $Label.JO_Content_Studio_Publishable_Report,
+&quot;Content Studio Q&amp;A&quot;, $Label.JO_Content_Studio_Q_A,
+&quot;Content Studio Slides for Video&quot;, $Label.JO_Content_Studio_Slides_for_Video,
+&quot;Content Studio TLP&quot;, $Label.JO_Content_Studio_TLP,
+&quot;Content Studio White Papers&quot;, $Label.JO_Content_Studio_White_Papers,
+&quot;Flipbook Upgrade&quot;, $Label.JO_Flipbook_Upgrade,
+&quot;GOVERNING Miscellaneous&quot;, $Label.JO_GOVERNING_Miscellaneous,
+&quot;GOVERNING Web Quote Art&quot;, $Label.JO_GOVERNING_Web_Quote_Art,
+&quot;Industry Insider Market Facts Charts&quot;, $Label.JO_Industry_Insider_Market_Facts_Charts,
+&quot;Magazine&quot;, $Label.JO_Magazine,
+&quot;Magazine Miscellaneous&quot;, $Label.JO_Magazine_Miscellaneous,
+&quot;Magazine Tip Ons&quot;, $Label.JO_Magazine_Tip_Ons,
+&quot;Magazine Web Art&quot;, $Label.JO_Magazine_Web_Art,
+&quot;Marketing Infographics&quot;, $Label.JO_Marketing_Infographics,
+&quot;Marketing/Navigator Market Facts Charts&quot;, $Label.JO_Marketing_Navigator_Market_Facts_Charts,
+&quot;Member Services Miscellaneous&quot;, $Label.JO_Member_Services_Miscellaneous,
+&quot;PowerPoint Design&quot;, $Label.JO_PowerPoint_Design,
+&quot;PowerPoint QC &amp; Font Embedding&quot;, $Label.JO_PowerPoint_QC_Font_Embedding,
+&quot;Research Event Jurisdictional Profile&quot;, $Label.JO_Research_Event_Jurisdictional_Profile,
+&quot;Research Miscellaneous&quot;, $Label.JO_Research_Miscellaneous,
+&quot;Research Navigator Datasheet Offerings&quot;, $Label.JO_Research_Navigator_Datasheet_Offerings,
+&quot;Research Navigator Vertical Reports&quot;, $Label.JO_Research_Navigator_Vertical_Reports,
+&quot;Research PowerPoint Design&quot;, $Label.JO_Research_PowerPoint_Design,
+&quot;Research Survey Sponsor Profiles&quot;, $Label.JO_Research_Survey_Sponsor_Profiles,
+&quot;Sales Miscellaneous&quot;, $Label.JO_Sales_Miscellaneous,
+null)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Submission Guidelines</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

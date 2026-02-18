@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Session_or_Webinar__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >The session or webinar which the resource is to accompany</description>
+    <inlineHelpText
+  >The session or webinar which the resource is to accompany</inlineHelpText>
+    <label>Session or Webinar</label>
+    <referenceTo>Events__c</referenceTo>
+    <relationshipName>Resources</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

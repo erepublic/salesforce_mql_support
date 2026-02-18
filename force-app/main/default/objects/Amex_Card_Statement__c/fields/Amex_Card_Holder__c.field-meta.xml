@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Amex_Card_Holder__c</fullName>
+    <deleteConstraint>Restrict</deleteConstraint>
+    <description
+  >This is the person who&apos;s name is on the card for this Amex Card Statement.</description>
+    <inlineHelpText
+  >This is the person who&apos;s name is on the card for this Amex Card Statement.</inlineHelpText>
+    <label>Amex Card Holder</label>
+    <referenceTo>Amex_Card_Holder__c</referenceTo>
+    <relationshipName>Amex_Card_Statements</relationshipName>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

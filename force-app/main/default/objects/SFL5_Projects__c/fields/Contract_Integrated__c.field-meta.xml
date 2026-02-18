@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contract_Integrated__c</fullName>
+    <formula>AND(
+INCLUDES(Contract__r.Delivery_Team__c, &quot;Research&quot;),
+INCLUDES(Contract__r.Delivery_Team__c, &quot;Content Studio&quot;)
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Contract Integrated</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

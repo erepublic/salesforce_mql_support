@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>New_MQLs</fullName>
+    <columns>MQL_Date__c</columns>
+    <columns>MQL_Status__c</columns>
+    <columns>NAME</columns>
+    <columns>MQL_Owner__c</columns>
+    <columns>Contact__c</columns>
+    <columns>MQL_Name__c</columns>
+    <columns>Product__c</columns>
+    <columns>Subscription_Memberships_All_Time__c</columns>
+    <columns>Campaign__c</columns>
+    <columns>Contact_Us__c</columns>
+    <columns>Engagement_AI_Summary__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>MQL_Status__c</field>
+        <operation>equals</operation>
+        <value>New</value>
+    </filters>
+    <label>All New MQLs</label>
+</ListView>

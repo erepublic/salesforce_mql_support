@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Qualified_On_Demand__c</fullName>
+    <label>Qualified On-Demand Attendees</label>
+    <summaryFilterItems>
+        <field>Registration__c.Non_Qual__c</field>
+        <operation>equals</operation>
+        <value>False</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Registration__c.attendedarchive__c</field>
+        <operation>equals</operation>
+        <value>Y</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Registration__c.attendedlive__c</field>
+        <operation>equals</operation>
+        <value>N</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Registration__c.Promo_Code__c</field>
+        <operation>notContain</operation>
+        <value>sponsor</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Registration__c.Promo_Code__c</field>
+        <operation>notContain</operation>
+        <value>Sponsor</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Registration__c.Event__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

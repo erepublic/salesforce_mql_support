@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mark_Selected_as_Delivered</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Mark Selected as Delivered</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url
+  >/flow/Shipments_SF_Mark_Selected_as_Delivered?retURL=https://erepublic.lightning.force.com/lightning/r/Events__c/{!Events__c.Id}/related/Event_Shipments__r/view</url>
+</WebLink>

@@ -1,0 +1,293 @@
+{
+  "version": "v1",
+  "generatedFrom": {
+    "source": "sandbox discovery bundles",
+    "notes": [
+      "This file is intended to be imported by the Lambda implementation as the canonical allowlist for data fetching and timeline construction.",
+      "Keep free-text / body fields out of the prompt by default (PII risk)."
+    ]
+  },
+  "defaults": {
+    "recencyWindowDays": 365,
+    "maxEvents": 25,
+    "capsByEventType": {
+      "emailEngagement": 5,
+      "meetingLogged": 5,
+      "callLogged": 5,
+      "noteAdded": 5,
+      "taskCompleted": 5,
+      "campaignTouch": 5,
+      "scoreChanged": 5
+    }
+  },
+  "salesforce": {
+    "requiredObjects": {
+      "Contact": {
+        "fields": [
+          "Id",
+          "Name",
+          "FirstName",
+          "LastName",
+          "Email",
+          "Phone",
+          "OwnerId",
+          "AccountId",
+          "RecordTypeId",
+          "CreatedDate",
+          "LastModifiedDate",
+          "Set_to_MQL__c",
+          "MQL_Lifecycle_Stage__c",
+          "Last_Date_MQL__c",
+          "Last_Date_Recycled__c",
+          "Contact_Status__c",
+          "Private_Sector_Non_Qual__c",
+          "Private_Sector_Acct_Non_Qual__c",
+          "HubSpot_Private_Sector_Behavior_Score__c",
+          "HubSpot_Private_Sector_Behavior_Date__c",
+          "HubSpot_Private_Sector_Contact_Fit__c",
+          "Contact_Fit_Threshold__c",
+          "HubSpot_Engagement_Score__c",
+          "HubSpot_Engagement_Score_Threshold__c",
+          "HubSpot_First_Conversion__c",
+          "HubSpot_First_Conversion_Date__c",
+          "HubSpot_Recent_Conversion__c",
+          "HubSpot_Recent_Conversion_Date__c",
+          "HubSpot_Last_Engagement_Date__c",
+          "HubSpot_Sends_Since_Last_Engagement__c",
+          "HubSpot_Last_Marketing_Email_Name__c",
+          "HubSpot_Last_Marketing_Email_Open_Date__c",
+          "HubSpot_Last_Marketing_Email_Send_Date__c",
+          "Engagement_AI_Summary__c"
+        ],
+        "optionalIdentityFields": ["Hubspot__c"]
+      },
+      "Account": {
+        "fields": [
+          "Id",
+          "Name",
+          "OwnerId",
+          "RecordTypeId",
+          "CreatedDate",
+          "LastModifiedDate",
+          "Private_Sector_Non_Qual__c",
+          "Company_Fit_Threshold__c",
+          "Placeholder_Account__c"
+        ]
+      },
+      "MQL__c": {
+        "fields": [
+          "Id",
+          "Name",
+          "OwnerId",
+          "CreatedDate",
+          "LastModifiedDate",
+          "Contact__c",
+          "MQL_Date__c",
+          "MQL_Status__c",
+          "Conversion_Date__c",
+          "Conversion_Type__c",
+          "Converted_By__c",
+          "Opportunity__c",
+          "Campaign__c",
+          "Contact_Us__c",
+          "Lead_Source__c",
+          "Lead_Source_Detail__c",
+          "Lead_Detail_1__c",
+          "Lead_Detail_2__c",
+          "Lead_Detail_3__c",
+          "Lead_Detail_4__c",
+          "Lead_Notes__c",
+          "Product__c",
+          "Product_Name__c",
+          "Engagement_AI_Summary__c"
+        ],
+        "writeBackFields": ["Engagement_AI_Summary__c"]
+      },
+      "OpportunityContactRole": {
+        "fields": [
+          "Id",
+          "ContactId",
+          "OpportunityId",
+          "CreatedDate",
+          "Open_Opportunity__c"
+        ]
+      },
+      "Opportunity": {
+        "fields": [
+          "Id",
+          "Name",
+          "AccountId",
+          "OwnerId",
+          "StageName",
+          "IsClosed",
+          "IsWon",
+          "CloseDate",
+          "Amount",
+          "CreatedDate",
+          "LastModifiedDate"
+        ]
+      }
+    },
+    "optionalTimelineObjects": {
+      "Task": {
+        "fields": [
+          "Id",
+          "Subject",
+          "Status",
+          "Priority",
+          "Type",
+          "ActivityDate",
+          "CreatedDate",
+          "LastModifiedDate",
+          "WhoId",
+          "WhatId",
+          "OwnerId"
+        ]
+      },
+      "Event": {
+        "fields": [
+          "Id",
+          "Subject",
+          "ActivityDate",
+          "StartDateTime",
+          "EndDateTime",
+          "Location",
+          "CreatedDate",
+          "LastModifiedDate",
+          "WhoId",
+          "WhatId",
+          "OwnerId"
+        ]
+      },
+      "EmailMessage": {
+        "fields": [
+          "Id",
+          "Subject",
+          "FromAddress",
+          "ToAddress",
+          "MessageDate",
+          "Incoming",
+          "Status",
+          "CreatedDate",
+          "LastModifiedDate",
+          "ParentId",
+          "RelatedToId"
+        ],
+        "notes": ["Metadata only; do not fetch/store bodies by default."]
+      },
+      "CampaignMember": {
+        "fields": [
+          "Id",
+          "CampaignId",
+          "Campaign.Name",
+          "Status",
+          "HasResponded",
+          "FirstRespondedDate",
+          "CreatedDate"
+        ]
+      },
+      "Contact_Us__c": {
+        "fields": ["Id", "Topic__c", "Source__c", "CreatedDate"],
+        "notes": ["Avoid pulling message free-text into the prompt by default."]
+      }
+    },
+    "historyTables": {
+      "ContactHistory": {
+        "fields": [
+          "Field",
+          "OldValue",
+          "NewValue",
+          "CreatedDate",
+          "CreatedById"
+        ]
+      },
+      "OpportunityFieldHistory": {
+        "fields": [
+          "Field",
+          "OldValue",
+          "NewValue",
+          "CreatedDate",
+          "CreatedById"
+        ],
+        "preferredFieldFilters": ["StageName"]
+      },
+      "MQL__History": {
+        "fields": [
+          "Field",
+          "OldValue",
+          "NewValue",
+          "CreatedDate",
+          "CreatedById"
+        ],
+        "preferredFieldFilters": ["MQL_Status__c"]
+      }
+    }
+  },
+  "timelineRecipe": {
+    "alwaysInclude": [
+      {
+        "eventType": "mqlCreated",
+        "sources": ["MQL__c.CreatedDate", "MQL__c.MQL_Date__c"]
+      },
+      {
+        "eventType": "mqlConverted",
+        "sources": [
+          "MQL__c.MQL_Status__c=Converted",
+          "MQL__c.Conversion_Date__c"
+        ]
+      },
+      {
+        "eventType": "mqlRejected",
+        "sources": [
+          "MQL__c.MQL_Status__c=Rejected",
+          "MQL__History.Field=MQL_Status__c"
+        ]
+      },
+      {
+        "eventType": "openOpportunityDetected",
+        "sources": [
+          "OpportunityContactRole.Open_Opportunity__c=true",
+          "Opportunity.StageName"
+        ]
+      },
+      {
+        "eventType": "opportunityStageChanged",
+        "sources": ["OpportunityFieldHistory.Field=StageName"]
+      }
+    ],
+    "recencyBounded": [
+      {
+        "eventType": "taskCompleted",
+        "sources": ["Task"]
+      },
+      {
+        "eventType": "meetingLogged",
+        "sources": ["Event"]
+      },
+      {
+        "eventType": "emailEngagement",
+        "sources": ["EmailMessage"]
+      },
+      {
+        "eventType": "campaignTouch",
+        "sources": ["CampaignMember"]
+      },
+      {
+        "eventType": "contactUsSubmitted",
+        "sources": ["Contact_Us__c"]
+      }
+    ],
+    "importance": {
+      "high": [
+        "mqlCreated",
+        "mqlConverted",
+        "mqlRejected",
+        "openOpportunityDetected",
+        "opportunityStageChanged",
+        "contactUsSubmitted"
+      ],
+      "medium": ["taskCompleted", "meetingLogged", "campaignTouch"],
+      "low": ["emailEngagement"]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Kim_s_Team_ALL_Agreements</fullName>
+    <booleanFilter>1 OR 2</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Status__c</columns>
+    <columns>Account__c</columns>
+    <columns>Type__c</columns>
+    <columns>Description__c</columns>
+    <columns>Amount__c</columns>
+    <columns>Main_Contact__c</columns>
+    <columns>Sales_Rep__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>Agreement_Link__c</columns>
+    <columns>Link_to_PDF__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Sales_Rep__c</field>
+        <operation>equals</operation>
+        <value>Kim Frame,Karen Hardison,Kristi Leko,Lynn Gallagher</value>
+    </filters>
+    <filters>
+        <field>Sales_Rep__c</field>
+        <operation>equals</operation>
+        <value>Tracy Meisler,Lara Roebbelen</value>
+    </filters>
+    <label>Kim&apos;s Team - ALL Agreements</label>
+</ListView>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Status__c</fullName>
+    <description
+  >All leads come in with a status of &quot;New&quot;.  convert to opportunities or reject leads through buttons on the lead page layout.</description>
+    <inlineHelpText
+  >All leads come in with a status of &quot;New&quot;.  convert to opportunities or reject leads through buttons on the lead page layout.</inlineHelpText>
+    <label>Status</label>
+    <required>false</required>
+    <trackFeedHistory>true</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>New Alert</fullName>
+                <default>true</default>
+                <label>New Alert</label>
+            </value>
+            <value>
+                <fullName>Sent to Sales</fullName>
+                <default>false</default>
+                <label>Sent to Sales</label>
+            </value>
+            <value>
+                <fullName>Converted</fullName>
+                <default>false</default>
+                <label>Converted</label>
+            </value>
+            <value>
+                <fullName>Discarded</fullName>
+                <default>false</default>
+                <label>Dismissed</label>
+            </value>
+            <value>
+                <fullName>Nurtured</fullName>
+                <default>false</default>
+                <label>Nurtured</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

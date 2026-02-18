@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Amount_when_Expense_Category_Selected</fullName>
+    <active>true</active>
+    <description
+  >Prevents people from inputting an expense amount in the &quot;Amount&quot; field.</description>
+    <errorConditionFormula>TEXT(Expense_Category__c )&lt;&gt;&quot;&quot;
+&amp;&amp;
+Amount__c &gt; 0</errorConditionFormula>
+    <errorDisplayField>Amount__c</errorDisplayField>
+    <errorMessage
+  >The value of expenses only needs to be entered in the &quot;Expense Amount&quot; field. You can leave &quot;Amount&quot; blank.</errorMessage>
+</ValidationRule>

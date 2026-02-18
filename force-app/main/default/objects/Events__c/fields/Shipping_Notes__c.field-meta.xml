@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shipping_Notes__c</fullName>
+    <description
+  >Additional notes for special handling regarding shipping packages to this event.</description>
+    <inlineHelpText
+  >Additional notes for special handling regarding shipping packages to this event.</inlineHelpText>
+    <label>Shipping Notes</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

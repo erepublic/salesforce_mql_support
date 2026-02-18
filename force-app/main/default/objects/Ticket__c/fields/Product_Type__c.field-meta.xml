@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product_Type__c</fullName>
+    <inlineHelpText>Select a product (if applicable)</inlineHelpText>
+    <label>Product Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Custom Event</fullName>
+                <default>false</default>
+                <label>Custom Event</label>
+            </value>
+            <value>
+                <fullName>Interview List</fullName>
+                <default>false</default>
+                <label>Interview List</label>
+            </value>
+            <value>
+                <fullName>Lead Gen</fullName>
+                <default>false</default>
+                <label>Lead Gen</label>
+            </value>
+            <value>
+                <fullName>Magazine Lot Split</fullName>
+                <default>false</default>
+                <label>Magazine Lot Split</label>
+            </value>
+            <value>
+                <fullName>Mailing List</fullName>
+                <default>false</default>
+                <label>Mailing List</label>
+            </value>
+            <value>
+                <fullName>Marketing Email</fullName>
+                <default>false</default>
+                <label>Marketing Email</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Overall Audience</fullName>
+                <default>false</default>
+                <label>Overall Audience</label>
+            </value>
+            <value>
+                <fullName>Paper</fullName>
+                <default>false</default>
+                <label>Paper</label>
+            </value>
+            <value>
+                <fullName>Special Edition Newsletter</fullName>
+                <default>false</default>
+                <label>Special Edition Newsletter</label>
+            </value>
+            <value>
+                <fullName>Standard Event</fullName>
+                <default>false</default>
+                <label>Standard Event</label>
+            </value>
+            <value>
+                <fullName>Survey</fullName>
+                <default>false</default>
+                <label>Survey</label>
+            </value>
+            <value>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+                <label>Webinar</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

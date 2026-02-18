@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Support_Tickets_Open_Lien</fullName>
+    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Assignee__c</columns>
+    <columns>Requested_By__c</columns>
+    <columns>Age__c</columns>
+    <columns>Phase__c</columns>
+    <columns>Type__c</columns>
+    <columns>Title__c</columns>
+    <columns>Project_Notes__c</columns>
+    <columns>Created_Date__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>Working_Date__c</columns>
+    <columns>ETA__c</columns>
+    <columns>RECORDTYPE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Phase__c</field>
+        <operation>notEqual</operation>
+        <value>Closed,Contract Cycle Finished,Canceled</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value
+    >Ticket__c.Sales_Operations,Ticket__c.Sales_Support,Ticket__c.Salesforce,Ticket__c.Unlock_Request</value>
+    </filters>
+    <filters>
+        <field>Assignee__c</field>
+        <operation>equals</operation>
+        <value>Lien Largent</value>
+    </filters>
+    <label>Sales Support Tickets [Open]: Lien</label>
+</ListView>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CS_Remaining_Deliverables_Maggie</fullName>
+    <booleanFilter>2 AND ((1 AND 3) OR 4)</booleanFilter>
+    <columns>Client__c</columns>
+    <columns>NAME</columns>
+    <columns>Remaining_Deliverables__c</columns>
+    <columns>Project_Status_Display__c</columns>
+    <columns>Remaining_Deliverables_Notes__c</columns>
+    <columns>Project_Update_Note__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Custom_Media</value>
+    </filters>
+    <filters>
+        <field>Project_Owner__c</field>
+        <operation>equals</operation>
+        <value>Maggie Cabrey</value>
+    </filters>
+    <filters>
+        <field>Remaining_Deliverables__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Project_Status_Display__c</field>
+        <operation>equals</operation>
+        <value>Post-Event Delivery</value>
+    </filters>
+    <label>CS - Remaining Deliverables - Maggie</label>
+</ListView>

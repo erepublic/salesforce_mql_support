@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Shipment_Direction__c</fullName>
+    <label>Shipment Direction</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>To Event</fullName>
+                <default>false</default>
+                <label>To Event</label>
+            </value>
+            <value>
+                <fullName>Return From Event</fullName>
+                <default>false</default>
+                <label>Return From Event</label>
+            </value>
+            <value>
+                <fullName>Event to Event</fullName>
+                <default>false</default>
+                <label>Event to Event</label>
+            </value>
+            <value>
+                <fullName>To Ad Board</fullName>
+                <default>false</default>
+                <label>To Ad Board</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

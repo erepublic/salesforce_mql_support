@@ -1,0 +1,1521 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>49.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <processMetadataValues>
+            <name>index</name>
+            <value>
+                <numberValue>0.0</numberValue>
+            </value>
+        </processMetadataValues>
+        <name>myDecision</name>
+        <label>myDecision</label>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>default</defaultConnectorLabel>
+        <rules>
+            <name>myRule_1</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>GlobalConstant</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference
+        >myVariable_current.Advisory_Board_1__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Boolean</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference
+        >myVariable_current.Marketing_Campaigns_Created__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>GlobalConstant</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference
+        >myVariable_current.Event_Start_Date__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>Date</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Formula</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference
+        >myVariable_current.Advisory_Board_1__c</leftValueReference>
+                <operator>GreaterThanOrEqualTo</operator>
+                <rightValue>
+                    <elementReference
+          >formula_2_myRule_1_5317385325</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <processMetadataValues>
+                    <name>inputDataType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>leftHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>operatorDataType</name>
+                    <value>
+                        <stringValue>String</stringValue>
+                    </value>
+                </processMetadataValues>
+                <processMetadataValues>
+                    <name>rightHandSideType</name>
+                    <value>
+                        <stringValue>Picklist</stringValue>
+                    </value>
+                </processMetadataValues>
+                <leftValueReference
+        >myVariable_current.Event_Type__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Registration only</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>myRule_1_A1</targetReference>
+            </connector>
+            <label>Is Ad Board #1 date set?</label>
+        </rules>
+    </decisions>
+    <description
+  >Erin Molina: &quot;adjust the first piece to go out 6 weeks before the Ad board meeting&quot; 12/14/2020</description>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE( 
+MOD([Events__c].Advisory_Board_1__c - DATE( 1900, 1, 7 ), 7 ), 
+1, [Events__c].Advisory_Board_1__c+ 2 + 5, 
+2, [Events__c].Advisory_Board_1__c+ 2 + 5, 
+3, [Events__c].Advisory_Board_1__c+ 2 + 5, 
+4, [Events__c].Advisory_Board_1__c+ 2 + 5, 
+5, [Events__c].Advisory_Board_1__c+ 2 + 5, 
+null 
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_10_myRule_1_A3_6640630093</name>
+        <dataType>Date</dataType>
+        <expression>CASE( 
+MOD({!myVariable_current.Advisory_Board_1__c} - DATE( 1900, 1, 7 ), 7 ), 
+1, {!myVariable_current.Advisory_Board_1__c}+ 2 + 5, 
+2, {!myVariable_current.Advisory_Board_1__c}+ 2 + 5, 
+3, {!myVariable_current.Advisory_Board_1__c}+ 2 + 5, 
+4, {!myVariable_current.Advisory_Board_1__c}+ 2 + 5, 
+5, {!myVariable_current.Advisory_Board_1__c}+ 2 + 5, 
+null 
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue
+        >[Events__c].Nickname__c + &quot; - Ad Board&quot;</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_11_myRule_1_A1_9686521124</name>
+        <dataType>String</dataType>
+        <expression
+    >{!myVariable_current.Nickname__c} + &quot; - Ad Board&quot;</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE( 
+TEXT([Events__c].Brand__c) ,
+&quot;GOVERNING&quot;, &quot;GOV&quot;,
+&quot;GOVTECH&quot;, &quot;GT&quot;,
+&quot;PCIO&quot;,&quot;PCIO&quot;,
+&quot;CDE&quot;,&quot;CDE&quot;,
+&quot;CDG&quot;,&quot;CDG&quot;,
+&quot;EMERGENCYMGMT&quot;,&quot;EM&quot;,
+&quot;EREPUBLIC&quot;,&quot;ER&quot;,
+&quot;DIGITAL_COMMUNITIES&quot;,&quot;DC&quot;,
+&quot;FUTURE_STRUCTURE&quot;,&quot;GOV&quot;,
+&quot;TECHWIRE&quot;,&quot;GT&quot;,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_12_myRule_1_A1_1832234913</name>
+        <dataType>String</dataType>
+        <expression>CASE( 
+TEXT({!myVariable_current.Brand__c}) ,
+&quot;GOVERNING&quot;, &quot;GOV&quot;,
+&quot;GOVTECH&quot;, &quot;GT&quot;,
+&quot;PCIO&quot;,&quot;PCIO&quot;,
+&quot;CDE&quot;,&quot;CDE&quot;,
+&quot;CDG&quot;,&quot;CDG&quot;,
+&quot;EMERGENCYMGMT&quot;,&quot;EM&quot;,
+&quot;EREPUBLIC&quot;,&quot;ER&quot;,
+&quot;DIGITAL_COMMUNITIES&quot;,&quot;DC&quot;,
+&quot;FUTURE_STRUCTURE&quot;,&quot;GOV&quot;,
+&quot;TECHWIRE&quot;,&quot;GT&quot;,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE( 
+MOD([Events__c].Advisory_Board_1__c - DATE( 1900, 1, 7 ), 7 ), 
+1, [Events__c].Advisory_Board_1__c- 42, 
+2, [Events__c].Advisory_Board_1__c- 42, 
+3, [Events__c].Advisory_Board_1__c- 42, 
+4, [Events__c].Advisory_Board_1__c- 42, 
+5, [Events__c].Advisory_Board_1__c- 42, 
+null 
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_13_myRule_1_A1_4229776709</name>
+        <dataType>Date</dataType>
+        <expression>CASE( 
+MOD({!myVariable_current.Advisory_Board_1__c} - DATE( 1900, 1, 7 ), 7 ), 
+1, {!myVariable_current.Advisory_Board_1__c}- 42, 
+2, {!myVariable_current.Advisory_Board_1__c}- 42, 
+3, {!myVariable_current.Advisory_Board_1__c}- 42, 
+4, {!myVariable_current.Advisory_Board_1__c}- 42, 
+5, {!myVariable_current.Advisory_Board_1__c}- 42, 
+null 
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE( 
+MOD([Events__c].Advisory_Board_1__c - DATE( 1900, 1, 7 ), 7 ), 
+1, [Events__c].Advisory_Board_1__c- 42, 
+2, [Events__c].Advisory_Board_1__c- 42, 
+3, [Events__c].Advisory_Board_1__c- 42, 
+4, [Events__c].Advisory_Board_1__c- 42, 
+5, [Events__c].Advisory_Board_1__c- 42, 
+null 
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_14_myRule_1_A1_8682035028</name>
+        <dataType>Date</dataType>
+        <expression>CASE( 
+MOD({!myVariable_current.Advisory_Board_1__c} - DATE( 1900, 1, 7 ), 7 ), 
+1, {!myVariable_current.Advisory_Board_1__c}- 42, 
+2, {!myVariable_current.Advisory_Board_1__c}- 42, 
+3, {!myVariable_current.Advisory_Board_1__c}- 42, 
+4, {!myVariable_current.Advisory_Board_1__c}- 42, 
+5, {!myVariable_current.Advisory_Board_1__c}- 42, 
+null 
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>TODAY()+28</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_2_myRule_1_5317385325</name>
+        <dataType>Date</dataType>
+        <expression>TODAY()+28</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue
+        >[Events__c].Nickname__c + &quot; - Call for Sponsors #2&quot;</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_3_myRule_1_A4_3346528098</name>
+        <dataType>String</dataType>
+        <expression
+    >{!myVariable_current.Nickname__c} + &quot; - Call for Sponsors #2&quot;</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE( 
+TEXT([Events__c].Brand__c) ,
+&quot;GOVERNING&quot;, &quot;GOV&quot;,
+&quot;GOVTECH&quot;, &quot;GT&quot;,
+&quot;PCIO&quot;,&quot;PCIO&quot;,
+&quot;CDE&quot;,&quot;CDE&quot;,
+&quot;CDG&quot;,&quot;CDG&quot;,
+&quot;EMERGENCYMGMT&quot;,&quot;EM&quot;,
+&quot;EREPUBLIC&quot;,&quot;ER&quot;,
+&quot;DIGITAL_COMMUNITIES&quot;,&quot;DC&quot;,
+&quot;FUTURE_STRUCTURE&quot;,&quot;GOV&quot;,
+&quot;TECHWIRE&quot;,&quot;GT&quot;,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_4_myRule_1_A4_5890868594</name>
+        <dataType>String</dataType>
+        <expression>CASE( 
+TEXT({!myVariable_current.Brand__c}) ,
+&quot;GOVERNING&quot;, &quot;GOV&quot;,
+&quot;GOVTECH&quot;, &quot;GT&quot;,
+&quot;PCIO&quot;,&quot;PCIO&quot;,
+&quot;CDE&quot;,&quot;CDE&quot;,
+&quot;CDG&quot;,&quot;CDG&quot;,
+&quot;EMERGENCYMGMT&quot;,&quot;EM&quot;,
+&quot;EREPUBLIC&quot;,&quot;ER&quot;,
+&quot;DIGITAL_COMMUNITIES&quot;,&quot;DC&quot;,
+&quot;FUTURE_STRUCTURE&quot;,&quot;GOV&quot;,
+&quot;TECHWIRE&quot;,&quot;GT&quot;,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE( 
+MOD([Events__c].Event_Start_Date__c- DATE( 1900, 1, 7 ), 7 ), 
+1, [Events__c].Event_Start_Date__c- 42, 
+2, [Events__c].Event_Start_Date__c- 42, 
+3, [Events__c].Event_Start_Date__c- 42, 
+4, [Events__c].Event_Start_Date__c- 42, 
+5, [Events__c].Event_Start_Date__c- 42, 
+null 
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_5_myRule_1_A4_0811935255</name>
+        <dataType>Date</dataType>
+        <expression>CASE( 
+MOD({!myVariable_current.Event_Start_Date__c}- DATE( 1900, 1, 7 ), 7 ), 
+1, {!myVariable_current.Event_Start_Date__c}- 42, 
+2, {!myVariable_current.Event_Start_Date__c}- 42, 
+3, {!myVariable_current.Event_Start_Date__c}- 42, 
+4, {!myVariable_current.Event_Start_Date__c}- 42, 
+5, {!myVariable_current.Event_Start_Date__c}- 42, 
+null 
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE( 
+MOD([Events__c].Event_Start_Date__c- DATE( 1900, 1, 7 ), 7 ), 
+1, [Events__c].Event_Start_Date__c- 42, 
+2, [Events__c].Event_Start_Date__c- 42, 
+3, [Events__c].Event_Start_Date__c- 42, 
+4, [Events__c].Event_Start_Date__c- 42, 
+5, [Events__c].Event_Start_Date__c- 42, 
+null 
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_6_myRule_1_A4_4482825324</name>
+        <dataType>Date</dataType>
+        <expression>CASE( 
+MOD({!myVariable_current.Event_Start_Date__c}- DATE( 1900, 1, 7 ), 7 ), 
+1, {!myVariable_current.Event_Start_Date__c}- 42, 
+2, {!myVariable_current.Event_Start_Date__c}- 42, 
+3, {!myVariable_current.Event_Start_Date__c}- 42, 
+4, {!myVariable_current.Event_Start_Date__c}- 42, 
+5, {!myVariable_current.Event_Start_Date__c}- 42, 
+null 
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue
+        >[Events__c].Nickname__c + &quot; - Call for Sponsors #1&quot;</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_7_myRule_1_A3_4444018329</name>
+        <dataType>String</dataType>
+        <expression
+    >{!myVariable_current.Nickname__c} + &quot; - Call for Sponsors #1&quot;</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE( 
+TEXT([Events__c].Brand__c) ,
+&quot;GOVERNING&quot;, &quot;GOV&quot;,
+&quot;GOVTECH&quot;, &quot;GT&quot;,
+&quot;PCIO&quot;,&quot;PCIO&quot;,
+&quot;CDE&quot;,&quot;CDE&quot;,
+&quot;CDG&quot;,&quot;CDG&quot;,
+&quot;EMERGENCYMGMT&quot;,&quot;EM&quot;,
+&quot;EREPUBLIC&quot;,&quot;ER&quot;,
+&quot;DIGITAL_COMMUNITIES&quot;,&quot;DC&quot;,
+&quot;FUTURE_STRUCTURE&quot;,&quot;GOV&quot;,
+&quot;TECHWIRE&quot;,&quot;GT&quot;,
+null
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_8_myRule_1_A3_8788153960</name>
+        <dataType>String</dataType>
+        <expression>CASE( 
+TEXT({!myVariable_current.Brand__c}) ,
+&quot;GOVERNING&quot;, &quot;GOV&quot;,
+&quot;GOVTECH&quot;, &quot;GT&quot;,
+&quot;PCIO&quot;,&quot;PCIO&quot;,
+&quot;CDE&quot;,&quot;CDE&quot;,
+&quot;CDG&quot;,&quot;CDG&quot;,
+&quot;EMERGENCYMGMT&quot;,&quot;EM&quot;,
+&quot;EREPUBLIC&quot;,&quot;ER&quot;,
+&quot;DIGITAL_COMMUNITIES&quot;,&quot;DC&quot;,
+&quot;FUTURE_STRUCTURE&quot;,&quot;GOV&quot;,
+&quot;TECHWIRE&quot;,&quot;GT&quot;,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <processMetadataValues>
+            <name>originalFormula</name>
+            <value>
+                <stringValue>CASE( 
+MOD([Events__c].Advisory_Board_1__c - DATE( 1900, 1, 7 ), 7 ), 
+1, [Events__c].Advisory_Board_1__c+ 2 + 5, 
+2, [Events__c].Advisory_Board_1__c+ 2 + 5, 
+3, [Events__c].Advisory_Board_1__c+ 2 + 5, 
+4, [Events__c].Advisory_Board_1__c+ 2 + 5, 
+5, [Events__c].Advisory_Board_1__c+ 2 + 5, 
+null 
+)</stringValue>
+            </value>
+        </processMetadataValues>
+        <name>formula_9_myRule_1_A3_0246125459</name>
+        <dataType>Date</dataType>
+        <expression>CASE( 
+MOD({!myVariable_current.Advisory_Board_1__c} - DATE( 1900, 1, 7 ), 7 ), 
+1, {!myVariable_current.Advisory_Board_1__c}+ 2 + 5, 
+2, {!myVariable_current.Advisory_Board_1__c}+ 2 + 5, 
+3, {!myVariable_current.Advisory_Board_1__c}+ 2 + 5, 
+4, {!myVariable_current.Advisory_Board_1__c}+ 2 + 5, 
+5, {!myVariable_current.Advisory_Board_1__c}+ 2 + 5, 
+null 
+)</expression>
+    </formulas>
+    <interviewLabel
+  >Event_Auto_Create_Campaigns_when_Ad_Board_Date_is_Set-15_InterviewLabel</interviewLabel>
+    <label>Event - Auto-Create Campaigns when Ad Board Date is Set</label>
+    <processMetadataValues>
+        <name>ObjectType</name>
+        <value>
+            <stringValue>Events__c</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>ObjectVariable</name>
+        <value>
+            <elementReference>myVariable_current</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OldObjectVariable</name>
+        <value>
+            <elementReference>myVariable_old</elementReference>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>TriggerType</name>
+        <value>
+            <stringValue>onAllChanges</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Workflow</processType>
+    <recordCreates>
+        <name>myRule_1_A1</name>
+        <label>Create Ad Board Email Campaign</label>
+        <locationX>100</locationX>
+        <locationY>200</locationY>
+        <connector>
+            <targetReference>myRule_1_A2</targetReference>
+        </connector>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Brand</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Brand__c</field>
+            <value>
+                <elementReference
+        >formula_12_myRule_1_A1_1832234913</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Copywriter</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Copywriter__c</field>
+            <value>
+                <stringValue>Unassigned</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>End Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>EndDate</field>
+            <value>
+                <elementReference
+        >formula_13_myRule_1_A1_4229776709</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Event</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Events__c</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Event__c</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Name</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Name</field>
+            <value>
+                <elementReference
+        >formula_11_myRule_1_A1_9686521124</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>StartDate</field>
+            <value>
+                <elementReference
+        >formula_14_myRule_1_A1_8682035028</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Status</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Status</field>
+            <value>
+                <stringValue>Planned</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Type</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Type</field>
+            <value>
+                <stringValue>Email</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Campaign</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_1_A3</name>
+        <label>Create Call for Sponsors #1</label>
+        <locationX>100</locationX>
+        <locationY>400</locationY>
+        <connector>
+            <targetReference>myRule_1_A4</targetReference>
+        </connector>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Brand</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Brand__c</field>
+            <value>
+                <elementReference
+        >formula_8_myRule_1_A3_8788153960</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Copywriter</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Copywriter__c</field>
+            <value>
+                <stringValue>Unassigned</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>End Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>EndDate</field>
+            <value>
+                <elementReference
+        >formula_9_myRule_1_A3_0246125459</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Event</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Events__c</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Event__c</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Name</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Name</field>
+            <value>
+                <elementReference
+        >formula_7_myRule_1_A3_4444018329</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>StartDate</field>
+            <value>
+                <elementReference
+        >formula_10_myRule_1_A3_6640630093</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Status</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Status</field>
+            <value>
+                <stringValue>Planned</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Type</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Type</field>
+            <value>
+                <stringValue>Email</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Campaign</object>
+    </recordCreates>
+    <recordCreates>
+        <name>myRule_1_A4</name>
+        <label>Create Call for Sponsors #2</label>
+        <locationX>100</locationX>
+        <locationY>500</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Brand</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Brand__c</field>
+            <value>
+                <elementReference
+        >formula_4_myRule_1_A4_5890868594</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Copywriter</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Copywriter__c</field>
+            <value>
+                <stringValue>Unassigned</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>End Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>EndDate</field>
+            <value>
+                <elementReference
+        >formula_5_myRule_1_A4_0811935255</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>ID</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Event</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue>Events__c</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Reference</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Event__c</field>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>String</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Name</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Name</field>
+            <value>
+                <elementReference
+        >formula_3_myRule_1_A4_3346528098</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Start Date</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Formula</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>StartDate</field>
+            <value>
+                <elementReference
+        >formula_6_myRule_1_A4_4482825324</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Status</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Status</field>
+            <value>
+                <stringValue>Planned</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Type</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Picklist</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Type</field>
+            <value>
+                <stringValue>Email</stringValue>
+            </value>
+        </inputAssignments>
+        <object>Campaign</object>
+    </recordCreates>
+    <recordUpdates>
+        <processMetadataValues>
+            <name>evaluationType</name>
+            <value>
+                <stringValue>always</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>extraTypeInfo</name>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>isChildRelationship</name>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>reference</name>
+            <value>
+                <stringValue>[Events__c]</stringValue>
+            </value>
+        </processMetadataValues>
+        <processMetadataValues>
+            <name>referenceTargetField</name>
+        </processMetadataValues>
+        <name>myRule_1_A2</name>
+        <label>Check off Marketing Campaigns Created</label>
+        <locationX>100</locationX>
+        <locationY>300</locationY>
+        <connector>
+            <targetReference>myRule_1_A3</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <processMetadataValues>
+                <name>implicit</name>
+                <value>
+                    <booleanValue>true</booleanValue>
+                </value>
+            </processMetadataValues>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>myVariable_current.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Marketing Campaigns Created</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue />
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>Marketing_Campaigns_Created__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <object>Events__c</object>
+    </recordUpdates>
+    <startElementReference>myDecision</startElementReference>
+    <status>Obsolete</status>
+    <variables>
+        <name>myVariable_current</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>true</isOutput>
+        <objectType>Events__c</objectType>
+    </variables>
+    <variables>
+        <name>myVariable_old</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Events__c</objectType>
+    </variables>
+</Flow>

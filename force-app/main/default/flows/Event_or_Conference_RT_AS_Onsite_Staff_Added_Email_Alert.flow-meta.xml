@@ -1,0 +1,627 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Moderator_Added_Notice</name>
+        <label>&quot;Moderator Added&apos; Notice</label>
+        <locationX>50</locationX>
+        <locationY>1247</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <stringValue
+        >salesforce@erepublic.com,erica.weiner@govtech.com,tdugan@erepublic.com,mlecey@govtech.com,sbarth@erepublic.com,jbrenner@erepublic.com,tawilliams@erepublic.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddressesArray</name>
+            <value>
+                <elementReference
+        >var_Email_Addresses_Moderator_Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Moderator Updated: {!$Record.Name}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference
+        >text_Template_Email_Body_Moderators</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Logistics_Notes_or_Onsite_Staff_Notes_Updated_Email</name>
+        <label
+    >Send &quot;Logistics Notes or Onsite Staff Notes Updated&quot; Email</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Onsite_Staff_Updated</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <stringValue>salesforce@erepublic.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailAddressesArray</name>
+            <value>
+                <elementReference
+        >var_Email_Addresses_Logistics_Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>senderType</name>
+            <value>
+                <stringValue>CurrentUser</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue
+        >Logistics Notes/Onsite Staff Notes Updated: {!$Record.Name}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference
+        >text_Template_Email_Body_Logistics_Notes_Email</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Onsite_Staff_Added_Notice</name>
+        <label>Send &quot;Onsite Staff Added&apos; Notice</label>
+        <locationX>50</locationX>
+        <locationY>839</locationY>
+        <actionName>emailSimple</actionName>
+        <actionType>emailSimple</actionType>
+        <connector>
+            <targetReference>Moderator_or_CDG_Speaker_Updated</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>emailAddresses</name>
+            <value>
+                <stringValue
+        >salesforce@erepublic.com,mgaton@erepublic.com,sbarth@erepublic.com,jbrenner@erepublic.com</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailSubject</name>
+            <value>
+                <stringValue>Onsite Staff Updated: {!$Record.Name}</stringValue>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>emailBody</name>
+            <value>
+                <elementReference
+        >text_Template_Email_Body_Onsite_Staff</elementReference>
+            </value>
+        </inputParameters>
+        <inputParameters>
+            <name>sendRichBody</name>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputParameters>
+        <nameSegment>emailSimple</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Event_Director_Email</name>
+        <label>Assign Event Director Email</label>
+        <locationX>50</locationX>
+        <locationY>1139</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Email_Addresses_Moderator_Email</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference
+        >$Record.Event_Director_Lookup__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Moderator_Added_Notice</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Logistics_Email</name>
+        <label>Assign Logistics Email</label>
+        <locationX>50</locationX>
+        <locationY>431</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Email_Addresses_Logistics_Email</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference
+        >$Record.Event_Manager__r.Email</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Send_Logistics_Notes_or_Onsite_Staff_Notes_Updated_Email</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Logistics_Notes_or_Onsite_Staff_Notes_Updated</name>
+        <label>Logistics Notes or Onsite Staff Notes Updated?</label>
+        <locationX>182</locationX>
+        <locationY>323</locationY>
+        <defaultConnector>
+            <targetReference>Onsite_Staff_Updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Logistics_or_Onsite_Staff_Notes_Updated</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Logistics_Notes__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.On_Site_Staff_Notes__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Logistics_Email</targetReference>
+            </connector>
+            <label>Yes, Logistics or Onsite Staff Notes Updated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Moderator_or_CDG_Speaker_Updated</name>
+        <label>Moderator or CDG Speaker Updated?</label>
+        <locationX>182</locationX>
+        <locationY>1031</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Moderator_or_CDG_Speaker_Updated</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Moderator_1__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Moderator_2__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.CDG_Closing_Speaker__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Moderator_3__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Moderator_4__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Event_Director_Email</targetReference>
+            </connector>
+            <label>Yes, Moderator or CDG Speaker Updated</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Onsite_Staff_Updated</name>
+        <label>Onsite Staff Updated?</label>
+        <locationX>182</locationX>
+        <locationY>731</locationY>
+        <defaultConnector>
+            <targetReference>Moderator_or_CDG_Speaker_Updated</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Onsite_Staff_Updated</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Onsite_Logistics_Staff__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Onsite_Registration_Staff__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Onsite_Sales_Staff__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Send_Onsite_Staff_Added_Notice</targetReference>
+            </connector>
+            <label>Yes, Onsite Staff Updated</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_CDG_Closing_Speaker</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR({!$Record.CDG_Closing_Speaker__c} &lt;&gt; {!$Record__Prior.CDG_Closing_Speaker__c},
+{!$Record.CDG_Closing_Speaker__c} &lt;&gt;&quot;&quot;), 
+&quot;&lt;b&gt;CDG Closing Speaker: &lt;/b&gt;&quot; &amp; 
+{!$Record.CDG_Closing_Speaker__c} &amp; &quot;&lt;br&gt;&quot;, 
+Null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Event_Link</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;https://erepublic.lightning.force.com/lightning/r/Events__c/&quot; &amp; {!$Record.Id} &amp; &quot;/view&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Logistics_Notes</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR({!$Record.Logistics_Notes__c} &lt;&gt; {!$Record__Prior.Logistics_Notes__c},
+{!$Record.Logistics_Notes__c} &lt;&gt;&quot;&quot;), 
+&quot;&lt;b&gt;Logistics Notes: &lt;/b&gt;&quot; &amp; 
+{!$Record.Logistics_Notes__c} &amp; &quot;&lt;br&gt;&quot;, 
+Null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Moderator_1</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR({!$Record.Moderator_1__c} &lt;&gt; {!$Record__Prior.Moderator_1__c},
+{!$Record.Moderator_1__c} &lt;&gt;&quot;&quot;), 
+&quot;&lt;b&gt;Moderator 1: &lt;/b&gt;&quot; &amp; 
+{!$Record.Moderator_1__c} &amp; &quot;&lt;br&gt;&quot;, 
+Null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Moderator_2</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR({!$Record.Moderator_2__c} &lt;&gt; {!$Record__Prior.Moderator_2__c},
+{!$Record.Moderator_2__c} &lt;&gt;&quot;&quot;), 
+&quot;&lt;b&gt;Moderator 2: &lt;/b&gt;&quot; &amp; 
+{!$Record.Moderator_2__c} &amp; &quot;&lt;br&gt;&quot;, 
+Null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Moderator_3</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR({!$Record.Moderator_3__c} &lt;&gt; {!$Record__Prior.Moderator_3__c},
+{!$Record.Moderator_3__c} &lt;&gt;&quot;&quot;), 
+&quot;&lt;b&gt;Moderator 3: &lt;/b&gt;&quot; &amp; 
+{!$Record.Moderator_3__c} &amp; &quot;&lt;br&gt;&quot;, 
+Null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Moderator_4</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR({!$Record.Moderator_4__c} &lt;&gt; {!$Record__Prior.Moderator_4__c},
+{!$Record.Moderator_4__c} &lt;&gt;&quot;&quot;), 
+&quot;&lt;b&gt;Moderator 4: &lt;/b&gt;&quot; &amp; 
+{!$Record.Moderator_4__c} &amp; &quot;&lt;br&gt;&quot;, 
+Null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Onsite_Logistics_Staff</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR({!$Record.Onsite_Logistics_Staff__c} &lt;&gt; {!$Record__Prior.Onsite_Logistics_Staff__c},
+{!$Record.Onsite_Logistics_Staff__c} &lt;&gt;&quot;&quot;), 
+&quot;&lt;b&gt;Onsite Logistics Staff: &lt;/b&gt;&quot; &amp; 
+{!$Record.Onsite_Logistics_Staff__r.FirstName} &amp; &quot; &quot; &amp; {!$Record.Onsite_Logistics_Staff__r.LastName} &amp; &quot;&lt;br&gt;&quot;, 
+Null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Onsite_Registration_Staff</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR({!$Record.Onsite_Registration_Staff__c} &lt;&gt; {!$Record__Prior.Onsite_Registration_Staff__c}, 
+{!$Record.Onsite_Registration_Staff__c} &lt;&gt; &quot;&quot;), 
+&quot;&lt;b&gt;Onsite Registration Staff: &lt;/b&gt;&quot; &amp; 
+{!$Record.Onsite_Registration_Staff__r.FirstName} &amp; &quot; &quot; &amp; {!$Record.Onsite_Registration_Staff__r.LastName} &amp; &quot;&lt;br&gt;&quot;, 
+Null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Onsite_Sales_Staff</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR({!$Record.Onsite_Sales_Staff__c} &lt;&gt; {!$Record__Prior.Onsite_Sales_Staff__c},
+{!$Record.Onsite_Sales_Staff__c} &lt;&gt; &quot;&quot;), 
+&quot;&lt;b&gt;Onsite Sales Staff: &lt;/b&gt;&quot; &amp; 
+{!$Record.Onsite_Sales_Staff__r.FirstName} &amp; &quot; &quot; &amp; {!$Record.Onsite_Sales_Staff__r.LastName} &amp; &quot;&lt;br&gt;&quot;, 
+Null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Onsite_Staff_Notes</name>
+        <dataType>String</dataType>
+        <expression>IF(
+OR({!$Record.On_Site_Staff_Notes__c} &lt;&gt; {!$Record__Prior.On_Site_Staff_Notes__c},
+{!$Record.On_Site_Staff_Notes__c} &lt;&gt;&quot;&quot;), 
+&quot;&lt;b&gt;Onsite Staff Notes: &lt;/b&gt;&quot; &amp; 
+{!$Record.On_Site_Staff_Notes__c} &amp; &quot;&lt;br&gt;&quot;, 
+Null
+)</expression>
+    </formulas>
+    <interviewLabel
+  >Event or Conference - {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Event or Conference - RT AS - Onsite Staff Added - Send Email</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference
+      >Logistics_Notes_or_Onsite_Staff_Notes_Updated</targetReference>
+        </connector>
+        <filterLogic
+    >1 AND 2 AND (12 OR 13 OR  14 OR 15 OR 16 OR 17 OR 18 OR ((3 OR 4 OR 5) AND NOT (6 OR 7 OR 8 OR 9 OR 10 OR 11)))</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Cancelled</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01230000000ueuwAAA</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Onsite_Logistics_Staff__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Onsite_Registration_Staff__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Onsite_Sales_Staff__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Name</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>TEST</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Name</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>Badge Scanner Tech</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Name</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>Digital States Annual Summit</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Name</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>Envision</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Name</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>Large City/County</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Name</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>Mid-Year Event</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Moderator_1__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Moderator_2__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CDG_Closing_Speaker__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Moderator_3__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Moderator_4__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>On_Site_Staff_Notes__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Logistics_Notes__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Events__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>text_Template_Email_Body_Logistics_Notes_Email</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text
+    >&lt;div&gt;&lt;strong style=&quot;font-size: 12pt; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Date&lt;/strong&gt;&lt;span style=&quot;font-size: 12pt; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;: {!$Flow.CurrentDate}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;strong style=&quot;font-size: 12pt; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Event&lt;/strong&gt;&lt;span style=&quot;font-size: 12pt; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;: &lt;/span&gt;&lt;a href=&quot;{!f_Event_Link}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 12pt; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(0, 0, 255);&quot;&gt;{!$Record.Name}&lt;/a&gt;&lt;/div&gt;&lt;div&gt;&lt;strong style=&quot;font-size: 12pt; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Event Start Date&lt;/strong&gt;&lt;span style=&quot;font-size: 12pt; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;: {!$Record.Event_Start_Date__c}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12pt; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;Onsite Staff Notes and/or Logistics Notes have been added or changed:&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12pt; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!f_Logistics_Notes}{!f_Onsite_Staff_Notes}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 16px; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$User.FirstName} {!$User.LastName} &lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 16px; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$User.Title}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;font-size: 16px; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$User.Email}&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;br&gt;&lt;a href=&quot;https://erepublic.lightning.force.com/lightning/setup/Flows/page?address=%2F3005Y000001AffRQAS%3FretUrl%3D%2Flightning%2Fsetup%2FFlows%2Fhome&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 9px;&quot;&gt;Flow&lt;/a&gt;&lt;/div&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>text_Template_Email_Body_Moderators</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text
+    >&lt;div&gt;&lt;span style=&quot;font-size: 12pt; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!$User.FirstName} {!$User.LastName} has updated the Moderator(s) or CDG Closing Speaker for &lt;/span&gt;&lt;a href=&quot;{!f_Event_Link}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 12pt; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(0, 0, 255);&quot;&gt;{!$Record.Name}&lt;/a&gt;&lt;span style=&quot;font-size: 12pt; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;, {!$Record.Event_Start_Date__c}:&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;span style=&quot;font-size: 12pt; font-family: calibri; background-color: rgb(255, 255, 255); color: rgb(68, 68, 68);&quot;&gt;{!f_Moderator_1}{!f_Moderator_2}{!f_Moderator_3}{!f_Moderator_4}{!f_CDG_Closing_Speaker}&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;br&gt;&lt;a href=&quot;https://erepublic.lightning.force.com/lightning/setup/Flows/page?address=%2F3005Y000001AffRQAS%3FretUrl%3D%2Flightning%2Fsetup%2FFlows%2Fhome&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 9px;&quot;&gt;Flow&lt;/a&gt;&lt;/div&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>text_Template_Email_Body_Onsite_Staff</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text
+    >&lt;div&gt;&lt;span style=&quot;color: rgb(68, 68, 68); background-color: rgb(255, 255, 255); font-family: calibri; font-size: 12pt;&quot;&gt;{!$User.FirstName} {!$User.LastName} has updated Onsite Staff for &lt;a href=&quot;{!f_Event_Link}&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;color: rgb(0, 0, 255); background-color: rgb(255, 255, 255); font-family: calibri; font-size: 12pt;&quot;&gt;{!$Record.Name}&lt;/a&gt;, {!$Record.Event_Start_Date__c}:&lt;/span&gt;&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;span style=&quot;color: rgb(68, 68, 68); font-family: calibri; font-size: 12pt;&quot;&gt;{!f_Onsite_Logistics_Staff}{!f_Onsite_Registration_Staff}{!f_Onsite_Sales_Staff}&lt;/span&gt;&lt;/div&gt;
+&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;br&gt;&lt;a href=&quot;https://erepublic.lightning.force.com/lightning/setup/Flows/page?address=%2F3005Y000001AffRQAS%3FretUrl%3D%2Flightning%2Fsetup%2FFlows%2Fhome&quot; rel=&quot;noopener noreferrer&quot; target=&quot;_blank&quot; style=&quot;font-size: 9px;&quot;&gt;Flow&lt;/a&gt;&lt;/div&gt;</text>
+    </textTemplates>
+    <textTemplates>
+        <name>text_Template_Subject_Line_Onsite_Staff</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text
+    >&lt;p&gt;{!$User.FirstName} has added Onsite Staff to {!$Record.Name}&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>var_Email_Addresses_Logistics_Email</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Email_Addresses_Moderator_Email</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

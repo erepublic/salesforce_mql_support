@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Deleted_Json__c</fullName>
+    <description
+  >Machine readable data saved from the deleted contact record.</description>
+    <inlineHelpText
+  >Machine readable data saved from the deleted contact record.</inlineHelpText>
+    <label>Contact Deleted Json</label>
+    <length>32768</length>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

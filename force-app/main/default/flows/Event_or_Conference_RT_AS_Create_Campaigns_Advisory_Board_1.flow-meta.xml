@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_AdBd_Email_Campaign_Greater_or_Equal</name>
+        <label>Assign AdBd Email Campaign</label>
+        <locationX>314</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.StartDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Adbd_Campaign_Date_Greater_than_56</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.EndDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Adbd_Campaign_Date_Greater_than_56</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Adbd_Campaign_Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.Brand__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Campaign_Brand</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.Copywriter__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Unassigned</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.Event__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Planned</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.Type</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Email</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.Promotion_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Events Marketing</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_Campaigns_to_Create</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>var_Ad_Board_Email_Campaign</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Assign_Call_for_Sponsors_1_Less_Than</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_AdBd_Email_Campaign_Less_Than</name>
+        <label>Assign AdBd Email Campaign</label>
+        <locationX>50</locationX>
+        <locationY>539</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.StartDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Adbd_Campaign_Date_Less_than_56</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.EndDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Adbd_Campaign_Date_Less_than_56</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Adbd_Campaign_Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.Brand__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Campaign_Brand</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.Copywriter__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Unassigned</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.Event__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Planned</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.Type</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Email</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Ad_Board_Email_Campaign.Promotion_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Events Marketing</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_Campaigns_to_Create</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>var_Ad_Board_Email_Campaign</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Assign_Call_for_Sponsors_1_Less_Than</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Call_for_Sponsors_1_Less_Than</name>
+        <label>Assign Call for Sponsors #1</label>
+        <locationX>182</locationX>
+        <locationY>731</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_Call_for_Sponsors_Campaign.StartDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Sponsors_Campaign_Date_Less_Than_56</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Call_for_Sponsors_Campaign.EndDate</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Sponsors_Campaign_Date_Less_Than_56</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Call_for_Sponsors_Campaign.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Sponsors_Campaign_Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Call_for_Sponsors_Campaign.Brand__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Campaign_Brand</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Call_for_Sponsors_Campaign.Copywriter__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Unassigned</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Call_for_Sponsors_Campaign.Event__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Call_for_Sponsors_Campaign.Status</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Planned</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Call_for_Sponsors_Campaign.Type</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Email</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Call_for_Sponsors_Campaign.Promotion_Type__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Events Marketing</stringValue>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_Campaigns_to_Create</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference
+        >var_Call_for_Sponsors_Campaign</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Create_Campaigns</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Event_Start_Date_Greater_than_Today</name>
+        <label>Event Start Date Greater than Today?</label>
+        <locationX>380</locationX>
+        <locationY>323</locationY>
+        <defaultConnectorLabel>No, Event has Passed</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Event_Start_Date_is_Greater_than_Today</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Event_Start_Date__c</leftValueReference>
+                <operator>GreaterThan</operator>
+                <rightValue>
+                    <elementReference>$Flow.CurrentDate</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Is_Advisory_Board_1_Less_than_56_Days_from_now</targetReference>
+            </connector>
+            <label>Yes, Event Start Date is Greater than Today</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Is_Advisory_Board_1_Less_than_56_Days_from_now</name>
+        <label>Is Advisory Board #1 Less than 56 Days from now?</label>
+        <locationX>182</locationX>
+        <locationY>431</locationY>
+        <defaultConnector>
+            <targetReference
+      >Assign_AdBd_Email_Campaign_Greater_or_Equal</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel
+    >Greater or Equal to 56 Days from Now</defaultConnectorLabel>
+        <rules>
+            <name>Less_than_56_Days_from_Now</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Advisory_Board_1__c</leftValueReference>
+                <operator>LessThan</operator>
+                <rightValue>
+                    <elementReference>f_Today_Plus_56</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_AdBd_Email_Campaign_Less_Than</targetReference>
+            </connector>
+            <label>Less than 56 Days from Now</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Adbd_Campaign_Date_Greater_than_56</name>
+        <dataType>Date</dataType>
+        <expression>CASE( 
+MOD({!$Record.Advisory_Board_1__c} - DATE( 1900, 1, 7 ), 7 ), 
+0, {!$Record.Advisory_Board_1__c} - 55,
+1, {!$Record.Advisory_Board_1__c} - 56, 
+2, {!$Record.Advisory_Board_1__c} - 56, 
+3, {!$Record.Advisory_Board_1__c} - 56, 
+4, {!$Record.Advisory_Board_1__c} - 56, 
+5, {!$Record.Advisory_Board_1__c} - 56, 
+6, {!$Record.Advisory_Board_1__c} - 54,
+null 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Adbd_Campaign_Date_Less_than_56</name>
+        <dataType>Date</dataType>
+        <expression>CASE( 
+MOD(TODAY()- DATE( 1900, 1, 7 ), 7 ), 
+0, TODAY() + 5,
+1, TODAY() + 7, 
+2, TODAY() + 7, 
+3, TODAY() + 7, 
+4, TODAY() + 7, 
+5, TODAY() + 7, 
+6, TODAY() + 6,
+null 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Adbd_Campaign_Name</name>
+        <dataType>String</dataType>
+        <expression
+    >{!$Record.Nickname__c} + &quot; - Ad Board&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Campaign_Brand</name>
+        <dataType>String</dataType>
+        <expression>CASE(
+TEXT({!$Record.Brand__c}) ,
+&quot;GOVERNING&quot;, &quot;GOV&quot;,
+&quot;GOVTECH&quot;, &quot;GT&quot;,
+&quot;PCIO&quot;,&quot;PCIO&quot;,
+&quot;CDE&quot;,&quot;CDE&quot;,
+&quot;CDG&quot;,&quot;CDG&quot;,
+&quot;EMERGENCYMGMT&quot;,&quot;EM&quot;,
+&quot;EREPUBLIC&quot;,&quot;ER&quot;,
+&quot;DIGITAL_COMMUNITIES&quot;,&quot;DC&quot;,
+&quot;FUTURE_STRUCTURE&quot;,&quot;GOV&quot;,
+&quot;INSIDER CA&quot;,&quot;GT&quot;,
+&quot;INSIDER TX&quot;,&quot;GT&quot;,
+null
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Sponsors_Campaign_Date_Less_Than_56</name>
+        <dataType>Date</dataType>
+        <expression>CASE( 
+MOD({!$Record.Advisory_Board_1__c} - DATE( 1900, 1, 7 ), 7 ), 
+0, {!$Record.Advisory_Board_1__c} + 5, 
+1, {!$Record.Advisory_Board_1__c} + 7, 
+2, {!$Record.Advisory_Board_1__c} + 7, 
+3, {!$Record.Advisory_Board_1__c} + 7, 
+4, {!$Record.Advisory_Board_1__c} + 7, 
+5, {!$Record.Advisory_Board_1__c} + 7, 
+6, {!$Record.Advisory_Board_1__c} + 6, 
+null 
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Sponsors_Campaign_Name</name>
+        <dataType>String</dataType>
+        <expression
+    >{!$Record.Nickname__c} + &quot; - Call for Sponsors #1&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Today_Plus_56</name>
+        <dataType>Date</dataType>
+        <expression>{!$Flow.CurrentDate}+56</expression>
+    </formulas>
+    <interviewLabel
+  >Event or Conference - RT AS - Create Campaigns (Event Start Date) {!$Flow.CurrentDateTime}</interviewLabel>
+    <label
+  >Event or Conference - RT AS - Create Campaigns (Advisory Board #1)</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Campaigns</name>
+        <label>Create Campaigns</label>
+        <locationX>182</locationX>
+        <locationY>839</locationY>
+        <connector>
+            <targetReference>Set_Campaigns_Created_on_Event</targetReference>
+        </connector>
+        <inputReference>var_Campaigns_to_Create</inputReference>
+    </recordCreates>
+    <recordUpdates>
+        <name>Set_Campaigns_Created_on_Event</name>
+        <label>Set Campaigns Created on Event</label>
+        <locationX>182</locationX>
+        <locationY>947</locationY>
+        <inputAssignments>
+            <field>Campaigns_Created_Advisory_Board_1__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>254</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference
+      >Event_Start_Date_Greater_than_Today</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Advisory_Board_1__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Campaigns_Created_Advisory_Board_1__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Event_Type__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Registration only</stringValue>
+            </value>
+        </filters>
+        <object>Events__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Obsolete</status>
+    <variables>
+        <name>var_Ad_Board_Email_Campaign</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Campaign</objectType>
+    </variables>
+    <variables>
+        <name>var_Call_for_Sponsors_Campaign</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Campaign</objectType>
+    </variables>
+    <variables>
+        <name>var_Campaigns_to_Create</name>
+        <dataType>SObject</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Campaign</objectType>
+    </variables>
+</Flow>

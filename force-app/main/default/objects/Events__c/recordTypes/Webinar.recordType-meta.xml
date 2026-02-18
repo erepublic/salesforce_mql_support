@@ -1,0 +1,1716 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Webinar</fullName>
+    <active>true</active>
+    <compactLayoutAssignment
+  >Standard_Event_Compact_Layout</compactLayoutAssignment>
+    <description>Webinars, Teleconferences, Online Forum Events</description>
+    <label>Webinar</label>
+    <picklistValues>
+        <picklist>Ad_Bd_1_Format__c</picklist>
+        <values>
+            <fullName>Live</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Virtual</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ad_Bd_1_Status__c</picklist>
+        <values>
+            <fullName>CANCELLED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CONFIRMED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PENDING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RESCHEDULED</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ad_Bd_2_Format__c</picklist>
+        <values>
+            <fullName>Live</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Virtual</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ad_Bd_2_Status__c</picklist>
+        <values>
+            <fullName>CANCELLED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CONFIRMED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PENDING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RESCHEDULED</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ad_Bd_3_Format__c</picklist>
+        <values>
+            <fullName>Live</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Virtual</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Ad_Bd_3_Status__c</picklist>
+        <values>
+            <fullName>CANCELLED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CONFIRMED</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PENDING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>RESCHEDULED</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Brand__c</picklist>
+        <values>
+            <fullName>CDE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CDG</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DIGITAL_COMMUNITIES</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EMERGENCYMGMT</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EREPUBLIC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>FUTURE_STRUCTURE</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOVERNING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOVTECH</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>INSIDER CA</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>INSIDER FL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>INSIDER TX</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>PCIO</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Contact_Interest_Topics__c</picklist>
+        <values>
+            <fullName>1%3A1 and BYOD</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Administrative Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Advocacy and Government Affairs</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Artificial Intelligence</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Budget and Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Budget%2C Finance and HR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Buildings and Facilities</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>COVID Resources</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Citizen Engagement</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Civic Innovation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cloud</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Constituent Experience</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cybersecurity</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Data and Analytics</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Digital Workflows</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Diversity%2C Equity and Inclusion</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Education Technology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Election Technology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Emergency Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Emerging Tech</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Federal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Finance</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Grants</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Health and Human Services</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Higher Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IT Infrastructure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IT Modernization</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Infrastructure</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IoT and Smart Cities</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Justice and Legal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Justice and Public Safety</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>K-12 Education</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Law Enforcement and Fire</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Local</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Manufacturing and Retail</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Marketing to Government</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Media</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Networking</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Next-Gen Networks</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online Learning</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Policy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Policy and Management</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Privacy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Works</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Recruitment and Retention</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Smart Cities</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Social and Mobile</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Special Districts</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>State</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Sustainability and Environment</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Technology</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Transportation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Utilities%2C Water%2C Waste and Energy</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Workforce</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Workforce and HR</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>eGovernment</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Covid_Status__c</picklist>
+        <values>
+            <fullName>Event Start Cancelled</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Duration_minutes__c</picklist>
+        <values>
+            <fullName>120</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>15</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>150</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>180</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>210</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>240</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>30</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>45</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>60</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>75</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>90</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Event_Brand_Division__c</picklist>
+        <values>
+            <fullName>CDE%2FConverge</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DC</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>EM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOVERNING</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT Mag</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Event_Category__c</picklist>
+        <values>
+            <fullName>CDE Custom Levels %2F Pricing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CDG Custom Levels %2F Pricing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT Custom Levels %2F Pricing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Without Conference Bag</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Without Notebook</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Without Roundtable</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Event_End_Time__c</picklist>
+        <values>
+            <fullName>1%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Event_History_Type__c</picklist>
+        <values>
+            <fullName>Annual</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Historical</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Event_Month__c</picklist>
+        <values>
+            <fullName>April</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>August</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>December</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>February</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>January</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>July</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>June</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>March</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>May</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>November</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>October</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>September</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Event_Quarter__c</picklist>
+        <values>
+            <fullName>Q1</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Q2</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Q3</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Q4</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Event_Series__c</picklist>
+        <values>
+            <fullName>CDE Program</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CDG Program</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cybersecurity Summits</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Digital Government Summits</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GOV Program</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GT Program</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Higher Education Events</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>IT Leadership Forums</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>K-12 Education Events</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Event_Start_Time__c</picklist>
+        <values>
+            <fullName>1%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>1%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>10%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>11%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>12%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>2%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>3%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>4%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>5%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>6%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>7%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>8%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A00 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A00 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A15 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A15 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A30 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A30 PM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A45 AM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>9%3A45 PM</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Event_Type__c</picklist>
+        <values>
+            <fullName>Custom</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Custom Roundtable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lunch %26 Learn Webinar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Registration only</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standard_Program_Custom Roundtable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standard_Program_Webinar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>State Editorial Roundtable</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>State-Specific Webinar</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Virtual Conversation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Financial_Reporting_Category__c</picklist>
+        <values>
+            <fullName>CUSTOM</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DGS</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>ITL</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTHER</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>OTHER MEETING</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Gift_Card_Type__c</picklist>
+        <values>
+            <fullName>Amazon</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Target</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Hide_Page_Elements__c</picklist>
+        <values>
+            <fullName>Hide Disclaimer and Opt-Out</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hide Opt-Out</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Lead_Guarantee_Met__c</picklist>
+        <values>
+            <fullName>No</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Yes</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Live_Qualifier_view_time_req_d__c</picklist>
+        <values>
+            <fullName>Registered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Viewed %28any length%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Viewed %28full length%29</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Logistics_I_C__c</picklist>
+        <values>
+            <fullName>Aimee Rupe</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Diana Wilson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Erica Baldwin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Erica Weiner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Gina Prioste</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Kelly Martinez</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Liese Brunner</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lisa Probst</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Patty Garnto</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Shannon Coughlin</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Tricia Dugan</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Whitney Sweet</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Media_Host__c</picklist>
+        <values>
+            <fullName>HubSpot</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>OD_Qualifier_view_time_req_d__c</picklist>
+        <values>
+            <fullName>Registered</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Viewed %28any length%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Viewed %28full length%29</fullName>
+            <default>true</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Onsite_Event_Director__c</picklist>
+        <values>
+            <fullName>Brian Cohen</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Danni Chisick</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Erica Patterson</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hansa Bernal</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Helen Kang</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jackie White</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jason Perdue</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jessica Byerly</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Jordan Wilkins</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Ken Skeen</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Liese Miller</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Monique Scott</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Phil Bertolini</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Teri Takai</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Zach Thorn</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Program_Guide__c</picklist>
+        <values>
+            <fullName>External Print</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>In-house Print</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Qualified_Registration_Includes__c</picklist>
+        <values>
+            <fullName>Both</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Govt</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Govt %26 Industry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Govt%2C Industry %26 Sponsors</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Industry</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Private Sector Only</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public Sector Only</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Recon_Status__c</picklist>
+        <values>
+            <fullName>Reconciled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Submitted to Finance</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Show_Demographic_Questions__c</picklist>
+        <values>
+            <fullName>Private - No Questions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Public - No Questions</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Show Demographic Questions</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Cancelled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pending</fullName>
+            <default>true</default>
+        </values>
+        <values>
+            <fullName>Save_the_Date</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Scheduled</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Target_Type__c</picklist>
+        <values>
+            <fullName>Both</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Logged On</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Registered</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Time_Zone__c</picklist>
+        <values>
+            <fullName>Alaska</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Central</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Eastern</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hawaii</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Hawaii no DST</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mountain</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Mountain no DST</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Pacific</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Web_Status__c</picklist>
+        <values>
+            <fullName>In Progress</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Live</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Webinar_Type__c</picklist>
+        <values>
+            <fullName>Marketing Briefing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Online Forum</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Special Report</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Teleconference</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Virtual Summit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Webinar</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

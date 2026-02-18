@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Created_by__c</fullName>
+    <description
+  >Copy of Created By used for Related Lists and Reports</description>
+    <externalId>false</externalId>
+    <formula
+  >CreatedBy.FirstName&amp;&quot; &quot;&amp;CreatedBy.LastName&amp;&quot;, &quot;&amp;
+
+TEXT( MONTH( DATEVALUE( CreatedDate)) ) &amp; &quot;/&quot; &amp; TEXT( DAY(DATEVALUE( CreatedDate) ) ) &amp; &quot;/&quot; &amp; TEXT( YEAR( DATEVALUE(CreatedDate) ) )</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Copy of Created By used for Related Lists and Reports</inlineHelpText>
+    <label>Created by</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

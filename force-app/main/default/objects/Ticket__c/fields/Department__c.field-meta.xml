@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Department__c</fullName>
+    <label>Department</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Sales</fullName>
+                <default>false</default>
+                <label>Sales</label>
+            </value>
+            <value>
+                <fullName>Sales Operations</fullName>
+                <default>false</default>
+                <label>Sales Operations</label>
+            </value>
+            <value>
+                <fullName>Sales Administrative Support</fullName>
+                <default>false</default>
+                <label>Sales Administrative Support</label>
+            </value>
+            <value>
+                <fullName>Member Services</fullName>
+                <default>false</default>
+                <label>Member Services</label>
+            </value>
+            <value>
+                <fullName>Salesforce Operations</fullName>
+                <default>false</default>
+                <label>Salesforce Operations</label>
+            </value>
+            <value>
+                <fullName>People &amp; Culture</fullName>
+                <default>false</default>
+                <label>People &amp; Culture</label>
+            </value>
+            <value>
+                <fullName>Finance</fullName>
+                <default>false</default>
+                <label>Finance</label>
+            </value>
+            <value>
+                <fullName>Event Logistics &amp; Management</fullName>
+                <default>false</default>
+                <label>Event Logistics &amp; Management</label>
+            </value>
+            <value>
+                <fullName>Community Development</fullName>
+                <default>false</default>
+                <label>Community Development</label>
+            </value>
+            <value>
+                <fullName>Content Studio</fullName>
+                <default>false</default>
+                <label>Content Studio</label>
+            </value>
+            <value>
+                <fullName>Demand Gen</fullName>
+                <default>false</default>
+                <label>Demand Gen</label>
+            </value>
+            <value>
+                <fullName>Corporate</fullName>
+                <default>false</default>
+                <label>Corporate</label>
+            </value>
+            <value>
+                <fullName>Research</fullName>
+                <default>false</default>
+                <label>Research</label>
+            </value>
+            <value>
+                <fullName>Innovation</fullName>
+                <default>false</default>
+                <label>Innovation</label>
+            </value>
+            <value>
+                <fullName>Marketing</fullName>
+                <default>false</default>
+                <label>Marketing</label>
+            </value>
+            <value>
+                <fullName>Registration</fullName>
+                <default>false</default>
+                <label>Registration</label>
+            </value>
+            <value>
+                <fullName>Design / Production</fullName>
+                <default>false</default>
+                <label>Design / Production</label>
+            </value>
+            <value>
+                <fullName>Editorial</fullName>
+                <default>false</default>
+                <label>Editorial</label>
+            </value>
+            <value>
+                <fullName>Digital Marketing</fullName>
+                <default>false</default>
+                <label>Digital Marketing</label>
+            </value>
+            <value>
+                <fullName>Web Development</fullName>
+                <default>false</default>
+                <label>Web Development</label>
+            </value>
+            <value>
+                <fullName>IT Support</fullName>
+                <default>false</default>
+                <label>IT Support</label>
+            </value>
+            <value>
+                <fullName>Career Growth &amp; Development</fullName>
+                <default>false</default>
+                <label>Career Growth &amp; Development</label>
+            </value>
+            <value>
+                <fullName>Navigator</fullName>
+                <default>false</default>
+                <label>Navigator</label>
+            </value>
+            <value>
+                <fullName>Audience Operations</fullName>
+                <default>false</default>
+                <label>Audience Operations</label>
+            </value>
+            <value>
+                <fullName>Customer Success</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Customer Success</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

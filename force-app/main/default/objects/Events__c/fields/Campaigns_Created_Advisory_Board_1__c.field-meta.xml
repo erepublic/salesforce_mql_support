@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Campaigns_Created_Advisory_Board_1__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >This is a hidden field that indicates that the system has already created the Advisory Board #1 dependent marketing campaigns for this event. It is used to prevent the system from automatically creating these campaigns again a second time. Ticket #34107 / Used in Process Builder &quot;Event - Create Campaigns (Advisory Board #1)&quot;</description>
+    <inlineHelpText
+  >This is a hidden field that indicates that the system has already created the Advisory Board #1 dependent marketing campaigns for this event. It is used to prevent the system from automatically creating these campaigns again a second time.</inlineHelpText>
+    <label>Campaigns Created - Advisory Board #1</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

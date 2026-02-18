@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Navigator_New_Features_low_priority</fullName>
+    <booleanFilter>1 AND 2 AND (3 OR 4 OR 5 OR 6) AND 7 AND 8</booleanFilter>
+    <columns>Developer_Priority__c</columns>
+    <columns>Priority__c</columns>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Phase__c</columns>
+    <columns>ETA__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>Assignee__c</columns>
+    <columns>Requested_By__c</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Web</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>notEqual</operation>
+        <value>Closed,Canceled,Needs Specification</value>
+    </filters>
+    <filters>
+        <field>Title__c</field>
+        <operation>contains</operation>
+        <value>NAV:,NAV -</value>
+    </filters>
+    <filters>
+        <field>System2__c</field>
+        <operation>equals</operation>
+        <value>Navigator</value>
+    </filters>
+    <filters>
+        <field>Title__c</field>
+        <operation>contains</operation>
+        <value>TW:,TW -,ICA,ITX,Insider</value>
+    </filters>
+    <filters>
+        <field>System2__c</field>
+        <operation>equals</operation>
+        <value>Techwire</value>
+    </filters>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value>Project</value>
+    </filters>
+    <filters>
+        <field>Title__c</field>
+        <operation>notContain</operation>
+        <value>Authenticat</value>
+    </filters>
+    <label>Navigator New Features - low priority</label>
+</ListView>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>answeredanypoll__c</fullName>
+    <description
+  >Whether a user answered any poll or not. Typically, limited to Y or N, but may extend in the future.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >Whether a user answered any poll or not. Typically, limited to Y or N, but may extend in the future.</inlineHelpText>
+    <label>On24 answeredanypoll</label>
+    <length>1</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

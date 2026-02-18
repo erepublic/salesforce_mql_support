@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description
+  >Flow sets the Check In Email date to 20 days from today if the Sales Invoice meets certain criteria.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description
+    >Chooses a date 20 days in the future. Pushes weekends to the following Monday.</description>
+        <name>Today_Plus_20</name>
+        <dataType>Date</dataType>
+        <expression>CASE(
+    MOD( (TODAY() + 20) - DATE(1900,1,7), 7),
+    0, TODAY() + 22,  /* Sunday → push 2 days */
+    6, TODAY() + 21,  /* Saturday → push 1 day */
+    TODAY() + 20      /* Weekday → no change */
+)</expression>
+    </formulas>
+    <interviewLabel
+  >Sales Invoice - RT BS - Set Check In Email Date {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Sales Invoice - RT BS - Set Check In Email Date</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Check_In_Email_Date</name>
+        <label>Update Check In Email Date</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Check_In_Email_Date__c</field>
+            <value>
+                <elementReference>Today_Plus_20</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Check_In_Email_Date</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>No_Check_In_Emails__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>CWO_Type__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue />
+            </value>
+        </filters>
+        <filters>
+            <field>c2g__Account__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>001a000001JVDnXAAX</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Days_Offset_1__c</field>
+            <operator>GreaterThan</operator>
+            <value>
+                <numberValue>20.0</numberValue>
+            </value>
+        </filters>
+        <filters>
+            <field>c2g__Account__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>0013000000ONDiHAAX</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>c2g__Account__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>0011400001fLnUaAAK</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Collections_Email__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue />
+            </value>
+        </filters>
+        <object>c2g__codaInvoice__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

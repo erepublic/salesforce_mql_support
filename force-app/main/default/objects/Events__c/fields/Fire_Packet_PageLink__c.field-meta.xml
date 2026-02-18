@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Fire_Packet_PageLink__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >HYPERLINK(&quot;/apex/event_sp_report?id=&quot;&amp; Event_Id_Case_Safe__c ,&quot;Fire Packet&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Fire Packet</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

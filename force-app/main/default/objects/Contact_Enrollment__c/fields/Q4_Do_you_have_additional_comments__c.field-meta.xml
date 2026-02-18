@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Q4_Do_you_have_additional_comments__c</fullName>
+    <description
+  >Course custom question #4: Do you have any additional comments?</description>
+    <inlineHelpText
+  >Course custom question #4: Do you have any additional comments?</inlineHelpText>
+    <label>Q4: Do you have additional comments?</label>
+    <length>2000</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>5</visibleLines>
+</CustomField>

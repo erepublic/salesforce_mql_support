@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>createtimestamp__c</fullName>
+    <description>Date and Time registration took place</description>
+    <inlineHelpText>Date and Time registration took place</inlineHelpText>
+    <label>On24 createtimestamp</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>DateTime</type>
+</CustomField>

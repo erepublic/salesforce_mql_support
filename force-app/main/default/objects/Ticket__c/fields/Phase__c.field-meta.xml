@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Phase__c</fullName>
+    <label>Phase</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Unassigned</fullName>
+                <default>true</default>
+                <label>Unassigned</label>
+            </value>
+            <value>
+                <fullName>Assigned</fullName>
+                <default>false</default>
+                <label>Assigned</label>
+            </value>
+            <value>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+                <label>In Progress</label>
+            </value>
+            <value>
+                <fullName>Needs Specification</fullName>
+                <default>false</default>
+                <label>Needs Specification</label>
+            </value>
+            <value>
+                <fullName>Needs Specs</fullName>
+                <default>false</default>
+                <label>Needs Specs</label>
+            </value>
+            <value>
+                <fullName>QA</fullName>
+                <default>false</default>
+                <label>QA</label>
+            </value>
+            <value>
+                <fullName>QA (Dev)</fullName>
+                <default>false</default>
+                <label>QA (Dev)</label>
+            </value>
+            <value>
+                <fullName>QA (Requestor)</fullName>
+                <default>false</default>
+                <label>QA (Requestor)</label>
+            </value>
+            <value>
+                <fullName>QAd - Ready for live</fullName>
+                <default>false</default>
+                <label>QAd - Ready for live</label>
+            </value>
+            <value>
+                <fullName>Fact Check</fullName>
+                <default>false</default>
+                <label>Fact Check</label>
+            </value>
+            <value>
+                <fullName>Pending Approval</fullName>
+                <default>false</default>
+                <label>Pending Approval</label>
+            </value>
+            <value>
+                <fullName>Needs Review</fullName>
+                <default>false</default>
+                <label>Needs Review</label>
+            </value>
+            <value>
+                <fullName>Needs Approval</fullName>
+                <default>false</default>
+                <label>Needs External Approval</label>
+            </value>
+            <value>
+                <fullName>Approved with Changes</fullName>
+                <default>false</default>
+                <label>Approved with Changes</label>
+            </value>
+            <value>
+                <fullName>Copy Edit</fullName>
+                <default>false</default>
+                <label>Copy Edit</label>
+            </value>
+            <value>
+                <fullName>Revise and Resend</fullName>
+                <default>false</default>
+                <label>Revise and Resend</label>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <default>false</default>
+                <label>Approved</label>
+            </value>
+            <value>
+                <fullName>Waiting on Response</fullName>
+                <default>false</default>
+                <label>Waiting on Response</label>
+            </value>
+            <value>
+                <fullName>Waiting on Response (Requestor)</fullName>
+                <default>false</default>
+                <label>Waiting on Response (Requestor)</label>
+            </value>
+            <value>
+                <fullName>Waiting on DEV</fullName>
+                <default>false</default>
+                <label>Waiting on DEV</label>
+            </value>
+            <value>
+                <fullName>Waiting on SF Ops</fullName>
+                <default>false</default>
+                <label>Waiting on SF Ops</label>
+            </value>
+            <value>
+                <fullName>On Hold</fullName>
+                <default>false</default>
+                <label>On Hold</label>
+            </value>
+            <value>
+                <fullName>UA</fullName>
+                <default>false</default>
+                <label>UA</label>
+            </value>
+            <value>
+                <fullName>Ready for Live</fullName>
+                <default>false</default>
+                <label>Ready for Live</label>
+            </value>
+            <value>
+                <fullName>Waiting Room</fullName>
+                <default>false</default>
+                <label>Waiting Room</label>
+            </value>
+            <value>
+                <fullName>Closed</fullName>
+                <default>false</default>
+                <label>Closed</label>
+            </value>
+            <value>
+                <fullName>Reallocation Needed</fullName>
+                <default>false</default>
+                <label>Reallocation Needed</label>
+            </value>
+            <value>
+                <fullName>Cancel/Rebill Needed</fullName>
+                <default>false</default>
+                <label>Cancel/Rebill Needed</label>
+            </value>
+            <value>
+                <fullName>Contract Cycle Finished</fullName>
+                <default>false</default>
+                <label>Contract Cycle Finished</label>
+            </value>
+            <value>
+                <fullName>Invite Sent for Approval</fullName>
+                <default>false</default>
+                <label>Invite Sent for Approval</label>
+            </value>
+            <value>
+                <fullName>Invite Approved - Ticket Closed</fullName>
+                <default>false</default>
+                <label>Invite Approved - Ticket Closed</label>
+            </value>
+            <value>
+                <fullName>Canceled</fullName>
+                <default>false</default>
+                <label>Canceled</label>
+            </value>
+            <value>
+                <fullName>Hopper</fullName>
+                <default>false</default>
+                <label>Hopper</label>
+            </value>
+            <value>
+                <fullName>In Progress (External)</fullName>
+                <default>false</default>
+                <label>In Progress (External)</label>
+            </value>
+            <value>
+                <fullName>Code Review</fullName>
+                <default>false</default>
+                <label>Code Review</label>
+            </value>
+            <value>
+                <fullName>See Asana</fullName>
+                <default>false</default>
+                <label>See Asana</label>
+            </value>
+            <value>
+                <fullName>Backlog</fullName>
+                <default>false</default>
+                <label>Backlog</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

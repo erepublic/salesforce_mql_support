@@ -1,0 +1,1064 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Level_NEW__c</fullName>
+    <label>Level</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Type__c</controllingField>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Standard Full</fullName>
+                <default>false</default>
+                <label>Standard Full</label>
+            </value>
+            <value>
+                <fullName>Read Only</fullName>
+                <default>false</default>
+                <label>Read Only</label>
+            </value>
+            <value>
+                <fullName>Force.com</fullName>
+                <default>false</default>
+                <label>Force.com</label>
+            </value>
+            <value>
+                <fullName>Marketing User</fullName>
+                <default>false</default>
+                <label>Marketing User</label>
+            </value>
+            <value>
+                <fullName>Full Accounting User</fullName>
+                <default>false</default>
+                <label>Full Accounting User</label>
+            </value>
+            <value>
+                <fullName>Premium Support Admin</fullName>
+                <default>false</default>
+                <label>Premium Support Admin</label>
+            </value>
+            <value>
+                <fullName>Platform (Certinia)</fullName>
+                <default>false</default>
+                <label>Platform (Certinia)</label>
+            </value>
+            <value>
+                <fullName>Sales Navigator</fullName>
+                <default>false</default>
+                <label>Sales Navigator</label>
+            </value>
+            <value>
+                <fullName>Hoover&apos;s Online</fullName>
+                <default>false</default>
+                <label>Hoover&apos;s Online</label>
+            </value>
+            <value>
+                <fullName>Full Access</fullName>
+                <default>false</default>
+                <label>Full Access</label>
+            </value>
+            <value>
+                <fullName>Professional</fullName>
+                <default>false</default>
+                <label>Professional</label>
+            </value>
+            <value>
+                <fullName>Collaborator</fullName>
+                <default>false</default>
+                <label>Collaborator</label>
+            </value>
+            <value>
+                <fullName>Hunter.io Growth</fullName>
+                <default>false</default>
+                <label>Hunter.io Growth</label>
+            </value>
+            <value>
+                <fullName>Hunter.io Starter</fullName>
+                <default>false</default>
+                <label>Hunter.io Starter</label>
+            </value>
+            <value>
+                <fullName>State &amp; Local Gov.</fullName>
+                <default>false</default>
+                <label>State &amp; Local Gov.</label>
+            </value>
+            <value>
+                <fullName>Visual Content</fullName>
+                <default>false</default>
+                <label>Visual Content</label>
+            </value>
+            <value>
+                <fullName>Tableau Creator</fullName>
+                <default>false</default>
+                <label>Tableau Creator</label>
+            </value>
+            <value>
+                <fullName>Monday App - Pro</fullName>
+                <default>false</default>
+                <label>Monday App - Pro</label>
+            </value>
+            <value>
+                <fullName>Conga Composer - Business</fullName>
+                <default>false</default>
+                <label>Conga Composer - Business</label>
+            </value>
+            <value>
+                <fullName>SmartSearch - Search License</fullName>
+                <default>false</default>
+                <label>SmartSearch - Search License</label>
+            </value>
+            <value>
+                <fullName>Enterprise License User</fullName>
+                <default>false</default>
+                <label>Enterprise License User</label>
+            </value>
+            <value>
+                <fullName>USA National Service</fullName>
+                <default>false</default>
+                <label>USA National Service</label>
+            </value>
+            <value>
+                <fullName>State of South Dakota Sourcing</fullName>
+                <default>false</default>
+                <label>State of South Dakota Sourcing</label>
+            </value>
+            <value>
+                <fullName>InCopy</fullName>
+                <default>false</default>
+                <label>InCopy</label>
+            </value>
+            <value>
+                <fullName>Creative Cloud</fullName>
+                <default>false</default>
+                <label>Creative Cloud</label>
+            </value>
+            <value>
+                <fullName>Illustrator</fullName>
+                <default>false</default>
+                <label>Illustrator</label>
+            </value>
+            <value>
+                <fullName>Photoshop</fullName>
+                <default>false</default>
+                <label>Photoshop</label>
+            </value>
+            <value>
+                <fullName>Acrobat Standard</fullName>
+                <default>false</default>
+                <label>Acrobat Standard</label>
+            </value>
+            <value>
+                <fullName>Acrobat Pro</fullName>
+                <default>false</default>
+                <label>Acrobat Pro</label>
+            </value>
+            <value>
+                <fullName>Advantage Annual</fullName>
+                <default>false</default>
+                <label>Advantage Annual</label>
+            </value>
+            <value>
+                <fullName>LinkPoint Connect</fullName>
+                <default>false</default>
+                <label>LinkPoint Connect</label>
+            </value>
+            <value>
+                <fullName>Zoomgov Basic (Free)</fullName>
+                <default>false</default>
+                <label>Zoomgov Basic (Free)</label>
+            </value>
+            <value>
+                <fullName>Zoomgov Licensed (Meeting)</fullName>
+                <default>false</default>
+                <label>Zoomgov Licensed (Meeting)</label>
+            </value>
+            <value>
+                <fullName>Zoomgov Add-on (Webinar500)</fullName>
+                <default>false</default>
+                <label>Zoomgov Add-on (Webinar500)</label>
+            </value>
+            <value>
+                <fullName>Zoomgov Add-on (Webinar1000)</fullName>
+                <default>false</default>
+                <label>Zoomgov Add-on (Webinar1000)</label>
+            </value>
+            <value>
+                <fullName>Zoomgov Add-on (Webinar3000)</fullName>
+                <default>false</default>
+                <label>Zoomgov Add-on (Webinar3000)</label>
+            </value>
+            <value>
+                <fullName>Registered User</fullName>
+                <default>false</default>
+                <label>Registered User</label>
+            </value>
+            <value>
+                <fullName>Starter Plan</fullName>
+                <default>false</default>
+                <label>Starter Plan</label>
+            </value>
+            <value>
+                <fullName>Webex Events</fullName>
+                <default>false</default>
+                <label>Webex Events</label>
+            </value>
+            <value>
+                <fullName>Power Max</fullName>
+                <default>false</default>
+                <label>Power Max</label>
+            </value>
+            <value>
+                <fullName>Libsyn (Multiple Plans)</fullName>
+                <default>false</default>
+                <label>Libsyn (Multiple Plans)</label>
+            </value>
+            <value>
+                <fullName>Medium Business Plan</fullName>
+                <default>false</default>
+                <label>Medium Business Plan</label>
+            </value>
+            <value>
+                <fullName>Power 75</fullName>
+                <default>false</default>
+                <label>Power 75</label>
+            </value>
+            <value>
+                <fullName>Publishing Plus</fullName>
+                <default>false</default>
+                <label>Publishing Plus</label>
+            </value>
+            <value>
+                <fullName>Federal-State-Local</fullName>
+                <default>false</default>
+                <label>Federal-State-Local</label>
+            </value>
+            <value>
+                <fullName>Google Workspace Business Standard</fullName>
+                <default>false</default>
+                <label>Google Workspace Business Standard</label>
+            </value>
+            <value>
+                <fullName>Advanced Edition</fullName>
+                <default>false</default>
+                <label>Advanced Edition</label>
+            </value>
+            <value>
+                <fullName>PRO without Salesforce Application</fullName>
+                <default>false</default>
+                <label>PRO without Salesforce Application</label>
+            </value>
+            <value>
+                <fullName>Recruiter Corporate</fullName>
+                <default>false</default>
+                <label>Recruiter Corporate</label>
+            </value>
+            <value>
+                <fullName>XL-Connector Enterprise Admin</fullName>
+                <default>false</default>
+                <label>XL-Connector Enterprise Admin</label>
+            </value>
+            <value>
+                <fullName>Acclaim System User</fullName>
+                <default>false</default>
+                <label>Acclaim System User</label>
+            </value>
+            <value>
+                <fullName>Vimeo PRO</fullName>
+                <default>false</default>
+                <label>Vimeo PRO</label>
+            </value>
+            <value>
+                <fullName>LastPass Business</fullName>
+                <default>false</default>
+                <label>LastPass Business</label>
+            </value>
+            <value>
+                <fullName>Marketing Hub Enterprise</fullName>
+                <default>false</default>
+                <label>Marketing Hub Enterprise</label>
+            </value>
+            <value>
+                <fullName>Job Volume Level 1-5</fullName>
+                <default>false</default>
+                <label>Job Volume Level 1-5</label>
+            </value>
+            <value>
+                <fullName>Dropbox Advanced</fullName>
+                <default>false</default>
+                <label>Dropbox Advanced</label>
+            </value>
+            <value>
+                <fullName>Lifetime License</fullName>
+                <default>false</default>
+                <label>Lifetime License</label>
+            </value>
+            <value>
+                <fullName>WebSite-Watcher Business</fullName>
+                <default>false</default>
+                <label>WebSite-Watcher Business</label>
+            </value>
+            <value>
+                <fullName>Brightspot User</fullName>
+                <default>false</default>
+                <label>Brightspot User</label>
+            </value>
+            <value>
+                <fullName>ON24 Platform Login</fullName>
+                <default>false</default>
+                <label>ON24 Platform Login</label>
+            </value>
+            <value>
+                <fullName>Chorus</fullName>
+                <default>false</default>
+                <label>Chorus</label>
+            </value>
+            <value>
+                <fullName>OneTrust</fullName>
+                <default>false</default>
+                <label>OneTrust</label>
+            </value>
+            <value>
+                <fullName>LucidChart Team</fullName>
+                <default>false</default>
+                <label>LucidChart Team</label>
+            </value>
+            <value>
+                <fullName>FlippingBook Enterprise</fullName>
+                <default>false</default>
+                <label>FlippingBook Enterprise</label>
+            </value>
+            <value>
+                <fullName>Canva</fullName>
+                <default>false</default>
+                <label>Canva</label>
+            </value>
+            <value>
+                <fullName>Convertr</fullName>
+                <default>false</default>
+                <label>Convertr</label>
+            </value>
+            <value>
+                <fullName>Asana Enterprise</fullName>
+                <default>false</default>
+                <label>Asana Enterprise</label>
+            </value>
+            <value>
+                <fullName>ChatGPT Business</fullName>
+                <default>false</default>
+                <label>ChatGPT Business</label>
+            </value>
+            <value>
+                <fullName>Mentimeter Pro Company</fullName>
+                <default>false</default>
+                <label>Mentimeter Pro Company</label>
+            </value>
+            <value>
+                <fullName>Airtable Annual Self-serve Business</fullName>
+                <default>false</default>
+                <label>Airtable Annual Self-serve Business</label>
+            </value>
+            <value>
+                <fullName>Cvent Supplier Network</fullName>
+                <default>false</default>
+                <label>Cvent Supplier Network</label>
+            </value>
+            <value>
+                <fullName>Crunchbase Pro with Data Boost</fullName>
+                <default>false</default>
+                <label>Crunchbase Pro with Data Boost</label>
+            </value>
+            <value>
+                <fullName>Sentry Business Plan</fullName>
+                <default>false</default>
+                <label>Sentry Business Plan</label>
+            </value>
+            <value>
+                <fullName>OpenAI</fullName>
+                <default>false</default>
+                <label>OpenAI</label>
+            </value>
+            <value>
+                <fullName>BriteVerify</fullName>
+                <default>false</default>
+                <label>BriteVerify</label>
+            </value>
+            <value>
+                <fullName>Certinia Integration User</fullName>
+                <default>false</default>
+                <label>Certinia Integration User</label>
+            </value>
+            <value>
+                <fullName>Pinecone Standard</fullName>
+                <default>false</default>
+                <label>Pinecone Standard</label>
+            </value>
+            <value>
+                <fullName>LinkedIn Premium Business</fullName>
+                <default>false</default>
+                <label>LinkedIn Premium Business</label>
+            </value>
+            <value>
+                <fullName>Conference Yearly Plan</fullName>
+                <default>false</default>
+                <label>Conference Yearly Plan</label>
+            </value>
+            <value>
+                <fullName>Time on Glue Professional</fullName>
+                <default>false</default>
+                <label>Time on Glue Professional</label>
+            </value>
+            <value>
+                <fullName>View-Only Seat</fullName>
+                <default>false</default>
+                <label>View-Only Seat</label>
+            </value>
+            <value>
+                <fullName>Core Seat</fullName>
+                <default>false</default>
+                <label>Core Seat</label>
+            </value>
+            <value>
+                <fullName>ZeroBounce</fullName>
+                <default>false</default>
+                <label>ZeroBounce</label>
+            </value>
+            <value>
+                <fullName>Own (Admin)</fullName>
+                <default>false</default>
+                <label>Own (Admin)</label>
+            </value>
+            <value>
+                <fullName>Claude Pro</fullName>
+                <default>false</default>
+                <label>Claude Pro</label>
+            </value>
+            <value>
+                <fullName>Google Ad Manager</fullName>
+                <default>false</default>
+                <label>Google Ad Manager</label>
+            </value>
+            <value>
+                <fullName>Google Analytics</fullName>
+                <default>false</default>
+                <label>Google Analytics</label>
+            </value>
+            <value>
+                <fullName>Asana Enterprise (Guest)</fullName>
+                <default>false</default>
+                <label>Asana Enterprise (Guest)</label>
+            </value>
+            <value>
+                <fullName>Premiere Pro</fullName>
+                <default>false</default>
+                <label>Premiere Pro</label>
+            </value>
+            <value>
+                <fullName>Power BI Pro</fullName>
+                <default>false</default>
+                <label>Power BI Pro</label>
+            </value>
+            <value>
+                <fullName>Microsoft 365 Copilot</fullName>
+                <default>false</default>
+                <label>Microsoft 365 Copilot</label>
+            </value>
+            <value>
+                <fullName>Microsoft 365 Business Premium</fullName>
+                <default>false</default>
+                <label>Microsoft 365 Business Premium</label>
+            </value>
+            <value>
+                <fullName>Microsoft 365 E3 (no Teams)</fullName>
+                <default>false</default>
+                <label>Microsoft 365 E3 (no Teams)</label>
+            </value>
+            <value>
+                <fullName>Enterprise Mobility + Security E5</fullName>
+                <default>false</default>
+                <label>Enterprise Mobility + Security E5</label>
+            </value>
+            <value>
+                <fullName>Exchange Online (Plan 1)</fullName>
+                <default>false</default>
+                <label>Exchange Online (Plan 1)</label>
+            </value>
+            <value>
+                <fullName>Microsoft Teams Enterprise</fullName>
+                <default>false</default>
+                <label>Microsoft Teams Enterprise</label>
+            </value>
+            <value>
+                <fullName>Teams Phone with Calling Plan</fullName>
+                <default>false</default>
+                <label>Teams Phone with Calling Plan</label>
+            </value>
+            <value>
+                <fullName>Asana Enterprise (Paused)</fullName>
+                <default>false</default>
+                <label>Asana Enterprise (Paused)</label>
+            </value>
+            <value>
+                <fullName>ZoomInfo Admin-Only</fullName>
+                <default>false</default>
+                <label>ZoomInfo Admin-Only</label>
+            </value>
+            <value>
+                <fullName>Spotify Premium Family</fullName>
+                <default>false</default>
+                <label>Spotify Premium Family</label>
+            </value>
+            <value>
+                <fullName>Sales Professional Seat</fullName>
+                <default>false</default>
+                <label>Sales Professional Seat</label>
+            </value>
+            <value>
+                <fullName>Cvent Event Diagramming</fullName>
+                <default>false</default>
+                <label>Cvent Event Diagramming</label>
+            </value>
+            <value>
+                <fullName>Salesforce Integration</fullName>
+                <default>false</default>
+                <label>Salesforce Integration</label>
+            </value>
+            <value>
+                <fullName>Asana View Only</fullName>
+                <default>false</default>
+                <label>Asana View Only</label>
+            </value>
+            <value>
+                <fullName>Sales Navigator Admin (Unlicensed)</fullName>
+                <default>false</default>
+                <label>Sales Navigator Admin (Unlicensed)</label>
+            </value>
+            <value>
+                <fullName>Storylane Starter</fullName>
+                <default>false</default>
+                <label>Storylane Starter</label>
+            </value>
+            <value>
+                <fullName>Crowdpurr Admin</fullName>
+                <default>false</default>
+                <label>Crowdpurr Admin</label>
+            </value>
+            <value>
+                <fullName>Company Directory</fullName>
+                <default>false</default>
+                <label>Company Directory</label>
+            </value>
+            <value>
+                <fullName>Integrate User</fullName>
+                <default>false</default>
+                <label>Integrate User</label>
+            </value>
+            <value>
+                <fullName>QuotaPath Premium</fullName>
+                <default>false</default>
+                <label>QuotaPath Premium</label>
+            </value>
+            <value>
+                <fullName>StreamYard Monthly Core</fullName>
+                <default>false</default>
+                <label>StreamYard Monthly Core</label>
+            </value>
+            <value>
+                <fullName>Typeform PRO</fullName>
+                <default>false</default>
+                <label>Typeform PRO</label>
+            </value>
+            <value>
+                <fullName>Midjourney Pro Plan</fullName>
+                <default>false</default>
+                <label>Midjourney Pro Plan</label>
+            </value>
+            <value>
+                <fullName>Semrush Guru 1 month Recurring</fullName>
+                <default>false</default>
+                <label>Semrush Guru 1 month Recurring</label>
+            </value>
+            <value>
+                <fullName>Semrush Guru Additional User</fullName>
+                <default>false</default>
+                <label>Semrush Guru Additional User</label>
+            </value>
+            <value>
+                <fullName>Riverside Studio Plus</fullName>
+                <default>false</default>
+                <label>Riverside Studio Plus</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue>Vimeo</controllingFieldValue>
+            <valueName>Vimeo PRO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Typeform</controllingFieldValue>
+            <valueName>Typeform PRO</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>LastPass</controllingFieldValue>
+            <valueName>LastPass Business</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Midjourney</controllingFieldValue>
+            <valueName>Midjourney Pro Plan</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>HubSpot</controllingFieldValue>
+            <valueName>View-Only Seat</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>HubSpot</controllingFieldValue>
+            <valueName>Core Seat</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>HubSpot</controllingFieldValue>
+            <valueName>Sales Professional Seat</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Indeed/Glassdoor</controllingFieldValue>
+            <valueName>Job Volume Level 1-5</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Dropbox</controllingFieldValue>
+            <valueName>Dropbox Advanced</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Calendly</controllingFieldValue>
+            <controllingFieldValue>Alchemer</controllingFieldValue>
+            <valueName>Professional</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Semrush</controllingFieldValue>
+            <valueName>Semrush Guru 1 month Recurring</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Semrush</controllingFieldValue>
+            <valueName>Semrush Guru Additional User</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Riverside</controllingFieldValue>
+            <valueName>Riverside Studio Plus</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FastStone Capture</controllingFieldValue>
+            <valueName>Lifetime License</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>WebSite-Watcher</controllingFieldValue>
+            <valueName>WebSite-Watcher Business</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Brightspot</controllingFieldValue>
+            <valueName>Brightspot User</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>OneTrust</controllingFieldValue>
+            <valueName>OneTrust</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Alchemer</controllingFieldValue>
+            <valueName>Full Access</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Alchemer</controllingFieldValue>
+            <valueName>Collaborator</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>LucidChart</controllingFieldValue>
+            <valueName>LucidChart Team</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zoom for Government</controllingFieldValue>
+            <valueName>Zoomgov Basic (Free)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zoom for Government</controllingFieldValue>
+            <valueName>Zoomgov Licensed (Meeting)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zoom for Government</controllingFieldValue>
+            <valueName>Zoomgov Add-on (Webinar500)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zoom for Government</controllingFieldValue>
+            <valueName>Zoomgov Add-on (Webinar1000)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Zoom for Government</controllingFieldValue>
+            <valueName>Zoomgov Add-on (Webinar3000)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>FlippingBook</controllingFieldValue>
+            <valueName>FlippingBook Enterprise</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Certinia</controllingFieldValue>
+            <valueName>Full Accounting User</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Certinia</controllingFieldValue>
+            <valueName>Certinia Integration User</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Canva (Marketing)</controllingFieldValue>
+            <controllingFieldValue>Canva (Design)</controllingFieldValue>
+            <controllingFieldValue
+      >Canva (People &amp; Culture)</controllingFieldValue>
+            <valueName>Canva</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Convertr</controllingFieldValue>
+            <valueName>Convertr</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>D&amp;B Hoovers</controllingFieldValue>
+            <valueName>Hoover&apos;s Online</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Asana</controllingFieldValue>
+            <valueName>Asana Enterprise</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Asana</controllingFieldValue>
+            <valueName>Asana Enterprise (Guest)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Asana</controllingFieldValue>
+            <valueName>Asana Enterprise (Paused)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Asana</controllingFieldValue>
+            <valueName>Asana View Only</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hunter.io</controllingFieldValue>
+            <valueName>Hunter.io Growth</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Hunter.io</controllingFieldValue>
+            <valueName>Hunter.io Starter</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Leadership Connect</controllingFieldValue>
+            <valueName>State &amp; Local Gov.</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Tableau</controllingFieldValue>
+            <valueName>Tableau Creator</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Act-On</controllingFieldValue>
+            <valueName>Marketing User</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>GridBuddy</controllingFieldValue>
+            <controllingFieldValue>Salesforce</controllingFieldValue>
+            <valueName>Standard Full</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >LinkedIn Sales Navigator</controllingFieldValue>
+            <valueName>Sales Navigator</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >LinkedIn Sales Navigator</controllingFieldValue>
+            <valueName>Sales Navigator Admin (Unlicensed)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>LinkPoint</controllingFieldValue>
+            <valueName>LinkPoint Connect</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ON24</controllingFieldValue>
+            <valueName>ON24 Platform Login</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Salesforce</controllingFieldValue>
+            <valueName>Read Only</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Salesforce</controllingFieldValue>
+            <valueName>Force.com</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Salesforce</controllingFieldValue>
+            <valueName>Premium Support Admin</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Salesforce</controllingFieldValue>
+            <valueName>Platform (Certinia)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Salesforce</controllingFieldValue>
+            <valueName>Salesforce Integration</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Shutterstock</controllingFieldValue>
+            <valueName>Visual Content</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ChatGPT</controllingFieldValue>
+            <valueName>ChatGPT Business</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Mentimeter</controllingFieldValue>
+            <valueName>Mentimeter Pro Company</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Airtable</controllingFieldValue>
+            <valueName>Airtable Annual Self-serve Business</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Monday.com</controllingFieldValue>
+            <valueName>Monday App - Pro</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cvent</controllingFieldValue>
+            <valueName>Cvent Supplier Network</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cvent</controllingFieldValue>
+            <valueName>Cvent Event Diagramming</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Conga</controllingFieldValue>
+            <valueName>Conga Composer - Business</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Crunchbase</controllingFieldValue>
+            <valueName>Crunchbase Pro with Data Boost</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>GovSpend</controllingFieldValue>
+            <valueName>SmartSearch - Search License</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Mozenda</controllingFieldValue>
+            <valueName>Enterprise License User</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Sentry</controllingFieldValue>
+            <valueName>Sentry Business Plan</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Intrado (Marketwire)</controllingFieldValue>
+            <valueName>USA National Service</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>OpenAI</controllingFieldValue>
+            <valueName>OpenAI</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Mercury</controllingFieldValue>
+            <valueName>State of South Dakota Sourcing</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>BriteVerify</controllingFieldValue>
+            <valueName>BriteVerify</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Adobe</controllingFieldValue>
+            <valueName>InCopy</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Adobe</controllingFieldValue>
+            <valueName>Creative Cloud</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Adobe</controllingFieldValue>
+            <valueName>Illustrator</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Adobe</controllingFieldValue>
+            <valueName>Photoshop</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Adobe</controllingFieldValue>
+            <valueName>Acrobat Standard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Adobe</controllingFieldValue>
+            <valueName>Acrobat Pro</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>SurveyMonkey</controllingFieldValue>
+            <valueName>Advantage Annual</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Tribune</controllingFieldValue>
+            <valueName>Registered User</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Pinecone</controllingFieldValue>
+            <valueName>Pinecone Standard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>LinkedIn Premium</controllingFieldValue>
+            <valueName>LinkedIn Premium Business</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Crowdpurr</controllingFieldValue>
+            <valueName>Conference Yearly Plan</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Crowdpurr</controllingFieldValue>
+            <valueName>Crowdpurr Admin</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integration Glue</controllingFieldValue>
+            <valueName>Time on Glue Professional</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Webex Meetings</controllingFieldValue>
+            <valueName>Starter Plan</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ZeroBounce</controllingFieldValue>
+            <valueName>ZeroBounce</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Webex Events</controllingFieldValue>
+            <valueName>Webex Events</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Own</controllingFieldValue>
+            <valueName>Own (Admin)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Power Almanac</controllingFieldValue>
+            <valueName>Power Max</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Power Almanac</controllingFieldValue>
+            <valueName>Power 75</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Claude</controllingFieldValue>
+            <valueName>Claude Pro</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Google Ad Manager</controllingFieldValue>
+            <valueName>Google Ad Manager</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Liberated Syndication (Libsyn)</controllingFieldValue>
+            <valueName>Libsyn (Multiple Plans)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Google Analytics</controllingFieldValue>
+            <valueName>Google Analytics</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Buffer</controllingFieldValue>
+            <valueName>Medium Business Plan</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Adobe (Editorial)</controllingFieldValue>
+            <valueName>Premiere Pro</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Chartbeat</controllingFieldValue>
+            <valueName>Publishing Plus</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Quorum</controllingFieldValue>
+            <valueName>Federal-State-Local</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Google Workspace</controllingFieldValue>
+            <valueName>Google Workspace Business Standard</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ZoomInfo</controllingFieldValue>
+            <valueName>Advanced Edition</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ZoomInfo</controllingFieldValue>
+            <valueName>Chorus</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>ZoomInfo</controllingFieldValue>
+            <valueName>ZoomInfo Admin-Only</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Microsoft</controllingFieldValue>
+            <valueName>Power BI Pro</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Microsoft</controllingFieldValue>
+            <valueName>Microsoft 365 Copilot</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Microsoft</controllingFieldValue>
+            <valueName>Microsoft 365 Business Premium</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Microsoft</controllingFieldValue>
+            <valueName>Microsoft 365 E3 (no Teams)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Microsoft</controllingFieldValue>
+            <valueName>Enterprise Mobility + Security E5</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Microsoft</controllingFieldValue>
+            <valueName>Exchange Online (Plan 1)</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Microsoft</controllingFieldValue>
+            <valueName>Microsoft Teams Enterprise</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Microsoft</controllingFieldValue>
+            <valueName>Teams Phone with Calling Plan</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Spotify</controllingFieldValue>
+            <valueName>Spotify Premium Family</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Storylane</controllingFieldValue>
+            <valueName>Storylane Starter</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Absorb</controllingFieldValue>
+            <valueName>PRO without Salesforce Application</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Ruby Receptionists</controllingFieldValue>
+            <valueName>Company Directory</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>LinkedIn Recruiter</controllingFieldValue>
+            <valueName>Recruiter Corporate</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Integrate</controllingFieldValue>
+            <valueName>Integrate User</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>XL-Connector</controllingFieldValue>
+            <valueName>XL-Connector Enterprise Admin</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>QuotaPath</controllingFieldValue>
+            <valueName>QuotaPath Premium</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Credly</controllingFieldValue>
+            <valueName>Acclaim System User</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>StreamYard</controllingFieldValue>
+            <valueName>StreamYard Monthly Core</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

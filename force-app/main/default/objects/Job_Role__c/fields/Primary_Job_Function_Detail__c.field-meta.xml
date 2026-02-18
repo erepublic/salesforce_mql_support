@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Job_Function_Detail__c</fullName>
+    <description
+  >The primary role function. Additional roles and job functions can be found in the Secondary Job Function Detail field.</description>
+    <inlineHelpText
+  >The primary role function. Additional roles and job functions can be found in the Secondary Job Function Detail field.</inlineHelpText>
+    <label>Primary Job Function Detail</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetName>Job_Function_Detail</valueSetName>
+    </valueSet>
+</CustomField>

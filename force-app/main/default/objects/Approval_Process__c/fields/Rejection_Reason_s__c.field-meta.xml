@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rejection_Reason_s__c</fullName>
+    <label>Rejection: Reason(s)</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>BILLING: Billing Address Incorrect</fullName>
+                <default>false</default>
+                <label>BILLING: Billing Address Incorrect</label>
+            </value>
+            <value>
+                <fullName>BILLING: Billing Contact Incorrect</fullName>
+                <default>false</default>
+                <label>BILLING: Billing Contact Incorrect</label>
+            </value>
+            <value>
+                <fullName>BILLING: CC Missing Data</fullName>
+                <default>false</default>
+                <label>BILLING: CC Missing Data</label>
+            </value>
+            <value>
+                <fullName>BILLING: Bill To Incorrect</fullName>
+                <default>false</default>
+                <label>BILLING: Bill To Incorrect</label>
+            </value>
+            <value>
+                <fullName>BILLING: Need a CC, Check or Credit App</fullName>
+                <default>false</default>
+                <label>BILLING: Need a CC, Check or Credit App</label>
+            </value>
+            <value>
+                <fullName>BILLING: PO Needed</fullName>
+                <default>false</default>
+                <label>BILLING: PO Needed</label>
+            </value>
+            <value>
+                <fullName>BILLING: Primary Address Incorrect</fullName>
+                <default>false</default>
+                <label>BILLING: Primary Address Incorrect</label>
+            </value>
+            <value>
+                <fullName>BILLING: Primary Contact Incorrect</fullName>
+                <default>false</default>
+                <label>BILLING: Primary Contact Incorrect</label>
+            </value>
+            <value>
+                <fullName>BILLING: Review Finance Notes</fullName>
+                <default>false</default>
+                <label>BILLING: Review Finance Notes</label>
+            </value>
+            <value>
+                <fullName>BILLING: Review Invoicing Requirements</fullName>
+                <default>false</default>
+                <label>BILLING: Review Invoicing Requirements</label>
+            </value>
+            <value>
+                <fullName>BILLING: Should be A/P Contact</fullName>
+                <default>false</default>
+                <label>BILLING: Should be A/P Contact</label>
+            </value>
+            <value>
+                <fullName>BILLING: Wrong Invoicing Method</fullName>
+                <default>false</default>
+                <label>BILLING: Wrong Invoicing Method</label>
+            </value>
+            <value>
+                <fullName>FIELD: Email Cc Blank</fullName>
+                <default>false</default>
+                <label>FIELD: Email Cc Blank</label>
+            </value>
+            <value>
+                <fullName>FIELD: Opp Stage not Written</fullName>
+                <default>false</default>
+                <label>FIELD: Opp Stage not Written</label>
+            </value>
+            <value>
+                <fullName>FIELD: PO# Missing Data</fullName>
+                <default>false</default>
+                <label>FIELD: PO# Missing Data</label>
+            </value>
+            <value>
+                <fullName>INVOICE: Invoicing Descr Missing Data</fullName>
+                <default>false</default>
+                <label>INVOICE: Invoicing Descr Missing Data</label>
+            </value>
+            <value>
+                <fullName>INVOICE: Special Bill Ins Missing Data</fullName>
+                <default>false</default>
+                <label>INVOICE: Special Bill Ins Missing Data</label>
+            </value>
+            <value>
+                <fullName>MISCELLANOUS</fullName>
+                <default>false</default>
+                <label>MISCELLANOUS</label>
+            </value>
+            <value>
+                <fullName>N &amp; ATTACHMENTS: Cannot Open File</fullName>
+                <default>false</default>
+                <label>N &amp; ATTACHMENTS: Cannot Open File</label>
+            </value>
+            <value>
+                <fullName>N &amp; ATTACHMENTS: Credit Card in SF.Com</fullName>
+                <default>false</default>
+                <label>N &amp; ATTACHMENTS: Credit Card in SF.Com</label>
+            </value>
+            <value>
+                <fullName>N &amp; ATTACHMENTS: Missing $ Confirmation</fullName>
+                <default>false</default>
+                <label>N &amp; ATTACHMENTS: Missing $ Confirmation</label>
+            </value>
+            <value>
+                <fullName
+        >N &amp; ATTACHMENTS: Need Proposal / Int. IO</fullName>
+                <default>false</default>
+                <label>N &amp; ATTACHMENTS: Need Proposal / Int. IO</label>
+            </value>
+            <value>
+                <fullName>N &amp; ATTACHMENTS: no Contract</fullName>
+                <default>false</default>
+                <label>N &amp; ATTACHMENTS: no Contract</label>
+            </value>
+            <value>
+                <fullName>N &amp; ATTACHMENTS: no Signed Contract</fullName>
+                <default>false</default>
+                <label>N &amp; ATTACHMENTS: no Signed Contract</label>
+            </value>
+            <value>
+                <fullName>PRODUCT: Incorrect</fullName>
+                <default>false</default>
+                <label>PRODUCT: Incorrect</label>
+            </value>
+            <value>
+                <fullName>PRODUCT: Incorrect $ Amount in Schedule</fullName>
+                <default>false</default>
+                <label>PRODUCT: Incorrect $ Amount in Schedule</label>
+            </value>
+            <value>
+                <fullName>PRODUCT: Incorrect Billing Date</fullName>
+                <default>false</default>
+                <label>PRODUCT: Incorrect Billing Date</label>
+            </value>
+            <value>
+                <fullName>PRODUCT: Incorrect Billing Year</fullName>
+                <default>false</default>
+                <label>PRODUCT: Incorrect Billing Year</label>
+            </value>
+            <value>
+                <fullName>PRODUCT: no billing schedule</fullName>
+                <default>false</default>
+                <label>PRODUCT: no billing schedule</label>
+            </value>
+            <value>
+                <fullName>PRODUCT: Product Missing on Opp</fullName>
+                <default>false</default>
+                <label>PRODUCT: Product Missing on Opp</label>
+            </value>
+            <value>
+                <fullName>PRODUCT: Schedule Comment missing Detail</fullName>
+                <default>false</default>
+                <label>PRODUCT: Schedule Comment missing Detail</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>8</visibleLines>
+</CustomField>

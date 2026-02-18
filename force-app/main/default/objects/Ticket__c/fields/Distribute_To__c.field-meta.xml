@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Distribute_To__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >This is the user the final list or count should be distributed to.</description>
+    <inlineHelpText
+  >This is the user the final list or count should be distributed to.</inlineHelpText>
+    <label>Distribute To</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Tickets2</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

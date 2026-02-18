@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>More_Info_Piece__c</fullName>
+    <description
+  >When this field contains a link, it replaces the “Event Datasheet” on the Events Portal and “Datasheet” on the Fire Packet. If blank, the CMS-generated Event Datasheet (with or without pricing) is used for both. Checking separate field “Exclude Datasheet” hides both the Marketing and CMS-generated Datasheets on the Events Portal and Fire Packet.</description>
+    <inlineHelpText
+  >When this field contains a link, it replaces the “Event Datasheet” on the Events Portal and “Datasheet” on the Fire Packet. If blank, the CMS-generated Event Datasheet (with or without pricing) is used for both. Checking separate field “Exclude Datasheet” hides both the Marketing and CMS-generated Datasheets on the Events Portal and Fire Packet.</inlineHelpText>
+    <label>Marketing Datasheet</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Url</type>
+</CustomField>

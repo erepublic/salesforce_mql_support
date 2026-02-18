@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Moderator_Notes_Required</fullName>
+    <active>true</active>
+    <description
+  >If field &quot;Request Moderator&quot; is checked, field &quot;Moderator Notes&quot; is required.</description>
+    <errorConditionFormula>AND(
+Request_Moderator__c = True,
+ISBLANK(Moderator_Notes__c)
+)</errorConditionFormula>
+    <errorDisplayField>Moderator_Notes__c</errorDisplayField>
+    <errorMessage>Moderator Notes are required</errorMessage>
+</ValidationRule>

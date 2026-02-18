@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>RS_Fin_Tickets_Waiting_Room_Hopper</fullName>
+    <booleanFilter>1 AND 2 AND 3 AND 4 AND 5</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Phase__c</columns>
+    <columns>Title__c</columns>
+    <columns>Working_Date__c</columns>
+    <columns>ETA__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>Requested_By__c</columns>
+    <columns>Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Assignee__c</field>
+        <operation>equals</operation>
+        <value>Ryan Saul</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>notEqual</operation>
+        <value>Closed,Canceled,On Hold</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Finance</value>
+    </filters>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value>Project</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>equals</operation>
+        <value>On Hold,Waiting Room,Hopper</value>
+    </filters>
+    <label>RS - Fin Tickets - Waiting Room/Hopper</label>
+</ListView>

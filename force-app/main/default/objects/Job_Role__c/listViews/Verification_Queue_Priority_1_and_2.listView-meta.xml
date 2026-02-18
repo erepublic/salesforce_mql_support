@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verification_Queue_Priority_1_and_2</fullName>
+    <booleanFilter>(1 OR 4 OR 5 OR 6 OR 7) AND 2 AND 3</booleanFilter>
+    <columns>Last_Verification_Date_Tier__c</columns>
+    <columns>Verification_Date__c</columns>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Job_Role_Title__c</columns>
+    <columns>State_Details__c</columns>
+    <columns>Contact_Status__c</columns>
+    <columns>Queue__c</columns>
+    <columns>Queue_Type__c</columns>
+    <columns>Target_Role_Comm_Dev__c</columns>
+    <columns>Target_Role_Digital_Surveys__c</columns>
+    <columns>Target_Role_Governing_Mag__c</columns>
+    <columns>Target_Role_Industry_Insider__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>includes</operation>
+        <value
+    >State Chief Data Officer,State Chief Information Officer,Deputy State Chief Information Officer,State Chief Information Security Officer,Deputy State Chief Information Security Officer,City CIO,City CISO,County CIO,County CISO</value>
+    </filters>
+    <filters>
+        <field>Last_Verification_Date_Tier__c</field>
+        <operation>equals</operation>
+        <value>03 - 180 - 364 days,04 - 365+ days,Unverified</value>
+    </filters>
+    <filters>
+        <field>Queue__c</field>
+        <operation>equals</operation>
+        <value>Queue 2,Queue 1</value>
+    </filters>
+    <filters>
+        <field>Target_Role_Governing_Mag__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>equals</operation>
+        <value
+    >Adjutant General,Constitutional Officer,Governor,Governor&apos;s Cabinet Member,Lieutenant Governor,Secretary of State,State Administrative Officer,State Auditor,State Budget Director,State Chief Financial Officer,State Child Welfare Head</value>
+    </filters>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>equals</operation>
+        <value
+    >State Comptroller/Controller,State Health Officer,State Human Resources Officer,State Insurance Commissioner,State Medicaid Director,State Privacy Officer,State Procurement/Purchasing Officer,State Risk Officer</value>
+    </filters>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>equals</operation>
+        <value
+    >City Chief Data Officer,City Head,County Chief Data Officer,County Head,State Superintendent of Education,State Transportation Director,State Treasurer</value>
+    </filters>
+    <label>Verification Queue - Priority 1 and 2</label>
+</ListView>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ALL_Events_2025_no_ER_Surveys</fullName>
+    <columns>NAME</columns>
+    <columns>Attendee_Survey__c</columns>
+    <columns>Sponsor_Survey__c</columns>
+    <columns>OneForm_Link__c</columns>
+    <columns>Event_Month__c</columns>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Event_End_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>GL_Code_Finance__c</columns>
+    <columns>Event_Type__c</columns>
+    <columns>Venue_City__c</columns>
+    <columns>Event_Website__c</columns>
+    <columns>Onsite_Sales_Staff__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Cancelled</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>2025</value>
+    </filters>
+    <filters>
+        <field>Event_Type__c</field>
+        <operation>notContain</operation>
+        <value
+    >Registration only,Custom Roundtable,Lunch &amp; Learn Webinar,State Editorial Roundtable,State-Specific Webinar,Webinar,Virtual Conversation,Virtual Meeting,Account Based Marketing</value>
+    </filters>
+    <filters>
+        <field>Brand__c</field>
+        <operation>notContain</operation>
+        <value>EREPUBLIC</value>
+    </filters>
+    <label>ALL - Events 2025 no ER - Surveys</label>
+</ListView>

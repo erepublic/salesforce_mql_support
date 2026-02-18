@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Rejection_Reason__c</fullName>
+    <description
+  >Choose a reason why this lead is not being converted into an opportunity.</description>
+    <inlineHelpText
+  >Choose a reason why this lead is not being converted into an opportunity.</inlineHelpText>
+    <label>Dismiss Reason</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Already a strategic partner</fullName>
+                <default>false</default>
+                <label>Already a strategic partner</label>
+            </value>
+            <value>
+                <fullName>Not a sales lead</fullName>
+                <default>false</default>
+                <label>Not a sales lead</label>
+            </value>
+            <value>
+                <fullName>Already working with this account</fullName>
+                <default>false</default>
+                <label>Already working with this account</label>
+            </value>
+            <value>
+                <fullName>Other - See Notes</fullName>
+                <default>false</default>
+                <label>Other - See Notes</label>
+            </value>
+            <value>
+                <fullName>Not in USA</fullName>
+                <default>false</default>
+                <label>Not in USA</label>
+            </value>
+            <value>
+                <fullName>Nurturing in Campaign(s)</fullName>
+                <default>false</default>
+                <label>Nurturing in Campaign(s)</label>
+            </value>
+            <value>
+                <fullName>Expired</fullName>
+                <default>false</default>
+                <label>Expired</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Speaker_Role__c</fullName>
+    <label>Speaker Role</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Moderator</fullName>
+                <default>false</default>
+                <label>Moderator</label>
+            </value>
+            <value>
+                <fullName>Facilitator</fullName>
+                <default>false</default>
+                <label>Facilitator</label>
+            </value>
+            <value>
+                <fullName>Speaker</fullName>
+                <default>false</default>
+                <label>Speaker</label>
+            </value>
+            <value>
+                <fullName>Panelist</fullName>
+                <default>false</default>
+                <label>Panelist</label>
+            </value>
+            <value>
+                <fullName>Introduction</fullName>
+                <default>false</default>
+                <label>Introduction</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

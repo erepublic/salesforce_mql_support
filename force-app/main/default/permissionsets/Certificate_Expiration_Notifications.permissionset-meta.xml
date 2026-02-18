@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<PermissionSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Receive Certificate Expiration Notifications</description>
+    <hasActivationRequired>false</hasActivationRequired>
+    <label>Certificate Expiration Notifications</label>
+    <license>Salesforce</license>
+    <userPermissions>
+        <enabled>true</enabled>
+        <name>ManageCertificatesExpiration</name>
+    </userPermissions>
+</PermissionSet>

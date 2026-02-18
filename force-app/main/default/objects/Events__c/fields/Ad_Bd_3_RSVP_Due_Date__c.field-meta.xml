@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ad_Bd_3_RSVP_Due_Date__c</fullName>
+    <description
+  >Calculates a date that is 1 week prior to the Advisory Board #3 date, excluding weekends and holidays.</description>
+    <formula
+  >/* Check if 1 week prior to the ADBD #3 date is included in the &apos;Holiday List&apos; custom label */
+
+IF(CONTAINS( $Label.Holiday_List , TEXT(Advisory_Board_3__c - 7)) ,
+
+/* If true, Subtract 1 day from ADBD #3 date before excluding weekends */
+
+CASE(MOD((Advisory_Board_3__c - 8) - DATE(1900, 1, 7), 7),
+0, (Advisory_Board_1__c - 10), /* Sunday */
+1, (Advisory_Board_1__c - 8), /* Monday */
+2, (Advisory_Board_1__c - 8), /* Tuesday */
+3, (Advisory_Board_1__c - 8), /* Wednesday */
+4, (Advisory_Board_1__c - 8), /* Thursday */
+5, (Advisory_Board_1__c - 8), /* Friday */
+6, (Advisory_Board_1__c - 9), /* Saturday */
+null),
+
+/* If false, just use Week Prior */
+
+(Advisory_Board_3__c - 7)
+
+)</formula>
+    <inlineHelpText
+  >1 week prior to the Advisory Board #3 date, excluding weekends and holidays.</inlineHelpText>
+    <label>Ad Bd #3 Sponsor RSVP Due Date</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Remaining_Deliverables_Notes__c</fullName>
+    <description
+  >Remaining deliverables details for Completed projects.</description>
+    <inlineHelpText
+  >Remaining deliverables details for Completed projects.</inlineHelpText>
+    <label>Remaining Deliverables Notes</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

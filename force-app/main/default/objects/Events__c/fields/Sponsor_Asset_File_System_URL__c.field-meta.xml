@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sponsor_Asset_File_System_URL__c</fullName>
+    <description
+  >URL where sponsors can upload their photos and videos for their vDGS and Events profiles.</description>
+    <inlineHelpText
+  >URL where sponsors can upload their photos and videos for their vDGS and Events profiles.</inlineHelpText>
+    <label>Sponsor Assets Dropbox URL</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Url</type>
+</CustomField>

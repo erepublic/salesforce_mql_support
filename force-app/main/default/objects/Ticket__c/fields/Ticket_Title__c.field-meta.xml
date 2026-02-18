@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ticket_Title__c</fullName>
+    <description
+  >Displays a clickable link to a ticket record for use on dashboard emails</description>
+    <externalId>false</externalId>
+    <formula
+  >HYPERLINK(&apos;https://erepublic.lightning.force.com/lightning/r/Ticket__c/&apos; &amp; Id &amp;&apos;/view&apos;, Title__c)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Displays a clickable link to a ticket record for use on dashboard emails</inlineHelpText>
+    <label>Ticket Title</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

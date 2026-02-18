@@ -1,0 +1,9 @@
+{
+  "name": "mql-summarizer-lambda",
+  "private": true,
+  "version": "1.0.0",
+  "type": "commonjs",
+  "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.0.0"
+  }
+}

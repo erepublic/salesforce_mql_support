@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Auto_Renewal_Time_Days__c</fullName>
+    <description
+  >The number of days before a contract ends that it is expected to be renewed automatically.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >The number of days before a contract ends that it is expected to be renewed automatically.</inlineHelpText>
+    <label>Auto-Renewal Time (Days)</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

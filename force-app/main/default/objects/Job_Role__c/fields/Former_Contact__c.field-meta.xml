@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Former_Contact__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >This is the previous person that used to be in this Job Role.</description>
+    <inlineHelpText
+  >This is the previous person that used to be in this Job Role.</inlineHelpText>
+    <label>Former Contact</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Former Job Roles</relationshipLabel>
+    <relationshipName>Job_Roles1</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

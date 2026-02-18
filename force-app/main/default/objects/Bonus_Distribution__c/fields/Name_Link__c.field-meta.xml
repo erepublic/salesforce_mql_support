@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Name_Link__c</fullName>
+    <externalId>false</externalId>
+    <formula>CASE(RecordTypeId,
+&quot;01214000000AX7T&quot;,HYPERLINK(&quot;/&quot;&amp;Event_Name__r.Id , &quot;View Event&quot;),
+&quot;01214000000AX7O&quot;,HYPERLINK(&quot;/&quot;&amp;Partner_Event__r.Id, &quot;View Event&quot;),
+NULL
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Event Link</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

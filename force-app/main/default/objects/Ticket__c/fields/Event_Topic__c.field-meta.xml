@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Topic__c</fullName>
+    <description>Corresponds to Project &quot;Topic&quot; field.</description>
+    <inlineHelpText
+  >This webinar&apos;s project&apos;s &quot;Topic&quot; value.</inlineHelpText>
+    <label>Event Topic</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Administrative Services</fullName>
+                <default>false</default>
+                <label>Administrative Services</label>
+            </value>
+            <value>
+                <fullName>Advocacy and Government Affairs</fullName>
+                <default>false</default>
+                <label>Advocacy and Government Affairs</label>
+            </value>
+            <value>
+                <fullName>Artificial Intelligence</fullName>
+                <default>false</default>
+                <label>Artificial Intelligence</label>
+            </value>
+            <value>
+                <fullName>Budget, Finance and HR</fullName>
+                <default>false</default>
+                <label>Budget, Finance and HR</label>
+            </value>
+            <value>
+                <fullName>Buildings and Facilities</fullName>
+                <default>false</default>
+                <label>Buildings and Facilities</label>
+            </value>
+            <value>
+                <fullName>Citizen Engagement</fullName>
+                <default>false</default>
+                <label>Citizen Engagement</label>
+            </value>
+            <value>
+                <fullName>Civic Innovation</fullName>
+                <default>false</default>
+                <label>Civic Innovation</label>
+            </value>
+            <value>
+                <fullName>Cloud</fullName>
+                <default>false</default>
+                <label>Cloud</label>
+            </value>
+            <value>
+                <fullName>Constituent Experience</fullName>
+                <default>false</default>
+                <label>Constituent Experience</label>
+            </value>
+            <value>
+                <fullName>Cybersecurity</fullName>
+                <default>false</default>
+                <label>Cybersecurity</label>
+            </value>
+            <value>
+                <fullName>Data and Analytics</fullName>
+                <default>false</default>
+                <label>Data and Analytics</label>
+            </value>
+            <value>
+                <fullName>Digital Workflows</fullName>
+                <default>false</default>
+                <label>Digital Workflows</label>
+            </value>
+            <value>
+                <fullName>Diversity, Equity and Inclusion</fullName>
+                <default>false</default>
+                <label>Diversity, Equity and Inclusion</label>
+            </value>
+            <value>
+                <fullName>Election Technology</fullName>
+                <default>false</default>
+                <label>Election Technology</label>
+            </value>
+            <value>
+                <fullName>Emergency Management</fullName>
+                <default>false</default>
+                <label>Emergency Management</label>
+            </value>
+            <value>
+                <fullName>Emerging Tech</fullName>
+                <default>false</default>
+                <label>Emerging Tech</label>
+            </value>
+            <value>
+                <fullName>Federal</fullName>
+                <default>false</default>
+                <label>Federal</label>
+            </value>
+            <value>
+                <fullName>Finance</fullName>
+                <default>false</default>
+                <label>Finance</label>
+            </value>
+            <value>
+                <fullName>Grants</fullName>
+                <default>false</default>
+                <label>Grants</label>
+            </value>
+            <value>
+                <fullName>Health and Human Services</fullName>
+                <default>false</default>
+                <label>Health and Human Services</label>
+            </value>
+            <value>
+                <fullName>Higher Education</fullName>
+                <default>false</default>
+                <label>Higher Education</label>
+            </value>
+            <value>
+                <fullName>IoT and Smart Cities</fullName>
+                <default>false</default>
+                <label>IoT and Smart Cities</label>
+            </value>
+            <value>
+                <fullName>IT Infrastructure</fullName>
+                <default>false</default>
+                <label>IT Infrastructure</label>
+            </value>
+            <value>
+                <fullName>IT Modernization</fullName>
+                <default>false</default>
+                <label>IT Modernization</label>
+            </value>
+            <value>
+                <fullName>Justice and Legal</fullName>
+                <default>false</default>
+                <label>Justice and Legal</label>
+            </value>
+            <value>
+                <fullName>K-12 Education</fullName>
+                <default>false</default>
+                <label>K-12 Education</label>
+            </value>
+            <value>
+                <fullName>Law Enforcement and Fire</fullName>
+                <default>false</default>
+                <label>Law Enforcement and Fire</label>
+            </value>
+            <value>
+                <fullName>Local</fullName>
+                <default>false</default>
+                <label>Local</label>
+            </value>
+            <value>
+                <fullName>Manufacturing and Retail</fullName>
+                <default>false</default>
+                <label>Manufacturing and Retail</label>
+            </value>
+            <value>
+                <fullName>Media</fullName>
+                <default>false</default>
+                <label>Media</label>
+            </value>
+            <value>
+                <fullName>Networking</fullName>
+                <default>false</default>
+                <label>Networking</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Policy</fullName>
+                <default>false</default>
+                <label>Policy</label>
+            </value>
+            <value>
+                <fullName>Privacy</fullName>
+                <default>false</default>
+                <label>Privacy</label>
+            </value>
+            <value>
+                <fullName>Public Works</fullName>
+                <default>false</default>
+                <label>Public Works</label>
+            </value>
+            <value>
+                <fullName>Smart Cities</fullName>
+                <default>false</default>
+                <label>Smart Cities</label>
+            </value>
+            <value>
+                <fullName>Social and Mobile</fullName>
+                <default>false</default>
+                <label>Social and Mobile</label>
+            </value>
+            <value>
+                <fullName>Special Districts</fullName>
+                <default>false</default>
+                <label>Special Districts</label>
+            </value>
+            <value>
+                <fullName>State</fullName>
+                <default>false</default>
+                <label>State</label>
+            </value>
+            <value>
+                <fullName>Sustainability and Environment</fullName>
+                <default>false</default>
+                <label>Sustainability and Environment</label>
+            </value>
+            <value>
+                <fullName>Transportation</fullName>
+                <default>false</default>
+                <label>Transportation</label>
+            </value>
+            <value>
+                <fullName>Utilities, Water, Waste and Energy</fullName>
+                <default>false</default>
+                <label>Utilities, Water, Waste and Energy</label>
+            </value>
+            <value>
+                <fullName>Workforce</fullName>
+                <default>false</default>
+                <label>Workforce</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

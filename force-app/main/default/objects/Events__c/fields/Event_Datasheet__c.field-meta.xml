@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Datasheet__c</fullName>
+    <externalId>false</externalId>
+    <formula>case(Status__c,
+&quot;Cancelled&quot;,&quot;&quot;,
+HYPERLINK(&quot;https://cms.erepublic.com/common/events/more_info/&quot;&amp;Id,Datasheet_Nickname__c&amp;&quot; Datasheet&quot;))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Event Datasheet</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

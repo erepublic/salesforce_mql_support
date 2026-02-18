@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Account_Reference__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >When an account is merged, this refers to the &apos;winning&apos; record.</description>
+    <inlineHelpText
+  >When an account is merged, this refers to the &apos;winning&apos; record.</inlineHelpText>
+    <label>Account Reference</label>
+    <referenceTo>Account</referenceTo>
+    <relationshipLabel>Accounts Durable History</relationshipLabel>
+    <relationshipName>Accounts_Durable_History</relationshipName>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

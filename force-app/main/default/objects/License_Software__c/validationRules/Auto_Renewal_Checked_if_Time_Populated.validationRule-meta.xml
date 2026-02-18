@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Auto_Renewal_Checked_if_Time_Populated</fullName>
+    <active>true</active>
+    <description
+  >You cannot fill in the Auto-Renewal Time (Days) field without also having the Auto-Renewal checkbox checked.</description>
+    <errorConditionFormula>NOT(ISBLANK( Auto_Renewal_Time_Days__c ))
+&amp;&amp;
+ Auto_Renewal__c = FALSE</errorConditionFormula>
+    <errorMessage
+  >Check Auto-Renewal box if Auto-Renewal Time (Days) provided.</errorMessage>
+</ValidationRule>

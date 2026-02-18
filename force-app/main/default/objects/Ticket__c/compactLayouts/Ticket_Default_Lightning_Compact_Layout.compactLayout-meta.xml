@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CompactLayout xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ticket_Default_Lightning_Compact_Layout</fullName>
+    <fields>Title__c</fields>
+    <fields>Name</fields>
+    <fields>Assignee__c</fields>
+    <fields>Status__c</fields>
+    <fields>Phase__c</fields>
+    <fields>Requested_By__c</fields>
+    <label>Ticket - Default</label>
+</CompactLayout>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Remaining_Deliverables_and_Notes</fullName>
+    <active>true</active>
+    <description
+  >&apos;Remaining Deliverables&apos; and &apos;Remaining Deliverables Notes&apos; must both be either populated or blank.</description>
+    <errorConditionFormula
+  >( Remaining_Deliverables__c = TRUE &amp;&amp; ISBLANK(Remaining_Deliverables_Notes__c) )
+||
+( Remaining_Deliverables__c = FALSE &amp;&amp; NOT(ISBLANK(Remaining_Deliverables_Notes__c)) )</errorConditionFormula>
+    <errorMessage
+  >&apos;Remaining Deliverables&apos; and &apos;Remaining Deliverables Notes&apos; must both be either populated or blank.</errorMessage>
+</ValidationRule>

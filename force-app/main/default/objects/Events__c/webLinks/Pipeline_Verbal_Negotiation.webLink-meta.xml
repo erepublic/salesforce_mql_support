@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pipeline_Verbal_Negotiation</fullName>
+    <availability>online</availability>
+    <description
+  >Generates a report for the event that gives a breakdown of dollar values and a list of hots and warms and shows pipeline values as well.</description>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Pipeline - Verbal &amp; Negotiation</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url>/00O30000003cWoR?pv0={!Events__c.Id}</url>
+</WebLink>

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_Email_Alert</name>
+        <label>Send Email Alert</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Contract.Contract_CC_Auth_Invoice</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Contract.Contract_CC_Auth_Invoice</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description
+  >Updates the Sales Invoice record to have the authorize.net ID when a payment comes in on a related contract record.</description>
+    <environments>Default</environments>
+    <interviewLabel>Contract - RT AS - {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contract - RT AS - Update Invoice with CC Auth</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <description
+    >marks off the contract record as &quot;auth applied&quot;</description>
+        <name>Update_Contract</name>
+        <label>Update Contract</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Send_Email_Alert</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Applied_AUTH_to_Opp__c</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <description
+    >Puts the auth id into the sales invoice record.</description>
+        <name>Update_Sales_Invoice</name>
+        <label>Update Sales Invoice</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Contract</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Sales_Invoice__r.Id</elementReference>
+            </value>
+        </filters>
+        <inputAssignments>
+            <field>Authorize_Net_Transaction_ID__c</field>
+            <value>
+                <elementReference>$Record.Reference__c</elementReference>
+            </value>
+        </inputAssignments>
+        <object>c2g__codaInvoice__c</object>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Sales_Invoice</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Reference__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue />
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01214000001WIFZAA4</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Sales_Invoice__c</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue />
+            </value>
+        </filters>
+        <object>Contract</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <triggerOrder>300</triggerOrder>
+</Flow>

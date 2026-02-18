@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Pref_Platform_Calls__c</fullName>
+    <description
+  >Used to indicate account&apos;s preferred platform for calls. Included in delivery routings and projects.</description>
+    <externalId>false</externalId>
+    <formula>TEXT(Client__r.Pref_Platform_Calls__c)</formula>
+    <inlineHelpText
+  >This account&apos;s preferred platform for calls. Can be changed on the account page.</inlineHelpText>
+    <label>Pref Platform (Calls)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

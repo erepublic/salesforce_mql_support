@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CDE_NYC_Department_of_Education_School</fullName>
+    <columns>NAME</columns>
+    <columns>Registrant_Name__c</columns>
+    <columns>Registrant_Title__c</columns>
+    <columns>Reg_Company_Name__c</columns>
+    <columns>Department__c</columns>
+    <columns>Reg_Type__c</columns>
+    <columns>Non_Qual__c</columns>
+    <columns>Promo_Code__c</columns>
+    <columns>Event_No_Show__c</columns>
+    <columns>Reg_Date__c</columns>
+    <columns>Finance_Batch__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event__c</field>
+        <operation>contains</operation>
+        <value
+    >CDE - NYC Department of Education School Technology Summit 2015</value>
+    </filters>
+    <label>CDE - NYC Department of Education School</label>
+</ListView>

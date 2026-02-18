@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>End_Date_Less_Than_Start_Date</fullName>
+    <active>true</active>
+    <description
+  >Project record type Navigator: End Date cannot be less than Start Date</description>
+    <errorConditionFormula
+  >(RecordTypeId = &quot;0125Y000001RfwH&quot; &amp;&amp;
+ End_Date__c &lt; Start_Date__c)</errorConditionFormula>
+    <errorDisplayField>End_Date__c</errorDisplayField>
+    <errorMessage>End Date cannot be less than Start Date</errorMessage>
+</ValidationRule>

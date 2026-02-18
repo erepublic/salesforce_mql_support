@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Remaining_Deliverables__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >This project is considered Completed but some deliverables remain.</description>
+    <inlineHelpText
+  >This project is considered Completed but some deliverables remain.</inlineHelpText>
+    <label>Remaining Deliverables</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Color__c</fullName>
+    <label>Color</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>4c</fullName>
+                <default>false</default>
+                <label>4c</label>
+            </value>
+            <value>
+                <fullName>4c - 4/1</fullName>
+                <default>false</default>
+                <label>4c - 4/1</label>
+            </value>
+            <value>
+                <fullName>RGB</fullName>
+                <default>false</default>
+                <label>RGB</label>
+            </value>
+            <value>
+                <fullName>B/W</fullName>
+                <default>false</default>
+                <label>B/W</label>
+            </value>
+            <value>
+                <fullName>2c</fullName>
+                <default>false</default>
+                <label>2c</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

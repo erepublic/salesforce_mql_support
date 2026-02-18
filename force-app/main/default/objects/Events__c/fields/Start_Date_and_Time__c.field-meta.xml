@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Start_Date_and_Time__c</fullName>
+    <description>For reporting, sortable start date and time.</description>
+    <externalId>false</externalId>
+    <formula>/*
+Desired output: YYYY-MM-DD 24:00 (H:MM AM/PM) Day
+*/
+
+TEXT(YEAR(Event_Start_Date__c)) 
+&amp; &quot;-&quot; &amp; 
+IF(MONTH(Event_Start_Date__c)&lt;10,&quot;0&quot;&amp;TEXT(MONTH(Event_Start_Date__c)),TEXT(MONTH(Event_Start_Date__c)))
+&amp; &quot;-&quot; &amp; 
+IF(DAY(Event_Start_Date__c)&lt;10,&quot;0&quot;&amp;TEXT(DAY(Event_Start_Date__c)),TEXT(DAY(Event_Start_Date__c)))
+&amp;&quot; &quot;&amp;
+ CASE(Event_Start_Time__c, 
+&quot;5:00 AM&quot;,&quot;05:00 (05:00 AM)&quot;,
+&quot;5:15 AM&quot;,&quot;05:15 (05:15 AM)&quot;,
+&quot;5:30 AM&quot;,&quot;05:30 (05:30 AM)&quot;,
+&quot;5:45 AM&quot;,&quot;05:45 (05:45 AM)&quot;,
+&quot;6:00 AM&quot;,&quot;06:00 (06:00 AM)&quot;,
+&quot;6:15 AM&quot;,&quot;06:15 (06:15 AM)&quot;,
+&quot;6:30 AM&quot;,&quot;06:30 (06:30 AM)&quot;,
+&quot;6:45 AM&quot;,&quot;06:45 (06:45 AM)&quot;,
+&quot;7:00 AM&quot;,&quot;07:00 (07:00 AM)&quot;,
+&quot;7:15 AM&quot;,&quot;07:15 (07:15 AM)&quot;,
+&quot;7:30 AM&quot;,&quot;07:30 (07:30 AM)&quot;,
+&quot;7:45 AM&quot;,&quot;07:45 (07:45 AM)&quot;,
+&quot;8:00 AM&quot;,&quot;08:00 (08:00 AM)&quot;,
+&quot;8:15 AM&quot;,&quot;08:15 (08:15 AM)&quot;,
+&quot;8:30 AM&quot;,&quot;08:30 (08:30 AM)&quot;,
+&quot;8:45 AM&quot;,&quot;08:45 (08:45 AM)&quot;,
+&quot;9:00 AM&quot;,&quot;09:00 (09:00 AM)&quot;,
+&quot;9:15 AM&quot;,&quot;09:15 (09:15 AM)&quot;,
+&quot;9:30 AM&quot;,&quot;09:30 (09:30 AM)&quot;,
+&quot;9:45 AM&quot;,&quot;09:45 (09:45 AM)&quot;,
+&quot;10:00 AM&quot;,&quot;10:00 (10:00 AM)&quot;,
+&quot;10:15 AM&quot;,&quot;10:15 (10:15 AM)&quot;,
+&quot;10:30 AM&quot;,&quot;10:30 (10:30 AM)&quot;,
+&quot;10:45 AM&quot;,&quot;10:45 (10:45 AM)&quot;,
+&quot;11:00 AM&quot;,&quot;11:00 (11:00 AM)&quot;,
+&quot;11:15 AM&quot;,&quot;11:15 (11:15 AM)&quot;,
+&quot;11:30 AM&quot;,&quot;11:30 (11:30 AM)&quot;,
+&quot;11:45 AM&quot;,&quot;11:45 (11:45 AM)&quot;,
+&quot;12:00 PM&quot;,&quot;12:00 (12:00 PM)&quot;,
+&quot;12:15 PM&quot;,&quot;12:15 (12:15 PM)&quot;,
+&quot;12:30 PM&quot;,&quot;12:30 (12:30 PM)&quot;,
+&quot;12:45 PM&quot;,&quot;12:45 (12:45 PM)&quot;,
+&quot;1:00 PM&quot;,&quot;13:00 (01:00 PM)&quot;,
+&quot;1:15 PM&quot;,&quot;13:15 (01:15 PM)&quot;,
+&quot;1:30 PM&quot;,&quot;13:30 (01:30 PM)&quot;,
+&quot;1:45 PM&quot;,&quot;13:45 (01:45 PM)&quot;,
+&quot;2:00 PM&quot;,&quot;14:00 (02:00 PM)&quot;,
+&quot;2:15 PM&quot;,&quot;14:15 (02:15 PM)&quot;,
+&quot;2:30 PM&quot;,&quot;14:30 (02:30 PM)&quot;,
+&quot;2:45 PM&quot;,&quot;14:45 (02:45 PM)&quot;,
+&quot;3:00 PM&quot;,&quot;15:00 (03:00 PM)&quot;,
+&quot;3:15 PM&quot;,&quot;15:15 (03:15 PM)&quot;,
+&quot;3:30 PM&quot;,&quot;15:30 (03:30 PM)&quot;,
+&quot;3:45 PM&quot;,&quot;15:45 (03:45 PM)&quot;,
+&quot;4:00 PM&quot;,&quot;16:00 (04:00 PM)&quot;,
+&quot;4:15 PM&quot;,&quot;16:15 (04:15 PM)&quot;,
+&quot;4:30 PM&quot;,&quot;16:30 (04:30 PM)&quot;,
+&quot;4:45 PM&quot;,&quot;16:45 (04:45 PM)&quot;,
+&quot;5:00 PM&quot;,&quot;17:00 (05:00 PM)&quot;,
+&quot;&quot;) 
+&amp;&quot; &quot;&amp;
+CASE( 
+  MOD(
+    Event_Start_Date__c  - DATE(1900, 1, 7), 7
+  ),
+  0, &quot;Sunday&quot;,
+  1, &quot;Monday&quot;,
+  2, &quot;Tuesday&quot;,
+  3, &quot;Wednesday&quot;,
+  4, &quot;Thursday&quot;,
+  5, &quot;Friday&quot;,
+  6, &quot;Saturday&quot;,
+&quot;&quot;)</formula>
+    <label>Start Date and Time</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

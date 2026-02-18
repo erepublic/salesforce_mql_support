@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hide_Time__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >to hide the time on the agenda page. (used for concurrent sessions)</description>
+    <inlineHelpText
+  >to hide the time on the agenda page. (used for concurrent sessions)</inlineHelpText>
+    <label>Hide Time (concurrent session)</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>ACV_Target_by_Brand__c</fullName>
+    <description
+  >Used for ACV Target Dash. In this field &quot;DGN&quot; &amp; &quot;DEN&quot; are actual overall NAV target. See ACV Target (Type) field for individual DGN/DEN targets.</description>
+    <formula>CASE( TEXT(Type__c),
+
+&quot;DGN&quot;,(
+case(MONTH( Start_Date__c),
+1,95000,
+2,99300,
+3,103600,
+4,107900,
+5,112200,
+6,116500,
+7,121000,
+8,125500,
+9,130000,
+10,134500,
+11,139000,
+12,143500,
+0)),
+
+&quot;DEN&quot;,(
+case(MONTH( Start_Date__c),
+1,95000,
+2,99300,
+3,103600,
+4,107900,
+5,112200,
+6,116500,
+7,121000,
+8,125500,
+9,130000,
+10,134500,
+11,139000,
+12,143500,
+0)),
+
+case(MONTH( Start_Date__c),
+1,46335,
+2,48085,
+3,49835,
+4,51585,
+5,53335,
+6,55085,
+7,56835,
+8,58585,
+9,60335,
+10,62085,
+11,63835,
+12,65565,
+0))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>ACV Target (Brand)</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

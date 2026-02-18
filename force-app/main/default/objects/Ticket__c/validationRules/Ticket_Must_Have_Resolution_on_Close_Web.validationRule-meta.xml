@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Ticket_Must_Have_Resolution_on_Close_Web</fullName>
+    <active>true</active>
+    <description
+  >Web Tickets must have a resolution in order to be closed.</description>
+    <errorConditionFormula>TEXT(Phase__c) = &quot;Closed&quot; &amp;&amp;
+
+   RecordTypeId = &quot;01230000001R3Yk&quot; &amp;&amp;
+
+   Resolution__c = &quot;&quot; &amp;&amp;
+
+   Date_Closed__c &gt; DATEVALUE(&quot;2024-12-09&quot;)</errorConditionFormula>
+    <errorDisplayField>Resolution__c</errorDisplayField>
+    <errorMessage
+  >Oops! Please provide a detailed resolution prior to closing the ticket.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>No_Vendor_Account_Links</fullName>
+    <active>true</active>
+    <description
+  >To disallow Account Link records for Vendor Account.</description>
+    <errorConditionFormula
+  >Account__r.RecordTypeId = &quot;01230000000uiTr&quot; /*Vendor*/</errorConditionFormula>
+    <errorMessage>Cannot enter Account Links for Vendor accounts.</errorMessage>
+</ValidationRule>

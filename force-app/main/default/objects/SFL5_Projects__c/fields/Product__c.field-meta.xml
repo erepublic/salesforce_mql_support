@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Product__c</fullName>
+    <label>Product</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Account Based Marketing</fullName>
+                <default>false</default>
+                <label>Account Based Marketing</label>
+            </value>
+            <value>
+                <fullName>Banners</fullName>
+                <default>false</default>
+                <label>Banners</label>
+            </value>
+            <value>
+                <fullName>Case Study</fullName>
+                <default>false</default>
+                <label>Case Study</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>Custom Event</fullName>
+                <default>false</default>
+                <label>Custom Event</label>
+            </value>
+            <value>
+                <fullName>Custom Roundtable</fullName>
+                <default>false</default>
+                <label>Custom Roundtable</label>
+            </value>
+            <value>
+                <fullName>Editorial Roundtable</fullName>
+                <default>false</default>
+                <label>Editorial Roundtable</label>
+            </value>
+            <value>
+                <fullName>Executive Q&amp;A</fullName>
+                <default>false</default>
+                <label>Executive Q&amp;A</label>
+            </value>
+            <value>
+                <fullName>Filtered Leads</fullName>
+                <default>false</default>
+                <label>Filtered Leads</label>
+            </value>
+            <value>
+                <fullName>Go-to-Guide</fullName>
+                <default>false</default>
+                <label>Go-to-Guide</label>
+            </value>
+            <value>
+                <fullName>Handbook</fullName>
+                <default>false</default>
+                <label>Handbook</label>
+            </value>
+            <value>
+                <fullName>Infographic</fullName>
+                <default>false</default>
+                <label>Infographic</label>
+            </value>
+            <value>
+                <fullName>Issue Brief</fullName>
+                <default>false</default>
+                <label>Issue Brief</label>
+            </value>
+            <value>
+                <fullName>Lunch &amp; Learn Webinar</fullName>
+                <default>false</default>
+                <label>Lunch &amp; Learn Webinar</label>
+            </value>
+            <value>
+                <fullName>Multi-Touch Nurture</fullName>
+                <default>false</default>
+                <label>Multi-Touch Nurture</label>
+            </value>
+            <value>
+                <fullName>Newsletters</fullName>
+                <default>false</default>
+                <label>Newsletters</label>
+            </value>
+            <value>
+                <fullName>Persona-Based Paper</fullName>
+                <default>false</default>
+                <label>Persona-Based Paper</label>
+            </value>
+            <value>
+                <fullName>Position Paper</fullName>
+                <default>false</default>
+                <label>Position Paper</label>
+            </value>
+            <value>
+                <fullName>Rapid Roadmap</fullName>
+                <default>false</default>
+                <label>Rapid Roadmap</label>
+            </value>
+            <value>
+                <fullName>Research Report</fullName>
+                <default>false</default>
+                <label>Research Report</label>
+            </value>
+            <value>
+                <fullName>Shared Leads</fullName>
+                <default>false</default>
+                <label>Shared Leads</label>
+            </value>
+            <value>
+                <fullName>Social Toolkit</fullName>
+                <default>false</default>
+                <label>Social Toolkit</label>
+            </value>
+            <value>
+                <fullName>Sponsored Article</fullName>
+                <default>false</default>
+                <label>Sponsored Article</label>
+            </value>
+            <value>
+                <fullName>Standard Leads</fullName>
+                <default>false</default>
+                <label>Standard Leads</label>
+            </value>
+            <value>
+                <fullName>State-Specific Webinar</fullName>
+                <default>false</default>
+                <label>State-Specific Webinar</label>
+            </value>
+            <value>
+                <fullName>Thought Leadership Paper</fullName>
+                <default>false</default>
+                <label>Thought Leadership Paper</label>
+            </value>
+            <value>
+                <fullName>Two-Step Nurture</fullName>
+                <default>false</default>
+                <label>Two-Step Nurture</label>
+            </value>
+            <value>
+                <fullName>Virtual Conversation</fullName>
+                <default>false</default>
+                <label>Virtual Conversation</label>
+            </value>
+            <value>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+                <label>Webinar</label>
+            </value>
+            <value>
+                <fullName>White Paper</fullName>
+                <default>false</default>
+                <label>White Paper</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

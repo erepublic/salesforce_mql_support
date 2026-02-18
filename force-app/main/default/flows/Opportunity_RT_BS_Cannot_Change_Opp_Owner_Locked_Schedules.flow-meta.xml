@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <customErrors>
+        <name>Oops_Cannot_Change_Opp_Owner</name>
+        <label>Oops! Cannot Change Opp Owner</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <customErrorMessages>
+            <errorMessage
+      >Oops! You cannot change the owner of an opportunity with schedules that have been billed or are in a locked commission period.</errorMessage>
+            <fieldSelection>OwnerId</fieldSelection>
+            <isFieldError>true</isFieldError>
+        </customErrorMessages>
+    </customErrors>
+    <decisions>
+        <description
+    >Bypasses this error if running user is Jenn Valdez.</description>
+        <name>Account_User_Bypass</name>
+        <label>Account/User Bypass?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Bypass</defaultConnectorLabel>
+        <rules>
+            <name>No_Error</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$User.Id</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>00530000001YEiFAAW</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Account.Name</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Pretend Computer Company Inc.</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Get_Schedules</targetReference>
+            </connector>
+            <label>Error</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Schedules_Found</name>
+        <label>Schedules Found?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>No Locked Schedules</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Locked_Schedules_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>Get_Schedules</leftValueReference>
+                <operator>IsEmpty</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Oops_Cannot_Change_Opp_Owner</targetReference>
+            </connector>
+            <label>Yes, Locked Schedules Found</label>
+        </rules>
+    </decisions>
+    <description
+  >Cannot change the Opportunity Owner on and Opportunity with schedule dates in the locked commission period. Bypass for Jenn Valdez.
+1/21/2026 v(2): Updated to prevent ownership change on past schedules with Finance Statuses of Billed, Cancel, Refund, or Reallocation.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description
+    >Should match Commission Lock Date | Commission_Lock_Date on Line Item Schedules. 
+Displays the current Commission Period start date. (26th - 10th or 11th - 25th)</description>
+        <name>f_Commission_Lock_Date</name>
+        <dataType>Date</dataType>
+        <expression>IF(
+   DAY(TODAY()) &lt; 11,
+   /* We are between the 1st and 10th:
+      current open period = 26 of last month – 10 of this month */
+   DATE(
+     YEAR(ADDMONTHS(TODAY(), -1)),
+     MONTH(ADDMONTHS(TODAY(), -1)),
+     26
+   ),
+   IF(
+     DAY(TODAY()) &lt; 26,
+     /* We are between the 11th and 25th:
+        current open period = 11–25 of this month */
+     DATE(
+       YEAR(TODAY()),
+       MONTH(TODAY()),
+       11
+     ),
+     /* We are 26th or later:
+        current open period = 26–end of this month */
+     DATE(
+       YEAR(TODAY()),
+       MONTH(TODAY()),
+       26
+     )
+   )
+ )</expression>
+    </formulas>
+    <interviewLabel
+  >Opportunity - RT BS - Cannot Edit Opp Owner of Locked Schedules {!$Flow.CurrentDateTime}</interviewLabel>
+    <label
+  >Opportunity - RT BS - Cannot Change Opp Owner - Locked Schedules</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Schedules</name>
+        <label>Get Schedules</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Schedules_Found</targetReference>
+        </connector>
+        <filterLogic>(1 AND 2) OR (1 AND 3 AND (4 OR 5 OR 6 OR 7))</filterLogic>
+        <filters>
+            <field>Opportunity_Id__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>ScheduleDate</field>
+            <operator>LessThan</operator>
+            <value>
+                <elementReference>f_Commission_Lock_Date</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>ScheduleDate</field>
+            <operator>LessThan</operator>
+            <value>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </value>
+        </filters>
+        <filters>
+            <field>Finance_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Billed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Finance_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Cancel</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Finance_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Reallocation</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Finance_Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Refund</stringValue>
+            </value>
+        </filters>
+        <getFirstRecordOnly>false</getFirstRecordOnly>
+        <object>OpportunityLineItemSchedule</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Account_User_Bypass</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>OwnerId</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>StageName</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Lead Opportunity</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>StageName</field>
+            <operator>NotEqualTo</operator>
+            <value>
+                <stringValue>Closed Lost</stringValue>
+            </value>
+        </filters>
+        <object>Opportunity</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

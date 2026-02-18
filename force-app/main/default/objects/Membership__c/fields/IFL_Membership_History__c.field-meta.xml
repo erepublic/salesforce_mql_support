@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>IFL_Membership_History__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >HYPERLINK(&quot;/lightning/r/Report/00O5Y00000DqJ31UAF/view?fv0=&quot;&amp;Account_Name__r.Id,&quot;All Time&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>IFL Membership History</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

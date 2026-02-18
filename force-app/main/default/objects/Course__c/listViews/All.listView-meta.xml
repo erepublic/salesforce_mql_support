@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>All</fullName>
+    <columns>NAME</columns>
+    <columns>Standardized_Course_Name__c</columns>
+    <columns>Course_Nickname__c</columns>
+    <columns>Course_Access__c</columns>
+    <columns>OBJECT_ID</columns>
+    <columns>Active__c</columns>
+    <columns>Description__c</columns>
+    <columns>External_Course_Id__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>LAST_UPDATE</columns>
+    <filterScope>Everything</filterScope>
+    <label>All</label>
+</ListView>

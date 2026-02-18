@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_ALL_Events_2023</fullName>
+    <columns>NAME</columns>
+    <columns>Brand__c</columns>
+    <columns>Event_Year__c</columns>
+    <columns>Event_Month__c</columns>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Event_End_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>Landing_Page__c</columns>
+    <columns>Event_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Cancelled</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>contains</operation>
+        <value>2023,2024</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>notEqual</operation>
+        <value>Events__c.Internal_Event</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>notContain</operation>
+        <value>Test,Badge Scanner Tech</value>
+    </filters>
+    <label>ALL - Events &amp; Webinars 2023 - 2024</label>
+</ListView>

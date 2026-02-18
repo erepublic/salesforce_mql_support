@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reused_Existing_Badge__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Indicates that a Contact Enrollment took a different version of the same course once before and received the same badge a second time.</description>
+    <label>Reused Existing Badge</label>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

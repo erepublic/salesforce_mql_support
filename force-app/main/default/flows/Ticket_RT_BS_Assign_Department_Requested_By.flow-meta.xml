@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>59.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_User_Department</name>
+        <label>Assign User Department</label>
+        <locationX>176</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Department__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Department</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Department</name>
+        <dataType>String</dataType>
+        <expression>CASE({!Get_User.Department}, 
+&quot;Sales&quot;, &quot;Sales&quot;,
+&quot;Sales Operations&quot;, &quot;Sales Operations&quot;,
+&quot;Sales Administrative Support&quot;, &quot;Sales Administrative Support&quot;,
+&quot;Member Services&quot;, &quot;Member Services&quot;,
+&quot;Salesforce Operations&quot;, &quot;Salesforce Operations&quot;,
+&quot;People &amp; Culture&quot;, &quot;People &amp; Culture&quot;, 
+&quot;Finance&quot;, &quot;Finance&quot;, 
+&quot;Event Logistics &amp; Management&quot;, &quot;Event Logistics &amp; Management&quot;, 
+&quot;Content Studio&quot;, &quot;Content Studio&quot;, 
+&quot;Demand Gen&quot;, &quot;Demand Gen&quot;, 
+&quot;Community Development&quot;, &quot;Community Development&quot;,
+&quot;Audience Operations&quot;, &quot;Audience Operations&quot;,
+&quot;Corporate&quot;, &quot;Corporate&quot;,
+&quot;Research&quot;, &quot;Research&quot;, 
+&quot;Innovation&quot;, &quot;Innovation&quot;, 
+&quot;Marketing&quot;, &quot;Marketing&quot;, 
+&quot;Registration&quot;, &quot;Registration&quot;, 
+&quot;Design / Production&quot;, &quot;Design / Production&quot;, 
+&quot;Editorial&quot;, &quot;Editorial&quot;, 
+&quot;Digital Marketing&quot;, &quot;Digital Marketing&quot;, 
+&quot;Web Development&quot;, &quot;Web Development&quot;,
+&quot;IT Support&quot;, &quot;IT Support&quot;, 
+&quot;Career Growth &amp; Development&quot;, &quot;Career Growth &amp; Development&quot;, 
+&quot;Navigator&quot;, &quot;Navigator&quot;, 
+&quot;&quot;
+)</expression>
+    </formulas>
+    <interviewLabel
+  >Ticket - RT BS - Assign Department (Requested By) {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Ticket - RT BS - Assign Department (Requested By)</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_User</name>
+        <label>Get User</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_User_Department</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Requested_By__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>User</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_User</targetReference>
+        </connector>
+        <filterLogic>1 AND (2 OR 3 OR 4) AND 5</filterLogic>
+        <filters>
+            <field>Requested_By__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>012a0000001RR3rAAG</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01230000001R3YkAAK</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01214000001RYxpAAG</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Department__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Ticket__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

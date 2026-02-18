@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Us_Open_Requests_Sales</fullName>
+    <booleanFilter>1 AND (2 OR 3)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Organization__c</columns>
+    <columns>First_Name__c</columns>
+    <columns>Last_Name__c</columns>
+    <columns>Email__c</columns>
+    <columns>Phone__c</columns>
+    <columns>Topic__c</columns>
+    <columns>Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Received Request</value>
+    </filters>
+    <filters>
+        <field>Topic__c</field>
+        <operation>equals</operation>
+        <value>Sales &amp; Advertising</value>
+    </filters>
+    <filters>
+        <field>OWNER.LAST_NAME</field>
+        <operation>equals</operation>
+        <value>Frame</value>
+    </filters>
+    <label>Contact Us - Open Requests - Sales</label>
+</ListView>

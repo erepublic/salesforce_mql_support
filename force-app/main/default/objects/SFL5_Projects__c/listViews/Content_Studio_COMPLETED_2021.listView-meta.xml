@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Content_Studio_COMPLETED_2021</fullName>
+    <columns>NAME</columns>
+    <columns>Client__c</columns>
+    <columns>Completion_Date__c</columns>
+    <columns>Product__c</columns>
+    <columns>Product_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Content_Studio</value>
+    </filters>
+    <filters>
+        <field>Completion_Date__c</field>
+        <operation>equals</operation>
+        <value>LAST_YEAR</value>
+    </filters>
+    <filters>
+        <field>Project_Phase__c</field>
+        <operation>equals</operation>
+        <value>Completed</value>
+    </filters>
+    <filters>
+        <field>Product__c</field>
+        <operation>notEqual</operation>
+        <value
+    >Account Based Marketing,Filtered Leads,Shared Leads,Standard Leads,Multi-Touch Nurture,Two-Step Nurture</value>
+    </filters>
+    <label>Content Studio - COMPLETED Last Year</label>
+</ListView>

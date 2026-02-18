@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verification_Queue_Inactive_Contacts</fullName>
+    <booleanFilter>1 AND 2 AND 3</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Verification_Date__c</columns>
+    <columns>Refresh_Date__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Job_Role_Title__c</columns>
+    <columns>Status__c</columns>
+    <columns>Contact_Status__c</columns>
+    <columns>Inactive_Reason__c</columns>
+    <columns>Contact_Email_Hard_Bounce__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Inactive_Reason__c</field>
+        <operation>notEqual</operation>
+        <value>Request to be removed from database</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Inactive</value>
+    </filters>
+    <filters>
+        <field>Contact_Status__c</field>
+        <operation>equals</operation>
+        <value>Inactive</value>
+    </filters>
+    <label>Verification Queue - Inactive Contacts</label>
+</ListView>

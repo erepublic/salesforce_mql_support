@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Term_Status_PL_Validation</fullName>
+    <active>true</active>
+    <description
+  >Requires Term Status to be a valid picklist value.</description>
+    <errorConditionFormula>NOT(
+          OR(
+                    ISPICKVAL( Paid_Sub_Term_Status__c,&quot;Active&quot;),
+                    ISPICKVAL( Paid_Sub_Term_Status__c,&quot;Not Started&quot;),
+                    ISPICKVAL( Paid_Sub_Term_Status__c,&quot;Expired&quot;),
+                    ISPICKVAL( Paid_Sub_Term_Status__c,&quot;Canc / Refunded&quot;),
+                    ISPICKVAL( Paid_Sub_Term_Status__c,&quot;Contribution&quot;)
+                 )
+)</errorConditionFormula>
+    <errorDisplayField>Paid_Sub_Term_Status__c</errorDisplayField>
+    <errorMessage>Term Status must equal a valid picklist value.</errorMessage>
+</ValidationRule>

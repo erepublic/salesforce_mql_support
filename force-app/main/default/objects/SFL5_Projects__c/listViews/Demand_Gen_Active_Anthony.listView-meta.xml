@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Demand_Gen_Active_Anthony</fullName>
+    <columns>NAME</columns>
+    <columns>Project_Owner__c</columns>
+    <columns>Product__c</columns>
+    <columns>Project_Phase__c</columns>
+    <columns>Client__c</columns>
+    <columns>Project_Update_Note__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>Lead_Guarantee__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value
+    >SFL5_Projects__c.Project_Content_Studio,SFL5_Projects__c.Project_Custom_Media</value>
+    </filters>
+    <filters>
+        <field>Project_Status_Display__c</field>
+        <operation>notEqual</operation>
+        <value>Product Delivered,Cancelled</value>
+    </filters>
+    <filters>
+        <field>Product_Group__c</field>
+        <operation>equals</operation>
+        <value>Demand Gen</value>
+    </filters>
+    <filters>
+        <field>Project_Owner__c</field>
+        <operation>equals</operation>
+        <value>Anthony Yanez</value>
+    </filters>
+    <label>Demand Gen - Active - Anthony</label>
+</ListView>

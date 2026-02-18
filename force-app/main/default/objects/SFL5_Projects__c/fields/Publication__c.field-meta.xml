@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Publication__c</fullName>
+    <label>Publication</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CDE Special Report</fullName>
+                <default>false</default>
+                <label>CDE Special Report</label>
+            </value>
+            <value>
+                <fullName>Emergency Management</fullName>
+                <default>false</default>
+                <label>Emergency Management</label>
+            </value>
+            <value>
+                <fullName>Financial Literacy Guide</fullName>
+                <default>false</default>
+                <label>Financial Literacy Guide</label>
+            </value>
+            <value>
+                <fullName>GOVERNING</fullName>
+                <default>false</default>
+                <label>GOVERNING</label>
+            </value>
+            <value>
+                <fullName>Government Technology</fullName>
+                <default>false</default>
+                <label>Government Technology</label>
+            </value>
+            <value>
+                <fullName>HHS Special Report</fullName>
+                <default>false</default>
+                <label>HHS Special Report</label>
+            </value>
+            <value>
+                <fullName>P3 Guide</fullName>
+                <default>false</default>
+                <label>P3 Guide</label>
+            </value>
+            <value>
+                <fullName>PCIO Special Report</fullName>
+                <default>false</default>
+                <label>PCIO Special Report</label>
+            </value>
+            <value>
+                <fullName>Public CIO</fullName>
+                <default>false</default>
+                <label>Public CIO</label>
+            </value>
+            <value>
+                <fullName>TechWire</fullName>
+                <default>false</default>
+                <label>TechWire</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

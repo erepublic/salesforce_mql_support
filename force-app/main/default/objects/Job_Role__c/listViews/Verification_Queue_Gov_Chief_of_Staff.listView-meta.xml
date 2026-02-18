@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verification_Queue_Gov_Chief_of_Staff</fullName>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Job_Role_Title__c</columns>
+    <columns>Job_Role_Organization__c</columns>
+    <columns>Verification_Date__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Account_Jurisdiction_Level__c</field>
+        <operation>equals</operation>
+        <value>State Department</value>
+    </filters>
+    <filters>
+        <field>Contact_Organization__c</field>
+        <operation>contains</operation>
+        <value>Governor</value>
+    </filters>
+    <filters>
+        <field>Contact_Organization__c</field>
+        <operation>notContain</operation>
+        <value>crime,homeland,small minority,community</value>
+    </filters>
+    <label>Verification Queue - Gov Chief of Staff</label>
+</ListView>

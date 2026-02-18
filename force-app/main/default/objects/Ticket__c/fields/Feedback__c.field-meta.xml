@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Feedback__c</fullName>
+    <description
+  >Used to store feedback received on projects after delivery for reporting such as positive comments or user testimonials .</description>
+    <inlineHelpText
+  >Used to store feedback received on projects after delivery for reporting such as positive comments or user testimonials .</inlineHelpText>
+    <label>Feedback</label>
+    <length>500</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>3</visibleLines>
+</CustomField>

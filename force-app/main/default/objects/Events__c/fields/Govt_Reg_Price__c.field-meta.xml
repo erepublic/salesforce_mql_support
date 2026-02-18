@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Govt_Reg_Price__c</fullName>
+    <description>Price for government to register for this event,</description>
+    <inlineHelpText
+  >Price for government to register for this event,</inlineHelpText>
+    <label>Govt Reg Price</label>
+    <precision>6</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

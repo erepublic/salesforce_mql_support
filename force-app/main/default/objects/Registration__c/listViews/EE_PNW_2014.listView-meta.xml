@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>EE_PNW_2014</fullName>
+    <columns>NAME</columns>
+    <columns>Event_No_Show__c</columns>
+    <columns>Registrant_Name__c</columns>
+    <columns>Registrant_Title__c</columns>
+    <columns>Reg_Company_Name__c</columns>
+    <columns>Reg_Speaker__c</columns>
+    <columns>Reg_Advisory_Board__c</columns>
+    <columns>Reg_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event__c</field>
+        <operation>contains</operation>
+        <value>EE - Pacific Northwest Digital Government Summit 2014</value>
+    </filters>
+    <label>EE - PNW 2014</label>
+    <sharedTo>
+        <group>CORPCircandReg</group>
+    </sharedTo>
+</ListView>

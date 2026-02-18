@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Open_Kelli</fullName>
+    <columns>NAME</columns>
+    <columns>Date_to_Design__c</columns>
+    <columns>Designer__c</columns>
+    <columns>Job_Name__c</columns>
+    <columns>Finished_Job_Due__c</columns>
+    <columns>Status__c</columns>
+    <columns>Originator__c</columns>
+    <columns>Requested_by__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value
+    >Pending - New Job,Completed - Pending Instructions,Completed - At Press,Completed</value>
+    </filters>
+    <filters>
+        <field>OWNER.ALIAS</field>
+        <operation>equals</operation>
+        <value>kwidm</value>
+    </filters>
+    <label>Open - Kelli</label>
+</ListView>

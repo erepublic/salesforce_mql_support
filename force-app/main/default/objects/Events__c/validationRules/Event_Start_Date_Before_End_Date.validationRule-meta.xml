@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Start_Date_Before_End_Date</fullName>
+    <active>true</active>
+    <description
+  >Ensures that the event start date is before the end date.</description>
+    <errorConditionFormula
+  >Event_Start_Date__c  &gt;  Event_End_Date__c</errorConditionFormula>
+    <errorDisplayField>Event_Start_Date__c</errorDisplayField>
+    <errorMessage
+  >Please correct your Event start and end dates so they are in calendar order.</errorMessage>
+</ValidationRule>

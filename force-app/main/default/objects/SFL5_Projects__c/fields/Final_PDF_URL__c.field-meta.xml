@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Final_PDF_URL__c</fullName>
+    <description>A link to the final content piece.</description>
+    <inlineHelpText
+  >The &quot;Public URL&quot; hyperlink created after uploading the final content piece to this Project&apos;s &quot;Files&quot; section in Salesforce. This enables easy access to view the final content.</inlineHelpText>
+    <label>Final PDF URL</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Url</type>
+</CustomField>

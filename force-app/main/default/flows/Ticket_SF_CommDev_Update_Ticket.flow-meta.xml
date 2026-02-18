@@ -1,0 +1,520 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow
+  xmlns="http://soap.sforce.com/2006/04/metadata"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+>
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Ticket_Updates</name>
+        <label>Assign Ticket Updates</label>
+        <locationX>50</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference
+      >recordId.Due_Date_Requested__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Screen_Due_Date_Requested</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>recordId.Priority__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Screen_Priority</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >recordId.Send_Email_to_Requestor__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >Screen_Send_Email_to_Requestor</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>recordId.New_Note__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Screen_New_Note</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Ticket_In_Progress</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Ticket_Updates_Canceled</name>
+        <label>Assign Ticket Updates (Canceled)</label>
+        <locationX>578</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference>recordId.New_Note__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_New_Note</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Update_Ticket_Canceled</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Ticket_Updates_Closed_Requestor</name>
+        <label>Assign Ticket Updates (Closed - Requestor)</label>
+        <locationX>314</locationX>
+        <locationY>350</locationY>
+        <assignmentItems>
+            <assignToReference
+      >recordId.Send_Email_to_Requestor__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >Screen_Send_Email_to_Requestor</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>recordId.New_Note__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_New_Note</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>recordId.Date_Closed__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>Screen_Completed_Date</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>recordId.Status__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>Completed</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Update_Ticket_Closed_Send_to_Requestor</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>What_update_type_was_selected</name>
+        <label>What update type was selected?</label>
+        <locationX>446</locationX>
+        <locationY>242</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Update_Ticket_Selected</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>recordId.Phase__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>recordId.Phase__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <stringValue>Canceled</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Ticket_Updates</targetReference>
+            </connector>
+            <label>Update Ticket Selected</label>
+        </rules>
+        <rules>
+            <name>Close_Ticket_Selected</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>recordId.Phase__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_Ticket_Updates_Closed_Requestor</targetReference>
+            </connector>
+            <label>Close Ticket Selected</label>
+        </rules>
+        <rules>
+            <name>Cancel_Ticket_Selected</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>recordId.Phase__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Canceled</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_Ticket_Updates_Canceled</targetReference>
+            </connector>
+            <label>Cancel Ticket Selected</label>
+        </rules>
+    </decisions>
+    <description
+  >Screen Flow to Update a CommDev ticket. Can check the [Send Email to Requestor] Box to trigger email alerts.</description>
+    <dynamicChoiceSets>
+        <name>Picklist_Ticket_Priority</name>
+        <dataType>Picklist</dataType>
+        <displayField xsi:nil="true" />
+        <object xsi:nil="true" />
+        <picklistField>Priority__c</picklistField>
+        <picklistObject>Ticket__c</picklistObject>
+    </dynamicChoiceSets>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_New_Note</name>
+        <dataType>String</dataType>
+        <expression
+    >IF({!Screen_New_Note}=&quot;&quot;, null, {!Screen_New_Note})</expression>
+    </formulas>
+    <interviewLabel
+  >Ticket - SF - CommDev - Ticket {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Ticket - SF - CommDev - Update Ticket</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>Flow</processType>
+    <recordUpdates>
+        <name>Update_Ticket_Canceled</name>
+        <label>Update Ticket (Canceled)</label>
+        <locationX>578</locationX>
+        <locationY>458</locationY>
+        <inputReference>recordId</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Ticket_Closed_Send_to_Requestor</name>
+        <label>Update Ticket (Closed - Send to Requestor)</label>
+        <locationX>314</locationX>
+        <locationY>458</locationY>
+        <inputReference>recordId</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Update_Ticket_In_Progress</name>
+        <label>Update Ticket (In Progress)</label>
+        <locationX>50</locationX>
+        <locationY>458</locationY>
+        <inputReference>recordId</inputReference>
+    </recordUpdates>
+    <screens>
+        <name>Screen_Fill_Update_Type</name>
+        <label>Screen_Fill_Update_Type</label>
+        <locationX>446</locationX>
+        <locationY>134</locationY>
+        <allowBack>true</allowBack>
+        <allowFinish>true</allowFinish>
+        <allowPause>false</allowPause>
+        <connector>
+            <targetReference>What_update_type_was_selected</targetReference>
+        </connector>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference>recordId.Phase__c</objectFieldReference>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+        </fields>
+        <fields>
+            <name>Screen_Send_Email_to_Requestor</name>
+            <dataType>Boolean</dataType>
+            <defaultValue>
+                <booleanValue>false</booleanValue>
+            </defaultValue>
+            <fieldText>Send Email to Requestor</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <validationRule>
+                <errorMessage
+        >&lt;p&gt;&lt;span style=&quot;color: rgb(189, 0, 0);&quot;&gt;Oops! Phase must be &lt;/span&gt;&lt;strong style=&quot;color: rgb(189, 0, 0);&quot;&gt;In Progress&lt;/strong&gt;&lt;span style=&quot;color: rgb(189, 0, 0);&quot;&gt;, &lt;/span&gt;&lt;strong style=&quot;color: rgb(189, 0, 0);&quot;&gt;Needs Specs&lt;/strong&gt;&lt;span style=&quot;color: rgb(189, 0, 0);&quot;&gt; or &lt;/span&gt;&lt;strong style=&quot;color: rgb(189, 0, 0);&quot;&gt;Closed &lt;/strong&gt;&lt;span style=&quot;color: rgb(189, 0, 0);&quot;&gt;in order to send an email.&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                <formulaExpression>
+OR({!Screen_Send_Email_to_Requestor}=False,
+AND({!Screen_Send_Email_to_Requestor}=True,
+OR(
+TEXT({!recordId.Phase__c})=&quot;In Progress&quot;,
+TEXT({!recordId.Phase__c})=&quot;Needs Specs&quot;,
+TEXT({!recordId.Phase__c})=&quot;Closed&quot;
+)
+)
+)</formulaExpression>
+            </validationRule>
+        </fields>
+        <fields>
+            <name>Screen_New_Note</name>
+            <dataType>String</dataType>
+            <fieldText>New Note</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>false</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <validationRule>
+                <errorMessage
+        >&lt;p&gt;&lt;span style=&quot;color: rgb(154, 0, 0); font-size: 14px;&quot;&gt;Please enter up to 225 characters including spaces.&lt;/span&gt;&lt;/p&gt;</errorMessage>
+                <formulaExpression
+        >LEN({!Screen_New_Note})&lt;226</formulaExpression>
+            </validationRule>
+        </fields>
+        <fields>
+            <name>Screen_Completed_Date</name>
+            <dataType>Date</dataType>
+            <defaultValue>
+                <elementReference>$Flow.CurrentDate</elementReference>
+            </defaultValue>
+            <fieldText>Completed Date</fieldText>
+            <fieldType>InputField</fieldType>
+            <isRequired>true</isRequired>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>recordId.Phase__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>Closed</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference
+      >recordId.Tot_Time_Complete__c</objectFieldReference>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>recordId.Phase__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>Closed</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <fieldType>ObjectProvided</fieldType>
+            <inputsOnNextNavToAssocScrn
+      >UseStoredValues</inputsOnNextNavToAssocScrn>
+            <isRequired>false</isRequired>
+            <objectFieldReference
+      >recordId.Final_List_Quantity__c</objectFieldReference>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>recordId.Phase__c</leftValueReference>
+                    <operator>EqualTo</operator>
+                    <rightValue>
+                        <stringValue>Closed</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <fields>
+            <name>Screen_Fill_Update_Type_Section1</name>
+            <fieldType>RegionContainer</fieldType>
+            <fields>
+                <name>Screen_Fill_Update_Type_Section1_Column1</name>
+                <fieldType>Region</fieldType>
+                <fields>
+                    <name>Screen_Due_Date_Requested</name>
+                    <dataType>Date</dataType>
+                    <defaultValue>
+                        <elementReference
+            >recordId.Due_Date_Requested__c</elementReference>
+                    </defaultValue>
+                    <fieldText>Due Date Requested</fieldText>
+                    <fieldType>InputField</fieldType>
+                    <isRequired>true</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <fields>
+                    <name>Screen_Priority</name>
+                    <choiceReferences
+          >Picklist_Ticket_Priority</choiceReferences>
+                    <dataType>String</dataType>
+                    <defaultValue>
+                        <elementReference
+            >recordId.Priority__c</elementReference>
+                    </defaultValue>
+                    <fieldText>Priority</fieldText>
+                    <fieldType>DropdownBox</fieldType>
+                    <isRequired>false</isRequired>
+                    <styleProperties>
+                        <verticalAlignment>
+                            <stringValue>top</stringValue>
+                        </verticalAlignment>
+                        <width>
+                            <stringValue>12</stringValue>
+                        </width>
+                    </styleProperties>
+                </fields>
+                <inputParameters>
+                    <name>width</name>
+                    <value>
+                        <stringValue>12</stringValue>
+                    </value>
+                </inputParameters>
+                <isRequired>false</isRequired>
+            </fields>
+            <isRequired>false</isRequired>
+            <regionContainerType>SectionWithoutHeader</regionContainerType>
+            <styleProperties>
+                <verticalAlignment>
+                    <stringValue>top</stringValue>
+                </verticalAlignment>
+                <width>
+                    <stringValue>12</stringValue>
+                </width>
+            </styleProperties>
+            <visibilityRule>
+                <conditionLogic>and</conditionLogic>
+                <conditions>
+                    <leftValueReference>recordId.Phase__c</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <stringValue>Closed</stringValue>
+                    </rightValue>
+                </conditions>
+                <conditions>
+                    <leftValueReference>recordId.Phase__c</leftValueReference>
+                    <operator>NotEqualTo</operator>
+                    <rightValue>
+                        <stringValue>Canceled</stringValue>
+                    </rightValue>
+                </conditions>
+            </visibilityRule>
+        </fields>
+        <showFooter>true</showFooter>
+        <showHeader>true</showHeader>
+    </screens>
+    <start>
+        <locationX>320</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Screen_Fill_Update_Type</targetReference>
+        </connector>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>text_Template_In_Progress</name>
+        <isViewedAsPlainText>false</isViewedAsPlainText>
+        <text>&lt;p style=&quot;font-size:16px&quot;}&gt;
+&lt;b&gt;This ticket has been started:&lt;/b&gt;&lt;br&gt;&lt;br&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;background-color: #57C2D5;border-color: #000000;border: 2px solid #000000;padding: 10px;text-align: center;border-radius: 15px;&quot;&gt;
+            &lt;a style=&quot;display: block;color: #ffffff;font-size: 14px;text-decoration: none;text-transform: uppercase;&quot; href=&quot;https://erepublic.lightning.force.com/lightning/r/Ticket__c/{!recordId.Id}/view&quot;&gt;
+                Open Ticket
+            &lt;/a&gt;
+        &lt;/td&gt;
+       &lt;/tr&gt;
+&lt;/table&gt;
+ &lt;b&gt;Ticket Name&lt;/b&gt;: {!recordId.Title__c}
+&lt;br&gt;
+&lt;b&gt;Phase&lt;/b&gt;: {!recordId.Phase__c}
+&lt;br&gt;
+&lt;b&gt;Assignee&lt;/b&gt;: {!recordId.Assignee__c}
+&lt;br&gt;
+&lt;b&gt;Due Date Requested&lt;/b&gt;: {!recordId.Due_Date_Requested__c}
+&lt;br&gt;
+&lt;b&gt;Ticket Notes&lt;/b&gt;: {!recordId.Most_Recent_Note__c}
+&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Thank you!
+&lt;/b&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;p style=&quot;font-family:Segoe UI&quot;&gt;
+&lt;font size=&quot;1&quot;&gt;
+&lt;a href=&quot;https://erepublic.my.salesforce.com/00X140000025er5EAA&quot;&gt;Email Template&lt;/a&gt;
+ | &lt;a href=&quot;https://erepublic.my.salesforce.com/01W14000000EX1K&quot;&gt;Email Alert&lt;/a&gt;
+&lt;/font&gt;&lt;/p&gt;
+&lt;/p&gt;</text>
+    </textTemplates>
+    <variables>
+        <name>recordId</name>
+        <dataType>SObject</dataType>
+        <isCollection>false</isCollection>
+        <isInput>true</isInput>
+        <isOutput>false</isOutput>
+        <objectType>Ticket__c</objectType>
+    </variables>
+</Flow>

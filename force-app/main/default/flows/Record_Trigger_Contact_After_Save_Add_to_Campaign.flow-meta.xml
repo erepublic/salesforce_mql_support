@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description
+  >Checks if &apos;Add to Campaign&apos; is filled in and creates a Campaign Member under the selected type.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description
+    >Displays the Id of the selected campaign type from the Add to Campaign picklist.</description>
+        <name>f_Campaign_Id_from_Picklist</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.Add_to_Campaign2__c},
+&quot;GT18 - GovTech Navigator Campaign&quot;,&quot;70114000002Z7jxAAC&quot;,
+&quot;GT18 - Market Insights - Invitation Campaign&quot;,&quot;7011O000001x9nnQAA&quot;,
+&quot;TW20 - TechWire Drip Campaign&quot;,&quot;7011O0000028hHYQAY&quot;,
+&quot;ER - eRepublic Nurture Campaign&quot;,&quot;7015Y000003DyWVQA0&quot;,
+&quot;&quot;
+)</expression>
+    </formulas>
+    <interviewLabel
+  >Record-Trigger: Contact After Save - Add to Campaign {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Record-Trigger: Contact After Save - Add to Campaign</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Campaign_Member</name>
+        <label>Create Campaign Member</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <connector>
+            <targetReference>Clear_Add_to_Campaign</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>CampaignId</field>
+            <value>
+                <elementReference>f_Campaign_Id_from_Picklist</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>ContactId</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Status</field>
+            <value>
+                <stringValue>Sent</stringValue>
+            </value>
+        </inputAssignments>
+        <object>CampaignMember</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordUpdates>
+        <description
+    >Clear &apos;Add to Campaign&apos; from triggering contact record.</description>
+        <name>Clear_Add_to_Campaign</name>
+        <label>Clear Add to Campaign</label>
+        <locationX>176</locationX>
+        <locationY>455</locationY>
+        <inputAssignments>
+            <field>Add_to_Campaign2__c</field>
+            <value>
+                <stringValue />
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Create_Campaign_Member</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Add_to_Campaign2__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

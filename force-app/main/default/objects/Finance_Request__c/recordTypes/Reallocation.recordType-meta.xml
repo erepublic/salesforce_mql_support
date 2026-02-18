@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Reallocation</fullName>
+    <active>true</active>
+    <compactLayoutAssignment>Reallocation</compactLayoutAssignment>
+    <label>Reallocation</label>
+    <picklistValues>
+        <picklist>Finance_Status__c</picklist>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Internal_Action__c</picklist>
+        <values>
+            <fullName>Canceled Invoice %28cannot delete%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Client Make Good</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit Applied to Q4 2024 Delivery Target</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit Used in Full</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >Credit on the Books - Client to Decide on Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit on the Books - Invoice Open</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Misc - Waiting on New Product Creation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not a Credit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product - TBD Print</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Value</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Value Add - Client to Decide on Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Written Off to Other Income</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Split_Internal_Action__c</picklist>
+        <values>
+            <fullName>Canceled Invoice %28cannot delete%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Client Make Good</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit Applied to Q4 2024 Delivery Target</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit Used in Full</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName
+      >Credit on the Books - Client to Decide on Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Credit on the Books - Invoice Open</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Misc - Waiting on New Product Creation</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not a Credit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Product - TBD Print</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Service Value</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Value Add - Client to Decide on Product</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Written Off to Other Income</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Status__c</picklist>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Discarded</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>On Hold</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Re-Submit</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Rejected</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Submitted</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

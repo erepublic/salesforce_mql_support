@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verification_Queue_City_County_CTO</fullName>
+    <columns>Last_Verification_Date_Tier__c</columns>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Job_Role_Title__c</columns>
+    <columns>State_Details__c</columns>
+    <columns>Contact_Status__c</columns>
+    <columns>Queue__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>includes</operation>
+        <value>City CTO,County CTO</value>
+    </filters>
+    <filters>
+        <field>Last_Verification_Date_Tier__c</field>
+        <operation>equals</operation>
+        <value>03 - 180 - 364 days,04 - 365+ days,Unverified</value>
+    </filters>
+    <filters>
+        <field>Account_Top_50_100_200__c</field>
+        <operation>contains</operation>
+        <value>5</value>
+    </filters>
+    <label>Verification Queue - City/County CTO</label>
+</ListView>

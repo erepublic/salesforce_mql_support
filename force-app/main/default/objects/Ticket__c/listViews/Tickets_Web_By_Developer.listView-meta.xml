@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tickets_Web_By_Developer</fullName>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Assignee__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>ETA__c</columns>
+    <columns>Priority__c</columns>
+    <columns>Developer_Priority__c</columns>
+    <columns>Phase__c</columns>
+    <columns>Type__c</columns>
+    <columns>System2__c</columns>
+    <columns>Requested_By__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Web</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>notEqual</operation>
+        <value>Closed</value>
+    </filters>
+    <filters>
+        <field>Account__c</field>
+        <operation>notEqual</operation>
+        <value>Complete</value>
+    </filters>
+    <label>Tickets - Web - By Developer</label>
+</ListView>

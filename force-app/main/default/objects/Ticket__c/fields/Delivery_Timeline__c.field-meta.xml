@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Delivery_Timeline__c</fullName>
+    <description
+  >Sales Admin Request Form Field - Opportunity Product(s) Delivery Timeline</description>
+    <inlineHelpText
+  >Sales Admin Request Form Field - Opportunity Product(s) Delivery Timeline</inlineHelpText>
+    <label>Delivery Timeline</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>TextArea</type>
+</CustomField>

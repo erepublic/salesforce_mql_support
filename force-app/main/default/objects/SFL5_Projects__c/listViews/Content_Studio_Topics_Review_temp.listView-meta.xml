@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Content_Studio_Topics_Review_temp</fullName>
+    <booleanFilter>1 AND 2 AND (3 OR 4) AND 5 AND 6 AND 7</booleanFilter>
+    <columns>Event__c</columns>
+    <columns>Event_Display_Title__c</columns>
+    <columns>Vertical__c</columns>
+    <columns>Topic__c</columns>
+    <columns>Description_OtherTopic__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Custom_Media</value>
+    </filters>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>notEqual</operation>
+        <value>Cancelled</value>
+    </filters>
+    <filters>
+        <field>Completion_Date__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2018</value>
+    </filters>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>1/1/2018 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>Project_Type__c</field>
+        <operation>equals</operation>
+        <value>Webinar</value>
+    </filters>
+    <filters>
+        <field>NAME</field>
+        <operation>notContain</operation>
+        <value
+    >DC -,DSPI,Digital Communities,Digital States,Marketing,Digital Cities</value>
+    </filters>
+    <filters>
+        <field>Topic__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>zContent Studio - Webinar Topics Review</label>
+</ListView>

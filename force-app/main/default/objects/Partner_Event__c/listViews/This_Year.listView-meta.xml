@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>This_Year</fullName>
+    <columns>NAME</columns>
+    <columns>End_Date__c</columns>
+    <columns>Event_URL__c</columns>
+    <columns>Location__c</columns>
+    <columns>Notes__c</columns>
+    <columns>Opportunity__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>CREATED_DATE</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Start_Date__c</field>
+        <operation>equals</operation>
+        <value>THIS_YEAR</value>
+    </filters>
+    <label>This Year</label>
+</ListView>

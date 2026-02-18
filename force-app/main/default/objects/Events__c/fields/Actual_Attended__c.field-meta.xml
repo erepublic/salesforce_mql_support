@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Actual_Attended__c</fullName>
+    <description
+  >This is the total number of registered attendees (not including sponsors, press, or staff) minus the no shows.</description>
+    <inlineHelpText
+  >This is the total number of registered attendees (not including sponsors, press, or staff) minus the no shows.</inlineHelpText>
+    <label>Actual Attended Roll-up Summary</label>
+    <summaryFilterItems>
+        <field>Registration__c.Reg_Type__c</field>
+        <operation>notEqual</operation>
+        <value>Sponsor, Press, Staff</value>
+    </summaryFilterItems>
+    <summaryFilterItems>
+        <field>Registration__c.Event_No_Show__c</field>
+        <operation>notEqual</operation>
+        <value>True</value>
+    </summaryFilterItems>
+    <summaryForeignKey>Registration__c.Event__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Summary</type>
+</CustomField>

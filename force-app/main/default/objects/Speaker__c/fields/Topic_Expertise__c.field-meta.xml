@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Topic_Expertise__c</fullName>
+    <label>Topic Expertise</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>ROI</fullName>
+                <default>false</default>
+                <label>ROI</label>
+            </value>
+            <value>
+                <fullName>PRM</fullName>
+                <default>false</default>
+                <label>PRM</label>
+            </value>
+            <value>
+                <fullName>Self-service portal</fullName>
+                <default>false</default>
+                <label>Self-service portal</label>
+            </value>
+            <value>
+                <fullName>Analytics/Dashboards</fullName>
+                <default>false</default>
+                <label>Analytics/Dashboards</label>
+            </value>
+            <value>
+                <fullName>Demand generation</fullName>
+                <default>false</default>
+                <label>Demand generation</label>
+            </value>
+            <value>
+                <fullName>Campaigns</fullName>
+                <default>false</default>
+                <label>Campaigns</label>
+            </value>
+            <value>
+                <fullName>Leads</fullName>
+                <default>false</default>
+                <label>Leads</label>
+            </value>
+            <value>
+                <fullName>Search engine marketing</fullName>
+                <default>false</default>
+                <label>Search engine marketing</label>
+            </value>
+            <value>
+                <fullName>Email marketing</fullName>
+                <default>false</default>
+                <label>Email marketing</label>
+            </value>
+            <value>
+                <fullName>Sales Operations</fullName>
+                <default>false</default>
+                <label>Sales Operations</label>
+            </value>
+            <value>
+                <fullName>Pipeline analysis</fullName>
+                <default>false</default>
+                <label>Pipeline analysis</label>
+            </value>
+            <value>
+                <fullName>AppExchange</fullName>
+                <default>false</default>
+                <label>AppExchange</label>
+            </value>
+            <value>
+                <fullName>Apex Code</fullName>
+                <default>false</default>
+                <label>Apex Code</label>
+            </value>
+            <value>
+                <fullName>Integration</fullName>
+                <default>false</default>
+                <label>Integration</label>
+            </value>
+            <value>
+                <fullName>Data quality</fullName>
+                <default>false</default>
+                <label>Data quality</label>
+            </value>
+            <value>
+                <fullName>Implementation</fullName>
+                <default>false</default>
+                <label>Implementation</label>
+            </value>
+            <value>
+                <fullName>Global deployment</fullName>
+                <default>false</default>
+                <label>Global deployment</label>
+            </value>
+            <value>
+                <fullName>SOA</fullName>
+                <default>false</default>
+                <label>SOA</label>
+            </value>
+            <value>
+                <fullName>Community</fullName>
+                <default>false</default>
+                <label>Community</label>
+            </value>
+            <value>
+                <fullName>Mobile</fullName>
+                <default>false</default>
+                <label>Mobile</label>
+            </value>
+            <value>
+                <fullName>Workflow</fullName>
+                <default>false</default>
+                <label>Workflow</label>
+            </value>
+            <value>
+                <fullName>KYC</fullName>
+                <default>false</default>
+                <label>KYC</label>
+            </value>
+            <value>
+                <fullName>Wallet share</fullName>
+                <default>false</default>
+                <label>Wallet share</label>
+            </value>
+            <value>
+                <fullName>Capital Markets</fullName>
+                <default>false</default>
+                <label>Capital Markets</label>
+            </value>
+            <value>
+                <fullName>SOX</fullName>
+                <default>false</default>
+                <label>SOX</label>
+            </value>
+            <value>
+                <fullName>Nonprofits</fullName>
+                <default>false</default>
+                <label>Nonprofits</label>
+            </value>
+            <value>
+                <fullName>Territory management</fullName>
+                <default>false</default>
+                <label>Territory management</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+            <value>
+                <fullName>S-controls</fullName>
+                <default>false</default>
+                <label>S-controls</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

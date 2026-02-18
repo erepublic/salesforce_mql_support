@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Final_PDF_URL_Required</fullName>
+    <active>true</active>
+    <description
+  >Requires a completed Content Studio project to have the &quot;Final PDF URL&quot; field populated.</description>
+    <errorConditionFormula>RecordType.Id = &quot;0125Y000001bPG9&quot;
+&amp;&amp;
+OR(
+ISBLANK(Completion_Date__c),
+Completion_Date__c &gt;= DATEVALUE( &quot;2022-01-01&quot; )
+)
+&amp;&amp;
+NOT(
+ISPICKVAL(Product__c , &quot;Sponsored Article&quot;)
+)
+&amp;&amp;
+Product_Group__c &lt;&gt; &quot;Custom Video&quot;
+&amp;&amp;
+Product_Group__c &lt;&gt; &quot;ICYMI&quot;
+&amp;&amp;
+Product_Group__c &lt;&gt; &quot;Webinar&quot;
+&amp;&amp;
+Product_Group__c &lt;&gt; &quot;Roundtable&quot;
+&amp;&amp;
+Product_Group__c &lt;&gt; &quot;Virtual Q&amp;A&quot;
+&amp;&amp;
+Product_Group__c &lt;&gt; &quot;Custom&quot;
+&amp;&amp;
+Product_Group__c &lt;&gt; &quot;Demand Gen&quot;
+&amp;&amp;
+(Project_Status_Display__c = &quot;Product Delivered&quot;)
+&amp;&amp;
+ISBLANK(Final_PDF_URL__c)</errorConditionFormula>
+    <errorDisplayField>Final_PDF_URL__c</errorDisplayField>
+    <errorMessage
+  >Copy link to the final PDF saved to project&apos;s sFiles and paste that link in the Final PDF URL field. If there is no final PDF, input &quot;n/a&quot;.</errorMessage>
+</ValidationRule>

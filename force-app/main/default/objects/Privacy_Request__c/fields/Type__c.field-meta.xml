@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <label>Type</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Opt-out of the sale of my information</fullName>
+                <default>false</default>
+                <label>Opt-out of the sale of my information</label>
+            </value>
+            <value>
+                <fullName>Request a copy of my personal information</fullName>
+                <default>false</default>
+                <label>Request a copy of my personal information</label>
+            </value>
+            <value>
+                <fullName>Erase my personal information</fullName>
+                <default>false</default>
+                <label>Erase my personal information</label>
+            </value>
+            <value>
+                <fullName>Correct my personal information</fullName>
+                <default>false</default>
+                <label>Correct my personal information</label>
+            </value>
+            <value>
+                <fullName
+        >Limit the use of my sensitive personal information</fullName>
+                <default>false</default>
+                <label
+        >Limit the use of my sensitive personal information</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

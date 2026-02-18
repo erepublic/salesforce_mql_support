@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Upcoming_list_pull</fullName>
+    <columns>NAME</columns>
+    <columns>Display_Title__c</columns>
+    <columns>Assignee__c</columns>
+    <columns>Description__c</columns>
+    <columns>OBJECT_ID</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Government_List_Pull</value>
+    </filters>
+    <filters>
+        <field>Contact_Pull_Contact_Count__c</field>
+        <operation>equals</operation>
+        <value>Audience List</value>
+    </filters>
+    <filters>
+        <field>Due_Date_Requested__c</field>
+        <operation>greaterOrEqual</operation>
+        <value>4/1/2023</value>
+    </filters>
+    <filters>
+        <field>Assignee__c</field>
+        <operation>contains</operation>
+        <value>Eenie,Holly</value>
+    </filters>
+    <label>Upcoming list pull</label>
+</ListView>

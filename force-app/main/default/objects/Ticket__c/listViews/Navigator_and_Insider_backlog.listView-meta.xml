@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Navigator_and_Insider_backlog</fullName>
+    <columns>Date_Closed__c</columns>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Assignee__c</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>System2__c</columns>
+    <columns>ETA__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Web</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>equals</operation>
+        <value>Backlog</value>
+    </filters>
+    <filters>
+        <field>System2__c</field>
+        <operation>equals</operation>
+        <value>Navigator,Techwire</value>
+    </filters>
+    <label>Navigator and Insider backlog</label>
+</ListView>

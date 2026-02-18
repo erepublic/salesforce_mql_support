@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Onsite_Staff_CDE_Events_This_Year</fullName>
+    <columns>NAME</columns>
+    <columns>Event_Start_Date__c</columns>
+    <columns>Event__c</columns>
+    <columns>Primary__c</columns>
+    <columns>Role__c</columns>
+    <columns>Internal_Contact__c</columns>
+    <columns>Title__c</columns>
+    <columns>Email__c</columns>
+    <columns>Contact_Role_Notes__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Event_Contact_Role__c.Internal_Contact</value>
+    </filters>
+    <filters>
+        <field>Role__c</field>
+        <operation>equals</operation>
+        <value
+    >Onsite Event Director,Onsite Logistics Coordinator,Onsite Registration Coordinator,Onsite Sales Rep,Onsite Event Admin Coordinator,Onsite Client Relations Specialist,Other Onsite Staff</value>
+    </filters>
+    <filters>
+        <field>Total_Primary_Onsite_Staff__c</field>
+        <operation>lessThan</operation>
+        <value>4</value>
+    </filters>
+    <filters>
+        <field>Event_Start_Date__c</field>
+        <operation>equals</operation>
+        <value>THIS_YEAR</value>
+    </filters>
+    <filters>
+        <field>Event__c</field>
+        <operation>startsWith</operation>
+        <value>CDE</value>
+    </filters>
+    <label>Onsite Staff - CDE Events - This Year</label>
+</ListView>

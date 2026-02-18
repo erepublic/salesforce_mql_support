@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sponsor_on_Custom_Event</fullName>
+    <active>true</active>
+    <description
+  >This validation rule ensures that if the event is custom, then it must be related to a sponsor.</description>
+    <errorConditionFormula
+  >ISNULL(Sponsor__c)  &amp;&amp;  (RecordTypeId  = &apos;01230000000ueurAAA&apos;)</errorConditionFormula>
+    <errorDisplayField>Sponsor__c</errorDisplayField>
+    <errorMessage>Custom Events must have a Sponsor.</errorMessage>
+</ValidationRule>

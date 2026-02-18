@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Exp_Report_Total__c</fullName>
+    <formula
+  >Airfare__c  +  Car_Rental__c  +  Hotel__c  +  Internet_Total__c  +  Laundry_total__c  +  Entertainment_Total__c  +  Meals_Total__c  +  Gas_Total__c  +  Mileage_Total__c  +  Taxi_Total__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Expense Report Total</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

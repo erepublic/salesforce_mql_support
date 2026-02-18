@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>On24_Sync_Report__c</fullName>
+    <description>Report of the On24 sync status for all records.</description>
+    <externalId>false</externalId>
+    <formula
+  >HYPERLINK(&quot;https://erepublic.lightning.force.com/lightning/r/Report/00O14000008zQf3/view?fv0=&quot;&amp;Id, &quot;On24 Sync Report&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Report of the On24 sync status for all records.</inlineHelpText>
+    <label>On24 Sync Report</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

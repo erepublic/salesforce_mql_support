@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mailing_House__c</fullName>
+    <label>Mailing House</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Admail</fullName>
+                <default>false</default>
+                <label>Admail</label>
+            </value>
+            <value>
+                <fullName>Fry</fullName>
+                <default>false</default>
+                <label>Fry</label>
+            </value>
+            <value>
+                <fullName>MailRite</fullName>
+                <default>false</default>
+                <label>MailRite</label>
+            </value>
+            <value>
+                <fullName>Paul Baker Printing</fullName>
+                <default>false</default>
+                <label>Paul Baker Printing</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

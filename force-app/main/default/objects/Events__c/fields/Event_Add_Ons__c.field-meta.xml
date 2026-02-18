@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Add_Ons__c</fullName>
+    <description
+  >Event add-ons, e.g. Tabletop Content Kit &amp; Lead Gen Add-On, where applicable.</description>
+    <inlineHelpText
+  >Event add-ons, e.g. Tabletop Content Kit &amp; Lead Gen Add-On, where applicable.</inlineHelpText>
+    <label>Event Add-Ons</label>
+    <length>32768</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Html</type>
+    <visibleLines>25</visibleLines>
+</CustomField>

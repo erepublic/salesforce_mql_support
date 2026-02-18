@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Denial_Reason__c</fullName>
+    <label>Denial Reason</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Contact is unresponsive</fullName>
+                <default>false</default>
+                <label>Contact is unresponsive</label>
+            </value>
+            <value>
+                <fullName>Duplicate Request</fullName>
+                <default>false</default>
+                <label>Duplicate Request</label>
+            </value>
+            <value>
+                <fullName>Identity Not Confirmed</fullName>
+                <default>false</default>
+                <label>Identity Not Confirmed</label>
+            </value>
+            <value>
+                <fullName>Not in Database</fullName>
+                <default>false</default>
+                <label>Not in Database</label>
+            </value>
+            <value>
+                <fullName>Requested Data Twice in Past Twelve Months</fullName>
+                <default>false</default>
+                <label>Requested Data Twice in Past Twelve Months</label>
+            </value>
+            <value>
+                <fullName>Request Withdrawn</fullName>
+                <default>false</default>
+                <label>Request Withdrawn</label>
+            </value>
+            <value>
+                <fullName>There is no data to correct</fullName>
+                <default>false</default>
+                <label>There is no data to correct</label>
+            </value>
+            <value>
+                <fullName>Unable to Verify</fullName>
+                <default>false</default>
+                <label>Unable to Verify</label>
+            </value>
+            <value>
+                <fullName>We do not store sensitive information</fullName>
+                <default>false</default>
+                <label>We do not store sensitive information</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

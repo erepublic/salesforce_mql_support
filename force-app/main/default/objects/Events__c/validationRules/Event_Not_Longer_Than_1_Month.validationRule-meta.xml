@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Not_Longer_Than_1_Month</fullName>
+    <active>true</active>
+    <description
+  >Ensures that a scheduled event is not longer than 30 days.</description>
+    <errorConditionFormula
+  >((ISPICKVAL(Status__c ,&quot;Scheduled&quot;) || ISPICKVAL(Status__c ,&quot;Venue Set&quot;) || ISPICKVAL(Status__c ,&quot;Program Set&quot;) || ISPICKVAL(Status__c ,&quot;In-Production&quot;) || ISPICKVAL(Status__c ,&quot;Completed&quot;)) &amp;&amp; (Event_End_Date__c &gt; TODAY()) &amp;&amp; ((Event_End_Date__c - Event_Start_Date__c) &gt; 30))</errorConditionFormula>
+    <errorMessage
+  >A scheduled event cannot be more than 30 days long.</errorMessage>
+</ValidationRule>

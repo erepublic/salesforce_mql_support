@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Discarded</fullName>
+    <columns>NAME</columns>
+    <columns>Discard_Reason__c</columns>
+    <columns>Discard_Notes__c</columns>
+    <columns>Status__c</columns>
+    <columns>CREATEDBY_USER</columns>
+    <columns>Agreement_Link__c</columns>
+    <columns>Unsigned_PDF__c</columns>
+    <columns>Link_to_PDF__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Discarded</value>
+    </filters>
+    <label>Discarded</label>
+</ListView>

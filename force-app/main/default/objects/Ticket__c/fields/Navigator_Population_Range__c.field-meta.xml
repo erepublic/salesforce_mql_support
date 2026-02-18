@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Navigator_Population_Range__c</fullName>
+    <label>Navigator Population Range</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>01 - 1 - 25,000</fullName>
+                <default>false</default>
+                <label>01 - 1 - 25,000</label>
+            </value>
+            <value>
+                <fullName>02 - 25,001 - 50,000</fullName>
+                <default>false</default>
+                <label>02 - 25,001 - 50,000</label>
+            </value>
+            <value>
+                <fullName>03 - 50,001 - 75,000</fullName>
+                <default>false</default>
+                <label>03 - 50,001 - 75,000</label>
+            </value>
+            <value>
+                <fullName>04 - 75,001 - 100,000</fullName>
+                <default>false</default>
+                <label>04 - 75,001 - 100,000</label>
+            </value>
+            <value>
+                <fullName>05 - 100,001 - 250,000</fullName>
+                <default>false</default>
+                <label>05 - 100,001 - 250,000</label>
+            </value>
+            <value>
+                <fullName>06 - 250,001 - 500,000</fullName>
+                <default>false</default>
+                <label>06 - 250,001 - 500,000</label>
+            </value>
+            <value>
+                <fullName>07 - 500,001 - 750,000</fullName>
+                <default>false</default>
+                <label>07 - 500,001 - 750,000</label>
+            </value>
+            <value>
+                <fullName>08 - 750,001 - 1,000,000</fullName>
+                <default>false</default>
+                <label>08 - 750,001 - 1,000,000</label>
+            </value>
+            <value>
+                <fullName>09 - 1,000,001 - 5,000,000</fullName>
+                <default>false</default>
+                <label>09 - 1,000,001 - 5,000,000</label>
+            </value>
+            <value>
+                <fullName>10 - &gt;5,000,000</fullName>
+                <default>false</default>
+                <label>10 - &gt;5,000,000</label>
+            </value>
+            <value>
+                <fullName>99 - Unknown</fullName>
+                <default>false</default>
+                <label>99 - Unknown</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>4</visibleLines>
+</CustomField>

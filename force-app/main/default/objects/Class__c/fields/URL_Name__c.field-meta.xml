@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>URL_Name__c</fullName>
+    <caseSensitive>false</caseSensitive>
+    <description>the URI parameter used to lookup a specific class</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >the URI parameter used to lookup a specific class</inlineHelpText>
+    <label>URL Name</label>
+    <length>160</length>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>true</unique>
+</CustomField>

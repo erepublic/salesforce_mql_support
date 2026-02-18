@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>TW_Materials_Follow_Up_2__c</fullName>
+    <description
+  >Indicates date that TW Member Services followed up with the TW Primary Contact for the materials. (2 Weeks after Welcome Email)</description>
+    <inlineHelpText
+  >Indicates date that TW Member Services followed up with the TW Primary Contact for the materials. (2 Weeks after Welcome Email)</inlineHelpText>
+    <label>TW Materials Follow Up 2</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

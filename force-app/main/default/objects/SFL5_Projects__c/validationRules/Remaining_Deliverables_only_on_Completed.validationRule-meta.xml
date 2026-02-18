@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Remaining_Deliverables_only_on_Completed</fullName>
+    <active>true</active>
+    <description
+  >You cannot check the &quot;Remaining Deliverables&quot; box on a project unless its Project Stage is &quot;Completed&quot;</description>
+    <errorConditionFormula>AND(
+  Remaining_Deliverables__c = TRUE,
+  OR(
+    AND(
+      NOT(ISPICKVAL( Project_Stage__c, &quot;Completed&quot;)),
+      ISBLANK( Event__r.Event_Start_Date__c )
+    ),
+    AND(
+      NOT(ISPICKVAL( Project_Stage__c, &quot;Completed&quot;)),
+      Event__r.Event_Start_Date__c &gt; TODAY()
+    )
+  )
+)</errorConditionFormula>
+    <errorMessage
+  >You can&apos;t check &quot;Remaining Deliverables&quot; on a project whose Project Stage is not Completed (unless it&apos;s a past webinar).</errorMessage>
+</ValidationRule>

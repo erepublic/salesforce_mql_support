@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Deliverable_Descriptions__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(
+OR(TEXT(Stage__c) = &quot;Active&quot;, TEXT(Stage__c) = &quot;Not Started&quot;),
+CASE(Type__c,
+&quot;AI&quot;,
+HYPERLINK(&quot;https://erepublic2-my.sharepoint.com/:x:/r/personal/ehall_erepublic_com/Documents/Product%20Innovation%20Council/2024%20Programs%20Income%20Delivery%20Schedule.xlsx?d=w75a84eb2ad844e84aff85b2cd7884b7e&amp;csf=1&amp;web=1&amp;e=eO6MLi&quot;,&quot;View Deliverable Price Rate&quot;)&amp;BR()&amp;
+$Label.Programs_AI,
+
+&quot;HE Council&quot;,
+HYPERLINK(&quot;https://erepublic2-my.sharepoint.com/:x:/r/personal/ehall_erepublic_com/Documents/Product%20Innovation%20Council/2024%20Programs%20Income%20Delivery%20Schedule.xlsx?d=w75a84eb2ad844e84aff85b2cd7884b7e&amp;csf=1&amp;web=1&amp;e=V3uW5B&quot;,&quot;View Deliverable Price Rate&quot;)&amp;BR()&amp;
+$Label.Programs_HE_CIO,
+
+&quot;HE CIO&quot;,
+HYPERLINK(&quot;https://erepublic2-my.sharepoint.com/:x:/r/personal/ehall_erepublic_com/Documents/Product%20Innovation%20Council/2024%20Programs%20Income%20Delivery%20Schedule.xlsx?d=w75a84eb2ad844e84aff85b2cd7884b7e&amp;csf=1&amp;web=1&amp;e=V3uW5B&quot;,&quot;View Deliverable Price Rate&quot;)&amp;BR()&amp;
+$Label.Programs_HE_CIO,
+
+&quot;Future of Data&quot;,
+HYPERLINK(&quot;https://erepublic2-my.sharepoint.com/:x:/r/personal/ehall_erepublic_com/Documents/Product%20Innovation%20Council/2024%20Programs%20Income%20Delivery%20Schedule.xlsx?d=w75a84eb2ad844e84aff85b2cd7884b7e&amp;csf=1&amp;web=1&amp;e=aFfSqz&quot;,&quot;View Deliverable Price Rate&quot;)&amp;BR()&amp;
+$Label.Programs_Future_of_Data,
+
+&quot;DC Large City County&quot;,HYPERLINK(&quot;https://erepublic2-my.sharepoint.com/:x:/r/personal/ehall_erepublic_com/Documents/Product%20Innovation%20Council/2024%20Programs%20Income%20Delivery%20Schedule.xlsx?d=w75a84eb2ad844e84aff85b2cd7884b7e&amp;csf=1&amp;web=1&amp;e=AmpX5G&quot;,&quot;View Deliverable Price Rate&quot;)&amp;BR()&amp;
+$Label.Programs_DC_Large_City_County,
+
+&quot;Digital States&quot;,HYPERLINK(&quot;https://erepublic2-my.sharepoint.com/:x:/r/personal/ehall_erepublic_com/Documents/Product%20Innovation%20Council/2024%20Programs%20Income%20Delivery%20Schedule.xlsx?d=w75a84eb2ad844e84aff85b2cd7884b7e&amp;csf=1&amp;web=1&amp;e=xhpiNi&quot;,&quot;View Deliverable Price Rate&quot;)&amp;BR()&amp;
+$Label.Programs_Digital_States,
+
+&quot;K-12 Council&quot;,
+HYPERLINK(&quot;https://erepublic2-my.sharepoint.com/:x:/r/personal/ehall_erepublic_com/Documents/Product%20Innovation%20Council/2024%20Programs%20Income%20Delivery%20Schedule.xlsx?d=w75a84eb2ad844e84aff85b2cd7884b7e&amp;csf=1&amp;web=1&amp;e=6yIhiv&quot;,&quot;View Deliverable Price Rate&quot;)&amp;BR()&amp;
+$Label.Programs_K_12_Council,
+
+&quot;HE AI Council&quot;,
+HYPERLINK(&quot;https://erepublic2-my.sharepoint.com/:x:/r/personal/ehall_erepublic_com/Documents/Product%20Innovation%20Council/2024%20Programs%20Income%20Delivery%20Schedule.xlsx?d=w75a84eb2ad844e84aff85b2cd7884b7e&amp;csf=1&amp;web=1&amp;e=6yIhiv&quot;,&quot;View Deliverable Price Rate&quot;)&amp;BR()&amp;
+$Label.Programs_HE_AI_Council,
+
+&quot;GE Council&quot;,
+HYPERLINK(&quot;https://erepublic2-my.sharepoint.com/:x:/r/personal/ehall_erepublic_com/Documents/Product%20Innovation%20Council/2024%20Programs%20Income%20Delivery%20Schedule.xlsx?d=w75a84eb2ad844e84aff85b2cd7884b7e&amp;csf=1&amp;web=1&amp;e=6yIhiv&quot;,&quot;View Deliverable Price Rate&quot;)&amp;BR()&amp;
+$Label.Programs_GE_Council,
+
+&quot;CJIS Council&quot;,
+HYPERLINK(&quot;https://erepublic2-my.sharepoint.com/:x:/r/personal/ehall_erepublic_com/Documents/Product%20Innovation%20Council/2024%20Programs%20Income%20Delivery%20Schedule.xlsx?d=w75a84eb2ad844e84aff85b2cd7884b7e&amp;csf=1&amp;web=1&amp;e=6yIhiv&quot;,&quot;View Deliverable Price Rate&quot;)&amp;BR()&amp;
+$Label.Programs_CJIS_Council,
+
+&quot;Cybersecurity Council&quot;,
+HYPERLINK(&quot;https://erepublic2-my.sharepoint.com/:x:/r/personal/ehall_erepublic_com/Documents/Product%20Innovation%20Council/2024%20Programs%20Income%20Delivery%20Schedule.xlsx?d=w75a84eb2ad844e84aff85b2cd7884b7e&amp;csf=1&amp;web=1&amp;e=6yIhiv&quot;,&quot;View Deliverable Price Rate&quot;)&amp;BR()&amp;
+$Label.Programs_Cybersecurity_Council,
+
+null
+),
+&quot;N/A&quot;
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Deliverable Descriptions</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

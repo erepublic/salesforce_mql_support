@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Web_Status_state</fullName>
+    <active>false</active>
+    <errorConditionFormula
+  >( ISPICKVAL(Web_Status__c, &apos;In Progress&apos;) || ISPICKVAL(Web_Status__c, &apos;Live&apos;)) &amp;&amp; (ISBLANK(Display_Name__c) || ISBLANK(Event_Start_Date__c) || ISBLANK(Event_End_Date__c) || ISBLANK(Banner_URL__c))</errorConditionFormula>
+    <errorMessage
+  >Display Name, Event Start Date, Event End Date, and Banner URL must contain a value when changing Web Status.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Issue_Year__c</fullName>
+    <description
+  >This is the year of the issue concerned for Mag Production projects.</description>
+    <externalId>false</externalId>
+    <formula>Project__r.Issue_Year__c</formula>
+    <inlineHelpText
+  >This is the year of the issue concerned for Mag Production projects.</inlineHelpText>
+    <label>Issue Year</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

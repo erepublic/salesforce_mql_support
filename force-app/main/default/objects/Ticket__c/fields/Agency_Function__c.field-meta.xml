@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Agency_Function__c</fullName>
+    <label>Agency Function</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>MultiselectPicklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>01 - Elected Official/Legislative</fullName>
+                <default>false</default>
+                <label>01 - Elected Official/Legislative</label>
+            </value>
+            <value>
+                <fullName>02 - Finance/Taxation/Budgeting</fullName>
+                <default>false</default>
+                <label>02 - Finance/Taxation/Budgeting</label>
+            </value>
+            <value>
+                <fullName
+        >03 - Information Technology/Telecommunications</fullName>
+                <default>false</default>
+                <label>03 - Information Technology/Telecommunications</label>
+            </value>
+            <value>
+                <fullName
+        >04 - Public Works/Transportation/Infrastructure/Utility/Planning</fullName>
+                <default>false</default>
+                <label
+        >04 - Public Works/Transportation/Infrastructure/Utility/Planning</label>
+            </value>
+            <value>
+                <fullName>05 - Health/Human Services</fullName>
+                <default>false</default>
+                <label>05 - Health/Human Services</label>
+            </value>
+            <value>
+                <fullName>06 - Human Resources/Benefits/Personnel</fullName>
+                <default>false</default>
+                <label>06 - Human Resources/Benefits/Personnel</label>
+            </value>
+            <value>
+                <fullName>07 - Environment/Energy</fullName>
+                <default>false</default>
+                <label>07 - Environment/Energy</label>
+            </value>
+            <value>
+                <fullName
+        >08 - Administration/Operations/General Services/Purchasing</fullName>
+                <default>false</default>
+                <label
+        >08 - Administration/Operations/General Services/Purchasing</label>
+            </value>
+            <value>
+                <fullName
+        >09 - Economic Development/Workforce Development</fullName>
+                <default>false</default>
+                <label>09 - Economic Development/Workforce Development</label>
+            </value>
+            <value>
+                <fullName
+        >10 - Agriculture/Parks &amp; Rec/Land Management</fullName>
+                <default>false</default>
+                <label>10 - Agriculture/Parks &amp; Rec/Land Management</label>
+            </value>
+            <value>
+                <fullName>11 - Courts/Corrections/Justice</fullName>
+                <default>false</default>
+                <label>11 - Courts/Corrections/Justice</label>
+            </value>
+            <value>
+                <fullName>12 - Law Enforcement</fullName>
+                <default>false</default>
+                <label>12 - Law Enforcement</label>
+            </value>
+            <value>
+                <fullName>13 - Fire/Emergency Services</fullName>
+                <default>false</default>
+                <label>13 - Fire/Emergency Services</label>
+            </value>
+            <value>
+                <fullName>14 - Emergency Operations Center</fullName>
+                <default>false</default>
+                <label>14 - Emergency Operations Center</label>
+            </value>
+            <value>
+                <fullName>15 - Homeland Security/Defense</fullName>
+                <default>false</default>
+                <label>15 - Homeland Security/Defense</label>
+            </value>
+            <value>
+                <fullName>16 - Education/Library Services</fullName>
+                <default>false</default>
+                <label>16 - Education/Library Services</label>
+            </value>
+            <value>
+                <fullName>99 - Other</fullName>
+                <default>false</default>
+                <label>99 - Other</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <visibleLines>10</visibleLines>
+</CustomField>

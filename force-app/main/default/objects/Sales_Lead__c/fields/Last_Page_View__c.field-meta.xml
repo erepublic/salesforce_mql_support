@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Last_Page_View__c</fullName>
+    <description
+  >Hidden field - shows a complete listing of every piece of activity that contributed to the contact becoming an MQL.</description>
+    <inlineHelpText
+  >Hidden field - shows a complete listing of every piece of activity that contributed to the contact becoming an MQL.</inlineHelpText>
+    <label>Web Activity</label>
+    <length>131072</length>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>4</visibleLines>
+</CustomField>

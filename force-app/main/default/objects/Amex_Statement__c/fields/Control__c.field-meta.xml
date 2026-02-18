@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Control__c</fullName>
+    <description
+  >Specifies the control number for the cards listed on this Amex Statement.</description>
+    <inlineHelpText
+  >Specifies the control number for the cards listed on this Amex Statement.</inlineHelpText>
+    <label>Control</label>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>11004</fullName>
+                <default>false</default>
+                <label>11004</label>
+            </value>
+            <value>
+                <fullName>11007</fullName>
+                <default>false</default>
+                <label>11007</label>
+            </value>
+            <value>
+                <fullName>21005</fullName>
+                <default>false</default>
+                <label>21005</label>
+            </value>
+            <value>
+                <fullName>21006</fullName>
+                <default>false</default>
+                <label>21006</label>
+            </value>
+            <value>
+                <fullName>21009</fullName>
+                <default>false</default>
+                <label>21009</label>
+            </value>
+            <value>
+                <fullName>51002</fullName>
+                <default>false</default>
+                <label>51002</label>
+            </value>
+            <value>
+                <fullName>61003</fullName>
+                <default>false</default>
+                <label>61003</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Navigator_Research_Active_Projects</fullName>
+    <booleanFilter>(1 AND 2) OR (1 AND 3 AND 4)</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Project_Owner__c</columns>
+    <columns>NAV_Hours_Total_Cx__c</columns>
+    <columns>Hours_Remaining_Formula__c</columns>
+    <columns>Start_Date__c</columns>
+    <columns>End_Date__c</columns>
+    <columns>Roll_Over_Hours_Expiration__c</columns>
+    <columns>PM_Note_Date__c</columns>
+    <columns>Project_Update_Note__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Navigator</value>
+    </filters>
+    <filters>
+        <field>End_Date__c</field>
+        <operation>greaterThan</operation>
+        <value>TODAY</value>
+    </filters>
+    <filters>
+        <field>Roll_Over_Hours_Expiration__c</field>
+        <operation>greaterThan</operation>
+        <value>TODAY</value>
+    </filters>
+    <filters>
+        <field>End_Date__c</field>
+        <operation>lessThan</operation>
+        <value>TODAY</value>
+    </filters>
+    <label>Navigator - Active Analyst Hour Projects</label>
+</ListView>

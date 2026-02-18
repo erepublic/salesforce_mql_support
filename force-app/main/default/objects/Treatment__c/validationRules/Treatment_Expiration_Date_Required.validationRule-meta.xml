@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Treatment_Expiration_Date_Required</fullName>
+    <active>false</active>
+    <description
+  >Treatment Expiration Date required on all Statuses except for Requested or Client Purchased</description>
+    <errorConditionFormula>AND(
+NOT(ISPICKVAL(Status__c,&quot;Requested&quot;)),
+NOT(ISPICKVAL(Status__c,&quot;Client Purchased&quot;)),
+NOT(ISPICKVAL(Status__c,&quot;Creating Treatment&quot;)),
+NOT(ISPICKVAL(Status__c,&quot;Canceled&quot;))
+)</errorConditionFormula>
+    <errorDisplayField>Expiration_Date__c</errorDisplayField>
+    <errorMessage>Treatment Expiration Date required</errorMessage>
+</ValidationRule>

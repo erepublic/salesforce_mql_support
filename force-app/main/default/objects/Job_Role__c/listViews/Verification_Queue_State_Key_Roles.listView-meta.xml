@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verification_Queue_State_Key_Roles</fullName>
+    <booleanFilter>(1 OR 3 OR 4 OR 5 OR 6) AND 2</booleanFilter>
+    <columns>Last_Verification_Date_Tier__c</columns>
+    <columns>NAME</columns>
+    <columns>Account__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Job_Role_Title__c</columns>
+    <columns>State_Details__c</columns>
+    <columns>Contact_Status__c</columns>
+    <columns>Queue__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>includes</operation>
+        <value
+    >Adjutant General,Constitutional Officer,Governor,Governor&apos;s Cabinet Member,Lieutenant Governor,Secretary of State,State Administrative Officer,State Auditor,State Budget Director</value>
+    </filters>
+    <filters>
+        <field>Last_Verification_Date_Tier__c</field>
+        <operation>equals</operation>
+        <value>03 - 180 - 364 days,04 - 365+ days,Unverified</value>
+    </filters>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>includes</operation>
+        <value
+    >State Chief Information Officer,State Chief Technology Officer,Deputy State Chief Information Officer,State Chief Information Security Officer,Deputy State Chief Information Security Officer</value>
+    </filters>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>includes</operation>
+        <value
+    >State Health Officer,State Human Resources Officer,State Insurance Commissioner,State Medicaid Director,State Procurement/Purchasing Officer</value>
+    </filters>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>includes</operation>
+        <value
+    >State Treasurer,State Privacy Officer,State Risk Officer,State Superintendent of Education,State Transportation Director</value>
+    </filters>
+    <filters>
+        <field>State_Details__c</field>
+        <operation>includes</operation>
+        <value
+    >State Chief Data Officer,State Chief Financial Officer,State Child Welfare Head,State Comptroller/Controller</value>
+    </filters>
+    <label>Verification Queue - State Key Roles</label>
+</ListView>

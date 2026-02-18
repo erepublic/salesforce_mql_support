@@ -1,0 +1,1143 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Add_State_to_Interested_Collection</name>
+        <label>Add State to Interested Collection</label>
+        <locationX>578</locationX>
+        <locationY>1019</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_States_Interested_Collection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>var_Single_State</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference
+      >Null_check_States_Interested_In_found</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Add_State_to_Interested_Collection_No_SNI</name>
+        <label>Add State to Interested Collection (No SNI)</label>
+        <locationX>2250</locationX>
+        <locationY>935</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_States_Interested_Collection</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <elementReference>var_Single_State</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference
+      >Null_check_States_Interested_In_found_No_SNI</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_ALL_States_Eligible_for_State_Promo_Field_No_SNI</name>
+        <label>Assign ALL States Eligible for State Promo Field (No SNI)</label>
+        <locationX>1722</locationX>
+        <locationY>611</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Eligible_for_State_Promo__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue>ALL STATES</stringValue>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_All_States_Interested_No_SNI</name>
+        <label>Assign All States Interested (No SNI)</label>
+        <locationX>1722</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>var_States_Interested_Text</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_All_States</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Assign_ALL_States_Eligible_for_State_Promo_Field_No_SNI</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_All_States_Interested_Some_Not_Interested</name>
+        <label>Assign All States Interested &amp; Some Not Interested</label>
+        <locationX>699</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>var_States_Interested_Text</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_All_States</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_States_Not_Interested</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >$Record.EE_Tracking_NOT_Interested__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_States_Not_Interested</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>;</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Null_check_States_Interested_In_found</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Eligible_for_State_Promo_Field</name>
+        <label>Assign Eligible for State Promo Field</label>
+        <locationX>1458</locationX>
+        <locationY>1211</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Eligible_for_State_Promo__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >var_Eligible_for_State_Promo</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Eligible_for_State_Promo_Field_No_SNI</name>
+        <label>Assign Eligible for State Promo Field (No SNI)</label>
+        <locationX>2602</locationX>
+        <locationY>1019</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Eligible_for_State_Promo__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >var_Eligible_for_State_Promo</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Eligible_for_State_Promo_Variable</name>
+        <label>Assign Eligible for State Promo Variable</label>
+        <locationX>1546</locationX>
+        <locationY>1019</locationY>
+        <assignmentItems>
+            <assignToReference>var_Eligible_for_State_Promo</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>{!Loop_through_states_interested};</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Loop_through_states_interested</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Eligible_for_State_Promo_Variable_No_SNI</name>
+        <label>Assign Eligible for State Promo Variable (No SNI)</label>
+        <locationX>2690</locationX>
+        <locationY>827</locationY>
+        <assignmentItems>
+            <assignToReference>var_Eligible_for_State_Promo</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue
+        >{!Loop_through_states_interested_No_SNI};</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Loop_through_states_interested_No_SNI</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Null_State_Promo</name>
+        <label>Assign Null State Promo</label>
+        <locationX>2866</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Eligible_for_State_Promo__c</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description
+    >Since ALL EVENTS not interested, Eligible for State Promo is assigned Null.</description>
+        <name>Assign_Null_State_Promo_All_States</name>
+        <label>Assign Null State Promo - All States</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Eligible_for_State_Promo__c</assignToReference>
+            <operator>Assign</operator>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <description
+    >Pull a single State out from the States Interested variable.</description>
+        <name>Assign_Single_State_Update_States_Interested</name>
+        <label>Assign Single State &amp; Update States Interested</label>
+        <locationX>446</locationX>
+        <locationY>803</locationY>
+        <assignmentItems>
+            <assignToReference>var_Single_State</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Pull_Single_State_Interested</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_States_Interested_Text</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Remove_Single_State_Interested</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>State_Already_in_Collection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <description
+    >Pull a single State out from the States Interested variable.</description>
+        <name>Assign_Single_State_Update_States_Interested_No_SNI</name>
+        <label
+    >Assign Single State &amp; Update States Interested (No SNI)</label>
+        <locationX>2118</locationX>
+        <locationY>719</locationY>
+        <assignmentItems>
+            <assignToReference>var_Single_State</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Pull_Single_State_Interested</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_States_Interested_Text</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Remove_Single_State_Interested</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >State_Already_in_Collection_No_SNI</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Single_State_Update_States_Not_Interested</name>
+        <label>Assign Single State &amp; Update States Not Interested</label>
+        <locationX>974</locationX>
+        <locationY>911</locationY>
+        <assignmentItems>
+            <assignToReference>var_Single_State</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Pull_Single_State_Not_Interested</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_States_Not_Interested</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Remove_Single_State_Not_Interested</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Is_State_Not_Interested_in_States_Interested_Collection</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_States_Interested_No_SNI</name>
+        <label>Assign States Interested (No SNI)</label>
+        <locationX>2360</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>var_States_Interested_Text</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Concatenate_States_Interested</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Null_check_States_Interested_In_found_No_SNI</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_States_Interested_Not_Interested</name>
+        <label>Assign States Interested &amp; Not Interested</label>
+        <locationX>963</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference>var_States_Interested_Text</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >f_Concatenate_States_Interested</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_States_Not_Interested</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >$Record.EE_Tracking_NOT_Interested__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_States_Not_Interested</assignToReference>
+            <operator>Add</operator>
+            <value>
+                <stringValue>;</stringValue>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Null_check_States_Interested_In_found</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Remove_from_States_Interested_Collection</name>
+        <label>Remove from States Interested Collection</label>
+        <locationX>842</locationX>
+        <locationY>1127</locationY>
+        <assignmentItems>
+            <assignToReference
+      >var_States_Interested_Collection</assignToReference>
+            <operator>RemoveFirst</operator>
+            <value>
+                <elementReference>var_Single_State</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <isGoTo>true</isGoTo>
+            <targetReference
+      >Null_check_States_Not_Interested_In_found</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <description
+    >Check if States Interested includes the value &apos;ALL EVENTS&apos;. If so, we must add semicolon delimited set of all 50 states to the States Interested variable.</description>
+        <name>Does_States_Interested_Contain_All_States</name>
+        <label>Does States Interested Contain All States?</label>
+        <locationX>831</locationX>
+        <locationY>395</locationY>
+        <defaultConnector>
+            <targetReference
+      >Assign_States_Interested_Not_Interested</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel
+    >No, Only Some States Interested</defaultConnectorLabel>
+        <rules>
+            <name>Yes_All_States_Interested</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.EE_Tracking_Interested__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>ALL EVENTS</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_All_States_Interested_Some_Not_Interested</targetReference>
+            </connector>
+            <label>Yes, All States Interested</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description
+    >If ALL States interested and no States Not Interested, set ALL States Interested.</description>
+        <name>Does_States_Interested_Contain_All_States_No_SNI</name>
+        <label>Does States Interested Contain All States? (No SNI)</label>
+        <locationX>2041</locationX>
+        <locationY>395</locationY>
+        <defaultConnector>
+            <targetReference>Assign_States_Interested_No_SNI</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel
+    >No, Only Some States Interested</defaultConnectorLabel>
+        <rules>
+            <name>Yes_All_States_Interested_No_SNI</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.EE_Tracking_Interested__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>ALL EVENTS</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_All_States_Interested_No_SNI</targetReference>
+            </connector>
+            <label>Yes, All States Interested (No SNI)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description
+    >Check if single State from States NOT Interested is in the collection &amp; Loop. If Single State is in States Interested collection, remove it.</description>
+        <name>Is_State_Not_Interested_in_States_Interested_Collection</name>
+        <label>Is State Not Interested in States Interested Collection?</label>
+        <locationX>974</locationX>
+        <locationY>1019</locationY>
+        <defaultConnector>
+            <isGoTo>true</isGoTo>
+            <targetReference
+      >Null_check_States_Not_Interested_In_found</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel
+    >No - Not in States Interested</defaultConnectorLabel>
+        <rules>
+            <name>Yes_In_States_Interested</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >var_States_Interested_Collection</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference>var_Single_State</elementReference>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Remove_from_States_Interested_Collection</targetReference>
+            </connector>
+            <label>Yes - In States Interested</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description>Check to see which path to take:  
+(1) If some states are Interested and some are NOT Interested, take steps to Add and Remove states.  
+(2) If some states are Interested but none are NOT Interested, take steps to Add states.  
+(3) If no states are interested, Eligible for State Promo set to null.</description>
+        <name>Is_States_Interested_Null</name>
+        <label>Is States Interested/Not Interested Null?</label>
+        <locationX>1590</locationX>
+        <locationY>287</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>All_States_Not_Interested</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.EE_Tracking_NOT_Interested__c</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <stringValue>ALL EVENTS</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_Null_State_Promo_All_States</targetReference>
+            </connector>
+            <label>All States Not Interested</label>
+        </rules>
+        <rules>
+            <name>Both_Found_States_Interested_Not_Interested</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >f_Concatenate_States_Interested</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.EE_Tracking_NOT_Interested__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Does_States_Interested_Contain_All_States</targetReference>
+            </connector>
+            <label>Both Found - States Interested &amp; Not Interested</label>
+        </rules>
+        <rules>
+            <name>States_Not_Interested_is_Null</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >f_Concatenate_States_Interested</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.EE_Tracking_NOT_Interested__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Does_States_Interested_Contain_All_States_No_SNI</targetReference>
+            </connector>
+            <label>SI Found, SNI Not Found</label>
+        </rules>
+        <rules>
+            <name>No_States_Interested</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >f_Concatenate_States_Interested</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Assign_Null_State_Promo</targetReference>
+            </connector>
+            <label>No States Interested</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description
+    >This loop creates a States Interested collection while removing duplicates.  When no states remain, continue.</description>
+        <name>Null_check_States_Interested_In_found</name>
+        <label>Null check - States Interested In found?</label>
+        <locationX>831</locationX>
+        <locationY>695</locationY>
+        <defaultConnector>
+            <targetReference
+      >Null_check_States_Not_Interested_In_found</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No States Interested</defaultConnectorLabel>
+        <rules>
+            <name>Yes_States_Interested_In_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >var_States_Interested_Text</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_Single_State_Update_States_Interested</targetReference>
+            </connector>
+            <label>Yes, States Interested In Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description
+    >This loop creates a States Interested collection while removing duplicates. When no states remain, continue.</description>
+        <name>Null_check_States_Interested_In_found_No_SNI</name>
+        <label>Null check - States Interested In found? (No SNI)</label>
+        <locationX>2360</locationX>
+        <locationY>611</locationY>
+        <defaultConnector>
+            <targetReference
+      >Loop_through_states_interested_No_SNI</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No States Interested</defaultConnectorLabel>
+        <rules>
+            <name>Yes_States_Interested_In_Found_no_SNI</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >var_States_Interested_Text</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_Single_State_Update_States_Interested_No_SNI</targetReference>
+            </connector>
+            <label>Yes, States Interested In Found (no SNI)</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description
+    >This loop removes States NOT Interested from States Interested collection. When no States NOT Interested remain, continue.</description>
+        <name>Null_check_States_Not_Interested_In_found</name>
+        <label>Null check - States Not Interested In found?</label>
+        <locationX>1216</locationX>
+        <locationY>803</locationY>
+        <defaultConnector>
+            <targetReference>Loop_through_states_interested</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel
+    >Is Null - No States Not Interested</defaultConnectorLabel>
+        <rules>
+            <name>Yes_States_NOT_Interested_In_Found</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >var_States_Not_Interested</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_Single_State_Update_States_Not_Interested</targetReference>
+            </connector>
+            <label>Yes, States NOT Interested In Found</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description
+    >Check if single State from States Interested is in the collection &amp; Loop. If Single State isn&apos;t in States Interested collection, add it.</description>
+        <name>State_Already_in_Collection</name>
+        <label>State Already in Collection?</label>
+        <locationX>446</locationX>
+        <locationY>911</locationY>
+        <defaultConnector>
+            <targetReference
+      >Add_State_to_Interested_Collection</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No, Add State</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Already_in_States_Interested_In</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >var_States_Interested_Collection</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference
+          >f_Pull_Single_State_Interested</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Single_State_is_in_US</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <isGoTo>true</isGoTo>
+                <targetReference
+        >Null_check_States_Interested_In_found</targetReference>
+            </connector>
+            <label>Yes, Already in States Interested In</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <description
+    >Check if single State from States Interested is in the collection &amp; Loop. If Single State isn&apos;t in States Interested collection, add it.</description>
+        <name>State_Already_in_Collection_No_SNI</name>
+        <label>State Already in Collection? (No SNI)</label>
+        <locationX>2118</locationX>
+        <locationY>827</locationY>
+        <defaultConnector>
+            <targetReference
+      >Add_State_to_Interested_Collection_No_SNI</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No, Add State</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Already_in_States_Interested_In_No_SNI</name>
+            <conditionLogic>or</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >var_States_Interested_Collection</leftValueReference>
+                <operator>Contains</operator>
+                <rightValue>
+                    <elementReference
+          >f_Pull_Single_State_Interested</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>f_Single_State_is_in_US</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <isGoTo>true</isGoTo>
+                <targetReference
+        >Null_check_States_Interested_In_found_No_SNI</targetReference>
+            </connector>
+            <label>Yes, Already in States Interested In (No SNI)</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_All_States</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;AL;AK;AZ;AR;CA;CO;CT;DE;FL;GA;HI;ID;IL;IN;IA;KS;KY;LA;ME;MD;MA;MI;MN;MS;MO;MT;NE;NV;NH;NJ;NM;NY;NC;ND;OH;OK;OR;PA;RI;SC;SD;TN;TX;UT;VT;VA;WA;WV;WI;WY;&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Concatenate_States_Interested</name>
+        <dataType>String</dataType>
+        <expression
+    >    IF( OR({!var_Mailing_State} = &quot;&quot;,NOT({!f_Mailing_State_is_in_US}=True)), &quot;&quot;, {!var_Mailing_State}+&quot;;&quot;) &amp; 
+    IF( {!var_States_Interested_field_value} = &quot;&quot;, &quot;&quot;, {!var_States_Interested_field_value}+&quot;;&quot;) &amp; 
+    IF( {!var_Event_Past_Participant} =&quot;&quot;, &quot;&quot;, {!var_Event_Past_Participant}+&quot;;&quot;) &amp;
+    IF( {!f_Surrounding_States} = &quot;&quot;, &quot;&quot;, {!f_Surrounding_States}+&quot;;&quot;)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Mailing_State_is_in_US</name>
+        <dataType>Boolean</dataType>
+        <expression>CASE({!$Record.MailingState}, 
+          &quot;AK&quot;, &quot;True&quot;,
+          &quot;AL&quot;, &quot;True&quot;,
+          &quot;AR&quot;, &quot;True&quot;,
+          &quot;AZ&quot;, &quot;True&quot;,
+          &quot;CA&quot;, &quot;True&quot;,
+          &quot;CO&quot;, &quot;True&quot;,
+          &quot;CT&quot;, &quot;True&quot;,
+          &quot;DC&quot;, &quot;True&quot;,
+          &quot;DE&quot;, &quot;True&quot;,
+          &quot;FL&quot;, &quot;True&quot;,
+          &quot;GA&quot;, &quot;True&quot;,
+          &quot;HI&quot;, &quot;True&quot;,
+          &quot;IA&quot;, &quot;True&quot;,
+          &quot;ID&quot;, &quot;True&quot;,
+          &quot;IL&quot;, &quot;True&quot;,
+          &quot;IN&quot;, &quot;True&quot;,
+          &quot;KS&quot;, &quot;True&quot;,
+          &quot;KY&quot;, &quot;True&quot;,
+          &quot;LA&quot;, &quot;True&quot;,
+          &quot;MA&quot;, &quot;True&quot;,
+          &quot;MD&quot;, &quot;True&quot;,
+          &quot;ME&quot;, &quot;True&quot;,
+          &quot;MI&quot;, &quot;True&quot;,
+          &quot;MN&quot;, &quot;True&quot;,
+          &quot;MO&quot;, &quot;True&quot;,
+          &quot;MS&quot;, &quot;True&quot;,
+          &quot;MT&quot;, &quot;True&quot;,
+          &quot;NC&quot;, &quot;True&quot;,     
+          &quot;ND&quot;, &quot;True&quot;,
+          &quot;NE&quot;, &quot;True&quot;,
+          &quot;NH&quot;, &quot;True&quot;,
+          &quot;NJ&quot;, &quot;True&quot;,
+          &quot;NM&quot;, &quot;True&quot;,
+          &quot;NV&quot;, &quot;True&quot;,
+          &quot;NY&quot;, &quot;True&quot;,
+          &quot;OH&quot;, &quot;True&quot;,
+          &quot;OK&quot;, &quot;True&quot;,
+          &quot;OR&quot;, &quot;True&quot;,
+          &quot;PA&quot;, &quot;True&quot;,
+          &quot;RI&quot;, &quot;True&quot;,
+          &quot;SC&quot;, &quot;True&quot;,
+          &quot;SD&quot;, &quot;True&quot;,
+          &quot;TN&quot;, &quot;True&quot;,
+          &quot;TX&quot;, &quot;True&quot;,
+          &quot;UT&quot;, &quot;True&quot;,
+          &quot;VA&quot;, &quot;True&quot;,
+          &quot;VT&quot;, &quot;True&quot;,
+          &quot;WA&quot;, &quot;True&quot;,
+          &quot;WI&quot;, &quot;True&quot;,
+          &quot;WV&quot;, &quot;True&quot;,
+          &quot;WY&quot;, &quot;True&quot;,
+   &quot;Not US&quot;)=&quot;True&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Pull_Single_State_Interested</name>
+        <dataType>String</dataType>
+        <expression>TRIM( 
+   SUBSTITUTE( 
+        LEFT({!var_States_Interested_Text}, 
+            FIND(&quot;;&quot;, {!var_States_Interested_Text}
+            )
+        ), 
+   &quot;;&quot;, 
+   &quot;&quot;
+   )
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Pull_Single_State_Not_Interested</name>
+        <dataType>String</dataType>
+        <expression>TRIM( 
+   SUBSTITUTE( 
+        LEFT({!var_States_Not_Interested}, 
+            FIND(&quot;;&quot;, {!var_States_Not_Interested}
+            )
+        ), 
+   &quot;;&quot;, 
+   &quot;&quot;
+   )
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Remove_Single_State_Interested</name>
+        <dataType>String</dataType>
+        <expression
+    >TRIM(SUBSTITUTE({!var_States_Interested_Text}, {!f_Pull_Single_State_Interested}+&quot;;&quot;, &quot;&quot;))</expression>
+    </formulas>
+    <formulas>
+        <name>f_Remove_Single_State_Not_Interested</name>
+        <dataType>String</dataType>
+        <expression
+    >TRIM(SUBSTITUTE({!var_States_Not_Interested}, {!f_Pull_Single_State_Not_Interested}+&quot;;&quot;, &quot;&quot;))</expression>
+    </formulas>
+    <formulas>
+        <name>f_Remove_State_Not_Interested_From_Promo_Eligible</name>
+        <dataType>String</dataType>
+        <expression
+    >TRIM(SUBSTITUTE({!var_States_Interested_Text}, {!var_Single_State}+&quot;;&quot;, &quot;&quot;))</expression>
+    </formulas>
+    <formulas>
+        <name>f_Single_State_is_in_US</name>
+        <dataType>Boolean</dataType>
+        <expression>CASE({!var_Single_State}, 
+          &quot;AK&quot;, &quot;True&quot;,
+          &quot;AL&quot;, &quot;True&quot;,
+          &quot;AR&quot;, &quot;True&quot;,
+          &quot;AZ&quot;, &quot;True&quot;,
+          &quot;CA&quot;, &quot;True&quot;,
+          &quot;CO&quot;, &quot;True&quot;,
+          &quot;CT&quot;, &quot;True&quot;,
+          &quot;DC&quot;, &quot;True&quot;,
+          &quot;DE&quot;, &quot;True&quot;,
+          &quot;FL&quot;, &quot;True&quot;,
+          &quot;GA&quot;, &quot;True&quot;,
+          &quot;HI&quot;, &quot;True&quot;,
+          &quot;IA&quot;, &quot;True&quot;,
+          &quot;ID&quot;, &quot;True&quot;,
+          &quot;IL&quot;, &quot;True&quot;,
+          &quot;IN&quot;, &quot;True&quot;,
+          &quot;KS&quot;, &quot;True&quot;,
+          &quot;KY&quot;, &quot;True&quot;,
+          &quot;LA&quot;, &quot;True&quot;,
+          &quot;MA&quot;, &quot;True&quot;,
+          &quot;MD&quot;, &quot;True&quot;,
+          &quot;ME&quot;, &quot;True&quot;,
+          &quot;MI&quot;, &quot;True&quot;,
+          &quot;MN&quot;, &quot;True&quot;,
+          &quot;MO&quot;, &quot;True&quot;,
+          &quot;MS&quot;, &quot;True&quot;,
+          &quot;MT&quot;, &quot;True&quot;,
+          &quot;NC&quot;, &quot;True&quot;,     
+          &quot;ND&quot;, &quot;True&quot;,
+          &quot;NE&quot;, &quot;True&quot;,
+          &quot;NH&quot;, &quot;True&quot;,
+          &quot;NJ&quot;, &quot;True&quot;,
+          &quot;NM&quot;, &quot;True&quot;,
+          &quot;NV&quot;, &quot;True&quot;,
+          &quot;NY&quot;, &quot;True&quot;,
+          &quot;OH&quot;, &quot;True&quot;,
+          &quot;OK&quot;, &quot;True&quot;,
+          &quot;OR&quot;, &quot;True&quot;,
+          &quot;PA&quot;, &quot;True&quot;,
+          &quot;RI&quot;, &quot;True&quot;,
+          &quot;SC&quot;, &quot;True&quot;,
+          &quot;SD&quot;, &quot;True&quot;,
+          &quot;TN&quot;, &quot;True&quot;,
+          &quot;TX&quot;, &quot;True&quot;,
+          &quot;UT&quot;, &quot;True&quot;,
+          &quot;VA&quot;, &quot;True&quot;,
+          &quot;VT&quot;, &quot;True&quot;,
+          &quot;WA&quot;, &quot;True&quot;,
+          &quot;WI&quot;, &quot;True&quot;,
+          &quot;WV&quot;, &quot;True&quot;,
+          &quot;WY&quot;, &quot;True&quot;,
+   &quot;Not US&quot;)=&quot;True&quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Surrounding_States</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.MailingState}, 
+          &quot;AK&quot;, &quot;AK;&quot;,
+          &quot;AL&quot;, &quot;FL;GA;MS;TN;AL;&quot;,
+          &quot;AR&quot;, &quot;LA;MS;MO;OK;TN;TX;AR;&quot;,
+          &quot;AZ&quot;, &quot;CA;CO;NV;NM;UT;AZ;&quot;,
+          &quot;CA&quot;, &quot;AZ;NV;OR;CA;&quot;,
+          &quot;CO&quot;, &quot;AZ;KS;NE;NM;OK;UT;WY;CO;&quot;,
+          &quot;CT&quot;, &quot;MA;NY;RI;CT;&quot;,
+          &quot;DE&quot;, &quot;MD;NJ;PA;DE;&quot;,
+          &quot;FL&quot;, &quot;AL;GA;FL;&quot;,
+          &quot;GA&quot;, &quot;AL;FL;NC;SC;TN;GA;&quot;,
+          &quot;HI&quot;, &quot;HI;&quot;,
+          &quot;IA&quot;, &quot;IL;MN;MO;NE;SD;WI;IA;&quot;,
+          &quot;ID&quot;, &quot;MT;NV;OR;UT;WA;WY;ID;&quot;,
+          &quot;IL&quot;, &quot;IN;IA;MI;KY;MO;WI;IL;&quot;,
+          &quot;IN&quot;, &quot;IL;KY;MI;OH;IN;&quot;,
+          &quot;KS&quot;, &quot;CO;MO;NE;OK;KS;&quot;,
+          &quot;KY&quot;, &quot;IL;IN;MO;OH;TN;VA;WV;KY;&quot;,
+          &quot;LA&quot;, &quot;AR;MS;TX;LA;&quot;,
+          &quot;MA&quot;, &quot;CT;NH;NY;RI;VT;MA;&quot;,
+          &quot;MD&quot;, &quot;DE;PA;VA;WV;MD;&quot;,
+          &quot;ME&quot;, &quot;NH;ME;&quot;,
+          &quot;MI&quot;, &quot;IL;IN;MN;OH;WI;MI;&quot;,
+          &quot;MN&quot;, &quot;IA;MI;ND;SD;WI;MN;&quot;,
+          &quot;MO&quot;, &quot;AR;IL;IA;KS;KY;NE;OK;TN;MO;&quot;,
+          &quot;MS&quot;, &quot;AL;AR;LA;TN;MS;&quot;,
+          &quot;MT&quot;, &quot;ID;ND;SD;WY;MT;&quot;,
+          &quot;NC&quot;, &quot;GA;SC;TN;VA;NC;&quot;,
+          &quot;ND&quot;, &quot;MN;MT;SD;ND;&quot;,
+          &quot;NE&quot;, &quot;CO;IA;KS;MO;SD;WY;NE;&quot;,
+          &quot;NH&quot;, &quot;ME;MA;VT;NH;&quot;,
+          &quot;NJ&quot;, &quot;DE;NY;PA;NJ;&quot;,
+          &quot;NM&quot;, &quot;AZ;CO;OK;TX;UT;NM;&quot;,
+          &quot;NV&quot;, &quot;AZ;CA;ID;OR;UT;NV;&quot;,
+          &quot;NY&quot;, &quot;CT;MA;NJ;PA;RI;VT;NY;&quot;,
+          &quot;OH&quot;, &quot;IN;KY;MI;PA;WV;OH;&quot;,
+          &quot;OK&quot;, &quot;AR;CO;KS;MO;NM;TX;OK;&quot;,
+          &quot;OR&quot;, &quot;CA;ID;NV;WA;OR;&quot;,
+          &quot;PA&quot;, &quot;DE;MD;NJ;NY;OH;WV;PA;&quot;,
+          &quot;RI&quot;, &quot;CT;MA;NY;RI;&quot;,
+          &quot;SC&quot;, &quot;GA;NC;SC;&quot;,
+          &quot;SD&quot;, &quot;IA;MN;MT;NE;ND;WY;SD;&quot;,
+          &quot;TN&quot;, &quot;AL;AR;GA;KY;MS;MO;NC;VA;TN;&quot;,
+          &quot;TX&quot;, &quot;AR;LA;NM;OK;TX;&quot;,
+          &quot;UT&quot;, &quot;AZ;CO;ID;NV;NM;WY;UT;&quot;,
+          &quot;VA&quot;, &quot;KY;MD;NC;TN;WV;VA;&quot;,
+          &quot;VT&quot;, &quot;MA;NH;NY;VT;&quot;,
+          &quot;WA&quot;, &quot;ID;OR;WA;&quot;,
+          &quot;WI&quot;, &quot;IL;IA;MI;MN;WI;&quot;,
+          &quot;WV&quot;, &quot;KY;MD;OH;PA;VA;WV;&quot;,
+          &quot;WY&quot;, &quot;CO;ID;MT;NE;SD;UT;WY;&quot;
+,&quot;&quot;)</expression>
+    </formulas>
+    <interviewLabel
+  >Contact - RT BS - Promo for State {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contact - RT BS - Eligible for State Promo</label>
+    <loops>
+        <description
+    >Loop back through the collection to create a semi-colon delimited string.</description>
+        <name>Loop_through_states_interested</name>
+        <label>Loop through states interested</label>
+        <locationX>1458</locationX>
+        <locationY>911</locationY>
+        <collectionReference
+    >var_States_Interested_Collection</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference
+      >Assign_Eligible_for_State_Promo_Variable</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference
+      >Assign_Eligible_for_State_Promo_Field</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <loops>
+        <description
+    >Loop back through the collection to create a semi-colon delimited string.</description>
+        <name>Loop_through_states_interested_No_SNI</name>
+        <label>Loop through states interested (No SNI)</label>
+        <locationX>2602</locationX>
+        <locationY>719</locationY>
+        <collectionReference
+    >var_States_Interested_Collection</collectionReference>
+        <iterationOrder>Asc</iterationOrder>
+        <nextValueConnector>
+            <targetReference
+      >Assign_Eligible_for_State_Promo_Variable_No_SNI</targetReference>
+        </nextValueConnector>
+        <noMoreValuesConnector>
+            <targetReference
+      >Assign_Eligible_for_State_Promo_Field_No_SNI</targetReference>
+        </noMoreValuesConnector>
+    </loops>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>1464</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Is_States_Interested_Null</targetReference>
+        </connector>
+        <filterLogic
+    >1 OR 2 OR 3 OR 4 OR (5 AND (6 OR 7 OR 8 OR 9))</filterLogic>
+        <filters>
+            <field>MailingState</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>EE_Tracking_Interested__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>EE_Tracking_NOT_Interested__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>EE_Tracking_Past_Participant__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>MailingState</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>EE_Tracking_Interested__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>EE_Tracking_NOT_Interested__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>EE_Tracking_Past_Participant__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Contact</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>var_Eligible_for_State_Promo</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Event_Past_Participant</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference
+      >$Record.EE_Tracking_Past_Participant__c</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <name>var_Mailing_State</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference>$Record.MailingState</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <name>var_Single_State</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_States_Interested_Collection</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_States_Interested_field_value</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+        <value>
+            <elementReference
+      >$Record.EE_Tracking_Interested__c</elementReference>
+        </value>
+    </variables>
+    <variables>
+        <name>var_States_Interested_Text</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_States_Not_Interested</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_States_Not_Interested_Collection</name>
+        <dataType>String</dataType>
+        <isCollection>true</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

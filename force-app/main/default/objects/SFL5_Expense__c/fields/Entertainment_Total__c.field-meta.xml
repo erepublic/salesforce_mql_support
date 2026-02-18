@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Entertainment_Total__c</fullName>
+    <formula
+  >Entertainment_w__c  +  Entertainment_th__c  +  Entertainment_t__c  +  Entertainment_su__c  +  Entertainment_sa__c  +  Entertainment_m__c  +  Entertainment_f__c</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Entertainment Total</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

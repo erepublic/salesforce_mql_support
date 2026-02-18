@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Final_PDF_URL_Required_Legacy</fullName>
+    <active>true</active>
+    <description
+  >Requires a completed Content Studio project to have the &quot;Final PDF URL&quot; field populated.</description>
+    <errorConditionFormula>RecordType.Id = &quot;01230000000wS4x&quot;
+&amp;&amp;
+OR(
+  ISBLANK(Completion_Date__c),
+  Completion_Date__c &gt;= DATEVALUE( &quot;2018-01-01&quot; )
+)
+&amp;&amp;
+NOT(
+  ISPICKVAL(Project_Type__c , &quot;Digital Marketing&quot;)
+  ||
+  ISPICKVAL(Project_Type__c , &quot;Webinar&quot;)
+  ||
+  ISPICKVAL(Project_Type__c , &quot;State-Specific Webinar&quot;)
+  ||
+  ISPICKVAL(Project_Type__c , &quot;Lunch &amp; Learn Webinar&quot;)
+  || 
+  ISPICKVAL(Project_Type__c , &quot;Video&quot;)
+  ||
+  ISPICKVAL(Project_Type__c , &quot;Custom Roundtables&quot;)
+  ||
+  ISPICKVAL(Project_Type__c , &quot;Editorial Roundtables&quot;)
+  ||
+  ISPICKVAL(Project_Type__c , &quot;Lead-Gen Poll&quot;)
+  ||
+  ISPICKVAL(Project_Type__c , &quot;Standard Leads&quot;)
+  ||
+  ISPICKVAL(Project_Type__c , &quot;Filtered Leads&quot;)
+  ||
+  ISPICKVAL(Project_Type__c , &quot;Account Based Marketing&quot;)
+  ||
+  ISPICKVAL(Project_Type__c , &quot;Two-Step Nurture&quot;)
+  ||
+  ISPICKVAL(Project_Type__c , &quot;Multi-Touch Nurture&quot;)
+)
+&amp;&amp;
+ISPICKVAL( Project_Stage__c , &quot;Completed&quot;)
+&amp;&amp;
+ISBLANK( Final_PDF_URL__c )</errorConditionFormula>
+    <errorDisplayField>Final_PDF_URL__c</errorDisplayField>
+    <errorMessage
+  >Create a public link to the final PDF attached to this project&apos;s Files and paste that link here. If there is no final PDF, input &quot;n/a&quot; here.</errorMessage>
+</ValidationRule>

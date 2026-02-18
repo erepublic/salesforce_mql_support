@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description>Triggers the following Email Alert: 
+Ticket - Community Development - In Progress</description>
+        <name>Send_In_Progress_Email</name>
+        <label>Send In Progress Email</label>
+        <locationX>50</locationX>
+        <locationY>455</locationY>
+        <actionName
+    >Ticket__c.Ticket_Community_Development_In_Progress</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference
+      >Set_Send_Email_Checkbox_to_False_In_Progress</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Ticket__c.Ticket_Community_Development_In_Progress</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <description>Triggers the following Email Alert: 
+Ticket - Community Development - Needs Specs</description>
+        <name>Send_Needs_Specs_Email</name>
+        <label>Send Needs Specs Email</label>
+        <locationX>578</locationX>
+        <locationY>575</locationY>
+        <actionName
+    >Ticket__c.Ticket_Community_Development_Needs_Specs</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference
+      >Set_Send_Email_Checkbox_to_False_Needs_Specs</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Ticket__c.Ticket_Community_Development_Needs_Specs</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_Needs_Specs_Email_Due_Date_Updated</name>
+        <label>Send Needs Specs Email (Due Date Updated)</label>
+        <locationX>314</locationX>
+        <locationY>575</locationY>
+        <actionName
+    >Ticket__c.Ticket_Community_Development_Needs_Specs_Due_Date_Updated</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference
+      >Set_Send_Email_Checkbox_to_False_Needs_Specs</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Ticket__c.Ticket_Community_Development_Needs_Specs_Due_Date_Updated</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_to_Gosia_Closed_Email</name>
+        <label>Send to Gosia: Closed Email</label>
+        <locationX>1106</locationX>
+        <locationY>575</locationY>
+        <actionName
+    >Ticket__c.Ticket_CommDev_List_Pull_Request_Completed</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Ticket__c.Ticket_CommDev_List_Pull_Request_Completed</nameSegment>
+    </actionCalls>
+    <actionCalls>
+        <name>Send_to_Requestor_Closed_Email</name>
+        <label>Send to Requestor: Closed Email</label>
+        <locationX>842</locationX>
+        <locationY>575</locationY>
+        <actionName
+    >Ticket__c.Ticket_Community_Development_Closed_Requestor</actionName>
+        <actionType>emailAlert</actionType>
+        <connector>
+            <targetReference
+      >Set_Send_Email_Checkbox_to_False_Closed</targetReference>
+        </connector>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Ticket__c.Ticket_Community_Development_Closed_Requestor</nameSegment>
+    </actionCalls>
+    <apiVersion>57.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Was_Due_Date_Requested_Changed</name>
+        <label>Was Due Date Requested Changed?</label>
+        <locationX>446</locationX>
+        <locationY>455</locationY>
+        <defaultConnector>
+            <targetReference>Send_Needs_Specs_Email</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel
+    >No, Due Date Requested was not changed</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Due_Date_Requested_was_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Due_Date_Requested__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+                <rightValue>
+                    <elementReference
+          >$Record.Original_Due_Date_Requested__c</elementReference>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Original_Due_Date_Requested__c</leftValueReference>
+                <operator>NotEqualTo</operator>
+            </conditions>
+            <connector>
+                <targetReference
+        >Send_Needs_Specs_Email_Due_Date_Updated</targetReference>
+            </connector>
+            <label>Yes, Due Date Requested was Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Was_the_Send_Email_Checkbox_Checked</name>
+        <label>Was the Send Email Checkbox Checked?</label>
+        <locationX>974</locationX>
+        <locationY>455</locationY>
+        <defaultConnector>
+            <targetReference>Send_to_Gosia_Closed_Email</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel>No - Send to Gosia Only</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Send_to_Requestor</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Send_Email_to_Requestor__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Send_to_Requestor_Closed_Email</targetReference>
+            </connector>
+            <label>Yes - Send to Requestor</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Which_Phase</name>
+        <label>Which Phase?</label>
+        <locationX>710</locationX>
+        <locationY>335</locationY>
+        <defaultConnector>
+            <targetReference
+      >Set_Send_Email_to_False_Other_Phase</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel
+    >Clear Send Email to Requestor</defaultConnectorLabel>
+        <rules>
+            <name>In_Progress_Phase</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Phase__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>In Progress</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Send_Email_to_Requestor__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Send_In_Progress_Email</targetReference>
+            </connector>
+            <label>In Progress Phase</label>
+        </rules>
+        <rules>
+            <name>Needs_Specs_Phase</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Phase__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Needs Specs</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Send_Email_to_Requestor__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Was_Due_Date_Requested_Changed</targetReference>
+            </connector>
+            <label>Needs Specs Phase</label>
+        </rules>
+        <rules>
+            <name>Closed_Phase</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Phase__c</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Closed</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Was_the_Send_Email_Checkbox_Checked</targetReference>
+            </connector>
+            <label>Closed Phase</label>
+        </rules>
+    </decisions>
+    <description
+  >Sends varying Email Alerts when a CommDev ticket Phase is In Progress, Needs Specs, or Closed based on Send to Requester checkbox.</description>
+    <environments>Default</environments>
+    <interviewLabel
+  >Ticket - RT AS - CommDev Update Ticket Email Alerts {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Ticket - RT AS - CommDev Update Ticket - Email Alerts</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Set_Send_Email_Checkbox_to_False_Closed</name>
+        <label>Set Send Email Checkbox to False (Closed)</label>
+        <locationX>842</locationX>
+        <locationY>695</locationY>
+        <inputAssignments>
+            <field>Send_Email_to_Requestor__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Send_Email_Checkbox_to_False_In_Progress</name>
+        <label>Set Send Email Checkbox to False (In Progress)</label>
+        <locationX>50</locationX>
+        <locationY>575</locationY>
+        <inputAssignments>
+            <field>Send_Email_to_Requestor__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Send_Email_Checkbox_to_False_Needs_Specs</name>
+        <label>Set Send Email Checkbox to False (Needs Specs)</label>
+        <locationX>446</locationX>
+        <locationY>791</locationY>
+        <inputAssignments>
+            <field>Send_Email_to_Requestor__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <recordUpdates>
+        <name>Set_Send_Email_to_False_Other_Phase</name>
+        <label>Set Send Email to False (Other Phase)</label>
+        <locationX>1370</locationX>
+        <locationY>455</locationY>
+        <inputAssignments>
+            <field>Send_Email_to_Requestor__c</field>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>584</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Which_Phase</targetReference>
+        </connector>
+        <filterLogic>1 AND ((2 AND 3) OR 4)</filterLogic>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01214000001RYxpAAG</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Phase__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Phase__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Closed</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Send_Email_to_Requestor__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Ticket__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+    <textTemplates>
+        <name>text_Template_Needs_Specs_Email_Body</name>
+        <isViewedAsPlainText>true</isViewedAsPlainText>
+        <text>&lt;p style=&quot;font-size:16px&quot;}&gt;
+&lt;b&gt;This ticket requires additional information:&lt;/b&gt;&lt;br&gt;&lt;br&gt;
+&lt;table&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;background-color: #57C2D5;border-color: #000000;border: 2px solid #000000;padding: 10px;text-align: center;border-radius: 15px;&quot;&gt;
+            &lt;a style=&quot;display: block;color: #ffffff;font-size: 14px;text-decoration: none;text-transform: uppercase;&quot; href=&quot;https://erepublic.lightning.force.com/lightning/r/Ticket__c/{!$Record.Id}/view&quot;&gt;
+                Open Ticket
+            &lt;/a&gt;
+        &lt;/td&gt;
+       &lt;/tr&gt;
+&lt;/table&gt;
+ &lt;b&gt;Ticket Name&lt;/b&gt;: {!$Record.Title__c}
+&lt;br&gt;
+&lt;b&gt;Phase&lt;/b&gt;: {!$Record.Phase__c}
+&lt;br&gt;
+&lt;b&gt;Assignee&lt;/b&gt;: {!$Record.Assignee__c}
+&lt;br&gt;
+&lt;b&gt;Due Date Updated&lt;/b&gt;: {!$Record.Due_Date_Requested__c}
+&lt;br&gt;
+&lt;b&gt;Due Date Requested&lt;/b&gt;: {!$Record.Original_Due_Date_Requested__c}
+&lt;br&gt;
+&lt;b&gt;Ticket Notes&lt;/b&gt;: {!$Record.Most_Recent_Note__c}
+&lt;br&gt;
+&lt;br&gt;
+&lt;b&gt;Thank you!
+&lt;/b&gt;
+&lt;br&gt;&lt;br&gt;
+&lt;p style=&quot;font-family:Segoe UI&quot;&gt;
+&lt;font size=&quot;1&quot;&gt;
+&lt;a href=&quot;https://erepublic.lightning.force.com/lightning/setup/Flows/page?address=%2F3005Y000001AfpIQAS%3FretUrl%3D%2Flightning%2Fsetup%2FFlows%2Fhome&quot;&gt;Flow&lt;/a&gt;
+&lt;/font&gt;&lt;/p&gt;
+&lt;/p&gt;</text>
+    </textTemplates>
+</Flow>

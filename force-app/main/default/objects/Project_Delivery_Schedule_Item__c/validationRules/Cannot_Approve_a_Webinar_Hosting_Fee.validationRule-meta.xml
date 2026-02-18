@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cannot_Approve_a_Webinar_Hosting_Fee</fullName>
+    <active>true</active>
+    <description
+  >Prevents people from using the &quot;Approve for Payment&quot; button on webinar hosting fees, which do not need to be approved for payment.</description>
+    <errorConditionFormula>ISPICKVAL( Payment_Status__c , &quot;Approved&quot;)
+&amp;&amp;
+ISPICKVAL( Expense_Category__c , &quot;Webinar Hosting Fee&quot;)</errorConditionFormula>
+    <errorMessage
+  >Webinar Hosting Fees do not need to be approved for payment.</errorMessage>
+</ValidationRule>

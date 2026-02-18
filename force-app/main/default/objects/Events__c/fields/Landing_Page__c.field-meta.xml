@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Landing_Page__c</fullName>
+    <description>Redirects to the Landing Page for this event.</description>
+    <externalId>false</externalId>
+    <formula>IF(OneForm_ID__c &gt; 1,
+HYPERLINK(&quot;http://cms.erepublic.com/common/dynamic_modules/pass_through/&quot;&amp;TEXT(OneForm_ID__c)
+,&quot;Redirect to Landing Page&quot;)
+,&quot;Not Synced to CMS&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Redirects to the Landing Page for this event.</inlineHelpText>
+    <label>OneForm Landing Page</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

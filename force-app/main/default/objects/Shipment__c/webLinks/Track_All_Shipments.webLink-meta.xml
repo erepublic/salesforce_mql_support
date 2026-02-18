@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Track_All_Shipments</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Track Shipments</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <requireRowSelection>false</requireRowSelection>
+    <url
+  >/flow/Event_or_Conference_SF_Generate_UPS_Track_All_URL?EventId={!Events__c.Id}&amp;retURL=https://erepublic.lightning.force.com/lightning/r/Events__c/{!Events__c.Id}/related/Event_Shipments__r/view</url>
+</WebLink>

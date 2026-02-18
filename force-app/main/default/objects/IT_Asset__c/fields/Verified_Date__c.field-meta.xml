@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verified_Date__c</fullName>
+    <description
+  >The date this asset was last verified to be in the inventory of e.Republic.</description>
+    <inlineHelpText
+  >The date this asset was last verified to be in the inventory of e.Republic.</inlineHelpText>
+    <label>Verified Date</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

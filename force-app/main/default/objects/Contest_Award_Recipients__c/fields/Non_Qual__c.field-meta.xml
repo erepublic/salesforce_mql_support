@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Non_Qual__c</fullName>
+    <formula>Registration__r.Non_Qual__c</formula>
+    <label>Non-Qual</label>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

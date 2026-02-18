@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>AllApprovedSchedules</fullName>
+    <columns>NAME</columns>
+    <columns>Projects__c</columns>
+    <columns>Resource__c</columns>
+    <columns>Mon_booked__c</columns>
+    <columns>Tue_booked__c</columns>
+    <columns>Wed_booked__c</columns>
+    <columns>Thu_booked__c</columns>
+    <columns>Fri_booked__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value
+    >Internal Approval,Client Agreement,Resource Activity Booked</value>
+    </filters>
+    <label>All Approved Schedules</label>
+</ListView>

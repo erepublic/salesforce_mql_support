@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Recency__c</fullName>
+    <inlineHelpText
+  >Selecting a 1 year recency will include contacts who are active magazine or newsletter subscribers, who were created within 1 year, whose job role was verified within 1 year, or who engaged with a webinar, event, paper, email, or are visited our website within 1 year. Selected 2 years will expand this recency criteria to 2 years.</inlineHelpText>
+    <label>Contact Recency</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>1 Year</fullName>
+                <default>false</default>
+                <label>1 Year</label>
+            </value>
+            <value>
+                <fullName>2 Years</fullName>
+                <default>false</default>
+                <label>2 Years</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

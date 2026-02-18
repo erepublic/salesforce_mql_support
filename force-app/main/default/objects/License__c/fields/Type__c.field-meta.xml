@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <label>Type</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Absorb</fullName>
+                <default>false</default>
+                <label>Absorb</label>
+            </value>
+            <value>
+                <fullName>Act-On</fullName>
+                <default>false</default>
+                <label>Act-On</label>
+            </value>
+            <value>
+                <fullName>Adobe</fullName>
+                <default>false</default>
+                <label>Adobe</label>
+            </value>
+            <value>
+                <fullName>Adobe (Editorial)</fullName>
+                <default>false</default>
+                <label>Adobe (Editorial)</label>
+            </value>
+            <value>
+                <fullName>Airtable</fullName>
+                <default>false</default>
+                <label>Airtable</label>
+            </value>
+            <value>
+                <fullName>Alchemer</fullName>
+                <default>false</default>
+                <label>Alchemer</label>
+            </value>
+            <value>
+                <fullName>Apple Business</fullName>
+                <default>false</default>
+                <label>Apple Business</label>
+            </value>
+            <value>
+                <fullName>Asana</fullName>
+                <default>false</default>
+                <label>Asana</label>
+            </value>
+            <value>
+                <fullName>Brightspot</fullName>
+                <default>false</default>
+                <label>Brightspot</label>
+            </value>
+            <value>
+                <fullName>BriteVerify</fullName>
+                <default>false</default>
+                <label>BriteVerify</label>
+            </value>
+            <value>
+                <fullName>Buffer</fullName>
+                <default>false</default>
+                <label>Buffer</label>
+            </value>
+            <value>
+                <fullName>Calendly</fullName>
+                <default>false</default>
+                <label>Calendly</label>
+            </value>
+            <value>
+                <fullName>Camtasia</fullName>
+                <default>false</default>
+                <label>Camtasia</label>
+            </value>
+            <value>
+                <fullName>Canva (Design)</fullName>
+                <default>false</default>
+                <label>Canva (Design)</label>
+            </value>
+            <value>
+                <fullName>Canva (Marketing)</fullName>
+                <default>false</default>
+                <label>Canva (Marketing)</label>
+            </value>
+            <value>
+                <fullName>Canva (People &amp; Culture)</fullName>
+                <default>false</default>
+                <label>Canva (People &amp; Culture)</label>
+            </value>
+            <value>
+                <fullName>Certinia</fullName>
+                <default>false</default>
+                <label>Certinia</label>
+            </value>
+            <value>
+                <fullName>Chartbeat</fullName>
+                <default>false</default>
+                <label>Chartbeat</label>
+            </value>
+            <value>
+                <fullName>ChatGPT</fullName>
+                <default>false</default>
+                <label>ChatGPT</label>
+            </value>
+            <value>
+                <fullName>Claude</fullName>
+                <default>false</default>
+                <label>Claude</label>
+            </value>
+            <value>
+                <fullName>Conga</fullName>
+                <default>false</default>
+                <label>Conga</label>
+            </value>
+            <value>
+                <fullName>Convertr</fullName>
+                <default>false</default>
+                <label>Convertr</label>
+            </value>
+            <value>
+                <fullName>Credly</fullName>
+                <default>false</default>
+                <label>Credly</label>
+            </value>
+            <value>
+                <fullName>Crowdpurr</fullName>
+                <default>false</default>
+                <label>Crowdpurr</label>
+            </value>
+            <value>
+                <fullName>Crunchbase</fullName>
+                <default>false</default>
+                <label>Crunchbase</label>
+            </value>
+            <value>
+                <fullName>Cvent</fullName>
+                <default>false</default>
+                <label>Cvent</label>
+            </value>
+            <value>
+                <fullName>D&amp;B Hoovers</fullName>
+                <default>false</default>
+                <label>D&amp;B Hoovers</label>
+            </value>
+            <value>
+                <fullName>Dropbox</fullName>
+                <default>false</default>
+                <label>Dropbox</label>
+            </value>
+            <value>
+                <fullName>FastStone Capture</fullName>
+                <default>false</default>
+                <label>FastStone Capture</label>
+            </value>
+            <value>
+                <fullName>FlippingBook</fullName>
+                <default>false</default>
+                <label>FlippingBook</label>
+            </value>
+            <value>
+                <fullName>Google Ad Manager</fullName>
+                <default>false</default>
+                <label>Google Ad Manager</label>
+            </value>
+            <value>
+                <fullName>Google Analytics</fullName>
+                <default>false</default>
+                <label>Google Analytics</label>
+            </value>
+            <value>
+                <fullName>Google Workspace</fullName>
+                <default>false</default>
+                <label>Google Workspace</label>
+            </value>
+            <value>
+                <fullName>GovSpend</fullName>
+                <default>false</default>
+                <label>GovSpend</label>
+            </value>
+            <value>
+                <fullName>GridBuddy</fullName>
+                <default>false</default>
+                <label>GridBuddy</label>
+            </value>
+            <value>
+                <fullName>HubSpot</fullName>
+                <default>false</default>
+                <label>HubSpot</label>
+            </value>
+            <value>
+                <fullName>Hunter.io</fullName>
+                <default>false</default>
+                <label>Hunter.io</label>
+            </value>
+            <value>
+                <fullName>Indeed/Glassdoor</fullName>
+                <default>false</default>
+                <label>Indeed/Glassdoor</label>
+            </value>
+            <value>
+                <fullName>Integrate</fullName>
+                <default>false</default>
+                <label>Integrate</label>
+            </value>
+            <value>
+                <fullName>Integration Glue</fullName>
+                <default>false</default>
+                <label>Integration Glue</label>
+            </value>
+            <value>
+                <fullName>Intrado (Marketwire)</fullName>
+                <default>false</default>
+                <label>Intrado (Marketwire)</label>
+            </value>
+            <value>
+                <fullName>LastPass</fullName>
+                <default>false</default>
+                <label>LastPass</label>
+            </value>
+            <value>
+                <fullName>Leadership Connect</fullName>
+                <default>false</default>
+                <label>Leadership Connect</label>
+            </value>
+            <value>
+                <fullName>Liberated Syndication (Libsyn)</fullName>
+                <default>false</default>
+                <label>Liberated Syndication (Libsyn)</label>
+            </value>
+            <value>
+                <fullName>LinkedIn Premium</fullName>
+                <default>false</default>
+                <label>LinkedIn Premium</label>
+            </value>
+            <value>
+                <fullName>LinkedIn Recruiter</fullName>
+                <default>false</default>
+                <label>LinkedIn Recruiter</label>
+            </value>
+            <value>
+                <fullName>LinkedIn Sales Navigator</fullName>
+                <default>false</default>
+                <label>LinkedIn Sales Navigator</label>
+            </value>
+            <value>
+                <fullName>LinkPoint</fullName>
+                <default>false</default>
+                <label>LinkPoint</label>
+            </value>
+            <value>
+                <fullName>LucidChart</fullName>
+                <default>false</default>
+                <label>LucidChart</label>
+            </value>
+            <value>
+                <fullName>Mentimeter</fullName>
+                <default>false</default>
+                <label>Mentimeter</label>
+            </value>
+            <value>
+                <fullName>Mercury</fullName>
+                <default>false</default>
+                <label>Mercury</label>
+            </value>
+            <value>
+                <fullName>Microsoft</fullName>
+                <default>false</default>
+                <label>Microsoft</label>
+            </value>
+            <value>
+                <fullName>Midjourney</fullName>
+                <default>false</default>
+                <label>Midjourney</label>
+            </value>
+            <value>
+                <fullName>Monday.com</fullName>
+                <default>false</default>
+                <label>Monday.com</label>
+            </value>
+            <value>
+                <fullName>Mozenda</fullName>
+                <default>false</default>
+                <label>Mozenda</label>
+            </value>
+            <value>
+                <fullName>ON24</fullName>
+                <default>false</default>
+                <label>ON24</label>
+            </value>
+            <value>
+                <fullName>OneTrust</fullName>
+                <default>false</default>
+                <label>OneTrust</label>
+            </value>
+            <value>
+                <fullName>OpenAI</fullName>
+                <default>false</default>
+                <label>OpenAI</label>
+            </value>
+            <value>
+                <fullName>Own</fullName>
+                <default>false</default>
+                <label>Own</label>
+            </value>
+            <value>
+                <fullName>Pinecone</fullName>
+                <default>false</default>
+                <label>Pinecone</label>
+            </value>
+            <value>
+                <fullName>Power Almanac</fullName>
+                <default>false</default>
+                <label>Power Almanac</label>
+            </value>
+            <value>
+                <fullName>Quorum</fullName>
+                <default>false</default>
+                <label>Quorum</label>
+            </value>
+            <value>
+                <fullName>QuotaPath</fullName>
+                <default>false</default>
+                <label>QuotaPath</label>
+            </value>
+            <value>
+                <fullName>Retriever</fullName>
+                <default>false</default>
+                <label>Retriever</label>
+            </value>
+            <value>
+                <fullName>Riverside</fullName>
+                <default>false</default>
+                <label>Riverside</label>
+            </value>
+            <value>
+                <fullName>Ruby Receptionists</fullName>
+                <default>false</default>
+                <label>Ruby Receptionists</label>
+            </value>
+            <value>
+                <fullName>Salesforce</fullName>
+                <default>false</default>
+                <label>Salesforce</label>
+            </value>
+            <value>
+                <fullName>Semrush</fullName>
+                <default>false</default>
+                <label>Semrush</label>
+            </value>
+            <value>
+                <fullName>Sentry</fullName>
+                <default>false</default>
+                <label>Sentry</label>
+            </value>
+            <value>
+                <fullName>Shutterstock</fullName>
+                <default>false</default>
+                <label>Shutterstock</label>
+            </value>
+            <value>
+                <fullName>Spotify</fullName>
+                <default>false</default>
+                <label>Spotify</label>
+            </value>
+            <value>
+                <fullName>Storylane</fullName>
+                <default>false</default>
+                <label>Storylane</label>
+            </value>
+            <value>
+                <fullName>StreamYard</fullName>
+                <default>false</default>
+                <label>StreamYard</label>
+            </value>
+            <value>
+                <fullName>SurveyMonkey</fullName>
+                <default>false</default>
+                <label>SurveyMonkey</label>
+            </value>
+            <value>
+                <fullName>Tableau</fullName>
+                <default>false</default>
+                <label>Tableau</label>
+            </value>
+            <value>
+                <fullName>Tribune</fullName>
+                <default>false</default>
+                <label>Tribune</label>
+            </value>
+            <value>
+                <fullName>Typeform</fullName>
+                <default>false</default>
+                <label>Typeform</label>
+            </value>
+            <value>
+                <fullName>Vimeo</fullName>
+                <default>false</default>
+                <label>Vimeo</label>
+            </value>
+            <value>
+                <fullName>Webex Events</fullName>
+                <default>false</default>
+                <label>Webex Events</label>
+            </value>
+            <value>
+                <fullName>Webex Meetings</fullName>
+                <default>false</default>
+                <label>Webex Meetings</label>
+            </value>
+            <value>
+                <fullName>WebSite-Watcher</fullName>
+                <default>false</default>
+                <label>WebSite-Watcher</label>
+            </value>
+            <value>
+                <fullName>XL-Connector</fullName>
+                <default>false</default>
+                <label>XL-Connector</label>
+            </value>
+            <value>
+                <fullName>ZeroBounce</fullName>
+                <default>false</default>
+                <label>ZeroBounce</label>
+            </value>
+            <value>
+                <fullName>Zoom for Government</fullName>
+                <default>false</default>
+                <label>Zoom for Government</label>
+            </value>
+            <value>
+                <fullName>ZoomInfo</fullName>
+                <default>false</default>
+                <label>ZoomInfo</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

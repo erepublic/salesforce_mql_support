@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Mark_as_Sent_List_View__c</fullName>
+    <externalId>false</externalId>
+    <formula>IF(ISPICKVAL(Status__c, &quot;Requested&quot;), 
+HYPERLINK(&quot;/&quot;&amp;Id&amp;&quot;/e?&amp;00N1400000BSJer=Sent&amp;save=1&amp;retURL=%2Fa0s%3Ffcf%3D00B1O00000APqtA&quot;, &quot;Mark as Sent&quot;), 
+&quot;&quot;)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Mark as Sent LV</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

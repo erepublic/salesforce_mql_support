@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>GOV_Policy_Breakfast_Financial_Litera</fullName>
+    <columns>Attendee_Name__c</columns>
+    <columns>Non_Qual__c</columns>
+    <columns>Reg_Type__c</columns>
+    <columns>NAME</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Event__c</field>
+        <operation>equals</operation>
+        <value>GOV - Policy Breakfast: Financial Literacy 2015</value>
+    </filters>
+    <label>GOV - Policy Breakfast: Financial Litera</label>
+</ListView>

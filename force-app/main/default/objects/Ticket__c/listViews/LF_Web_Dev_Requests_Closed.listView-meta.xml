@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>LF_Web_Dev_Requests_Closed</fullName>
+    <columns>Phase__c</columns>
+    <columns>NAME</columns>
+    <columns>Assignee__c</columns>
+    <columns>Title__c</columns>
+    <columns>Description__c</columns>
+    <columns>Date_Closed__c</columns>
+    <columns>Type__c</columns>
+    <columns>Requested_on_behalf_of__c</columns>
+    <columns>Parent_Ticket__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Requested_By__c</field>
+        <operation>contains</operation>
+        <value>Lauren Fahndrich</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Web</value>
+    </filters>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>greaterOrEqual</operation>
+        <value>7/1/2022 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>equals</operation>
+        <value>Closed,Canceled</value>
+    </filters>
+    <label>LF - Web Dev Requests - Closed</label>
+</ListView>

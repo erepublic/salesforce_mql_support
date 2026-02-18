@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>NJ124import</fullName>
+    <columns>NAME</columns>
+    <columns>CREATED_DATE</columns>
+    <columns>Status__c</columns>
+    <columns>Type__c</columns>
+    <columns>Email__c</columns>
+    <columns>First_Name__c</columns>
+    <columns>Last_Name__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Phone__c</columns>
+    <columns>Address_Line_1__c</columns>
+    <columns>City__c</columns>
+    <columns>State__c</columns>
+    <columns>Zip__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Email__c</field>
+        <operation>contains</operation>
+        <value>optery</value>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>New,In Progress</value>
+    </filters>
+    <label>Optery Open Requests</label>
+</ListView>

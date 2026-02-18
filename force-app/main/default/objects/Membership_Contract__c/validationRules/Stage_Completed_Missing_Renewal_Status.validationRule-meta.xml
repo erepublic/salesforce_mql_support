@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Stage_Completed_Missing_Renewal_Status</fullName>
+    <active>true</active>
+    <description
+  >Stage as &quot;Completed&quot; requires a value in Renewal Status field.</description>
+    <errorConditionFormula>AND(
+ISPICKVAL( Stage__c , &quot;Completed&quot;),
+ISPICKVAL( Renewal_Status__c , &quot;&quot;)
+)</errorConditionFormula>
+    <errorDisplayField>Renewal_Status__c</errorDisplayField>
+    <errorMessage
+  >Renewal Status field required when Stage is &quot;Completed&quot;</errorMessage>
+</ValidationRule>

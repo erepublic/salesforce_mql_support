@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Active_Service_Data_Sub_Processors</fullName>
+    <columns>NAME</columns>
+    <columns>Active_Sub_Processor__c</columns>
+    <columns>Sub_Processor__c</columns>
+    <columns>Website__c</columns>
+    <columns>DPA_Date__c</columns>
+    <columns>DP_Display_Type__c</columns>
+    <columns>DPA_Notes__c</columns>
+    <columns>Address__c</columns>
+    <columns>Location__c</columns>
+    <columns>DPA_Link__c</columns>
+    <columns>DP_Start_Date__c</columns>
+    <columns>DP_End_Date__c</columns>
+    <columns>Purpose_Services__c</columns>
+    <columns>Security_Certification_Link__c</columns>
+    <columns>Security_Certification_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Contract_Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed,Not Renewing</value>
+    </filters>
+    <label>Active Service Data Sub-Processors</label>
+</ListView>

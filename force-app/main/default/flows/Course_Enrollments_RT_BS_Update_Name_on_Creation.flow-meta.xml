@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Course_Enrollment_Name</name>
+        <label>Assign Course Enrollment Name</label>
+        <locationX>176</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>$Record.Name</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Course_Enrollment_Name</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference>var_Course_Id</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>$Record.Course__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Standardized_Course_Name__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >Get_Course.Standardized_Course_Name__c</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Course_Enrollment_Name</name>
+        <dataType>String</dataType>
+        <expression
+    >LEFT({!$Record.Course_Account__r.Name},{!f_Course_Name_Length}) &amp; 
+&quot; - &quot; &amp; 
+TEXT(YEAR({!$Record.Course_Enrollment_Date__c})) &amp; 
+&quot; - &quot; &amp; {!Get_Course.Course_Nickname__c} &amp; &quot; - &quot; &amp; 
+IF(AND({!$Record.Delivery_Contract__r.ContractNumber}=&quot;&quot;,{!$Record.Course_Account__c}=&quot;0013000000LtZ3UAAV&quot;),
+    &quot;Internal&quot;, 
+    IF({!$Record.Delivery_Contract__r.ContractNumber}=&quot;&quot;, 
+        &quot;No Contract&quot;, 
+        {!$Record.Delivery_Contract__r.ContractNumber}))</expression>
+    </formulas>
+    <formulas>
+        <name>f_Course_Name_Length</name>
+        <dataType>Number</dataType>
+        <expression>80-LEN(&quot; - &quot; &amp; 
+TEXT(YEAR({!$Record.Course_Enrollment_Date__c})) &amp; 
+&quot; - &quot; &amp; {!Get_Course.Course_Nickname__c} &amp; &quot; - &quot; &amp; 
+IF(AND({!$Record.Delivery_Contract__r.ContractNumber}=&quot;&quot;,{!$Record.Course_Account__c}=&quot;0013000000LtZ3UAAV&quot;),
+    &quot;Internal&quot;, 
+    IF({!$Record.Delivery_Contract__r.ContractNumber}=&quot;&quot;, 
+        &quot;No Contract&quot;, 
+        {!$Record.Delivery_Contract__r.ContractNumber})))</expression>
+        <scale>0</scale>
+    </formulas>
+    <formulas>
+        <name>f_Course_Nickname</name>
+        <dataType>String</dataType>
+        <expression>CASE({!$Record.Course__c}, 
+         &quot;aC45Y000000slmlSAA&quot;, &quot;HED Free Preview&quot;, 
+         &quot;aC45Y000000slmwSAA&quot;, &quot;HED&quot;, 
+         &quot;aC45Y000000sln0SAA&quot;, &quot;SLG Free Preview&quot;, 
+         &quot;aC45Y000000slmvSAA&quot;, &quot;K12 &amp; HED&quot;, 
+         &quot;aC45Y000000slmhSAA&quot;, &quot;K12 Free Preview&quot;, 
+         &quot;aC45Y000000slmgSAA&quot;, &quot;K12&quot;, 
+         &quot;aC45Y000000slmqSAA&quot;, &quot;K12 &amp; HED Free Preview&quot;, 
+         &quot;aC45Y000000slmSSAQ&quot;, &quot;SLG&quot;,
+         &quot;[Insert Course Nickname]&quot;)</expression>
+    </formulas>
+    <interviewLabel
+  >Course Enrollments - RT BS - Update Name on Creation {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Course Enrollments - RT BS - Update Name on Creation</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordLookups>
+        <name>Get_Course</name>
+        <label>Get Course</label>
+        <locationX>176</locationX>
+        <locationY>287</locationY>
+        <assignNullValuesIfNoRecordsFound
+    >false</assignNullValuesIfNoRecordsFound>
+        <connector>
+            <targetReference>Assign_Course_Enrollment_Name</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Id</field>
+            <operator>EqualTo</operator>
+            <value>
+                <elementReference>$Record.Course__c</elementReference>
+            </value>
+        </filters>
+        <getFirstRecordOnly>true</getFirstRecordOnly>
+        <object>Course__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordLookups>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Get_Course</targetReference>
+        </connector>
+        <object>Course_Enrollment__c</object>
+        <recordTriggerType>Create</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Draft</status>
+    <variables>
+        <name>var_Course_Id</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

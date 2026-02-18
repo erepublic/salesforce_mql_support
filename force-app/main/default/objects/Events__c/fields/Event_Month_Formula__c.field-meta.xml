@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Month_Formula__c</fullName>
+    <description
+  >Displays the first day of the month for the expected event date, for use in reporting.</description>
+    <formula>IF(
+  NOT(ISBLANK(Event_Start_Date__c)),
+  DATE(YEAR(Event_Start_Date__c), MONTH(Event_Start_Date__c), 1),
+  DATE(
+    Event_Year__c,
+    CASE(
+      TEXT(Event_Month__c),
+      &quot;January&quot;, 1,
+      &quot;February&quot;, 2,
+      &quot;March&quot;, 3,
+      &quot;April&quot;, 4,
+      &quot;May&quot;, 5,
+      &quot;June&quot;, 6,
+      &quot;July&quot;, 7,
+      &quot;August&quot;, 8,
+      &quot;September&quot;, 9,
+      &quot;October&quot;, 10,
+      &quot;November&quot;, 11,
+      &quot;December&quot;, 12,
+      1  
+    ),
+    1
+  )
+)</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >Displays the first day of the month for the expected event date, for use in reporting.</inlineHelpText>
+    <label>Event Month (Formula)</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

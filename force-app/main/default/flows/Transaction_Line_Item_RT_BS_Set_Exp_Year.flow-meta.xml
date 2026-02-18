@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>64.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description
+  >Sets Exp Year to the same year as the transaction date if the Exp Year is blank on save.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description>displays the year of the transaction date</description>
+        <name>Year_of_transaction</name>
+        <dataType>String</dataType>
+        <expression>TEXT(YEAR({!$Record.Transaction_Date__c}))</expression>
+    </formulas>
+    <interviewLabel
+  >Transaction Line Item - RT BS - Set Exp Year {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Transaction Line Item - RT BS - Set Exp Year</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordUpdates>
+        <name>Update_Triggering_Record</name>
+        <label>Update Triggering Record</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <inputAssignments>
+            <field>Exp_Year__c</field>
+            <value>
+                <elementReference>Year_of_transaction</elementReference>
+            </value>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Update_Triggering_Record</targetReference>
+        </connector>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>GL_Name__c</field>
+            <operator>Contains</operator>
+            <value>
+                <stringValue>1360</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Exp_Year__c</field>
+            <operator>EqualTo</operator>
+        </filters>
+        <object>c2g__codaTransactionLineItem__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

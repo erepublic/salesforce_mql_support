@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Scanner_Name__c</fullName>
+    <externalId>false</externalId>
+    <formula
+  >Scanner__r.Registrant_Name__r.FirstName &amp;&quot; &quot;&amp; Scanner__r.Registrant_Name__r.LastName</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Scanner Name</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

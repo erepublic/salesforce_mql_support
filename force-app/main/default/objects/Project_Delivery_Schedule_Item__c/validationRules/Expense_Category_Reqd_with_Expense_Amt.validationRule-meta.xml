@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Expense_Category_Reqd_with_Expense_Amt</fullName>
+    <active>true</active>
+    <description
+  >If a line item has an Expense Amount entered, it must also have an Expense Category selected.</description>
+    <errorConditionFormula>Expense_Amount__c &gt; 0
+&amp;&amp;
+TEXT( Expense_Category__c ) = &quot;&quot;</errorConditionFormula>
+    <errorDisplayField>Expense_Category__c</errorDisplayField>
+    <errorMessage>Please select an Expense Category.</errorMessage>
+</ValidationRule>

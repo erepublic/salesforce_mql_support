@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Recon_Status__c</fullName>
+    <description
+  >Active - Event has registrations that still need to be billed out.
+Submitted to Finance - All billings have been sent down to finance, and the event can now be reconciled.
+Reconciled - Finance has checked the General Ledger against the registrations for the event and made any adjustments.</description>
+    <inlineHelpText
+  >Active - Event has registrations that still need to be billed out.
+Submitted to Finance - All billings have been sent down to finance, and the event can now be reconciled.
+Reconciled - Finance has checked the General Ledger against the registrations.</inlineHelpText>
+    <label>Reconciliation Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Submitted to Finance</fullName>
+                <default>false</default>
+                <label>Submitted to Finance</label>
+            </value>
+            <value>
+                <fullName>Reconciled</fullName>
+                <default>false</default>
+                <label>Reconciled</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

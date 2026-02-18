@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Name__c</fullName>
+    <description
+  >PROGRAMMATIC FIELD: DO NOT EDIT. This field is used by the Master Class system to indicate to a user that they are logged in and acknowledged as who they registered under. It allows the contact to change, but not impact the user&apos;s ability to use the Master Class system.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >The student&apos;s name. Used by the Master Class system to indicate to a user that they are logged in and acknowledged as who they registered under.</inlineHelpText>
+    <label>Name</label>
+    <length>200</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

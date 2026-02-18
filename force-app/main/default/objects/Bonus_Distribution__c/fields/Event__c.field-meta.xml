@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event__c</fullName>
+    <description
+  >Shows the event name whether it&apos;s a partner event or internal.</description>
+    <externalId>false</externalId>
+    <formula>IF( Event_Name__c &lt;&gt;&quot;&quot;,  Event_Name__r.Name,
+IF( Partner_Event__c &lt;&gt; &quot;&quot;, Partner_Event__r.Name,
+Notes__c ))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Event</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

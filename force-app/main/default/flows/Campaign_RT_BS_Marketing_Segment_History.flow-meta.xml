@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>58.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Assign_Marketing_Segment_Exclusion_History</name>
+        <label>Assign Marketing Segment Exclusion History</label>
+        <locationX>50</locationX>
+        <locationY>911</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Marketing_Segment_Exclusion_History__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Segment_Exclusion_History</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <assignments>
+        <name>Assign_Marketing_Segment_Exclusion_Values</name>
+        <label>Assign Marketing Segment Exclusion Values</label>
+        <locationX>50</locationX>
+        <locationY>803</locationY>
+        <assignmentItems>
+            <assignToReference>var_Segment_Exclusions</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >$Record.Marketing_Segment_Exclusions__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Prior_Segment_Exclusion_History</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >$Record__Prior.Marketing_Segment_Exclusion_History__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference
+      >Assign_Marketing_Segment_Exclusion_History</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Marketing_Segment_History</name>
+        <label>Assign Marketing Segment History</label>
+        <locationX>50</locationX>
+        <locationY>503</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Marketing_Segment_History__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>f_Segment_Inclusion_History</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Were_Segment_Exclusions_Changed</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Assign_Marketing_Segment_Values</name>
+        <label>Assign Marketing Segment Values</label>
+        <locationX>50</locationX>
+        <locationY>395</locationY>
+        <assignmentItems>
+            <assignToReference>var_Segment_Inclusions</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >$Record.Marketing_Segment__c</elementReference>
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >var_Prior_Segment_Inclusion_History</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference
+        >$Record__Prior.Marketing_Segment_History__c</elementReference>
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Assign_Marketing_Segment_History</targetReference>
+        </connector>
+    </assignments>
+    <decisions>
+        <name>Were_Segment_Exclusions_Changed</name>
+        <label>Were Segment Exclusions Changed?</label>
+        <locationX>182</locationX>
+        <locationY>695</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Segment_Exclusions_were_Changed</name>
+            <conditionLogic>1 OR (2 AND 3)</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Marketing_Segment_Exclusions__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Marketing_Segment_Exclusions__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_Marketing_Segment_Exclusion_Values</targetReference>
+            </connector>
+            <label>Yes, Segment Exclusions were Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Were_Segment_Inclusions_Changed</name>
+        <label>Were Segment Inclusions Changed?</label>
+        <locationX>182</locationX>
+        <locationY>287</locationY>
+        <defaultConnector>
+            <targetReference>Were_Segment_Exclusions_Changed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel
+    >No, Segment Inclusions not changed</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Segment_Inclusions_Changed</name>
+            <conditionLogic>1 OR (2 AND 3)</conditionLogic>
+            <conditions>
+                <leftValueReference
+        >$Record.Marketing_Segment__c</leftValueReference>
+                <operator>IsChanged</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference
+        >$Record.Marketing_Segment__c</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>false</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.Id</leftValueReference>
+                <operator>IsNull</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Assign_Marketing_Segment_Values</targetReference>
+            </connector>
+            <label>Yes, Segment Inclusions Changed</label>
+        </rules>
+    </decisions>
+    <environments>Default</environments>
+    <formulas>
+        <name>f_Date_and_Initials</name>
+        <dataType>String</dataType>
+        <expression
+    >TEXT(MONTH({!$Flow.CurrentDate})) &amp; &quot;/&quot; &amp; TEXT(DAY({!$Flow.CurrentDate})) &amp; &quot;/&quot; &amp; RIGHT(TEXT(YEAR({!$Flow.CurrentDate})),2) &amp; &quot; &quot; &amp; UPPER(LEFT({!$User.Alias},2)) &amp; &quot;: &quot;</expression>
+    </formulas>
+    <formulas>
+        <name>f_Segment_Exclusion_History</name>
+        <dataType>String</dataType>
+        <expression>IF(
+
+ISNULL(
+
+{!var_Prior_Segment_Exclusion_History}),
+
+{!f_Date_and_Initials} &amp; SUBSTITUTE({!var_Segment_Exclusions}, &quot;;&quot;, &quot;; &quot;), 
+
+{!f_Date_and_Initials} &amp; SUBSTITUTE({!var_Segment_Exclusions}, &quot;;&quot;, &quot;; &quot;) &amp; BR() &amp; BR() &amp; {!var_Prior_Segment_Exclusion_History}
+
+)</expression>
+    </formulas>
+    <formulas>
+        <name>f_Segment_Inclusion_History</name>
+        <dataType>String</dataType>
+        <expression>IF(
+
+ISNULL(
+
+{!var_Prior_Segment_Inclusion_History}),
+
+{!f_Date_and_Initials} &amp; SUBSTITUTE({!var_Segment_Inclusions}, &quot;;&quot;, &quot;; &quot;), 
+
+{!f_Date_and_Initials} &amp; SUBSTITUTE({!var_Segment_Inclusions}, &quot;;&quot;, &quot;; &quot;) &amp; BR() &amp; BR() &amp; {!var_Prior_Segment_Inclusion_History}
+
+)</expression>
+    </formulas>
+    <interviewLabel
+  >Campaign - RT BS - Marketing Segment History {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Campaign - RT BS - Marketing Segment History</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>56</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Were_Segment_Inclusions_Changed</targetReference>
+        </connector>
+        <filterLogic>(1 OR 4) OR (2 AND (3 OR 5))</filterLogic>
+        <filters>
+            <field>Marketing_Segment__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Id</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Marketing_Segment__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Marketing_Segment_Exclusions__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Marketing_Segment_Exclusions__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Campaign</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Active</status>
+    <variables>
+        <name>var_Prior_Segment_Exclusion_History</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Prior_Segment_Inclusion_History</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Segment_Exclusions</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+    <variables>
+        <name>var_Segment_Inclusions</name>
+        <dataType>String</dataType>
+        <isCollection>false</isCollection>
+        <isInput>false</isInput>
+        <isOutput>false</isOutput>
+    </variables>
+</Flow>

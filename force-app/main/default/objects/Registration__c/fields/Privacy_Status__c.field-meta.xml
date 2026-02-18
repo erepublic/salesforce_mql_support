@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Privacy_Status__c</fullName>
+    <description>The registrant&apos;s Privacy Status.</description>
+    <externalId>false</externalId>
+    <formula>TEXT(Registrant_Name__r.Privacy_Status__c)</formula>
+    <label>Privacy Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

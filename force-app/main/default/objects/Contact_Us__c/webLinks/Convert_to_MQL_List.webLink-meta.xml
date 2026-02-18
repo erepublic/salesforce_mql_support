@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Convert_to_MQL_List</fullName>
+    <availability>online</availability>
+    <displayType>massActionButton</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <height>600</height>
+    <linkType>url</linkType>
+    <masterLabel>Convert to Lead</masterLabel>
+    <openType>sidebar</openType>
+    <protected>false</protected>
+    <requireRowSelection>true</requireRowSelection>
+    <url
+  >/flow/Contact_Us_SF_Convert_to_MQL?recordId={!Contact_Us__c.Id}&amp;retURL=https://erepublic--staging.sandbox.lightning.force.com/lightning/o/Contact_Us__c/home</url>
+</WebLink>

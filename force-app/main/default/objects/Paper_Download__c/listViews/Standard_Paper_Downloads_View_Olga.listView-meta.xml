@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Standard_Paper_Downloads_View_Olga</fullName>
+    <columns>Non_Qual__c</columns>
+    <columns>NAME</columns>
+    <columns>Comments__c</columns>
+    <columns>Download_Date__c</columns>
+    <columns>Registrant__c</columns>
+    <columns>Registrant_Company__c</columns>
+    <columns>Registrant_Title__c</columns>
+    <columns>Registrant_Email__c</columns>
+    <columns>Registrant_Demo_Agency_Function__c</columns>
+    <columns>Registrant_Demo_Branch_of_Govt__c</columns>
+    <columns>Registrant_Demo_Job_Function__c</columns>
+    <columns>Registrant_Demo_Job_Role__c</columns>
+    <columns>Registrant_State__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Paper__c</field>
+        <operation>contains</operation>
+        <value>GT/GOV - Darwin - Supplied - 251216 - Navigating TRAIGA</value>
+    </filters>
+    <filters>
+        <field>Non_Qual__c</field>
+        <operation>equals</operation>
+        <value>0</value>
+    </filters>
+    <label>Standard Paper Downloads View - Olga</label>
+</ListView>

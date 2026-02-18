@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_TC_Tickets_On_Hold</fullName>
+    <columns>Priority__c</columns>
+    <columns>NAME</columns>
+    <columns>Requested_By__c</columns>
+    <columns>Type__c</columns>
+    <columns>Title__c</columns>
+    <columns>Phase__c</columns>
+    <columns>Project_Notes__c</columns>
+    <columns>Created_Date__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>Working_Date__c</columns>
+    <columns>ETA__c</columns>
+    <columns>Age__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Assignee__c</field>
+        <operation>equals</operation>
+        <value>Tiffany Cianci</value>
+    </filters>
+    <filters>
+        <field>Phase__c</field>
+        <operation>equals</operation>
+        <value>See Asana</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Sales_Operations</value>
+    </filters>
+    <label>TC Tickets (Tracking in Asana)</label>
+</ListView>

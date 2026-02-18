@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Send_24_Hour_Reminder</name>
+        <label>Send 24 Hour Reminder</label>
+        <locationX>308</locationX>
+        <locationY>288</locationY>
+        <actionName
+    >Job_Ticket__c.Job_Tickets_Status_Completed_Pending_24_Hours</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Job_Ticket__c.Job_Tickets_Status_Completed_Pending_24_Hours</nameSegment>
+    </actionCalls>
+    <apiVersion>56.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description
+  >If the Job Ticket Status is in Completed - Pending Instructions after 24 hours, send email alert.</description>
+    <environments>Default</environments>
+    <interviewLabel
+  >Job Ticket - RT AS - Completed - Pending 24 hrs Email Alert {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Job Ticket - RT AS - Completed - Pending 24 hrs - Email Alert</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <doesRequireRecordChangedToMeetCriteria
+    >true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Status__c</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Completed - Pending Instructions</stringValue>
+            </value>
+        </filters>
+        <object>Job_Ticket__c</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <name
+      >Wait_1_Day_After_Status_is_Completed_Pending_Instructions</name>
+            <connector>
+                <targetReference>Send_24_Hour_Reminder</targetReference>
+            </connector>
+            <label
+      >Wait 1 Day After Status is Completed - Pending Instructions</label>
+            <offsetNumber>1</offsetNumber>
+            <offsetUnit>Days</offsetUnit>
+            <recordField>Status_Last_Updated__c</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

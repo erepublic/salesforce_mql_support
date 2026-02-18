@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Event_Type__c</fullName>
+    <description>The type/format of the event.</description>
+    <inlineHelpText>The type/format of the event.</inlineHelpText>
+    <label>Event Type</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CDG Event</fullName>
+                <default>false</default>
+                <label>CDG Event</label>
+            </value>
+            <value>
+                <fullName>Custom_Event</fullName>
+                <default>false</default>
+                <label>Custom_Event</label>
+            </value>
+            <value>
+                <fullName>Custom_Event w/ Website</fullName>
+                <default>false</default>
+                <label>Custom_Event w/ Website</label>
+            </value>
+            <value>
+                <fullName>Custom_Roundtable</fullName>
+                <default>false</default>
+                <label>Custom_Roundtable</label>
+            </value>
+            <value>
+                <fullName>Custom_Webinar</fullName>
+                <default>false</default>
+                <label>Custom_Webinar</label>
+            </value>
+            <value>
+                <fullName>EM Events</fullName>
+                <default>false</default>
+                <label>EM Events</label>
+            </value>
+            <value>
+                <fullName>Exec Event</fullName>
+                <default>false</default>
+                <label>Exec Event</label>
+            </value>
+            <value>
+                <fullName>Podcast</fullName>
+                <default>false</default>
+                <label>Podcast</label>
+            </value>
+            <value>
+                <fullName>Registration only</fullName>
+                <default>false</default>
+                <label>Registration only</label>
+            </value>
+            <value>
+                <fullName>Custom</fullName>
+                <default>false</default>
+                <label>Custom</label>
+            </value>
+            <value>
+                <fullName>Custom Roundtable</fullName>
+                <default>false</default>
+                <label>Custom Roundtable</label>
+            </value>
+            <value>
+                <fullName>Solution Series</fullName>
+                <default>false</default>
+                <label>Solution Series</label>
+            </value>
+            <value>
+                <fullName>Standard_Invitation only</fullName>
+                <default>false</default>
+                <label>Standard_Invitation only</label>
+            </value>
+            <value>
+                <fullName>Standard_Invitation only - no website</fullName>
+                <default>false</default>
+                <label>Standard_Invitation only - no website</label>
+            </value>
+            <value>
+                <fullName>Standard_Invitation only w/ Hub</fullName>
+                <default>false</default>
+                <label>Standard_Invitation only w/ Hub</label>
+            </value>
+            <value>
+                <fullName>Standard_Members Only</fullName>
+                <default>false</default>
+                <label>Standard_Members Only</label>
+            </value>
+            <value>
+                <fullName>Standard_Private and Public Sector</fullName>
+                <default>false</default>
+                <label>Standard_Private and Public Sector</label>
+            </value>
+            <value>
+                <fullName
+        >Standard_Private and Public Sector - no website</fullName>
+                <default>false</default>
+                <label>Standard_Private and Public Sector - no website</label>
+            </value>
+            <value>
+                <fullName>Standard_Program</fullName>
+                <default>false</default>
+                <label>Standard_Program</label>
+            </value>
+            <value>
+                <fullName>Standard_Program - no website</fullName>
+                <default>false</default>
+                <label>Standard_Program - no website</label>
+            </value>
+            <value>
+                <fullName>Standard_Program_Custom Event</fullName>
+                <default>false</default>
+                <label>Standard_Program_Custom Event</label>
+            </value>
+            <value>
+                <fullName>Standard_Program_Custom Event w/ Website</fullName>
+                <default>false</default>
+                <label>Standard_Program_Custom Event w/ Website</label>
+            </value>
+            <value>
+                <fullName>Standard_Program_Invitation only</fullName>
+                <default>false</default>
+                <label>Standard_Program_Invitation only</label>
+            </value>
+            <value>
+                <fullName>Standard_Program_Invitation only_no website</fullName>
+                <default>false</default>
+                <label>Standard_Program_Invitation only_no website</label>
+            </value>
+            <value>
+                <fullName>Standard_Program_Public Sector only</fullName>
+                <default>false</default>
+                <label>Standard_Program_Public Sector only</label>
+            </value>
+            <value>
+                <fullName>Standard_Public Sector only</fullName>
+                <default>false</default>
+                <label>Standard_Public Sector only</label>
+            </value>
+            <value>
+                <fullName>Standard_Public Sector only - no website</fullName>
+                <default>false</default>
+                <label>Standard_Public Sector only - no website</label>
+            </value>
+            <value>
+                <fullName>Standard_Public Sector only w/ Hub</fullName>
+                <default>false</default>
+                <label>Standard_Public Sector only w/ Hub</label>
+            </value>
+            <value>
+                <fullName
+        >Standard_Teleconference_Marketing - no website</fullName>
+                <default>false</default>
+                <label>Standard_Teleconference_Marketing - no website</label>
+            </value>
+            <value>
+                <fullName>Standard_Teleconference - no website</fullName>
+                <default>false</default>
+                <label>Standard_Teleconference - no website</label>
+            </value>
+            <value>
+                <fullName>Standard_Test Event</fullName>
+                <default>false</default>
+                <label>Standard_Test Event</label>
+            </value>
+            <value>
+                <fullName>Standard_Webinar_Marketing - no website</fullName>
+                <default>false</default>
+                <label>Standard_Webinar_Marketing - no website</label>
+            </value>
+            <value>
+                <fullName>Standard_Webinar_Program - no website</fullName>
+                <default>false</default>
+                <label>Standard_Webinar_Program - no website</label>
+            </value>
+            <value>
+                <fullName>Unconference</fullName>
+                <default>false</default>
+                <label>Unconference</label>
+            </value>
+            <value>
+                <fullName>Lunch &amp; Learn Webinar</fullName>
+                <default>false</default>
+                <label>Lunch &amp; Learn Webinar</label>
+            </value>
+            <value>
+                <fullName>State Editorial Roundtable</fullName>
+                <default>false</default>
+                <label>State Editorial Roundtable</label>
+            </value>
+            <value>
+                <fullName>State-Specific Webinar</fullName>
+                <default>false</default>
+                <label>State-Specific Webinar</label>
+            </value>
+            <value>
+                <fullName>Webinar</fullName>
+                <default>false</default>
+                <label>Webinar</label>
+            </value>
+            <value>
+                <fullName>Virtual Conversation</fullName>
+                <default>false</default>
+                <label>Virtual Conversation</label>
+            </value>
+            <value>
+                <fullName>Virtual Meeting</fullName>
+                <default>false</default>
+                <label>Virtual Meeting</label>
+            </value>
+            <value>
+                <fullName>Virtual Summit</fullName>
+                <default>false</default>
+                <label>Virtual Summit</label>
+            </value>
+            <value>
+                <fullName>Account Based Marketing</fullName>
+                <default>false</default>
+                <label>Account Based Marketing</label>
+            </value>
+            <value>
+                <fullName>Multi-Touch Nurture</fullName>
+                <default>false</default>
+                <label>Multi-Touch Nurture</label>
+            </value>
+            <value>
+                <fullName>Two Step Nurture</fullName>
+                <default>false</default>
+                <label>Two Step Nurture</label>
+            </value>
+            <value>
+                <fullName>Filtered Leads</fullName>
+                <default>false</default>
+                <label>Filtered Leads</label>
+            </value>
+            <value>
+                <fullName>Standard Leads</fullName>
+                <default>false</default>
+                <label>Standard Leads</label>
+            </value>
+            <value>
+                <fullName>Standard_Program_Custom Roundtable</fullName>
+                <default>false</default>
+                <label>Standard_Program_Custom Roundtable</label>
+            </value>
+            <value>
+                <fullName>Standard_Program_Webinar</fullName>
+                <default>false</default>
+                <label>Standard_Program_Webinar</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

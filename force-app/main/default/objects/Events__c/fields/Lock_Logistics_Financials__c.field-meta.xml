@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lock_Logistics_Financials__c</fullName>
+    <defaultValue>false</defaultValue>
+    <inlineHelpText
+  >When this field is checked, all Logistics Financial records associated with the event become read-only, except for the &quot;Next Year Budget&quot; field, which remains editable.</inlineHelpText>
+    <label>Lock Logistics Financials</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

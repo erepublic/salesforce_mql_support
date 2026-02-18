@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Discard</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>Discard</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url
+  >/{!Sales_Lead__c.Id}/e?&amp;00N1400000BCZzt=&quot;Discarded&quot;&amp;save=1&amp;retURL=%2F{!Sales_Lead__c.Id}</url>
+</WebLink>

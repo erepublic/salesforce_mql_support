@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Program</fullName>
+    <active>true</active>
+    <label>Program</label>
+    <picklistValues>
+        <picklist>Expiration_Risk_Reason__c</picklist>
+        <values>
+            <fullName>Client Dissatisfied with Service Value</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Competitive loss</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Lack of Funding</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Low usage</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Merger%2Facquisition</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>No longer focused on public sector</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Other</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>POC Not Engaged</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>POC Recently Changed</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Income_Status__c</picklist>
+        <values>
+            <fullName>Complete</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Needs Finance Review</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Level__c</picklist>
+        <values>
+            <fullName>Premier</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Standard</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Membership_Status__c</picklist>
+        <values>
+            <fullName>New Member</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewing Member</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Promo_Access_Type__c</picklist>
+        <values>
+            <fullName>Additional Month%28s%29</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Intent Insights</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Renewal_Assessment__c</picklist>
+        <values>
+            <fullName>Danger</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Good Standing</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Risk</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Renewal_Status__c</picklist>
+        <values>
+            <fullName>Expired</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewed with Downgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewed with Upgrade</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Renewal_Type__c</picklist>
+        <values>
+            <fullName>Renewed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewed with Downgrade</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewed with Upgrade</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Stage__c</picklist>
+        <values>
+            <fullName>Active</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Canceled</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Completed</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Not Started</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Type__c</picklist>
+        <values>
+            <fullName>AI</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>CJIS Council</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Cybersecurity Council</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>DC Large City County</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Digital States</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Future of Data</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>GE Council</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HE AI Council</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>HE CIO</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>K-12 Council</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>MaaS</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Upgrade_Level__c</picklist>
+        <values>
+            <fullName>Plus</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Premium</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Professional</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+    <picklistValues>
+        <picklist>Upgrade_Type__c</picklist>
+        <values>
+            <fullName>Mid-Contract</fullName>
+            <default>false</default>
+        </values>
+        <values>
+            <fullName>Renewed with Upgrade</fullName>
+            <default>false</default>
+        </values>
+    </picklistValues>
+</RecordType>

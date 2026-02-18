@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_Source__c</fullName>
+    <label>Lead Source</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Submitted a Form</fullName>
+                <default>false</default>
+                <label>Submitted a Form</label>
+            </value>
+            <value>
+                <fullName>Events Portal</fullName>
+                <default>false</default>
+                <label>Events Portal</label>
+            </value>
+            <value>
+                <fullName>Email</fullName>
+                <default>false</default>
+                <label>Email</label>
+            </value>
+            <value>
+                <fullName>Registered for a Webinar</fullName>
+                <default>false</default>
+                <label>Registered for a Webinar</label>
+            </value>
+            <value>
+                <fullName>Registered for an Event</fullName>
+                <default>false</default>
+                <label>Registered for an Event</label>
+            </value>
+            <value>
+                <fullName>Manual Marketing Review</fullName>
+                <default>false</default>
+                <label>Manual Marketing Review</label>
+            </value>
+            <value>
+                <fullName>Fit and Behavior Threshold Reached</fullName>
+                <default>false</default>
+                <label>Fit and Behavior Threshold Reached</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

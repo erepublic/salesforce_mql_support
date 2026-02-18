@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <description
+    >Alerts specific users when Advisory Board Details are changed (for events with details filled in for Advisory Board #1, Advisory Board #2, or Advisory Board #3).</description>
+        <name>Event_Advisory_Board_1_3_Details_Changed</name>
+        <label>Event - Advisory Board #1-#3 Details Changed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName
+    >Events__c.Event_Advisory_Board_1_3_Details_Changed</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Events__c.Event_Advisory_Board_1_3_Details_Changed</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <description
+    >Alerts specific users when Advisory Board Details are changed (for events with details filled in for only Advisory Board #1).</description>
+        <name>Event_Advisory_Board_1_Details_Changed</name>
+        <label>Event - Advisory Board #1 Details Changed</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName
+    >Events__c.Event_Advisory_Board_1_Details_Changed</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Events__c.Event_Advisory_Board_1_Details_Changed</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>AdvisoryBoardRouting</name>
+        <label>Advisory Board Details Routing</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>AB1_Only</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FR_AB2_AllBlank</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>FR_AB3_AllBlank</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Event_Advisory_Board_1_Details_Changed</targetReference>
+            </connector>
+            <label>AB #1 Details Changed</label>
+        </rules>
+        <rules>
+            <name>AB1_to_AB3</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FR_AB2orAB3_HasAnyValue</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Event_Advisory_Board_1_3_Details_Changed</targetReference>
+            </connector>
+            <label>AB #1-#3 Details Changed</label>
+        </rules>
+    </decisions>
+    <description>Replaces Two Events__c Workflow Rules:
+- Event - Advisory Board #1 Details Changed
+- Event - Advisory Board #1-#3 Details Changed
+
+Purpose:
+Sends notification emails when any Advisory Board (1–3) fields are updated, routing to different email alerts based on whether Advisory Board 2 and 3 sections are entirely blank or contain any values.
+
+Logic:
+- If all Advisory Board 2 and Advisory Board 3 fields are blank - send AB #1-only alert.
+- If any Advisory Board 2 or 3 field contains a value - send AB #1–#3 alert.</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>FR_AB2_AllBlank</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISBLANK($Record.Advisory_Board_2__c),
+ISBLANK($Record.Ad_Bd_2_Time__c),
+ISPICKVAL($Record.Ad_Bd_2_Format__c, &quot;&quot;),
+ISBLANK($Record.Ad_Bd_2_Details__c)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>FR_AB2orAB3_HasAnyValue</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+NOT(ISBLANK($Record.Advisory_Board_2__c)),
+NOT(ISBLANK($Record.Ad_Bd_2_Time__c)),
+NOT(ISPICKVAL($Record.Ad_Bd_2_Format__c, &quot;&quot;)),
+NOT(ISBLANK($Record.Ad_Bd_2_Details__c)),
+NOT(ISBLANK($Record.Advisory_Board_3__c)),
+NOT(ISBLANK($Record.Ad_Bd_3_Time__c)),
+NOT(ISPICKVAL($Record.Ad_Bd_3_Format__c, &quot;&quot;)),
+NOT(ISBLANK($Record.Ad_Bd_3_Details__c))
+)</expression>
+    </formulas>
+    <formulas>
+        <name>FR_AB3_AllBlank</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+ISBLANK($Record.Advisory_Board_3__c),
+ISBLANK($Record.Ad_Bd_3_Time__c),
+ISPICKVAL($Record.Ad_Bd_3_Format__c, &quot;&quot;),
+ISBLANK($Record.Ad_Bd_3_Details__c)
+)</expression>
+    </formulas>
+    <interviewLabel
+  >Event or Conference - RT AS - {!$Flow.CurrentDateTime}</interviewLabel>
+    <label
+  >Event or Conference - RT AS - Advisory Board change notifications</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>AdvisoryBoardRouting</targetReference>
+        </connector>
+        <filterLogic>or</filterLogic>
+        <filters>
+            <field>Advisory_Board_1__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Ad_Bd_1_Time__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Ad_Bd_1_Format__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Ad_Bd_1_Details__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Advisory_Board_2__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Ad_Bd_2_Time__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Ad_Bd_2_Format__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Ad_Bd_2_Details__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Advisory_Board_3__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Ad_Bd_3_Time__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Ad_Bd_3_Format__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Ad_Bd_3_Details__c</field>
+            <operator>IsChanged</operator>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <object>Events__c</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>

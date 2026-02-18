@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Treatments_Pending_Opportunity</fullName>
+    <columns>NAME</columns>
+    <columns>Pitch_Type__c</columns>
+    <columns>Title__c</columns>
+    <columns>Pending_Opportunity__c</columns>
+    <columns>Pending_Opp_Close_Date__c</columns>
+    <columns>Pending_Opp_Stage__c</columns>
+    <columns>Pending_Opp_Owner__c</columns>
+    <columns>Pending_Opp_Expiration__c</columns>
+    <columns>Expiration_Date__c</columns>
+    <columns>Treatment_Owner__c</columns>
+    <columns>Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>Pending Opportunity</value>
+    </filters>
+    <label>Pending Opportunity</label>
+</ListView>

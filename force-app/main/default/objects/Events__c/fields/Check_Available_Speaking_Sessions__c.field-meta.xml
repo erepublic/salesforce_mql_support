@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Check_Available_Speaking_Sessions__c</fullName>
+    <formula>IF( 
+  AND(
+    CONTAINS(Name, &quot;Virtual&quot;),
+    CONTAINS(Name, &quot;202&quot;)
+  ),
+  CASE( 
+    MOD(Event_Start_Date__c - DATE( 1900, 1, 7 ), 7 ), 
+    1, Event_Start_Date__c- 42, 
+    2, Event_Start_Date__c- 42, 
+    3, Event_Start_Date__c- 42, 
+    4, Event_Start_Date__c- 42, 
+    5, Event_Start_Date__c- 42, 
+    null 
+  ),
+CASE( 
+MOD(Event_Start_Date__c - DATE( 1900, 1, 7 ), 7 ), 
+1, Event_Start_Date__c- 20 - 50, 
+2, Event_Start_Date__c- 20 - 50, 
+3, Event_Start_Date__c- 20 - 50, 
+4, Event_Start_Date__c- 20 - 50, 
+5, Event_Start_Date__c- 20 - 50, 
+null 
+)
+)
+
+/* ORIGINAL FORMULA PRE-9/9/2020 EDIT PER TICKET #25944:
+CASE( 
+MOD(Event_Start_Date__c - DATE( 1900, 1, 7 ), 7 ), 
+1, Event_Start_Date__c- 20 - 50, 
+2, Event_Start_Date__c- 20 - 50, 
+3, Event_Start_Date__c- 20 - 50, 
+4, Event_Start_Date__c- 20 - 50, 
+5, Event_Start_Date__c- 20 - 50, 
+null 
+)
+*/</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <label>Anchor Deadline</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

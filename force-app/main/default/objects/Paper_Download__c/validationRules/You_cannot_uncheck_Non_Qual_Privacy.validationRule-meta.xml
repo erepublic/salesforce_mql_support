@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>You_cannot_uncheck_Non_Qual_Privacy</fullName>
+    <active>true</active>
+    <description
+  >You cannot uncheck Non-Qual if Privacy Removal Request is checked.</description>
+    <errorConditionFormula>Privacy_Removal_Request__c = TRUE
+&amp;&amp;
+Non_Qual__c = FALSE</errorConditionFormula>
+    <errorDisplayField>Non_Qual__c</errorDisplayField>
+    <errorMessage
+  >Do not uncheck Non-Qual, this is a Privacy Removal Request.</errorMessage>
+</ValidationRule>

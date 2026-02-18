@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Report_Status__c</fullName>
+    <description
+  >Shows the status of the report for this Amex Statement having been received by Accounts Payable.</description>
+    <inlineHelpText
+  >Shows the status of the report for this Amex Statement having been received by Accounts Payable.</inlineHelpText>
+    <label>Report Status</label>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Outstanding</fullName>
+                <default>true</default>
+                <label>Outstanding</label>
+            </value>
+            <value>
+                <fullName>Received - On-time</fullName>
+                <default>false</default>
+                <label>Received - On-time</label>
+            </value>
+            <value>
+                <fullName>Received - Late</fullName>
+                <default>false</default>
+                <label>Received - Late</label>
+            </value>
+            <value>
+                <fullName>Sent Back to Employee</fullName>
+                <default>false</default>
+                <label>Sent Back to Employee</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

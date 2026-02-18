@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Priority__c</fullName>
+    <label>Priority</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Big 5 / Top Priority</fullName>
+                <default>false</default>
+                <label>Big 5 / Top Priority</label>
+            </value>
+            <value>
+                <fullName>A-Level</fullName>
+                <default>false</default>
+                <label>A-Level</label>
+            </value>
+            <value>
+                <fullName>B-Level</fullName>
+                <default>false</default>
+                <label>B-Level</label>
+            </value>
+            <value>
+                <fullName>C-Level</fullName>
+                <default>false</default>
+                <label>C-Level</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

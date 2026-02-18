@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Copy_of_CommDev_Tickets_Unassigned</fullName>
+    <booleanFilter
+  >1 AND 2 AND 3 AND 4 AND ((5 AND 6 AND 7) OR (8 AND 9))</booleanFilter>
+    <columns>NAME</columns>
+    <columns>Title__c</columns>
+    <columns>Status__c</columns>
+    <columns>Phase__c</columns>
+    <columns>Priority__c</columns>
+    <columns>Assignee__c</columns>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>Requested_By__c</columns>
+    <columns>Frequency__c</columns>
+    <columns>Time_Estimate__c</columns>
+    <columns>Contact_Pull_Contact_Count__c</columns>
+    <columns>Campaign__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed,Void</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Government_List_Pull</value>
+    </filters>
+    <filters>
+        <field>OWNER.ALIAS</field>
+        <operation>notEqual</operation>
+        <value>tbell,hearn</value>
+    </filters>
+    <filters>
+        <field>Assignee__c</field>
+        <operation>notEqual</operation>
+        <value>,Eenie Yang</value>
+    </filters>
+    <filters>
+        <field>CREATED_DATE</field>
+        <operation>equals</operation>
+        <value>12/12/2025 12:00 AM</value>
+    </filters>
+    <filters>
+        <field>CREATEDBY_USER</field>
+        <operation>equals</operation>
+        <value>Gosia Colosimo</value>
+    </filters>
+    <filters>
+        <field>Title__c</field>
+        <operation>notContain</operation>
+        <value>Xappex Maintenance</value>
+    </filters>
+    <filters>
+        <field>Title__c</field>
+        <operation>equals</operation>
+        <value>Verification - Demo - Monthly Demo Card Coding</value>
+    </filters>
+    <filters>
+        <field>Assignee__c</field>
+        <operation>equals</operation>
+        <value>Bailey Dickens</value>
+    </filters>
+    <label>AudOps Tickets - Eenie Leave</label>
+</ListView>

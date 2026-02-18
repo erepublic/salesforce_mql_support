@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Memberships_Contracts_Promo_Expired</fullName>
+    <columns>NAME</columns>
+    <columns>Membership_Name__c</columns>
+    <columns>Type__c</columns>
+    <columns>Level__c</columns>
+    <columns>Promo_Access_Type__c</columns>
+    <columns>Promo_Access_Status__c</columns>
+    <columns>Promo_Access_Start__c</columns>
+    <columns>Promo_Access_End__c</columns>
+    <columns>Membership_Status__c</columns>
+    <columns>Stage__c</columns>
+    <columns>Renewal_Status__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Membership_Contract__c.Membership</value>
+    </filters>
+    <filters>
+        <field>Promo_Access_Status__c</field>
+        <operation>equals</operation>
+        <value>Expired</value>
+    </filters>
+    <filters>
+        <field>Promo_Access_Type__c</field>
+        <operation>notEqual</operation>
+    </filters>
+    <label>Memberships Contracts - Promo Expired</label>
+</ListView>

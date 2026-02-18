@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Tmp_Scanned_Id__c</fullName>
+    <description
+  >when set a trigger on insert will try to add a real registation_id</description>
+    <externalId>false</externalId>
+    <label>Tmp Scanned Id</label>
+    <length>15</length>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

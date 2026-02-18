@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Additional_POC__c</fullName>
+    <businessStatus>Active</businessStatus>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description
+  >Additional internal POC on this project to be included on email alerts (any user from sales, content studio, research, etc that need to be on alerts).</description>
+    <inlineHelpText
+  >Additional internal POC on this project to be included on email alerts (any user from sales, content studio, research, etc that need to be on alerts).</inlineHelpText>
+    <label>Additional POC</label>
+    <referenceTo>User</referenceTo>
+    <relationshipName>Projects7</relationshipName>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

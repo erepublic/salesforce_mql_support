@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CommDev_Hub_Surveys_Open</fullName>
+    <columns>Due_Date_Requested__c</columns>
+    <columns>NAME</columns>
+    <columns>Assignee__c</columns>
+    <columns>Title__c</columns>
+    <columns>Requested_By__c</columns>
+    <columns>Account__c</columns>
+    <columns>Survey_Status__c</columns>
+    <columns>Research_Project_Priority__c</columns>
+    <columns>Survey_Launch_Date__c</columns>
+    <columns>Survey_Responses__c</columns>
+    <columns>Quantity_Needed__c</columns>
+    <columns>Survey_of_Days_in_Field__c</columns>
+    <columns>Status__c</columns>
+    <columns>Survey_Closed_Date__c</columns>
+    <columns>Project_Notes__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Status__c</field>
+        <operation>notEqual</operation>
+        <value>Completed,Void</value>
+    </filters>
+    <filters>
+        <field>Email_Deployment_Type__c</field>
+        <operation>equals</operation>
+        <value
+    >Interview,Survey_Client,Survey (Internal),Awards Call for Entry</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>Ticket__c.Government_List_Pull</value>
+    </filters>
+    <label>AudOps - Survey/Interview/Awards - Open</label>
+</ListView>

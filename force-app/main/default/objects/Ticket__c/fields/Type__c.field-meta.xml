@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Type__c</fullName>
+    <description>Bug - Existing functionality is not working properly.
+Feature Request - New functionality needed.
+Project - Large or Complex task which may require bugs to be fixed and new feature requests.</description>
+    <label>Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Account Development Template</fullName>
+                <default>false</default>
+                <label>Account Development Template</label>
+            </value>
+            <value>
+                <fullName>Account Merge</fullName>
+                <default>false</default>
+                <label>Account Merge</label>
+            </value>
+            <value>
+                <fullName>Account Research</fullName>
+                <default>false</default>
+                <label>Account Research</label>
+            </value>
+            <value>
+                <fullName>Backup for Sales</fullName>
+                <default>false</default>
+                <label>Backup for Sales</label>
+            </value>
+            <value>
+                <fullName>Backup Sys Admin</fullName>
+                <default>false</default>
+                <label>Backup Sys Admin</label>
+            </value>
+            <value>
+                <fullName>Buffer Queue</fullName>
+                <default>false</default>
+                <label>Buffer Queue</label>
+            </value>
+            <value>
+                <fullName>Bug</fullName>
+                <default>false</default>
+                <label>Bug</label>
+            </value>
+            <value>
+                <fullName>Bulk Update / Data Import</fullName>
+                <default>false</default>
+                <label>Bulk Update / Data Import</label>
+            </value>
+            <value>
+                <fullName>Cloud Service Support</fullName>
+                <default>false</default>
+                <label>Cloud Service Support</label>
+            </value>
+            <value>
+                <fullName>Contact Updates</fullName>
+                <default>false</default>
+                <label>Contact Updates</label>
+            </value>
+            <value>
+                <fullName>Contract Request</fullName>
+                <default>false</default>
+                <label>Contract Request</label>
+            </value>
+            <value>
+                <fullName>Create Opportunity Only</fullName>
+                <default>false</default>
+                <label>Create Opportunity Only</label>
+            </value>
+            <value>
+                <fullName
+        >Credit App Approval Request - Existing Client</fullName>
+                <default>false</default>
+                <label>Credit App Approval Request - Existing Client</label>
+            </value>
+            <value>
+                <fullName>Credit App Approval Request - New Client</fullName>
+                <default>false</default>
+                <label>Credit App Approval Request - New Client</label>
+            </value>
+            <value>
+                <fullName>Custom Cycle - Misc. Request</fullName>
+                <default>false</default>
+                <label>Custom Cycle - Misc. Request</label>
+            </value>
+            <value>
+                <fullName>Data Processor / Certification</fullName>
+                <default>false</default>
+                <label>Data Processor / Certification</label>
+            </value>
+            <value>
+                <fullName>Data Pull (Navigator)</fullName>
+                <default>false</default>
+                <label>Data Pull (Navigator)</label>
+            </value>
+            <value>
+                <fullName>Email Alerts</fullName>
+                <default>false</default>
+                <label>Email Alerts</label>
+            </value>
+            <value>
+                <fullName>Email Blast</fullName>
+                <default>false</default>
+                <label>Email Blast</label>
+            </value>
+            <value>
+                <fullName>Event Contract (Excel)</fullName>
+                <default>false</default>
+                <label>Event Contract (Excel)</label>
+            </value>
+            <value>
+                <fullName>Feature Request</fullName>
+                <default>false</default>
+                <label>Feature Request</label>
+            </value>
+            <value>
+                <fullName>Field Deletion</fullName>
+                <default>false</default>
+                <label>Field Deletion</label>
+            </value>
+            <value>
+                <fullName>Firepacket</fullName>
+                <default>false</default>
+                <label>Firepacket</label>
+            </value>
+            <value>
+                <fullName>Flow</fullName>
+                <default>false</default>
+                <label>Flow</label>
+            </value>
+            <value>
+                <fullName>Formula</fullName>
+                <default>false</default>
+                <label>Formula</label>
+            </value>
+            <value>
+                <fullName>General Help</fullName>
+                <default>false</default>
+                <label>General Help</label>
+            </value>
+            <value>
+                <fullName>Gift Card</fullName>
+                <default>false</default>
+                <label>Gift Card</label>
+            </value>
+            <value>
+                <fullName>Event Contract Updates</fullName>
+                <default>false</default>
+                <label>Inventory</label>
+            </value>
+            <value>
+                <fullName>Invoice Request</fullName>
+                <default>false</default>
+                <label>Invoice Request</label>
+            </value>
+            <value>
+                <fullName>Licenses</fullName>
+                <default>false</default>
+                <label>Licenses</label>
+            </value>
+            <value>
+                <fullName>Lightning_App_Page_Updates</fullName>
+                <default>false</default>
+                <label>Lightning App Page Updates</label>
+            </value>
+            <value>
+                <fullName>Marketing Campaign</fullName>
+                <default>false</default>
+                <label>Marketing Campaign</label>
+            </value>
+            <value>
+                <fullName>Marketing Project</fullName>
+                <default>false</default>
+                <label>Marketing Project</label>
+            </value>
+            <value>
+                <fullName>Membership Merge</fullName>
+                <default>false</default>
+                <label>Membership Merge</label>
+            </value>
+            <value>
+                <fullName>Menu</fullName>
+                <default>false</default>
+                <label>Menu</label>
+            </value>
+            <value>
+                <fullName>Nav Sales Support</fullName>
+                <default>false</default>
+                <label>Nav Sales Support</label>
+            </value>
+            <value>
+                <fullName>New Product</fullName>
+                <default>false</default>
+                <label>New Product</label>
+            </value>
+            <value>
+                <fullName>Opp Follow Up</fullName>
+                <default>false</default>
+                <label>Opp Follow Up</label>
+            </value>
+            <value>
+                <fullName>Ops Support</fullName>
+                <default>false</default>
+                <label>Ops Support</label>
+            </value>
+            <value>
+                <fullName>Other</fullName>
+                <default>false</default>
+                <label>Other</label>
+            </value>
+            <value>
+                <fullName>Paid Social Campaign</fullName>
+                <default>false</default>
+                <label>Paid Social Campaign</label>
+            </value>
+            <value>
+                <fullName>Permissions / User Maintenance</fullName>
+                <default>false</default>
+                <label>Permissions / User Maintenance</label>
+            </value>
+            <value>
+                <fullName>Process Builder</fullName>
+                <default>false</default>
+                <label>Process Builder</label>
+            </value>
+            <value>
+                <fullName>Product Management</fullName>
+                <default>false</default>
+                <label>Product Management</label>
+            </value>
+            <value>
+                <fullName>Project</fullName>
+                <default>false</default>
+                <label>Project</label>
+            </value>
+            <value>
+                <fullName>Promotional Materials</fullName>
+                <default>false</default>
+                <label>Promotional Materials</label>
+            </value>
+            <value>
+                <fullName>Proposal / Contract</fullName>
+                <default>false</default>
+                <label>Proposal / Contract</label>
+            </value>
+            <value>
+                <fullName>Proposal Request</fullName>
+                <default>false</default>
+                <label>Proposal Request</label>
+            </value>
+            <value>
+                <fullName>Proposal w/Contract Page Request</fullName>
+                <default>false</default>
+                <label>Proposal w/Contract Page Request</label>
+            </value>
+            <value>
+                <fullName>QC / Troubleshooting</fullName>
+                <default>false</default>
+                <label>QC / Troubleshooting</label>
+            </value>
+            <value>
+                <fullName>Report / Dashboard</fullName>
+                <default>false</default>
+                <label>Report / Dashboard</label>
+            </value>
+            <value>
+                <fullName
+        >Request to Invoice - Approval Required per Cycle</fullName>
+                <default>false</default>
+                <label>Request to Invoice - Approval Required per Cycle</label>
+            </value>
+            <value>
+                <fullName>Request to Invoice w/o PO</fullName>
+                <default>false</default>
+                <label>Request to Invoice w/o PO</label>
+            </value>
+            <value>
+                <fullName>ROI Deck</fullName>
+                <default>false</default>
+                <label>ROI Doc</label>
+            </value>
+            <value>
+                <fullName>Routing Request</fullName>
+                <default>false</default>
+                <label>Routing Request</label>
+            </value>
+            <value>
+                <fullName>Sales Enablement Materials</fullName>
+                <default>false</default>
+                <label>Sales Enablement Materials</label>
+            </value>
+            <value>
+                <fullName>Sales Materials</fullName>
+                <default>false</default>
+                <label>Sales Materials</label>
+            </value>
+            <value>
+                <fullName>Sales Rep Support</fullName>
+                <default>false</default>
+                <label>Sales Rep Support</label>
+            </value>
+            <value>
+                <fullName>Scope Document</fullName>
+                <default>false</default>
+                <label>Scope Document</label>
+            </value>
+            <value>
+                <fullName>Social Post</fullName>
+                <default>false</default>
+                <label>Social Post</label>
+            </value>
+            <value>
+                <fullName>Stalled Delivery Projects</fullName>
+                <default>false</default>
+                <label>Stalled Delivery Projects</label>
+            </value>
+            <value>
+                <fullName>Strategy</fullName>
+                <default>false</default>
+                <label>Strategy</label>
+            </value>
+            <value>
+                <fullName>System Documentation</fullName>
+                <default>false</default>
+                <label>System Documentation</label>
+            </value>
+            <value>
+                <fullName>System Update</fullName>
+                <default>false</default>
+                <label>System Update</label>
+            </value>
+            <value>
+                <fullName>Targeted Outreach</fullName>
+                <default>false</default>
+                <label>Targeted Outreach</label>
+            </value>
+            <value>
+                <fullName>Task</fullName>
+                <default>false</default>
+                <label>Task</label>
+            </value>
+            <value>
+                <fullName>Territory Exception</fullName>
+                <default>false</default>
+                <label>Territory Exception</label>
+            </value>
+            <value>
+                <fullName>Toolkit / Hub Updates</fullName>
+                <default>false</default>
+                <label>Toolkit / Hub Updates</label>
+            </value>
+            <value>
+                <fullName>Training / Support</fullName>
+                <default>false</default>
+                <label>Training / Support</label>
+            </value>
+            <value>
+                <fullName>Unlock Request</fullName>
+                <default>false</default>
+                <label>Unlock Request</label>
+            </value>
+            <value>
+                <fullName>User Activate / Deactivation</fullName>
+                <default>false</default>
+                <label>User Activate / Deactivation</label>
+            </value>
+            <value>
+                <fullName>Validation Rule</fullName>
+                <default>false</default>
+                <label>Validation Rule</label>
+            </value>
+            <value>
+                <fullName>Weekly SF Export</fullName>
+                <default>false</default>
+                <label>Weekly SF Export</label>
+            </value>
+            <value>
+                <fullName>Workbook / Analysis</fullName>
+                <default>false</default>
+                <label>Workbook / Analysis</label>
+            </value>
+            <value>
+                <fullName>Workflow Rule</fullName>
+                <default>false</default>
+                <label>Workflow Rule</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

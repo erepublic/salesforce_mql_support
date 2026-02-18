@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Privacy_Queue_Holly</fullName>
+    <columns>NAME</columns>
+    <columns>Date_Received__c</columns>
+    <columns>Closed_Date__c</columns>
+    <columns>Status__c</columns>
+    <columns>Type__c</columns>
+    <columns>Email__c</columns>
+    <columns>First_Name__c</columns>
+    <columns>Last_Name__c</columns>
+    <columns>Notes__c</columns>
+    <columns>Contact__c</columns>
+    <columns>Privacy_Status_Contact__c</columns>
+    <columns>Privacy_Status_Date_Contact__c</columns>
+    <columns>Confirmation_Email_Send_Date__c</columns>
+    <columns>Confirmation_Email_Sent_By__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>Type__c</field>
+        <operation>equals</operation>
+        <value
+    >Erase my personal information,Opt-out of the sale of my information</value>
+    </filters>
+    <filters>
+        <field>Contact__c</field>
+        <operation>equals</operation>
+    </filters>
+    <filters>
+        <field>Status__c</field>
+        <operation>equals</operation>
+        <value>New</value>
+    </filters>
+    <filters>
+        <field>Privacy_Vendor__c</field>
+        <operation>notContain</operation>
+        <value>atlas</value>
+    </filters>
+    <filters>
+        <field>Last_Name__c</field>
+        <operation>startsWith</operation>
+        <value>e,f,g,h,i,j,k,l,m,n</value>
+    </filters>
+    <label>Privacy Queue - Holly</label>
+</ListView>

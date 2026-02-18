@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Category__c</fullName>
+    <description
+  >Choose the income or expense category for this item.</description>
+    <inlineHelpText
+  >Choose the income or expense category for this item.</inlineHelpText>
+    <label>Category</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>CDE Custom Event</fullName>
+                <default>false</default>
+                <label>CDE Custom Event</label>
+            </value>
+            <value>
+                <fullName>CDE Custom Media</fullName>
+                <default>false</default>
+                <label>CDE Custom Media</label>
+            </value>
+            <value>
+                <fullName>CDE Custom Video</fullName>
+                <default>false</default>
+                <label>CDE Custom Video</label>
+            </value>
+            <value>
+                <fullName>CDE Demand Gen</fullName>
+                <default>false</default>
+                <label>CDE Demand Gen</label>
+            </value>
+            <value>
+                <fullName>CDE Digital Marketing</fullName>
+                <default>false</default>
+                <label>CDE Digital Marketing</label>
+            </value>
+            <value>
+                <fullName>CDE Research</fullName>
+                <default>false</default>
+                <label>CDE Research</label>
+            </value>
+            <value>
+                <fullName>CDE Webinar</fullName>
+                <default>false</default>
+                <label>CDE Webinar</label>
+            </value>
+            <value>
+                <fullName>GOV Custom Event</fullName>
+                <default>false</default>
+                <label>GOV Custom Event</label>
+            </value>
+            <value>
+                <fullName>GOV Custom Media</fullName>
+                <default>false</default>
+                <label>GOV Custom Media</label>
+            </value>
+            <value>
+                <fullName>GOV Demand Gen</fullName>
+                <default>false</default>
+                <label>GOV Demand Gen</label>
+            </value>
+            <value>
+                <fullName>GOV Digital Marketing</fullName>
+                <default>false</default>
+                <label>GOV Digital Marketing</label>
+            </value>
+            <value>
+                <fullName>GOV Research</fullName>
+                <default>false</default>
+                <label>GOV Research</label>
+            </value>
+            <value>
+                <fullName>GOV Webinar</fullName>
+                <default>false</default>
+                <label>GOV Webinar</label>
+            </value>
+            <value>
+                <fullName>GT Custom Event</fullName>
+                <default>false</default>
+                <label>GT Custom Event</label>
+            </value>
+            <value>
+                <fullName>GT Custom Media</fullName>
+                <default>false</default>
+                <label>GT Custom Media</label>
+            </value>
+            <value>
+                <fullName>GT Custom Video</fullName>
+                <default>false</default>
+                <label>GT Custom Video</label>
+            </value>
+            <value>
+                <fullName>GT Demand Gen</fullName>
+                <default>false</default>
+                <label>GT Demand Gen</label>
+            </value>
+            <value>
+                <fullName>GT Digital Marketing</fullName>
+                <default>false</default>
+                <label>GT Digital Marketing</label>
+            </value>
+            <value>
+                <fullName>GT Research</fullName>
+                <default>false</default>
+                <label>GT Research</label>
+            </value>
+            <value>
+                <fullName>GT Webinar</fullName>
+                <default>false</default>
+                <label>GT Webinar</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

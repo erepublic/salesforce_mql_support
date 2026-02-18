@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Contact_Pull_Contact_Count__c</fullName>
+    <label>Request Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Audience Estimate/Count</fullName>
+                <default>false</default>
+                <label>Audience Estimate</label>
+            </value>
+            <value>
+                <fullName>Audience List</fullName>
+                <default>false</default>
+                <label>Audience List</label>
+            </value>
+            <value>
+                <fullName>Bulk Import/Update</fullName>
+                <default>false</default>
+                <label>Bulk Import/Update</label>
+            </value>
+            <value>
+                <fullName>Contact Merge</fullName>
+                <default>false</default>
+                <label>Contact Merge</label>
+            </value>
+            <value>
+                <fullName>Contact Verification</fullName>
+                <default>false</default>
+                <label>Contact Verification</label>
+            </value>
+            <value>
+                <fullName>Database Maintenance</fullName>
+                <default>false</default>
+                <label>Database Maintenance</label>
+            </value>
+            <value>
+                <fullName>Email Deployment</fullName>
+                <default>false</default>
+                <label>Email Deployment</label>
+            </value>
+            <value>
+                <fullName>Get Contacts</fullName>
+                <default>false</default>
+                <label>Get Contacts</label>
+            </value>
+            <value>
+                <fullName>License/Vendor Management</fullName>
+                <default>false</default>
+                <label>License/Vendor Management</label>
+            </value>
+            <value>
+                <fullName>Privacy Compliance</fullName>
+                <default>false</default>
+                <label>Privacy Compliance</label>
+            </value>
+            <value>
+                <fullName>Registration Import/Update</fullName>
+                <default>false</default>
+                <label>Registration Import/Update</label>
+            </value>
+            <value>
+                <fullName>Reports/Dashboards</fullName>
+                <default>false</default>
+                <label>Reports/Dashboards</label>
+            </value>
+            <value>
+                <fullName>Training</fullName>
+                <default>false</default>
+                <label>Training</label>
+            </value>
+            <value>
+                <fullName>Email Deployment - Awards</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Email Deployment - Awards</label>
+            </value>
+            <value>
+                <fullName>Email Deployment - Custom Newsletter</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Email Deployment - Custom Newsletter</label>
+            </value>
+            <value>
+                <fullName>Email Deployment - Interview</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Email Deployment - Interview</label>
+            </value>
+            <value>
+                <fullName>Survey Deployment</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Email Deployment - Survey</label>
+            </value>
+            <value>
+                <fullName>Hoovers Update</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Hoovers Update</label>
+            </value>
+            <value>
+                <fullName>Import</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Import</label>
+            </value>
+            <value>
+                <fullName>Leads</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Leads</label>
+            </value>
+            <value>
+                <fullName>Trade Out List</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Trade Out List</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

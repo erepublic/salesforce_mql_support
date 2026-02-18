@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Survey_Checkbox__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description
+  >Checkbox on paper survey question &quot;Check here if you plan to purchase products or solutions for this topic.&quot;</description>
+    <label>Plan to Purchase</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Cancellation_Reason__c</fullName>
+    <description>Reason for the cancellation of the subscription.</description>
+    <inlineHelpText
+  >Reason for the cancellation of the subscription.</inlineHelpText>
+    <label>Cancellation Reason</label>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>BAD ADDRESS</fullName>
+                <default>false</default>
+                <label>Bad Address</label>
+            </value>
+            <value>
+                <fullName>BAD EMAIL</fullName>
+                <default>false</default>
+                <label>Bad Email</label>
+            </value>
+            <value>
+                <fullName>CR</fullName>
+                <default>false</default>
+                <label>Customer Request</label>
+            </value>
+            <value>
+                <fullName>DECEASED</fullName>
+                <default>false</default>
+                <label>Deceased</label>
+            </value>
+            <value>
+                <fullName>DUP</fullName>
+                <default>false</default>
+                <label>Duplicate</label>
+            </value>
+            <value>
+                <fullName>No longer works at organization</fullName>
+                <default>false</default>
+                <label>No longer works at organization</label>
+            </value>
+            <value>
+                <fullName>PUB</fullName>
+                <default>false</default>
+                <label>Publisher</label>
+            </value>
+            <value>
+                <fullName>RETIRED</fullName>
+                <default>false</default>
+                <label>Retired</label>
+            </value>
+            <value>
+                <fullName>Bad Email (Global Opt Out)</fullName>
+                <default>false</default>
+                <label>Bad Email (Global Opt Out)</label>
+            </value>
+            <value>
+                <fullName>Bad Email (Missing Email)</fullName>
+                <default>false</default>
+                <label>Bad Email (Missing Email)</label>
+            </value>
+            <value>
+                <fullName>Bad Email (Hard Bounce)</fullName>
+                <default>false</default>
+                <label>Bad Email (Hard Bounce)</label>
+            </value>
+            <value>
+                <fullName>Bad Email (Inactive Email)</fullName>
+                <default>false</default>
+                <label>Bad Email (Inactive Email)</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

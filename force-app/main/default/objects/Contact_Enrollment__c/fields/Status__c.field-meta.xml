@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Status__c</fullName>
+    <label>Status</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Complete</fullName>
+                <default>false</default>
+                <label>Complete</label>
+            </value>
+            <value>
+                <fullName>In Progress</fullName>
+                <default>false</default>
+                <label>In Progress</label>
+            </value>
+            <value>
+                <fullName>Not Started</fullName>
+                <default>true</default>
+                <label>Not Started</label>
+            </value>
+            <value>
+                <fullName>Deactivated</fullName>
+                <default>false</default>
+                <label>Deactivated</label>
+            </value>
+            <value>
+                <fullName>Unenrolled</fullName>
+                <default>false</default>
+                <label>Unenrolled</label>
+            </value>
+            <value>
+                <fullName>Absent</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Absent</label>
+            </value>
+            <value>
+                <fullName>Declined</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Declined</label>
+            </value>
+            <value>
+                <fullName>Failed</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Failed</label>
+            </value>
+            <value>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Not Applicable</label>
+            </value>
+            <value>
+                <fullName>Not Complete</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Not Complete</label>
+            </value>
+            <value>
+                <fullName>On Waitlist</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>On Waitlist</label>
+            </value>
+            <value>
+                <fullName>Pending Approval</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Pending Approval</label>
+            </value>
+            <value>
+                <fullName>Pending Evaluation Required</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Pending Evaluation Required</label>
+            </value>
+            <value>
+                <fullName>Pending Proctor</fullName>
+                <default>false</default>
+                <isActive>false</isActive>
+                <label>Pending Proctor</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

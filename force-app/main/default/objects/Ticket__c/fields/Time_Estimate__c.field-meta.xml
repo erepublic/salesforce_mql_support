@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Time_Estimate__c</fullName>
+    <description
+  >Displays the total number of hours the ticket will take to complete.</description>
+    <externalId>false</externalId>
+    <inlineHelpText
+  >Displays the total number of hours the ticket will take to complete.</inlineHelpText>
+    <label>Time Estimate</label>
+    <precision>5</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

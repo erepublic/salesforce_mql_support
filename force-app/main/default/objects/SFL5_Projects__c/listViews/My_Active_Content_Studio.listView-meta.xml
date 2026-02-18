@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ListView xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>My_Active_Content_Studio</fullName>
+    <booleanFilter
+  >(1 AND 2 AND (3 OR 4)) OR (5 AND 6 AND (3 OR 4))</booleanFilter>
+    <columns>Project_Phase__c</columns>
+    <columns>Project_Stage__c</columns>
+    <columns>Product__c</columns>
+    <columns>NAME</columns>
+    <columns>Project_Update_Note__c</columns>
+    <columns>Project_Type__c</columns>
+    <filterScope>Everything</filterScope>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Custom_Media</value>
+    </filters>
+    <filters>
+        <field>Project_Stage__c</field>
+        <operation>notEqual</operation>
+        <value>Delivered,Completed,Cancelled</value>
+    </filters>
+    <filters>
+        <field>Is_Project_Resource_Current_User_Project__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>Is_Project_Owner_2_Current_User__c</field>
+        <operation>equals</operation>
+        <value>1</value>
+    </filters>
+    <filters>
+        <field>RECORDTYPE</field>
+        <operation>equals</operation>
+        <value>SFL5_Projects__c.Project_Content_Studio</value>
+    </filters>
+    <filters>
+        <field>Project_Status_Display__c</field>
+        <operation>notEqual</operation>
+        <value>Product Delivered,Cancelled</value>
+    </filters>
+    <label>My Active - Content Studio</label>
+</ListView>

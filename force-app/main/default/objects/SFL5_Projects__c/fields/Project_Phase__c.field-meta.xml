@@ -1,0 +1,741 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Project_Phase__c</fullName>
+    <label>Project Phase</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>true</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <controllingField>Project_Status__c</controllingField>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Waiting</fullName>
+                <default>false</default>
+                <label>Waiting</label>
+            </value>
+            <value>
+                <fullName>Scheduling Kick-off Call</fullName>
+                <default>false</default>
+                <label>Scheduling Kick-off Call</label>
+            </value>
+            <value>
+                <fullName>Waiting on Client</fullName>
+                <default>false</default>
+                <label>Waiting on Client</label>
+            </value>
+            <value>
+                <fullName>Waiting on Content Studio</fullName>
+                <default>false</default>
+                <label>Waiting on Content Studio</label>
+            </value>
+            <value>
+                <fullName>Drafting Promo</fullName>
+                <default>false</default>
+                <label>Drafting Promo</label>
+            </value>
+            <value>
+                <fullName>Event In Progress</fullName>
+                <default>false</default>
+                <label>Event In Progress</label>
+            </value>
+            <value>
+                <fullName>Engaging Writer</fullName>
+                <default>false</default>
+                <label>Engaging Writer</label>
+            </value>
+            <value>
+                <fullName>Conducting SME Interviews</fullName>
+                <default>false</default>
+                <label>Conducting SME Interviews</label>
+            </value>
+            <value>
+                <fullName>Developing Outline</fullName>
+                <default>false</default>
+                <label>Developing Outline</label>
+            </value>
+            <value>
+                <fullName>Outline with Editor</fullName>
+                <default>false</default>
+                <label>Outline with Editor</label>
+            </value>
+            <value>
+                <fullName>Outline with Client</fullName>
+                <default>false</default>
+                <label>Outline with Client</label>
+            </value>
+            <value>
+                <fullName>Conducting Public Sector Interviews</fullName>
+                <default>false</default>
+                <label>Conducting Public Sector Interviews</label>
+            </value>
+            <value>
+                <fullName>Developing Draft</fullName>
+                <default>false</default>
+                <label>Developing Draft</label>
+            </value>
+            <value>
+                <fullName>Draft with Editor</fullName>
+                <default>false</default>
+                <label>Draft with Editor</label>
+            </value>
+            <value>
+                <fullName>Draft with Client</fullName>
+                <default>false</default>
+                <label>Draft with Client</label>
+            </value>
+            <value>
+                <fullName>Developing Design</fullName>
+                <default>false</default>
+                <label>Developing Design</label>
+            </value>
+            <value>
+                <fullName>Design with Editor</fullName>
+                <default>false</default>
+                <label>Design with Editor</label>
+            </value>
+            <value>
+                <fullName>Design with Client</fullName>
+                <default>false</default>
+                <label>Design with Client</label>
+            </value>
+            <value>
+                <fullName>Pre-Launch</fullName>
+                <default>false</default>
+                <label>Pre-Launch</label>
+            </value>
+            <value>
+                <fullName>In-Production</fullName>
+                <default>false</default>
+                <label>In-Production</label>
+            </value>
+            <value>
+                <fullName>Final Internal Review</fullName>
+                <default>false</default>
+                <label>Final Internal Review</label>
+            </value>
+            <value>
+                <fullName>Delivering Leads</fullName>
+                <default>false</default>
+                <label>Delivering Leads</label>
+            </value>
+            <value>
+                <fullName>Post-Production Required</fullName>
+                <default>false</default>
+                <label>Post-Production Required</label>
+            </value>
+            <value>
+                <fullName>Completed</fullName>
+                <default>false</default>
+                <label>Completed</label>
+            </value>
+            <value>
+                <fullName>Cancelled</fullName>
+                <default>false</default>
+                <label>Cancelled</label>
+            </value>
+        </valueSetDefinition>
+        <valueSettings>
+            <controllingFieldValue
+      >Webinar: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >White Paper: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Virtual Conversation: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Event: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Infographic: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Case Study: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Custom: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Executive Q&amp;A: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Lunch Webinar: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Research Report: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Roundtable: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Editorial Roundtable: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Sponsored Article: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Social Toolkit: Pre-Production</controllingFieldValue>
+            <valueName>Scheduling Kick-off Call</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Webinar: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >White Paper: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Virtual Conversation: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Event: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Infographic: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Case Study: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Custom: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Executive Q&amp;A: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Lunch Webinar: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Research Report: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Roundtable: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Editorial Roundtable: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Sponsored Article: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Demand Gen: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Social Toolkit: Pre-Production</controllingFieldValue>
+            <valueName>Waiting on Client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Webinar: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Virtual Conversation: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Event: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Lunch Webinar: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Roundtable: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Editorial Roundtable: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Demand Gen: Pre-Production</controllingFieldValue>
+            <valueName>Drafting Promo</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Webinar: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Virtual Conversation: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Event: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Lunch Webinar: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Roundtable: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Editorial Roundtable: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar: In-Production</controllingFieldValue>
+            <valueName>Event In Progress</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Webinar: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >White Paper: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Virtual Conversation: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Executive Q&amp;A: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >ICYMI: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Infographic: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Case Study: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Custom: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Event: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Lunch Webinar: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Research Report: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Roundtable: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Roundtable: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Sponsored Article: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Editorial Roundtable: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Demand Gen: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Virtual Q&amp;A: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Social Toolkit: Product Delivered</controllingFieldValue>
+            <valueName>Completed</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >White Paper: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Infographic: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Case Study: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Executive Q&amp;A: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Research Report: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Sponsored Article: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: Pre-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: Pre-Production</controllingFieldValue>
+            <valueName>Engaging Writer</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >White Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Infographic: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Case Study: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Executive Q&amp;A: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Research Report: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Sponsored Article: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: In-Production</controllingFieldValue>
+            <valueName>Conducting SME Interviews</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >White Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Infographic: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: In-Production</controllingFieldValue>
+            <valueName>Developing Outline</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >White Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Infographic: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: In-Production</controllingFieldValue>
+            <valueName>Outline with Editor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >White Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Infographic: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: In-Production</controllingFieldValue>
+            <valueName>Outline with Client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >White Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Case Study: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Executive Q&amp;A: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Sponsored Article: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: In-Production</controllingFieldValue>
+            <valueName>Conducting Public Sector Interviews</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >White Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Case Study: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Executive Q&amp;A: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Research Report: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Sponsored Article: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: In-Production</controllingFieldValue>
+            <valueName>Developing Draft</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >White Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Case Study: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Executive Q&amp;A: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Research Report: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Sponsored Article: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: In-Production</controllingFieldValue>
+            <valueName>Draft with Editor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >White Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Case Study: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Executive Q&amp;A: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Research Report: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Sponsored Article: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: In-Production</controllingFieldValue>
+            <valueName>Draft with Client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >White Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Infographic: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Case Study: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Executive Q&amp;A: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Research Report: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: In-Production</controllingFieldValue>
+            <valueName>Developing Design</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >White Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Infographic: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Case Study: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Executive Q&amp;A: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Research Report: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: In-Production</controllingFieldValue>
+            <valueName>Design with Editor</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >White Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Infographic: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Case Study: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Executive Q&amp;A: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Research Report: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: In-Production</controllingFieldValue>
+            <valueName>Design with Client</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >White Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Infographic: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Case Study: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Executive Q&amp;A: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Research Report: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Sponsored Article: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: In-Production</controllingFieldValue>
+            <valueName>Final Internal Review</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >White Paper: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Executive Q&amp;A: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Lunch &amp; Learn Webinar: Post-Event Delivery</controllingFieldValue>
+            <controllingFieldValue
+      >State-Specific Webinar: Post-Event Delivery</controllingFieldValue>
+            <controllingFieldValue
+      >Virtual Conversation: Post-Event Delivery</controllingFieldValue>
+            <controllingFieldValue
+      >Handbook: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Webinar: Post-Event Delivery</controllingFieldValue>
+            <controllingFieldValue
+      >Infographic: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Case Study: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Custom: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Event: Post-Event Delivery</controllingFieldValue>
+            <controllingFieldValue
+      >Persona-Based Paper: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Issue Brief: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Position Paper: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Research Report: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Rapid Roadmap: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Custom Roundtable: Post-Event Delivery</controllingFieldValue>
+            <controllingFieldValue
+      >Editorial Roundtable: Post-Event Delivery</controllingFieldValue>
+            <controllingFieldValue
+      >Demand Gen: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Thought Leadership Paper: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Go-to-Guide: Product Delivered</controllingFieldValue>
+            <controllingFieldValue
+      >Social Toolkit: Product Delivered</controllingFieldValue>
+            <valueName>Post-Production Required</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Cancelled</controllingFieldValue>
+            <valueName>Cancelled</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Waiting</controllingFieldValue>
+            <valueName>Waiting</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue>Custom: In-Production</controllingFieldValue>
+            <controllingFieldValue
+      >Social Toolkit: In-Production</controllingFieldValue>
+            <valueName>In-Production</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Demand Gen: Pre-Production</controllingFieldValue>
+            <valueName>Waiting on Content Studio</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Demand Gen: Pre-Production</controllingFieldValue>
+            <valueName>Pre-Launch</valueName>
+        </valueSettings>
+        <valueSettings>
+            <controllingFieldValue
+      >Demand Gen: In-Production</controllingFieldValue>
+            <valueName>Delivering Leads</valueName>
+        </valueSettings>
+    </valueSet>
+</CustomField>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Gift_Card_Type__c</fullName>
+    <label>Gift Card Type</label>
+    <required>false</required>
+    <trackFeedHistory>false</trackFeedHistory>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Amazon</fullName>
+                <default>false</default>
+                <label>Amazon</label>
+            </value>
+            <value>
+                <fullName>Target</fullName>
+                <default>false</default>
+                <label>Target</label>
+            </value>
+            <value>
+                <fullName>Carry Over</fullName>
+                <default>false</default>
+                <label>Carry Over</label>
+            </value>
+            <value>
+                <fullName>Funds Transfer</fullName>
+                <default>false</default>
+                <label>Funds Transfer</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

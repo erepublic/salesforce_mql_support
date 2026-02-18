@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <assignments>
+        <name>Clear_Email_Subscriptions_on_Opt_Out</name>
+        <label>Clear Email Subscriptions on Opt-Out</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Awards_CDE__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Awards_CDG__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Awards_GOV__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Circ_CDE_Digital_Ed__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Circ_CDE_Renewal__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Circ_GOV_Digital_Ed__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Circ_GT_Renewal__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Events_CDE__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Events_CDG__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Events_EE__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Events_EM__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Events_GOV__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Events_GOV__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Events_GT__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Events_TW__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_GOV_Market_Insight__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_GOV_GOV_Daily__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_GT_Market_Insight__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_GT_Cybersecurity__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_GT_Biz__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_GT_DC__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_GT_EM_News__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_GT_GovTech_Daily__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_GT_Special_Dist__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_GT_AI__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_ER_SLED__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_EM_Market_Insight__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_CDE_Market_Insight__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_CDE_K_12__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_CDE_HED__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_news_NAV_Member__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_NAV_Nav_Blast__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_News_NAV_Navigator__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Papers_CDE__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Papers_EM__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Papers_GOV__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Papers_GT__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Promo_CDE__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Promo_EM__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Promo_GOV__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Promo_GT__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Promo_Partner_Opt_In__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Promo_TW__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Surveys_GT__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Circ_GOV_Renewal__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_Circ_GT_Digital_Ed__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <stringValue />
+            </value>
+        </assignmentItems>
+        <connector>
+            <targetReference>Any_Email_Group_Field_Changed</targetReference>
+        </connector>
+    </assignments>
+    <assignments>
+        <name>Update_Email_Group_History</name>
+        <label>Update Email Group History</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <assignmentItems>
+            <assignToReference
+      >$Record.Email_Group_History__c</assignToReference>
+            <operator>Assign</operator>
+            <value>
+                <elementReference>FR_EG_HistoryNewValue</elementReference>
+            </value>
+        </assignmentItems>
+    </assignments>
+    <decisions>
+        <name>Any_Email_Group_Field_Changed</name>
+        <label>Any Email Group Field Changed?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Default Outcome</defaultConnectorLabel>
+        <rules>
+            <name>Yes_Email_Group_Changed</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FR_EG_AnyChanged</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Update_Email_Group_History</targetReference>
+            </connector>
+            <label>Yes Email Group Changed</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Global_Opt_out</name>
+        <label>Global Opt-out?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnector>
+            <targetReference>Any_Email_Group_Field_Changed</targetReference>
+        </defaultConnector>
+        <defaultConnectorLabel
+    >Global Out-out Not checked</defaultConnectorLabel>
+        <rules>
+            <name>Global_Opt_out_Checked</name>
+            <conditionLogic>and</conditionLogic>
+            <conditions>
+                <leftValueReference>FR_EG_OptOutNow</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <booleanValue>true</booleanValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference
+        >Clear_Email_Subscriptions_on_Opt_Out</targetReference>
+            </connector>
+            <label>Global Opt-out Checked</label>
+        </rules>
+    </decisions>
+    <description
+  >To track changes to Email Groups and log the change in the Email Group Changes field</description>
+    <environments>Default</environments>
+    <formulas>
+        <name>FR_EG_AnyChanged</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+    {!FR_EG_AnyChanged_WF1},
+    {!FR_EG_AnyChanged_WF2},
+    {!FR_EG_AnyChanged_WF3}
+)</expression>
+    </formulas>
+    <formulas>
+        <name>FR_EG_AnyChanged_WF1</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+    TEXT($Record.Email_Group_Awards_CDE__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Awards_CDE__c),
+    TEXT($Record.Email_Group_Awards_CDG__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Awards_CDG__c),
+    TEXT($Record.Email_Group_Awards_GOV__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Awards_GOV__c),
+    TEXT($Record.Email_Group_Circ_CDE_Digital_Ed__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Circ_CDE_Digital_Ed__c),
+    TEXT($Record.Email_Group_Circ_CDE_Renewal__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Circ_CDE_Renewal__c),
+    TEXT($Record.Email_Group_Circ_GOV_Digital_Ed__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Circ_GOV_Digital_Ed__c),
+    TEXT($Record.Email_Group_Circ_GOV_Renewal__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Circ_GOV_Renewal__c),
+    TEXT($Record.Email_Group_Circ_GT_Digital_Ed__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Circ_GT_Digital_Ed__c),
+    TEXT($Record.Email_Group_Circ_GT_Renewal__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Circ_GT_Renewal__c),
+    TEXT($Record.Email_Group_Events_CDE__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Events_CDE__c),
+    TEXT($Record.Email_Group_Events_CDG__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Events_CDG__c),
+    TEXT($Record.Email_Group_Events_EE__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Events_EE__c),
+    TEXT($Record.Email_Group_Events_EM__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Events_EM__c),
+    TEXT($Record.Email_Group_Events_GOV__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Events_GOV__c),
+    TEXT($Record.Email_Group_Events_GT__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Events_GT__c),
+    TEXT($Record.Email_Group_Events_TW__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Events_TW__c),
+    TEXT($Record.Email_Group_News_CDE_HED__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_CDE_HED__c),
+    TEXT($Record.Email_Group_News_CDE_K_12__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_CDE_K_12__c),
+    TEXT($Record.Email_Group_News_GOV_GOV_Daily__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GOV_GOV_Daily__c)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>FR_EG_AnyChanged_WF2</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+    TEXT($Record.Email_Group_News_GT_DC__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GT_DC__c),
+    TEXT($Record.Email_Group_News_GT_EM_News__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GT_EM_News__c),
+    TEXT($Record.Email_Group_News_GT_GovTech_Daily__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GT_GovTech_Daily__c),
+    TEXT($Record.Email_Group_news_NAV_Member__c) &lt;&gt; TEXT($Record__Prior.Email_Group_news_NAV_Member__c),
+    TEXT($Record.Email_Group_News_NAV_Nav_Blast__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_NAV_Nav_Blast__c),
+    TEXT($Record.Email_Group_News_NAV_Navigator__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_NAV_Navigator__c),
+    TEXT($Record.Email_Group_Papers_CDE__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Papers_CDE__c),
+    TEXT($Record.Email_Group_Papers_EM__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Papers_EM__c),
+    TEXT($Record.Email_Group_Papers_GOV__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Papers_GOV__c),
+    TEXT($Record.Email_Group_Papers_GT__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Papers_GT__c),
+    TEXT($Record.Email_Group_Promo_CDE__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Promo_CDE__c),
+    TEXT($Record.Email_Group_Promo_EM__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Promo_EM__c),
+    TEXT($Record.Email_Group_Promo_GOV__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Promo_GOV__c),
+    TEXT($Record.Email_Group_Promo_GT__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Promo_GT__c),
+    TEXT($Record.Email_Group_Promo_Partner_Opt_In__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Promo_Partner_Opt_In__c)
+)</expression>
+    </formulas>
+    <formulas>
+        <name>FR_EG_AnyChanged_WF3</name>
+        <dataType>Boolean</dataType>
+        <expression>OR(
+    TEXT($Record.Email_Group_Promo_TW__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Promo_TW__c),
+    TEXT($Record.Email_Group_Surveys_GT__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Surveys_GT__c),
+
+    TEXT($Record.Email_Group_News_CDE_Market_Insight__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_CDE_Market_Insight__c),
+    TEXT($Record.Email_Group_News_GOV_Market_Insight__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GOV_Market_Insight__c),
+    TEXT($Record.Email_Group_News_GT_Market_Insight__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GT_Market_Insight__c),
+    TEXT($Record.Email_Group_News_ER_SLED__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_ER_SLED__c),
+
+    TEXT($Record.Email_Group_News_GT_Biz__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GT_Biz__c),
+
+    TEXT($Record.Email_Group_Awards_Digital_Counties__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Awards_Digital_Counties__c),
+    TEXT($Record.Email_Group_Awards_Digital_Cities__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Awards_Digital_Cities__c),
+    TEXT($Record.Email_Group_Awards_Govt_Exp__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Awards_Govt_Exp__c),
+    TEXT($Record.Email_Group_Awards_Best_of__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Awards_Best_of__c),
+
+    TEXT($Record.Email_Group_News_GT_AI__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GT_AI__c),
+    TEXT($Record.Email_Group_News_GT_Cybersecurity__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GT_Cybersecurity__c),
+
+    /* Checkbox: no TEXT() */
+    $Record.HasOptedOutOfEmail &lt;&gt; $Record__Prior.HasOptedOutOfEmail
+)</expression>
+    </formulas>
+    <formulas>
+        <name>FR_EG_ChangesText</name>
+        <dataType>String</dataType>
+        <expression>{!FR_EG_ChangesText_WF1} &amp;
+{!FR_EG_ChangesText_WF2} &amp;
+{!FR_EG_ChangesText_WF3}</expression>
+    </formulas>
+    <formulas>
+        <name>FR_EG_ChangesText_WF1</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(TEXT($Record.Email_Group_Awards_CDE__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Awards_CDE__c),
+  &quot;Awards_CDE changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Awards_CDE__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Awards_CDG__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Awards_CDG__c),
+  &quot;Awards_CDG changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Awards_CDG__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Awards_GOV__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Awards_GOV__c),
+  &quot;Awards_GOV changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Awards_GOV__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Circ_CDE_Digital_Ed__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Circ_CDE_Digital_Ed__c),
+  &quot;Circ_CDE_Digital_Ed changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Circ_CDE_Digital_Ed__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Circ_CDE_Renewal__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Circ_CDE_Renewal__c),
+  &quot;Circ_CDE_Renewal changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Circ_CDE_Renewal__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Circ_GOV_Digital_Ed__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Circ_GOV_Digital_Ed__c),
+  &quot;Circ_GOV_Digital_Ed changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Circ_GOV_Digital_Ed__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Circ_GOV_Renewal__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Circ_GOV_Renewal__c),
+  &quot;Circ_GOV_Renewal changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Circ_GOV_Renewal__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Circ_GT_Digital_Ed__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Circ_GT_Digital_Ed__c),
+  &quot;Circ_GT_Digital_Ed changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Circ_GT_Digital_Ed__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Circ_GT_Renewal__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Circ_GT_Renewal__c),
+  &quot;Circ_GT_Renewal changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Circ_GT_Renewal__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Events_CDE__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Events_CDE__c),
+  &quot;Events_CDE changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Events_CDE__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Events_CDG__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Events_CDG__c),
+  &quot;Events_CDG changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Events_CDG__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Events_EE__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Events_EE__c),
+  &quot;Events_EE changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Events_EE__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Events_EM__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Events_EM__c),
+  &quot;Events_EM changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Events_EM__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Events_GOV__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Events_GOV__c),
+  &quot;Events_GOV changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Events_GOV__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Events_GT__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Events_GT__c),
+  &quot;Events_GT changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Events_GT__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Events_TW__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Events_TW__c),
+  &quot;Events_TW changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Events_TW__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_News_CDE_HED__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_CDE_HED__c),
+  &quot;News_CDE_HED changed to &apos;&quot; &amp; TEXT($Record.Email_Group_News_CDE_HED__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_News_CDE_K_12__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_CDE_K_12__c),
+  &quot;News_CDE_K_12 changed to &apos;&quot; &amp; TEXT($Record.Email_Group_News_CDE_K_12__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_News_GOV_GOV_Daily__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GOV_GOV_Daily__c),
+  &quot;News_GOV_GOV_Daily changed to &apos;&quot; &amp; TEXT($Record.Email_Group_News_GOV_GOV_Daily__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; )</expression>
+    </formulas>
+    <formulas>
+        <name>FR_EG_ChangesText_WF2</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(TEXT($Record.Email_Group_News_GT_DC__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GT_DC__c),
+  &quot;News_GT_DC changed to &apos;&quot; &amp; TEXT($Record.Email_Group_News_GT_DC__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_News_GT_EM_News__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GT_EM_News__c),
+  &quot;News_GT_EM_News changed to &apos;&quot; &amp; TEXT($Record.Email_Group_News_GT_EM_News__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_News_GT_GovTech_Daily__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GT_GovTech_Daily__c),
+  &quot;News_GT_GovTech_Daily changed to &apos;&quot; &amp; TEXT($Record.Email_Group_News_GT_GovTech_Daily__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_news_NAV_Member__c) &lt;&gt; TEXT($Record__Prior.Email_Group_news_NAV_Member__c),
+  &quot;News_NAV_Member changed to &apos;&quot; &amp; TEXT($Record.Email_Group_news_NAV_Member__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_News_NAV_Nav_Blast__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_NAV_Nav_Blast__c),
+  &quot;News_NAV_Nav_Blast changed to &apos;&quot; &amp; TEXT($Record.Email_Group_News_NAV_Nav_Blast__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_News_NAV_Navigator__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_NAV_Navigator__c),
+  &quot;News_NAV_Navigator changed to &apos;&quot; &amp; TEXT($Record.Email_Group_News_NAV_Navigator__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Papers_CDE__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Papers_CDE__c),
+  &quot;Papers_CDE changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Papers_CDE__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Papers_EM__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Papers_EM__c),
+  &quot;Papers_EM changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Papers_EM__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Papers_GOV__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Papers_GOV__c),
+  &quot;Papers_GOV changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Papers_GOV__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Papers_GT__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Papers_GT__c),
+  &quot;Papers_GT changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Papers_GT__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Promo_CDE__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Promo_CDE__c),
+  &quot;Promo_CDE changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Promo_CDE__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Promo_EM__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Promo_EM__c),
+  &quot;Promo_EM changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Promo_EM__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Promo_GOV__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Promo_GOV__c),
+  &quot;Promo_GOV changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Promo_GOV__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Promo_GT__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Promo_GT__c),
+  &quot;Promo_GT changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Promo_GT__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Promo_Partner_Opt_In__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Promo_Partner_Opt_In__c),
+  &quot;Promo_Partner_Opt_In changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Promo_Partner_Opt_In__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; )</expression>
+    </formulas>
+    <formulas>
+        <name>FR_EG_ChangesText_WF3</name>
+        <dataType>String</dataType>
+        <expression
+    >IF(TEXT($Record.Email_Group_Promo_TW__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Promo_TW__c),
+  &quot;Promo_TW changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Promo_TW__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Surveys_GT__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Surveys_GT__c),
+  &quot;Surveys_GT changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Surveys_GT__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_News_CDE_Market_Insight__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_CDE_Market_Insight__c),
+  &quot;CDE_Market_Insight changed to &apos;&quot; &amp; TEXT($Record.Email_Group_News_CDE_Market_Insight__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_News_GOV_Market_Insight__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GOV_Market_Insight__c),
+  &quot;GOV_Market_Insight changed to &apos;&quot; &amp; TEXT($Record.Email_Group_News_GOV_Market_Insight__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_News_GT_Market_Insight__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GT_Market_Insight__c),
+  &quot;GT_Market_Insight changed to &apos;&quot; &amp; TEXT($Record.Email_Group_News_GT_Market_Insight__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_News_ER_SLED__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_ER_SLED__c),
+  &quot;News_ER_SLED changed to &apos;&quot; &amp; TEXT($Record.Email_Group_News_ER_SLED__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_News_GT_Biz__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GT_Biz__c),
+  &quot;News_GT_Biz changed to &apos;&quot; &amp; TEXT($Record.Email_Group_News_GT_Biz__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Awards_Digital_Counties__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Awards_Digital_Counties__c),
+  &quot;Awards_Digital_Counties changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Awards_Digital_Counties__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Awards_Digital_Cities__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Awards_Digital_Cities__c),
+  &quot;Awards_Digital_Cities changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Awards_Digital_Cities__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Awards_Govt_Exp__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Awards_Govt_Exp__c),
+  &quot;Awards_Govt_Exp changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Awards_Govt_Exp__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_Awards_Best_of__c) &lt;&gt; TEXT($Record__Prior.Email_Group_Awards_Best_of__c),
+  &quot;Awards_Best_of changed to &apos;&quot; &amp; TEXT($Record.Email_Group_Awards_Best_of__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_News_GT_AI__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GT_AI__c),
+  &quot;News_GT_AI changed to &apos;&quot; &amp; TEXT($Record.Email_Group_News_GT_AI__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF(TEXT($Record.Email_Group_News_GT_Cybersecurity__c) &lt;&gt; TEXT($Record__Prior.Email_Group_News_GT_Cybersecurity__c),
+  &quot;News_GT_Cybersecurity changed to &apos;&quot; &amp; TEXT($Record.Email_Group_News_GT_Cybersecurity__c) &amp; &quot;&apos;.&quot; &amp; BR(), &quot;&quot; ) &amp;
+IF($Record.HasOptedOutOfEmail &lt;&gt; $Record__Prior.HasOptedOutOfEmail,
+  &quot;Global Opt &quot; &amp; IF($Record.HasOptedOutOfEmail, &quot;Out&quot;, &quot;In&quot;) &amp; &quot;.&quot; &amp; BR(),
+  &quot;&quot;
+)</expression>
+    </formulas>
+    <formulas>
+        <name>FR_EG_HistoryNewValue</name>
+        <dataType>String</dataType>
+        <expression>&quot;[&quot; &amp;
+TEXT(DATEVALUE($Flow.CurrentDateTime)) &amp; &quot; &quot; &amp;
+$User.Alias &amp;
+&quot;] &quot; &amp; BR() &amp;
+{!FR_EG_ChangesText} &amp;
+BR() &amp;
+IF(
+  ISBLANK($Record__Prior.Email_Group_History__c),
+  &quot;&quot;,
+  $Record__Prior.Email_Group_History__c
+)</expression>
+    </formulas>
+    <formulas>
+        <description>Detect a new global opt-out (FALSE → TRUE)</description>
+        <name>FR_EG_OptOutNow</name>
+        <dataType>Boolean</dataType>
+        <expression>AND(
+    $Record.HasOptedOutOfEmail = TRUE,
+    $Record__Prior.HasOptedOutOfEmail = FALSE
+)</expression>
+    </formulas>
+    <interviewLabel
+  >Contact - RT BS - Field Assignments {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contact - RT BS - Email Group Changes</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Global_Opt_out</targetReference>
+        </connector>
+        <object>Contact</object>
+        <recordTriggerType>Update</recordTriggerType>
+        <triggerType>RecordBeforeSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>

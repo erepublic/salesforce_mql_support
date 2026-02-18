@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionCalls>
+        <name>Draft24h_SendEmail</name>
+        <label>Draft 24h - Send Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName
+    >Contract.Delivery_Contract_status_Draft_24_Hours</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Contract.Delivery_Contract_status_Draft_24_Hours</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Draft48h_SendEmail</name>
+        <label>Draft 48h - Send Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName
+    >Contract.Delivery_Contract_status_Draft_48_Hours</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Contract.Delivery_Contract_status_Draft_48_Hours</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Draft72h_SendEmail</name>
+        <label>Draft 72h - Send Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName
+    >Contract.Delivery_Contract_status_Draft_72_Hours</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Contract.Delivery_Contract_status_Draft_72_Hours</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Editing2h_SendEmail</name>
+        <label>Editing 2h - Send Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName>Contract.Delivery_Contract_status_Editing</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment>Contract.Delivery_Contract_status_Editing</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <actionCalls>
+        <name>Editing4h_SendEmail</name>
+        <label>Editing 4h - Send Email</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <actionName
+    >Contract.Delivery_Contract_status_Editing_4_Hours</actionName>
+        <actionType>emailAlert</actionType>
+        <flowTransactionModel>CurrentTransaction</flowTransactionModel>
+        <inputParameters>
+            <name>SObjectRowId</name>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputParameters>
+        <nameSegment
+    >Contract.Delivery_Contract_status_Editing_4_Hours</nameSegment>
+        <offset>0</offset>
+    </actionCalls>
+    <apiVersion>65.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <decisions>
+        <name>Draft24h_StillValid</name>
+        <label>Draft 24h - Still Valid?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Not in Draft</defaultConnectorLabel>
+        <rules>
+            <name>Still_Draft24h</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4 OR 5 OR 6 OR 7)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Draft</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AV7yAAG</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000001RYWeAAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>012a0000001RKA9AAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000001RYWjAAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AVmNAAW</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AVoOAAW</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Draft24h_SendEmail</targetReference>
+            </connector>
+            <label>Still Draft</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Draft48h_StillValid</name>
+        <label>Draft 48h - Still Valid?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Not in Draft</defaultConnectorLabel>
+        <rules>
+            <name>StillDraft_48h</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4 OR 5 OR 6 OR 7)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Draft</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AV7yAAG</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000001RYWeAAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>012a0000001RKA9AAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000001RYWjAAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AVmNAAW</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AVoOAAW</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Draft48h_SendEmail</targetReference>
+            </connector>
+            <label>Still Draft</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Draft72h_StillValid</name>
+        <label>Draft 72h - Still Valid?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Not in Draft</defaultConnectorLabel>
+        <rules>
+            <name>StillDraft_72h</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4 OR 5 OR 6 OR 7)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Draft</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AV7yAAG</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000001RYWeAAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>012a0000001RKA9AAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000001RYWjAAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AVmNAAW</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AVoOAAW</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Draft72h_SendEmail</targetReference>
+            </connector>
+            <label>Still Draft</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Editing2h_StillValid</name>
+        <label>Editing 2h - Still Valid?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Not Editing</defaultConnectorLabel>
+        <rules>
+            <name>StillEditing_2h</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4 OR 5)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Editing</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AV7yAAG</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000001RYWeAAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>012a0000001RKA9AAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000001RYWjAAO</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Editing2h_SendEmail</targetReference>
+            </connector>
+            <label>Still Editing</label>
+        </rules>
+    </decisions>
+    <decisions>
+        <name>Editing4h_StillValid</name>
+        <label>Editing 4h - Still Valid?</label>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <defaultConnectorLabel>Not Editing</defaultConnectorLabel>
+        <rules>
+            <name>StillEditing_4h</name>
+            <conditionLogic>1 AND (2 OR 3 OR 4 OR 5)</conditionLogic>
+            <conditions>
+                <leftValueReference>$Record.Status</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>Editing</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000000AV7yAAG</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000001RYWeAAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>012a0000001RKA9AAO</stringValue>
+                </rightValue>
+            </conditions>
+            <conditions>
+                <leftValueReference>$Record.RecordTypeId</leftValueReference>
+                <operator>EqualTo</operator>
+                <rightValue>
+                    <stringValue>01214000001RYWjAAO</stringValue>
+                </rightValue>
+            </conditions>
+            <connector>
+                <targetReference>Editing4h_SendEmail</targetReference>
+            </connector>
+            <label>Still Editing</label>
+        </rules>
+    </decisions>
+    <description
+  >Flow created for testing: Contract - RT AS - Draft &amp; Editing Alerts
+Description:
+Replaces 2 Workflow Rules with Time Triggers:
+- Contract: Contracts - Draft Alerts (24/48/72 hour notifications)
+- Contract: Delivery Contracts - Editing Alerts (2/4 hour notifications)
+
+Purpose:
+Schedules time-based alert emails when Contract enters Draft or Editing.
+
+Trigger:
+After-Save, scheduled paths fire at delay times.
+
+Impacted Record Types:
+- Delivery Contract (01214000000AV7yAAG)
+- Delivery Contract - Locked (01214000001RYWeAAO)
+- Event Contract (012a0000001RKA9AAO)
+- Event Contract - Locked (01214000001RYWjAAO)
+- Billing_Internal_Only (01214000000AVmNAAW)
+- Billing_Cancel_Refund (01214000000AVoOAAW)
+
+Scheduling:
+Draft alerts → 24h, 48h, 72h (Test: 2min, 4min, 7min)
+Editing alerts → 2h, 4h (Test: 2min, 4min)
+
+Emails only send if Status &amp; RT still match criteria at execution.</description>
+    <environments>Default</environments>
+    <interviewLabel
+  >TESTING ONLY - Contract - RT AS - Draft &amp; Editing Alerts {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Contract (TESTING ONLY) - RT AS - Draft &amp; Editing Alerts</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <start>
+        <locationX>0</locationX>
+        <locationY>0</locationY>
+        <doesRequireRecordChangedToMeetCriteria
+    >true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>(1 OR 2) AND (3 OR 4 OR 5 OR 6 OR 7 OR 8)</filterLogic>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Draft</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Status</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>Editing</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01214000000AV7yAAG</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01214000001RYWeAAO</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>012a0000001RKA9AAO</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01214000001RYWjAAO</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01214000000AVmNAAW</stringValue>
+            </value>
+        </filters>
+        <filters>
+            <field>RecordTypeId</field>
+            <operator>EqualTo</operator>
+            <value>
+                <stringValue>01214000000AVoOAAW</stringValue>
+            </value>
+        </filters>
+        <object>Contract</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <scheduledPaths>
+            <name>Draft_24h</name>
+            <connector>
+                <targetReference>Draft24h_StillValid</targetReference>
+            </connector>
+            <label>Draft - 24h</label>
+            <offsetNumber>2</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>CreatedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <scheduledPaths>
+            <name>Draft_48h</name>
+            <connector>
+                <targetReference>Draft48h_StillValid</targetReference>
+            </connector>
+            <label>Draft - 48h</label>
+            <offsetNumber>4</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>CreatedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <scheduledPaths>
+            <name>Draft_72h</name>
+            <connector>
+                <targetReference>Draft72h_StillValid</targetReference>
+            </connector>
+            <label>Draft - 72h</label>
+            <offsetNumber>7</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>CreatedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <scheduledPaths>
+            <name>Editing_2h</name>
+            <connector>
+                <targetReference>Editing2h_StillValid</targetReference>
+            </connector>
+            <label>Editing - 2h</label>
+            <offsetNumber>2</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>LastModifiedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <scheduledPaths>
+            <name>Editing_4h</name>
+            <connector>
+                <targetReference>Editing4h_StillValid</targetReference>
+            </connector>
+            <label>Editing - 4h</label>
+            <offsetNumber>4</offsetNumber>
+            <offsetUnit>Minutes</offsetUnit>
+            <recordField>LastModifiedDate</recordField>
+            <timeSource>RecordField</timeSource>
+        </scheduledPaths>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Draft</status>
+</Flow>

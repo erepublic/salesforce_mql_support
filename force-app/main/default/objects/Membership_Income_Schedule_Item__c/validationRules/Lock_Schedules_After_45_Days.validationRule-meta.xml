@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lock_Schedules_After_45_Days</fullName>
+    <active>true</active>
+    <description
+  >Income Schedule date cannot be more than 45 days in the past.</description>
+    <errorConditionFormula>TODAY() - Date__c &gt; 45
+&amp;&amp;
+$User.Id &lt;&gt; &apos;00530000003A32O&apos; /*Paul Harney*/
+&amp;&amp;
+$User.Id &lt;&gt; &apos;005a0000007Wamb&apos; /*Jeff Fahndrich*/
+&amp;&amp;
+$User.Id &lt;&gt; &apos;00530000001YEiF&apos; /*Jennifer Valdez*/
+&amp;&amp;
+$User.Id &lt;&gt; &apos;0055Y00000I0fox&apos; /*Jennifer Brenner*/
+&amp;&amp;
+Income__c &lt;&gt; 0</errorConditionFormula>
+    <errorMessage
+  >Cannot create or edit schedules over 45 days old. To prevent editing older records.</errorMessage>
+</ValidationRule>

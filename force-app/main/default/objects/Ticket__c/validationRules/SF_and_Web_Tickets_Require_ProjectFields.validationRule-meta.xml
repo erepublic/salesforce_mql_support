@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SF_and_Web_Tickets_Require_ProjectFields</fullName>
+    <active>false</active>
+    <description
+  >Salesforce and Web Dev Ticket record types require Project fields if &quot;Project Tracker&quot; is checked.</description>
+    <errorConditionFormula>AND(
+    OR(
+        RecordType.Id = &quot;01230000001R3YkAAK&quot;,
+        RecordType.Id = &quot;012a0000001RR3rAAG&quot;
+    ),
+    Project_Tracker__c = TRUE,
+    ISBLANK(TEXT(ROI__c)),
+    ISBLANK(Summary__c),
+    ISBLANK(ETA__c),
+    ISBLANK(Progress__c),
+    NOT(ISPICKVAL(Phase__c, &quot;Closed&quot;)),
+    NOT(ISPICKVAL(Phase__c, &quot;Canceled&quot;))
+)</errorConditionFormula>
+    <errorMessage
+  >Project Tracker is checked. The following fields must have a value: ROI, Summary, ETA, and Progress.</errorMessage>
+</ValidationRule>

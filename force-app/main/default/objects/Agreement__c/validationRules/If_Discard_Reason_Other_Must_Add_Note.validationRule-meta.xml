@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>If_Discard_Reason_Other_Must_Add_Note</fullName>
+    <active>true</active>
+    <errorConditionFormula
+  >AND(ISPICKVAL( Discard_Reason__c , &quot;Other&quot;), 
+ISBLANK( Discard_Notes__c ))</errorConditionFormula>
+    <errorDisplayField>Discard_Notes__c</errorDisplayField>
+    <errorMessage
+  >&quot;Discard Notes&quot; field required if the discard reason is &quot;Other&quot;</errorMessage>
+</ValidationRule>

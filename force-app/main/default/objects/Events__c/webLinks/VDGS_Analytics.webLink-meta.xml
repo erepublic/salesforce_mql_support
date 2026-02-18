@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WebLink xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>VDGS_Analytics</fullName>
+    <availability>online</availability>
+    <displayType>button</displayType>
+    <encodingKey>UTF-8</encodingKey>
+    <linkType>url</linkType>
+    <masterLabel>VDGS Analytics</masterLabel>
+    <openType>replace</openType>
+    <protected>false</protected>
+    <url
+  >https://cms.erepublic.com/common/events/vdgs_analytics/{!Events__c.OneForm_ID_Text__c}</url>
+</WebLink>

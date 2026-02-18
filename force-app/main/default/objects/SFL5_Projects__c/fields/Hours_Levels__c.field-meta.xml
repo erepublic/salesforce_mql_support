@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hours_Levels__c</fullName>
+    <externalId>false</externalId>
+    <formula>TEXT(NAV_Hours_Total_Cx__c)&amp; &quot; | &quot; &amp;
+IF(
+AND(Client__r.DGN_Stage__c = &quot;Active&quot;,Client__r.DEN_Stage__c = &quot;Active&quot;),
+Client__r.DGN_Membership_Contract_Level__c&amp;&quot; DGN | &quot;&amp;Client__r.DEN_Membership_Contract_Level__c&amp;&quot; DEN&quot;,
+IF(
+Client__r.DGN_Stage__c = &quot;Active&quot;,
+Client__r.DGN_Membership_Contract_Level__c &amp; &quot; DGN&quot;,
+IF(
+Client__r.DEN_Stage__c = &quot;Active&quot;,
+Client__r.DEN_Membership_Contract_Level__c &amp; &quot; DEN&quot;,
+null
+)))</formula>
+    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
+    <inlineHelpText
+  >NAV Hours CY | NAV Hours Total Cx | DEN Contract Data | DGN Contract Data</inlineHelpText>
+    <label>Hours &amp; Levels</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

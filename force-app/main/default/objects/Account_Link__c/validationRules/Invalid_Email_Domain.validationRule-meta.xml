@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Invalid_Email_Domain</fullName>
+    <active>true</active>
+    <description
+  >Prevents email domains with bad characters or formatting.</description>
+    <errorConditionFormula>IF( 
+ISBLANK(Email_Domain__c),FALSE, 
+OR( 
+LEN(Email_Domain__c)&lt;4, 
+LOWER(Email_Domain__c) = &quot;none.com&quot;, 
+LOWER(Email_Domain__c) = &quot;null.com&quot;, 
+LOWER(Email_Domain__c) = &quot;unknown.com&quot;, 
+NOT( REGEX( LEFT(Email_Domain__c, 1), &quot;[a-zA-Z0-9]&quot;)), 
+NOT(CONTAINS(Email_Domain__c,&quot;.&quot;)), 
+CONTAINS(Email_Domain__c,&quot; &quot;) 
+) 
+)</errorConditionFormula>
+    <errorMessage>Invalid email domain or domain format.</errorMessage>
+</ValidationRule>

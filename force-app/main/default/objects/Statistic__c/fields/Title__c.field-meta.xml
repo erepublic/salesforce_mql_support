@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Title__c</fullName>
+    <description>Title of the statistic being tracked.</description>
+    <inlineHelpText>Title of the statistic being tracked.</inlineHelpText>
+    <label>Title</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Government Technology</fullName>
+                <default>false</default>
+                <label>Government Technology</label>
+            </value>
+            <value>
+                <fullName>GOVERNING</fullName>
+                <default>false</default>
+                <label>GOVERNING</label>
+            </value>
+            <value>
+                <fullName>Emergency Management</fullName>
+                <default>false</default>
+                <label>Emergency Management</label>
+            </value>
+            <value>
+                <fullName>Public CIO</fullName>
+                <default>false</default>
+                <label>Public CIO</label>
+            </value>
+            <value>
+                <fullName>CDE Special Report</fullName>
+                <default>false</default>
+                <label>CDE Special Report</label>
+            </value>
+            <value>
+                <fullName>Higher Ed</fullName>
+                <default>false</default>
+                <label>Higher Ed</label>
+            </value>
+            <value>
+                <fullName>K-12</fullName>
+                <default>false</default>
+                <label>K-12</label>
+            </value>
+            <value>
+                <fullName>GovTech Today</fullName>
+                <default>false</default>
+                <label>GovTech Today</label>
+            </value>
+            <value>
+                <fullName>GovTech Social</fullName>
+                <default>false</default>
+                <label>GovTech Social</label>
+            </value>
+            <value>
+                <fullName>Digital Communities</fullName>
+                <default>false</default>
+                <label>Digital Communities</label>
+            </value>
+            <value>
+                <fullName>Public CIO Newsletter</fullName>
+                <default>false</default>
+                <label>Public CIO Newsletter</label>
+            </value>
+            <value>
+                <fullName>EM News</fullName>
+                <default>false</default>
+                <label>EM News</label>
+            </value>
+            <value>
+                <fullName>Futurestructure</fullName>
+                <default>false</default>
+                <label>Futurestructure</label>
+            </value>
+            <value>
+                <fullName>Governing Daily</fullName>
+                <default>false</default>
+                <label>Governing Daily</label>
+            </value>
+            <value>
+                <fullName>Better, Faster, Cheaper</fullName>
+                <default>false</default>
+                <label>Better, Faster, Cheaper</label>
+            </value>
+            <value>
+                <fullName>Data</fullName>
+                <default>false</default>
+                <label>Data</label>
+            </value>
+            <value>
+                <fullName>Finance</fullName>
+                <default>false</default>
+                <label>Finance</label>
+            </value>
+            <value>
+                <fullName>Health</fullName>
+                <default>false</default>
+                <label>Health</label>
+            </value>
+            <value>
+                <fullName>Human Services</fullName>
+                <default>false</default>
+                <label>Human Services</label>
+            </value>
+            <value>
+                <fullName>Infrastructure</fullName>
+                <default>false</default>
+                <label>Infrastructure</label>
+            </value>
+            <value>
+                <fullName>Insider</fullName>
+                <default>false</default>
+                <label>Insider</label>
+            </value>
+            <value>
+                <fullName>Management</fullName>
+                <default>false</default>
+                <label>Management</label>
+            </value>
+            <value>
+                <fullName>Technology</fullName>
+                <default>false</default>
+                <label>Technology</label>
+            </value>
+            <value>
+                <fullName>TechWire Weekly</fullName>
+                <default>false</default>
+                <label>TechWire Weekly</label>
+            </value>
+            <value>
+                <fullName>Industry Insider</fullName>
+                <default>false</default>
+                <label>Industry Insider</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

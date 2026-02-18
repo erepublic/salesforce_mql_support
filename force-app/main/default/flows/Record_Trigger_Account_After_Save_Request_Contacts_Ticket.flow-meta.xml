@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Flow xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>55.0</apiVersion>
+    <areMetricsLoggedToDataCloud>false</areMetricsLoggedToDataCloud>
+    <description
+  >When Due Date Requested is filled in on an Account, Creates a Ticket that is assigned dynamically to Community Development staff based on Account name, then clears the Due Date Requested field.</description>
+    <environments>Default</environments>
+    <formulas>
+        <description
+    >Formula to create a unique description for the Created Ticket.</description>
+        <name>f_Description_for_Created_Ticket</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;Please locate new contacts for the following account: &quot;+ {!$Record.Name}</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Checks if the triggering Account Name begins with letters M-Z and returns the CommDev Ticket Assignee #2 (Custom Label). Otherwise, for #-L, returns CommDev Ticket Assignee #1.</description>
+        <name>f_Determine_Assignee</name>
+        <dataType>String</dataType>
+        <expression
+    >/* If the lowercase triggering Account Name begins with letters m through z, show the User ID from the CommDev Ticket Assignee #2 (Custom Label), otherwise show the User ID from the CommDev Ticket Assignee #1 (Custom Label)*/
+IF(
+REGEX(LEFT({!$Record.Name},1),&apos;[m-zM-Z]&apos;),
+{!$Label.CommDev_Ticket_Assignee_2},
+{!$Label.CommDev_Ticket_Assignee_1}
+)</expression>
+    </formulas>
+    <formulas>
+        <description
+    >Formula to create a unique title for the Created Ticket.</description>
+        <name>f_Title_for_Created_Ticket</name>
+        <dataType>String</dataType>
+        <expression
+    >&quot;Request Contacts (&quot;+ {!$Record.Name} +&quot;)&quot;</expression>
+    </formulas>
+    <interviewLabel
+  >Record-Trigger: Account After Save - Request Contacts Ticket {!$Flow.CurrentDateTime}</interviewLabel>
+    <label>Record-Trigger: Account After Save - Request Contacts Ticket</label>
+    <processMetadataValues>
+        <name>BuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>CanvasMode</name>
+        <value>
+            <stringValue>AUTO_LAYOUT_CANVAS</stringValue>
+        </value>
+    </processMetadataValues>
+    <processMetadataValues>
+        <name>OriginBuilderType</name>
+        <value>
+            <stringValue>LightningFlowBuilder</stringValue>
+        </value>
+    </processMetadataValues>
+    <processType>AutoLaunchedFlow</processType>
+    <recordCreates>
+        <name>Create_Contact_Request_Ticket</name>
+        <label>Create Contact Request Ticket</label>
+        <locationX>176</locationX>
+        <locationY>335</locationY>
+        <connector>
+            <targetReference>Clear_Due_Date_Requested</targetReference>
+        </connector>
+        <inputAssignments>
+            <field>Account__c</field>
+            <value>
+                <elementReference>$Record.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Assignee__c</field>
+            <value>
+                <elementReference>f_Determine_Assignee</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Audience_Type__c</field>
+            <value>
+                <stringValue>Industry</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Contact_Pull_Contact_Count__c</field>
+            <value>
+                <stringValue>Get Contacts</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Description__c</field>
+            <value>
+                <elementReference
+        >f_Description_for_Created_Ticket</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Due_Date_Requested__c</field>
+            <value>
+                <elementReference
+        >$Record.Due_Date_Requested__c</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Priority__c</field>
+            <value>
+                <stringValue>High</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>RecordTypeId</field>
+            <value>
+                <stringValue>01214000001RYxpAAG</stringValue>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Requested_By__c</field>
+            <value>
+                <elementReference>$User.Id</elementReference>
+            </value>
+        </inputAssignments>
+        <inputAssignments>
+            <field>Title__c</field>
+            <value>
+                <elementReference>f_Title_for_Created_Ticket</elementReference>
+            </value>
+        </inputAssignments>
+        <object>Ticket__c</object>
+        <storeOutputAutomatically>true</storeOutputAutomatically>
+    </recordCreates>
+    <recordUpdates>
+        <description
+    >Clear Due Date field from triggering Account record.</description>
+        <name>Clear_Due_Date_Requested</name>
+        <label>Clear Due Date Requested</label>
+        <locationX>176</locationX>
+        <locationY>455</locationY>
+        <inputAssignments>
+            <field>Due_Date_Requested__c</field>
+        </inputAssignments>
+        <inputReference>$Record</inputReference>
+    </recordUpdates>
+    <start>
+        <locationX>50</locationX>
+        <locationY>0</locationY>
+        <connector>
+            <targetReference>Create_Contact_Request_Ticket</targetReference>
+        </connector>
+        <doesRequireRecordChangedToMeetCriteria
+    >true</doesRequireRecordChangedToMeetCriteria>
+        <filterLogic>and</filterLogic>
+        <filters>
+            <field>Due_Date_Requested__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
+            </value>
+        </filters>
+        <object>Account</object>
+        <recordTriggerType>CreateAndUpdate</recordTriggerType>
+        <triggerType>RecordAfterSave</triggerType>
+    </start>
+    <status>Active</status>
+</Flow>
