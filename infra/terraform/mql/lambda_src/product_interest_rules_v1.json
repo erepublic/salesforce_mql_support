@@ -1,0 +1,56 @@
+{
+  "version": "v1",
+  "maxProducts": 4,
+  "maxEvidencePerProduct": 3,
+  "rules": [
+    {
+      "productId": "Navigator",
+      "productName": "Navigator",
+      "evidenceCategories": ["url", "text"],
+      "regex": "\\/navigator\\b|\\bnavigator\\b",
+      "weight": 8
+    },
+    {
+      "productId": "GovTech",
+      "productName": "GovTech",
+      "evidenceCategories": ["url", "text"],
+      "regex": "govtech\\.com|\\bgovtech\\b",
+      "weight": 5
+    },
+    {
+      "productId": "Governing",
+      "productName": "Governing",
+      "evidenceCategories": ["url", "text"],
+      "regex": "governing\\.com|\\bgoverning\\b",
+      "weight": 5
+    },
+    {
+      "productId": "TechWire",
+      "productName": "TechWire",
+      "evidenceCategories": ["url", "text"],
+      "regex": "techwire\\.net|\\btechwire\\b",
+      "weight": 5
+    },
+    {
+      "productId": "DigitalGovernmentSummit",
+      "productName": "Digital Government Summit",
+      "evidenceCategories": ["url", "text"],
+      "regex": "\\bdgs\\b|digital government summit",
+      "weight": 6
+    },
+    {
+      "productId": "Cybersecurity",
+      "productName": "Cybersecurity",
+      "evidenceCategories": ["url", "text"],
+      "regex": "cybersecurity",
+      "weight": 4
+    },
+    {
+      "productId": "DataAI",
+      "productName": "Data and AI",
+      "evidenceCategories": ["url", "text"],
+      "regex": "\\bdata\\b.*\\bai\\b|\\bai\\b.*\\bdata\\b|\\bai\\b",
+      "weight": 2
+    }
+  ]
+}

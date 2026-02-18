@@ -30,16 +30,19 @@ function chunk(arr, n) {
 
 function parseArgs(argv) {
   const args = {
+    targetOrg: "mql-sandbox",
     batchSize: 5,
     sleepSeconds: 20,
     maxBatches: Infinity
   };
   for (let i = 2; i < argv.length; i++) {
     const a = argv[i];
-    if (a === "--batch-size") args.batchSize = Number(argv[++i]);
+    if (a === "--target-org") args.targetOrg = String(argv[++i] || "").trim();
+    else if (a === "--batch-size") args.batchSize = Number(argv[++i]);
     else if (a === "--sleep-seconds") args.sleepSeconds = Number(argv[++i]);
     else if (a === "--max-batches") args.maxBatches = Number(argv[++i]);
   }
+  if (!args.targetOrg) throw new Error("invalid --target-org");
   if (!Number.isFinite(args.batchSize) || args.batchSize <= 0)
     throw new Error("invalid --batch-size");
   if (!Number.isFinite(args.sleepSeconds) || args.sleepSeconds < 0)
@@ -54,13 +57,15 @@ function parseArgs(argv) {
 }
 
 function main() {
-  const { batchSize, sleepSeconds, maxBatches } = parseArgs(process.argv);
+  const { targetOrg, batchSize, sleepSeconds, maxBatches } = parseArgs(
+    process.argv
+  );
 
   const res = runSfJson([
     "data",
     "query",
     "--target-org",
-    "mql-sandbox",
+    targetOrg,
     "--query",
     "SELECT Id FROM MQL__c ORDER BY CreatedDate DESC",
     "--json"
@@ -87,13 +92,9 @@ function main() {
     );
 
     try {
-      run(
-        "sf",
-        ["apex", "run", "--target-org", "mql-sandbox", "--file", tmpFile],
-        {
-          stdio: ["ignore", "pipe", "pipe"]
-        }
-      );
+      run("sf", ["apex", "run", "--target-org", targetOrg, "--file", tmpFile], {
+        stdio: ["ignore", "pipe", "pipe"]
+      });
     } catch (e) {
       console.error("Batch enqueue failed", {
         idx: idx + 1,

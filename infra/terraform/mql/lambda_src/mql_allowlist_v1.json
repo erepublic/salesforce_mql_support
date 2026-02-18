@@ -123,6 +123,10 @@
           "IsWon",
           "CloseDate",
           "Amount",
+          "Opportunity_Product__c",
+          "Primary_Product__c",
+          "Product__c",
+          "Product_Name__c",
           "CreatedDate",
           "LastModifiedDate"
         ]
@@ -133,6 +137,7 @@
         "fields": [
           "Id",
           "Subject",
+          "Description",
           "Status",
           "Priority",
           "Type",
@@ -148,6 +153,7 @@
         "fields": [
           "Id",
           "Subject",
+          "Description",
           "ActivityDate",
           "StartDateTime",
           "EndDateTime",
@@ -163,6 +169,7 @@
         "fields": [
           "Id",
           "Subject",
+          "TextBody",
           "FromAddress",
           "ToAddress",
           "MessageDate",
@@ -173,7 +180,20 @@
           "ParentId",
           "RelatedToId"
         ],
-        "notes": ["Metadata only; do not fetch/store bodies by default."]
+        "notes": [
+          "TextBody may contain PII; always redact + truncate before using in prompts."
+        ]
+      },
+      "OpportunityLineItem": {
+        "fields": [
+          "Id",
+          "OpportunityId",
+          "Quantity",
+          "TotalPrice",
+          "CreatedDate",
+          "PricebookEntry.Product2.Name"
+        ],
+        "notes": ["Used to infer which products are on the opportunity."]
       },
       "CampaignMember": {
         "fields": [
@@ -189,6 +209,20 @@
       "Contact_Us__c": {
         "fields": ["Id", "Topic__c", "Source__c", "CreatedDate"],
         "notes": ["Avoid pulling message free-text into the prompt by default."]
+      },
+      "Sales_Lead__c": {
+        "fields": [
+          "Id",
+          "Contact__c",
+          "CreatedDate",
+          "Lead_Date__c",
+          "Lead_Source__c",
+          "Lead_Source_Detail__c",
+          "Web_Activity_Summary__c"
+        ],
+        "notes": [
+          "Web_Activity_Summary__c is long text; extract/sanitize URLs before using in the LLM prompt."
+        ]
       }
     },
     "historyTables": {

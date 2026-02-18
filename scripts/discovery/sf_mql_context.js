@@ -505,6 +505,10 @@ async function main() {
   const contactDescribe = describeSObject({ targetOrg, sobject: "Contact" });
   const accountDescribe = describeSObject({ targetOrg, sobject: "Account" });
   const mqlDescribe = describeSObject({ targetOrg, sobject: "MQL__c" });
+  const salesLeadDescribe = describeSObject({
+    targetOrg,
+    sobject: "Sales_Lead__c"
+  });
   const ocrDescribe = describeSObject({
     targetOrg,
     sobject: "OpportunityContactRole"
@@ -642,6 +646,18 @@ async function main() {
     "LastModifiedDate"
   ];
 
+  const desiredSalesLeadFields = [
+    "Id",
+    "Contact__c",
+    "CreatedDate",
+    "Lead_Date__c",
+    "Lead_Source__c",
+    "Lead_Source_Detail__c",
+    "Web_Activity_Summary__c",
+    // This is very large; discovery only.
+    "Last_Page_View__c"
+  ];
+
   const contactFields = pickExistingFields(
     contactDescribe,
     desiredContactFields
@@ -651,6 +667,10 @@ async function main() {
     desiredAccountFields
   );
   const mqlFields = pickExistingFields(mqlDescribe, desiredMqlFields);
+  const salesLeadFields = pickExistingFields(
+    salesLeadDescribe,
+    desiredSalesLeadFields
+  );
   const ocrFields = pickExistingFields(ocrDescribe, desiredOcrFields);
   const oppFields = pickExistingFields(oppDescribe, desiredOppFields);
 
@@ -792,6 +812,16 @@ async function main() {
         )
       : null;
 
+  // Sales_Lead__c (Activity Alert) - CMS web activity summaries.
+  const salesLeads =
+    salesLeadFields.length && contact?.Id
+      ? tryQueryRecords(
+          `SELECT ${salesLeadFields.join(", ")} FROM Sales_Lead__c ` +
+            `WHERE Contact__c = '${contact.Id}' AND CreatedDate = LAST_N_DAYS:365 ` +
+            "ORDER BY Lead_Date__c DESC NULLS LAST, CreatedDate DESC LIMIT 50"
+        )
+      : null;
+
   // Optional: history tables (only if enabled in org). We probe by trying a small query.
   function tryQueryHistory(soql) {
     try {
@@ -855,6 +885,7 @@ async function main() {
     emailMessages: emailMessages || undefined,
     campaignMembers: campaignMembers || undefined,
     contactUsSubmissions: contactUsSubmissions || undefined,
+    salesLeads: salesLeads || undefined,
     history: {
       contactHistory: contactHistory || undefined,
       opportunityFieldHistory: oppHistory || undefined,

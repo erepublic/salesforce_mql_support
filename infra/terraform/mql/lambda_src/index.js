@@ -23,7 +23,24 @@ const secrets = new SecretsManagerClient({});
 // Keep the canonical allowlist/timeline recipe inside the Lambda bundle so the
 // deployed behavior matches what discovery emits.
 const allowlist = require("./mql_allowlist_v1.json");
-const { buildSalesNarrativeInput } = require("./sales_prompt_utils");
+const {
+  buildSalesNarrativeInput,
+  redactInlineText
+} = require("./sales_prompt_utils");
+
+const productInterestRules = require("./product_interest_rules_v1.json");
+const {
+  buildEvidenceFromSalesLeadWebActivity,
+  buildEvidenceFromCampaignMembers,
+  buildEvidenceFromHubspotContactProps,
+  inferProductInterest
+} = require("./product_interest");
+const {
+  getHubspotToken,
+  getHubspotBaseUrl,
+  searchContactIdByEmail,
+  getContactProperties
+} = require("./hubspot_client");
 
 // Cache describe results across warm Lambda invocations to reduce Salesforce
 // round-trips and stay under API Gateway timeouts.
@@ -76,9 +93,13 @@ function escapeHtml(s) {
 }
 
 function sanitizeHtmlForSalesforceField(html) {
-  // Salesforce HTML fields expect an HTML fragment. Strip document wrappers and
-  // anything CSS-ish (<style>, inline style attributes) so we don't break
-  // rendering or store extra junk.
+  // Salesforce HTML fields expect an HTML fragment. Keep this conservative and
+  // predictable so we never store unsafe markup.
+  //
+  // Allowed tags: p, strong, ul, li, br, em, a
+  // - Non-<a> tags have ALL attributes stripped.
+  // - <a> is rewritten to a safe form: only https:// or / href; no JS/data; and
+  //   we force target/rel for safety. (We append our own Salesforce links.)
   let s = String(html || "");
 
   // Normalize common Unicode punctuation to ASCII to avoid odd rendering.
@@ -100,9 +121,28 @@ function sanitizeHtmlForSalesforceField(html) {
   s = s.replace(/<\s*link[^>]*>/gi, "");
   s = s.replace(/<\s*meta[^>]*>/gi, "");
 
-  // Remove inline CSS / styling hooks.
-  s = s.replace(/\sstyle\s*=\s*(['"]).*?\1/gi, "");
-  s = s.replace(/\sclass\s*=\s*(['"]).*?\1/gi, "");
+  // Strip any non-allowlisted tags entirely.
+  s = s.replace(/<(?!\/?(p|strong|ul|li|br|em|a)\b)[^>]*>/gi, "");
+
+  // Normalize <br> variants.
+  s = s.replace(/<\s*br\s*>/gi, "<br/>").replace(/<\s*br\s*\/\s*>/gi, "<br/>");
+
+  // Strip attributes from non-anchor allowed tags.
+  s = s.replace(/<\s*(p|strong|ul|li|em)\b[^>]*>/gi, "<$1>");
+
+  // Rewrite anchors to a safe subset.
+  s = s.replace(/<\s*a\b[^>]*>/gi, (tag) => {
+    const m = tag.match(/href\s*=\s*(['"])(.*?)\1/i);
+    const hrefRaw = m ? String(m[2] || "").trim() : "";
+    const href = hrefRaw;
+    const safe =
+      href &&
+      (href.startsWith("https://") || href.startsWith("/")) &&
+      !/^javascript:/i.test(href) &&
+      !/^data:/i.test(href);
+    if (!safe) return "<a>";
+    return `<a href="${escapeHtml(href)}" target="_blank" rel="noopener">`;
+  });
 
   // Tidy whitespace.
   s = s.replace(/\r\n/g, "\n").trim();
@@ -110,7 +150,9 @@ function sanitizeHtmlForSalesforceField(html) {
 }
 
 function truncateHtmlForSalesforceField(html, maxChars) {
-  const max = Number.isFinite(Number(maxChars)) ? Number(maxChars) : 120000;
+  // Engagement_AI_Summary__c is an Html field with a 32,768 char limit in SF.
+  // Keep a little headroom to avoid edge cases (e.g. truncation notice).
+  const max = Number.isFinite(Number(maxChars)) ? Number(maxChars) : 32000;
   let s = String(html || "");
   if (s.length <= max) return s;
   // Truncate safely at a character boundary. We avoid adding any non-ASCII chars.
@@ -118,9 +160,152 @@ function truncateHtmlForSalesforceField(html, maxChars) {
   return `${s}\n<p><em>Summary truncated for storage limits.</em></p>`;
 }
 
+function isSalesforceId(value) {
+  const s = String(value || "").trim();
+  return /^[A-Za-z0-9]{15,18}$/.test(s);
+}
+
+function safeSfRecordUrl(instanceUrl, recordId) {
+  const base = String(instanceUrl || "")
+    .trim()
+    .replace(/\/+$/, "");
+  if (!base.startsWith("https://")) return null;
+  if (!isSalesforceId(recordId)) return null;
+  return `${base}/${String(recordId).trim()}`;
+}
+
+function buildRelatedRecordsHtml({
+  instanceUrl,
+  mql,
+  opportunities,
+  opportunityContactRoles
+}) {
+  const links = [];
+
+  // Product (from MQL.Product__c)
+  if (mql?.Product__c) {
+    const url = safeSfRecordUrl(instanceUrl, mql.Product__c);
+    if (url) {
+      const name = mql?.Product_Name__c
+        ? String(mql.Product_Name__c).trim()
+        : "";
+      links.push({
+        label: name ? `Product: ${name}` : "Product record",
+        href: url
+      });
+    }
+  }
+
+  // Open opportunities (prefer OCR Open_Opportunity__c=true when present)
+  const ocrList = Array.isArray(opportunityContactRoles)
+    ? opportunityContactRoles
+    : [];
+  const hasOpenFlag = ocrList.some((r) =>
+    r ? Object.prototype.hasOwnProperty.call(r, "Open_Opportunity__c") : false
+  );
+  const oppIdCandidates = [];
+  if (mql?.Opportunity__c) oppIdCandidates.push(mql.Opportunity__c);
+  for (const r of ocrList) {
+    if (!r?.OpportunityId) continue;
+    if (hasOpenFlag) {
+      if (r.Open_Opportunity__c === true) oppIdCandidates.push(r.OpportunityId);
+    } else {
+      // If we don't have the open-opp flag in this org, fall back to "known OCR".
+      oppIdCandidates.push(r.OpportunityId);
+    }
+  }
+  const oppIds = Array.from(new Set(oppIdCandidates.filter(Boolean))).slice(
+    0,
+    5
+  );
+
+  const oppById = new Map((opportunities || []).map((o) => [o.Id, o]));
+  for (const oppId of oppIds) {
+    const url = safeSfRecordUrl(instanceUrl, oppId);
+    if (!url) continue;
+    const opp = oppById.get(oppId);
+    const name = opp?.Name ? String(opp.Name).trim() : "";
+    const stage = opp?.StageName ? String(opp.StageName).trim() : "";
+    const label = name
+      ? stage
+        ? `Opportunity: ${name} (${stage})`
+        : `Opportunity: ${name}`
+      : "Opportunity record";
+    links.push({ label, href: url });
+  }
+
+  if (!links.length) return "";
+  const li = links
+    .map(
+      (x) =>
+        `<li><a href="${escapeHtml(x.href)}" target="_blank" rel="noopener">${escapeHtml(x.label)}</a></li>`
+    )
+    .join("");
+  return [`<p><strong>Links</strong></p>`, `<ul>${li}</ul>`].join("\n");
+}
+
+function enforceSalesSummarySectionCaps(html) {
+  // Keep summaries succinct and predictable. We enforce caps post-generation so
+  // the LLM can be a little messy without breaking the stored field.
+  //
+  // Note: engagement bullets are already date-prefixed upstream; we do not try
+  // to "invent" dates here.
+  const caps = new Map([
+    ["Why Sales Should Care", 5],
+    ["Score Interpretation", 4],
+    ["Most Recent Engagement", 12],
+    ["Suggested Next Step", 2]
+  ]);
+
+  let s = String(html || "");
+  for (const [heading, maxItems] of caps.entries()) {
+    const marker = `<p><strong>${heading}</strong></p>`;
+    const idx = s.indexOf(marker);
+    if (idx === -1) continue;
+    const ulStart = s.indexOf("<ul>", idx);
+    const ulEnd = ulStart === -1 ? -1 : s.indexOf("</ul>", ulStart);
+    if (ulStart === -1 || ulEnd === -1) continue;
+    const inner = s.slice(ulStart + 4, ulEnd);
+    const items = inner.match(/<li>[\s\S]*?<\/li>/gi) || [];
+    const kept = items.slice(0, maxItems).join("");
+    s = `${s.slice(0, ulStart + 4)}${kept}${s.slice(ulEnd)}`;
+  }
+  return s;
+}
+
+function finalizeSalesSummaryHtml({
+  html,
+  instanceUrl,
+  mql,
+  opportunities,
+  opportunityContactRoles
+}) {
+  let out = sanitizeHtmlForSalesforceField(html || "");
+  out = enforceSalesSummarySectionCaps(out);
+
+  const links = buildRelatedRecordsHtml({
+    instanceUrl,
+    mql,
+    opportunities,
+    opportunityContactRoles
+  });
+  if (links) out = `${out}\n${links}`;
+
+  // Final pass: sanitize + truncate for field storage limits.
+  out = truncateHtmlForSalesforceField(
+    sanitizeHtmlForSalesforceField(out),
+    32000
+  );
+  return out;
+}
+
 function looksLikeFieldOrIdLeak(s) {
   const text = String(s || "");
   if (!text) return false;
+
+  // Allow Salesforce record IDs inside link href attributes, but never in
+  // visible text. We strip href values before running leak detection.
+  const scan = text.replace(/href\s*=\s*(['"])[\s\S]*?\1/gi, 'href=""');
 
   // Field/object naming patterns and common system tokens we never want in the
   // final Sales-facing HTML.
@@ -136,7 +321,7 @@ function looksLikeFieldOrIdLeak(s) {
     // avoid false positives, while still blocking obvious leaks.
     /\b(?:003|00Q|00T|006|a0X)[A-Za-z0-9]{12,15}\b/
   ];
-  return forbidden.some((re) => re.test(text));
+  return forbidden.some((re) => re.test(scan));
 }
 
 function validateSalesFacingHtml(html) {
@@ -144,6 +329,11 @@ function validateSalesFacingHtml(html) {
   const reasons = [];
   if (!s.trim()) reasons.push("empty_html");
   if (looksLikeFieldOrIdLeak(s)) reasons.push("field_or_id_leak");
+
+  // Block obviously unsafe anchor schemes.
+  const unsafeAnchor =
+    /<\s*a\b[^>]*href\s*=\s*(['"])\s*(javascript:|data:)/i.test(s);
+  if (unsafeAnchor) reasons.push("unsafe_anchor_href");
 
   const requiredHeadings = [
     "Why Sales Should Care",
@@ -166,6 +356,9 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
       : {};
 
   const keyReasons = Array.isArray(input.keyReasons) ? input.keyReasons : [];
+  const topProducts = Array.isArray(input?.productInterest?.topProducts)
+    ? input.productInterest.topProducts
+    : [];
   const scoreInterpretation = Array.isArray(input.scoreInterpretation)
     ? input.scoreInterpretation
     : [];
@@ -183,6 +376,38 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
   );
 
   const whySales = [];
+  if (topProducts.length) {
+    const names = topProducts
+      .map((p) => String(p?.name || "").trim())
+      .filter(Boolean)
+      .slice(0, 3);
+    if (names.length) {
+      whySales.push(
+        `Likely areas of interest based on recent web/marketing signals: ${names.join(
+          ", "
+        )}.`
+      );
+    }
+  }
+  const openOpps = Array.isArray(input?.opportunityContext?.openOpportunities)
+    ? input.opportunityContext.openOpportunities
+    : [];
+  if (openOpps.length) {
+    const prodSet = new Set();
+    for (const o of openOpps) {
+      for (const p of o?.products || []) {
+        if (p) prodSet.add(String(p));
+      }
+    }
+    const prodList = Array.from(prodSet).slice(0, 5);
+    if (prodList.length) {
+      whySales.push(
+        `Open opportunity product(s) on the account include: ${prodList.join(
+          ", "
+        )}.`
+      );
+    }
+  }
   for (const r of keyReasons) {
     if (!r) continue;
     whySales.push(String(r));
@@ -249,7 +474,7 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
     `<p><strong>Most Recent Engagement</strong></p>`,
     ul(engagementBullets.slice(0, 12)),
     `<p><strong>Suggested Next Step</strong></p>`,
-    ul(nextSteps.slice(0, 3))
+    ul(nextSteps.slice(0, 2))
   ].join("\n");
 }
 
@@ -258,7 +483,8 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "You are writing for Sales reps (non-technical).",
     "Use only the provided JSON; do not invent details.",
     "Return an HTML fragment only (no doctype/html/head/body).",
-    "Use simple HTML only: <p>, <strong>, <ul>, <li>, <br/>.",
+    "Use simple HTML only: <p>, <strong>, <ul>, <li>, <br/>, <em>.",
+    "Do not include hyperlinks; Salesforce links are appended automatically.",
     "No CSS or styling (<style>, style=, class=, link/meta/script).",
     "Do not include Salesforce/HubSpot field names, object names, IDs, or JSON keys in the output.",
     "Do not include raw numeric scores; keep score language qualitative (Strong/Moderate/Light)."
@@ -270,14 +496,18 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "   - 3-6 bullets.",
     "   - Each bullet explains a SALES signal and why it matters (value-based).",
     "   - Avoid technical phrasing; write like a rep-to-rep handoff.",
+    "   - If product-interest signals are present, include 1-2 bullets explicitly stating what they are likely evaluating and why (cite the evidence in plain language).",
+    "   - If open opportunities include product names, call out the product(s) tied to those opportunities (this is often the clearest 'what they want').",
     "2) Score Interpretation",
-    "   - 3-5 bullets interpreting Fit and Intent qualitatively (Strong/Moderate/Light).",
+    "   - 3-4 bullets interpreting Fit and Intent qualitatively (Strong/Moderate/Light).",
     "   - If an inbound request exists, treat as time-sensitive, but still flag any fit concerns.",
     "3) Most Recent Engagement",
-    "   - 7-12 bullets, newest-first (most recent first).",
+    "   - 5-12 bullets, newest-first (most recent first).",
     "   - Each bullet MUST start with a date (YYYY-MM-DD) then a short plain-English highlight.",
+    "   - If an engagement is tied to a specific opportunity/product, mention that product in the highlight.",
     "4) Suggested Next Step",
-    "   - 1-3 bullets: best outreach angle + what to verify + urgency.",
+    "   - 1-2 bullets: best outreach angle + what to verify + urgency.",
+    "   - If product-interest signals exist, tailor the outreach angle to those likely interests.",
     "",
     "Important constraints:",
     "- Do not include any field names, IDs, JSON keys, or system names.",
@@ -579,6 +809,7 @@ function buildHistoryEventsPreview({
   mql,
   opportunityContactRoles,
   opportunities,
+  opportunityLineItems,
   tasks,
   events,
   emailMessages,
@@ -688,6 +919,56 @@ function buildHistoryEventsPreview({
     ? opportunityContactRoles
     : [];
   const oppById = new Map((opportunities || []).map((o) => [o.Id, o]));
+  const oliList = Array.isArray(opportunityLineItems)
+    ? opportunityLineItems
+    : [];
+  const productNamesByOppId = new Map();
+  for (const oli of oliList) {
+    const oppId = oli?.OpportunityId;
+    const productName = oli?.PricebookEntry?.Product2?.Name || null;
+    if (!oppId || !productName) continue;
+    if (!productNamesByOppId.has(oppId)) productNamesByOppId.set(oppId, []);
+    const list = productNamesByOppId.get(oppId);
+    if (!list.includes(productName)) list.push(productName);
+  }
+
+  function normalizeTextSnippet(s, maxLen) {
+    const raw = redactInlineText(s);
+    if (!raw) return null;
+    const flat = String(raw).replace(/\s+/g, " ").trim();
+    if (!flat) return null;
+    const max = Number.isFinite(maxLen) ? maxLen : 140;
+    return flat.length > max ? `${flat.slice(0, max)}...` : flat;
+  }
+
+  function oppProductsLabel(oppId) {
+    const list = productNamesByOppId.get(oppId) || [];
+    const names = list
+      .map((x) => String(x).trim())
+      .filter(Boolean)
+      .slice(0, 3);
+    if (!names.length) return null;
+    return names.join(", ");
+  }
+
+  function oppContextLabel(oppId) {
+    const opp = oppById.get(oppId);
+    if (!opp) return null;
+    const parts = [];
+    if (opp?.Name) parts.push(String(opp.Name));
+    if (opp?.StageName) parts.push(String(opp.StageName));
+    const products = oppProductsLabel(oppId);
+    if (products) parts.push(products);
+    return parts.length ? parts.join(" | ") : null;
+  }
+
+  function findLinkedOppId(id) {
+    if (!id) return null;
+    const s = String(id);
+    if (oppById.has(s)) return s;
+    return null;
+  }
+
   for (const ocr of ocrList) {
     if (!ocr?.Open_Opportunity__c) continue;
     const opp = oppById.get(ocr.OpportunityId);
@@ -699,8 +980,17 @@ function buildHistoryEventsPreview({
       sourceObjectId: ocr.Id,
       eventType: "openOpportunityDetected",
       title: "Open opportunity detected",
-      detail:
-        [opp?.Name, opp?.StageName].filter(Boolean).join(" | ") || undefined,
+      detail: opp
+        ? [
+            opp?.Name,
+            opp?.StageName,
+            oppProductsLabel(opp.Id)
+              ? `Products: ${oppProductsLabel(opp.Id)}`
+              : null
+          ]
+            .filter(Boolean)
+            .join(" | ") || undefined
+        : undefined,
       importance: importanceFor("openOpportunityDetected")
     });
   }
@@ -727,6 +1017,13 @@ function buildHistoryEventsPreview({
   const taskList = Array.isArray(tasks) ? tasks : [];
   for (const t of taskList) {
     if (String(t.Status || "").toLowerCase() !== "completed") continue;
+    const linkedOppId = findLinkedOppId(t.WhatId);
+    const ctx = linkedOppId ? oppContextLabel(linkedOppId) : null;
+    const detailParts = [];
+    if (t.Subject) detailParts.push(String(t.Subject));
+    const desc = normalizeTextSnippet(t.Description, 140);
+    if (desc) detailParts.push(desc);
+    if (ctx) detailParts.push(`Opportunity: ${ctx}`);
     pushEvent(allOptional, {
       occurredAt: toIsoDateTime(t.ActivityDate) || toIsoDateTime(t.CreatedDate),
       sourceSystem: "salesforce",
@@ -734,13 +1031,20 @@ function buildHistoryEventsPreview({
       sourceObjectId: t.Id,
       eventType: "taskCompleted",
       title: "Task completed",
-      detail: t.Subject || undefined,
+      detail: detailParts.filter(Boolean).join(" - ") || undefined,
       importance: importanceFor("taskCompleted")
     });
   }
 
   const eventList = Array.isArray(events) ? events : [];
   for (const e of eventList) {
+    const linkedOppId = findLinkedOppId(e.WhatId);
+    const ctx = linkedOppId ? oppContextLabel(linkedOppId) : null;
+    const detailParts = [];
+    if (e.Subject) detailParts.push(String(e.Subject));
+    const desc = normalizeTextSnippet(e.Description, 140);
+    if (desc) detailParts.push(desc);
+    if (ctx) detailParts.push(`Opportunity: ${ctx}`);
     pushEvent(allOptional, {
       occurredAt:
         toIsoDateTime(e.StartDateTime) ||
@@ -751,13 +1055,17 @@ function buildHistoryEventsPreview({
       sourceObjectId: e.Id,
       eventType: "meetingLogged",
       title: "Meeting logged",
-      detail: e.Subject || undefined,
+      detail: detailParts.filter(Boolean).join(" - ") || undefined,
       importance: importanceFor("meetingLogged")
     });
   }
 
   const emailList = Array.isArray(emailMessages) ? emailMessages : [];
   for (const em of emailList) {
+    const linkedOppId =
+      findLinkedOppId(em.RelatedToId) || findLinkedOppId(em.ParentId);
+    const ctx = linkedOppId ? oppContextLabel(linkedOppId) : null;
+    const snippet = normalizeTextSnippet(em.TextBody, 160);
     pushEvent(allOptional, {
       occurredAt:
         toIsoDateTime(em.MessageDate) || toIsoDateTime(em.CreatedDate),
@@ -769,12 +1077,16 @@ function buildHistoryEventsPreview({
       detail:
         [
           em.Subject,
+          snippet ? `Snippet: ${snippet}` : null,
           em.Incoming === true
             ? "incoming"
             : em.Incoming === false
               ? "outgoing"
               : null,
           redactEmailAddress(em.FromAddress)
+            ? `From: ${redactEmailAddress(em.FromAddress)}`
+            : null,
+          ctx ? `Opportunity: ${ctx}` : null
         ]
           .filter(Boolean)
           .join(" | ") || undefined,
@@ -1083,6 +1395,8 @@ exports.handler = async function handler(event) {
       "Email",
       "AccountId"
     ];
+    const desiredContactIdentityFields =
+      req["Contact"]?.optionalIdentityFields || [];
     const desiredAccountFields = req["Account"]?.fields || ["Id", "Name"];
     const desiredOcrFields = req["OpportunityContactRole"]?.fields || [
       "Id",
@@ -1103,11 +1417,13 @@ exports.handler = async function handler(event) {
     let account = null;
     let ocr = [];
     let opportunities = [];
+    let opportunityLineItems = [];
     let tasks = [];
     let events = [];
     let emailMessages = [];
     let campaignMembers = [];
     let contactUsSubmissions = [];
+    let salesLeads = [];
     const history = {
       contactHistory: [],
       opportunityFieldHistory: [],
@@ -1142,10 +1458,10 @@ exports.handler = async function handler(event) {
     const resolvedContactId = contactId || mql?.Contact__c || null;
     if (resolvedContactId) {
       const contactDescribe = await describeCached("Contact");
-      const contactFields = pickExistingFields(
-        contactDescribe,
-        desiredContactFields
-      );
+      const contactFields = pickExistingFields(contactDescribe, [
+        ...desiredContactFields,
+        ...desiredContactIdentityFields
+      ]);
       const cQ = `SELECT ${contactFields.join(",")} FROM Contact WHERE Id = '${resolvedContactId}' LIMIT 1`;
       const cRes = await sfQuery({ ...sfAuth, apiVersion, soql: cQ });
       contact = (cRes?.records && cRes.records[0]) || null;
@@ -1195,6 +1511,31 @@ exports.handler = async function handler(event) {
         (await trySfQueryRecords({ ...sfAuth, apiVersion, soql: oppQ })) || [];
     }
 
+    // 3b) Opportunity products (best-effort). Prefer standard OpportunityLineItem.
+    if (oppIds.length && opt?.OpportunityLineItem?.fields?.length) {
+      const oliFields = opt.OpportunityLineItem.fields;
+      const base =
+        `SELECT ${oliFields.join(", ")} FROM OpportunityLineItem ` +
+        `WHERE OpportunityId IN ${safeInClause(oppIds)} ` +
+        "ORDER BY CreatedDate DESC LIMIT 200";
+      const res = await trySfQueryRecords({
+        ...sfAuth,
+        apiVersion,
+        soql: base
+      });
+      if (res === null && oliFields.some((f) => String(f).includes("."))) {
+        const stripped = oliFields.filter((f) => !String(f).includes("."));
+        const q2 =
+          `SELECT ${stripped.join(", ")} FROM OpportunityLineItem ` +
+          `WHERE OpportunityId IN ${safeInClause(oppIds)} ` +
+          "ORDER BY CreatedDate DESC LIMIT 200";
+        opportunityLineItems =
+          (await trySfQueryRecords({ ...sfAuth, apiVersion, soql: q2 })) || [];
+      } else {
+        opportunityLineItems = res || [];
+      }
+    }
+
     // 4) Optional recency-bounded activity + timeline objects
     if (contact?.Id) {
       // Run independent timeline queries in parallel (big latency win).
@@ -1233,9 +1574,14 @@ exports.handler = async function handler(event) {
         (async () => {
           if (!opt.EmailMessage?.fields?.length) return [];
           const emailFields = opt.EmailMessage.fields;
+          const whereParts = [
+            `(RelatedToId = '${contact.Id}' OR ParentId = '${contact.Id}')`
+          ];
+          if (oppIds.length)
+            whereParts.push(`RelatedToId IN ${safeInClause(oppIds)}`);
           const q =
             `SELECT ${emailFields.join(", ")} FROM EmailMessage ` +
-            `WHERE (RelatedToId = '${contact.Id}' OR ParentId = '${contact.Id}') AND CreatedDate = ${sinceExpr} ` +
+            `WHERE (${whereParts.join(" OR ")}) AND CreatedDate = ${sinceExpr} ` +
             "ORDER BY MessageDate DESC NULLS LAST, CreatedDate DESC LIMIT 100";
           return (
             (await trySfQueryRecords({ ...sfAuth, apiVersion, soql: q })) || []
@@ -1287,13 +1633,29 @@ exports.handler = async function handler(event) {
         })()
       );
 
-      const [taskRes, eventRes, emailRes, campaignRes, contactUsRes] =
+      // Sales_Lead__c (Activity Alert) - stored web activity summaries from CMS.
+      promises.push(
+        (async () => {
+          if (!opt["Sales_Lead__c"]?.fields?.length) return [];
+          const slFields = opt["Sales_Lead__c"].fields;
+          const q =
+            `SELECT ${slFields.join(", ")} FROM Sales_Lead__c ` +
+            `WHERE Contact__c = '${contact.Id}' AND CreatedDate = LAST_N_DAYS:365 ` +
+            "ORDER BY Lead_Date__c DESC NULLS LAST, CreatedDate DESC LIMIT 10";
+          return (
+            (await trySfQueryRecords({ ...sfAuth, apiVersion, soql: q })) || []
+          );
+        })()
+      );
+
+      const [taskRes, eventRes, emailRes, campaignRes, contactUsRes, slRes] =
         await Promise.all(promises);
       tasks = taskRes;
       events = eventRes;
       emailMessages = emailRes;
       campaignMembers = campaignRes;
       contactUsSubmissions = contactUsRes;
+      salesLeads = slRes;
     }
 
     // 5) Optional history tables (only if enabled in org)
@@ -1349,6 +1711,7 @@ exports.handler = async function handler(event) {
       mql,
       opportunityContactRoles: ocr,
       opportunities,
+      opportunityLineItems,
       tasks,
       events,
       emailMessages,
@@ -1359,6 +1722,124 @@ exports.handler = async function handler(event) {
     });
 
     meta.timeline = preview?.metadata || null;
+
+    // Product-interest enrichment (best-effort):
+    // - Salesforce: Sales_Lead__c web activity summaries (if present)
+    // - HubSpot: lightweight contact property snapshot (URLs, campaign/conversion props)
+    let hubspotContactProps = null;
+    if (hsSecret && contact?.Email) {
+      const token = getHubspotToken(hsSecret);
+      if (token) {
+        const baseUrl = getHubspotBaseUrl(hsSecret);
+        const timeoutMs = 2500;
+        const hsContactId =
+          contact?.Hubspot__c ||
+          (contact?.HubSpot_Contact_Id__c
+            ? String(contact.HubSpot_Contact_Id__c)
+            : null);
+        const resolvedId =
+          hsContactId ||
+          (await searchContactIdByEmail({
+            token,
+            baseUrl,
+            email: contact.Email,
+            timeoutMs
+          }));
+        if (resolvedId) {
+          hubspotContactProps = await getContactProperties({
+            token,
+            baseUrl,
+            hsContactId: resolvedId,
+            timeoutMs,
+            properties: [
+              "hs_analytics_first_url",
+              "hs_analytics_last_url",
+              "hs_analytics_first_referrer",
+              "hs_analytics_last_referrer",
+              "hs_analytics_first_touch_converting_campaign",
+              "hs_analytics_last_touch_converting_campaign",
+              "hs_analytics_source",
+              "hs_analytics_source_data_1",
+              "hs_analytics_source_data_2",
+              "utm_campaign",
+              "utm_source",
+              "utm_medium",
+              "first_conversion_event_name",
+              "recent_conversion_event_name"
+            ]
+          });
+        }
+      }
+    }
+
+    const evidence = [
+      ...buildEvidenceFromSalesLeadWebActivity(salesLeads),
+      ...buildEvidenceFromCampaignMembers(campaignMembers),
+      ...buildEvidenceFromHubspotContactProps(hubspotContactProps)
+    ];
+    if (contact?.HubSpot_First_Conversion__c) {
+      evidence.push({
+        kind: "sf_conversion",
+        category: "text",
+        text: String(
+          redactInlineText(contact.HubSpot_First_Conversion__c)
+        ).slice(0, 280),
+        occurredAt: contact?.HubSpot_First_Conversion_Date__c || null
+      });
+    }
+    if (contact?.HubSpot_Recent_Conversion__c) {
+      evidence.push({
+        kind: "sf_conversion",
+        category: "text",
+        text: String(
+          redactInlineText(contact.HubSpot_Recent_Conversion__c)
+        ).slice(0, 280),
+        occurredAt: contact?.HubSpot_Recent_Conversion_Date__c || null
+      });
+    }
+
+    const productInterest = inferProductInterest({
+      rulesConfig: productInterestRules,
+      evidence
+    });
+
+    // Additional opportunity context for the model (Sales-friendly, bounded).
+    const oppById = new Map((opportunities || []).map((o) => [o.Id, o]));
+    const productsByOppId = new Map();
+    for (const oli of opportunityLineItems || []) {
+      const oppId = oli?.OpportunityId;
+      const productName = oli?.PricebookEntry?.Product2?.Name || null;
+      if (!oppId || !productName) continue;
+      if (!productsByOppId.has(oppId)) productsByOppId.set(oppId, []);
+      const list = productsByOppId.get(oppId);
+      if (!list.includes(productName)) list.push(productName);
+    }
+
+    const opportunityContext = {
+      openOpportunities: Array.from(oppById.values())
+        .slice(0, 5)
+        .map((o) => {
+          const products = (productsByOppId.get(o.Id) || [])
+            .map((x) => String(x).trim())
+            .filter(Boolean)
+            .slice(0, 4);
+          const fallbackProducts = [
+            o?.Opportunity_Product__c,
+            o?.Primary_Product__c,
+            o?.Product_Name__c,
+            o?.Product__c
+          ]
+            .map((x) => (x ? String(x).trim() : null))
+            .filter(Boolean)
+            .slice(0, 2);
+          const finalProducts = products.length ? products : fallbackProducts;
+          return compactObject({
+            name: o?.Name || null,
+            stage: o?.StageName || null,
+            products: finalProducts.length ? finalProducts : null
+          });
+        })
+    };
 
     // If OpenAI is configured, prefer the LLM narrative, else fall back to a
     // deterministic HTML summary.
@@ -1379,15 +1860,18 @@ exports.handler = async function handler(event) {
       account,
       opportunities,
       opportunityContactRoles: ocr,
-      historyEvents: preview?.events || []
+      historyEvents: preview?.events || [],
+      productInterest,
+      opportunityContext
     });
 
-    const deterministic = truncateHtmlForSalesforceField(
-      sanitizeHtmlForSalesforceField(
-        buildDeterministicSalesSummaryHtml(salesNarrativeInput)
-      ),
-      120000
-    );
+    const deterministic = finalizeSalesSummaryHtml({
+      html: buildDeterministicSalesSummaryHtml(salesNarrativeInput),
+      instanceUrl: sfAuth.instanceUrl,
+      mql,
+      opportunities,
+      opportunityContactRoles: ocr
+    });
 
     if (openaiApiKey) {
       try {
@@ -1427,15 +1911,18 @@ exports.handler = async function handler(event) {
           .replace(/\s*```$/, "")
           .trim();
 
-        const cleanedSanitized = cleaned
-          ? truncateHtmlForSalesforceField(
-              sanitizeHtmlForSalesforceField(cleaned),
-              120000
-            )
+        const cleanedFinal = cleaned
+          ? finalizeSalesSummaryHtml({
+              html: cleaned,
+              instanceUrl: sfAuth.instanceUrl,
+              mql,
+              opportunities,
+              opportunityContactRoles: ocr
+            })
           : "";
-        const validation = validateSalesFacingHtml(cleanedSanitized);
+        const validation = validateSalesFacingHtml(cleanedFinal);
         if (validation.ok) {
-          summaryHtml = cleanedSanitized;
+          summaryHtml = cleanedFinal;
           meta.llm = {
             ok: true,
             provider: "openai",
@@ -1501,6 +1988,10 @@ exports._internals = {
   sanitizeHtmlForSalesforceField,
   validateSalesFacingHtml,
   buildDeterministicSalesSummaryHtml,
+  buildRelatedRecordsHtml,
+  enforceSalesSummarySectionCaps,
+  finalizeSalesSummaryHtml,
+  safeSfRecordUrl,
   buildOpenAiMessages,
   looksLikeFieldOrIdLeak
 };

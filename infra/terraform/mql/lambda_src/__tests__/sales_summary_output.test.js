@@ -21,6 +21,102 @@ test("deterministic sales summary includes required sections and validates", () 
   expect(v.ok).toBe(true);
 });
 
+test("finalizeSalesSummaryHtml enforces section caps", () => {
+  const base = [
+    `<p><strong>Why Sales Should Care</strong></p>`,
+    `<ul><li>A</li><li>B</li><li>C</li></ul>`,
+    `<p><strong>Score Interpretation</strong></p>`,
+    `<ul><li>A</li><li>B</li><li>C</li><li>D</li><li>E</li></ul>`,
+    `<p><strong>Most Recent Engagement</strong></p>`,
+    `<ul><li>2026-02-01 - A</li><li>2026-01-31 - B</li></ul>`,
+    `<p><strong>Suggested Next Step</strong></p>`,
+    `<ul><li>A</li><li>B</li><li>C</li></ul>`
+  ].join("\n");
+
+  const out = _internals.finalizeSalesSummaryHtml({
+    html: base,
+    instanceUrl: "https://example.my.salesforce.com",
+    mql: {},
+    opportunities: [],
+    opportunityContactRoles: []
+  });
+
+  // Score Interpretation max=4
+  const scoreBlock = out.split(
+    "<p><strong>Score Interpretation</strong></p>"
+  )[1];
+  expect((scoreBlock.match(/<li>/g) || []).length).toBeGreaterThan(0);
+  expect(scoreBlock).not.toContain("<li>E</li>");
+
+  // Suggested Next Step max=2
+  const nextBlock = out.split("<p><strong>Suggested Next Step</strong></p>")[1];
+  expect((nextBlock.match(/<li>/g) || []).length).toBe(2);
+  expect(nextBlock).not.toContain("<li>C</li>");
+});
+
+test("finalizeSalesSummaryHtml appends safe product/opportunity links and still validates", () => {
+  const base = [
+    `<p><strong>Why Sales Should Care</strong></p>`,
+    `<ul><li>A</li><li>B</li><li>C</li></ul>`,
+    `<p><strong>Score Interpretation</strong></p>`,
+    `<ul><li>A</li><li>B</li><li>C</li></ul>`,
+    `<p><strong>Most Recent Engagement</strong></p>`,
+    `<ul><li>2026-02-01 - A</li><li>2026-01-31 - B</li></ul>`,
+    `<p><strong>Suggested Next Step</strong></p>`,
+    `<ul><li>A</li></ul>`
+  ].join("\n");
+
+  const out = _internals.finalizeSalesSummaryHtml({
+    html: base,
+    instanceUrl: "https://example.my.salesforce.com",
+    mql: { Product__c: "01t14000005McabAAC", Product_Name__c: "Navigator" },
+    opportunities: [
+      { Id: "006VE00000SNA9rYAH", Name: "Test Opp", StageName: "Discover" }
+    ],
+    opportunityContactRoles: [
+      {
+        Id: "00Kxx0000000001",
+        OpportunityId: "006VE00000SNA9rYAH",
+        Open_Opportunity__c: true
+      }
+    ]
+  });
+
+  expect(out).toContain("<p><strong>Links</strong></p>");
+  expect(out).toContain(
+    'href="https://example.my.salesforce.com/01t14000005McabAAC"'
+  );
+  expect(out).toContain(
+    'href="https://example.my.salesforce.com/006VE00000SNA9rYAH"'
+  );
+  expect(out).toContain("Product: Navigator");
+  expect(out).toContain("Opportunity: Test Opp");
+
+  const v = _internals.validateSalesFacingHtml(out);
+  expect(v.ok).toBe(true);
+});
+
+test("deterministic sales summary mentions product-interest when present", () => {
+  const html = _internals.buildDeterministicSalesSummaryHtml({
+    productInterest: {
+      topProducts: [
+        { name: "Navigator", confidence: "High", evidence: ["URL: ..."] },
+        { name: "GovTech", confidence: "Moderate", evidence: ["URL: ..."] }
+      ]
+    },
+    keyReasons: ["Recent engagement meets the marketing engagement threshold."],
+    scoreInterpretation: ["Fit: Looks good based on eligibility checks."],
+    fit: { concerns: [] },
+    opportunity: { hasOpenOpportunity: false },
+    recentEngagement: []
+  });
+
+  expect(html).toContain("Likely areas of interest");
+  expect(html).toContain("Navigator");
+  const v = _internals.validateSalesFacingHtml(html);
+  expect(v.ok).toBe(true);
+});
+
 test("validator rejects obvious field-name leakage and missing headings", () => {
   const bad1 =
     "<p><strong>Why Sales Should Care</strong></p><ul><li>Contact_Fit_Threshold__c = 5</li></ul>";

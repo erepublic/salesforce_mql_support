@@ -56,7 +56,9 @@ function buildSalesNarrativeInput({
   account,
   opportunities,
   opportunityContactRoles,
-  historyEvents
+  historyEvents,
+  productInterest,
+  opportunityContext
 }) {
   const events = Array.isArray(historyEvents) ? historyEvents : [];
   const newestFirst = [...events].sort(
@@ -184,14 +186,28 @@ function buildSalesNarrativeInput({
       "Inbound request makes this time-sensitive, but still verify fit."
     );
 
-  const recentEngagement = newestFirst.slice(0, 12).map((e) => ({
-    date: yyyyMmDd(e?.occurredAt) || null,
-    highlight: buildSalesEventLabel(e),
-    importance: e?.importance || null
-  }));
+  // Only include items that can be rendered with the required YYYY-MM-DD prefix.
+  // If we pass null dates to the model, it tends to output "Unknown date", which
+  // breaks the stored summary format contract.
+  const recentEngagement = newestFirst
+    .map((e) => ({
+      date: yyyyMmDd(e?.occurredAt) || null,
+      highlight: buildSalesEventLabel(e),
+      importance: e?.importance || null
+    }))
+    .filter((e) => e.date && e.highlight)
+    .slice(0, 12);
 
   return compactObject({
     product: mql?.Product_Name__c || mql?.Product__c || null,
+    productInterest:
+      productInterest && typeof productInterest === "object"
+        ? productInterest
+        : null,
+    opportunityContext:
+      opportunityContext && typeof opportunityContext === "object"
+        ? opportunityContext
+        : null,
     mqlStatus: mql?.MQL_Status__c || null,
     mqlCreatedDate: yyyyMmDd(mql?.MQL_Date__c || mql?.CreatedDate) || null,
     fit: {

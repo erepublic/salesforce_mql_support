@@ -58,7 +58,16 @@ test("salesNarrativeInput does not contain raw field-name tokens", () => {
     account: { Private_Sector_Non_Qual__c: false },
     opportunities: [],
     opportunityContactRoles: [],
-    historyEvents: []
+    historyEvents: [],
+    productInterest: {
+      topProducts: [
+        {
+          name: "Navigator",
+          confidence: "High",
+          evidence: ["URL: http://www.govtech.com/navigator/numbers/x.html"]
+        }
+      ]
+    }
   });
 
   const s = JSON.stringify(out);
