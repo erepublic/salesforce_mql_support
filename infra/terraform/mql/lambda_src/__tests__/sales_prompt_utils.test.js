@@ -67,6 +67,16 @@ test("salesNarrativeInput does not contain raw field-name tokens", () => {
           evidence: ["URL: http://www.govtech.com/navigator/numbers/x.html"]
         }
       ]
+    },
+    analyticsBehavior: {
+      webActivity: {
+        recentSignals: true,
+        topPaths: [{ value: "/content/opportunities/rfp/123", count: 2 }]
+      },
+      emailEngagement: {
+        recentSignals: true,
+        mailgunTopEvents: [{ value: "opened", count: 3 }]
+      }
     }
   });
 

@@ -41,6 +41,10 @@ const {
   searchContactIdByEmail,
   getContactProperties
 } = require("./hubspot_client");
+const {
+  getAnalyticsDbConfig,
+  fetchAnalyticsBehavior
+} = require("./redshift_behavior_client");
 
 // Cache describe results across warm Lambda invocations to reduce Salesforce
 // round-trips and stay under API Gateway timeouts.
@@ -74,6 +78,29 @@ function toIsoDateTime(value) {
   if (/^\d{4}-\d{2}-\d{2}$/.test(String(value)))
     return `${value}T00:00:00.000Z`;
   return null;
+}
+
+function toIsoFromHubspotTimestamp(value) {
+  // HubSpot analytics timestamps are often epoch millis as a string (e.g. "1663089240000").
+  if (value === null || value === undefined || value === "") return null;
+  if (typeof value === "number" && Number.isFinite(value))
+    return new Date(value).toISOString();
+  const raw = String(value).trim();
+  if (!raw) return null;
+  if (/^\d+$/.test(raw)) {
+    const n = Number(raw);
+    if (!Number.isFinite(n)) return null;
+    // Heuristic: 13+ digits => ms, 10 digits => seconds
+    if (n > 1e12) return new Date(n).toISOString();
+    if (n > 1e9) return new Date(n * 1000).toISOString();
+  }
+  const t = Date.parse(raw);
+  return Number.isFinite(t) ? new Date(t).toISOString() : null;
+}
+
+function safeInt(v) {
+  const n = Number(v);
+  return Number.isFinite(n) ? Math.floor(n) : null;
 }
 
 function redactEmailAddress(email) {
@@ -505,9 +532,13 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "   - 5-12 bullets, newest-first (most recent first).",
     "   - Each bullet MUST start with a date (YYYY-MM-DD) then a short plain-English highlight.",
     "   - If an engagement is tied to a specific opportunity/product, mention that product in the highlight.",
+    "   - Use the provided engagement bullets as your source of truth: include all provided items (up to 12) and do not omit website-activity bullets when present.",
+    "   - Do not paraphrase the engagement highlights unless required for clarity; keep wording close so important evidence (like visits/pageviews) is preserved.",
     "4) Suggested Next Step",
     "   - 1-2 bullets: best outreach angle + what to verify + urgency.",
     "   - If product-interest signals exist, tailor the outreach angle to those likely interests.",
+    "   - If analytics behavior signals exist (recent pageviews/actions or email opens/clicks), use them as additional evidence for what they are actively researching (but do not mention where the data came from).",
+    "   - If website activity totals exist (site visits/pageviews), you may use them as supporting evidence; if the last visit is old, label it as historical rather than current buying intent.",
     "",
     "Important constraints:",
     "- Do not include any field names, IDs, JSON keys, or system names.",
@@ -1306,21 +1337,15 @@ exports.handler = async function handler(event) {
   const mqlId = body?.mqlId || null;
   const contactId = body?.contactId || null;
 
-  if (!mqlId) {
-    return jsonResponse(400, {
-      ok: false,
-      error: "missing_mqlId",
-      meta: { env, receivedAt: nowIso() }
-    });
-  }
-
   // Load secrets (may be unconfigured at first).
   const sfSecretArn = process.env.SALESFORCE_SECRET_ARN;
   const hsSecretArn = process.env.HUBSPOT_SECRET_ARN;
   const openaiSecretArn = process.env.OPENAI_SECRET_ARN;
+  const analyticsSecretArn = process.env.ANALYTICS_DB_SECRET_ARN;
   const sfSecret = await getSecretJson(sfSecretArn);
   const hsSecret = await getSecretJson(hsSecretArn);
   const openaiSecret = await getSecretJson(openaiSecretArn);
+  const analyticsSecret = await getSecretJson(analyticsSecretArn);
 
   let summaryHtml = null;
   const meta = {
@@ -1331,8 +1356,95 @@ exports.handler = async function handler(event) {
     receivedAt: nowIso(),
     hasSalesforceSecret: Boolean(sfSecret),
     hasHubspotSecret: Boolean(hsSecret),
-    hasOpenAiSecret: Boolean(openaiSecret)
+    hasOpenAiSecret: Boolean(openaiSecret),
+    hasAnalyticsDbSecret: Boolean(analyticsSecret)
   };
+
+  // Debug: Redshift connectivity check without Salesforce/MQL dependency.
+  if (body?.debugAnalyticsPing === true) {
+    try {
+      const analyticsConfig = getAnalyticsDbConfig({
+        secret: analyticsSecret,
+        env: process.env
+      });
+      if (!analyticsConfig) {
+        return jsonResponse(200, {
+          ok: true,
+          summaryHtml: buildBasicSummaryHtml({
+            env,
+            mqlId: mqlId || "n/a",
+            contactId,
+            message:
+              "Analytics DB not configured yet (missing secret values); cannot ping Redshift."
+          }),
+          meta: { ...meta, analytics: { ok: false, configured: false } }
+        });
+      }
+
+      const analyticsBehavior = await fetchAnalyticsBehavior({
+        config: analyticsConfig,
+        contactEmail: body?.contactEmail || null,
+        hubspotContactId: body?.hubspotContactId || null,
+        limits: { pageviewsLimit: 1, actionsLimit: 1, emailEventsLimit: 1 }
+      });
+
+      return jsonResponse(200, {
+        ok: true,
+        summaryHtml: buildBasicSummaryHtml({
+          env,
+          mqlId: mqlId || "n/a",
+          contactId,
+          message:
+            "Analytics DB ping OK. Signals present depend on identity mapping."
+        }),
+        meta: {
+          ...meta,
+          analytics: {
+            ok: true,
+            hasWebSignals: Boolean(
+              analyticsBehavior?.webActivity?.recentSignals
+            ),
+            hasEmailSignals: Boolean(
+              analyticsBehavior?.emailEngagement?.recentSignals
+            ),
+            hasAnyWebSignals: Boolean(
+              analyticsBehavior?.webActivity?.hasSignals
+            ),
+            hasAnyEmailSignals: Boolean(
+              analyticsBehavior?.emailEngagement?.hasSignals
+            )
+          }
+        }
+      });
+    } catch (err) {
+      return jsonResponse(200, {
+        ok: true,
+        summaryHtml: buildBasicSummaryHtml({
+          env,
+          mqlId: mqlId || "n/a",
+          contactId,
+          message: "Analytics DB ping failed."
+        }),
+        meta: {
+          ...meta,
+          analytics: {
+            ok: false,
+            configured: true,
+            name: err?.name || null,
+            message: err?.message || "analytics_failed"
+          }
+        }
+      });
+    }
+  }
+
+  if (!mqlId) {
+    return jsonResponse(400, {
+      ok: false,
+      error: "missing_mqlId",
+      meta: { env, receivedAt: nowIso() }
+    });
+  }
 
   // Try Salesforce fetch if configured.
   try {
@@ -1727,6 +1839,8 @@ exports.handler = async function handler(event) {
     // - Salesforce: Sales_Lead__c web activity summaries (if present)
     // - HubSpot: lightweight contact property snapshot (URLs, campaign/conversion props)
     let hubspotContactProps = null;
+    let hubspotResolvedContactId = null;
+    let websiteActivity = null;
     if (hsSecret && contact?.Email) {
       const token = getHubspotToken(hsSecret);
       if (token) {
@@ -1746,6 +1860,7 @@ exports.handler = async function handler(event) {
             timeoutMs
           }));
         if (resolvedId) {
+          hubspotResolvedContactId = String(resolvedId);
           hubspotContactProps = await getContactProperties({
             token,
             baseUrl,
@@ -1756,6 +1871,12 @@ exports.handler = async function handler(event) {
               "hs_analytics_last_url",
               "hs_analytics_first_referrer",
               "hs_analytics_last_referrer",
+              // Website activity counts + last/first seen timestamps (these power the
+              // "Website activity" panel in HubSpot).
+              "hs_analytics_num_page_views",
+              "hs_analytics_num_visits",
+              "hs_analytics_first_timestamp",
+              "hs_analytics_last_timestamp",
               "hs_analytics_first_touch_converting_campaign",
               "hs_analytics_last_touch_converting_campaign",
               "hs_analytics_source",
@@ -1768,8 +1889,65 @@ exports.handler = async function handler(event) {
               "recent_conversion_event_name"
             ]
           });
+
+          // Map HubSpot website activity into sales-facing, system-agnostic fields.
+          if (hubspotContactProps && typeof hubspotContactProps === "object") {
+            websiteActivity = compactObject({
+              visits: safeInt(hubspotContactProps.hs_analytics_num_visits),
+              pageViews: safeInt(
+                hubspotContactProps.hs_analytics_num_page_views
+              ),
+              firstVisitAt: toIsoFromHubspotTimestamp(
+                hubspotContactProps.hs_analytics_first_timestamp
+              ),
+              lastVisitAt: toIsoFromHubspotTimestamp(
+                hubspotContactProps.hs_analytics_last_timestamp
+              )
+            });
+          }
         }
       }
+    }
+
+    // Optional analytics enrichment (Redshift). Best-effort and bounded.
+    let analyticsBehavior = null;
+    try {
+      const analyticsConfig = getAnalyticsDbConfig({
+        secret: analyticsSecret,
+        env: process.env
+      });
+      if (analyticsConfig && contact?.Email) {
+        analyticsBehavior = await fetchAnalyticsBehavior({
+          config: analyticsConfig,
+          contactEmail: contact.Email,
+          hubspotContactId: hubspotResolvedContactId,
+          limits: { pageviewsLimit: 12, actionsLimit: 10, emailEventsLimit: 12 }
+        });
+        meta.analytics = {
+          ok: true,
+          hasWebSignals: Boolean(analyticsBehavior?.webActivity?.recentSignals),
+          hasEmailSignals: Boolean(
+            analyticsBehavior?.emailEngagement?.recentSignals
+          ),
+          hasAnyWebSignals: Boolean(analyticsBehavior?.webActivity?.hasSignals),
+          hasAnyEmailSignals: Boolean(
+            analyticsBehavior?.emailEngagement?.hasSignals
+          )
+        };
+      } else {
+        meta.analytics = {
+          ok: false,
+          configured: Boolean(analyticsConfig)
+        };
+      }
+    } catch (err) {
+      meta.analytics = {
+        ok: false,
+        configured: true,
+        name: err?.name || null,
+        message: err?.message || "analytics_failed"
+      };
+      analyticsBehavior = null;
     }
 
     const evidence = [
@@ -1862,7 +2040,9 @@ exports.handler = async function handler(event) {
       opportunityContactRoles: ocr,
       historyEvents: preview?.events || [],
       productInterest,
-      opportunityContext
+      opportunityContext,
+      analyticsBehavior,
+      websiteActivity
     });
 
     const deterministic = finalizeSalesSummaryHtml({

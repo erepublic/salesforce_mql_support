@@ -78,3 +78,33 @@ variable "api_key_value_production" {
   default     = null
 }
 
+variable "vpc_id" {
+  type        = string
+  description = "VPC ID for Lambda networking (should match Redshift VPC)."
+  default     = "vpc-90b6fdf5"
+}
+
+variable "nat_gateway_public_subnet_id" {
+  type        = string
+  description = "Public subnet ID to place the NAT Gateway into."
+  default     = "subnet-864707df"
+}
+
+variable "lambda_private_subnet_azs" {
+  type        = list(string)
+  description = "Availability zones for private subnets (must align with CIDRs list)."
+  default     = ["us-west-1a", "us-west-1b"]
+}
+
+variable "lambda_private_subnet_cidrs" {
+  type        = list(string)
+  description = "CIDR blocks for Lambda private subnets (must align with AZs list)."
+  default     = ["172.31.128.0/20", "172.31.144.0/20"]
+}
+
+variable "redshift_security_group_id" {
+  type        = string
+  description = "Security group ID attached to the Redshift cluster."
+  default     = "sg-b7e08ed3"
+}
+

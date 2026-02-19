@@ -54,3 +54,13 @@ variable "idempotency_ttl_attr" {
   description = "DynamoDB TTL attribute name."
 }
 
+variable "lambda_vpc_subnet_ids" {
+  type        = list(string)
+  description = "Private subnet IDs for the Lambda ENIs."
+}
+
+variable "lambda_vpc_security_group_ids" {
+  type        = list(string)
+  description = "Security group IDs attached to the Lambda ENIs."
+}
+

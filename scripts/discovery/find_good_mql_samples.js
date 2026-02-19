@@ -75,6 +75,11 @@ function boolish(v) {
   return null;
 }
 
+function numOrNull(v) {
+  const n = Number(v);
+  return Number.isFinite(n) ? n : null;
+}
+
 function scoreMqlRow(m) {
   let score = 0;
   const reasons = [];
@@ -124,11 +129,22 @@ function scoreContactSignals(c) {
   const engagementThreshold = c.HubSpot_Engagement_Score_Threshold__c;
 
   if (behaviorScore != null) add(2, "has behavior score");
+  if (numOrNull(behaviorScore) != null && Number(behaviorScore) > 0)
+    add(3, "behavior score > 0");
   if (behaviorDate) add(1, "has behavior score date");
   if (fitScore != null) add(2, "has contact fit score");
   if (fitThreshold != null) add(2, "has contact fit threshold");
   if (engagementScore != null) add(1, "has engagement score");
   if (engagementThreshold != null) add(1, "has engagement score threshold");
+
+  // If both are numeric, reward threshold-met.
+  if (
+    numOrNull(engagementScore) != null &&
+    numOrNull(engagementThreshold) != null &&
+    Number(engagementScore) >= Number(engagementThreshold)
+  ) {
+    add(3, "engagement score meets/exceeds threshold");
+  }
 
   const nonQual = boolish(c.Private_Sector_Non_Qual__c);
   const acctNonQual = boolish(c.Private_Sector_Acct_Non_Qual__c);
@@ -156,24 +172,40 @@ function mergeCountsById(rows, idField, countField) {
 async function main() {
   const args = parseArgs(process.argv);
   const targetOrg = args["target-org"] || "mql-sandbox";
-  const sinceDays = Math.max(
-    1,
-    Math.min(365, Number(args["since-days"] || 365))
-  );
-  const limit = Math.max(10, Math.min(500, Number(args.limit || 200)));
+  const sinceDaysRaw =
+    args["since-days"] === undefined ? 365 : Number(args["since-days"]);
+  // Allow since-days=0 to mean "no CreatedDate filter" so we can expand the pool
+  // for test candidate discovery.
+  const sinceDays = Number.isFinite(sinceDaysRaw) ? sinceDaysRaw : 365;
+  const limit = Math.max(10, Math.min(2000, Number(args.limit || 200)));
   const top = Math.max(5, Math.min(50, Number(args.top || 10)));
   const jsonOnly = args["json-only"] === true;
   const leadSourceFilter = args["lead-source"]
     ? String(args["lead-source"])
     : null;
+  const noOpenOpportunities =
+    args["no-open-opportunities"] === true ||
+    args["no-open-opportunities"] === "true";
+  const requireQualified =
+    args["require-qualified"] === true || args["require-qualified"] === "true";
 
-  const sinceExpr = `LAST_N_DAYS:${sinceDays}`;
+  const sinceExpr =
+    Number.isFinite(sinceDays) && sinceDays > 0
+      ? `LAST_N_DAYS:${Math.min(365, Math.max(1, Math.floor(sinceDays)))}`
+      : null;
 
-  const mqlWhere = [`CreatedDate = ${sinceExpr}`];
+  const mqlWhere = [];
+  if (sinceExpr) mqlWhere.push(`CreatedDate = ${sinceExpr}`);
   if (leadSourceFilter) {
     mqlWhere.push(
       `Lead_Source__c = '${leadSourceFilter.replaceAll("'", "\\'")}'`
     );
+  }
+  // If requested, exclude any MQL that is explicitly linked to an Opportunity.
+  if (noOpenOpportunities) {
+    mqlWhere.push("Opportunity__c = null");
+    // Converted MQLs usually create/attach an opportunity (even if field is null in edge cases).
+    mqlWhere.push("MQL_Status__c != 'Converted'");
   }
 
   const mqlSoql =
@@ -181,7 +213,9 @@ async function main() {
     "Lead_Source__c, Lead_Source_Detail__c, Lead_Detail_1__c, Lead_Detail_2__c, Lead_Detail_3__c, Lead_Detail_4__c, " +
     "Lead_Notes__c, MQL_Status__c, Conversion_Type__c, Conversion_Date__c, Opportunity__c, Campaign__c, Contact_Us__c, " +
     "Product__c, Product_Name__c " +
-    `FROM MQL__c WHERE ${mqlWhere.join(" AND ")} ORDER BY CreatedDate DESC LIMIT ${limit}`;
+    `FROM MQL__c ${
+      mqlWhere.length ? `WHERE ${mqlWhere.join(" AND ")}` : ""
+    } ORDER BY CreatedDate DESC LIMIT ${limit}`;
 
   if (!jsonOnly)
     console.log(
@@ -209,6 +243,25 @@ async function main() {
   const contacts = queryRecords({ targetOrg, soql: contactSoql });
   const contactById = new Map(contacts.map((c) => [c.Id, c]));
 
+  // If requested, exclude contacts that are already tied to an open opportunity (via OCR).
+  // (This matches the flow's open-opp logic using Open_Opportunity__c when present.)
+  let openOppByContactId = new Map();
+  if (noOpenOpportunities && contactIds.length) {
+    try {
+      const whereIn = safeInClause(contactIds);
+      const rows = queryRecords({
+        targetOrg,
+        soql:
+          `SELECT ContactId cid, COUNT(Id) cnt FROM OpportunityContactRole ` +
+          `WHERE ContactId IN ${whereIn} AND Open_Opportunity__c = true GROUP BY ContactId`
+      });
+      openOppByContactId = mergeCountsById(rows, "cid", "cnt");
+    } catch {
+      // If OCR or field is not accessible in an org, treat as unknown (don't filter).
+      openOppByContactId = new Map();
+    }
+  }
+
   if (!jsonOnly)
     console.log(
       "Querying activity counts (Tasks/Events/EmailMessage/CampaignMember)..."
@@ -218,7 +271,9 @@ async function main() {
   const taskCounts = mergeCountsById(
     queryRecords({
       targetOrg,
-      soql: `SELECT WhoId whoId, COUNT(Id) cnt FROM Task WHERE WhoId IN ${whoIn} AND CreatedDate = ${sinceExpr} GROUP BY WhoId`
+      soql: `SELECT WhoId whoId, COUNT(Id) cnt FROM Task WHERE WhoId IN ${whoIn} ${
+        sinceExpr ? `AND CreatedDate = ${sinceExpr}` : ""
+      } GROUP BY WhoId`
     }),
     "whoId",
     "cnt"
@@ -226,7 +281,9 @@ async function main() {
   const eventCounts = mergeCountsById(
     queryRecords({
       targetOrg,
-      soql: `SELECT WhoId whoId, COUNT(Id) cnt FROM Event WHERE WhoId IN ${whoIn} AND CreatedDate = ${sinceExpr} GROUP BY WhoId`
+      soql: `SELECT WhoId whoId, COUNT(Id) cnt FROM Event WHERE WhoId IN ${whoIn} ${
+        sinceExpr ? `AND CreatedDate = ${sinceExpr}` : ""
+      } GROUP BY WhoId`
     }),
     "whoId",
     "cnt"
@@ -238,7 +295,9 @@ async function main() {
     emailCounts = mergeCountsById(
       queryRecords({
         targetOrg,
-        soql: `SELECT ParentId whoId, COUNT(Id) cnt FROM EmailMessage WHERE ParentId IN ${whoIn} AND CreatedDate = ${sinceExpr} GROUP BY ParentId`
+        soql: `SELECT ParentId whoId, COUNT(Id) cnt FROM EmailMessage WHERE ParentId IN ${whoIn} ${
+          sinceExpr ? `AND CreatedDate = ${sinceExpr}` : ""
+        } GROUP BY ParentId`
       }),
       "whoId",
       "cnt"
@@ -285,6 +344,9 @@ async function main() {
       const act = m.Contact__c
         ? activityScoreFor(m.Contact__c)
         : { score: 0, counts: {} };
+      const openOppCount = m.Contact__c
+        ? Number(openOppByContactId.get(m.Contact__c) || 0)
+        : 0;
       const total = base.score + cs.score + act.score;
       return {
         mqlId: m.Id,
@@ -293,6 +355,7 @@ async function main() {
         leadSource: m.Lead_Source__c || null,
         status: m.MQL_Status__c || null,
         totalScore: Math.round(total * 10) / 10,
+        openOppCount,
         activityCounts: act.counts,
         why: [
           ...base.reasons,
@@ -303,6 +366,19 @@ async function main() {
           }
         ].sort((a, b) => b.points - a.points)
       };
+    })
+    .filter((r) => {
+      if (!noOpenOpportunities) return true;
+      return Number(r.openOppCount || 0) === 0;
+    })
+    .filter((r) => {
+      if (!requireQualified) return true;
+      const c = r.contactId ? contactById.get(r.contactId) : null;
+      if (!c) return false;
+      return (
+        boolish(c.Private_Sector_Non_Qual__c) === false &&
+        boolish(c.Private_Sector_Acct_Non_Qual__c) === false
+      );
     })
     .sort((a, b) => b.totalScore - a.totalScore)
     .slice(0, top);

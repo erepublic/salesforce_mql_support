@@ -28,12 +28,19 @@ function chunk(arr, n) {
   return out;
 }
 
+function safeInClause(ids) {
+  const clean = (ids || []).filter(Boolean);
+  if (!clean.length) return "(null)";
+  return `(${clean.map((id) => `'${String(id).replaceAll("'", "\\'")}'`).join(",")})`;
+}
+
 function parseArgs(argv) {
   const args = {
     targetOrg: "mql-sandbox",
     batchSize: 5,
     sleepSeconds: 20,
-    maxBatches: Infinity
+    maxBatches: Infinity,
+    noOpenOppsFirst: true
   };
   for (let i = 2; i < argv.length; i++) {
     const a = argv[i];
@@ -41,6 +48,8 @@ function parseArgs(argv) {
     else if (a === "--batch-size") args.batchSize = Number(argv[++i]);
     else if (a === "--sleep-seconds") args.sleepSeconds = Number(argv[++i]);
     else if (a === "--max-batches") args.maxBatches = Number(argv[++i]);
+    else if (a === "--no-open-opps-first")
+      args.noOpenOppsFirst = String(argv[++i] || "true") !== "false";
   }
   if (!args.targetOrg) throw new Error("invalid --target-org");
   if (!Number.isFinite(args.batchSize) || args.batchSize <= 0)
@@ -57,9 +66,8 @@ function parseArgs(argv) {
 }
 
 function main() {
-  const { targetOrg, batchSize, sleepSeconds, maxBatches } = parseArgs(
-    process.argv
-  );
+  const { targetOrg, batchSize, sleepSeconds, maxBatches, noOpenOppsFirst } =
+    parseArgs(process.argv);
 
   const res = runSfJson([
     "data",
@@ -67,12 +75,77 @@ function main() {
     "--target-org",
     targetOrg,
     "--query",
-    "SELECT Id FROM MQL__c ORDER BY CreatedDate DESC",
+    "SELECT Id, CreatedDate, Contact__c, Opportunity__c FROM MQL__c ORDER BY CreatedDate DESC",
     "--json"
   ]);
 
-  const ids = (res?.result?.records || []).map((r) => r.Id).filter(Boolean);
-  console.log(`Found ${ids.length} MQL__c records`);
+  const records = res?.result?.records || [];
+  let ids = records.map((r) => r.Id).filter(Boolean);
+
+  if (noOpenOppsFirst) {
+    const contactIds = Array.from(
+      new Set(records.map((r) => r.Contact__c).filter(Boolean))
+    );
+    const openOppCountByContactId = new Map();
+    try {
+      for (const batch of chunk(contactIds, 200)) {
+        const q = `SELECT ContactId contactId, COUNT(Id) cnt FROM OpportunityContactRole WHERE ContactId IN ${safeInClause(
+          batch
+        )} AND Opportunity.IsClosed = false GROUP BY ContactId`;
+        const out = runSfJson([
+          "data",
+          "query",
+          "--target-org",
+          targetOrg,
+          "--query",
+          q,
+          "--json"
+        ]);
+        const rows = out?.result?.records || [];
+        for (const row of rows) {
+          const cid = row?.contactId;
+          const cnt = Number(row?.cnt || 0);
+          if (cid) openOppCountByContactId.set(cid, cnt);
+        }
+      }
+    } catch (e) {
+      console.error(
+        "Open opportunity lookup failed; falling back to CreatedDate ordering.",
+        {
+          message: e?.message
+        }
+      );
+    }
+
+    const sorted = [...records].sort((a, b) => {
+      const aOpen = Number(openOppCountByContactId.get(a.Contact__c) || 0);
+      const bOpen = Number(openOppCountByContactId.get(b.Contact__c) || 0);
+
+      // Primary: no open opps first (0 before >0).
+      if (aOpen === 0 && bOpen > 0) return -1;
+      if (bOpen === 0 && aOpen > 0) return 1;
+
+      // Secondary: MQL not explicitly tied to an Opportunity__c first (still keep deterministic).
+      const aHasOpp = Boolean(a.Opportunity__c);
+      const bHasOpp = Boolean(b.Opportunity__c);
+      if (!aHasOpp && bHasOpp) return -1;
+      if (!bHasOpp && aHasOpp) return 1;
+
+      // Tertiary: newest-first.
+      return Date.parse(b.CreatedDate) - Date.parse(a.CreatedDate);
+    });
+
+    ids = sorted.map((r) => r.Id).filter(Boolean);
+
+    const numNoOpenOpp = sorted.filter(
+      (r) => Number(openOppCountByContactId.get(r.Contact__c) || 0) === 0
+    ).length;
+    console.log(
+      `Found ${ids.length} MQL__c records (${numNoOpenOpp} with openOppCount=0; enqueuing those first)`
+    );
+  } else {
+    console.log(`Found ${ids.length} MQL__c records`);
+  }
 
   const batches = chunk(ids, batchSize).slice(0, maxBatches);
   const tmpFile = path.join(os.tmpdir(), `mql_backfill_${Date.now()}.apex`);

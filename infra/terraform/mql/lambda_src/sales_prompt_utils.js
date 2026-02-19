@@ -27,6 +27,14 @@ function redactInlineText(s) {
   return out;
 }
 
+function isRecentIso(iso, days) {
+  const t = Date.parse(iso);
+  if (!Number.isFinite(t)) return false;
+  const windowDays = Number.isFinite(Number(days)) ? Number(days) : 30;
+  const cutoff = Date.now() - windowDays * 24 * 60 * 60 * 1000;
+  return t >= cutoff;
+}
+
 function buildSalesEventLabel(e) {
   const eventType = String(e?.eventType || "");
   const title = String(e?.title || "").trim();
@@ -58,7 +66,9 @@ function buildSalesNarrativeInput({
   opportunityContactRoles,
   historyEvents,
   productInterest,
-  opportunityContext
+  opportunityContext,
+  analyticsBehavior,
+  websiteActivity
 }) {
   const events = Array.isArray(historyEvents) ? historyEvents : [];
   const newestFirst = [...events].sort(
@@ -171,6 +181,21 @@ function buildSalesNarrativeInput({
     );
   if (recentConversionName)
     keyReasons.push("They recently converted on a high-intent offer.");
+  if (analyticsBehavior?.emailEngagement?.recentSignals === true)
+    keyReasons.push(
+      "Recent marketing email engagement suggests active interest (opens/clicks)."
+    );
+  if (analyticsBehavior?.webActivity?.recentSignals === true)
+    keyReasons.push(
+      "Recent on-site activity suggests they are actively researching relevant content."
+    );
+  if (
+    websiteActivity?.lastVisitAt &&
+    isRecentIso(websiteActivity.lastVisitAt, 30)
+  )
+    keyReasons.push(
+      "Recent website activity suggests active research (recent site visits/pageviews)."
+    );
 
   const scoreInterpretation = [];
   scoreInterpretation.push(
@@ -198,6 +223,33 @@ function buildSalesNarrativeInput({
     .filter((e) => e.date && e.highlight)
     .slice(0, 12);
 
+  // Add a sales-friendly website activity bullet when we have a timestamp.
+  // This is often present in HubSpot even when Salesforce activity history is sparse.
+  const websiteLast = websiteActivity?.lastVisitAt
+    ? yyyyMmDd(websiteActivity.lastVisitAt)
+    : null;
+  if (websiteLast) {
+    const parts = [];
+    const v = websiteActivity?.visits;
+    const pv = websiteActivity?.pageViews;
+    if (Number.isFinite(Number(v)) && Number(v) > 0)
+      parts.push(`${v} site visits`);
+    if (Number.isFinite(Number(pv)) && Number(pv) > 0)
+      parts.push(`${pv} pages viewed`);
+    const totals = parts.length ? ` (${parts.join(", ")} total)` : "";
+    const recencyLabel = isRecentIso(websiteActivity.lastVisitAt, 90)
+      ? "Website activity"
+      : "Historical website activity";
+    recentEngagement.push({
+      date: websiteLast,
+      highlight: `${recencyLabel} recorded${totals}.`,
+      importance: "low"
+    });
+    recentEngagement.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+    // Cap after inserting synthetic event so the output remains predictable.
+    if (recentEngagement.length > 12) recentEngagement.length = 12;
+  }
+
   return compactObject({
     product: mql?.Product_Name__c || mql?.Product__c || null,
     productInterest:
@@ -207,6 +259,19 @@ function buildSalesNarrativeInput({
     opportunityContext:
       opportunityContext && typeof opportunityContext === "object"
         ? opportunityContext
+        : null,
+    analyticsBehavior:
+      analyticsBehavior && typeof analyticsBehavior === "object"
+        ? analyticsBehavior
+        : null,
+    websiteActivity:
+      websiteActivity && typeof websiteActivity === "object"
+        ? {
+            visits: websiteActivity.visits ?? null,
+            pageViews: websiteActivity.pageViews ?? null,
+            firstVisitDate: yyyyMmDd(websiteActivity.firstVisitAt) || null,
+            lastVisitDate: yyyyMmDd(websiteActivity.lastVisitAt) || null
+          }
         : null,
     mqlStatus: mql?.MQL_Status__c || null,
     mqlCreatedDate: yyyyMmDd(mql?.MQL_Date__c || mql?.CreatedDate) || null,

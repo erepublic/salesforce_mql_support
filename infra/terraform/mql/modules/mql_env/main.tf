@@ -8,6 +8,7 @@ locals {
   secret_salesforce_name = "${var.name_prefix}/${local.env}/salesforce"
   secret_hubspot_name    = "${var.name_prefix}/${local.env}/hubspot"
   secret_openai_name     = "${var.name_prefix}/${local.env}/openai"
+  secret_analytics_name  = "${var.name_prefix}/${local.env}/analytics_db"
 }
 
 data "archive_file" "lambda_zip" {
@@ -54,6 +55,11 @@ resource "aws_secretsmanager_secret" "openai" {
   tags = var.tags
 }
 
+resource "aws_secretsmanager_secret" "analytics_db" {
+  name = local.secret_analytics_name
+  tags = var.tags
+}
+
 data "aws_iam_policy_document" "assume_role" {
   statement {
     effect = "Allow"
@@ -69,6 +75,11 @@ resource "aws_iam_role" "lambda_role" {
   name               = "${local.lambda_name}-role"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
   tags               = var.tags
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_vpc_access" {
+  role       = aws_iam_role.lambda_role.name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AWSLambdaVPCAccessExecutionRole"
 }
 
 data "aws_iam_policy_document" "lambda_policy" {
@@ -100,7 +111,8 @@ data "aws_iam_policy_document" "lambda_policy" {
     resources = [
       aws_secretsmanager_secret.salesforce.arn,
       aws_secretsmanager_secret.hubspot.arn,
-      aws_secretsmanager_secret.openai.arn
+      aws_secretsmanager_secret.openai.arn,
+      aws_secretsmanager_secret.analytics_db.arn
     ]
   }
 
@@ -142,6 +154,11 @@ resource "aws_lambda_function" "lambda" {
     target_arn = aws_sqs_queue.dlq.arn
   }
 
+  vpc_config {
+    subnet_ids         = var.lambda_vpc_subnet_ids
+    security_group_ids = var.lambda_vpc_security_group_ids
+  }
+
   environment {
     variables = {
       ENVIRONMENT               = local.env
@@ -150,6 +167,8 @@ resource "aws_lambda_function" "lambda" {
       SALESFORCE_SECRET_ARN     = aws_secretsmanager_secret.salesforce.arn
       HUBSPOT_SECRET_ARN        = aws_secretsmanager_secret.hubspot.arn
       OPENAI_SECRET_ARN         = aws_secretsmanager_secret.openai.arn
+      ANALYTICS_DB_SECRET_ARN   = aws_secretsmanager_secret.analytics_db.arn
+      ANALYTICS_DB_CONNECTION   = "pgsql"
       DLQ_URL                   = aws_sqs_queue.dlq.url
     }
   }
