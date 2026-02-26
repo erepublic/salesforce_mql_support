@@ -279,7 +279,7 @@ function enforceSalesSummarySectionCaps(html) {
   // to "invent" dates here.
   const caps = new Map([
     ["Why Sales Should Care", 5],
-    ["Score Interpretation", 4],
+    ["Score Interpretation", 6],
     ["Most Recent Engagement", 12],
     ["Suggested Next Step", 2]
   ]);
@@ -389,6 +389,9 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
   const scoreInterpretation = Array.isArray(input.scoreInterpretation)
     ? input.scoreInterpretation
     : [];
+  const scoreSignals = Array.isArray(input.scoreSignals)
+    ? input.scoreSignals
+    : [];
   const recentEngagement = Array.isArray(input.recentEngagement)
     ? input.recentEngagement
     : [];
@@ -447,10 +450,28 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
   }
 
   const scoreBullets = [];
+  // Prefer structured score signals so deterministic fallback mirrors LLM guidance.
+  for (const s of scoreSignals) {
+    if (!s || s.contributesToMql !== true) continue;
+    const signal = s.signal ? String(s.signal) : "Signal";
+    const scorePart = s.scoreText ? `Score ${String(s.scoreText)}; ` : "";
+    const qualitative = s.qualitative ? String(s.qualitative) : "Moderate";
+    const implication = s.implication ? ` ${String(s.implication)}` : "";
+    scoreBullets.push(
+      `${signal}: ${scorePart}${qualitative}.${implication}`.trim()
+    );
+    if (scoreBullets.length >= 6) break;
+  }
   for (const r of scoreInterpretation) {
     if (!r) continue;
+    if (
+      scoreBullets.some((b) =>
+        b.toLowerCase().includes(String(r).toLowerCase())
+      )
+    )
+      continue;
     scoreBullets.push(String(r));
-    if (scoreBullets.length >= 5) break;
+    if (scoreBullets.length >= 6) break;
   }
   if (fitConcerns.length) {
     for (const c of fitConcerns.slice(0, 3)) scoreBullets.push(String(c));
@@ -514,7 +535,7 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "Do not include hyperlinks; Salesforce links are appended automatically.",
     "No CSS or styling (<style>, style=, class=, link/meta/script).",
     "Do not include Salesforce/HubSpot field names, object names, IDs, or JSON keys in the output.",
-    "Do not include raw numeric scores; keep score language qualitative (Strong/Moderate/Light)."
+    "Use numeric values only when they help explain a score in sales language."
   ].join("\n");
 
   const user = [
@@ -526,7 +547,10 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "   - If product-interest signals are present, include 1-2 bullets explicitly stating what they are likely evaluating and why (cite the evidence in plain language).",
     "   - If open opportunities include product names, call out the product(s) tied to those opportunities (this is often the clearest 'what they want').",
     "2) Score Interpretation",
-    "   - 3-4 bullets interpreting Fit and Intent qualitatively (Strong/Moderate/Light).",
+    "   - 3-6 bullets.",
+    "   - Include Fit and Intent qualitative interpretation (Strong/Moderate/Light).",
+    "   - For each qualifying score/signal that drove MQL status, include one bullet with: signal name, numeric score when available, qualitative assessment, and a short why-it-matters-for-sales explanation.",
+    "   - Favor business/value framing over technical explanation.",
     "   - If an inbound request exists, treat as time-sensitive, but still flag any fit concerns.",
     "3) Most Recent Engagement",
     "   - 5-12 bullets, newest-first (most recent first).",
@@ -542,7 +566,7 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "",
     "Important constraints:",
     "- Do not include any field names, IDs, JSON keys, or system names.",
-    "- Do not include numeric scores or threshold values; describe them qualitatively only.",
+    "- Numeric score values are allowed only in Score Interpretation bullets.",
     "- If something is unclear/missing, say so plainly (do not guess).",
     "",
     "Structured input JSON (do not echo keys):",

@@ -51,6 +51,62 @@ test("buildSalesNarrativeInput sorts recentEngagement newest-first", () => {
   expect(out.recentEngagement[2].date).toBe("2026-01-10");
 });
 
+test("buildSalesNarrativeInput emits qualifying score signals with numeric and qualitative details", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-02-01"
+    },
+    contact: {
+      Private_Sector_Non_Qual__c: false,
+      HubSpot_Engagement_Score__c: 12,
+      HubSpot_Engagement_Score_Threshold__c: 10,
+      HubSpot_Private_Sector_Contact_Fit__c: 8,
+      Contact_Fit_Threshold__c: 7,
+      HubSpot_Private_Sector_Behavior_Score__c: 14,
+      HubSpot_Recent_Conversion__c: "Navigator Guide"
+    },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [
+      {
+        occurredAt: "2026-02-12T00:00:00.000Z",
+        eventType: "contactUsSubmitted",
+        title: "Contact Us submitted"
+      }
+    ]
+  });
+
+  expect(Array.isArray(out.scoreSignals)).toBe(true);
+  expect(
+    out.scoreSignals.some(
+      (s) =>
+        s.signal === "Engagement score" &&
+        s.scoreText === "12 (threshold 10)" &&
+        s.qualitative === "Strong" &&
+        s.contributesToMql === true
+    )
+  ).toBe(true);
+  expect(
+    out.scoreSignals.some(
+      (s) =>
+        s.signal === "Fit score" &&
+        s.scoreText === "8 (threshold 7)" &&
+        s.qualitative === "Strong" &&
+        s.contributesToMql === true
+    )
+  ).toBe(true);
+  expect(
+    out.scoreInterpretation.some((b) =>
+      b.includes("Engagement score: Score 12 (threshold 10); Strong.")
+    )
+  ).toBe(true);
+  expect(
+    out.scoreInterpretation.some((b) => b.includes("Inbound request: Urgent."))
+  ).toBe(true);
+});
+
 test("salesNarrativeInput does not contain raw field-name tokens", () => {
   const out = buildSalesNarrativeInput({
     mql: { Lead_Source__c: "Email", Product_Name__c: "Navigator" },

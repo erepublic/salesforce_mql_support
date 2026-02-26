@@ -35,6 +35,20 @@ function isRecentIso(iso, days) {
   return t >= cutoff;
 }
 
+function toNumberOrNull(v) {
+  const n = Number(v);
+  return Number.isFinite(n) ? n : null;
+}
+
+function qualitativeFromThreshold({ score, threshold }) {
+  const s = toNumberOrNull(score);
+  const t = toNumberOrNull(threshold);
+  if (s === null || t === null || t <= 0) return null;
+  if (s >= t) return "Strong";
+  if (s >= t * 0.75) return "Moderate";
+  return "Light";
+}
+
 function buildSalesEventLabel(e) {
   const eventType = String(e?.eventType || "");
   const title = String(e?.title || "").trim();
@@ -197,15 +211,93 @@ function buildSalesNarrativeInput({
       "Recent website activity suggests active research (recent site visits/pageviews)."
     );
 
+  const scoreSignals = [];
+
+  if (Number.isFinite(Number(contactFitScore))) {
+    const fitBand =
+      qualitativeFromThreshold({
+        score: contactFitScore,
+        threshold: contactFitThreshold
+      }) || (contactFitThresholdMet ? "Strong" : "Moderate");
+    const fitScoreText = Number(contactFitScore);
+    const fitThresholdText = Number.isFinite(Number(contactFitThreshold))
+      ? ` (threshold ${Number(contactFitThreshold)})`
+      : "";
+    scoreSignals.push({
+      signal: "Fit score",
+      scoreText: `${fitScoreText}${fitThresholdText}`,
+      qualitative: fitBand,
+      contributesToMql: contactFitThresholdMet,
+      implication: contactFitThresholdMet
+        ? "Profile fit is aligned, so outreach can focus on current priorities and buying timeline."
+        : "Profile fit appears weaker, so confirm role and account suitability early in the first touch."
+    });
+  }
+
+  if (Number.isFinite(Number(engagementScore))) {
+    const engagementBand =
+      qualitativeFromThreshold({
+        score: engagementScore,
+        threshold: engagementThreshold
+      }) || intentStrength;
+    const engagementScoreText = Number(engagementScore);
+    const engagementThresholdText = Number.isFinite(Number(engagementThreshold))
+      ? ` (threshold ${Number(engagementThreshold)})`
+      : "";
+    scoreSignals.push({
+      signal: "Engagement score",
+      scoreText: `${engagementScoreText}${engagementThresholdText}`,
+      qualitative: engagementBand,
+      contributesToMql: engagementThresholdMet,
+      implication: engagementThresholdMet
+        ? "Recent activity is high enough to justify timely outreach while intent is active."
+        : "Engagement is building, so reference the strongest recent interactions to test urgency."
+    });
+  }
+
+  if (Number.isFinite(Number(behaviorScore)) && Number(behaviorScore) > 0) {
+    const b = Number(behaviorScore);
+    scoreSignals.push({
+      signal: "Behavior score",
+      scoreText: String(b),
+      qualitative: b >= 20 ? "Strong" : b >= 10 ? "Moderate" : "Light",
+      contributesToMql: true,
+      implication:
+        "Cumulative engagement indicates sustained interest, not a one-off interaction."
+    });
+  }
+
+  if (hasInboundRequest) {
+    scoreSignals.push({
+      signal: "Inbound request",
+      scoreText: null,
+      qualitative: "Urgent",
+      contributesToMql: true,
+      implication:
+        "They asked for follow-up directly, so speed-to-contact is critical to preserve momentum."
+    });
+  }
+
+  if (recentConversionName) {
+    scoreSignals.push({
+      signal: "Recent conversion",
+      scoreText: null,
+      qualitative: "Strong",
+      contributesToMql: true,
+      implication:
+        "A recent conversion suggests active evaluation, so outreach should anchor on that offer context."
+    });
+  }
+
   const scoreInterpretation = [];
-  scoreInterpretation.push(
-    fitLooksGood
-      ? "Fit: Looks good based on eligibility checks."
-      : "Fit: Review needed due to eligibility concerns."
-  );
-  scoreInterpretation.push(
-    `Intent: ${intentStrength}, based on recent engagement and conversions.`
-  );
+  scoreInterpretation.push(`Fit: ${fitLooksGood ? "Strong" : "Moderate"}.`);
+  scoreInterpretation.push(`Intent: ${intentStrength}.`);
+  for (const s of scoreSignals.filter((x) => x?.contributesToMql)) {
+    const scorePart = s.scoreText ? `Score ${s.scoreText}; ` : "";
+    scoreInterpretation.push(
+      `${s.signal}: ${scorePart}${s.qualitative}. ${s.implication}`
+    );
+  }
   if (hasInboundRequest)
     scoreInterpretation.push(
       "Inbound request makes this time-sensitive, but still verify fit."
@@ -289,6 +381,7 @@ function buildSalesNarrativeInput({
       recentConversionDate: yyyyMmDd(recentConversionDate)
     },
     opportunity: opportunitySignals,
+    scoreSignals,
     keyReasons,
     scoreInterpretation,
     recentEngagement

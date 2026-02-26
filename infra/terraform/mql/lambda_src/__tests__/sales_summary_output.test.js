@@ -26,7 +26,7 @@ test("finalizeSalesSummaryHtml enforces section caps", () => {
     `<p><strong>Why Sales Should Care</strong></p>`,
     `<ul><li>A</li><li>B</li><li>C</li></ul>`,
     `<p><strong>Score Interpretation</strong></p>`,
-    `<ul><li>A</li><li>B</li><li>C</li><li>D</li><li>E</li></ul>`,
+    `<ul><li>A</li><li>B</li><li>C</li><li>D</li><li>E</li><li>F</li><li>G</li></ul>`,
     `<p><strong>Most Recent Engagement</strong></p>`,
     `<ul><li>2026-02-01 - A</li><li>2026-01-31 - B</li></ul>`,
     `<p><strong>Suggested Next Step</strong></p>`,
@@ -41,12 +41,15 @@ test("finalizeSalesSummaryHtml enforces section caps", () => {
     opportunityContactRoles: []
   });
 
-  // Score Interpretation max=4
+  // Score Interpretation max=6
   const scoreBlock = out.split(
     "<p><strong>Score Interpretation</strong></p>"
   )[1];
   expect((scoreBlock.match(/<li>/g) || []).length).toBeGreaterThan(0);
-  expect(scoreBlock).not.toContain("<li>E</li>");
+  const firstScoreUl =
+    (scoreBlock.match(/<ul>([\s\S]*?)<\/ul>/i) || [])[1] || "";
+  expect((firstScoreUl.match(/<li>/g) || []).length).toBe(6);
+  expect(scoreBlock).not.toContain("<li>G</li>");
 
   // Suggested Next Step max=2
   const nextBlock = out.split("<p><strong>Suggested Next Step</strong></p>")[1];
@@ -113,6 +116,37 @@ test("deterministic sales summary mentions product-interest when present", () =>
 
   expect(html).toContain("Likely areas of interest");
   expect(html).toContain("Navigator");
+  const v = _internals.validateSalesFacingHtml(html);
+  expect(v.ok).toBe(true);
+});
+
+test("deterministic sales summary renders qualifying score signals with numeric and value framing", () => {
+  const html = _internals.buildDeterministicSalesSummaryHtml({
+    scoreSignals: [
+      {
+        signal: "Engagement score",
+        scoreText: "12 (threshold 10)",
+        qualitative: "Strong",
+        contributesToMql: true,
+        implication:
+          "Recent activity is high enough to justify timely outreach while intent is active."
+      },
+      {
+        signal: "Inbound request",
+        qualitative: "Urgent",
+        contributesToMql: true,
+        implication:
+          "They asked for follow-up directly, so speed-to-contact is critical to preserve momentum."
+      }
+    ],
+    scoreInterpretation: [],
+    fit: { concerns: [] },
+    opportunity: { hasOpenOpportunity: false },
+    recentEngagement: [{ date: "2026-02-12", highlight: "Inbound request" }]
+  });
+
+  expect(html).toContain("Engagement score: Score 12 (threshold 10); Strong.");
+  expect(html).toContain("Inbound request: Urgent.");
   const v = _internals.validateSalesFacingHtml(html);
   expect(v.ok).toBe(true);
 });
