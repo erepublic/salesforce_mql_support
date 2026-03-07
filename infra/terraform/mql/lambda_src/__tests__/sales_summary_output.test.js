@@ -41,20 +41,51 @@ test("finalizeSalesSummaryHtml enforces section caps", () => {
     opportunityContactRoles: []
   });
 
-  // Score Interpretation max=6
+  // Score Interpretation max=4
   const scoreBlock = out.split(
     "<p><strong>Score Interpretation</strong></p>"
   )[1];
   expect((scoreBlock.match(/<li>/g) || []).length).toBeGreaterThan(0);
   const firstScoreUl =
     (scoreBlock.match(/<ul>([\s\S]*?)<\/ul>/i) || [])[1] || "";
-  expect((firstScoreUl.match(/<li>/g) || []).length).toBe(6);
-  expect(scoreBlock).not.toContain("<li>G</li>");
+  expect((firstScoreUl.match(/<li>/g) || []).length).toBe(4);
+  expect(scoreBlock).not.toContain("<li>E</li>");
 
   // Suggested Next Step max=2
   const nextBlock = out.split("<p><strong>Suggested Next Step</strong></p>")[1];
   expect((nextBlock.match(/<li>/g) || []).length).toBe(2);
   expect(nextBlock).not.toContain("<li>C</li>");
+});
+
+test("finalizeSalesSummaryHtml rewrites engagement section from canonical input", () => {
+  const base = [
+    `<p><strong>Why Sales Should Care</strong></p>`,
+    `<ul><li>A</li><li>B</li><li>C</li></ul>`,
+    `<p><strong>Score Interpretation</strong></p>`,
+    `<ul><li>A</li><li>B</li><li>C</li></ul>`,
+    `<p><strong>Most Recent Engagement</strong></p>`,
+    `<ul><li>Marketing qualified lead created</li><li>Website activity recorded</li></ul>`,
+    `<p><strong>Suggested Next Step</strong></p>`,
+    `<ul><li>A</li></ul>`
+  ].join("\n");
+
+  const out = _internals.finalizeSalesSummaryHtml({
+    html: base,
+    salesNarrativeInput: {
+      recentEngagement: [
+        { date: "2026-02-12", highlight: "Marketing qualified lead created" },
+        { date: "2026-02-05", highlight: "Website activity recorded." }
+      ]
+    },
+    instanceUrl: "https://example.my.salesforce.com",
+    mql: {},
+    opportunities: [],
+    opportunityContactRoles: []
+  });
+
+  expect(out).toContain("2026-02-12 - Marketing qualified lead created");
+  expect(out).toContain("2026-02-05 - Website activity recorded.");
+  expect(out).not.toContain("<li>Marketing qualified lead created</li>");
 });
 
 test("finalizeSalesSummaryHtml appends safe product/opportunity links and still validates", () => {
@@ -151,6 +182,117 @@ test("deterministic sales summary renders qualifying score signals with numeric 
   expect(v.ok).toBe(true);
 });
 
+test("deterministic sales summary includes threshold-path and fit-evidence explanations", () => {
+  const html = _internals.buildDeterministicSalesSummaryHtml({
+    thresholdExplanation: {
+      matchedRule: "Behavior 20+ with High company fit and Medium contact fit",
+      summary:
+        "This record likely qualified through the fit-and-behavior rule because behavior score 22 cleared the 20-point cutoff for a high company-fit account and a medium contact-fit profile.",
+      behaviorScore: 22,
+      requiredBehaviorScore: 20,
+      companyFitTier: "High",
+      contactFitTier: "Medium",
+      supportingReasons: [
+        "Contact-fit evidence points to their title suggests a marketing-oriented role."
+      ]
+    },
+    fitEvidence: {
+      contact: {
+        positives: [
+          "Their title suggests a marketing-oriented role, which supports contact fit in the scoring guide."
+        ]
+      },
+      company: {
+        observations: ["Account industry is recorded as Software."]
+      }
+    },
+    mqlContext: {
+      explanationDetails: ["Attended pricing webinar"]
+    },
+    scoreSignals: [],
+    scoreInterpretation: [],
+    fit: { concerns: [] },
+    opportunity: { hasOpenOpportunity: false },
+    recentEngagement: [{ date: "2026-02-12", highlight: "Inbound request" }]
+  });
+
+  expect(html).toContain("fit-and-behavior rule because behavior score 22");
+  expect(html).toContain("Threshold path: Behavior 22 (cutoff 20); Qualified.");
+  expect(html).toContain("Their title suggests a marketing-oriented role");
+  expect(html).toContain(
+    "Use the qualification detail context in your opener and confirm which trigger, request, or content interaction drove the threshold."
+  );
+  const v = _internals.validateSalesFacingHtml(html);
+  expect(v.ok).toBe(true);
+});
+
+test("deterministic sales summary uses company context when present", () => {
+  const html = _internals.buildDeterministicSalesSummaryHtml({
+    companyContext: {
+      businessSummary:
+        "B2B software company selling procurement workflow tools to enterprise teams.",
+      industry: "Software",
+      revenueBand: "$100M-$500M",
+      budgetRange: "$250k-$500k",
+      accountStage: "Active",
+      salesStatus: "Prospecting",
+      customerFootprint: [
+        { product: "DEN", level: "Premium", status: "Active" }
+      ],
+      contactContext: {
+        department: "Revenue Operations",
+        interestTopics: ["Procurement", "Market Intelligence"]
+      }
+    },
+    keyReasons: [],
+    scoreInterpretation: [],
+    fit: { concerns: [] },
+    opportunity: { hasOpenOpportunity: false },
+    recentEngagement: [{ date: "2026-02-12", highlight: "Campaign touch" }]
+  });
+
+  expect(html).toContain("Company background:");
+  expect(html).toContain("Existing account footprint suggests");
+  expect(html).toContain("Commercial account context shows");
+  expect(html).toContain("cross-sell, upsell, or net-new motion");
+  const v = _internals.validateSalesFacingHtml(html);
+  expect(v.ok).toBe(true);
+});
+
+test("deterministic sales summary uses recent company opportunity context when present", () => {
+  const html = _internals.buildDeterministicSalesSummaryHtml({
+    opportunityContext: {
+      companyRecent: {
+        hasRecentOpportunities: true,
+        recentOpportunityCount: 2,
+        openOpportunityCount: 1,
+        recentStageNames: ["Proposal", "Closed Won"],
+        recentProducts: ["Navigator", "Workflow"],
+        recentDeals: [
+          { name: "Navigator Expansion", stage: "Proposal", status: "Open" },
+          { name: "DEN Renewal", stage: "Closed Won", status: "Closed won" }
+        ]
+      }
+    },
+    keyReasons: [],
+    scoreInterpretation: [],
+    fit: { concerns: [] },
+    opportunity: { hasOpenOpportunity: false },
+    recentEngagement: [{ date: "2026-02-12", highlight: "Campaign touch" }]
+  });
+
+  expect(html).toContain(
+    "Recent account opportunity history suggests active buying motion"
+  );
+  expect(html).toContain("recent product focus includes Navigator, Workflow");
+  expect(html).toContain("Navigator Expansion - Proposal - Open");
+  expect(html).toContain(
+    "Verify whether this contact maps to the account&#39;s recent opportunity motion"
+  );
+  const v = _internals.validateSalesFacingHtml(html);
+  expect(v.ok).toBe(true);
+});
+
 test("validator rejects obvious field-name leakage and missing headings", () => {
   const bad1 =
     "<p><strong>Why Sales Should Care</strong></p><ul><li>Contact_Fit_Threshold__c = 5</li></ul>";
@@ -179,6 +321,14 @@ test("OpenAI prompt builder embeds only compacted salesNarrativeInput", () => {
 
   expect(user).toContain("Most Recent Engagement");
   expect(user).toContain("newest-first");
+  expect(user).toContain("exact fit-and-behavior path reached");
+  expect(user).toContain("fit attribution is partial");
+  expect(user).toContain("current customer footprint");
+  expect(user).toContain("department or interest-topic context");
+  expect(user).toContain("recent company opportunity history");
+  expect(user).toContain("active account motion");
+  expect(user).toContain("Do not output more than 4 bullets");
+  expect(user).toContain("Prioritize the 4 most decision-useful score bullets");
 
   // Guard against accidental raw field tokens in prompt input.
   expect(user).not.toMatch(/__c\b/);

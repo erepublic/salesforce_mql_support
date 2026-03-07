@@ -3,6 +3,8 @@ public with sharing class ContactSetToMqlTriggerHandler {
   private static final String THRESHOLD_LEAD_SOURCE = 'Fit and Behavior Threshold Reached';
   @TestVisible
   private static final String NEW_STATUS = 'New';
+  @TestVisible
+  private static final String THRESHOLD_PRODUCT_NAME = 'Lead Opportunity - MQL Threshold';
 
   public static void handleAfterInsert(List<Contact> newContacts) {
     if (newContacts == null || newContacts.isEmpty()) {
@@ -48,6 +50,17 @@ public with sharing class ContactSetToMqlTriggerHandler {
       return;
     }
 
+    Id thresholdProductId;
+    List<Product2> thresholdProducts = [
+      SELECT Id
+      FROM Product2
+      WHERE Name = :THRESHOLD_PRODUCT_NAME
+      LIMIT 1
+    ];
+    if (!thresholdProducts.isEmpty()) {
+      thresholdProductId = thresholdProducts[0].Id;
+    }
+
     Set<Id> contactsWithExistingNewThresholdMql = new Set<Id>();
     for (MQL__c mql : [
       SELECT Id, Contact__c
@@ -71,13 +84,22 @@ public with sharing class ContactSetToMqlTriggerHandler {
           Contact__c = contactId,
           Lead_Source__c = THRESHOLD_LEAD_SOURCE,
           MQL_Status__c = NEW_STATUS,
-          MQL_Date__c = Date.today()
+          MQL_Date__c = Date.today(),
+          Product__c = thresholdProductId
         )
       );
     }
 
     if (!mqlsToInsert.isEmpty()) {
       insert mqlsToInsert;
+    }
+
+    List<Contact> contactsToReset = new List<Contact>();
+    for (Id contactId : contactIdsToProcess) {
+      contactsToReset.add(new Contact(Id = contactId, Set_to_MQL__c = false));
+    }
+    if (!contactsToReset.isEmpty()) {
+      update contactsToReset;
     }
   }
 }

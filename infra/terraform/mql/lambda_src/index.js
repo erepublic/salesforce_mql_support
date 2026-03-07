@@ -16,9 +16,11 @@ const {
   SecretsManagerClient,
   GetSecretValueCommand
 } = require("@aws-sdk/client-secrets-manager");
+const { LambdaClient, InvokeCommand } = require("@aws-sdk/client-lambda");
 const crypto = require("crypto");
 
 const secrets = new SecretsManagerClient({});
+const lambdaClient = new LambdaClient({});
 
 // Keep the canonical allowlist/timeline recipe inside the Lambda bundle so the
 // deployed behavior matches what discovery emits.
@@ -101,6 +103,24 @@ function toIsoFromHubspotTimestamp(value) {
 function safeInt(v) {
   const n = Number(v);
   return Number.isFinite(n) ? Math.floor(n) : null;
+}
+
+function opportunityAmountBand(amount) {
+  const n = Number(amount);
+  if (!Number.isFinite(n) || n <= 0) return null;
+  if (n >= 1000000) return "$1M+";
+  if (n >= 500000) return "$500k-$999k";
+  if (n >= 100000) return "$100k-$499k";
+  if (n >= 50000) return "$50k-$99k";
+  if (n >= 10000) return "$10k-$49k";
+  return "Under $10k";
+}
+
+function opportunityStatusLabel(opportunity) {
+  if (!opportunity || opportunity.IsClosed !== true) return "Open";
+  if (opportunity.IsWon === true) return "Closed won";
+  if (opportunity.IsWon === false) return "Closed lost";
+  return "Closed";
 }
 
 function redactEmailAddress(email) {
@@ -271,6 +291,37 @@ function buildRelatedRecordsHtml({
   return [`<p><strong>Links</strong></p>`, `<ul>${li}</ul>`].join("\n");
 }
 
+function buildCanonicalEngagementItems(salesNarrativeInput) {
+  const recentEngagement = Array.isArray(salesNarrativeInput?.recentEngagement)
+    ? salesNarrativeInput.recentEngagement
+    : [];
+  return recentEngagement
+    .map((e) => {
+      const date = String(e?.date || "").trim();
+      const highlight = String(e?.highlight || "")
+        .replace(/\s+/g, " ")
+        .trim();
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(date) || !highlight) return null;
+      return `${date} - ${highlight}`;
+    })
+    .filter(Boolean)
+    .slice(0, 12);
+}
+
+function replaceSectionList(html, heading, items) {
+  const marker = `<p><strong>${heading}</strong></p>`;
+  const idx = html.indexOf(marker);
+  if (idx === -1) return html;
+  const ulStart = html.indexOf("<ul>", idx);
+  const ulEnd = ulStart === -1 ? -1 : html.indexOf("</ul>", ulStart);
+  if (ulStart === -1 || ulEnd === -1) return html;
+  const rebuilt = `<ul>${(items || [])
+    .filter(Boolean)
+    .map((item) => `<li>${escapeHtml(item)}</li>`)
+    .join("")}</ul>`;
+  return `${html.slice(0, ulStart)}${rebuilt}${html.slice(ulEnd + 5)}`;
+}
+
 function enforceSalesSummarySectionCaps(html) {
   // Keep summaries succinct and predictable. We enforce caps post-generation so
   // the LLM can be a little messy without breaking the stored field.
@@ -279,7 +330,7 @@ function enforceSalesSummarySectionCaps(html) {
   // to "invent" dates here.
   const caps = new Map([
     ["Why Sales Should Care", 5],
-    ["Score Interpretation", 6],
+    ["Score Interpretation", 4],
     ["Most Recent Engagement", 12],
     ["Suggested Next Step", 2]
   ]);
@@ -302,12 +353,22 @@ function enforceSalesSummarySectionCaps(html) {
 
 function finalizeSalesSummaryHtml({
   html,
+  salesNarrativeInput,
   instanceUrl,
   mql,
   opportunities,
   opportunityContactRoles
 }) {
   let out = sanitizeHtmlForSalesforceField(html || "");
+  const canonicalEngagementItems =
+    buildCanonicalEngagementItems(salesNarrativeInput);
+  if (canonicalEngagementItems.length) {
+    out = replaceSectionList(
+      out,
+      "Most Recent Engagement",
+      canonicalEngagementItems
+    );
+  }
   out = enforceSalesSummarySectionCaps(out);
 
   const links = buildRelatedRecordsHtml({
@@ -398,14 +459,117 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
   const fitConcerns = Array.isArray(input?.fit?.concerns)
     ? input.fit.concerns
     : [];
+  const thresholdExplanation =
+    input?.thresholdExplanation &&
+    typeof input.thresholdExplanation === "object"
+      ? input.thresholdExplanation
+      : {};
+  const companyContext =
+    input?.companyContext && typeof input.companyContext === "object"
+      ? input.companyContext
+      : {};
+  const contactFitEvidence =
+    input?.fitEvidence?.contact && typeof input.fitEvidence.contact === "object"
+      ? input.fitEvidence.contact
+      : {};
+  const companyFitEvidence =
+    input?.fitEvidence?.company && typeof input.fitEvidence.company === "object"
+      ? input.fitEvidence.company
+      : {};
+  const mqlExplanationDetails = Array.isArray(
+    input?.mqlContext?.explanationDetails
+  )
+    ? input.mqlContext.explanationDetails
+    : [];
 
   const hasInbound = keyReasons.some((r) =>
     String(r || "")
       .toLowerCase()
       .includes("inbound")
   );
+  const customerFootprint = Array.isArray(companyContext?.customerFootprint)
+    ? companyContext.customerFootprint
+    : [];
+  const interestTopics = Array.isArray(
+    companyContext?.contactContext?.interestTopics
+  )
+    ? companyContext.contactContext.interestTopics
+    : [];
+  const companyRecentOpportunityContext =
+    input?.opportunityContext?.companyRecent &&
+    typeof input.opportunityContext.companyRecent === "object"
+      ? input.opportunityContext.companyRecent
+      : {};
+  const companyRecentDeals = Array.isArray(
+    companyRecentOpportunityContext?.recentDeals
+  )
+    ? companyRecentOpportunityContext.recentDeals
+    : [];
 
   const whySales = [];
+  if (thresholdExplanation?.summary) {
+    whySales.push(String(thresholdExplanation.summary));
+  }
+  if (companyContext?.businessSummary) {
+    whySales.push(
+      `Company background: ${String(companyContext.businessSummary)}`
+    );
+  }
+  if (
+    companyContext?.industry ||
+    companyContext?.revenueBand ||
+    companyContext?.budgetRange
+  ) {
+    const details = [
+      companyContext?.industry
+        ? `industry ${String(companyContext.industry)}`
+        : null,
+      companyContext?.revenueBand
+        ? `revenue band ${String(companyContext.revenueBand)}`
+        : null,
+      companyContext?.budgetRange
+        ? `budget range ${String(companyContext.budgetRange)}`
+        : null
+    ].filter(Boolean);
+    if (details.length) {
+      whySales.push(
+        `Company profile context suggests ${details.join(", ")}, which can help frame account size and fit.`
+      );
+    }
+  }
+  if (customerFootprint.length) {
+    const footprintLabels = customerFootprint
+      .map((item) => {
+        const parts = [item?.product, item?.level, item?.status].filter(
+          Boolean
+        );
+        return parts.join(" ");
+      })
+      .filter(Boolean)
+      .slice(0, 3);
+    if (footprintLabels.length) {
+      whySales.push(
+        `Existing account footprint suggests they already have relationship context through ${footprintLabels.join(
+          ", "
+        )}.`
+      );
+    }
+  }
+  if (companyContext?.accountStage || companyContext?.salesStatus) {
+    const stageParts = [
+      companyContext?.accountStage
+        ? `account stage ${String(companyContext.accountStage)}`
+        : null,
+      companyContext?.salesStatus
+        ? `sales status ${String(companyContext.salesStatus)}`
+        : null
+    ].filter(Boolean);
+    if (stageParts.length) {
+      whySales.push(
+        `Commercial account context shows ${stageParts.join(" and ")}, which may affect urgency and positioning.`
+      );
+    }
+  }
   if (topProducts.length) {
     const names = topProducts
       .map((p) => String(p?.name || "").trim())
@@ -438,6 +602,62 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
       );
     }
   }
+  if (companyRecentOpportunityContext?.hasRecentOpportunities === true) {
+    const contextParts = [];
+    if (companyRecentOpportunityContext?.openOpportunityCount) {
+      contextParts.push(
+        `${companyRecentOpportunityContext.openOpportunityCount} open opportunit${
+          companyRecentOpportunityContext.openOpportunityCount === 1
+            ? "y"
+            : "ies"
+        }`
+      );
+    }
+    if (Array.isArray(companyRecentOpportunityContext?.recentStageNames)) {
+      contextParts.push(
+        `recent stages include ${companyRecentOpportunityContext.recentStageNames
+          .slice(0, 3)
+          .join(", ")}`
+      );
+    }
+    if (Array.isArray(companyRecentOpportunityContext?.recentProducts)) {
+      contextParts.push(
+        `recent product focus includes ${companyRecentOpportunityContext.recentProducts
+          .slice(0, 4)
+          .join(", ")}`
+      );
+    }
+    const base = contextParts.length
+      ? `Recent account opportunity history suggests active buying motion: ${contextParts.join(
+          "; "
+        )}.`
+      : "Recent account opportunity history suggests active buying motion at the company level.";
+    whySales.push(base);
+    if (companyRecentDeals.length) {
+      const examples = companyRecentDeals
+        .map((deal) =>
+          [deal?.name, deal?.stage, deal?.status].filter(Boolean).join(" - ")
+        )
+        .filter(Boolean)
+        .slice(0, 2);
+      if (examples.length) {
+        whySales.push(
+          `Recent account opportunity examples include ${examples.join(" and ")}.`
+        );
+      }
+    }
+  }
+  const fitEvidenceBullets = [
+    ...(contactFitEvidence?.positives || []),
+    ...(companyFitEvidence?.positives || []),
+    ...(contactFitEvidence?.observations || []),
+    ...(companyFitEvidence?.observations || [])
+  ];
+  for (const bullet of fitEvidenceBullets) {
+    if (!bullet) continue;
+    whySales.push(String(bullet));
+    if (whySales.length >= 6) break;
+  }
   for (const r of keyReasons) {
     if (!r) continue;
     whySales.push(String(r));
@@ -450,6 +670,22 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
   }
 
   const scoreBullets = [];
+  if (thresholdExplanation?.matchedRule) {
+    const behaviorText =
+      Number.isFinite(Number(thresholdExplanation?.behaviorScore)) &&
+      Number.isFinite(Number(thresholdExplanation?.requiredBehaviorScore))
+        ? `Behavior ${thresholdExplanation.behaviorScore} (cutoff ${thresholdExplanation.requiredBehaviorScore}); `
+        : "";
+    const companyTier = thresholdExplanation?.companyFitTier
+      ? `${String(thresholdExplanation.companyFitTier)} company fit`
+      : "company fit not fully visible";
+    const contactTier = thresholdExplanation?.contactFitTier
+      ? `${String(thresholdExplanation.contactFitTier)} contact fit`
+      : "contact fit not fully visible";
+    scoreBullets.push(
+      `Threshold path: ${behaviorText}Qualified. This MQL aligns to ${companyTier} and ${contactTier}.`
+    );
+  }
   // Prefer structured score signals so deterministic fallback mirrors LLM guidance.
   for (const s of scoreSignals) {
     if (!s || s.contributesToMql !== true) continue;
@@ -471,6 +707,30 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
     )
       continue;
     scoreBullets.push(String(r));
+    if (scoreBullets.length >= 6) break;
+  }
+  const additionalFitReasons = [
+    ...(thresholdExplanation?.supportingReasons || []),
+    ...(contactFitEvidence?.concerns || []),
+    ...(companyFitEvidence?.concerns || []),
+    ...(contactFitEvidence?.missingInputs || []),
+    ...(companyFitEvidence?.missingInputs || [])
+  ];
+  if (companyContext?.competitors?.length) {
+    additionalFitReasons.push(
+      `Competitive context lists ${companyContext.competitors
+        .slice(0, 3)
+        .join(", ")} on the account.`
+    );
+  }
+  if (companyContext?.competitorNotes) {
+    additionalFitReasons.push(
+      `Competitor notes add context: ${String(companyContext.competitorNotes)}`
+    );
+  }
+  for (const item of additionalFitReasons) {
+    if (!item) continue;
+    scoreBullets.push(String(item));
     if (scoreBullets.length >= 6) break;
   }
   if (fitConcerns.length) {
@@ -496,6 +756,27 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
       "Use recent engagement as the opener and propose a short discovery call; confirm what they are evaluating and who else is involved."
     );
   }
+  if (mqlExplanationDetails.length) {
+    nextSteps.push(
+      "Use the qualification detail context in your opener and confirm which trigger, request, or content interaction drove the threshold."
+    );
+  }
+  if (customerFootprint.length) {
+    nextSteps.push(
+      "Confirm whether this is a cross-sell, upsell, or net-new motion and tailor outreach to the account's existing product footprint."
+    );
+  } else if (
+    interestTopics.length ||
+    companyContext?.contactContext?.department
+  ) {
+    const topicText = interestTopics.slice(0, 3).join(", ");
+    const department = companyContext?.contactContext?.department
+      ? String(companyContext.contactContext.department)
+      : null;
+    nextSteps.push(
+      `Tailor the opener to ${department ? `${department} priorities` : "their role"}${topicText ? `, especially around ${topicText}` : ""}.`
+    );
+  }
   if (fitConcerns.length) {
     nextSteps.push(
       "Verify fit early (industry/eligibility, role, and company details) before investing a full-cycle effort."
@@ -504,6 +785,11 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
   if (input?.opportunity?.hasOpenOpportunity === true) {
     nextSteps.push(
       "Check whether there is already an active opportunity and align outreach to the current stage and owner."
+    );
+  }
+  if (companyRecentOpportunityContext?.hasRecentOpportunities === true) {
+    nextSteps.push(
+      "Verify whether this contact maps to the account's recent opportunity motion and coordinate outreach around any active or adjacent deal already in play."
     );
   }
 
@@ -518,7 +804,7 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
     `<p><strong>Why Sales Should Care</strong></p>`,
     ul(whySales.slice(0, 6)),
     `<p><strong>Score Interpretation</strong></p>`,
-    ul(scoreBullets.slice(0, 6)),
+    ul(scoreBullets.slice(0, 4)),
     `<p><strong>Most Recent Engagement</strong></p>`,
     ul(engagementBullets.slice(0, 12)),
     `<p><strong>Suggested Next Step</strong></p>`,
@@ -544,12 +830,19 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "   - 3-6 bullets.",
     "   - Each bullet explains a SALES signal and why it matters (value-based).",
     "   - Avoid technical phrasing; write like a rep-to-rep handoff.",
+    "   - Do not repeat the same threshold explanation across multiple bullets or sections.",
+    "   - If company background, size/segment, commercial status, or current customer footprint are present, use them to explain the company context in plain sales language.",
     "   - If product-interest signals are present, include 1-2 bullets explicitly stating what they are likely evaluating and why (cite the evidence in plain language).",
     "   - If open opportunities include product names, call out the product(s) tied to those opportunities (this is often the clearest 'what they want').",
+    "   - If recent company opportunity history is present, use it to explain whether this looks like active account motion, expansion, adjacent-product interest, or re-engagement.",
     "2) Score Interpretation",
-    "   - 3-6 bullets.",
+    "   - 3-4 bullets. Do not output more than 4 bullets.",
     "   - Include Fit and Intent qualitative interpretation (Strong/Moderate/Light).",
     "   - For each qualifying score/signal that drove MQL status, include one bullet with: signal name, numeric score when available, qualitative assessment, and a short why-it-matters-for-sales explanation.",
+    "   - Prioritize the 4 most decision-useful score bullets instead of trying to include every available signal.",
+    "   - If threshold explanation data is present, include one bullet that states the exact fit-and-behavior path reached, including behavior score, cutoff, and the visible company/contact fit tiers.",
+    "   - If fit-evidence data is present, explain which account/contact clues support or weaken fit, and make clear when that evidence is partial rather than complete.",
+    "   - Never invent missing numeric values. If a score or threshold is absent from the structured input, do not output a numeric placeholder like 0.",
     "   - Favor business/value framing over technical explanation.",
     "   - If an inbound request exists, treat as time-sensitive, but still flag any fit concerns.",
     "3) Most Recent Engagement",
@@ -561,12 +854,17 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "4) Suggested Next Step",
     "   - 1-2 bullets: best outreach angle + what to verify + urgency.",
     "   - If product-interest signals exist, tailor the outreach angle to those likely interests.",
+    "   - If current customer footprint or account commercial status exists, use it to decide whether the motion looks like cross-sell, upsell, retention, or net-new outreach.",
+    "   - If department or interest-topic context exists, use it to sharpen the opener and what to verify first.",
+    "   - If recent company opportunity history exists, use it to coordinate with current account motion and verify whether this contact maps to an existing or adjacent opportunity.",
     "   - If analytics behavior signals exist (recent pageviews/actions or email opens/clicks), use them as additional evidence for what they are actively researching (but do not mention where the data came from).",
     "   - If website activity totals exist (site visits/pageviews), you may use them as supporting evidence; if the last visit is old, label it as historical rather than current buying intent.",
     "",
     "Important constraints:",
     "- Do not include any field names, IDs, JSON keys, or system names.",
     "- Numeric score values are allowed only in Score Interpretation bullets.",
+    "- Never output a numeric score or threshold unless it is explicitly present in the structured input.",
+    "- When raw fit inputs are missing, say that fit attribution is partial instead of implying certainty.",
     "- If something is unclear/missing, say so plainly (do not guess).",
     "",
     "Structured input JSON (do not echo keys):",
@@ -768,6 +1066,67 @@ async function sfQuery({ instanceUrl, accessToken, apiVersion, soql }) {
   }
   const json = safeJsonParse(text);
   return json;
+}
+
+async function sfUpdateMqlSummary({
+  instanceUrl,
+  accessToken,
+  apiVersion,
+  mqlId,
+  summaryHtml
+}) {
+  const url = `${instanceUrl}/services/data/v${apiVersion}/sobjects/MQL__c/${encodeURIComponent(
+    mqlId
+  )}`;
+  const resp = await fetch(url, {
+    method: "PATCH",
+    headers: {
+      authorization: `Bearer ${accessToken}`,
+      "content-type": "application/json"
+    },
+    body: JSON.stringify({ Engagement_AI_Summary__c: summaryHtml })
+  });
+  const text = await resp.text();
+  // PATCH often returns 204 with no body.
+  if (!(resp.status === 204 || resp.status === 200)) {
+    throw new Error(
+      `Salesforce summary update failed: ${resp.status}: ${text.slice(0, 2000)}`
+    );
+  }
+}
+
+async function invokeAsyncWorker({ event, body, env, mqlId }) {
+  const functionName =
+    process.env.ASYNC_WORKER_FUNCTION_NAME ||
+    process.env.AWS_LAMBDA_FUNCTION_NAME;
+  if (!functionName) {
+    throw new Error(
+      "Missing async worker function name (ASYNC_WORKER_FUNCTION_NAME or AWS_LAMBDA_FUNCTION_NAME)"
+    );
+  }
+
+  const workerPayload = {
+    ...event,
+    body: JSON.stringify({
+      ...(body || {}),
+      mqlId,
+      _workerMode: true
+    }),
+    isBase64Encoded: false
+  };
+
+  const invokeOut = await lambdaClient.send(
+    new InvokeCommand({
+      FunctionName: functionName,
+      InvocationType: "Event",
+      Payload: Buffer.from(JSON.stringify(workerPayload))
+    })
+  );
+
+  return {
+    statusCode: invokeOut?.StatusCode || null,
+    requestId: invokeOut?.ResponseMetadata?.RequestId || null
+  };
 }
 
 async function sfDescribe({ instanceUrl, accessToken, apiVersion, sobject }) {
@@ -1360,6 +1719,39 @@ exports.handler = async function handler(event) {
 
   const mqlId = body?.mqlId || null;
   const contactId = body?.contactId || null;
+  const isWorkerMode = body?._workerMode === true;
+  const isDebugMode =
+    body?.debugAnalyticsPing === true || body?.debugLimitsPing === true;
+
+  if (!mqlId && !isDebugMode) {
+    return jsonResponse(400, {
+      ok: false,
+      error: "missing_mqlId",
+      meta: { env, receivedAt: nowIso() }
+    });
+  }
+
+  // Entry call from Salesforce should return quickly and let a background worker
+  // do long-running summarization.
+  if (!isWorkerMode && !isDebugMode) {
+    try {
+      const queued = await invokeAsyncWorker({ event, body, env, mqlId });
+      return jsonResponse(202, {
+        accepted: true,
+        jobId: queued.requestId,
+        env,
+        mqlId,
+        queuedAt: nowIso()
+      });
+    } catch (err) {
+      return jsonResponse(500, {
+        ok: false,
+        error: "enqueue_failed",
+        message: err?.message || "unknown enqueue error",
+        meta: { env, mqlId, receivedAt: nowIso() }
+      });
+    }
+  }
 
   // Load secrets (may be unconfigured at first).
   const sfSecretArn = process.env.SALESFORCE_SECRET_ARN;
@@ -1462,14 +1854,6 @@ exports.handler = async function handler(event) {
     }
   }
 
-  if (!mqlId) {
-    return jsonResponse(400, {
-      ok: false,
-      error: "missing_mqlId",
-      meta: { env, receivedAt: nowIso() }
-    });
-  }
-
   // Try Salesforce fetch if configured.
   try {
     const sfAuth = await salesforceLogin(sfSecret);
@@ -1486,6 +1870,21 @@ exports.handler = async function handler(event) {
 
     // Default to a conservative API version so production orgs on older versions still work.
     const apiVersion = sfSecret?.apiVersion || "65.0";
+    async function maybeWriteBackSummary(summaryToWrite) {
+      if (!isWorkerMode || !String(summaryToWrite || "").trim()) return;
+      await sfUpdateMqlSummary({
+        instanceUrl: sfAuth.instanceUrl,
+        accessToken: sfAuth.accessToken,
+        apiVersion,
+        mqlId,
+        summaryHtml: summaryToWrite
+      });
+      meta.salesforceCallback = {
+        ok: true,
+        updatedAt: nowIso()
+      };
+    }
+
     meta.salesforce = {
       ok: false,
       apiVersion,
@@ -1553,6 +1952,7 @@ exports.handler = async function handler(event) {
     let account = null;
     let ocr = [];
     let opportunities = [];
+    let companyOpportunities = [];
     let opportunityLineItems = [];
     let tasks = [];
     let events = [];
@@ -1647,12 +2047,38 @@ exports.handler = async function handler(event) {
         (await trySfQueryRecords({ ...sfAuth, apiVersion, soql: oppQ })) || [];
     }
 
+    if (account?.Id) {
+      try {
+        const oppDescribe = await describeCached("Opportunity");
+        const oppFields = pickExistingFields(oppDescribe, desiredOppFields);
+        const companyOppQ =
+          `SELECT ${oppFields.join(", ")} FROM Opportunity ` +
+          `WHERE AccountId = '${account.Id}' ` +
+          "AND ((IsClosed = false AND LastModifiedDate = LAST_N_DAYS:180) " +
+          "OR (IsClosed = true AND CloseDate = LAST_N_DAYS:180)) " +
+          "ORDER BY LastModifiedDate DESC LIMIT 20";
+        companyOpportunities =
+          (await trySfQueryRecords({
+            ...sfAuth,
+            apiVersion,
+            soql: companyOppQ
+          })) || [];
+      } catch {
+        // ignore
+      }
+    }
+
     // 3b) Opportunity products (best-effort). Prefer standard OpportunityLineItem.
-    if (oppIds.length && opt?.OpportunityLineItem?.fields?.length) {
+    const allOpportunityIds = Array.from(
+      new Set(
+        [...oppIds, ...companyOpportunities.map((o) => o?.Id)].filter(Boolean)
+      )
+    );
+    if (allOpportunityIds.length && opt?.OpportunityLineItem?.fields?.length) {
       const oliFields = opt.OpportunityLineItem.fields;
       const base =
         `SELECT ${oliFields.join(", ")} FROM OpportunityLineItem ` +
-        `WHERE OpportunityId IN ${safeInClause(oppIds)} ` +
+        `WHERE OpportunityId IN ${safeInClause(allOpportunityIds)} ` +
         "ORDER BY CreatedDate DESC LIMIT 200";
       const res = await trySfQueryRecords({
         ...sfAuth,
@@ -1663,7 +2089,7 @@ exports.handler = async function handler(event) {
         const stripped = oliFields.filter((f) => !String(f).includes("."));
         const q2 =
           `SELECT ${stripped.join(", ")} FROM OpportunityLineItem ` +
-          `WHERE OpportunityId IN ${safeInClause(oppIds)} ` +
+          `WHERE OpportunityId IN ${safeInClause(allOpportunityIds)} ` +
           "ORDER BY CreatedDate DESC LIMIT 200";
         opportunityLineItems =
           (await trySfQueryRecords({ ...sfAuth, apiVersion, soql: q2 })) || [];
@@ -2007,6 +2433,9 @@ exports.handler = async function handler(event) {
 
     // Additional opportunity context for the model (Sales-friendly, bounded).
     const oppById = new Map((opportunities || []).map((o) => [o.Id, o]));
+    const companyOppById = new Map(
+      (companyOpportunities || []).map((o) => [o.Id, o])
+    );
     const productsByOppId = new Map();
     for (const oli of opportunityLineItems || []) {
       const oppId = oli?.OpportunityId;
@@ -2017,27 +2446,44 @@ exports.handler = async function handler(event) {
       if (!list.includes(productName)) list.push(productName);
     }
 
+    function productsForOpportunity(opportunity) {
+      const products = (productsByOppId.get(opportunity?.Id) || [])
+        .map((x) => String(x).trim())
+        .filter(Boolean)
+        .slice(0, 4);
+      const fallbackProducts = [
+        opportunity?.Opportunity_Product__c,
+        opportunity?.Primary_Product__c,
+        opportunity?.Product_Name__c,
+        opportunity?.Product__c
+      ]
+        .map((x) => (x ? String(x).trim() : null))
+        .filter(Boolean)
+        .slice(0, 2);
+      return products.length ? products : fallbackProducts;
+    }
+
     const opportunityContext = {
       openOpportunities: Array.from(oppById.values())
         .slice(0, 5)
         .map((o) => {
-          const products = (productsByOppId.get(o.Id) || [])
-            .map((x) => String(x).trim())
-            .filter(Boolean)
-            .slice(0, 4);
-          const fallbackProducts = [
-            o?.Opportunity_Product__c,
-            o?.Primary_Product__c,
-            o?.Product_Name__c,
-            o?.Product__c
-          ]
-            .map((x) => (x ? String(x).trim() : null))
-            .filter(Boolean)
-            .slice(0, 2);
-          const finalProducts = products.length ? products : fallbackProducts;
+          const finalProducts = productsForOpportunity(o);
           return compactObject({
             name: o?.Name || null,
             stage: o?.StageName || null,
+            products: finalProducts.length ? finalProducts : null
+          });
+        }),
+      companyRecentOpportunities: Array.from(companyOppById.values())
+        .slice(0, 5)
+        .map((o) => {
+          const finalProducts = productsForOpportunity(o);
+          return compactObject({
+            name: o?.Name || null,
+            stage: o?.StageName || null,
+            status: opportunityStatusLabel(o),
+            closeDate: o?.CloseDate || null,
+            amountBand: opportunityAmountBand(o?.Amount),
             products: finalProducts.length ? finalProducts : null
           });
         })
@@ -2061,6 +2507,7 @@ exports.handler = async function handler(event) {
       contact,
       account,
       opportunities,
+      companyOpportunities,
       opportunityContactRoles: ocr,
       historyEvents: preview?.events || [],
       productInterest,
@@ -2071,6 +2518,7 @@ exports.handler = async function handler(event) {
 
     const deterministic = finalizeSalesSummaryHtml({
       html: buildDeterministicSalesSummaryHtml(salesNarrativeInput),
+      salesNarrativeInput,
       instanceUrl: sfAuth.instanceUrl,
       mql,
       opportunities,
@@ -2118,6 +2566,7 @@ exports.handler = async function handler(event) {
         const cleanedFinal = cleaned
           ? finalizeSalesSummaryHtml({
               html: cleaned,
+              salesNarrativeInput,
               instanceUrl: sfAuth.instanceUrl,
               mql,
               opportunities,
@@ -2127,6 +2576,7 @@ exports.handler = async function handler(event) {
         const validation = validateSalesFacingHtml(cleanedFinal);
         if (validation.ok) {
           summaryHtml = cleanedFinal;
+          await maybeWriteBackSummary(summaryHtml);
           meta.llm = {
             ok: true,
             provider: "openai",
@@ -2158,6 +2608,7 @@ exports.handler = async function handler(event) {
       // If OpenAI returns invalid output (field leakage / missing sections),
       // fall back to deterministic sales-first HTML rather than storing junk.
       summaryHtml = deterministic;
+      await maybeWriteBackSummary(summaryHtml);
       return jsonResponse(200, { ok: true, summaryHtml, meta });
     }
 
@@ -2168,6 +2619,7 @@ exports.handler = async function handler(event) {
       error: "unconfigured"
     };
     summaryHtml = deterministic;
+    await maybeWriteBackSummary(summaryHtml);
     return jsonResponse(200, { ok: true, summaryHtml, meta });
   } catch (err) {
     console.error("handler_error", { message: err?.message, name: err?.name });

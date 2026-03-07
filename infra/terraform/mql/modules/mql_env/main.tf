@@ -123,6 +123,14 @@ data "aws_iam_policy_document" "lambda_policy" {
     ]
     resources = [aws_sqs_queue.dlq.arn]
   }
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "lambda:InvokeFunction"
+    ]
+    resources = [aws_lambda_function.lambda.arn]
+  }
 }
 
 resource "aws_iam_role_policy" "lambda_policy" {

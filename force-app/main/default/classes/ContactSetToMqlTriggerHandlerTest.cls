@@ -34,9 +34,19 @@ private class ContactSetToMqlTriggerHandlerTest {
     return c;
   }
 
+  private static Product2 createThresholdProduct() {
+    Product2 p = new Product2(
+      Name = ContactSetToMqlTriggerHandler.THRESHOLD_PRODUCT_NAME,
+      IsActive = false
+    );
+    insert p;
+    return p;
+  }
+
   @isTest
   static void createsMqlWhenSetToMqlFlipsTrueOnUpdate() {
     setupCalloutMock();
+    Product2 thresholdProduct = createThresholdProduct();
     Contact c = createContact(false);
 
     Test.startTest();
@@ -45,7 +55,13 @@ private class ContactSetToMqlTriggerHandlerTest {
     Test.stopTest();
 
     List<MQL__c> mqls = [
-      SELECT Id, Contact__c, Lead_Source__c, MQL_Status__c, MQL_Date__c
+      SELECT
+        Id,
+        Contact__c,
+        Lead_Source__c,
+        MQL_Status__c,
+        MQL_Date__c,
+        Product__c
       FROM MQL__c
       WHERE Contact__c = :c.Id
     ];
@@ -59,17 +75,30 @@ private class ContactSetToMqlTriggerHandlerTest {
       mqls[0].MQL_Status__c
     );
     System.assertEquals(Date.today(), mqls[0].MQL_Date__c);
+    System.assertEquals(
+      thresholdProduct.Id,
+      mqls[0].Product__c,
+      'Expected threshold product to be assigned'
+    );
+
+    Contact refreshed = [SELECT Set_to_MQL__c FROM Contact WHERE Id = :c.Id];
+    System.assertEquals(
+      false,
+      refreshed.Set_to_MQL__c,
+      'Expected Set_to_MQL__c to be reset after processing'
+    );
   }
 
   @isTest
   static void createsMqlWhenInsertedWithSetToMqlTrue() {
     setupCalloutMock();
+    Product2 thresholdProduct = createThresholdProduct();
     Test.startTest();
     Contact c = createContact(true);
     Test.stopTest();
 
-    Integer countMqls = [
-      SELECT COUNT()
+    List<MQL__c> mqls = [
+      SELECT Id, Product__c
       FROM MQL__c
       WHERE
         Contact__c = :c.Id
@@ -77,8 +106,20 @@ private class ContactSetToMqlTriggerHandlerTest {
     ];
     System.assertEquals(
       1,
-      countMqls,
+      mqls.size(),
       'Expected an MQL to be created on insert when Set_to_MQL is true'
+    );
+    System.assertEquals(
+      thresholdProduct.Id,
+      mqls[0].Product__c,
+      'Expected threshold product to be assigned'
+    );
+
+    Contact refreshed = [SELECT Set_to_MQL__c FROM Contact WHERE Id = :c.Id];
+    System.assertEquals(
+      false,
+      refreshed.Set_to_MQL__c,
+      'Expected Set_to_MQL__c to be reset after processing'
     );
   }
 
@@ -110,6 +151,38 @@ private class ContactSetToMqlTriggerHandlerTest {
       1,
       countMqls,
       'Expected no duplicate NEW threshold MQL for same contact'
+    );
+
+    Contact refreshed = [SELECT Set_to_MQL__c FROM Contact WHERE Id = :c.Id];
+    System.assertEquals(
+      false,
+      refreshed.Set_to_MQL__c,
+      'Expected Set_to_MQL__c to reset even when duplicate MQL exists'
+    );
+  }
+
+  @isTest
+  static void createsMqlWithoutProductWhenThresholdProductMissing() {
+    setupCalloutMock();
+    Contact c = createContact(false);
+
+    Test.startTest();
+    c.Set_to_MQL__c = true;
+    update c;
+    Test.stopTest();
+
+    List<MQL__c> mqls = [
+      SELECT Id, Product__c
+      FROM MQL__c
+      WHERE
+        Contact__c = :c.Id
+        AND Lead_Source__c = :ContactSetToMqlTriggerHandler.THRESHOLD_LEAD_SOURCE
+    ];
+    System.assertEquals(1, mqls.size(), 'Expected threshold MQL to be created');
+    System.assertEquals(
+      null,
+      mqls[0].Product__c,
+      'Expected Product__c to remain null when threshold product is missing'
     );
   }
 }

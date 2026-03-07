@@ -107,6 +107,216 @@ test("buildSalesNarrativeInput emits qualifying score signals with numeric and q
   ).toBe(true);
 });
 
+test("buildSalesNarrativeInput adds threshold explanation and raw fit evidence", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      Lead_Source_Detail__c: "Threshold rerouted after behavior spike",
+      Lead_Detail_1__c: "Attended pricing webinar",
+      MQL_Date__c: "2026-02-01"
+    },
+    contact: {
+      Title: "Director of Marketing",
+      Email: "buyer@acme.com",
+      Contact_Status__c: "Active",
+      Private_Sector_Non_Qual__c: false,
+      HubSpot_Private_Sector_Behavior_Score__c: 22,
+      HubSpot_Private_Sector_Contact_Fit__c: 5,
+      Contact_Fit_Threshold__c: "Medium",
+      HubSpot_Engagement_Score__c: 14,
+      HubSpot_Engagement_Score_Threshold__c: 10
+    },
+    account: {
+      Private_Sector_Non_Qual__c: false,
+      Company_Fit_Threshold__c: "High",
+      Industry: "Software"
+    },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: []
+  });
+
+  expect(out.thresholdExplanation.matchedRule).toBe(
+    "Behavior 20+ with High company fit and Medium contact fit"
+  );
+  expect(out.thresholdExplanation.summary).toContain("behavior score 22");
+  expect(out.fitEvidence.contact.positives).toContain(
+    "Their title suggests a marketing-oriented role, which supports contact fit in the scoring guide."
+  );
+  expect(out.fitEvidence.contact.positives).toContain(
+    "Their title suggests director-level or higher seniority, which supports contact fit in the scoring guide."
+  );
+  expect(out.fitEvidence.company.observations).toContain(
+    "Account industry is recorded as Software."
+  );
+  expect(out.mqlContext.explanationDetails[0]).toContain(
+    "Threshold rerouted after behavior spike"
+  );
+  expect(out.scoreSignals.some((s) => s.signal === "Threshold path")).toBe(
+    false
+  );
+  expect(out.scoreInterpretation.some((b) => b.startsWith("Threshold:"))).toBe(
+    false
+  );
+});
+
+test("buildSalesNarrativeInput keeps partial evidence explicit when raw inputs are missing", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-02-01"
+    },
+    contact: {
+      Email: "prospect@gmail.com",
+      Private_Sector_Non_Qual__c: false,
+      HubSpot_Private_Sector_Behavior_Score__c: 18,
+      HubSpot_Private_Sector_Contact_Fit__c: 0,
+      Contact_Fit_Threshold__c: "Low"
+    },
+    account: {
+      Private_Sector_Non_Qual__c: false,
+      Company_Fit_Threshold__c: "Low"
+    },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: []
+  });
+
+  expect(out.thresholdExplanation.summary).toContain(
+    "only partially visible from the available fields"
+  );
+  expect(out.fitEvidence.contact.concerns).toContain(
+    "The email domain appears to be personal/free, which is a strong negative fit signal in the scoring guide."
+  );
+  expect(out.fitEvidence.contact.missingInputs).toContain(
+    "Contact title is not available, so role and seniority evidence is incomplete."
+  );
+  expect(out.fitEvidence.company.missingInputs).toContain(
+    "Account industry is not available, so industry-based company-fit evidence is incomplete."
+  );
+});
+
+test("buildSalesNarrativeInput includes compact company context for seller-facing enrichment", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Contact Us",
+      Product_Name__c: "Navigator",
+      MQL_Date__c: "2026-02-01"
+    },
+    contact: {
+      Private_Sector_Non_Qual__c: false,
+      Company_Name_Holder__c: "Acme Corp",
+      Department: "Revenue Operations",
+      Topics_Interested_In__c: "Procurement;Market Intelligence"
+    },
+    account: {
+      Name: "Acme Corporation",
+      Description:
+        "B2B software company that sells procurement workflow tools to enterprise teams.",
+      Industry: "Software",
+      Revenue_Category__c: "$100M-$500M",
+      Navigator_Budget_Range__c: "$250k-$500k",
+      Navigator_Stage__c: "Active",
+      Navigator_Sales_Status__c: "Prospecting",
+      DEN_Membership_Contract_Level__c: "Premium",
+      DEN_Membership_Contract_Status__c: "Active"
+    },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: []
+  });
+
+  expect(out.companyContext.companyName).toBe("Acme Corporation");
+  expect(out.companyContext.businessSummary).toContain("B2B software company");
+  expect(out.companyContext.revenueBand).toBe("$100M-$500M");
+  expect(out.companyContext.budgetRange).toBe("$250k-$500k");
+  expect(out.companyContext.accountStage).toBe("Active");
+  expect(out.companyContext.salesStatus).toBe("Prospecting");
+  expect(out.companyContext.customerFootprint).toEqual([
+    { product: "DEN", level: "Premium", status: "Active" }
+  ]);
+  expect(out.companyContext.contactContext.department).toBe(
+    "Revenue Operations"
+  );
+  expect(out.companyContext.contactContext.interestTopics).toEqual([
+    "Procurement",
+    "Market Intelligence"
+  ]);
+});
+
+test("buildSalesNarrativeInput compacts recent company opportunity context", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-02-01"
+    },
+    contact: {
+      Private_Sector_Non_Qual__c: false,
+      HubSpot_Engagement_Score__c: 12,
+      HubSpot_Engagement_Score_Threshold__c: 10
+    },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    companyOpportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    opportunityContext: {
+      companyRecentOpportunities: [
+        {
+          name: "Navigator Expansion",
+          stage: "Proposal",
+          status: "Open",
+          closeDate: "2026-02-20",
+          amountBand: "$100k-$499k",
+          products: ["Navigator", "Workflow"]
+        },
+        {
+          name: "DEN Renewal",
+          stage: "Closed Won",
+          status: "Closed won",
+          closeDate: "2026-01-15",
+          products: ["DEN"]
+        }
+      ]
+    }
+  });
+
+  expect(out.opportunityContext.companyRecent.hasRecentOpportunities).toBe(
+    true
+  );
+  expect(out.opportunityContext.companyRecent.recentOpportunityCount).toBe(2);
+  expect(out.opportunityContext.companyRecent.openOpportunityCount).toBe(1);
+  expect(out.opportunityContext.companyRecent.recentStageNames).toEqual([
+    "Proposal",
+    "Closed Won"
+  ]);
+  expect(out.opportunityContext.companyRecent.recentProducts).toEqual([
+    "Navigator",
+    "Workflow",
+    "DEN"
+  ]);
+  expect(out.opportunityContext.companyRecent.recentDeals).toEqual([
+    {
+      name: "Navigator Expansion",
+      stage: "Proposal",
+      status: "Open",
+      closeDate: "2026-02-20",
+      amountBand: "$100k-$499k",
+      products: ["Navigator", "Workflow"]
+    },
+    {
+      name: "DEN Renewal",
+      stage: "Closed Won",
+      status: "Closed won",
+      closeDate: "2026-01-15",
+      products: ["DEN"]
+    }
+  ]);
+
+  const s = JSON.stringify(out);
+  expect(s).not.toContain("companyRecentOpportunities");
+});
+
 test("salesNarrativeInput does not contain raw field-name tokens", () => {
   const out = buildSalesNarrativeInput({
     mql: { Lead_Source__c: "Email", Product_Name__c: "Navigator" },

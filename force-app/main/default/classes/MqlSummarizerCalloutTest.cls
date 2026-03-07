@@ -15,7 +15,7 @@ public class MqlSummarizerCalloutTest {
     return c.Id;
   }
 
-  private class MockOk implements HttpCalloutMock {
+  private class MockAccepted implements HttpCalloutMock {
     public HTTPResponse respond(HTTPRequest req) {
       // Basic contract checks: POST JSON + API key header.
       System.assertEquals('POST', req.getMethod());
@@ -31,9 +31,9 @@ public class MqlSummarizerCalloutTest {
       );
 
       HttpResponse res = new HttpResponse();
-      res.setStatusCode(200);
+      res.setStatusCode(202);
       res.setHeader('Content-Type', 'application/json');
-      res.setBody('{"summaryHtml":"<p>ok</p>"}');
+      res.setBody('{"accepted":true,"jobId":"job-123"}');
       return res;
     }
   }
@@ -41,7 +41,7 @@ public class MqlSummarizerCalloutTest {
   @isTest
   static void insertsThresholdMql_WritesSummary() {
     upsertTestSecrets();
-    Test.setMock(HttpCalloutMock.class, new MockOk());
+    Test.setMock(HttpCalloutMock.class, new MockAccepted());
 
     Id contactId = createContactId();
 
@@ -60,7 +60,11 @@ public class MqlSummarizerCalloutTest {
       FROM MQL__c
       WHERE Id = :m.Id
     ];
-    System.assertEquals('<p>ok</p>', mql.Engagement_AI_Summary__c);
+    System.assertEquals(
+      null,
+      mql.Engagement_AI_Summary__c,
+      'Summaries are now written asynchronously via Lambda callback'
+    );
   }
 
   @isTest
@@ -85,7 +89,7 @@ public class MqlSummarizerCalloutTest {
   @isTest
   static void forceOverwrite_OverwritesExistingSummary() {
     upsertTestSecrets();
-    Test.setMock(HttpCalloutMock.class, new MockOk());
+    Test.setMock(HttpCalloutMock.class, new MockAccepted());
     Id contactId = createContactId();
 
     // Create threshold MQL with existing summary.
@@ -106,13 +110,17 @@ public class MqlSummarizerCalloutTest {
       WHERE Id = :m.Id
       LIMIT 1
     ];
-    System.assertEquals('<p>ok</p>', reloaded.Engagement_AI_Summary__c);
+    System.assertEquals(
+      '<p>existing</p>',
+      reloaded.Engagement_AI_Summary__c,
+      'Existing summary remains until async callback writes back'
+    );
   }
 
   @isTest
   static void adminInvocable_ForceOverwrite_WritesSummary() {
     upsertTestSecrets();
-    Test.setMock(HttpCalloutMock.class, new MockOk());
+    Test.setMock(HttpCalloutMock.class, new MockAccepted());
     Id contactId = createContactId();
 
     MQL__c m = new MQL__c(
@@ -138,13 +146,13 @@ public class MqlSummarizerCalloutTest {
       WHERE Id = :m.Id
       LIMIT 1
     ];
-    System.assertEquals('<p>ok</p>', reloaded.Engagement_AI_Summary__c);
+    System.assertEquals('<p>existing</p>', reloaded.Engagement_AI_Summary__c);
   }
 
   @isTest
   static void adminInvocable_NonForce_WritesWhenBlank() {
     upsertTestSecrets();
-    Test.setMock(HttpCalloutMock.class, new MockOk());
+    Test.setMock(HttpCalloutMock.class, new MockAccepted());
     Id contactId = createContactId();
 
     MQL__c m = new MQL__c(
@@ -169,13 +177,13 @@ public class MqlSummarizerCalloutTest {
       WHERE Id = :m.Id
       LIMIT 1
     ];
-    System.assertEquals('<p>ok</p>', reloaded.Engagement_AI_Summary__c);
+    System.assertEquals(null, reloaded.Engagement_AI_Summary__c);
   }
 
   @isTest
   static void adminHelper_RegenerateForce_Overwrites() {
     upsertTestSecrets();
-    Test.setMock(HttpCalloutMock.class, new MockOk());
+    Test.setMock(HttpCalloutMock.class, new MockAccepted());
     Id contactId = createContactId();
 
     MQL__c m = new MQL__c(
@@ -195,13 +203,49 @@ public class MqlSummarizerCalloutTest {
       WHERE Id = :m.Id
       LIMIT 1
     ];
-    System.assertEquals('<p>ok</p>', reloaded.Engagement_AI_Summary__c);
+    System.assertEquals('<p>existing</p>', reloaded.Engagement_AI_Summary__c);
+  }
+
+  @isTest
+  static void adminInvocable_ForceOverwrite_AllowsNonThresholdMql() {
+    upsertTestSecrets();
+    Test.setMock(HttpCalloutMock.class, new MockAccepted());
+    Id contactId = createContactId();
+
+    MQL__c m = new MQL__c(
+      Contact__c = contactId,
+      Lead_Source__c = 'Email',
+      Engagement_AI_Summary__c = '<p>existing</p>'
+    );
+    insert m;
+
+    MqlSummarizerAdmin.Request req = new MqlSummarizerAdmin.Request();
+    req.mqlId = m.Id;
+    req.forceOverwrite = true;
+
+    Test.startTest();
+    MqlSummarizerAdmin.regenerateFromFlow(
+      new List<MqlSummarizerAdmin.Request>{ req }
+    );
+    Test.stopTest();
+
+    MQL__c reloaded = [
+      SELECT Engagement_AI_Summary__c
+      FROM MQL__c
+      WHERE Id = :m.Id
+      LIMIT 1
+    ];
+    System.assertEquals(
+      '<p>existing</p>',
+      reloaded.Engagement_AI_Summary__c,
+      'Flow-driven force overwrite should enqueue even for non-threshold MQLs'
+    );
   }
 
   @isTest
   static void forceOverwrite_AllowsNonThresholdMql_ForTesting() {
     upsertTestSecrets();
-    Test.setMock(HttpCalloutMock.class, new MockOk());
+    Test.setMock(HttpCalloutMock.class, new MockAccepted());
     Id contactId = createContactId();
 
     MQL__c m = new MQL__c(
@@ -221,6 +265,6 @@ public class MqlSummarizerCalloutTest {
       WHERE Id = :m.Id
       LIMIT 1
     ];
-    System.assertEquals('<p>ok</p>', reloaded.Engagement_AI_Summary__c);
+    System.assertEquals('<p>existing</p>', reloaded.Engagement_AI_Summary__c);
   }
 }

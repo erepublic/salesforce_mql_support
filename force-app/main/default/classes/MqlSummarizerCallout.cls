@@ -54,7 +54,7 @@ public class MqlSummarizerCallout {
 
     for (Id mqlId : mqlIds) {
       try {
-        makeCalloutAndWriteSummary(mqlId, false);
+        makeCalloutAndEnqueueSummary(mqlId, false);
       } catch (Exception e) {
         System.debug(
           'MQL_SUMMARIZER_ERROR: MQL=' + mqlId + ', Error=' + e.getMessage()
@@ -72,7 +72,7 @@ public class MqlSummarizerCallout {
 
     for (Id mqlId : mqlIds) {
       try {
-        makeCalloutAndWriteSummary(mqlId, true);
+        makeCalloutAndEnqueueSummary(mqlId, true);
       } catch (Exception e) {
         System.debug(
           'MQL_SUMMARIZER_FORCE_ERROR: MQL=' +
@@ -84,7 +84,9 @@ public class MqlSummarizerCallout {
     }
   }
 
-  private static void makeCalloutAndWriteSummary(
+  // Enqueue-only callout. Lambda does the heavy work asynchronously and writes
+  // back to Salesforce once complete.
+  private static void makeCalloutAndEnqueueSummary(
     Id mqlId,
     Boolean forceOverwrite
   ) {
@@ -127,44 +129,20 @@ public class MqlSummarizerCallout {
       'environment' => environment
     };
     request.setBody(JSON.serialize(requestBody));
-    request.setTimeout(60000);
+    // Keep this call short. Long-running summary work now happens async in Lambda.
+    request.setTimeout(15000);
 
     Http http = new Http();
     HttpResponse response = http.send(request);
 
-    if (response.getStatusCode() != 200) {
+    Integer statusCode = response.getStatusCode();
+    if (statusCode != 200 && statusCode != 202) {
       throw new CalloutException(
-        'Failed to summarize MQL. Status=' +
-          response.getStatusCode() +
+        'Failed to enqueue MQL summarization. Status=' +
+          statusCode +
           ', Body=' +
           response.getBody()
       );
     }
-
-    String summaryHtml = null;
-    try {
-      Object parsed = JSON.deserializeUntyped(response.getBody());
-      if (parsed instanceof Map<String, Object>) {
-        Map<String, Object> mapParsed = (Map<String, Object>) parsed;
-        if (
-          mapParsed.containsKey('summaryHtml') &&
-          mapParsed.get('summaryHtml') instanceof String
-        ) {
-          summaryHtml = (String) mapParsed.get('summaryHtml');
-        } else if (
-          mapParsed.containsKey('summary') &&
-          mapParsed.get('summary') instanceof String
-        ) {
-          summaryHtml = (String) mapParsed.get('summary');
-        }
-      }
-    } catch (Exception e) {
-      // If response isn't JSON (or doesn't have summary fields), fall back to the raw body.
-    }
-    if (String.isBlank(summaryHtml)) {
-      summaryHtml = response.getBody();
-    }
-
-    update new MQL__c(Id = mql.Id, Engagement_AI_Summary__c = summaryHtml);
   }
 }
