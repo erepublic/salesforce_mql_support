@@ -4,6 +4,12 @@
         <apexClass>MqlSummarizerAdmin</apexClass>
         <enabled>true</enabled>
     </classAccesses>
+    <flowAccesses>
+        <enabled>true</enabled>
+        <flow>
+MQL_SF_Regenerate_Summary;
+    </flow>
+    </flowAccesses>
     <hasActivationRequired>false</hasActivationRequired>
     <label>MQL Summary Regeneration Access</label>
     <userPermissions>

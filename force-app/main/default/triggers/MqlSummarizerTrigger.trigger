@@ -5,10 +5,7 @@ trigger MqlSummarizerTrigger on MQL__c(after insert, after update) {
     for (MQL__c mql : Trigger.new) {
       if (mql == null)
         continue;
-      if (
-        mql.Lead_Source__c == 'Fit and Behavior Threshold Reached' &&
-        String.isBlank(mql.Engagement_AI_Summary__c)
-      ) {
+      if (String.isBlank(mql.Engagement_AI_Summary__c)) {
         mqlIdsToSummarize.add(mql.Id);
       }
     }
@@ -20,11 +17,11 @@ trigger MqlSummarizerTrigger on MQL__c(after insert, after update) {
       if (mql == null || oldMql == null)
         continue;
 
-      Boolean becameThreshold =
-        oldMql.Lead_Source__c != 'Fit and Behavior Threshold Reached' &&
-        mql.Lead_Source__c == 'Fit and Behavior Threshold Reached';
+      Boolean leadSourceChanged = oldMql.Lead_Source__c != mql.Lead_Source__c;
+      Boolean opportunityChanged = oldMql.Opportunity__c != mql.Opportunity__c;
+      Boolean summaryStillBlank = String.isBlank(mql.Engagement_AI_Summary__c);
 
-      if (becameThreshold && String.isBlank(mql.Engagement_AI_Summary__c)) {
+      if (summaryStillBlank && (leadSourceChanged || opportunityChanged)) {
         mqlIdsToSummarize.add(mql.Id);
       }
     }

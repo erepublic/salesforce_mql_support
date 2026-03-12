@@ -481,6 +481,11 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
   )
     ? input.mqlContext.explanationDetails
     : [];
+  const recentConversion =
+    input?.intent?.recentConversion &&
+    typeof input.intent.recentConversion === "string"
+      ? input.intent.recentConversion
+      : null;
 
   const hasInbound = keyReasons.some((r) =>
     String(r || "")
@@ -505,8 +510,24 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
   )
     ? companyRecentOpportunityContext.recentDeals
     : [];
+  const accountOpenOpportunityCount = Number.isFinite(
+    Number(companyRecentOpportunityContext?.openOpportunityCount)
+  )
+    ? Number(companyRecentOpportunityContext.openOpportunityCount)
+    : input?.opportunity?.hasOpenOpportunity === true
+      ? Math.max(1, Number(input?.opportunity?.openOpportunityCount) || 1)
+      : 0;
 
   const whySales = [];
+  if (accountOpenOpportunityCount > 0) {
+    whySales.push(
+      `There ${accountOpenOpportunityCount === 1 ? "is" : "are"} ${accountOpenOpportunityCount} open opportunit${
+        accountOpenOpportunityCount === 1 ? "y" : "ies"
+      } on this account.`
+    );
+  } else {
+    whySales.push("There are no open opportunities on this account.");
+  }
   if (thresholdExplanation?.summary) {
     whySales.push(String(thresholdExplanation.summary));
   }
@@ -747,23 +768,30 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
 
   // Suggested next steps: keep it actionable + verification-oriented.
   const nextSteps = [];
-  if (hasInbound) {
-    nextSteps.push(
-      "Follow up quickly and reference their inbound request; confirm what prompted them to reach out and what timeline they are working on."
-    );
-  } else {
-    nextSteps.push(
-      "Use recent engagement as the opener and propose a short discovery call; confirm what they are evaluating and who else is involved."
+  const openerFocus = [];
+  if (recentConversion) {
+    openerFocus.push(
+      `reference ${recentConversion} as the specific offer or event that triggered the response`
     );
   }
   if (mqlExplanationDetails.length) {
-    nextSteps.push(
-      "Use the qualification detail context in your opener and confirm which trigger, request, or content interaction drove the threshold."
+    openerFocus.push(
+      "anchor the conversation on the trigger, request, or content interaction that qualified them"
     );
   }
-  if (customerFootprint.length) {
-    nextSteps.push(
-      "Confirm whether this is a cross-sell, upsell, or net-new motion and tailor outreach to the account's existing product footprint."
+  if (topProducts.length) {
+    const productNames = topProducts
+      .map((p) => String(p?.name || "").trim())
+      .filter(Boolean)
+      .slice(0, 3);
+    if (productNames.length) {
+      openerFocus.push(
+        `tie the conversation to ${productNames.join(", ")} as likely evaluation areas`
+      );
+    }
+  } else if (customerFootprint.length) {
+    openerFocus.push(
+      "position the outreach against the account's existing product footprint"
     );
   } else if (
     interestTopics.length ||
@@ -773,25 +801,44 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
     const department = companyContext?.contactContext?.department
       ? String(companyContext.contactContext.department)
       : null;
-    nextSteps.push(
-      `Tailor the opener to ${department ? `${department} priorities` : "their role"}${topicText ? `, especially around ${topicText}` : ""}.`
-    );
-  }
-  if (fitConcerns.length) {
-    nextSteps.push(
-      "Verify fit early (industry/eligibility, role, and company details) before investing a full-cycle effort."
-    );
-  }
-  if (input?.opportunity?.hasOpenOpportunity === true) {
-    nextSteps.push(
-      "Check whether there is already an active opportunity and align outreach to the current stage and owner."
+    openerFocus.push(
+      `tailor the opener to ${department ? `${department} priorities` : "their role"}${topicText ? `, especially around ${topicText}` : ""}`
     );
   }
   if (companyRecentOpportunityContext?.hasRecentOpportunities === true) {
-    nextSteps.push(
-      "Verify whether this contact maps to the account's recent opportunity motion and coordinate outreach around any active or adjacent deal already in play."
+    openerFocus.push("coordinate with the account's recent opportunity motion");
+  }
+
+  let primaryNextStep = hasInbound
+    ? "Follow up quickly and reference their inbound request"
+    : "Use recent engagement as the opener and propose a short discovery call";
+  if (openerFocus.length) {
+    primaryNextStep += `; ${openerFocus.slice(0, 3).join("; ")}`;
+  }
+  primaryNextStep +=
+    "; confirm the business issue behind the activity, why it matters now, and how they will measure success or value.";
+  nextSteps.push(primaryNextStep);
+
+  const verificationFocus = [
+    "Identify who else is involved in the decision and who can approve next steps",
+    "confirm the decision process and leave the conversation with a mutual next action or meeting on the calendar"
+  ];
+  if (fitConcerns.length) {
+    verificationFocus.push(
+      "verify fit early (industry/eligibility, role, and company details) before investing a full-cycle effort"
     );
   }
+  if (input?.opportunity?.hasOpenOpportunity === true) {
+    verificationFocus.push(
+      "align outreach to the current opportunity stage and owner"
+    );
+  }
+  if (companyRecentOpportunityContext?.hasRecentOpportunities === true) {
+    verificationFocus.push(
+      "confirm whether this contact maps to an active or adjacent deal already in play"
+    );
+  }
+  nextSteps.push(`${verificationFocus.join("; ")}.`);
 
   function ul(items) {
     const list = (items || []).filter(Boolean);
@@ -834,6 +881,7 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "   - If company background, size/segment, commercial status, or current customer footprint are present, use them to explain the company context in plain sales language.",
     "   - If product-interest signals are present, include 1-2 bullets explicitly stating what they are likely evaluating and why (cite the evidence in plain language).",
     "   - If open opportunities include product names, call out the product(s) tied to those opportunities (this is often the clearest 'what they want').",
+    "   - Always state whether there are open opportunities on the account or not.",
     "   - If recent company opportunity history is present, use it to explain whether this looks like active account motion, expansion, adjacent-product interest, or re-engagement.",
     "2) Score Interpretation",
     "   - 3-4 bullets. Do not output more than 4 bullets.",
@@ -841,6 +889,8 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "   - For each qualifying score/signal that drove MQL status, include one bullet with: signal name, numeric score when available, qualitative assessment, and a short why-it-matters-for-sales explanation.",
     "   - Prioritize the 4 most decision-useful score bullets instead of trying to include every available signal.",
     "   - If threshold explanation data is present, include one bullet that states the exact fit-and-behavior path reached, including behavior score, cutoff, and the visible company/contact fit tiers.",
+    "   - Treat behavior score and threshold-path data as the qualification driver when present; engagement score is supporting evidence unless the structured input explicitly says otherwise.",
+    "   - If the MQL was not threshold-created, make that explicit and tie the qualification source to the stated lead source or specific conversion instead.",
     "   - If fit-evidence data is present, explain which account/contact clues support or weaken fit, and make clear when that evidence is partial rather than complete.",
     "   - Never invent missing numeric values. If a score or threshold is absent from the structured input, do not output a numeric placeholder like 0.",
     "   - Favor business/value framing over technical explanation.",
@@ -848,17 +898,20 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "3) Most Recent Engagement",
     "   - 5-12 bullets, newest-first (most recent first).",
     "   - Each bullet MUST start with a date (YYYY-MM-DD) then a short plain-English highlight.",
+    "   - When a specific webinar, event, or offer name is available, use that exact name instead of generic wording like 'a high-intent offer'.",
     "   - If an engagement is tied to a specific opportunity/product, mention that product in the highlight.",
     "   - Use the provided engagement bullets as your source of truth: include all provided items (up to 12) and do not omit website-activity bullets when present.",
     "   - Do not paraphrase the engagement highlights unless required for clarity; keep wording close so important evidence (like visits/pageviews) is preserved.",
     "4) Suggested Next Step",
     "   - 1-2 bullets: best outreach angle + what to verify + urgency.",
+    "   - Prefer a Business Issue / Value / Power / Plan flow: clarify the buyer's business issue and urgency, confirm the value or success criteria, identify who is involved in the decision, and establish a mutual next meeting or checkpoint.",
+    "   - Keep the wording practical and seller-facing; do not name the framework or use generic methodology jargon.",
     "   - If product-interest signals exist, tailor the outreach angle to those likely interests.",
     "   - If current customer footprint or account commercial status exists, use it to decide whether the motion looks like cross-sell, upsell, retention, or net-new outreach.",
     "   - If department or interest-topic context exists, use it to sharpen the opener and what to verify first.",
     "   - If recent company opportunity history exists, use it to coordinate with current account motion and verify whether this contact maps to an existing or adjacent opportunity.",
     "   - If analytics behavior signals exist (recent pageviews/actions or email opens/clicks), use them as additional evidence for what they are actively researching (but do not mention where the data came from).",
-    "   - If website activity totals exist (site visits/pageviews), you may use them as supporting evidence; if the last visit is old, label it as historical rather than current buying intent.",
+    "   - If website activity is present, treat it as a last-30-days signal only when the structured input labels it that way; do not turn older aggregate totals into current intent.",
     "",
     "Important constraints:",
     "- Do not include any field names, IDs, JSON keys, or system names.",
@@ -1657,7 +1710,8 @@ async function openaiChatCompletions({
   temperature,
   maxTokens,
   baseUrl,
-  reasoningEffort
+  reasoningEffort,
+  timeoutMs
 }) {
   const url = `${String(baseUrl || "https://api.openai.com/v1").replace(/\/+$/, "")}/chat/completions`;
   const payload = {
@@ -1694,8 +1748,7 @@ async function openaiChatCompletions({
       },
       body: JSON.stringify(payload)
     },
-    // Keep under API Gateway timeout budget.
-    22000
+    Number.isFinite(Number(timeoutMs)) ? Number(timeoutMs) : 22000
   );
   const text = await resp.text();
   const json = safeJsonParse(text);
@@ -1705,6 +1758,129 @@ async function openaiChatCompletions({
   const content = json?.choices?.[0]?.message?.content || null;
   const usage = json?.usage || null;
   return { content, usage, raw: json };
+}
+
+function resolveOpenAiMaxTokens({ openaiSecret, openaiModel }) {
+  const requested = Number(openaiSecret?.maxTokens ?? 1400);
+  if (/^gpt-5/i.test(String(openaiModel || ""))) {
+    const min = 1200;
+    const max = 2400;
+    if (!Number.isFinite(requested)) return 1800;
+    return Math.max(min, Math.min(requested, max));
+  }
+  return Number.isFinite(requested) ? requested : 900;
+}
+
+function resolveOpenAiTimeoutMs({ openaiSecret, openaiModel }) {
+  const requested = Number(
+    openaiSecret?.timeoutMs ?? openaiSecret?.timeout_ms ?? null
+  );
+  if (Number.isFinite(requested) && requested >= 5000) {
+    return Math.min(requested, 50000);
+  }
+  // Worker-mode runs asynchronously in Lambda, so it can use more of the
+  // function timeout budget than the API Gateway-facing enqueue path.
+  if (/^gpt-5/i.test(String(openaiModel || ""))) return 45000;
+  return 25000;
+}
+
+function resolveFallbackOpenAiModel(model) {
+  return /^gpt-5/i.test(String(model || "")) ? "gpt-4o-mini" : null;
+}
+
+async function runOpenAiSummaryAttempt({
+  apiKey,
+  model,
+  baseUrl,
+  temperature,
+  reasoningEffort,
+  maxTokens,
+  timeoutMs,
+  system,
+  user,
+  salesNarrativeInput,
+  instanceUrl,
+  mql,
+  opportunities,
+  opportunityContactRoles
+}) {
+  const out = await openaiChatCompletions({
+    apiKey,
+    model,
+    baseUrl,
+    temperature,
+    reasoningEffort,
+    maxTokens,
+    timeoutMs,
+    messages: [
+      { role: "system", content: system },
+      { role: "user", content: user }
+    ]
+  });
+  const raw = String(out?.content || "").trim();
+  const cleaned = raw
+    .replace(/^```[a-zA-Z]*\s*/, "")
+    .replace(/\s*```$/, "")
+    .trim();
+  const cleanedFinal = cleaned
+    ? finalizeSalesSummaryHtml({
+        html: cleaned,
+        salesNarrativeInput,
+        instanceUrl,
+        mql,
+        opportunities,
+        opportunityContactRoles
+      })
+    : "";
+  const validation = validateSalesFacingHtml(cleanedFinal);
+  return {
+    out,
+    raw,
+    cleaned,
+    cleanedFinal,
+    validation,
+    finishReason: out?.raw?.choices?.[0]?.finish_reason || null
+  };
+}
+
+async function repairSalesSummaryHtml({
+  apiKey,
+  model,
+  baseUrl,
+  invalidHtml,
+  validationReasons
+}) {
+  const repairModel = /^gpt-5/i.test(String(model || ""))
+    ? "gpt-4o-mini"
+    : model;
+  const system = [
+    "You repair seller-facing HTML fragments.",
+    "Return an HTML fragment only (no markdown fences).",
+    "Use simple HTML only: <p>, <strong>, <ul>, <li>, <br/>, <em>.",
+    "Preserve the same meaning and section structure when possible.",
+    "Remove any Salesforce/HubSpot names, field names, object names, JSON keys, record IDs, or hyperlinks.",
+    "Keep Suggested Next Step to 1-2 practical seller-facing bullets."
+  ].join("\n");
+  const user = [
+    "Repair this HTML so it can be stored safely in Salesforce.",
+    `Validation issues: ${(validationReasons || []).join(", ") || "unknown"}.`,
+    "Do not add facts. Rewrite or drop any leaked system terms, field names, IDs, or links.",
+    "HTML to repair:",
+    String(invalidHtml || "")
+  ].join("\n");
+  return openaiChatCompletions({
+    apiKey,
+    model: repairModel,
+    baseUrl,
+    temperature: 0,
+    maxTokens: 700,
+    reasoningEffort: null,
+    timeoutMs: 15000,
+    messages: [
+      { role: "system", content: system },
+      { role: "user", content: user }
+    ]
+  });
 }
 
 exports.handler = async function handler(event) {
@@ -2526,10 +2702,10 @@ exports.handler = async function handler(event) {
     });
 
     if (openaiApiKey) {
+      const fallbackModel = resolveFallbackOpenAiModel(openaiModel);
       try {
         const { system, user } = buildOpenAiMessages({ salesNarrativeInput });
-
-        const out = await openaiChatCompletions({
+        const primaryAttempt = await runOpenAiSummaryAttempt({
           apiKey: openaiApiKey,
           model: openaiModel,
           baseUrl: openaiBaseUrl,
@@ -2538,65 +2714,204 @@ exports.handler = async function handler(event) {
             openaiSecret?.reasoningEffort ||
             openaiSecret?.reasoning_effort ||
             (/^gpt-5/i.test(String(openaiModel || "")) ? "minimal" : null),
-          // GPT-5 family can burn a lot of "completion" tokens on reasoning; give
-          // it enough budget to actually emit HTML, but keep latency bounded.
-          maxTokens: (() => {
-            const requested = Number(openaiSecret?.maxTokens ?? 1400);
-            if (/^gpt-5/i.test(String(openaiModel || ""))) {
-              const min = 800;
-              const max = 1600;
-              if (!Number.isFinite(requested)) return 1400;
-              return Math.max(min, Math.min(requested, max));
-            }
-            return Number.isFinite(requested) ? requested : 900;
-          })(),
-          messages: [
-            { role: "system", content: system },
-            { role: "user", content: user }
-          ]
+          maxTokens: resolveOpenAiMaxTokens({ openaiSecret, openaiModel }),
+          timeoutMs: resolveOpenAiTimeoutMs({ openaiSecret, openaiModel }),
+          system,
+          user,
+          salesNarrativeInput,
+          instanceUrl: sfAuth.instanceUrl,
+          mql,
+          opportunities,
+          opportunityContactRoles: ocr
         });
-
-        const raw = String(out?.content || "").trim();
-        // Strip common code-fence wrappers if the model ignores instructions.
-        const cleaned = raw
-          .replace(/^```[a-zA-Z]*\s*/, "")
-          .replace(/\s*```$/, "")
-          .trim();
-
-        const cleanedFinal = cleaned
-          ? finalizeSalesSummaryHtml({
-              html: cleaned,
-              salesNarrativeInput,
-              instanceUrl: sfAuth.instanceUrl,
-              mql,
-              opportunities,
-              opportunityContactRoles: ocr
-            })
-          : "";
-        const validation = validateSalesFacingHtml(cleanedFinal);
-        if (validation.ok) {
-          summaryHtml = cleanedFinal;
+        if (primaryAttempt.validation.ok) {
+          summaryHtml = primaryAttempt.cleanedFinal;
           await maybeWriteBackSummary(summaryHtml);
           meta.llm = {
             ok: true,
             provider: "openai",
             model: openaiModel,
-            usage: out?.usage || null
+            usage: primaryAttempt.out?.usage || null
           };
           return jsonResponse(200, { ok: true, summaryHtml, meta });
         }
 
-        const finishReason = out?.raw?.choices?.[0]?.finish_reason || null;
+        if (
+          primaryAttempt.cleaned &&
+          primaryAttempt.validation?.reasons?.includes("field_or_id_leak")
+        ) {
+          try {
+            const repaired = await repairSalesSummaryHtml({
+              apiKey: openaiApiKey,
+              model: openaiModel,
+              baseUrl: openaiBaseUrl,
+              invalidHtml: primaryAttempt.cleanedFinal,
+              validationReasons: primaryAttempt.validation.reasons
+            });
+            const repairedRaw = String(repaired?.content || "").trim();
+            const repairedClean = repairedRaw
+              .replace(/^```[a-zA-Z]*\s*/, "")
+              .replace(/\s*```$/, "")
+              .trim();
+            const repairedFinal = repairedClean
+              ? finalizeSalesSummaryHtml({
+                  html: repairedClean,
+                  salesNarrativeInput,
+                  instanceUrl: sfAuth.instanceUrl,
+                  mql,
+                  opportunities,
+                  opportunityContactRoles: ocr
+                })
+              : "";
+            const repairedValidation = validateSalesFacingHtml(repairedFinal);
+            if (repairedValidation.ok) {
+              summaryHtml = repairedFinal;
+              await maybeWriteBackSummary(summaryHtml);
+              meta.llm = {
+                ok: true,
+                provider: "openai",
+                model: openaiModel,
+                repaired: true,
+                usage: {
+                  initial: out?.usage || null,
+                  repair: repaired?.usage || null
+                }
+              };
+              return jsonResponse(200, { ok: true, summaryHtml, meta });
+            }
+            meta.llmRepair = {
+              ok: false,
+              provider: "openai",
+              model: /^gpt-5/i.test(String(openaiModel || ""))
+                ? "gpt-4o-mini"
+                : openaiModel,
+              validation: repairedValidation?.reasons || null
+            };
+          } catch (repairError) {
+            meta.llmRepair = {
+              ok: false,
+              provider: "openai",
+              model: /^gpt-5/i.test(String(openaiModel || ""))
+                ? "gpt-4o-mini"
+                : openaiModel,
+              error: repairError?.message || "unknown"
+            };
+          }
+        }
+
+        if (
+          fallbackModel &&
+          ((!primaryAttempt.cleaned &&
+            primaryAttempt.finishReason === "length") ||
+            primaryAttempt.validation?.reasons?.includes("field_or_id_leak"))
+        ) {
+          try {
+            const fallbackAttempt = await runOpenAiSummaryAttempt({
+              apiKey: openaiApiKey,
+              model: fallbackModel,
+              baseUrl: openaiBaseUrl,
+              temperature: 0.2,
+              reasoningEffort: null,
+              maxTokens: 900,
+              timeoutMs: 20000,
+              system,
+              user,
+              salesNarrativeInput,
+              instanceUrl: sfAuth.instanceUrl,
+              mql,
+              opportunities,
+              opportunityContactRoles: ocr
+            });
+            if (fallbackAttempt.validation.ok) {
+              summaryHtml = fallbackAttempt.cleanedFinal;
+              await maybeWriteBackSummary(summaryHtml);
+              meta.llm = {
+                ok: true,
+                provider: "openai",
+                model: fallbackModel,
+                retriedFrom: openaiModel,
+                usage: fallbackAttempt.out?.usage || null
+              };
+              return jsonResponse(200, { ok: true, summaryHtml, meta });
+            }
+            meta.llmFallback = {
+              ok: false,
+              provider: "openai",
+              model: fallbackModel,
+              validation: fallbackAttempt.validation?.reasons || null,
+              finishReason: fallbackAttempt.finishReason,
+              usage: fallbackAttempt.out?.usage || null
+            };
+          } catch (fallbackError) {
+            meta.llmFallback = {
+              ok: false,
+              provider: "openai",
+              model: fallbackModel,
+              error: fallbackError?.message || "unknown"
+            };
+          }
+        }
+
         meta.llm = {
           ok: false,
           provider: "openai",
           model: openaiModel,
-          error: cleaned ? "invalid_html" : "empty_content",
-          validation: validation?.reasons || null,
-          finishReason,
-          usage: out?.usage || null
+          error: primaryAttempt.cleaned ? "invalid_html" : "empty_content",
+          validation: primaryAttempt.validation?.reasons || null,
+          finishReason: primaryAttempt.finishReason,
+          usage: primaryAttempt.out?.usage || null
         };
       } catch (e) {
+        if (fallbackModel && /aborted/i.test(String(e?.message || ""))) {
+          try {
+            const { system, user } = buildOpenAiMessages({
+              salesNarrativeInput
+            });
+            const fallbackAttempt = await runOpenAiSummaryAttempt({
+              apiKey: openaiApiKey,
+              model: fallbackModel,
+              baseUrl: openaiBaseUrl,
+              temperature: 0.2,
+              reasoningEffort: null,
+              maxTokens: 900,
+              timeoutMs: 20000,
+              system,
+              user,
+              salesNarrativeInput,
+              instanceUrl: sfAuth.instanceUrl,
+              mql,
+              opportunities,
+              opportunityContactRoles: ocr
+            });
+            if (fallbackAttempt.validation.ok) {
+              summaryHtml = fallbackAttempt.cleanedFinal;
+              await maybeWriteBackSummary(summaryHtml);
+              meta.llm = {
+                ok: true,
+                provider: "openai",
+                model: fallbackModel,
+                retriedFrom: openaiModel,
+                usage: fallbackAttempt.out?.usage || null
+              };
+              return jsonResponse(200, { ok: true, summaryHtml, meta });
+            }
+            meta.llmFallback = {
+              ok: false,
+              provider: "openai",
+              model: fallbackModel,
+              validation: fallbackAttempt.validation?.reasons || null,
+              finishReason: fallbackAttempt.finishReason,
+              usage: fallbackAttempt.out?.usage || null
+            };
+          } catch (fallbackError) {
+            meta.llmFallback = {
+              ok: false,
+              provider: "openai",
+              model: fallbackModel,
+              error: fallbackError?.message || "unknown"
+            };
+          }
+        }
         meta.llm = {
           ok: false,
           provider: "openai",

@@ -148,6 +148,19 @@ global class OpportunityMerge {
       update ticketLoser;
     }
 
+    // Move over MQL records
+    List<MQL__c> mqlsToReparent = [
+      SELECT Id, Opportunity__c
+      FROM MQL__c
+      WHERE Opportunity__c IN :losers
+    ];
+    for (MQL__c mqlLoser : mqlsToReparent) {
+      mqlLoser.Opportunity__c = winner;
+    }
+    if (!mqlsToReparent.isEmpty()) {
+      update mqlsToReparent;
+    }
+
     // if everything went well, we delete the losing opportunities
     for (Id loserId : losers) {
       Opportunity odl = new Opportunity(Id = loserId);

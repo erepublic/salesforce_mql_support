@@ -1,6 +1,7 @@
 const {
   buildSalesNarrativeInput,
-  buildSalesEventLabel
+  buildSalesEventLabel,
+  isHandRaiserLeadSource
 } = require("../sales_prompt_utils");
 
 test("buildSalesEventLabel redacts emails", () => {
@@ -11,6 +12,16 @@ test("buildSalesEventLabel redacts emails", () => {
   });
   expect(label).toContain("*@redacted");
   expect(label).not.toContain("jane.doe@example.com");
+});
+
+test("buildSalesEventLabel redacts Salesforce-style record ids", () => {
+  const label = buildSalesEventLabel({
+    eventType: "mqlConverted",
+    title: "Converted",
+    detail: "Created Opportunity | 006VE00000TkWFXYA3"
+  });
+  expect(label).toContain("[redacted]");
+  expect(label).not.toContain("006VE00000TkWFXYA3");
 });
 
 test("buildSalesNarrativeInput sorts recentEngagement newest-first", () => {
@@ -85,7 +96,7 @@ test("buildSalesNarrativeInput emits qualifying score signals with numeric and q
         s.signal === "Engagement score" &&
         s.scoreText === "12 (threshold 10)" &&
         s.qualitative === "Strong" &&
-        s.contributesToMql === true
+        s.contributesToMql === false
     )
   ).toBe(true);
   expect(
@@ -101,7 +112,7 @@ test("buildSalesNarrativeInput emits qualifying score signals with numeric and q
     out.scoreInterpretation.some((b) =>
       b.includes("Engagement score: Score 12 (threshold 10); Strong.")
     )
-  ).toBe(true);
+  ).toBe(false);
   expect(
     out.scoreInterpretation.some((b) => b.includes("Inbound request: Urgent."))
   ).toBe(true);
@@ -141,10 +152,10 @@ test("buildSalesNarrativeInput adds threshold explanation and raw fit evidence",
   );
   expect(out.thresholdExplanation.summary).toContain("behavior score 22");
   expect(out.fitEvidence.contact.positives).toContain(
-    "Their title suggests a marketing-oriented role, which supports contact fit in the scoring guide."
+    "Their title matches a marketing-role criterion from the scoring guide."
   );
   expect(out.fitEvidence.contact.positives).toContain(
-    "Their title suggests director-level or higher seniority, which supports contact fit in the scoring guide."
+    "Their title matches the director-or-higher seniority criterion from the scoring guide."
   );
   expect(out.fitEvidence.company.observations).toContain(
     "Account industry is recorded as Software."
@@ -242,6 +253,71 @@ test("buildSalesNarrativeInput includes compact company context for seller-facin
     "Procurement",
     "Market Intelligence"
   ]);
+});
+
+test("buildSalesNarrativeInput uses specific recent conversion naming and last-30-day website wording", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Registered for Webinar",
+      MQL_Date__c: "2026-02-01"
+    },
+    contact: {
+      Private_Sector_Non_Qual__c: false,
+      HubSpot_Recent_Conversion__c: "XYZ Webinar"
+    },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    websiteActivity: {
+      lastVisitAt: new Date().toISOString(),
+      visits: 38,
+      pageViews: 28
+    }
+  });
+
+  expect(out.keyReasons).toContain("They recently registered for XYZ Webinar.");
+  expect(
+    out.recentEngagement.some((item) => item.highlight.includes("last 30 days"))
+  ).toBe(true);
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes("38 site visits")
+    )
+  ).toBe(false);
+});
+
+test("buildSalesNarrativeInput marks non-threshold MQLs as lead-source driven", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Registered for Webinar",
+      MQL_Date__c: "2026-02-01"
+    },
+    contact: {
+      Private_Sector_Non_Qual__c: false,
+      HubSpot_Private_Sector_Behavior_Score__c: 6,
+      HubSpot_Engagement_Score__c: 12,
+      HubSpot_Engagement_Score_Threshold__c: 10
+    },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: []
+  });
+
+  expect(out.mqlContext.qualificationMode).toBe("lead-source");
+  expect(out.thresholdExplanation).toBeUndefined();
+  expect(
+    out.scoreInterpretation.some((item) =>
+      item.includes("not the fit-and-behavior threshold")
+    )
+  ).toBe(true);
+  expect(
+    out.scoreSignals.some(
+      (item) =>
+        item.signal === "Behavior score" && item.contributesToMql === false
+    )
+  ).toBe(true);
 });
 
 test("buildSalesNarrativeInput compacts recent company opportunity context", () => {
@@ -351,6 +427,71 @@ test("salesNarrativeInput does not contain raw field-name tokens", () => {
   expect(s).not.toMatch(/HubSpot_/);
   expect(s).not.toMatch(/OpportunityContactRole/);
   expect(s).not.toMatch(/MQL__c/);
+});
+
+test("isHandRaiserLeadSource identifies Events Portal correctly", () => {
+  expect(isHandRaiserLeadSource("Events Portal")).toBe(true);
+  expect(isHandRaiserLeadSource("events portal")).toBe(false);
+  expect(isHandRaiserLeadSource("Fit and Behavior Threshold Reached")).toBe(
+    false
+  );
+  expect(isHandRaiserLeadSource(null)).toBe(false);
+  expect(isHandRaiserLeadSource("")).toBe(false);
+});
+
+test("buildSalesNarrativeInput sets qualificationMode=hand-raiser for Events Portal MQL", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Events Portal",
+      MQL_Date__c: "2026-03-01"
+    },
+    contact: {
+      Private_Sector_Non_Qual__c: false
+    },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: []
+  });
+
+  expect(out.mqlContext.qualificationMode).toBe("hand-raiser");
+  expect(out.intent.strength).toBe("Strong");
+  expect(
+    out.keyReasons.some((r) =>
+      String(r).toLowerCase().includes("raised their hand")
+    )
+  ).toBe(true);
+  expect(
+    out.scoreInterpretation.some((s) =>
+      String(s).toLowerCase().includes("events portal")
+    )
+  ).toBe(true);
+  expect(
+    out.keyReasons.some((r) =>
+      String(r).toLowerCase().includes("not by threshold")
+    )
+  ).toBe(false);
+});
+
+test("buildSalesNarrativeInput does not emit hand-raiser reason for threshold MQL", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-01"
+    },
+    contact: { Private_Sector_Non_Qual__c: false },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: []
+  });
+
+  expect(out.mqlContext.qualificationMode).toBe("threshold");
+  expect(
+    out.keyReasons.some((r) =>
+      String(r).toLowerCase().includes("raised their hand")
+    )
+  ).toBe(false);
 });
 
 test("buildHistoryEventsPreview returns events newest-first", () => {

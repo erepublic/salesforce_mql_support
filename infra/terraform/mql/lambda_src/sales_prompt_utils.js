@@ -24,6 +24,11 @@ function redactInlineText(s) {
   out = out.replace(/[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}/gi, "*@redacted");
   // Phone-ish sequences (very rough)
   out = out.replace(/\+?\d[\d\s().-]{7,}\d/g, "[redacted]");
+  // Salesforce-style record IDs should never be visible in seller-facing text.
+  out = out.replace(
+    /\b(?:003|00Q|00T|006|a0X|a0k|a0w|aDF)[A-Za-z0-9]{12,15}\b/g,
+    "[redacted]"
+  );
   return out;
 }
 
@@ -70,6 +75,16 @@ function normalizeTier(value) {
   if (raw === "medium") return "Medium";
   if (raw === "low") return "Low";
   return null;
+}
+
+function isThresholdLeadSource(leadSource) {
+  return (
+    String(leadSource || "").trim() === "Fit and Behavior Threshold Reached"
+  );
+}
+
+function isHandRaiserLeadSource(leadSource) {
+  return String(leadSource || "").trim() === "Events Portal";
 }
 
 function deriveContactFitTierFromScore(score) {
@@ -119,6 +134,16 @@ function humanList(values) {
   if (items.length === 1) return items[0];
   if (items.length === 2) return `${items[0]} and ${items[1]}`;
   return `${items.slice(0, -1).join(", ")}, and ${items[items.length - 1]}`;
+}
+
+function describeRecentConversion(name) {
+  const cleaned = cleanedText(name, 120);
+  if (!cleaned) return null;
+  const lower = cleaned.toLowerCase();
+  if (/\b(webinar|event|conference|summit)\b/i.test(lower)) {
+    return `They recently registered for ${cleaned}.`;
+  }
+  return `They recently converted on ${cleaned}.`;
 }
 
 function splitMultiValueText(value, { maxItems = 6, maxLen = 80 } = {}) {
@@ -212,7 +237,7 @@ function buildContactFitEvidence(contact) {
     if (/\b(sled|event|events|conference|summit)\b/i.test(lowerTitle)) {
       pushUnique(
         positives,
-        "Their title suggests a target market or product-area focus called out in the scoring guide."
+        "Their title includes target-market or event-focused keywords used in the scoring guide."
       );
     }
     if (
@@ -222,7 +247,7 @@ function buildContactFitEvidence(contact) {
     ) {
       pushUnique(
         positives,
-        "Their title suggests a sales-oriented role, which supports contact fit in the scoring guide."
+        "Their title matches a sales-role criterion from the scoring guide."
       );
     }
     if (
@@ -232,7 +257,7 @@ function buildContactFitEvidence(contact) {
     ) {
       pushUnique(
         positives,
-        "Their title suggests a marketing-oriented role, which supports contact fit in the scoring guide."
+        "Their title matches a marketing-role criterion from the scoring guide."
       );
     }
     if (
@@ -242,7 +267,7 @@ function buildContactFitEvidence(contact) {
     ) {
       pushUnique(
         positives,
-        "Their title suggests director-level or higher seniority, which supports contact fit in the scoring guide."
+        "Their title matches the director-or-higher seniority criterion from the scoring guide."
       );
     }
   } else {
@@ -315,17 +340,30 @@ function buildCompanyFitEvidence(account) {
   const missingInputs = [];
   const industry = cleanedText(account?.Industry, 80);
   const competitor = cleanedText(account?.Navigator_Competitor__c, 80);
+  const customerFootprint = buildCustomerFootprint(account);
 
   if (industry) {
     pushUnique(observations, `Account industry is recorded as ${industry}.`);
     pushUnique(
       positives,
-      "Industry is one of the company-fit inputs used by the scoring guide."
+      "Industry is one of the explicit company-fit criteria in the scoring guide."
     );
   } else {
     pushUnique(
       missingInputs,
       "Account industry is not available, so industry-based company-fit evidence is incomplete."
+    );
+  }
+
+  if (customerFootprint.length) {
+    pushUnique(
+      positives,
+      "Existing customer or contract history is present on the account, which matches the previous-customer criterion from the scoring guide."
+    );
+  } else {
+    pushUnique(
+      missingInputs,
+      "No current-customer or contract-history evidence is exposed here, so previous-customer fit attribution is partial."
     );
   }
 
@@ -337,7 +375,7 @@ function buildCompanyFitEvidence(account) {
   } else {
     pushUnique(
       missingInputs,
-      "No direct state-contract, previous-customer, or competitor-detail fields are exposed here, so company-fit attribution is partial."
+      "No direct state-contract detail is exposed here, so company-fit attribution is still partial."
     );
   }
 
@@ -466,7 +504,7 @@ function buildThresholdExplanation({
     engagement >= engagementCutoff
   ) {
     supportingReasons.push(
-      `Engagement score ${engagement} is also at or above its ${engagementCutoff}-point threshold.`
+      `Engagement score ${engagement} is elevated as supporting context, but the qualification path is still behavior-led.`
     );
   }
   if (hasInboundRequest) {
@@ -651,6 +689,8 @@ function buildSalesNarrativeInput({
   }
 
   const fitLooksGood = fitGateContact === false && fitGateAccount === false;
+  const isThresholdMql = isThresholdLeadSource(mql?.Lead_Source__c);
+  const isHandRaiserMql = isHandRaiserLeadSource(mql?.Lead_Source__c);
 
   const engagementScore = contact?.HubSpot_Engagement_Score__c;
   const engagementThreshold = contact?.HubSpot_Engagement_Score_Threshold__c;
@@ -679,6 +719,16 @@ function buildSalesNarrativeInput({
   const recentConversionName = contact?.HubSpot_Recent_Conversion__c || null;
   const recentConversionDate =
     contact?.HubSpot_Recent_Conversion_Date__c || null;
+  const recentConversionSummary =
+    describeRecentConversion(recentConversionName);
+  const hasInboundRequest =
+    newestFirst.some((e) => e?.eventType === "contactUsSubmitted") ||
+    String(mql?.Lead_Source__c || "")
+      .toLowerCase()
+      .includes("contact us") ||
+    String(mql?.Lead_Source__c || "")
+      .toLowerCase()
+      .includes("contact");
 
   const now = Date.now();
   const days14 = now - 14 * 24 * 60 * 60 * 1000;
@@ -695,20 +745,15 @@ function buildSalesNarrativeInput({
   }).length;
 
   const intentStrength =
-    engagementThresholdMet || recentHighMedCount14 >= 3
+    isHandRaiserMql ||
+    hasInboundRequest ||
+    recentConversionSummary ||
+    Number(behaviorScore) >= 20 ||
+    recentHighMedCount14 >= 3
       ? "Strong"
-      : recentHighMedCount30 >= 2
+      : Number(behaviorScore) >= 10 || recentHighMedCount30 >= 2
         ? "Moderate"
         : "Light";
-
-  const hasInboundRequest =
-    newestFirst.some((e) => e?.eventType === "contactUsSubmitted") ||
-    String(mql?.Lead_Source__c || "")
-      .toLowerCase()
-      .includes("contact us") ||
-    String(mql?.Lead_Source__c || "")
-      .toLowerCase()
-      .includes("contact");
 
   const opportunitySignals = {
     hasOpenOpportunity:
@@ -737,33 +782,46 @@ function buildSalesNarrativeInput({
   };
   const companyContext = buildCompanyContext({ account, contact });
   const mqlDetails = collectMqlExplanationDetails(mql);
-  const thresholdExplanation = buildThresholdExplanation({
-    behaviorScore,
-    companyFitTier,
-    contactFitTier,
-    engagementScore,
-    engagementThreshold,
-    hasInboundRequest,
-    recentConversionName,
-    fitEvidence,
-    mqlDetails
-  });
+  const thresholdExplanation = isThresholdMql
+    ? buildThresholdExplanation({
+        behaviorScore,
+        companyFitTier,
+        contactFitTier,
+        engagementScore,
+        engagementThreshold,
+        hasInboundRequest,
+        recentConversionName,
+        fitEvidence,
+        mqlDetails
+      })
+    : null;
 
   const keyReasons = [];
   if (hasInboundRequest)
     keyReasons.push("They directly requested follow-up (inbound intent).");
+  if (isHandRaiserMql)
+    keyReasons.push(
+      "This contact raised their hand at an event and is directly linked to an opportunity via the Events Portal."
+    );
+  if (!isThresholdMql && !isHandRaiserMql && mql?.Lead_Source__c)
+    keyReasons.push(
+      `This MQL appears to be driven by ${cleanedText(mql.Lead_Source__c, 100)}, not by threshold scoring.`
+    );
   if (engagementThresholdMet)
     keyReasons.push(
-      "Recent engagement meets the marketing engagement threshold."
+      "Recent engagement adds supporting evidence that they are active right now."
     );
   if (contactFitThresholdMet || contactFitIsTargetTier)
-    keyReasons.push("Role/person-level fit meets the fit threshold.");
-  if (Number.isFinite(Number(behaviorScore)) && Number(behaviorScore) > 0)
+    keyReasons.push("Role and persona clues align with the fit criteria.");
+  if (
+    isThresholdMql &&
+    Number.isFinite(Number(behaviorScore)) &&
+    Number(behaviorScore) > 0
+  )
     keyReasons.push(
-      "They have accumulated meaningful engagement over time (behavior score increased)."
+      "Behavior score is the visible driver behind this threshold-created MQL."
     );
-  if (recentConversionName)
-    keyReasons.push("They recently converted on a high-intent offer.");
+  if (recentConversionSummary) keyReasons.push(recentConversionSummary);
   if (companyRecentOpportunityContext?.hasRecentOpportunities === true) {
     if (Array.isArray(companyRecentOpportunityContext?.recentProducts)) {
       keyReasons.push(
@@ -790,11 +848,11 @@ function buildSalesNarrativeInput({
     isRecentIso(websiteActivity.lastVisitAt, 30)
   )
     keyReasons.push(
-      "Recent website activity suggests active research (recent site visits/pageviews)."
+      "Recent website activity in the last 30 days suggests active research."
     );
   for (const detail of mqlDetails.slice(0, 2)) {
     keyReasons.push(
-      `Additional qualification context reinforces the threshold story: ${detail}.`
+      `${isThresholdMql ? "Additional qualification context reinforces the threshold story" : "Additional qualification context"}: ${detail}.`
     );
   }
   for (const positive of fitEvidence?.contact?.positives || []) {
@@ -825,7 +883,7 @@ function buildSalesNarrativeInput({
       signal: "Fit score",
       scoreText: `${fitScoreText}${fitThresholdText}`,
       qualitative: fitBand,
-      contributesToMql: contactFitQualifies,
+      contributesToMql: isThresholdMql && contactFitQualifies,
       implication: contactFitQualifies
         ? "Profile fit is aligned, so outreach can focus on current priorities and buying timeline."
         : "Profile fit appears weaker, so confirm role and account suitability early in the first touch."
@@ -846,9 +904,9 @@ function buildSalesNarrativeInput({
       signal: "Engagement score",
       scoreText: `${engagementScoreText}${engagementThresholdText}`,
       qualitative: engagementBand,
-      contributesToMql: engagementThresholdMet,
+      contributesToMql: false,
       implication: engagementThresholdMet
-        ? "Recent activity is high enough to justify timely outreach while intent is active."
+        ? "Recent activity is strong, but treat it as supporting context rather than the MQL trigger."
         : "Engagement is building, so reference the strongest recent interactions to test urgency."
     });
   }
@@ -859,7 +917,7 @@ function buildSalesNarrativeInput({
       signal: "Behavior score",
       scoreText: String(b),
       qualitative: b >= 20 ? "Strong" : b >= 10 ? "Moderate" : "Light",
-      contributesToMql: true,
+      contributesToMql: isThresholdMql,
       implication:
         "Cumulative engagement indicates sustained interest, not a one-off interaction."
     });
@@ -881,15 +939,26 @@ function buildSalesNarrativeInput({
       signal: "Recent conversion",
       scoreText: null,
       qualitative: "Strong",
-      contributesToMql: true,
+      contributesToMql: !isThresholdMql,
       implication:
-        "A recent conversion suggests active evaluation, so outreach should anchor on that offer context."
+        "A recent conversion suggests active evaluation, so outreach should anchor on that specific offer or event."
     });
   }
 
   const scoreInterpretation = [];
   scoreInterpretation.push(`Fit: ${fitLooksGood ? "Strong" : "Moderate"}.`);
   scoreInterpretation.push(`Intent: ${intentStrength}.`);
+  if (!isThresholdMql && mql?.Lead_Source__c) {
+    if (isHandRaiserMql) {
+      scoreInterpretation.push(
+        "Qualification source: Hand raiser — contact registered directly via Events Portal and is linked to an opportunity."
+      );
+    } else {
+      scoreInterpretation.push(
+        `Qualification source: This MQL appears tied to ${cleanedText(mql.Lead_Source__c, 100)}, not the fit-and-behavior threshold.`
+      );
+    }
+  }
   for (const s of scoreSignals.filter((x) => x?.contributesToMql)) {
     const scorePart = s.scoreText ? `Score ${s.scoreText}; ` : "";
     scoreInterpretation.push(
@@ -921,21 +990,10 @@ function buildSalesNarrativeInput({
   const websiteLast = websiteActivity?.lastVisitAt
     ? yyyyMmDd(websiteActivity.lastVisitAt)
     : null;
-  if (websiteLast) {
-    const parts = [];
-    const v = websiteActivity?.visits;
-    const pv = websiteActivity?.pageViews;
-    if (Number.isFinite(Number(v)) && Number(v) > 0)
-      parts.push(`${v} site visits`);
-    if (Number.isFinite(Number(pv)) && Number(pv) > 0)
-      parts.push(`${pv} pages viewed`);
-    const totals = parts.length ? ` (${parts.join(", ")} total)` : "";
-    const recencyLabel = isRecentIso(websiteActivity.lastVisitAt, 90)
-      ? "Website activity"
-      : "Historical website activity";
+  if (websiteLast && isRecentIso(websiteActivity.lastVisitAt, 30)) {
     recentEngagement.push({
       date: websiteLast,
-      highlight: `${recencyLabel} recorded${totals}.`,
+      highlight: "Website activity recorded in the last 30 days.",
       importance: "low"
     });
     recentEngagement.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
@@ -962,8 +1020,7 @@ function buildSalesNarrativeInput({
     websiteActivity:
       websiteActivity && typeof websiteActivity === "object"
         ? {
-            visits: websiteActivity.visits ?? null,
-            pageViews: websiteActivity.pageViews ?? null,
+            windowDays: 30,
             firstVisitDate: yyyyMmDd(websiteActivity.firstVisitAt) || null,
             lastVisitDate: yyyyMmDd(websiteActivity.lastVisitAt) || null
           }
@@ -973,6 +1030,11 @@ function buildSalesNarrativeInput({
     companyContext,
     thresholdExplanation,
     mqlContext: {
+      qualificationMode: isThresholdMql
+        ? "threshold"
+        : isHandRaiserMql
+          ? "hand-raiser"
+          : "lead-source",
       leadSource: cleanedText(mql?.Lead_Source__c, 80),
       explanationDetails: mqlDetails
     },
@@ -1004,5 +1066,6 @@ module.exports = {
   buildSalesNarrativeInput,
   buildSalesEventLabel,
   redactInlineText,
-  yyyyMmDd
+  yyyyMmDd,
+  isHandRaiserLeadSource
 };

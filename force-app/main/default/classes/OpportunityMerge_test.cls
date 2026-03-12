@@ -60,6 +60,15 @@ public class OpportunityMerge_test {
     );
     insert t;
 
+    // Add an MQL linked to the loser (Contact required so the before-save flow can resolve Account Owner)
+    Contact mqlContact = testData.createContact();
+    MQL__c mql = new MQL__c(
+      Opportunity__c = loserOpp.Id,
+      Contact__c = mqlContact.Id,
+      MQL_Status__c = 'New'
+    );
+    insert mql;
+
     // Add agreements, contracts, files and contact roles
     Agreement__c ag = new Agreement__c(
       Opportunity__c = loserOpp.Id,
@@ -126,6 +135,11 @@ public class OpportunityMerge_test {
     System.assertEquals(
       true,
       [SELECT Id FROM Opportunity WHERE Id = :loserOpp.Id].isEmpty()
+    );
+    // check that MQL records were re-parented to the winner
+    System.assertEquals(
+      winnerOpp.Id,
+      [SELECT Opportunity__c FROM MQL__c WHERE Id = :mql.Id].Opportunity__c
     );
     List<OpportunityLineItem> winnerLineItems = [
       SELECT Id

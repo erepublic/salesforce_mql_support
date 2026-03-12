@@ -68,8 +68,9 @@ public class MqlSummarizerCalloutTest {
   }
 
   @isTest
-  static void insertNonThresholdMql_DoesNotCallout() {
-    // If a callout happens, the test will fail because no mock is registered.
+  static void insertNonThresholdBlankMql_EnqueuesSummary() {
+    upsertTestSecrets();
+    Test.setMock(HttpCalloutMock.class, new MockAccepted());
     Id contactId = createContactId();
     MQL__c m = new MQL__c(Contact__c = contactId, Lead_Source__c = 'Email');
     insert m;
@@ -83,7 +84,11 @@ public class MqlSummarizerCalloutTest {
       FROM MQL__c
       WHERE Id = :m.Id
     ];
-    System.assertEquals(null, mql.Engagement_AI_Summary__c);
+    System.assertEquals(
+      null,
+      mql.Engagement_AI_Summary__c,
+      'Blank non-threshold MQLs should now enqueue an async summary'
+    );
   }
 
   @isTest

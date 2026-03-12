@@ -255,15 +255,6 @@
                 <stringValue>Marketing</stringValue>
             </value>
         </assignmentItems>
-        <assignmentItems>
-            <assignToReference
-      >var_MQL_to_Create.Engagement_AI_Summary__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference
-        >var_Contact_Record.Engagement_AI_Summary__c</elementReference>
-            </value>
-        </assignmentItems>
         <connector>
             <targetReference>Loop_Through_Products</targetReference>
         </connector>
@@ -380,15 +371,6 @@
             <operator>Assign</operator>
             <value>
                 <stringValue>Marketing</stringValue>
-            </value>
-        </assignmentItems>
-        <assignmentItems>
-            <assignToReference
-      >var_MQL_to_Create.Engagement_AI_Summary__c</assignToReference>
-            <operator>Assign</operator>
-            <value>
-                <elementReference
-        >var_Contact_Record.Engagement_AI_Summary__c</elementReference>
             </value>
         </assignmentItems>
         <connector>

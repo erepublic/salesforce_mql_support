@@ -98,15 +98,11 @@ public class MqlSummarizerCallout {
       LIMIT 1
     ];
 
-    // Automatic path: per spec, only run for threshold-triggered MQLs.
+    // Automatic path: summarize any newly created MQL that still has a blank
+    // summary so non-threshold records do not inherit stale Contact text.
     // Manual/force path: allow any MQL so we can test prompt tweaks on demand.
-    if (
-      !forceOverwrite &&
-      mql.Lead_Source__c != 'Fit and Behavior Threshold Reached'
-    )
-      return;
 
-    // Don't overwrite existing summaries (flows may map Contact summary on creation).
+    // Don't overwrite existing summaries automatically.
     if (!forceOverwrite && String.isNotBlank(mql.Engagement_AI_Summary__c))
       return;
 

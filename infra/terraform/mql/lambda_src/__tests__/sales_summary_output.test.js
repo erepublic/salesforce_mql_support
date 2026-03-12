@@ -220,7 +220,44 @@ test("deterministic sales summary includes threshold-path and fit-evidence expla
   expect(html).toContain("Threshold path: Behavior 22 (cutoff 20); Qualified.");
   expect(html).toContain("Their title suggests a marketing-oriented role");
   expect(html).toContain(
-    "Use the qualification detail context in your opener and confirm which trigger, request, or content interaction drove the threshold."
+    "anchor the conversation on the trigger, request, or content interaction that qualified them"
+  );
+  const v = _internals.validateSalesFacingHtml(html);
+  expect(v.ok).toBe(true);
+});
+
+test("deterministic sales summary uses business issue, decision, and mutual-plan guidance in next steps", () => {
+  const html = _internals.buildDeterministicSalesSummaryHtml({
+    productInterest: {
+      topProducts: [
+        { name: "Navigator", confidence: "High", evidence: ["URL: ..."] }
+      ]
+    },
+    fit: {
+      concerns: ["Account eligibility checks are missing or unclear."]
+    },
+    opportunity: { hasOpenOpportunity: true },
+    opportunityContext: {
+      companyRecent: {
+        hasRecentOpportunities: true
+      }
+    },
+    keyReasons: ["They directly requested follow-up (inbound intent)."],
+    scoreInterpretation: [],
+    recentEngagement: [{ date: "2026-02-12", highlight: "Inbound request" }]
+  });
+
+  expect(html).toContain(
+    "confirm the business issue behind the activity, why it matters now, and how they will measure success"
+  );
+  expect(html).toContain(
+    "Identify who else is involved in the decision and who can approve next steps"
+  );
+  expect(html).toContain(
+    "leave the conversation with a mutual next action or meeting on the calendar"
+  );
+  expect(html).toContain(
+    "align outreach to the current opportunity stage and owner"
   );
   const v = _internals.validateSalesFacingHtml(html);
   expect(v.ok).toBe(true);
@@ -254,7 +291,9 @@ test("deterministic sales summary uses company context when present", () => {
   expect(html).toContain("Company background:");
   expect(html).toContain("Existing account footprint suggests");
   expect(html).toContain("Commercial account context shows");
-  expect(html).toContain("cross-sell, upsell, or net-new motion");
+  expect(html).toContain(
+    "position the outreach against the account&#39;s existing product footprint"
+  );
   const v = _internals.validateSalesFacingHtml(html);
   expect(v.ok).toBe(true);
 });
@@ -287,7 +326,7 @@ test("deterministic sales summary uses recent company opportunity context when p
   expect(html).toContain("recent product focus includes Navigator, Workflow");
   expect(html).toContain("Navigator Expansion - Proposal - Open");
   expect(html).toContain(
-    "Verify whether this contact maps to the account&#39;s recent opportunity motion"
+    "confirm whether this contact maps to an active or adjacent deal already in play"
   );
   const v = _internals.validateSalesFacingHtml(html);
   expect(v.ok).toBe(true);
@@ -329,6 +368,9 @@ test("OpenAI prompt builder embeds only compacted salesNarrativeInput", () => {
   expect(user).toContain("active account motion");
   expect(user).toContain("Do not output more than 4 bullets");
   expect(user).toContain("Prioritize the 4 most decision-useful score bullets");
+  expect(user).toContain("Business Issue / Value / Power / Plan flow");
+  expect(user).toContain("mutual next meeting or checkpoint");
+  expect(user).toContain("do not name the framework");
 
   // Guard against accidental raw field tokens in prompt input.
   expect(user).not.toMatch(/__c\b/);
