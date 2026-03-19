@@ -890,7 +890,7 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "   - Prioritize the 4 most decision-useful score bullets instead of trying to include every available signal.",
     "   - If threshold explanation data is present, include one bullet that states the exact fit-and-behavior path reached, including behavior score, cutoff, and the visible company/contact fit tiers.",
     "   - Treat behavior score and threshold-path data as the qualification driver when present; engagement score is supporting evidence unless the structured input explicitly says otherwise.",
-    "   - If the MQL was not threshold-created, make that explicit and tie the qualification source to the stated lead source or specific conversion instead.",
+    "   - If the MQL was not created by Lead scoring, make that explicit and tie the qualification source to the stated lead source or specific conversion instead.",
     "   - If fit-evidence data is present, explain which account/contact clues support or weaken fit, and make clear when that evidence is partial rather than complete.",
     "   - Never invent missing numeric values. If a score or threshold is absent from the structured input, do not output a numeric placeholder like 0.",
     "   - Favor business/value framing over technical explanation.",

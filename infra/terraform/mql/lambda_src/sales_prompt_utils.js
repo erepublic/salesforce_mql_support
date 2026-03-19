@@ -805,7 +805,7 @@ function buildSalesNarrativeInput({
     );
   if (!isThresholdMql && !isHandRaiserMql && mql?.Lead_Source__c)
     keyReasons.push(
-      `This MQL appears to be driven by ${cleanedText(mql.Lead_Source__c, 100)}, not by threshold scoring.`
+      `This MQL appears to be driven by ${cleanedText(mql.Lead_Source__c, 100)}, not by Lead scoring.`
     );
   if (engagementThresholdMet)
     keyReasons.push(
@@ -819,7 +819,7 @@ function buildSalesNarrativeInput({
     Number(behaviorScore) > 0
   )
     keyReasons.push(
-      "Behavior score is the visible driver behind this threshold-created MQL."
+      "Behavior score is the visible driver behind this Lead scoring-created MQL."
     );
   if (recentConversionSummary) keyReasons.push(recentConversionSummary);
   if (companyRecentOpportunityContext?.hasRecentOpportunities === true) {
@@ -852,7 +852,7 @@ function buildSalesNarrativeInput({
     );
   for (const detail of mqlDetails.slice(0, 2)) {
     keyReasons.push(
-      `${isThresholdMql ? "Additional qualification context reinforces the threshold story" : "Additional qualification context"}: ${detail}.`
+      `${isThresholdMql ? "Additional qualification context reinforces the Lead scoring story" : "Additional qualification context"}: ${detail}.`
     );
   }
   for (const positive of fitEvidence?.contact?.positives || []) {
@@ -955,7 +955,7 @@ function buildSalesNarrativeInput({
       );
     } else {
       scoreInterpretation.push(
-        `Qualification source: This MQL appears tied to ${cleanedText(mql.Lead_Source__c, 100)}, not the fit-and-behavior threshold.`
+        `Qualification source: This MQL appears tied to ${cleanedText(mql.Lead_Source__c, 100)}, not the Lead scoring path.`
       );
     }
   }
