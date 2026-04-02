@@ -97,16 +97,30 @@ function buildEvidenceFromHubspotContactProps(hsContactProps) {
   const evidence = [];
 
   const urlFields = [
-    "hs_analytics_first_url",
-    "hs_analytics_last_url",
-    "hs_analytics_first_referrer",
-    "hs_analytics_last_referrer"
+    {
+      field: "hs_analytics_first_url",
+      occurredAtField: "hs_analytics_first_timestamp"
+    },
+    {
+      field: "hs_analytics_last_url",
+      occurredAtField: "hs_analytics_last_timestamp"
+    },
+    {
+      field: "hs_analytics_first_referrer",
+      occurredAtField: "hs_analytics_first_timestamp"
+    },
+    {
+      field: "hs_analytics_last_referrer",
+      occurredAtField: "hs_analytics_last_timestamp"
+    }
   ];
-  for (const f of urlFields) {
-    const v = props[f];
+  for (const itemDef of urlFields) {
+    const v = props[itemDef.field];
     if (!v) continue;
     const cleaned = sanitizeUrl(v) || String(v);
-    const item = buildEvidenceItem("hs_url", cleaned);
+    const item = buildEvidenceItem("hs_url", cleaned, {
+      occurredAt: props[itemDef.occurredAtField] || null
+    });
     if (item) evidence.push(item);
   }
 

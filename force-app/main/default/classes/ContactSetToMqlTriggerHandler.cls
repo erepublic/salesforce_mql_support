@@ -2,7 +2,11 @@ public with sharing class ContactSetToMqlTriggerHandler {
   @TestVisible
   private static final String THRESHOLD_LEAD_SOURCE = 'Fit and Behavior Threshold Reached';
   @TestVisible
-  private static final String HAND_RAISER_LEAD_SOURCE = 'Events Portal';
+  private static final String EVENTS_PORTAL_LEAD_SOURCE = 'Events Portal';
+  @TestVisible
+  private static final String CMS_HAND_RAISER_SOURCE = 'EF3';
+  @TestVisible
+  private static final String CMS_HAND_RAISER_LEAD_SOURCE = 'Submitted a Form';
   @TestVisible
   private static final String NEW_STATUS = 'New';
   @TestVisible
@@ -60,19 +64,41 @@ public with sharing class ContactSetToMqlTriggerHandler {
       return;
     }
 
-    // Re-query contacts to get both hand-raiser transit fields.
+    // Re-query contacts to get the hand-raiser transit fields.
     // Trigger context records may not carry fields set by the same DML that
     // fired the trigger, so we query fresh values here.
     Map<Id, String> handRaiserOppIds = new Map<Id, String>();
+    Map<Id, String> handRaiserProductIds = new Map<Id, String>();
     Map<Id, Boolean> handRaiserOppIsNew = new Map<Id, Boolean>();
+    Map<Id, String> handRaiserSources = new Map<Id, String>();
     Set<Id> thresholdContactIds = new Set<Id>();
     for (Contact c : [
-      SELECT Id, Hand_Raiser_Opportunity_Id__c, Hand_Raiser_Opp_Is_New__c
+      SELECT
+        Id,
+        Hand_Raiser_Source__c,
+        Hand_Raiser_Opportunity_Id__c,
+        Hand_Raiser_Product_Id__c,
+        Hand_Raiser_Opp_Is_New__c
       FROM Contact
       WHERE Id IN :contactIdsToProcess
     ]) {
-      if (String.isNotBlank(c.Hand_Raiser_Opportunity_Id__c)) {
+      Boolean hasExplicitHandRaiserSource = String.isNotBlank(
+        c.Hand_Raiser_Source__c
+      );
+      Boolean hasExplicitHandRaiserOpp = String.isNotBlank(
+        c.Hand_Raiser_Opportunity_Id__c
+      );
+      Boolean hasExplicitHandRaiserProduct = String.isNotBlank(
+        c.Hand_Raiser_Product_Id__c
+      );
+      if (
+        hasExplicitHandRaiserSource ||
+        hasExplicitHandRaiserOpp ||
+        hasExplicitHandRaiserProduct
+      ) {
+        handRaiserSources.put(c.Id, c.Hand_Raiser_Source__c);
         handRaiserOppIds.put(c.Id, c.Hand_Raiser_Opportunity_Id__c);
+        handRaiserProductIds.put(c.Id, c.Hand_Raiser_Product_Id__c);
         handRaiserOppIsNew.put(c.Id, c.Hand_Raiser_Opp_Is_New__c == true);
       } else {
         thresholdContactIds.add(c.Id);
@@ -80,24 +106,35 @@ public with sharing class ContactSetToMqlTriggerHandler {
     }
 
     // --- Hand-raiser path ---
-    // Route A (Hand_Raiser_Opp_Is_New__c = true): Opp was just created by the
-    //   Portal. Create MQL as Converted so it bypasses the sales queue and the
-    //   rep can start working it immediately.
-    // Route B (Hand_Raiser_Opp_Is_New__c = false/null): Opp already existed.
-    //   Create MQL as New so the sales team reviews and routes the lead.
-    // Dedup is intentionally skipped for both routes — the field being set is
-    // an explicit signal from the Portal.
+    // Route A (Hand_Raiser_Opp_Is_New__c = true + opp id present): an upstream
+    //   system already created a fresh Opp. Create the MQL as Converted so it
+    //   bypasses the sales queue and the rep can start working it immediately.
+    // Route B (no new opp, reused opp, or mql-only handoff): create the MQL as
+    //   New so the sales team reviews and routes the lead.
+    // Dedup is intentionally skipped for both routes because the transit fields
+    // are an explicit hand-raiser signal from an upstream system.
     List<MQL__c> handRaiserMqls = new List<MQL__c>();
-    for (Id contactId : handRaiserOppIds.keySet()) {
+    for (Id contactId : handRaiserSources.keySet()) {
+      String handRaiserSource = handRaiserSources.get(contactId);
+      String mqlLeadSource = handRaiserSource == CMS_HAND_RAISER_SOURCE
+        ? CMS_HAND_RAISER_LEAD_SOURCE
+        : EVENTS_PORTAL_LEAD_SOURCE;
+      String handRaiserOppId = handRaiserOppIds.get(contactId);
+      Id handRaiserProductId;
+      String rawHandRaiserProductId = handRaiserProductIds.get(contactId);
+      if (String.isNotBlank(rawHandRaiserProductId)) {
+        handRaiserProductId = (Id) rawHandRaiserProductId;
+      }
       Boolean isNewOpp = handRaiserOppIsNew.get(contactId) == true;
       MQL__c mql = new MQL__c(
         Contact__c = contactId,
-        Lead_Source__c = HAND_RAISER_LEAD_SOURCE,
+        Lead_Source__c = mqlLeadSource,
         MQL_Date__c = Date.today(),
-        Opportunity__c = handRaiserOppIds.get(contactId)
+        Opportunity__c = handRaiserOppId,
+        Product__c = handRaiserProductId
       );
-      if (isNewOpp) {
-        // Route A: auto-convert — the Portal already created a fresh Opp.
+      if (isNewOpp && String.isNotBlank(handRaiserOppId)) {
+        // Route A: auto-convert only when a fresh Opp already exists.
         mql.MQL_Status__c = CONVERTED_STATUS;
         mql.Conversion_Type__c = CONVERSION_TYPE_NEW_OPP;
         mql.Conversion_Date__c = Date.today();
@@ -168,12 +205,14 @@ public with sharing class ContactSetToMqlTriggerHandler {
     }
 
     // Reset Set_to_MQL__c on all processed contacts.
-    // For hand-raisers, also clear both transit fields.
+    // For hand-raisers, also clear the transit fields.
     List<Contact> contactsToReset = new List<Contact>();
     for (Id contactId : contactIdsToProcess) {
       Contact resetContact = new Contact(Id = contactId, Set_to_MQL__c = false);
-      if (handRaiserOppIds.containsKey(contactId)) {
+      if (handRaiserSources.containsKey(contactId)) {
+        resetContact.Hand_Raiser_Source__c = null;
         resetContact.Hand_Raiser_Opportunity_Id__c = null;
+        resetContact.Hand_Raiser_Product_Id__c = null;
         resetContact.Hand_Raiser_Opp_Is_New__c = false;
       }
       contactsToReset.add(resetContact);

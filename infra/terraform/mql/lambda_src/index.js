@@ -322,6 +322,17 @@ function replaceSectionList(html, heading, items) {
   return `${html.slice(0, ulStart)}${rebuilt}${html.slice(ulEnd + 5)}`;
 }
 
+function closeDanglingListTags(html) {
+  let out = String(html || "");
+  const openLi = (out.match(/<li\b[^>]*>/gi) || []).length;
+  const closeLi = (out.match(/<\/li>/gi) || []).length;
+  if (openLi > closeLi) out += "</li>".repeat(openLi - closeLi);
+  const openUl = (out.match(/<ul>/gi) || []).length;
+  const closeUl = (out.match(/<\/ul>/gi) || []).length;
+  if (openUl > closeUl) out += "</ul>".repeat(openUl - closeUl);
+  return out;
+}
+
 function enforceSalesSummarySectionCaps(html) {
   // Keep summaries succinct and predictable. We enforce caps post-generation so
   // the LLM can be a little messy without breaking the stored field.
@@ -370,6 +381,7 @@ function finalizeSalesSummaryHtml({
     );
   }
   out = enforceSalesSummarySectionCaps(out);
+  out = closeDanglingListTags(out);
 
   const links = buildRelatedRecordsHtml({
     instanceUrl,
@@ -442,6 +454,13 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
     salesNarrativeInput && typeof salesNarrativeInput === "object"
       ? salesNarrativeInput
       : {};
+  const humanList = (items) => {
+    const list = (items || []).filter(Boolean);
+    if (!list.length) return "";
+    if (list.length === 1) return list[0];
+    if (list.length === 2) return `${list[0]} and ${list[1]}`;
+    return `${list.slice(0, -1).join(", ")}, and ${list[list.length - 1]}`;
+  };
 
   const keyReasons = Array.isArray(input.keyReasons) ? input.keyReasons : [];
   const topProducts = Array.isArray(input?.productInterest?.topProducts)
@@ -455,6 +474,11 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
     : [];
   const recentEngagement = Array.isArray(input.recentEngagement)
     ? input.recentEngagement
+    : [];
+  const engagementThemes = Array.isArray(input.engagementThemes)
+    ? input.engagementThemes
+        .map((item) => String(item || "").trim())
+        .filter(Boolean)
     : [];
   const fitConcerns = Array.isArray(input?.fit?.concerns)
     ? input.fit.concerns
@@ -517,6 +541,14 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
     : input?.opportunity?.hasOpenOpportunity === true
       ? Math.max(1, Number(input?.opportunity?.openOpportunityCount) || 1)
       : 0;
+  const whySalesKeyReasons = keyReasons.filter((reason) => {
+    const lower = String(reason || "").toLowerCase();
+    return (
+      !lower.includes("lead scoring") &&
+      !lower.includes("fit criteria") &&
+      !lower.includes("qualified through")
+    );
+  });
 
   const whySales = [];
   if (accountOpenOpportunityCount > 0) {
@@ -527,36 +559,6 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
     );
   } else {
     whySales.push("There are no open opportunities on this account.");
-  }
-  if (thresholdExplanation?.summary) {
-    whySales.push(String(thresholdExplanation.summary));
-  }
-  if (companyContext?.businessSummary) {
-    whySales.push(
-      `Company background: ${String(companyContext.businessSummary)}`
-    );
-  }
-  if (
-    companyContext?.industry ||
-    companyContext?.revenueBand ||
-    companyContext?.budgetRange
-  ) {
-    const details = [
-      companyContext?.industry
-        ? `industry ${String(companyContext.industry)}`
-        : null,
-      companyContext?.revenueBand
-        ? `revenue band ${String(companyContext.revenueBand)}`
-        : null,
-      companyContext?.budgetRange
-        ? `budget range ${String(companyContext.budgetRange)}`
-        : null
-    ].filter(Boolean);
-    if (details.length) {
-      whySales.push(
-        `Company profile context suggests ${details.join(", ")}, which can help frame account size and fit.`
-      );
-    }
   }
   if (customerFootprint.length) {
     const footprintLabels = customerFootprint
@@ -573,21 +575,6 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
         `Existing account footprint suggests they already have relationship context through ${footprintLabels.join(
           ", "
         )}.`
-      );
-    }
-  }
-  if (companyContext?.accountStage || companyContext?.salesStatus) {
-    const stageParts = [
-      companyContext?.accountStage
-        ? `account stage ${String(companyContext.accountStage)}`
-        : null,
-      companyContext?.salesStatus
-        ? `sales status ${String(companyContext.salesStatus)}`
-        : null
-    ].filter(Boolean);
-    if (stageParts.length) {
-      whySales.push(
-        `Commercial account context shows ${stageParts.join(" and ")}, which may affect urgency and positioning.`
       );
     }
   }
@@ -668,21 +655,15 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
       }
     }
   }
-  const fitEvidenceBullets = [
-    ...(contactFitEvidence?.positives || []),
-    ...(companyFitEvidence?.positives || []),
-    ...(contactFitEvidence?.observations || []),
-    ...(companyFitEvidence?.observations || [])
-  ];
-  for (const bullet of fitEvidenceBullets) {
-    if (!bullet) continue;
-    whySales.push(String(bullet));
-    if (whySales.length >= 6) break;
+  if (companyContext?.businessSummary && whySales.length < 4) {
+    whySales.push(
+      `Company background: ${String(companyContext.businessSummary)}`
+    );
   }
-  for (const r of keyReasons) {
+  for (const r of whySalesKeyReasons) {
     if (!r) continue;
     whySales.push(String(r));
-    if (whySales.length >= 6) break;
+    if (whySales.length >= 5) break;
   }
   if (!whySales.length) {
     whySales.push(
@@ -691,35 +672,71 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
   }
 
   const scoreBullets = [];
-  if (thresholdExplanation?.matchedRule) {
-    const behaviorText =
-      Number.isFinite(Number(thresholdExplanation?.behaviorScore)) &&
-      Number.isFinite(Number(thresholdExplanation?.requiredBehaviorScore))
-        ? `Behavior ${thresholdExplanation.behaviorScore} (cutoff ${thresholdExplanation.requiredBehaviorScore}); `
-        : "";
-    const companyTier = thresholdExplanation?.companyFitTier
-      ? `${String(thresholdExplanation.companyFitTier)} company fit`
-      : "company fit not fully visible";
-    const contactTier = thresholdExplanation?.contactFitTier
-      ? `${String(thresholdExplanation.contactFitTier)} contact fit`
-      : "contact fit not fully visible";
+  const companyTier = input?.fit?.companyTier
+    ? String(input.fit.companyTier)
+    : null;
+  const contactTier = input?.fit?.contactTier
+    ? String(input.fit.contactTier)
+    : null;
+  if (companyTier || contactTier) {
+    const fitLabel =
+      input?.fit?.looksGood === true
+        ? "Strong"
+        : input?.fit?.looksGood === false
+          ? "Mixed"
+          : "Moderate";
+    const tierBits = [
+      companyTier ? `${companyTier} company fit` : null,
+      contactTier ? `${contactTier} contact fit` : null
+    ].filter(Boolean);
+    let fitBullet = `Fit: ${fitLabel}.`;
+    if (tierBits.length) {
+      fitBullet += ` The visible fit signals point to ${tierBits.join(" and ")}.`;
+    }
+    if (customerFootprint.length) {
+      fitBullet += " Existing customer history supports account relevance.";
+    } else if (companyContext?.industry) {
+      fitBullet += ` Company context aligns with ${String(companyContext.industry)}.`;
+    }
+    if (companyContext?.contactContext?.department) {
+      fitBullet += ` Contact context points to ${String(companyContext.contactContext.department)}.`;
+    }
+    scoreBullets.push(fitBullet);
+  }
+  if (input?.intent?.strength) {
     scoreBullets.push(
-      `Threshold path: ${behaviorText}Qualified. This MQL aligns to ${companyTier} and ${contactTier}.`
+      `Intent: ${String(input.intent.strength)}. Recent engagement suggests active evaluation.`
+    );
+  }
+  if (input?.mqlContext?.qualificationMode === "threshold") {
+    scoreBullets.push(
+      "Qualification source: This appears to be a lead-scoring MQL driven by sustained activity."
+    );
+  } else if (input?.mqlContext?.qualificationMode === "hand-raiser") {
+    scoreBullets.push(
+      "Qualification source: This appears to be a hand-raiser tied to direct event interest and an opportunity."
+    );
+  } else if (input?.mqlContext?.leadSource) {
+    scoreBullets.push(
+      `Qualification source: This MQL appears tied to ${String(input.mqlContext.leadSource)}, not the lead-scoring path.`
     );
   }
   // Prefer structured score signals so deterministic fallback mirrors LLM guidance.
   for (const s of scoreSignals) {
     if (!s || s.contributesToMql !== true) continue;
     const signal = s.signal ? String(s.signal) : "Signal";
-    const scorePart = s.scoreText ? `Score ${String(s.scoreText)}; ` : "";
     const qualitative = s.qualitative ? String(s.qualitative) : "Moderate";
     const implication = s.implication ? ` ${String(s.implication)}` : "";
-    scoreBullets.push(
-      `${signal}: ${scorePart}${qualitative}.${implication}`.trim()
-    );
-    if (scoreBullets.length >= 6) break;
+    if (["fit", "engagement score"].includes(signal.toLowerCase())) continue;
+    scoreBullets.push(`${signal}: ${qualitative}.${implication}`.trim());
+    if (scoreBullets.length >= 4) break;
   }
-  for (const r of scoreInterpretation) {
+  for (const r of scoreInterpretation.filter(
+    (item) =>
+      !/\bscore\b|\bcutoff\b|\bthreshold\b|engagement score/i.test(
+        String(item || "")
+      )
+  )) {
     if (!r) continue;
     if (
       scoreBullets.some((b) =>
@@ -728,7 +745,7 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
     )
       continue;
     scoreBullets.push(String(r));
-    if (scoreBullets.length >= 6) break;
+    if (scoreBullets.length >= 4) break;
   }
   const additionalFitReasons = [
     ...(thresholdExplanation?.supportingReasons || []),
@@ -751,11 +768,15 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
   }
   for (const item of additionalFitReasons) {
     if (!item) continue;
+    if (/scoring guide|threshold|score/i.test(String(item))) continue;
     scoreBullets.push(String(item));
-    if (scoreBullets.length >= 6) break;
+    if (scoreBullets.length >= 4) break;
   }
   if (fitConcerns.length) {
-    for (const c of fitConcerns.slice(0, 3)) scoreBullets.push(String(c));
+    for (const c of fitConcerns.slice(0, 2)) {
+      if (scoreBullets.length >= 4) break;
+      scoreBullets.push(String(c));
+    }
   }
 
   const engagementBullets = recentEngagement.slice(0, 12).map((e) => {
@@ -808,6 +829,13 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
   if (companyRecentOpportunityContext?.hasRecentOpportunities === true) {
     openerFocus.push("coordinate with the account's recent opportunity motion");
   }
+  if (engagementThemes.length) {
+    openerFocus.unshift(
+      `lead with their recent interest in ${humanList(
+        engagementThemes.slice(0, 2)
+      )}`
+    );
+  }
 
   let primaryNextStep = hasInbound
     ? "Follow up quickly and reference their inbound request"
@@ -838,6 +866,13 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
       "confirm whether this contact maps to an active or adjacent deal already in play"
     );
   }
+  if (engagementThemes.length) {
+    verificationFocus.push(
+      `verify whether the recent ${humanList(
+        engagementThemes.slice(0, 2)
+      )} activity maps to an active initiative, event plan, or budgeted project`
+    );
+  }
   nextSteps.push(`${verificationFocus.join("; ")}.`);
 
   function ul(items) {
@@ -849,7 +884,7 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
 
   return [
     `<p><strong>Why Sales Should Care</strong></p>`,
-    ul(whySales.slice(0, 6)),
+    ul(whySales.slice(0, 5)),
     `<p><strong>Score Interpretation</strong></p>`,
     ul(scoreBullets.slice(0, 4)),
     `<p><strong>Most Recent Engagement</strong></p>`,
@@ -868,31 +903,33 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "Do not include hyperlinks; Salesforce links are appended automatically.",
     "No CSS or styling (<style>, style=, class=, link/meta/script).",
     "Do not include Salesforce/HubSpot field names, object names, IDs, or JSON keys in the output.",
-    "Use numeric values only when they help explain a score in sales language."
+    "Do not include numeric scores, thresholds, cutoffs, or score-matrix language.",
+    "Do not mention engagement score."
   ].join("\n");
 
   const user = [
     "Write an HTML summary with these sections (use <p><strong>Section</strong></p> headings):",
     "1) Why Sales Should Care",
-    "   - 3-6 bullets.",
-    "   - Each bullet explains a SALES signal and why it matters (value-based).",
+    "   - 3-5 bullets.",
+    "   - Each bullet explains a SALES signal and why it matters now.",
     "   - Avoid technical phrasing; write like a rep-to-rep handoff.",
-    "   - Do not repeat the same threshold explanation across multiple bullets or sections.",
+    "   - Keep bullets short, specific, and non-repetitive.",
+    "   - Do not repeat fit, threshold, or opportunity context across multiple bullets or sections.",
     "   - If company background, size/segment, commercial status, or current customer footprint are present, use them to explain the company context in plain sales language.",
     "   - If product-interest signals are present, include 1-2 bullets explicitly stating what they are likely evaluating and why (cite the evidence in plain language).",
     "   - If open opportunities include product names, call out the product(s) tied to those opportunities (this is often the clearest 'what they want').",
     "   - Always state whether there are open opportunities on the account or not.",
     "   - If recent company opportunity history is present, use it to explain whether this looks like active account motion, expansion, adjacent-product interest, or re-engagement.",
+    "   - Do not put outreach recommendations in this section.",
     "2) Score Interpretation",
-    "   - 3-4 bullets. Do not output more than 4 bullets.",
+    "   - 2-4 bullets. Do not output more than 4 bullets.",
     "   - Include Fit and Intent qualitative interpretation (Strong/Moderate/Light).",
-    "   - For each qualifying score/signal that drove MQL status, include one bullet with: signal name, numeric score when available, qualitative assessment, and a short why-it-matters-for-sales explanation.",
-    "   - Prioritize the 4 most decision-useful score bullets instead of trying to include every available signal.",
-    "   - If threshold explanation data is present, include one bullet that states the exact fit-and-behavior path reached, including behavior score, cutoff, and the visible company/contact fit tiers.",
-    "   - Treat behavior score and threshold-path data as the qualification driver when present; engagement score is supporting evidence unless the structured input explicitly says otherwise.",
+    "   - Explain why the company and contact look like a fit, and how the MQL qualified.",
+    "   - Prioritize the 4 most decision-useful bullets instead of trying to include every available signal.",
+    "   - If threshold explanation data is present, explain the qualification path qualitatively rather than restating raw scoring mechanics.",
     "   - If the MQL was not created by Lead scoring, make that explicit and tie the qualification source to the stated lead source or specific conversion instead.",
     "   - If fit-evidence data is present, explain which account/contact clues support or weaken fit, and make clear when that evidence is partial rather than complete.",
-    "   - Never invent missing numeric values. If a score or threshold is absent from the structured input, do not output a numeric placeholder like 0.",
+    "   - Do not mention engagement score, numeric scores, thresholds, cutoffs, or score matrices.",
     "   - Favor business/value framing over technical explanation.",
     "   - If an inbound request exists, treat as time-sensitive, but still flag any fit concerns.",
     "3) Most Recent Engagement",
@@ -902,21 +939,26 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "   - If an engagement is tied to a specific opportunity/product, mention that product in the highlight.",
     "   - Use the provided engagement bullets as your source of truth: include all provided items (up to 12) and do not omit website-activity bullets when present.",
     "   - Do not paraphrase the engagement highlights unless required for clarity; keep wording close so important evidence (like visits/pageviews) is preserved.",
+    "   - Mention email engagement only when it appears as an explicit dated engagement item in the provided list.",
+    "   - Do not infer email engagement from analytics alone.",
+    "   - Do not turn passive saved-search email receipts into engagement bullets.",
     "4) Suggested Next Step",
     "   - 1-2 bullets: best outreach angle + what to verify + urgency.",
     "   - Prefer a Business Issue / Value / Power / Plan flow: clarify the buyer's business issue and urgency, confirm the value or success criteria, identify who is involved in the decision, and establish a mutual next meeting or checkpoint.",
     "   - Keep the wording practical and seller-facing; do not name the framework or use generic methodology jargon.",
     "   - If product-interest signals exist, tailor the outreach angle to those likely interests.",
+    "   - If engagement themes are present, use the strongest 1-2 themes explicitly in the outreach angle and what to verify next.",
     "   - If current customer footprint or account commercial status exists, use it to decide whether the motion looks like cross-sell, upsell, retention, or net-new outreach.",
     "   - If department or interest-topic context exists, use it to sharpen the opener and what to verify first.",
     "   - If recent company opportunity history exists, use it to coordinate with current account motion and verify whether this contact maps to an existing or adjacent opportunity.",
-    "   - If analytics behavior signals exist (recent pageviews/actions or email opens/clicks), use them as additional evidence for what they are actively researching (but do not mention where the data came from).",
+    "   - If analytics behavior signals exist for recent pageviews/actions, use them as additional evidence for what they are actively researching (but do not mention where the data came from).",
     "   - If website activity is present, treat it as a last-30-days signal only when the structured input labels it that way; do not turn older aggregate totals into current intent.",
     "",
     "Important constraints:",
     "- Do not include any field names, IDs, JSON keys, or system names.",
-    "- Numeric score values are allowed only in Score Interpretation bullets.",
-    "- Never output a numeric score or threshold unless it is explicitly present in the structured input.",
+    "- Do not mention engagement score.",
+    "- Do not mention email engagement anywhere unless it appears as an explicit dated item in Most Recent Engagement.",
+    "- Do not output numeric scores, thresholds, cutoffs, or scoring-matrix language.",
     "- When raw fit inputs are missing, say that fit attribution is partial instead of implying certainty.",
     "- If something is unclear/missing, say so plainly (do not guess).",
     "",
@@ -1484,6 +1526,7 @@ function buildHistoryEventsPreview({
   const taskList = Array.isArray(tasks) ? tasks : [];
   for (const t of taskList) {
     if (String(t.Status || "").toLowerCase() !== "completed") continue;
+    if (/^\s*Email:/i.test(String(t.Subject || ""))) continue;
     const linkedOppId = findLinkedOppId(t.WhatId);
     const ctx = linkedOppId ? oppContextLabel(linkedOppId) : null;
     const detailParts = [];
@@ -1977,7 +2020,7 @@ exports.handler = async function handler(event) {
         config: analyticsConfig,
         contactEmail: body?.contactEmail || null,
         hubspotContactId: body?.hubspotContactId || null,
-        limits: { pageviewsLimit: 1, actionsLimit: 1, emailEventsLimit: 1 }
+        limits: { pageviewsLimit: 1, actionsLimit: 1, emailEventsLimit: 0 }
       });
 
       return jsonResponse(200, {
@@ -2081,7 +2124,13 @@ exports.handler = async function handler(event) {
 
     // Keep activity queries bounded by default; the recipe itself enforces the
     // final event caps that go to the model.
-    const sinceDays = Math.max(1, Math.min(365, Number(body?.sinceDays || 90)));
+    const defaultSinceDays = Number(
+      allowlist?.defaults?.recencyWindowDays || 60
+    );
+    const sinceDays = Math.max(
+      1,
+      Math.min(365, Number(body?.sinceDays ?? defaultSinceDays))
+    );
     const sinceExpr = `LAST_N_DAYS:${sinceDays}`;
 
     // Describe objects so we only query fields that exist in each org.
@@ -2333,7 +2382,7 @@ exports.handler = async function handler(event) {
           if (!opt.CampaignMember?.fields?.length) return [];
           const cmFields = opt.CampaignMember.fields;
           const qBase =
-            `SELECT ${cmFields.join(", ")} FROM CampaignMember WHERE ContactId = '${contact.Id}' AND CreatedDate = LAST_N_DAYS:365 ` +
+            `SELECT ${cmFields.join(", ")} FROM CampaignMember WHERE ContactId = '${contact.Id}' AND CreatedDate = ${sinceExpr} ` +
             "ORDER BY CreatedDate DESC LIMIT 100";
           const cmRes = await trySfQueryRecords({
             ...sfAuth,
@@ -2343,7 +2392,7 @@ exports.handler = async function handler(event) {
           if (cmRes === null && cmFields.some((f) => String(f).includes("."))) {
             const stripped = cmFields.filter((f) => !String(f).includes("."));
             const q2 =
-              `SELECT ${stripped.join(", ")} FROM CampaignMember WHERE ContactId = '${contact.Id}' AND CreatedDate = LAST_N_DAYS:365 ` +
+              `SELECT ${stripped.join(", ")} FROM CampaignMember WHERE ContactId = '${contact.Id}' AND CreatedDate = ${sinceExpr} ` +
               "ORDER BY CreatedDate DESC LIMIT 100";
             return (
               (await trySfQueryRecords({ ...sfAuth, apiVersion, soql: q2 })) ||
@@ -2363,7 +2412,7 @@ exports.handler = async function handler(event) {
           const emailEsc = String(contact.Email).replaceAll("'", "\\'");
           const q =
             `SELECT ${cuFields.join(", ")} FROM Contact_Us__c ` +
-            `WHERE Email__c = '${emailEsc}' AND CreatedDate = LAST_N_DAYS:365 ` +
+            `WHERE Email__c = '${emailEsc}' AND CreatedDate = ${sinceExpr} ` +
             "ORDER BY CreatedDate DESC LIMIT 50";
           return (
             (await trySfQueryRecords({ ...sfAuth, apiVersion, soql: q })) || []
@@ -2378,7 +2427,7 @@ exports.handler = async function handler(event) {
           const slFields = opt["Sales_Lead__c"].fields;
           const q =
             `SELECT ${slFields.join(", ")} FROM Sales_Lead__c ` +
-            `WHERE Contact__c = '${contact.Id}' AND CreatedDate = LAST_N_DAYS:365 ` +
+            `WHERE Contact__c = '${contact.Id}' AND CreatedDate = ${sinceExpr} ` +
             "ORDER BY Lead_Date__c DESC NULLS LAST, CreatedDate DESC LIMIT 10";
           return (
             (await trySfQueryRecords({ ...sfAuth, apiVersion, soql: q })) || []
@@ -2547,7 +2596,7 @@ exports.handler = async function handler(event) {
           config: analyticsConfig,
           contactEmail: contact.Email,
           hubspotContactId: hubspotResolvedContactId,
-          limits: { pageviewsLimit: 12, actionsLimit: 10, emailEventsLimit: 12 }
+          limits: { pageviewsLimit: 12, actionsLimit: 10, emailEventsLimit: 0 }
         });
         meta.analytics = {
           ok: true,
@@ -2576,10 +2625,19 @@ exports.handler = async function handler(event) {
       analyticsBehavior = null;
     }
 
+    const salesLeadWebEvidence =
+      buildEvidenceFromSalesLeadWebActivity(salesLeads);
+    const campaignEvidence = buildEvidenceFromCampaignMembers(campaignMembers);
+    const hubspotEvidence =
+      buildEvidenceFromHubspotContactProps(hubspotContactProps);
+    const supplementalEngagementEvidence = [
+      ...salesLeadWebEvidence,
+      ...hubspotEvidence.filter((item) => item?.category === "url")
+    ];
     const evidence = [
-      ...buildEvidenceFromSalesLeadWebActivity(salesLeads),
-      ...buildEvidenceFromCampaignMembers(campaignMembers),
-      ...buildEvidenceFromHubspotContactProps(hubspotContactProps)
+      ...salesLeadWebEvidence,
+      ...campaignEvidence,
+      ...hubspotEvidence
     ];
     if (contact?.HubSpot_First_Conversion__c) {
       evidence.push({
@@ -2689,7 +2747,8 @@ exports.handler = async function handler(event) {
       productInterest,
       opportunityContext,
       analyticsBehavior,
-      websiteActivity
+      websiteActivity,
+      supplementalEngagementEvidence
     });
 
     const deterministic = finalizeSalesSummaryHtml({

@@ -8,7 +8,7 @@
     ]
   },
   "defaults": {
-    "recencyWindowDays": 365,
+    "recencyWindowDays": 60,
     "maxEvents": 25,
     "capsByEventType": {
       "emailEngagement": 5,

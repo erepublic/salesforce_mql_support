@@ -24,6 +24,30 @@ test("buildSalesEventLabel redacts Salesforce-style record ids", () => {
   expect(label).not.toContain("006VE00000TkWFXYA3");
 });
 
+test("buildSalesNarrativeInput formats seller-facing datetimes in a US timezone", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-02-01"
+    },
+    contact: {
+      Private_Sector_Non_Qual__c: false
+    },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [
+      {
+        occurredAt: "2026-02-12T01:30:00.000Z",
+        eventType: "meetingLogged",
+        title: "Meeting logged"
+      }
+    ]
+  });
+
+  expect(out.recentEngagement[0].date).toBe("2026-02-11");
+});
+
 test("buildSalesNarrativeInput sorts recentEngagement newest-first", () => {
   const out = buildSalesNarrativeInput({
     mql: {
@@ -40,17 +64,17 @@ test("buildSalesNarrativeInput sorts recentEngagement newest-first", () => {
     opportunityContactRoles: [],
     historyEvents: [
       {
-        occurredAt: "2026-01-10T00:00:00.000Z",
+        occurredAt: "2026-01-10T12:00:00.000Z",
         eventType: "campaignTouch",
         title: "Campaign touch"
       },
       {
-        occurredAt: "2026-02-12T00:00:00.000Z",
+        occurredAt: "2026-02-12T12:00:00.000Z",
         eventType: "contactUsSubmitted",
         title: "Contact Us submitted"
       },
       {
-        occurredAt: "2026-02-05T00:00:00.000Z",
+        occurredAt: "2026-02-05T12:00:00.000Z",
         eventType: "meetingLogged",
         title: "Meeting logged"
       }
@@ -62,7 +86,7 @@ test("buildSalesNarrativeInput sorts recentEngagement newest-first", () => {
   expect(out.recentEngagement[2].date).toBe("2026-01-10");
 });
 
-test("buildSalesNarrativeInput emits qualifying score signals with numeric and qualitative details", () => {
+test("buildSalesNarrativeInput emits qualitative fit and behavior signals without engagement score", () => {
   const out = buildSalesNarrativeInput({
     mql: {
       Lead_Source__c: "Fit and Behavior Threshold Reached",
@@ -93,21 +117,24 @@ test("buildSalesNarrativeInput emits qualifying score signals with numeric and q
   expect(
     out.scoreSignals.some(
       (s) =>
-        s.signal === "Engagement score" &&
-        s.scoreText === "12 (threshold 10)" &&
+        s.signal === "Fit" &&
+        s.scoreText === undefined &&
         s.qualitative === "Strong" &&
-        s.contributesToMql === false
+        s.contributesToMql === true
     )
   ).toBe(true);
   expect(
     out.scoreSignals.some(
       (s) =>
-        s.signal === "Fit score" &&
-        s.scoreText === "8 (threshold 7)" &&
-        s.qualitative === "Strong" &&
+        s.signal === "Behavior" &&
+        s.scoreText === undefined &&
+        s.qualitative === "Moderate" &&
         s.contributesToMql === true
     )
   ).toBe(true);
+  expect(out.scoreSignals.some((s) => s.signal === "Engagement score")).toBe(
+    false
+  );
   expect(
     out.scoreInterpretation.some((b) =>
       b.includes("Engagement score: Score 12 (threshold 10); Strong.")
@@ -118,7 +145,7 @@ test("buildSalesNarrativeInput emits qualifying score signals with numeric and q
   ).toBe(true);
 });
 
-test("buildSalesNarrativeInput adds threshold explanation and raw fit evidence", () => {
+test("buildSalesNarrativeInput keeps threshold explanation qualitative while preserving fit evidence", () => {
   const out = buildSalesNarrativeInput({
     mql: {
       Lead_Source__c: "Fit and Behavior Threshold Reached",
@@ -148,9 +175,11 @@ test("buildSalesNarrativeInput adds threshold explanation and raw fit evidence",
   });
 
   expect(out.thresholdExplanation.matchedRule).toBe(
-    "Behavior 20+ with High company fit and Medium contact fit"
+    "Behavior threshold with High company fit and Medium contact fit"
   );
-  expect(out.thresholdExplanation.summary).toContain("behavior score 22");
+  expect(out.thresholdExplanation.summary).toContain(
+    "recent activity was strong enough"
+  );
   expect(out.fitEvidence.contact.positives).toContain(
     "Their title matches a marketing-role criterion from the scoring guide."
   );
@@ -163,6 +192,7 @@ test("buildSalesNarrativeInput adds threshold explanation and raw fit evidence",
   expect(out.mqlContext.explanationDetails[0]).toContain(
     "Threshold rerouted after behavior spike"
   );
+  expect(out.thresholdExplanation.behaviorScore).toBeUndefined();
   expect(out.scoreSignals.some((s) => s.signal === "Threshold path")).toBe(
     false
   );
@@ -205,6 +235,40 @@ test("buildSalesNarrativeInput keeps partial evidence explicit when raw inputs a
   expect(out.fitEvidence.company.missingInputs).toContain(
     "Account industry is not available, so industry-based company-fit evidence is incomplete."
   );
+});
+
+test("buildSalesNarrativeInput does not turn analytics email activity into seller-facing key reasons", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-02-01"
+    },
+    contact: {
+      Private_Sector_Non_Qual__c: false,
+      HubSpot_Private_Sector_Behavior_Score__c: 22,
+      HubSpot_Private_Sector_Contact_Fit__c: 8,
+      Contact_Fit_Threshold__c: 7
+    },
+    account: {
+      Private_Sector_Non_Qual__c: false,
+      Company_Fit_Threshold__c: "High"
+    },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    analyticsBehavior: {
+      emailEngagement: {
+        recentSignals: true,
+        mailgunTopEvents: [{ value: "opened", count: 3 }]
+      }
+    }
+  });
+
+  expect(
+    out.keyReasons.some((reason) =>
+      String(reason).toLowerCase().includes("email engagement")
+    )
+  ).toBe(false);
 });
 
 test("buildSalesNarrativeInput includes compact company context for seller-facing enrichment", () => {
@@ -287,6 +351,276 @@ test("buildSalesNarrativeInput uses specific recent conversion naming and last-3
   ).toBe(false);
 });
 
+test("buildSalesNarrativeInput adds specific recent conversion and pageview engagement bullets", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: {
+      Private_Sector_Non_Qual__c: false,
+      HubSpot_Private_Sector_Behavior_Score__c: 20,
+      HubSpot_Private_Sector_Contact_Fit__c: 6,
+      Contact_Fit_Threshold__c: "High",
+      HubSpot_Recent_Conversion__c:
+        "e.Republic CMS: OneForm Event Registration",
+      HubSpot_Recent_Conversion_Date__c: "2025-10-23"
+    },
+    account: {
+      Private_Sector_Non_Qual__c: false,
+      Company_Fit_Threshold__c: "High"
+    },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    analyticsBehavior: {
+      webActivity: {
+        recentSignals: true,
+        recentPageviews: [
+          {
+            occurredAt: "2026-03-29T12:00:00.000Z",
+            path: "/events/city-manager-innovation-council"
+          },
+          {
+            occurredAt: "2026-03-04T12:00:00.000Z",
+            path: "/cybersecurity/2026-cybersecurity-events"
+          }
+        ],
+        recentActions: [
+          {
+            occurredAt: "2026-03-31T12:00:00.000Z",
+            action: "emailed.opportunities.rfp.daily.savedSearch",
+            value: "1"
+          }
+        ]
+      }
+    }
+  });
+
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        'Visited the "City Manager Innovation Council" page.'
+      )
+    )
+  ).toBe(true);
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes('Visited the "2026 Cybersecurity Events" page.')
+    )
+  ).toBe(true);
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        "registered for e.Republic CMS: OneForm Event Registration"
+      )
+    )
+  ).toBe(false);
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        "Received a saved-search email for RFP opportunities."
+      )
+    )
+  ).toBe(false);
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes('Interacted with "1"')
+    )
+  ).toBe(false);
+  expect(out.engagementThemes).toEqual(
+    expect.arrayContaining([
+      "procurement and RFP research",
+      "city-manager and council leadership programs",
+      "cybersecurity events and council programming"
+    ])
+  );
+});
+
+test("buildSalesNarrativeInput limits supplemental engagement bullets to the last 60 days", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: {
+      Private_Sector_Non_Qual__c: false,
+      HubSpot_Recent_Conversion__c: "Older webinar",
+      HubSpot_Recent_Conversion_Date__c: "2025-10-23"
+    },
+    account: {
+      Private_Sector_Non_Qual__c: false
+    },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    analyticsBehavior: {
+      webActivity: {
+        recentSignals: true,
+        recentPageviews: [
+          {
+            occurredAt: "2026-03-29T12:00:00.000Z",
+            path: "/events/city-manager-innovation-council"
+          },
+          {
+            occurredAt: "2025-12-01T12:00:00.000Z",
+            path: "/cybersecurity/2026-cybersecurity-events"
+          }
+        ],
+        recentActions: [
+          {
+            occurredAt: "2025-12-15T12:00:00.000Z",
+            action: "email.click",
+            value: "Old click"
+          }
+        ]
+      }
+    }
+  });
+
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes("Older webinar")
+    )
+  ).toBe(false);
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes('Visited the "2026 Cybersecurity Events" page.')
+    )
+  ).toBe(false);
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes('Clicked "Old click" email.')
+    )
+  ).toBe(false);
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        'Visited the "City Manager Innovation Council" page.'
+      )
+    )
+  ).toBe(true);
+});
+
+test("buildSalesNarrativeInput uses supplemental web evidence when analytics pageviews are unavailable", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: {
+      Private_Sector_Non_Qual__c: false
+    },
+    account: {
+      Private_Sector_Non_Qual__c: false
+    },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    analyticsBehavior: null,
+    supplementalEngagementEvidence: [
+      {
+        category: "url",
+        text: "https://example.com/events/city-manager-innovation-council",
+        occurredAt: "2026-03-29T12:00:00.000Z"
+      },
+      {
+        category: "url",
+        text: "https://example.com/cybersecurity/2026-cybersecurity-events",
+        occurredAt: "2026-03-04T12:00:00.000Z"
+      }
+    ]
+  });
+
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        'Visited the "City Manager Innovation Council" page.'
+      )
+    )
+  ).toBe(true);
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes('Visited the "2026 Cybersecurity Events" page.')
+    )
+  ).toBe(true);
+  expect(out.engagementThemes).toEqual(
+    expect.arrayContaining([
+      "city-manager and council leadership programs",
+      "cybersecurity events and council programming"
+    ])
+  );
+});
+
+test("buildSalesNarrativeInput turns numeric opportunity paths into usable engagement labels", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: { Private_Sector_Non_Qual__c: false },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    analyticsBehavior: {
+      webActivity: {
+        recentSignals: true,
+        recentPageviews: [
+          {
+            occurredAt: "2026-03-31T12:00:00.000Z",
+            path: "/content/opportunities/rfp/1657653"
+          },
+          {
+            occurredAt: "2026-03-30T12:00:00.000Z",
+            path: "/content/opportunities/dev_opp/1639243"
+          }
+        ],
+        recentActions: []
+      }
+    }
+  });
+
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes('Visited the "RFP Opportunity" page.')
+    )
+  ).toBe(true);
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes('Visited the "Development Opportunity" page.')
+    )
+  ).toBe(true);
+});
+
+test("buildSalesNarrativeInput ignores auth and member fallback URLs", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: { Private_Sector_Non_Qual__c: false },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    supplementalEngagementEvidence: [
+      {
+        category: "url",
+        text: "https://insider.govtech.com/california/authenticate/login",
+        occurredAt: "2026-04-01T12:00:00.000Z"
+      },
+      {
+        category: "url",
+        text: "https://insider.govtech.com/california/member",
+        occurredAt: "2026-04-01T11:00:00.000Z"
+      }
+    ]
+  });
+
+  expect(out.recentEngagement).toEqual([]);
+});
+
 test("buildSalesNarrativeInput marks non-threshold MQLs as lead-source driven", () => {
   const out = buildSalesNarrativeInput({
     mql: {
@@ -309,13 +643,12 @@ test("buildSalesNarrativeInput marks non-threshold MQLs as lead-source driven", 
   expect(out.thresholdExplanation).toBeUndefined();
   expect(
     out.scoreInterpretation.some((item) =>
-      item.includes("not the fit-and-behavior threshold")
+      item.includes("not the Lead scoring path")
     )
   ).toBe(true);
   expect(
     out.scoreSignals.some(
-      (item) =>
-        item.signal === "Behavior score" && item.contributesToMql === false
+      (item) => item.signal === "Behavior" && item.contributesToMql === false
     )
   ).toBe(true);
 });
@@ -427,6 +760,7 @@ test("salesNarrativeInput does not contain raw field-name tokens", () => {
   expect(s).not.toMatch(/HubSpot_/);
   expect(s).not.toMatch(/OpportunityContactRole/);
   expect(s).not.toMatch(/MQL__c/);
+  expect(out.analyticsBehavior?.emailEngagement).toBeUndefined();
 });
 
 test("isHandRaiserLeadSource identifies Events Portal correctly", () => {
@@ -538,4 +872,123 @@ test("buildHistoryEventsPreview returns events newest-first", () => {
       "2026-01-01"
     )
   ).toBe(true);
+});
+
+test("buildHistoryEventsPreview skips generic logged sales emails from tasks", () => {
+  const { _internals } = require("../index.js");
+
+  const allow = {
+    defaults: { recencyWindowDays: 365, maxEvents: 25, capsByEventType: {} },
+    timelineRecipe: {
+      importance: { high: ["mqlCreated"], medium: ["taskCompleted"], low: [] }
+    }
+  };
+
+  const preview = _internals.buildHistoryEventsPreview({
+    allowlist: allow,
+    contact: { Id: "003xx0000000001", Email: "a@b.com", Name: "Test" },
+    mql: {
+      Id: "a0Xxx0000000001",
+      Lead_Source__c: "Email",
+      MQL_Date__c: "2026-01-01",
+      CreatedDate: "2026-01-01T00:00:00.000Z"
+    },
+    opportunityContactRoles: [],
+    opportunities: [],
+    tasks: [
+      {
+        Id: "00Txx0000000001",
+        Status: "Completed",
+        Subject: "Email: Campaign follow-up",
+        ActivityDate: "2026-02-10",
+        CreatedDate: "2026-02-10T00:00:00.000Z"
+      },
+      {
+        Id: "00Txx0000000002",
+        Status: "Completed",
+        Subject: "Left voicemail",
+        ActivityDate: "2026-02-11",
+        CreatedDate: "2026-02-11T00:00:00.000Z"
+      }
+    ],
+    events: [],
+    emailMessages: [],
+    campaignMembers: [],
+    contactUsSubmissions: [],
+    history: {},
+    sinceDays: 365
+  });
+
+  expect(
+    preview.events.some((event) =>
+      String(event.detail || "").includes("Email: Campaign follow-up")
+    )
+  ).toBe(false);
+  expect(
+    preview.events.some((event) =>
+      String(event.detail || "").includes("Left voicemail")
+    )
+  ).toBe(true);
+});
+
+test("buildHistoryEventsPreview honors the allowlist default recency window", () => {
+  const { _internals } = require("../index.js");
+  const realNow = Date.now;
+  Date.now = () => Date.parse("2026-04-02T12:00:00.000Z");
+
+  try {
+    const allow = {
+      defaults: { recencyWindowDays: 60, maxEvents: 25, capsByEventType: {} },
+      timelineRecipe: {
+        importance: { high: ["mqlCreated"], medium: ["taskCompleted"], low: [] }
+      }
+    };
+
+    const preview = _internals.buildHistoryEventsPreview({
+      allowlist: allow,
+      contact: { Id: "003xx0000000001", Email: "a@b.com", Name: "Test" },
+      mql: {
+        Id: "a0Xxx0000000001",
+        Lead_Source__c: "Email",
+        MQL_Date__c: "2026-03-29",
+        CreatedDate: "2026-03-29T00:00:00.000Z"
+      },
+      opportunityContactRoles: [],
+      opportunities: [],
+      tasks: [
+        {
+          Id: "00Txx0000000001",
+          Status: "Completed",
+          Subject: "Too old",
+          ActivityDate: "2026-01-21",
+          CreatedDate: "2026-01-21T00:00:00.000Z"
+        },
+        {
+          Id: "00Txx0000000002",
+          Status: "Completed",
+          Subject: "Recent enough",
+          ActivityDate: "2026-03-20",
+          CreatedDate: "2026-03-20T00:00:00.000Z"
+        }
+      ],
+      events: [],
+      emailMessages: [],
+      campaignMembers: [],
+      contactUsSubmissions: [],
+      history: {}
+    });
+
+    expect(
+      preview.events.some((event) =>
+        String(event.detail || "").includes("Too old")
+      )
+    ).toBe(false);
+    expect(
+      preview.events.some((event) =>
+        String(event.detail || "").includes("Recent enough")
+      )
+    ).toBe(true);
+  } finally {
+    Date.now = realNow;
+  }
 });

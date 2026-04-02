@@ -10,10 +10,31 @@ function compactObject(obj) {
   return out;
 }
 
-function yyyyMmDd(iso) {
+const DEFAULT_SUMMARY_TIME_ZONE =
+  process.env.MQL_SUMMARY_TIME_ZONE || "America/Los_Angeles";
+const SUMMARY_ACTIVITY_WINDOW_DAYS = 60;
+const dateFormatterCache = new Map();
+
+function yyyyMmDd(iso, timeZone = DEFAULT_SUMMARY_TIME_ZONE) {
+  const raw = String(iso || "").trim();
+  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
   const t = Date.parse(iso);
   if (!Number.isFinite(t)) return null;
-  return new Date(t).toISOString().slice(0, 10);
+  let formatter = dateFormatterCache.get(timeZone);
+  if (!formatter) {
+    formatter = new Intl.DateTimeFormat("en-US", {
+      timeZone,
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit"
+    });
+    dateFormatterCache.set(timeZone, formatter);
+  }
+  const parts = formatter.formatToParts(new Date(t));
+  const year = parts.find((part) => part.type === "year")?.value;
+  const month = parts.find((part) => part.type === "month")?.value;
+  const day = parts.find((part) => part.type === "day")?.value;
+  return year && month && day ? `${year}-${month}-${day}` : null;
 }
 
 function redactInlineText(s) {
@@ -417,18 +438,13 @@ function buildThresholdExplanation({
   behaviorScore,
   companyFitTier,
   contactFitTier,
-  engagementScore,
-  engagementThreshold,
   hasInboundRequest,
   recentConversionName,
   fitEvidence,
   mqlDetails
 }) {
   const behavior = toNumberOrNull(behaviorScore);
-  const engagement = toNumberOrNull(engagementScore);
-  const engagementCutoff = toNumberOrNull(engagementThreshold);
   let matchedRule = null;
-  let requiredBehaviorScore = null;
 
   if (
     behavior !== null &&
@@ -439,39 +455,26 @@ function buildThresholdExplanation({
   ) {
     matchedRule =
       companyFitTier === "Medium" && contactFitTier === "Medium"
-        ? "Behavior 30+ with Medium company fit and Medium contact fit"
-        : `Behavior 30+ with ${companyFitTier} company fit and High contact fit`;
-    requiredBehaviorScore = 30;
+        ? "Behavior threshold with Medium company fit and Medium contact fit"
+        : `Behavior threshold with ${companyFitTier} company fit and High contact fit`;
   } else if (
     behavior !== null &&
     behavior >= 20 &&
     companyFitTier === "High" &&
     (contactFitTier === "High" || contactFitTier === "Medium")
   ) {
-    matchedRule = `Behavior 20+ with High company fit and ${contactFitTier} contact fit`;
-    requiredBehaviorScore = 20;
+    matchedRule = `Behavior threshold with High company fit and ${contactFitTier} contact fit`;
   }
-
-  const gapToThreshold =
-    behavior !== null && requiredBehaviorScore !== null
-      ? behavior - requiredBehaviorScore
-      : null;
 
   let summary = null;
   if (matchedRule && behavior !== null) {
-    const gapText =
-      gapToThreshold === 0
-        ? "right at the threshold"
-        : gapToThreshold > 0
-          ? `${gapToThreshold} point${gapToThreshold === 1 ? "" : "s"} above the threshold`
-          : `${Math.abs(gapToThreshold)} point${Math.abs(gapToThreshold) === 1 ? "" : "s"} below the threshold`;
-    summary = `This record likely qualified through the fit-and-behavior rule because behavior score ${behavior} cleared the ${requiredBehaviorScore}-point cutoff for a ${String(
+    summary = `This record likely qualified through the fit-and-behavior rule because recent activity was strong enough for a ${String(
       companyFitTier || "unknown"
     ).toLowerCase()} company-fit account and a ${String(
       contactFitTier || "unknown"
-    ).toLowerCase()} contact-fit profile (${gapText}).`;
+    ).toLowerCase()} contact-fit profile.`;
   } else if (behavior !== null && (companyFitTier || contactFitTier)) {
-    summary = `Behavior score ${behavior} is being evaluated alongside ${String(
+    summary = `Recent activity is being evaluated alongside ${String(
       companyFitTier || "unknown"
     ).toLowerCase()} company fit and ${String(
       contactFitTier || "unknown"
@@ -498,15 +501,6 @@ function buildThresholdExplanation({
       `Company-fit evidence points to ${humanList(companyReasons).toLowerCase()}`
     );
   }
-  if (
-    engagement !== null &&
-    engagementCutoff !== null &&
-    engagement >= engagementCutoff
-  ) {
-    supportingReasons.push(
-      `Engagement score ${engagement} is elevated as supporting context, but the qualification path is still behavior-led.`
-    );
-  }
   if (hasInboundRequest) {
     supportingReasons.push(
       "There is also inbound intent, which increases urgency even though the threshold path is behavior-led."
@@ -529,11 +523,6 @@ function buildThresholdExplanation({
     summary,
     companyFitTier,
     contactFitTier,
-    behaviorScore: behavior,
-    requiredBehaviorScore,
-    gapToThreshold,
-    engagementScore: engagement,
-    engagementThreshold: engagementCutoff,
     supportingReasons,
     evidenceLevel: matchedRule
       ? "direct threshold match"
@@ -571,6 +560,352 @@ function buildSalesEventLabel(e) {
   const base = typeMap[eventType] || title || "Engagement activity";
   if (!detail) return base;
   return `${base} - ${redactInlineText(detail)}`;
+}
+
+function titleizeSlug(slug) {
+  const cleaned = String(slug || "")
+    .replace(/\.[a-z0-9]{1,6}$/i, "")
+    .replace(/[_-]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  if (!cleaned) return null;
+  return cleaned.replace(/\b\w+/g, (word) => {
+    if (/^\d+$/.test(word)) return word;
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+  });
+}
+
+function labelFromPath(pathValue) {
+  const raw = String(pathValue || "").split(/[?#]/)[0];
+  if (!raw) return null;
+  const originalSegments = raw
+    .split("/")
+    .map((segment) => segment.trim())
+    .filter(Boolean);
+  const lowerOriginalSegments = originalSegments.map((segment) =>
+    segment.toLowerCase()
+  );
+  if (
+    lowerOriginalSegments.some((segment) =>
+      [
+        "login",
+        "auth",
+        "authenticate",
+        "authentication",
+        "member",
+        "members"
+      ].includes(segment)
+    )
+  ) {
+    return null;
+  }
+  if (lowerOriginalSegments.includes("rfp")) return "RFP Opportunity";
+  if (
+    lowerOriginalSegments.includes("dev_opp") ||
+    lowerOriginalSegments.includes("devopp")
+  ) {
+    return "Development Opportunity";
+  }
+  if (
+    lowerOriginalSegments.includes("prerfp") ||
+    lowerOriginalSegments.includes("pre_rfp")
+  ) {
+    return "Pre-RFP Opportunity";
+  }
+
+  const segments = originalSegments.filter((segment) => !/^\d+$/.test(segment));
+  const ignored = new Set([
+    "content",
+    "article",
+    "articles",
+    "topic",
+    "topics",
+    "page",
+    "pages",
+    "post",
+    "posts",
+    "tag",
+    "tags",
+    "category",
+    "categories",
+    "resource",
+    "resources",
+    "rfp",
+    "opportunity",
+    "opportunities",
+    "login",
+    "auth",
+    "authenticate",
+    "authentication",
+    "member",
+    "members"
+  ]);
+  for (let i = segments.length - 1; i >= 0; i--) {
+    const segment = segments[i];
+    if (!segment || ignored.has(segment.toLowerCase())) continue;
+    const label = titleizeSlug(segment);
+    if (label) return label;
+  }
+  return null;
+}
+
+function humanizeAnalyticsAction(actionName) {
+  const raw = cleanedText(actionName, 120);
+  if (!raw) return null;
+  const lower = raw.toLowerCase();
+
+  const savedSearchMappings = [
+    {
+      pattern: /^emailed\.opportunities\.marketalert\.daily\.savedsearch$/,
+      label: "Received a saved-search email for market alerts."
+    },
+    {
+      pattern: /^emailed\.opportunities\.rfp\.daily\.savedsearch$/,
+      label: "Received a saved-search email for RFP opportunities."
+    },
+    {
+      pattern: /^emailed\.opportunities\.devopp\.daily\.savedsearch$/,
+      label: "Received a saved-search email for development opportunities."
+    }
+  ];
+  for (const item of savedSearchMappings) {
+    if (item.pattern.test(lower)) return null;
+  }
+
+  if (lower.includes("savedsearch")) {
+    return null;
+  }
+
+  const normalized = raw
+    .replace(/\./g, " ")
+    .replace(/_/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+  const titleized = titleizeSlug(normalized);
+  return titleized ? `Interacted with "${titleized}".` : null;
+}
+
+function buildAnalyticsActionHighlight(action) {
+  const lowerAction = String(action?.action || "")
+    .trim()
+    .toLowerCase();
+  const valueLabel = cleanedText(action?.value, 120);
+  const safeValue =
+    valueLabel && !/^\d+$/.test(valueLabel)
+      ? redactInlineText(valueLabel)
+      : null;
+  const pathLabel = labelFromPath(action?.path);
+
+  if (lowerAction.includes("savedsearch")) return null;
+  if (
+    safeValue &&
+    /(email|mail)/.test(lowerAction) &&
+    /click/.test(lowerAction)
+  ) {
+    return `Clicked "${safeValue}" email.`;
+  }
+  if (
+    safeValue &&
+    /(email|mail)/.test(lowerAction) &&
+    /open/.test(lowerAction)
+  ) {
+    return `Opened "${safeValue}" email.`;
+  }
+  if (safeValue && /(register|registration)/.test(lowerAction)) {
+    return `Registered for "${safeValue}".`;
+  }
+  if (pathLabel) return `Visited the "${pathLabel}" page.`;
+  if (safeValue) return `Interacted with "${safeValue}".`;
+  return humanizeAnalyticsAction(action?.action);
+}
+
+function engagementSpecificityScore(item) {
+  const highlight = String(item?.highlight || "").toLowerCase();
+  let score = 0;
+  if (/^visited the "|^clicked "|^opened "|^registered for /.test(highlight)) {
+    score += 3;
+  }
+  if (highlight.includes('"')) score += 1;
+  if (
+    /marketing qualified lead created|website activity recorded/.test(highlight)
+  ) {
+    score -= 1;
+  }
+  return score;
+}
+
+function collectEngagementThemes({
+  recentEngagement,
+  analyticsBehavior,
+  recentConversionName,
+  supplementalEngagementEvidence
+}) {
+  const textPool = [];
+  for (const item of Array.isArray(recentEngagement) ? recentEngagement : []) {
+    if (item?.highlight) textPool.push(String(item.highlight));
+  }
+  if (recentConversionName) textPool.push(String(recentConversionName));
+  for (const item of Array.isArray(supplementalEngagementEvidence)
+    ? supplementalEngagementEvidence
+    : []) {
+    if (item?.text) textPool.push(String(item.text));
+  }
+  for (const pv of Array.isArray(
+    analyticsBehavior?.webActivity?.recentPageviews
+  )
+    ? analyticsBehavior.webActivity.recentPageviews
+    : []) {
+    if (pv?.path) textPool.push(String(pv.path));
+  }
+  for (const action of Array.isArray(
+    analyticsBehavior?.webActivity?.recentActions
+  )
+    ? analyticsBehavior.webActivity.recentActions
+    : []) {
+    if (action?.path) textPool.push(String(action.path));
+    if (action?.action) textPool.push(String(action.action));
+    if (action?.value) textPool.push(String(action.value));
+  }
+
+  const themes = [];
+  const definitions = [
+    {
+      label: "procurement and RFP research",
+      patterns: [
+        /\brfp\b/i,
+        /\bprocurement\b/i,
+        /development opportunit/i,
+        /market alert/i
+      ]
+    },
+    {
+      label: "city-manager and council leadership programs",
+      patterns: [/city manager/i, /innovation council/i, /\bcouncil\b/i]
+    },
+    {
+      label: "cybersecurity events and council programming",
+      patterns: [/cybersecurity/i, /cyber leaders/i, /cyberwar/i]
+    }
+  ];
+
+  for (const def of definitions) {
+    if (
+      textPool.some((text) =>
+        def.patterns.some((pattern) => pattern.test(text))
+      )
+    ) {
+      themes.push(def.label);
+    }
+  }
+  return themes.slice(0, 3);
+}
+
+function highlightFromSupplementalEvidence(item) {
+  const raw = String(item?.text || "").trim();
+  if (!raw) return null;
+  let pathname = null;
+  try {
+    pathname = new URL(raw).pathname || null;
+  } catch {
+    pathname = raw;
+  }
+  const label = labelFromPath(pathname);
+  if (!label) return null;
+  return `Visited the "${label}" page.`;
+}
+
+function buildSupplementalRecentEngagement({ supplementalEngagementEvidence }) {
+  const items = [];
+  const seen = new Set();
+  for (const item of Array.isArray(supplementalEngagementEvidence)
+    ? supplementalEngagementEvidence
+    : []) {
+    if (!isRecentIso(item?.occurredAt, SUMMARY_ACTIVITY_WINDOW_DAYS)) continue;
+    const highlight = highlightFromSupplementalEvidence(item);
+    const date = yyyyMmDd(item?.occurredAt);
+    if (!date || !highlight) continue;
+    const key = `${date}|${highlight}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    items.push({
+      date,
+      highlight,
+      importance: "medium"
+    });
+  }
+  return items;
+}
+
+function buildAnalyticsRecentEngagement({
+  analyticsBehavior,
+  recentConversionName,
+  recentConversionDate
+}) {
+  const items = [];
+  const seen = new Set();
+
+  function pushItem(date, highlight, importance) {
+    const yyyyMmDdDate = yyyyMmDd(date);
+    const cleanHighlight = cleanedText(highlight, 180);
+    if (!yyyyMmDdDate || !cleanHighlight) return;
+    const key = `${yyyyMmDdDate}|${cleanHighlight}`;
+    if (seen.has(key)) return;
+    seen.add(key);
+    items.push({
+      date: yyyyMmDdDate,
+      highlight: cleanHighlight,
+      importance: importance || "medium"
+    });
+  }
+
+  if (
+    recentConversionName &&
+    recentConversionDate &&
+    isRecentIso(recentConversionDate, SUMMARY_ACTIVITY_WINDOW_DAYS)
+  ) {
+    const conversionSummary =
+      describeRecentConversion(recentConversionName) ||
+      `Recent conversion - ${redactInlineText(recentConversionName)}.`;
+    pushItem(recentConversionDate, conversionSummary, "medium");
+  }
+
+  const pageviews = Array.isArray(
+    analyticsBehavior?.webActivity?.recentPageviews
+  )
+    ? analyticsBehavior.webActivity.recentPageviews
+    : [];
+  for (const pv of pageviews
+    .filter((item) =>
+      isRecentIso(item?.occurredAt, SUMMARY_ACTIVITY_WINDOW_DAYS)
+    )
+    .slice(0, 4)) {
+    const label = labelFromPath(pv?.path);
+    if (!label) continue;
+    pushItem(
+      pv?.occurredAt,
+      `Visited the "${label}" page.`,
+      analyticsBehavior?.webActivity?.recentSignals ? "medium" : "low"
+    );
+  }
+
+  const actions = Array.isArray(analyticsBehavior?.webActivity?.recentActions)
+    ? analyticsBehavior.webActivity.recentActions
+    : [];
+  for (const action of actions
+    .filter((item) =>
+      isRecentIso(item?.occurredAt, SUMMARY_ACTIVITY_WINDOW_DAYS)
+    )
+    .slice(0, 3)) {
+    const actionHighlight = buildAnalyticsActionHighlight(action);
+    if (!actionHighlight) continue;
+    pushItem(
+      action?.occurredAt,
+      actionHighlight,
+      analyticsBehavior?.webActivity?.recentSignals ? "medium" : "low"
+    );
+  }
+
+  return items;
 }
 
 function buildCompanyRecentOpportunityContext({
@@ -659,7 +994,8 @@ function buildSalesNarrativeInput({
   productInterest,
   opportunityContext,
   analyticsBehavior,
-  websiteActivity
+  websiteActivity,
+  supplementalEngagementEvidence
 }) {
   const events = Array.isArray(historyEvents) ? historyEvents : [];
   const newestFirst = [...events].sort(
@@ -691,13 +1027,6 @@ function buildSalesNarrativeInput({
   const fitLooksGood = fitGateContact === false && fitGateAccount === false;
   const isThresholdMql = isThresholdLeadSource(mql?.Lead_Source__c);
   const isHandRaiserMql = isHandRaiserLeadSource(mql?.Lead_Source__c);
-
-  const engagementScore = contact?.HubSpot_Engagement_Score__c;
-  const engagementThreshold = contact?.HubSpot_Engagement_Score_Threshold__c;
-  const engagementThresholdMet =
-    Number.isFinite(Number(engagementScore)) &&
-    Number.isFinite(Number(engagementThreshold)) &&
-    Number(engagementScore) >= Number(engagementThreshold);
 
   const contactFitScore = contact?.HubSpot_Private_Sector_Contact_Fit__c;
   const contactFitThreshold = contact?.Contact_Fit_Threshold__c;
@@ -787,8 +1116,6 @@ function buildSalesNarrativeInput({
         behaviorScore,
         companyFitTier,
         contactFitTier,
-        engagementScore,
-        engagementThreshold,
         hasInboundRequest,
         recentConversionName,
         fitEvidence,
@@ -807,10 +1134,6 @@ function buildSalesNarrativeInput({
     keyReasons.push(
       `This MQL appears to be driven by ${cleanedText(mql.Lead_Source__c, 100)}, not by Lead scoring.`
     );
-  if (engagementThresholdMet)
-    keyReasons.push(
-      "Recent engagement adds supporting evidence that they are active right now."
-    );
   if (contactFitThresholdMet || contactFitIsTargetTier)
     keyReasons.push("Role and persona clues align with the fit criteria.");
   if (
@@ -819,7 +1142,7 @@ function buildSalesNarrativeInput({
     Number(behaviorScore) > 0
   )
     keyReasons.push(
-      "Behavior score is the visible driver behind this Lead scoring-created MQL."
+      "Recent activity was strong enough to qualify this contact through lead scoring."
     );
   if (recentConversionSummary) keyReasons.push(recentConversionSummary);
   if (companyRecentOpportunityContext?.hasRecentOpportunities === true) {
@@ -835,10 +1158,6 @@ function buildSalesNarrativeInput({
       );
     }
   }
-  if (analyticsBehavior?.emailEngagement?.recentSignals === true)
-    keyReasons.push(
-      "Recent marketing email engagement suggests active interest (opens/clicks)."
-    );
   if (analyticsBehavior?.webActivity?.recentSignals === true)
     keyReasons.push(
       "Recent on-site activity suggests they are actively researching relevant content."
@@ -873,15 +1192,9 @@ function buildSalesNarrativeInput({
         : contactFitTier === "Medium"
           ? "Moderate"
           : "Light");
-    const fitScoreText = Number(contactFitScore);
-    const fitThresholdText = Number.isFinite(Number(contactFitThreshold))
-      ? ` (threshold ${Number(contactFitThreshold)})`
-      : contactFitTier
-        ? ` (${contactFitTier} tier)`
-        : "";
     scoreSignals.push({
-      signal: "Fit score",
-      scoreText: `${fitScoreText}${fitThresholdText}`,
+      signal: "Fit",
+      scoreText: null,
       qualitative: fitBand,
       contributesToMql: isThresholdMql && contactFitQualifies,
       implication: contactFitQualifies
@@ -890,32 +1203,11 @@ function buildSalesNarrativeInput({
     });
   }
 
-  if (Number.isFinite(Number(engagementScore))) {
-    const engagementBand =
-      qualitativeFromThreshold({
-        score: engagementScore,
-        threshold: engagementThreshold
-      }) || intentStrength;
-    const engagementScoreText = Number(engagementScore);
-    const engagementThresholdText = Number.isFinite(Number(engagementThreshold))
-      ? ` (threshold ${Number(engagementThreshold)})`
-      : "";
-    scoreSignals.push({
-      signal: "Engagement score",
-      scoreText: `${engagementScoreText}${engagementThresholdText}`,
-      qualitative: engagementBand,
-      contributesToMql: false,
-      implication: engagementThresholdMet
-        ? "Recent activity is strong, but treat it as supporting context rather than the MQL trigger."
-        : "Engagement is building, so reference the strongest recent interactions to test urgency."
-    });
-  }
-
   if (Number.isFinite(Number(behaviorScore)) && Number(behaviorScore) > 0) {
     const b = Number(behaviorScore);
     scoreSignals.push({
-      signal: "Behavior score",
-      scoreText: String(b),
+      signal: "Behavior",
+      scoreText: null,
       qualitative: b >= 20 ? "Strong" : b >= 10 ? "Moderate" : "Light",
       contributesToMql: isThresholdMql,
       implication:
@@ -960,10 +1252,7 @@ function buildSalesNarrativeInput({
     }
   }
   for (const s of scoreSignals.filter((x) => x?.contributesToMql)) {
-    const scorePart = s.scoreText ? `Score ${s.scoreText}; ` : "";
-    scoreInterpretation.push(
-      `${s.signal}: ${scorePart}${s.qualitative}. ${s.implication}`
-    );
+    scoreInterpretation.push(`${s.signal}: ${s.qualitative}. ${s.implication}`);
   }
   for (const reason of thresholdExplanation?.supportingReasons || []) {
     scoreInterpretation.push(reason);
@@ -982,23 +1271,66 @@ function buildSalesNarrativeInput({
       highlight: buildSalesEventLabel(e),
       importance: e?.importance || null
     }))
-    .filter((e) => e.date && e.highlight)
-    .slice(0, 12);
+    .filter((e) => e.date && e.highlight);
+
+  for (const supplemental of buildAnalyticsRecentEngagement({
+    analyticsBehavior,
+    recentConversionName,
+    recentConversionDate
+  })) {
+    recentEngagement.push(supplemental);
+  }
+  for (const supplemental of buildSupplementalRecentEngagement({
+    supplementalEngagementEvidence
+  })) {
+    recentEngagement.push(supplemental);
+  }
+
+  recentEngagement.sort((a, b) => {
+    const dateDelta = Date.parse(b.date) - Date.parse(a.date);
+    if (dateDelta !== 0) return dateDelta;
+    const rank = { high: 3, medium: 2, low: 1 };
+    const importanceDelta =
+      (rank[b.importance] || 0) - (rank[a.importance] || 0);
+    if (importanceDelta !== 0) return importanceDelta;
+    return engagementSpecificityScore(b) - engagementSpecificityScore(a);
+  });
+  const seenRecentEngagement = new Set();
+  const dedupedRecentEngagement = [];
+  for (const item of recentEngagement) {
+    const key = `${item.date}|${item.highlight}`;
+    if (seenRecentEngagement.has(key)) continue;
+    seenRecentEngagement.add(key);
+    dedupedRecentEngagement.push(item);
+    if (dedupedRecentEngagement.length >= 12) break;
+  }
 
   // Add a sales-friendly website activity bullet when we have a timestamp.
   // This is often present in HubSpot even when Salesforce activity history is sparse.
   const websiteLast = websiteActivity?.lastVisitAt
     ? yyyyMmDd(websiteActivity.lastVisitAt)
     : null;
-  if (websiteLast && isRecentIso(websiteActivity.lastVisitAt, 30)) {
-    recentEngagement.push({
+  const hasSpecificResearchSignals = dedupedRecentEngagement.some((item) =>
+    /^(Visited the "|Clicked "|Opened "|Registered for ")/.test(
+      String(item?.highlight || "")
+    )
+  );
+  if (
+    websiteLast &&
+    isRecentIso(websiteActivity.lastVisitAt, 30) &&
+    !hasSpecificResearchSignals
+  ) {
+    dedupedRecentEngagement.push({
       date: websiteLast,
       highlight: "Website activity recorded in the last 30 days.",
       importance: "low"
     });
-    recentEngagement.sort((a, b) => Date.parse(b.date) - Date.parse(a.date));
+    dedupedRecentEngagement.sort(
+      (a, b) => Date.parse(b.date) - Date.parse(a.date)
+    );
     // Cap after inserting synthetic event so the output remains predictable.
-    if (recentEngagement.length > 12) recentEngagement.length = 12;
+    if (dedupedRecentEngagement.length > 12)
+      dedupedRecentEngagement.length = 12;
   }
 
   return compactObject({
@@ -1014,8 +1346,9 @@ function buildSalesNarrativeInput({
       companyRecent: companyRecentOpportunityContext
     }),
     analyticsBehavior:
-      analyticsBehavior && typeof analyticsBehavior === "object"
-        ? analyticsBehavior
+      analyticsBehavior?.webActivity &&
+      typeof analyticsBehavior.webActivity === "object"
+        ? { webActivity: analyticsBehavior.webActivity }
         : null,
     websiteActivity:
       websiteActivity && typeof websiteActivity === "object"
@@ -1058,7 +1391,13 @@ function buildSalesNarrativeInput({
     scoreSignals,
     keyReasons,
     scoreInterpretation,
-    recentEngagement
+    engagementThemes: collectEngagementThemes({
+      recentEngagement: dedupedRecentEngagement,
+      analyticsBehavior,
+      recentConversionName,
+      supplementalEngagementEvidence
+    }),
+    recentEngagement: dedupedRecentEngagement
   });
 }
 

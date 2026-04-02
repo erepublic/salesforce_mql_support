@@ -130,6 +130,26 @@ test("finalizeSalesSummaryHtml appends safe product/opportunity links and still 
   expect(v.ok).toBe(true);
 });
 
+test("finalizeSalesSummaryHtml closes dangling list tags before appending links", () => {
+  const base =
+    `<p><strong>Why Sales Should Care</strong></p><ul><li>A</li></ul>` +
+    `<p><strong>Score Interpretation</strong></p><ul><li>B</li></ul>` +
+    `<p><strong>Most Recent Engagement</strong></p><ul><li>2026-02-01 - A</li></ul>` +
+    `<p><strong>Suggested Next Step</strong></p><ul><li>Broken next step`;
+
+  const out = _internals.finalizeSalesSummaryHtml({
+    html: base,
+    instanceUrl: "https://example.my.salesforce.com",
+    mql: { Product__c: "01t14000005McabAAC", Product_Name__c: "Navigator" },
+    opportunities: [],
+    opportunityContactRoles: []
+  });
+
+  expect(out).toContain("</li></ul>\n<p><strong>Links</strong></p>");
+  const v = _internals.validateSalesFacingHtml(out);
+  expect(v.ok).toBe(true);
+});
+
 test("deterministic sales summary mentions product-interest when present", () => {
   const html = _internals.buildDeterministicSalesSummaryHtml({
     productInterest: {
@@ -151,7 +171,7 @@ test("deterministic sales summary mentions product-interest when present", () =>
   expect(v.ok).toBe(true);
 });
 
-test("deterministic sales summary renders qualifying score signals with numeric and value framing", () => {
+test("deterministic sales summary keeps score interpretation qualitative and suppresses engagement score", () => {
   const html = _internals.buildDeterministicSalesSummaryHtml({
     scoreSignals: [
       {
@@ -163,6 +183,13 @@ test("deterministic sales summary renders qualifying score signals with numeric 
           "Recent activity is high enough to justify timely outreach while intent is active."
       },
       {
+        signal: "Behavior",
+        qualitative: "Strong",
+        contributesToMql: true,
+        implication:
+          "Cumulative engagement indicates sustained interest, not a one-off interaction."
+      },
+      {
         signal: "Inbound request",
         qualitative: "Urgent",
         contributesToMql: true,
@@ -171,12 +198,21 @@ test("deterministic sales summary renders qualifying score signals with numeric 
       }
     ],
     scoreInterpretation: [],
-    fit: { concerns: [] },
+    fit: {
+      concerns: [],
+      looksGood: true,
+      companyTier: "High",
+      contactTier: "Medium"
+    },
+    intent: { strength: "Strong" },
     opportunity: { hasOpenOpportunity: false },
     recentEngagement: [{ date: "2026-02-12", highlight: "Inbound request" }]
   });
 
-  expect(html).toContain("Engagement score: Score 12 (threshold 10); Strong.");
+  expect(html).not.toContain("Engagement score");
+  expect(html).toContain("Fit: Strong.");
+  expect(html).toContain("Intent: Strong.");
+  expect(html).toContain("Behavior: Strong.");
   expect(html).toContain("Inbound request: Urgent.");
   const v = _internals.validateSalesFacingHtml(html);
   expect(v.ok).toBe(true);
@@ -185,11 +221,10 @@ test("deterministic sales summary renders qualifying score signals with numeric 
 test("deterministic sales summary includes threshold-path and fit-evidence explanations", () => {
   const html = _internals.buildDeterministicSalesSummaryHtml({
     thresholdExplanation: {
-      matchedRule: "Behavior 20+ with High company fit and Medium contact fit",
+      matchedRule:
+        "Behavior threshold with High company fit and Medium contact fit",
       summary:
-        "This record likely qualified through the fit-and-behavior rule because behavior score 22 cleared the 20-point cutoff for a high company-fit account and a medium contact-fit profile.",
-      behaviorScore: 22,
-      requiredBehaviorScore: 20,
+        "This record likely qualified through the fit-and-behavior rule because recent activity was strong enough for a high company-fit account and a medium contact-fit profile.",
       companyFitTier: "High",
       contactFitTier: "Medium",
       supportingReasons: [
@@ -207,18 +242,29 @@ test("deterministic sales summary includes threshold-path and fit-evidence expla
       }
     },
     mqlContext: {
+      qualificationMode: "threshold",
       explanationDetails: ["Attended pricing webinar"]
     },
     scoreSignals: [],
     scoreInterpretation: [],
-    fit: { concerns: [] },
+    fit: {
+      concerns: [],
+      looksGood: true,
+      companyTier: "High",
+      contactTier: "Medium"
+    },
     opportunity: { hasOpenOpportunity: false },
     recentEngagement: [{ date: "2026-02-12", highlight: "Inbound request" }]
   });
 
-  expect(html).toContain("fit-and-behavior rule because behavior score 22");
-  expect(html).toContain("Threshold path: Behavior 22 (cutoff 20); Qualified.");
-  expect(html).toContain("Their title suggests a marketing-oriented role");
+  expect(html).toContain("Fit: Strong.");
+  expect(html).toContain(
+    "Qualification source: This appears to be a lead-scoring MQL driven by sustained activity."
+  );
+  expect(html).toContain(
+    "Contact-fit evidence points to their title suggests a marketing-oriented role."
+  );
+  expect(html).not.toContain("Behavior 22");
   expect(html).toContain(
     "anchor the conversation on the trigger, request, or content interaction that qualified them"
   );
@@ -263,6 +309,33 @@ test("deterministic sales summary uses business issue, decision, and mutual-plan
   expect(v.ok).toBe(true);
 });
 
+test("deterministic sales summary uses engagement themes in next steps", () => {
+  const html = _internals.buildDeterministicSalesSummaryHtml({
+    engagementThemes: [
+      "procurement and RFP research",
+      "cybersecurity events and council programming"
+    ],
+    fit: { concerns: [] },
+    opportunity: { hasOpenOpportunity: false },
+    scoreInterpretation: [],
+    recentEngagement: [
+      {
+        date: "2026-03-29",
+        highlight: 'Visited the "City Manager Innovation Council" page.'
+      }
+    ]
+  });
+
+  expect(html).toContain(
+    "lead with their recent interest in procurement and RFP research and cybersecurity events and council programming"
+  );
+  expect(html).toContain(
+    "verify whether the recent procurement and RFP research and cybersecurity events and council programming activity maps to an active initiative"
+  );
+  const v = _internals.validateSalesFacingHtml(html);
+  expect(v.ok).toBe(true);
+});
+
 test("deterministic sales summary uses company context when present", () => {
   const html = _internals.buildDeterministicSalesSummaryHtml({
     companyContext: {
@@ -290,7 +363,7 @@ test("deterministic sales summary uses company context when present", () => {
 
   expect(html).toContain("Company background:");
   expect(html).toContain("Existing account footprint suggests");
-  expect(html).toContain("Commercial account context shows");
+  expect(html).toContain("<p><strong>Score Interpretation</strong></p>");
   expect(html).toContain(
     "position the outreach against the account&#39;s existing product footprint"
   );
@@ -360,17 +433,24 @@ test("OpenAI prompt builder embeds only compacted salesNarrativeInput", () => {
 
   expect(user).toContain("Most Recent Engagement");
   expect(user).toContain("newest-first");
-  expect(user).toContain("exact fit-and-behavior path reached");
+  expect(user).toContain("qualification path qualitatively");
   expect(user).toContain("fit attribution is partial");
   expect(user).toContain("current customer footprint");
   expect(user).toContain("department or interest-topic context");
   expect(user).toContain("recent company opportunity history");
   expect(user).toContain("active account motion");
   expect(user).toContain("Do not output more than 4 bullets");
-  expect(user).toContain("Prioritize the 4 most decision-useful score bullets");
+  expect(user).toContain("Prioritize the 4 most decision-useful bullets");
   expect(user).toContain("Business Issue / Value / Power / Plan flow");
   expect(user).toContain("mutual next meeting or checkpoint");
   expect(user).toContain("do not name the framework");
+  expect(user).toContain("Do not mention engagement score");
+  expect(user).toContain("Do not infer email engagement from analytics alone");
+  expect(user).toContain(
+    "Do not turn passive saved-search email receipts into engagement bullets"
+  );
+  expect(user).toContain("If engagement themes are present");
+  expect(user).not.toContain("email opens/clicks");
 
   // Guard against accidental raw field tokens in prompt input.
   expect(user).not.toMatch(/__c\b/);

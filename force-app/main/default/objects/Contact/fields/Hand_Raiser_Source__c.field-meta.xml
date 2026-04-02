@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Hand_Raiser_Source__c</fullName>
+    <description
+  >Optional transient source marker for explicit hand-raiser handoffs. Upstream systems set this before flipping Set_to_MQL__c so Salesforce can route non-threshold form submits through the hand-raiser path even when no Opportunity exists yet. Cleared by the trigger after processing.</description>
+    <externalId>false</externalId>
+    <label>Hand Raiser Source</label>
+    <length>40</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+</CustomField>

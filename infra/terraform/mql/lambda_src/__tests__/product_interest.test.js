@@ -3,7 +3,8 @@ const {
   extractUrlsFromText,
   sanitizeUrl,
   inferProductInterest,
-  buildEvidenceFromSalesLeadWebActivity
+  buildEvidenceFromSalesLeadWebActivity,
+  buildEvidenceFromHubspotContactProps
 } = require("../product_interest");
 
 test("extractUrlsFromText extracts http(s) URLs and strips query/hash", () => {
@@ -50,5 +51,29 @@ test("buildEvidenceFromSalesLeadWebActivity extracts multiple URL evidence entri
   expect(evidence.length).toBeGreaterThan(0);
   expect(evidence.some((e) => String(e.text).includes("govtech.com"))).toBe(
     true
+  );
+});
+
+test("buildEvidenceFromHubspotContactProps keeps timestamps on URL evidence", () => {
+  const evidence = buildEvidenceFromHubspotContactProps({
+    hs_analytics_first_url:
+      "https://example.com/articles/city-manager-innovation-council?x=1",
+    hs_analytics_first_timestamp: "2026-03-01T12:00:00Z",
+    hs_analytics_last_url:
+      "https://example.com/cybersecurity/2026-cybersecurity-events",
+    hs_analytics_last_timestamp: "2026-04-01T08:00:00Z"
+  });
+
+  expect(evidence).toEqual(
+    expect.arrayContaining([
+      expect.objectContaining({
+        category: "url",
+        occurredAt: "2026-03-01T12:00:00Z"
+      }),
+      expect.objectContaining({
+        category: "url",
+        occurredAt: "2026-04-01T08:00:00Z"
+      })
+    ])
   );
 });

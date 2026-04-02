@@ -43,6 +43,15 @@ private class ContactSetToMqlTriggerHandlerTest {
     return p;
   }
 
+  private static Product2 createHandRaiserProduct() {
+    Product2 p = new Product2(
+      Name = 'Hand Raiser Product ' + System.now(),
+      IsActive = false
+    );
+    insert p;
+    return p;
+  }
+
   @isTest
   static void createsMqlWhenSetToMqlFlipsTrueOnUpdate() {
     setupCalloutMock();
@@ -228,6 +237,7 @@ private class ContactSetToMqlTriggerHandlerTest {
     setupCalloutMock();
     Account a = new Account(Name = 'Hand Raiser Test Account');
     insert a;
+    Product2 product = createHandRaiserProduct();
 
     Opportunity opp = new Opportunity(
       Name = 'Hand Raiser Opp',
@@ -244,7 +254,8 @@ private class ContactSetToMqlTriggerHandlerTest {
         '@example.com',
       AccountId = a.Id,
       Set_to_MQL__c = false,
-      Hand_Raiser_Opportunity_Id__c = opp.Id
+      Hand_Raiser_Opportunity_Id__c = opp.Id,
+      Hand_Raiser_Product_Id__c = product.Id
     );
     insert c;
 
@@ -254,7 +265,13 @@ private class ContactSetToMqlTriggerHandlerTest {
     Test.stopTest();
 
     List<MQL__c> mqls = [
-      SELECT Id, Lead_Source__c, Opportunity__c, MQL_Status__c, MQL_Date__c
+      SELECT
+        Id,
+        Lead_Source__c,
+        Opportunity__c,
+        MQL_Status__c,
+        MQL_Date__c,
+        Product__c
       FROM MQL__c
       WHERE Contact__c = :c.Id
     ];
@@ -264,7 +281,7 @@ private class ContactSetToMqlTriggerHandlerTest {
       'Expected one MQL for hand-raiser contact'
     );
     System.assertEquals(
-      ContactSetToMqlTriggerHandler.HAND_RAISER_LEAD_SOURCE,
+      ContactSetToMqlTriggerHandler.EVENTS_PORTAL_LEAD_SOURCE,
       mqls[0].Lead_Source__c,
       'Expected Events Portal lead source for hand raiser'
     );
@@ -274,13 +291,21 @@ private class ContactSetToMqlTriggerHandlerTest {
       'Expected linked Opportunity on hand-raiser MQL'
     );
     System.assertEquals(
+      product.Id,
+      mqls[0].Product__c,
+      'Expected hand-raiser product to be copied onto the MQL'
+    );
+    System.assertEquals(
       ContactSetToMqlTriggerHandler.NEW_STATUS,
       mqls[0].MQL_Status__c
     );
     System.assertEquals(Date.today(), mqls[0].MQL_Date__c);
 
     Contact refreshed = [
-      SELECT Set_to_MQL__c, Hand_Raiser_Opportunity_Id__c
+      SELECT
+        Set_to_MQL__c,
+        Hand_Raiser_Opportunity_Id__c,
+        Hand_Raiser_Product_Id__c
       FROM Contact
       WHERE Id = :c.Id
     ];
@@ -294,6 +319,11 @@ private class ContactSetToMqlTriggerHandlerTest {
       refreshed.Hand_Raiser_Opportunity_Id__c,
       'Expected Hand_Raiser_Opportunity_Id__c to be cleared after processing'
     );
+    System.assertEquals(
+      null,
+      refreshed.Hand_Raiser_Product_Id__c,
+      'Expected Hand_Raiser_Product_Id__c to be cleared after processing'
+    );
   }
 
   // ---- Route A: Portal created a new Opp (Hand_Raiser_Opp_Is_New__c = true) ----
@@ -303,6 +333,7 @@ private class ContactSetToMqlTriggerHandlerTest {
     setupCalloutMock();
     Account a = new Account(Name = 'Route A Test Account');
     insert a;
+    Product2 product = createHandRaiserProduct();
 
     Opportunity opp = new Opportunity(
       Name = 'Route A Opp',
@@ -320,6 +351,7 @@ private class ContactSetToMqlTriggerHandlerTest {
       AccountId = a.Id,
       Set_to_MQL__c = false,
       Hand_Raiser_Opportunity_Id__c = opp.Id,
+      Hand_Raiser_Product_Id__c = product.Id,
       Hand_Raiser_Opp_Is_New__c = true
     );
     insert c;
@@ -335,6 +367,7 @@ private class ContactSetToMqlTriggerHandlerTest {
         Lead_Source__c,
         MQL_Status__c,
         Opportunity__c,
+        Product__c,
         Conversion_Type__c,
         Conversion_Date__c,
         Converted_By__c
@@ -343,7 +376,7 @@ private class ContactSetToMqlTriggerHandlerTest {
     ];
     System.assertEquals(1, mqls.size(), 'Expected one MQL for Route A contact');
     System.assertEquals(
-      ContactSetToMqlTriggerHandler.HAND_RAISER_LEAD_SOURCE,
+      ContactSetToMqlTriggerHandler.EVENTS_PORTAL_LEAD_SOURCE,
       mqls[0].Lead_Source__c,
       'Expected Events Portal lead source'
     );
@@ -356,6 +389,11 @@ private class ContactSetToMqlTriggerHandlerTest {
       opp.Id,
       mqls[0].Opportunity__c,
       'Expected linked Opportunity'
+    );
+    System.assertEquals(
+      product.Id,
+      mqls[0].Product__c,
+      'Expected Route A to preserve the explicit product on the MQL'
     );
     System.assertEquals(
       ContactSetToMqlTriggerHandler.CONVERSION_TYPE_NEW_OPP,
@@ -377,12 +415,14 @@ private class ContactSetToMqlTriggerHandlerTest {
       SELECT
         Set_to_MQL__c,
         Hand_Raiser_Opportunity_Id__c,
+        Hand_Raiser_Product_Id__c,
         Hand_Raiser_Opp_Is_New__c
       FROM Contact
       WHERE Id = :c.Id
     ];
     System.assertEquals(false, refreshed.Set_to_MQL__c);
     System.assertEquals(null, refreshed.Hand_Raiser_Opportunity_Id__c);
+    System.assertEquals(null, refreshed.Hand_Raiser_Product_Id__c);
     System.assertEquals(
       false,
       refreshed.Hand_Raiser_Opp_Is_New__c,
@@ -446,6 +486,176 @@ private class ContactSetToMqlTriggerHandlerTest {
     );
   }
 
+  @isTest
+  static void ef3HandRaiserWithoutOppBypassesThresholdPath() {
+    setupCalloutMock();
+    createThresholdProduct();
+    Product2 handRaiserProduct = createHandRaiserProduct();
+    Contact c = createContact(false);
+
+    Test.startTest();
+    c.Set_to_MQL__c = true;
+    c.Hand_Raiser_Source__c = ContactSetToMqlTriggerHandler.CMS_HAND_RAISER_SOURCE;
+    c.Hand_Raiser_Product_Id__c = handRaiserProduct.Id;
+    update c;
+    Test.stopTest();
+
+    List<MQL__c> mqls = [
+      SELECT Id, Lead_Source__c, MQL_Status__c, Opportunity__c, Product__c
+      FROM MQL__c
+      WHERE Contact__c = :c.Id
+    ];
+    System.assertEquals(1, mqls.size(), 'Expected one EF3 hand-raiser MQL');
+    System.assertEquals(
+      ContactSetToMqlTriggerHandler.CMS_HAND_RAISER_LEAD_SOURCE,
+      mqls[0].Lead_Source__c,
+      'Expected EF3 hand-raisers to map to Submitted a Form'
+    );
+    System.assertEquals(
+      ContactSetToMqlTriggerHandler.NEW_STATUS,
+      mqls[0].MQL_Status__c,
+      'Mql-only EF3 hand-raisers should enter as New'
+    );
+    System.assertEquals(
+      null,
+      mqls[0].Opportunity__c,
+      'Mql-only EF3 hand-raisers should not require an Opportunity'
+    );
+    System.assertEquals(
+      handRaiserProduct.Id,
+      mqls[0].Product__c,
+      'EF3 hand-raisers should use the explicit product instead of the threshold product'
+    );
+
+    Contact refreshed = [
+      SELECT Set_to_MQL__c, Hand_Raiser_Source__c, Hand_Raiser_Product_Id__c
+      FROM Contact
+      WHERE Id = :c.Id
+    ];
+    System.assertEquals(false, refreshed.Set_to_MQL__c);
+    System.assertEquals(
+      null,
+      refreshed.Hand_Raiser_Source__c,
+      'Expected Hand_Raiser_Source__c to be cleared after processing'
+    );
+    System.assertEquals(null, refreshed.Hand_Raiser_Product_Id__c);
+  }
+
+  @isTest
+  static void productOnlyHandRaiserBypassesThresholdPath() {
+    setupCalloutMock();
+    createThresholdProduct();
+    Product2 handRaiserProduct = createHandRaiserProduct();
+    Contact c = createContact(false);
+
+    Test.startTest();
+    c.Set_to_MQL__c = true;
+    c.Hand_Raiser_Product_Id__c = handRaiserProduct.Id;
+    update c;
+    Test.stopTest();
+
+    List<MQL__c> mqls = [
+      SELECT Id, Lead_Source__c, MQL_Status__c, Opportunity__c, Product__c
+      FROM MQL__c
+      WHERE Contact__c = :c.Id
+    ];
+    System.assertEquals(
+      1,
+      mqls.size(),
+      'Expected one product-only hand-raiser MQL'
+    );
+    System.assertEquals(
+      ContactSetToMqlTriggerHandler.EVENTS_PORTAL_LEAD_SOURCE,
+      mqls[0].Lead_Source__c,
+      'A product-only hand raiser should still follow the Events Portal path'
+    );
+    System.assertEquals(
+      ContactSetToMqlTriggerHandler.NEW_STATUS,
+      mqls[0].MQL_Status__c
+    );
+    System.assertEquals(null, mqls[0].Opportunity__c);
+    System.assertEquals(
+      handRaiserProduct.Id,
+      mqls[0].Product__c,
+      'Expected product-only hand raisers to populate Product__c'
+    );
+
+    Contact refreshed = [
+      SELECT Set_to_MQL__c, Hand_Raiser_Product_Id__c
+      FROM Contact
+      WHERE Id = :c.Id
+    ];
+    System.assertEquals(false, refreshed.Set_to_MQL__c);
+    System.assertEquals(
+      null,
+      refreshed.Hand_Raiser_Product_Id__c,
+      'Expected Hand_Raiser_Product_Id__c to be cleared after processing'
+    );
+  }
+
+  @isTest
+  static void ef3HandRaiserWithOppUsesSubmittedAFormLeadSource() {
+    setupCalloutMock();
+    Account a = new Account(Name = 'EF3 Dual Write Test Account');
+    insert a;
+
+    Opportunity opp = new Opportunity(
+      Name = 'EF3 Dual Write Opp',
+      AccountId = a.Id,
+      StageName = 'Prospecting',
+      CloseDate = Date.today().addDays(30)
+    );
+    insert opp;
+
+    Contact c = new Contact(
+      LastName = 'EF3 Dual Write',
+      Email = 'ef3.dual.write.' +
+        String.valueOf(Crypto.getRandomInteger()) +
+        '@example.com',
+      AccountId = a.Id,
+      Set_to_MQL__c = false,
+      Hand_Raiser_Source__c = ContactSetToMqlTriggerHandler.CMS_HAND_RAISER_SOURCE,
+      Hand_Raiser_Opportunity_Id__c = opp.Id
+    );
+    insert c;
+
+    Test.startTest();
+    c.Set_to_MQL__c = true;
+    update c;
+    Test.stopTest();
+
+    List<MQL__c> mqls = [
+      SELECT Id, Lead_Source__c, MQL_Status__c, Opportunity__c
+      FROM MQL__c
+      WHERE Contact__c = :c.Id
+    ];
+    System.assertEquals(1, mqls.size(), 'Expected one EF3 dual-write MQL');
+    System.assertEquals(
+      ContactSetToMqlTriggerHandler.CMS_HAND_RAISER_LEAD_SOURCE,
+      mqls[0].Lead_Source__c,
+      'Expected EF3 dual-write MQL to use Submitted a Form'
+    );
+    System.assertEquals(
+      ContactSetToMqlTriggerHandler.NEW_STATUS,
+      mqls[0].MQL_Status__c,
+      'Existing/reused opp hand-raisers should remain New'
+    );
+    System.assertEquals(
+      opp.Id,
+      mqls[0].Opportunity__c,
+      'Expected EF3 dual-write path to preserve the linked Opportunity'
+    );
+
+    Contact refreshed = [
+      SELECT Set_to_MQL__c, Hand_Raiser_Source__c, Hand_Raiser_Opportunity_Id__c
+      FROM Contact
+      WHERE Id = :c.Id
+    ];
+    System.assertEquals(false, refreshed.Set_to_MQL__c);
+    System.assertEquals(null, refreshed.Hand_Raiser_Source__c);
+    System.assertEquals(null, refreshed.Hand_Raiser_Opportunity_Id__c);
+  }
+
   // ---- Existing hand-raiser tests kept below ----
 
   @isTest
@@ -491,7 +701,7 @@ private class ContactSetToMqlTriggerHandlerTest {
       FROM MQL__c
       WHERE
         Contact__c = :c.Id
-        AND Lead_Source__c = :ContactSetToMqlTriggerHandler.HAND_RAISER_LEAD_SOURCE
+        AND Lead_Source__c = :ContactSetToMqlTriggerHandler.EVENTS_PORTAL_LEAD_SOURCE
     ];
     System.assertEquals(
       1,
