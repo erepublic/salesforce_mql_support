@@ -41,7 +41,7 @@ const {
   getHubspotToken,
   getHubspotBaseUrl,
   searchContactIdByEmail,
-  getContactProperties
+  getContactRecord
 } = require("./hubspot_client");
 const {
   getAnalyticsDbConfig,
@@ -71,6 +71,8 @@ function safeJsonParse(s) {
 function nowIso() {
   return new Date().toISOString();
 }
+
+const INITIAL_MQL_ALERT_SEND_FIELD = "Initial_MQL_Alert_Send__c";
 
 function toIsoDateTime(value) {
   if (!value) return null;
@@ -103,6 +105,69 @@ function toIsoFromHubspotTimestamp(value) {
 function safeInt(v) {
   const n = Number(v);
   return Number.isFinite(n) ? Math.floor(n) : null;
+}
+
+function pathFromMaybeUrl(value) {
+  const raw = String(value || "").trim();
+  if (!raw) return null;
+  try {
+    return new URL(raw).pathname || raw;
+  } catch {
+    const match = raw.match(/^[a-z]+:\/\/[^/]+(\/.*)$/i);
+    return match?.[1] || raw;
+  }
+}
+
+function extractHubspotPageHistory(hubspotContactRecord) {
+  const versions = Array.isArray(
+    hubspotContactRecord?.propertiesWithHistory?.hs_analytics_last_url
+  )
+    ? hubspotContactRecord.propertiesWithHistory.hs_analytics_last_url
+    : [];
+  const currentUrl = hubspotContactRecord?.properties?.hs_analytics_last_url;
+  const currentTimestamp =
+    hubspotContactRecord?.properties?.hs_analytics_last_timestamp;
+  const items = [];
+  const seen = new Set();
+
+  const candidates = [
+    ...versions,
+    currentUrl && currentTimestamp
+      ? [
+          {
+            value: currentUrl,
+            timestamp: currentTimestamp,
+            sourceType: "ANALYTICS"
+          }
+        ]
+      : []
+  ]
+    .filter(Boolean)
+    .sort((a, b) => {
+      const aTime = Date.parse(a?.timestamp || a?.updatedAt || 0);
+      const bTime = Date.parse(b?.timestamp || b?.updatedAt || 0);
+      return bTime - aTime;
+    });
+
+  for (const version of candidates) {
+    const occurredAt = toIsoFromHubspotTimestamp(
+      version?.timestamp || version?.updatedAt
+    );
+    const path = pathFromMaybeUrl(version?.value);
+    if (!occurredAt || !path) continue;
+    const key = `${occurredAt}|${path}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    items.push({
+      occurredAt,
+      path,
+      source: "hubspot",
+      sourceType: version?.sourceType || null
+    });
+    if (items.length >= 24) break;
+  }
+
+  return items;
 }
 
 function opportunityAmountBand(amount) {
@@ -1168,18 +1233,20 @@ async function sfUpdateMqlSummary({
   accessToken,
   apiVersion,
   mqlId,
-  summaryHtml
+  summaryHtml,
+  mql
 }) {
   const url = `${instanceUrl}/services/data/v${apiVersion}/sobjects/MQL__c/${encodeURIComponent(
     mqlId
   )}`;
+  const payload = buildMqlSummaryUpdatePayload({ summaryHtml, mql });
   const resp = await fetch(url, {
     method: "PATCH",
     headers: {
       authorization: `Bearer ${accessToken}`,
       "content-type": "application/json"
     },
-    body: JSON.stringify({ Engagement_AI_Summary__c: summaryHtml })
+    body: JSON.stringify(payload)
   });
   const text = await resp.text();
   // PATCH often returns 204 with no body.
@@ -1188,6 +1255,17 @@ async function sfUpdateMqlSummary({
       `Salesforce summary update failed: ${resp.status}: ${text.slice(0, 2000)}`
     );
   }
+}
+
+function buildMqlSummaryUpdatePayload({ summaryHtml, mql }) {
+  const payload = { Engagement_AI_Summary__c: summaryHtml };
+  const hasInitialAlertSendField =
+    !!mql &&
+    Object.prototype.hasOwnProperty.call(mql, INITIAL_MQL_ALERT_SEND_FIELD);
+  if (hasInitialAlertSendField && !mql?.[INITIAL_MQL_ALERT_SEND_FIELD]) {
+    payload[INITIAL_MQL_ALERT_SEND_FIELD] = nowIso();
+  }
+  return payload;
 }
 
 async function invokeAsyncWorker({ event, body, env, mqlId }) {
@@ -2096,7 +2174,8 @@ exports.handler = async function handler(event) {
         accessToken: sfAuth.accessToken,
         apiVersion,
         mqlId,
-        summaryHtml: summaryToWrite
+        summaryHtml: summaryToWrite,
+        mql
       });
       meta.salesforceCallback = {
         ok: true,
@@ -2514,6 +2593,8 @@ exports.handler = async function handler(event) {
     // - Salesforce: Sales_Lead__c web activity summaries (if present)
     // - HubSpot: lightweight contact property snapshot (URLs, campaign/conversion props)
     let hubspotContactProps = null;
+    let hubspotPageHistory = [];
+    let hubspotEmailEngagement = null;
     let hubspotResolvedContactId = null;
     let websiteActivity = null;
     if (hsSecret && contact?.Email) {
@@ -2536,7 +2617,7 @@ exports.handler = async function handler(event) {
           }));
         if (resolvedId) {
           hubspotResolvedContactId = String(resolvedId);
-          hubspotContactProps = await getContactProperties({
+          const hubspotContactRecord = await getContactRecord({
             token,
             baseUrl,
             hsContactId: resolvedId,
@@ -2560,10 +2641,41 @@ exports.handler = async function handler(event) {
               "utm_campaign",
               "utm_source",
               "utm_medium",
+              "hs_email_click",
+              "hs_email_first_click_date",
+              "hs_email_last_click_date",
+              "hs_email_last_email_name",
+              "hs_email_sends_since_last_engagement",
               "first_conversion_event_name",
               "recent_conversion_event_name"
+            ],
+            propertiesWithHistory: [
+              "hs_analytics_last_url",
+              "hs_analytics_num_page_views",
+              "hs_analytics_num_visits"
             ]
           });
+          hubspotContactProps = hubspotContactRecord?.properties || null;
+          hubspotPageHistory = extractHubspotPageHistory(hubspotContactRecord);
+          hubspotEmailEngagement =
+            hubspotContactProps && typeof hubspotContactProps === "object"
+              ? compactObject({
+                  totalClicks: safeInt(hubspotContactProps.hs_email_click),
+                  firstClickAt: toIsoDateTime(
+                    hubspotContactProps.hs_email_first_click_date
+                  ),
+                  lastClickAt: toIsoDateTime(
+                    hubspotContactProps.hs_email_last_click_date
+                  ),
+                  lastEmailName:
+                    String(
+                      hubspotContactProps.hs_email_last_email_name || ""
+                    ).trim() || null,
+                  sendsSinceLastEngagement: safeInt(
+                    hubspotContactProps.hs_email_sends_since_last_engagement
+                  )
+                })
+              : null;
 
           // Map HubSpot website activity into sales-facing, system-agnostic fields.
           if (hubspotContactProps && typeof hubspotContactProps === "object") {
@@ -2747,6 +2859,8 @@ exports.handler = async function handler(event) {
       productInterest,
       opportunityContext,
       analyticsBehavior,
+      hubspotPageHistory,
+      hubspotEmailEngagement,
       websiteActivity,
       supplementalEngagementEvidence
     });
@@ -3015,6 +3129,7 @@ exports.handler = async function handler(event) {
 // Expose a small surface for unit tests (kept out of the summary output).
 exports._internals = {
   buildHistoryEventsPreview,
+  buildMqlSummaryUpdatePayload,
   sanitizeHtmlForSalesforceField,
   validateSalesFacingHtml,
   buildDeterministicSalesSummaryHtml,

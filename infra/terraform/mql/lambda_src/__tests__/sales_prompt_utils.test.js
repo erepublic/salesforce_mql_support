@@ -271,6 +271,67 @@ test("buildSalesNarrativeInput does not turn analytics email activity into selle
   ).toBe(false);
 });
 
+test("buildSalesNarrativeInput uses HubSpot marketing email clicks as dated engagement items", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: {
+      Private_Sector_Non_Qual__c: false
+    },
+    account: {
+      Private_Sector_Non_Qual__c: false
+    },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    hubspotEmailEngagement: {
+      lastClickAt: "2026-03-31T16:07:10.000Z",
+      lastEmailName:
+        "Marketing|GT|Event Sponsorship|HTML|2026.04.01|GT26 - Competitor of Customers (ISAC)"
+    }
+  });
+
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        "Clicked a govtech event sponsorship marketing email."
+      )
+    )
+  ).toBe(true);
+  expect(
+    out.recentEngagement.some((item) => item.highlight.includes("Opened"))
+  ).toBe(false);
+});
+
+test("buildSalesNarrativeInput falls back to a generic HubSpot click bullet when no email name is available", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: {
+      Private_Sector_Non_Qual__c: false
+    },
+    account: {
+      Private_Sector_Non_Qual__c: false
+    },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    hubspotEmailEngagement: {
+      lastClickAt: "2026-03-31T16:07:10.000Z"
+    }
+  });
+
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes("Clicked a HubSpot marketing email.")
+    )
+  ).toBe(true);
+});
+
 test("buildSalesNarrativeInput includes compact company context for seller-facing enrichment", () => {
   const out = buildSalesNarrativeInput({
     mql: {
@@ -550,6 +611,145 @@ test("buildSalesNarrativeInput uses supplemental web evidence when analytics pag
       "cybersecurity events and council programming"
     ])
   );
+});
+
+test("buildSalesNarrativeInput turns HubSpot URL history into preferred recent engagement bullets", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: { Private_Sector_Non_Qual__c: false },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    hubspotPageHistory: [
+      {
+        occurredAt: "2026-03-31T12:00:00.000Z",
+        path: "https://insider.govtech.com/california/authenticate/login?redirectUrl=https%3A%2F%2Finsider.govtech.com%2Fcalifornia%2Fnews%2Fsomething"
+      },
+      {
+        occurredAt: "2026-03-30T12:00:00.000Z",
+        path: "https://content.erepublic.com/events/city-manager-innovation-council?utm_source=hs_email"
+      },
+      {
+        occurredAt: "2026-03-29T12:00:00.000Z",
+        path: "https://content.erepublic.com/cybersecurity/2026-cybersecurity-events"
+      }
+    ],
+    analyticsBehavior: {
+      webActivity: {
+        recentSignals: true,
+        recentPageviews: [
+          {
+            occurredAt: "2026-03-31T12:00:00.000Z",
+            path: "/opportunities/rfp"
+          }
+        ],
+        recentActions: [
+          {
+            occurredAt: "2026-03-31T11:00:00.000Z",
+            action: "registration.submit",
+            value: "Fallback webinar"
+          }
+        ]
+      }
+    }
+  });
+
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        'Visited the "City Manager Innovation Council" page.'
+      )
+    )
+  ).toBe(true);
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes('Visited the "2026 Cybersecurity Events" page.')
+    )
+  ).toBe(true);
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes('Visited the "RFP Opportunity" page.')
+    )
+  ).toBe(false);
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes('Registered for "Fallback webinar".')
+    )
+  ).toBe(false);
+});
+
+test("buildSalesNarrativeInput prefers HubSpot email clicks and suppresses analytics email click bullets", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: { Private_Sector_Non_Qual__c: false },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    hubspotPageHistory: [
+      {
+        occurredAt: "2026-03-30T12:00:00.000Z",
+        path: "https://content.erepublic.com/events/city-manager-innovation-council"
+      }
+    ],
+    hubspotEmailEngagement: {
+      lastClickAt: "2026-03-31T12:00:00.000Z",
+      lastEmailName:
+        "News|GT|Artificial Intelligence|HTML|2026.04.02|Janet House Ad"
+    },
+    analyticsBehavior: {
+      webActivity: {
+        recentSignals: true,
+        recentPageviews: [
+          {
+            occurredAt: "2026-03-31T12:02:00.000Z",
+            path: "/content/opportunities/rfp/1657653",
+            utm: { medium: "email" }
+          }
+        ],
+        recentActions: []
+      },
+      emailEngagement: {
+        recentSignals: true,
+        recentMailEvents: [
+          {
+            occurredAt: "2026-03-31T12:00:00.000Z",
+            event: "clicked"
+          }
+        ],
+        recentEventPortalEmailEvents: []
+      }
+    }
+  });
+
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        'Visited the "City Manager Innovation Council" page.'
+      )
+    )
+  ).toBe(true);
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        "Clicked a govtech artificial intelligence marketing email."
+      )
+    )
+  ).toBe(true);
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        'Clicked through to the "RFP Opportunity" page from an email.'
+      )
+    )
+  ).toBe(false);
 });
 
 test("buildSalesNarrativeInput turns numeric opportunity paths into usable engagement labels", () => {

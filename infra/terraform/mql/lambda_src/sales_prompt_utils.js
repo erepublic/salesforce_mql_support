@@ -836,10 +836,101 @@ function buildSupplementalRecentEngagement({ supplementalEngagementEvidence }) {
   return items;
 }
 
+function buildHubspotRecentEngagement({ hubspotPageHistory }) {
+  const items = [];
+  const seen = new Set();
+  for (const item of Array.isArray(hubspotPageHistory)
+    ? hubspotPageHistory
+    : []) {
+    if (!isRecentIso(item?.occurredAt, SUMMARY_ACTIVITY_WINDOW_DAYS)) continue;
+    const label = labelFromPath(item?.path);
+    const date = yyyyMmDd(item?.occurredAt);
+    if (!date || !label) continue;
+    const key = `${date}|${label}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    items.push({
+      date,
+      highlight: `Visited the "${label}" page.`,
+      importance: "high",
+      source: "hubspot"
+    });
+    if (items.length >= 6) break;
+  }
+  return items;
+}
+
+function normalizeHubspotEmailSegment(segment) {
+  const raw = cleanedText(segment, 120);
+  if (!raw) return null;
+  const replaced = raw
+    .replace(/\bGT\b/gi, "GovTech")
+    .replace(/\bAI\b/gi, "Artificial Intelligence")
+    .replace(/\bCDE\b/gi, "Center for Digital Education")
+    .replace(/\bCDG\b/gi, "Center for Digital Government");
+  const words = replaced
+    .split(/\s+/)
+    .map((word) => {
+      if (/^(GovTech|AI)$/i.test(word)) return word;
+      if (/^Artificial$/i.test(word)) return "Artificial";
+      if (/^Intelligence$/i.test(word)) return "Intelligence";
+      return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
+    })
+    .join(" ");
+  return cleanedText(words, 120);
+}
+
+function labelFromHubspotEmailName(name) {
+  const raw = cleanedText(name, 160);
+  if (!raw) return null;
+  const segments = raw
+    .split("|")
+    .map((part) => cleanedText(part, 120))
+    .filter(Boolean);
+  if (!segments.length) return raw;
+  const generic = new Set(["marketing", "news", "newsletter", "html", "text"]);
+  const preferredSegments = segments
+    .filter(
+      (segment) =>
+        !generic.has(segment.toLowerCase()) &&
+        !/^\d{4}\.\d{2}\.\d{2}$/i.test(segment) &&
+        !/^\d{1,2}:\d{2}(am|pm)?$/i.test(segment) &&
+        !/^gt\d+\b/i.test(segment) &&
+        !/\bhouse ad\b/i.test(segment)
+    )
+    .map((segment) => normalizeHubspotEmailSegment(segment))
+    .filter(Boolean);
+  const uniqueSegments = Array.from(new Set(preferredSegments));
+  if (!uniqueSegments.length) return null;
+  if (uniqueSegments.length === 1) return uniqueSegments[0];
+  return `${uniqueSegments[0]} ${uniqueSegments[1]}`.trim();
+}
+
+function buildHubspotEmailRecentEngagement({ hubspotEmailEngagement }) {
+  const lastClickAt = hubspotEmailEngagement?.lastClickAt || null;
+  if (!isRecentIso(lastClickAt, SUMMARY_ACTIVITY_WINDOW_DAYS)) return [];
+  const date = yyyyMmDd(lastClickAt);
+  if (!date) return [];
+  const emailLabel = labelFromHubspotEmailName(
+    hubspotEmailEngagement?.lastEmailName
+  );
+  return [
+    {
+      date,
+      highlight: emailLabel
+        ? `Clicked a ${emailLabel.toLowerCase()} marketing email.`
+        : "Clicked a HubSpot marketing email.",
+      importance: "high",
+      source: "hubspot"
+    }
+  ];
+}
+
 function buildAnalyticsRecentEngagement({
   analyticsBehavior,
   recentConversionName,
-  recentConversionDate
+  recentConversionDate,
+  suppressWebActivityHighlights
 }) {
   const items = [];
   const seen = new Set();
@@ -854,7 +945,8 @@ function buildAnalyticsRecentEngagement({
     items.push({
       date: yyyyMmDdDate,
       highlight: cleanHighlight,
-      importance: importance || "medium"
+      importance: importance || "medium",
+      source: "analytics"
     });
   }
 
@@ -874,35 +966,37 @@ function buildAnalyticsRecentEngagement({
   )
     ? analyticsBehavior.webActivity.recentPageviews
     : [];
-  for (const pv of pageviews
-    .filter((item) =>
-      isRecentIso(item?.occurredAt, SUMMARY_ACTIVITY_WINDOW_DAYS)
-    )
-    .slice(0, 4)) {
-    const label = labelFromPath(pv?.path);
-    if (!label) continue;
-    pushItem(
-      pv?.occurredAt,
-      `Visited the "${label}" page.`,
-      analyticsBehavior?.webActivity?.recentSignals ? "medium" : "low"
-    );
-  }
-
   const actions = Array.isArray(analyticsBehavior?.webActivity?.recentActions)
     ? analyticsBehavior.webActivity.recentActions
     : [];
-  for (const action of actions
-    .filter((item) =>
-      isRecentIso(item?.occurredAt, SUMMARY_ACTIVITY_WINDOW_DAYS)
-    )
-    .slice(0, 3)) {
-    const actionHighlight = buildAnalyticsActionHighlight(action);
-    if (!actionHighlight) continue;
-    pushItem(
-      action?.occurredAt,
-      actionHighlight,
-      analyticsBehavior?.webActivity?.recentSignals ? "medium" : "low"
-    );
+  if (!suppressWebActivityHighlights) {
+    for (const pv of pageviews
+      .filter((item) =>
+        isRecentIso(item?.occurredAt, SUMMARY_ACTIVITY_WINDOW_DAYS)
+      )
+      .slice(0, 4)) {
+      const label = labelFromPath(pv?.path);
+      if (!label) continue;
+      pushItem(
+        pv?.occurredAt,
+        `Visited the "${label}" page.`,
+        analyticsBehavior?.webActivity?.recentSignals ? "medium" : "low"
+      );
+    }
+
+    for (const action of actions
+      .filter((item) =>
+        isRecentIso(item?.occurredAt, SUMMARY_ACTIVITY_WINDOW_DAYS)
+      )
+      .slice(0, 3)) {
+      const actionHighlight = buildAnalyticsActionHighlight(action);
+      if (!actionHighlight) continue;
+      pushItem(
+        action?.occurredAt,
+        actionHighlight,
+        analyticsBehavior?.webActivity?.recentSignals ? "medium" : "low"
+      );
+    }
   }
 
   return items;
@@ -994,6 +1088,8 @@ function buildSalesNarrativeInput({
   productInterest,
   opportunityContext,
   analyticsBehavior,
+  hubspotPageHistory,
+  hubspotEmailEngagement,
   websiteActivity,
   supplementalEngagementEvidence
 }) {
@@ -1269,14 +1365,28 @@ function buildSalesNarrativeInput({
     .map((e) => ({
       date: yyyyMmDd(e?.occurredAt) || null,
       highlight: buildSalesEventLabel(e),
-      importance: e?.importance || null
+      importance: e?.importance || null,
+      source: "salesforce"
     }))
     .filter((e) => e.date && e.highlight);
+
+  const hubspotRecentEngagement = buildHubspotRecentEngagement({
+    hubspotPageHistory
+  });
+  for (const supplemental of hubspotRecentEngagement) {
+    recentEngagement.push(supplemental);
+  }
+  for (const supplemental of buildHubspotEmailRecentEngagement({
+    hubspotEmailEngagement
+  })) {
+    recentEngagement.push(supplemental);
+  }
 
   for (const supplemental of buildAnalyticsRecentEngagement({
     analyticsBehavior,
     recentConversionName,
-    recentConversionDate
+    recentConversionDate,
+    suppressWebActivityHighlights: hubspotRecentEngagement.length > 0
   })) {
     recentEngagement.push(supplemental);
   }
@@ -1293,6 +1403,10 @@ function buildSalesNarrativeInput({
     const importanceDelta =
       (rank[b.importance] || 0) - (rank[a.importance] || 0);
     if (importanceDelta !== 0) return importanceDelta;
+    const sourceRank = { hubspot: 3, analytics: 2, salesforce: 1 };
+    const sourceDelta =
+      (sourceRank[b.source] || 0) - (sourceRank[a.source] || 0);
+    if (sourceDelta !== 0) return sourceDelta;
     return engagementSpecificityScore(b) - engagementSpecificityScore(a);
   });
   const seenRecentEngagement = new Set();

@@ -88,11 +88,33 @@ async function getContactProperties({
   baseUrl,
   hsContactId,
   properties,
+  propertiesWithHistory,
+  timeoutMs
+}) {
+  const record = await getContactRecord({
+    token,
+    baseUrl,
+    hsContactId,
+    properties,
+    propertiesWithHistory,
+    timeoutMs
+  });
+  return record?.properties || null;
+}
+
+async function getContactRecord({
+  token,
+  baseUrl,
+  hsContactId,
+  properties,
+  propertiesWithHistory,
   timeoutMs
 }) {
   if (!hsContactId) return null;
   const params = new URLSearchParams();
   for (const p of properties || []) params.append("properties", p);
+  for (const p of propertiesWithHistory || [])
+    params.append("propertiesWithHistory", p);
   params.set("archived", "false");
   const path = `/crm/v3/objects/contacts/${encodeURIComponent(hsContactId)}?${params.toString()}`;
   const res = await hsFetchJson({
@@ -103,12 +125,13 @@ async function getContactProperties({
     timeoutMs
   });
   if (!res.ok) return null;
-  return res.json?.properties || null;
+  return res.json || null;
 }
 
 module.exports = {
   getHubspotToken,
   getHubspotBaseUrl,
   searchContactIdByEmail,
-  getContactProperties
+  getContactProperties,
+  getContactRecord
 };

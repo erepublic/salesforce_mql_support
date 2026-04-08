@@ -118,9 +118,13 @@
           "Lead_Notes__c",
           "Product__c",
           "Product_Name__c",
-          "Engagement_AI_Summary__c"
+          "Engagement_AI_Summary__c",
+          "Initial_MQL_Alert_Send__c"
         ],
-        "writeBackFields": ["Engagement_AI_Summary__c"]
+        "writeBackFields": [
+          "Engagement_AI_Summary__c",
+          "Initial_MQL_Alert_Send__c"
+        ]
       },
       "OpportunityContactRole": {
         "fields": [

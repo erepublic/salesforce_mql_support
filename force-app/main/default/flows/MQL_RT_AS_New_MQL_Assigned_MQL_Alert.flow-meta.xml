@@ -522,7 +522,7 @@
         <connector>
             <targetReference>Assign_Role_Id</targetReference>
         </connector>
-        <filterLogic>1 AND (2 OR 3)</filterLogic>
+        <filterLogic>1 AND (2 OR (3 AND 4))</filterLogic>
         <filters>
             <field>MQL_Status__c</field>
             <operator>EqualTo</operator>
@@ -531,7 +531,7 @@
             </value>
         </filters>
         <filters>
-            <field>CreatedDate</field>
+            <field>Initial_MQL_Alert_Send__c</field>
             <operator>IsChanged</operator>
             <value>
                 <booleanValue>true</booleanValue>
@@ -542,6 +542,13 @@
             <operator>IsChanged</operator>
             <value>
                 <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Initial_MQL_Alert_Send__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
             </value>
         </filters>
         <object>MQL__c</object>
