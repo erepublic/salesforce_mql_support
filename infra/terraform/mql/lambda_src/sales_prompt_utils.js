@@ -15,6 +15,11 @@ const DEFAULT_SUMMARY_TIME_ZONE =
 const SUMMARY_ACTIVITY_WINDOW_DAYS = 60;
 const dateFormatterCache = new Map();
 
+function isSalesforceId(value) {
+  const s = String(value || "").trim();
+  return /^[A-Za-z0-9]{15}(?:[A-Za-z0-9]{3})?$/.test(s);
+}
+
 function yyyyMmDd(iso, timeZone = DEFAULT_SUMMARY_TIME_ZONE) {
   const raw = String(iso || "").trim();
   if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw;
@@ -46,9 +51,8 @@ function redactInlineText(s) {
   // Phone-ish sequences (very rough)
   out = out.replace(/\+?\d[\d\s().-]{7,}\d/g, "[redacted]");
   // Salesforce-style record IDs should never be visible in seller-facing text.
-  out = out.replace(
-    /\b(?:003|00Q|00T|006|a0X|a0k|a0w|aDF)[A-Za-z0-9]{12,15}\b/g,
-    "[redacted]"
+  out = out.replace(/\b[A-Za-z0-9]{15}(?:[A-Za-z0-9]{3})?\b/g, (token) =>
+    isSalesforceId(token) ? "[redacted]" : token
   );
   return out;
 }
@@ -575,8 +579,22 @@ function titleizeSlug(slug) {
   });
 }
 
+function preferredResolvedLabel(...values) {
+  for (const value of values) {
+    const cleaned = cleanedText(value, 120);
+    if (cleaned && cleaned !== "[redacted]") return cleaned;
+  }
+  return null;
+}
+
 function labelFromPath(pathValue) {
-  const raw = String(pathValue || "").split(/[?#]/)[0];
+  let raw = String(pathValue || "").trim();
+  if (!raw) return null;
+  try {
+    raw = new URL(raw).pathname || raw;
+  } catch {
+    raw = raw.split(/[?#]/)[0];
+  }
   if (!raw) return null;
   const originalSegments = raw
     .split("/")
@@ -613,7 +631,9 @@ function labelFromPath(pathValue) {
     return "Pre-RFP Opportunity";
   }
 
-  const segments = originalSegments.filter((segment) => !/^\d+$/.test(segment));
+  const segments = originalSegments.filter(
+    (segment) => !/^\d+$/.test(segment) && !isSalesforceId(segment)
+  );
   const ignored = new Set([
     "content",
     "article",
@@ -689,33 +709,48 @@ function buildAnalyticsActionHighlight(action) {
   const lowerAction = String(action?.action || "")
     .trim()
     .toLowerCase();
+  const resolvedValueLabel = preferredResolvedLabel(action?.resolvedValueLabel);
+  const resolvedPathLabel = preferredResolvedLabel(
+    action?.resolvedPathLabel,
+    action?.resolvedLabel
+  );
   const valueLabel = cleanedText(action?.value, 120);
   const safeValue =
     valueLabel && !/^\d+$/.test(valueLabel)
       ? redactInlineText(valueLabel)
       : null;
-  const pathLabel = labelFromPath(action?.path);
+  const usableValue =
+    safeValue && !/^\[redacted\](?:\s+\[redacted\])*$/i.test(safeValue)
+      ? safeValue
+      : null;
+  const pathLabel =
+    resolvedPathLabel || labelFromPath(action?.path || action?.url);
 
   if (lowerAction.includes("savedsearch")) return null;
   if (
-    safeValue &&
+    (resolvedValueLabel || usableValue) &&
     /(email|mail)/.test(lowerAction) &&
     /click/.test(lowerAction)
   ) {
-    return `Clicked "${safeValue}" email.`;
+    return `Clicked "${resolvedValueLabel || usableValue}" email.`;
   }
   if (
-    safeValue &&
+    (resolvedValueLabel || usableValue) &&
     /(email|mail)/.test(lowerAction) &&
     /open/.test(lowerAction)
   ) {
-    return `Opened "${safeValue}" email.`;
+    return `Opened "${resolvedValueLabel || usableValue}" email.`;
   }
-  if (safeValue && /(register|registration)/.test(lowerAction)) {
-    return `Registered for "${safeValue}".`;
+  if (
+    (resolvedValueLabel || usableValue) &&
+    /(register|registration)/.test(lowerAction)
+  ) {
+    return `Registered for "${resolvedValueLabel || usableValue}".`;
   }
   if (pathLabel) return `Visited the "${pathLabel}" page.`;
-  if (safeValue) return `Interacted with "${safeValue}".`;
+  if (resolvedValueLabel || usableValue) {
+    return `Interacted with "${resolvedValueLabel || usableValue}".`;
+  }
   return humanizeAnalyticsAction(action?.action);
 }
 
@@ -748,6 +783,7 @@ function collectEngagementThemes({
   for (const item of Array.isArray(supplementalEngagementEvidence)
     ? supplementalEngagementEvidence
     : []) {
+    if (item?.resolvedLabel) textPool.push(String(item.resolvedLabel));
     if (item?.text) textPool.push(String(item.text));
   }
   for (const pv of Array.isArray(
@@ -755,6 +791,7 @@ function collectEngagementThemes({
   )
     ? analyticsBehavior.webActivity.recentPageviews
     : []) {
+    if (pv?.resolvedLabel) textPool.push(String(pv.resolvedLabel));
     if (pv?.path) textPool.push(String(pv.path));
   }
   for (const action of Array.isArray(
@@ -762,6 +799,10 @@ function collectEngagementThemes({
   )
     ? analyticsBehavior.webActivity.recentActions
     : []) {
+    if (action?.resolvedPathLabel)
+      textPool.push(String(action.resolvedPathLabel));
+    if (action?.resolvedValueLabel)
+      textPool.push(String(action.resolvedValueLabel));
     if (action?.path) textPool.push(String(action.path));
     if (action?.action) textPool.push(String(action.action));
     if (action?.value) textPool.push(String(action.value));
@@ -801,6 +842,8 @@ function collectEngagementThemes({
 }
 
 function highlightFromSupplementalEvidence(item) {
+  const explicitLabel = preferredResolvedLabel(item?.resolvedLabel);
+  if (explicitLabel) return `Visited the "${explicitLabel}" page.`;
   const raw = String(item?.text || "").trim();
   if (!raw) return null;
   let pathname = null;
@@ -843,7 +886,8 @@ function buildHubspotRecentEngagement({ hubspotPageHistory }) {
     ? hubspotPageHistory
     : []) {
     if (!isRecentIso(item?.occurredAt, SUMMARY_ACTIVITY_WINDOW_DAYS)) continue;
-    const label = labelFromPath(item?.path);
+    const label =
+      preferredResolvedLabel(item?.resolvedLabel) || labelFromPath(item?.path);
     const date = yyyyMmDd(item?.occurredAt);
     if (!date || !label) continue;
     const key = `${date}|${label}`;
@@ -930,6 +974,7 @@ function buildAnalyticsRecentEngagement({
   analyticsBehavior,
   recentConversionName,
   recentConversionDate,
+  recentConversionSummaryOverride,
   suppressWebActivityHighlights
 }) {
   const items = [];
@@ -956,6 +1001,7 @@ function buildAnalyticsRecentEngagement({
     isRecentIso(recentConversionDate, SUMMARY_ACTIVITY_WINDOW_DAYS)
   ) {
     const conversionSummary =
+      recentConversionSummaryOverride ||
       describeRecentConversion(recentConversionName) ||
       `Recent conversion - ${redactInlineText(recentConversionName)}.`;
     pushItem(recentConversionDate, conversionSummary, "medium");
@@ -975,7 +1021,8 @@ function buildAnalyticsRecentEngagement({
         isRecentIso(item?.occurredAt, SUMMARY_ACTIVITY_WINDOW_DAYS)
       )
       .slice(0, 4)) {
-      const label = labelFromPath(pv?.path);
+      const label =
+        preferredResolvedLabel(pv?.resolvedLabel) || labelFromPath(pv?.path);
       if (!label) continue;
       pushItem(
         pv?.occurredAt,
@@ -1091,7 +1138,8 @@ function buildSalesNarrativeInput({
   hubspotPageHistory,
   hubspotEmailEngagement,
   websiteActivity,
-  supplementalEngagementEvidence
+  supplementalEngagementEvidence,
+  recentConversionSummaryOverride
 }) {
   const events = Array.isArray(historyEvents) ? historyEvents : [];
   const newestFirst = [...events].sort(
@@ -1145,6 +1193,7 @@ function buildSalesNarrativeInput({
   const recentConversionDate =
     contact?.HubSpot_Recent_Conversion_Date__c || null;
   const recentConversionSummary =
+    recentConversionSummaryOverride ||
     describeRecentConversion(recentConversionName);
   const hasInboundRequest =
     newestFirst.some((e) => e?.eventType === "contactUsSubmitted") ||
@@ -1386,6 +1435,7 @@ function buildSalesNarrativeInput({
     analyticsBehavior,
     recentConversionName,
     recentConversionDate,
+    recentConversionSummaryOverride,
     suppressWebActivityHighlights: hubspotRecentEngagement.length > 0
   })) {
     recentEngagement.push(supplemental);

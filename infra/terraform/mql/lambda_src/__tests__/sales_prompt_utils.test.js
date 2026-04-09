@@ -821,6 +821,267 @@ test("buildSalesNarrativeInput ignores auth and member fallback URLs", () => {
   expect(out.recentEngagement).toEqual([]);
 });
 
+test("buildSalesNarrativeInput suppresses Salesforce record id pageview paths", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: { Private_Sector_Non_Qual__c: false },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    analyticsBehavior: {
+      webActivity: {
+        recentSignals: true,
+        recentPageviews: [
+          {
+            occurredAt: "2026-04-01T12:00:00.000Z",
+            path: "/A0mjw000003fcw5iac"
+          },
+          {
+            occurredAt: "2026-04-01T11:00:00.000Z",
+            path: "/events/city-manager-innovation-council"
+          }
+        ],
+        recentActions: []
+      }
+    }
+  });
+
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        'Visited the "City Manager Innovation Council" page.'
+      )
+    )
+  ).toBe(true);
+  expect(
+    out.recentEngagement.some((item) =>
+      /A0mjw000003fcw5iac|\[redacted\]/.test(item.highlight)
+    )
+  ).toBe(false);
+});
+
+test("buildSalesNarrativeInput prefers resolved Salesforce page labels when provided", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: { Private_Sector_Non_Qual__c: false },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    analyticsBehavior: {
+      webActivity: {
+        recentSignals: true,
+        recentPageviews: [
+          {
+            occurredAt: "2026-04-01T12:00:00.000Z",
+            path: "/A0mjw000003fcw5iac",
+            resolvedLabel: "California Public Sector CIO Academy"
+          }
+        ],
+        recentActions: []
+      }
+    }
+  });
+
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        'Visited the "California Public Sector CIO Academy" page.'
+      )
+    )
+  ).toBe(true);
+});
+
+test("buildSalesNarrativeInput suppresses Salesforce record URLs in supplemental evidence", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: { Private_Sector_Non_Qual__c: false },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    analyticsBehavior: null,
+    supplementalEngagementEvidence: [
+      {
+        category: "url",
+        text: "https://erepublic.my.salesforce.com/A0mjw000003fcw5iac",
+        occurredAt: "2026-04-01T12:00:00.000Z"
+      },
+      {
+        category: "url",
+        text: "https://example.com/events/city-manager-innovation-council",
+        occurredAt: "2026-04-01T11:00:00.000Z"
+      }
+    ]
+  });
+
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        'Visited the "City Manager Innovation Council" page.'
+      )
+    )
+  ).toBe(true);
+  expect(
+    out.recentEngagement.some((item) =>
+      /A0mjw000003fcw5iac|\[redacted\]|Salesforce\.Com/.test(item.highlight)
+    )
+  ).toBe(false);
+});
+
+test("buildSalesNarrativeInput uses resolved supplemental Salesforce labels when provided", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: { Private_Sector_Non_Qual__c: false },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    analyticsBehavior: null,
+    supplementalEngagementEvidence: [
+      {
+        category: "url",
+        text: "https://erepublic.my.salesforce.com/A0mjw000003fcw5iac",
+        resolvedLabel: "California Public Sector CIO Academy",
+        occurredAt: "2026-04-01T12:00:00.000Z"
+      }
+    ]
+  });
+
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        'Visited the "California Public Sector CIO Academy" page.'
+      )
+    )
+  ).toBe(true);
+});
+
+test("buildSalesNarrativeInput does not surface Salesforce ids from analytics action values", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: { Private_Sector_Non_Qual__c: false },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    analyticsBehavior: {
+      webActivity: {
+        recentSignals: true,
+        recentPageviews: [],
+        recentActions: [
+          {
+            occurredAt: "2026-04-01T12:00:00.000Z",
+            action: "registration.submit",
+            value: "A0mjw000003fcw5iac"
+          }
+        ]
+      }
+    }
+  });
+
+  expect(
+    out.recentEngagement.some((item) =>
+      /A0mjw000003fcw5iac|\[redacted\]/.test(item.highlight)
+    )
+  ).toBe(false);
+});
+
+test("buildSalesNarrativeInput uses resolved Salesforce labels for registration actions", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: { Private_Sector_Non_Qual__c: false },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    analyticsBehavior: {
+      webActivity: {
+        recentSignals: true,
+        recentPageviews: [],
+        recentActions: [
+          {
+            occurredAt: "2026-04-01T12:00:00.000Z",
+            action: "registration.submit",
+            value: "A0mjw000003fcw5iac",
+            resolvedValueLabel: "California Public Sector CIO Academy"
+          }
+        ]
+      }
+    }
+  });
+
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        'Registered for "California Public Sector CIO Academy".'
+      )
+    )
+  ).toBe(true);
+});
+
+test("buildSalesNarrativeInput uses a recent conversion summary override when provided", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-03-29"
+    },
+    contact: {
+      Private_Sector_Non_Qual__c: false,
+      HubSpot_Recent_Conversion__c:
+        "Event Portal Integration - Clicked Sponsor Link and Logged In",
+      HubSpot_Recent_Conversion_Date__c: "2026-04-01"
+    },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    analyticsBehavior: {
+      webActivity: {
+        recentSignals: true,
+        recentPageviews: [],
+        recentActions: []
+      }
+    },
+    recentConversionSummaryOverride:
+      'They recently clicked the sponsor link and logged into the event portal for "California Public Sector CIO Academy".'
+  });
+
+  expect(
+    out.recentEngagement.some((item) =>
+      item.highlight.includes(
+        'They recently clicked the sponsor link and logged into the event portal for "California Public Sector CIO Academy".'
+      )
+    )
+  ).toBe(true);
+  expect(
+    out.keyReasons.some((item) =>
+      item.includes(
+        'They recently clicked the sponsor link and logged into the event portal for "California Public Sector CIO Academy".'
+      )
+    )
+  ).toBe(true);
+});
+
 test("buildSalesNarrativeInput marks non-threshold MQLs as lead-source driven", () => {
   const out = buildSalesNarrativeInput({
     mql: {

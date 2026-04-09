@@ -218,6 +218,86 @@ test("deterministic sales summary keeps score interpretation qualitative and sup
   expect(v.ok).toBe(true);
 });
 
+test("extractSalesforceIdsFromText finds ids in raw values and URLs", () => {
+  expect(_internals.extractSalesforceIdsFromText("A0mjw000003fcw5iac")).toEqual(
+    ["A0mjw000003fcw5iac"]
+  );
+  expect(
+    _internals.extractSalesforceIdsFromText(
+      "https://erepublic.my.salesforce.com/A0mjw000003fcw5iac"
+    )
+  ).toEqual(["A0mjw000003fcw5iac"]);
+});
+
+test("resolveSalesforceReferenceInfo returns the first resolved label match", () => {
+  const resolved = new Map([
+    [
+      "A0mjw000003fcw5iac",
+      { label: "California Public Sector CIO Academy", kind: "record" }
+    ]
+  ]);
+  expect(
+    _internals.resolveSalesforceReferenceInfo(
+      "https://erepublic.my.salesforce.com/A0mjw000003fcw5iac",
+      resolved
+    )
+  ).toEqual({
+    label: "California Public Sector CIO Academy",
+    kind: "record"
+  });
+});
+
+test("buildSalesforceRecordLabel falls back to the object label", () => {
+  expect(
+    _internals.buildSalesforceRecordLabel({
+      record: null,
+      fieldNames: ["Name", "Title"],
+      fallbackLabel: "Event or Conference"
+    })
+  ).toBe("Event or Conference");
+});
+
+test("deriveRecentConversionSummaryOverride uses resolved event labels for generic portal conversions", () => {
+  expect(
+    _internals.deriveRecentConversionSummaryOverride({
+      contact: {
+        HubSpot_Recent_Conversion__c:
+          "Event Portal Integration - Clicked Sponsor Link and Logged In",
+        HubSpot_Recent_Conversion_Date__c: "2026-04-08"
+      },
+      hubspotPageHistory: [
+        {
+          occurredAt: "2026-04-08T16:20:00.000Z",
+          resolvedLabel: "EE - Colorado Digital Government Summit 2026",
+          resolvedLabelKind: "record"
+        }
+      ],
+      analyticsBehavior: null
+    })
+  ).toBe(
+    'They recently clicked the sponsor link and logged into the event portal for "EE - Colorado Digital Government Summit 2026".'
+  );
+});
+
+test("deriveRecentConversionSummaryOverride ignores non-specific object fallback labels", () => {
+  expect(
+    _internals.deriveRecentConversionSummaryOverride({
+      contact: {
+        HubSpot_Recent_Conversion__c: "Event Portal Integration - Logins",
+        HubSpot_Recent_Conversion_Date__c: "2026-04-08"
+      },
+      hubspotPageHistory: [
+        {
+          occurredAt: "2026-04-08T16:20:00.000Z",
+          resolvedLabel: "Event or Conference",
+          resolvedLabelKind: "object"
+        }
+      ],
+      analyticsBehavior: null
+    })
+  ).toBe(null);
+});
+
 test("deterministic sales summary includes threshold-path and fit-evidence explanations", () => {
   const html = _internals.buildDeterministicSalesSummaryHtml({
     thresholdExplanation: {

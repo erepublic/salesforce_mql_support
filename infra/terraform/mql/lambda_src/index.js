@@ -51,6 +51,7 @@ const {
 // Cache describe results across warm Lambda invocations to reduce Salesforce
 // round-trips and stay under API Gateway timeouts.
 const sfDescribeCache = new Map();
+const sfGlobalDescribeCache = new Map();
 
 function jsonResponse(statusCode, bodyObj) {
   return {
@@ -1329,6 +1330,470 @@ async function sfDescribeCached({
   const d = await sfDescribe({ instanceUrl, accessToken, apiVersion, sobject });
   sfDescribeCache.set(key, d);
   return d;
+}
+
+async function sfDescribeGlobal({ instanceUrl, accessToken, apiVersion }) {
+  const url = `${instanceUrl}/services/data/v${apiVersion}/sobjects`;
+  const resp = await fetch(url, {
+    headers: { authorization: `Bearer ${accessToken}` }
+  });
+  const text = await resp.text();
+  if (!resp.ok) {
+    throw new Error(
+      `Salesforce global describe failed: ${resp.status}: ${text.slice(0, 2000)}`
+    );
+  }
+  return safeJsonParse(text) || null;
+}
+
+async function sfDescribeGlobalCached({
+  instanceUrl,
+  accessToken,
+  apiVersion
+}) {
+  const key = `${instanceUrl}|v${apiVersion}|global`;
+  if (sfGlobalDescribeCache.has(key)) return sfGlobalDescribeCache.get(key);
+  const d = await sfDescribeGlobal({ instanceUrl, accessToken, apiVersion });
+  sfGlobalDescribeCache.set(key, d);
+  return d;
+}
+
+function extractSalesforceIdsFromText(rawValue) {
+  const raw = String(rawValue || "").trim();
+  if (!raw) return [];
+  const ids = new Set();
+  if (isSalesforceId(raw)) ids.add(raw);
+
+  let candidates = [];
+  try {
+    const url = new URL(raw);
+    candidates = (url.pathname || "").split("/");
+  } catch {
+    candidates = raw.split(/[/?#=&]/);
+  }
+
+  for (const token of candidates) {
+    const value = String(token || "").trim();
+    if (isSalesforceId(value)) ids.add(value);
+  }
+  return Array.from(ids);
+}
+
+function chooseSalesforceRecordLabelFields(describe) {
+  const fields = Array.isArray(describe?.fields) ? describe.fields : [];
+  const fieldMap = new Map(fields.map((field) => [field.name, field]));
+  const ordered = [];
+  function push(name) {
+    if (!name || !fieldMap.has(name) || ordered.includes(name)) return;
+    ordered.push(name);
+  }
+
+  for (const field of fields) {
+    if (field?.nameField === true) push(field.name);
+  }
+  for (const preferred of [
+    "Name",
+    "Nickname__c",
+    "Display_Name__c",
+    "Page_Title__c",
+    "Title",
+    "Subject",
+    "Label",
+    "MasterLabel",
+    "DeveloperName"
+  ]) {
+    push(preferred);
+  }
+  for (const field of fields) {
+    const type = String(field?.type || "").toLowerCase();
+    if (
+      !["string", "textarea", "picklist", "email", "url", "phone"].includes(
+        type
+      )
+    ) {
+      continue;
+    }
+    if (
+      /(name|title|subject|label|nickname)/i.test(String(field?.name || "")) ||
+      /(name|title|subject|label|nickname)/i.test(String(field?.label || ""))
+    ) {
+      push(field.name);
+    }
+    if (ordered.length >= 6) break;
+  }
+  return ordered.slice(0, 6);
+}
+
+function buildSalesforceRecordLabel({ record, fieldNames, fallbackLabel }) {
+  for (const fieldName of Array.isArray(fieldNames) ? fieldNames : []) {
+    const value = record?.[fieldName];
+    if (typeof value !== "string") continue;
+    const trimmed = value.trim();
+    if (!trimmed || isSalesforceId(trimmed)) continue;
+    return trimmed;
+  }
+  return fallbackLabel || null;
+}
+
+function resolveSalesforceReferenceInfo(rawValue, resolvedById) {
+  const map = resolvedById instanceof Map ? resolvedById : new Map();
+  for (const id of extractSalesforceIdsFromText(rawValue)) {
+    if (map.has(id)) return map.get(id);
+  }
+  return null;
+}
+
+async function resolveSalesforceRecordLabels({
+  instanceUrl,
+  accessToken,
+  apiVersion,
+  rawValues
+}) {
+  const values = Array.isArray(rawValues) ? rawValues : [];
+  const ids = Array.from(
+    new Set(values.flatMap((value) => extractSalesforceIdsFromText(value)))
+  ).slice(0, 50);
+  const resolved = new Map();
+  if (!ids.length) return resolved;
+
+  const globalDescribe = await sfDescribeGlobalCached({
+    instanceUrl,
+    accessToken,
+    apiVersion
+  });
+  const sobjects = Array.isArray(globalDescribe?.sobjects)
+    ? globalDescribe.sobjects
+    : [];
+  const sobjectsByPrefix = new Map();
+  for (const sobject of sobjects) {
+    const prefix = String(sobject?.keyPrefix || "")
+      .trim()
+      .toLowerCase();
+    if (!prefix) continue;
+    if (!sobjectsByPrefix.has(prefix)) sobjectsByPrefix.set(prefix, []);
+    sobjectsByPrefix.get(prefix).push(sobject);
+  }
+
+  const idsBySobject = new Map();
+  for (const id of ids) {
+    const prefix = String(id).slice(0, 3).toLowerCase();
+    const candidates = sobjectsByPrefix.get(prefix) || [];
+    const chosen =
+      candidates.find((item) => item?.queryable) || candidates[0] || null;
+    if (!chosen?.name) continue;
+    if (!idsBySobject.has(chosen.name)) {
+      idsBySobject.set(chosen.name, { ids: [], sobject: chosen });
+    }
+    idsBySobject.get(chosen.name).ids.push(id);
+  }
+
+  for (const [sobjectName, entry] of idsBySobject.entries()) {
+    const objectLabel =
+      String(entry?.sobject?.label || sobjectName).trim() || null;
+    const objectIds = Array.from(new Set(entry?.ids || []));
+    if (!objectIds.length) continue;
+
+    let labelFields = [];
+    try {
+      const describe = await sfDescribeCached({
+        instanceUrl,
+        accessToken,
+        apiVersion,
+        sobject: sobjectName
+      });
+      labelFields = chooseSalesforceRecordLabelFields(describe);
+    } catch {
+      labelFields = [];
+    }
+
+    if (labelFields.length) {
+      const soql = `SELECT Id, ${labelFields.join(", ")} FROM ${sobjectName} WHERE Id IN ${safeInClause(objectIds)}`;
+      const records =
+        (await trySfQueryRecords({
+          instanceUrl,
+          accessToken,
+          apiVersion,
+          soql
+        })) || [];
+      const recordsById = new Map(records.map((record) => [record.Id, record]));
+      for (const id of objectIds) {
+        const label = buildSalesforceRecordLabel({
+          record: recordsById.get(id),
+          fieldNames: labelFields,
+          fallbackLabel: objectLabel
+        });
+        if (label) {
+          resolved.set(id, {
+            label,
+            kind: recordsById.has(id) ? "record" : "object",
+            sobject: sobjectName
+          });
+        }
+      }
+      continue;
+    }
+
+    for (const id of objectIds) {
+      if (objectLabel) {
+        resolved.set(id, {
+          label: objectLabel,
+          kind: "object",
+          sobject: sobjectName
+        });
+      }
+    }
+  }
+
+  return resolved;
+}
+
+async function enrichEngagementInputsWithSalesforceLabels({
+  analyticsBehavior,
+  supplementalEngagementEvidence,
+  hubspotPageHistory,
+  instanceUrl,
+  accessToken,
+  apiVersion
+}) {
+  const rawValues = [];
+  for (const pv of Array.isArray(
+    analyticsBehavior?.webActivity?.recentPageviews
+  )
+    ? analyticsBehavior.webActivity.recentPageviews
+    : []) {
+    rawValues.push(pv?.path, pv?.url);
+  }
+  for (const action of Array.isArray(
+    analyticsBehavior?.webActivity?.recentActions
+  )
+    ? analyticsBehavior.webActivity.recentActions
+    : []) {
+    rawValues.push(action?.path, action?.url, action?.value);
+  }
+  for (const item of Array.isArray(supplementalEngagementEvidence)
+    ? supplementalEngagementEvidence
+    : []) {
+    rawValues.push(item?.text);
+  }
+  for (const item of Array.isArray(hubspotPageHistory)
+    ? hubspotPageHistory
+    : []) {
+    rawValues.push(item?.path);
+  }
+
+  const resolvedById = await resolveSalesforceRecordLabels({
+    instanceUrl,
+    accessToken,
+    apiVersion,
+    rawValues
+  });
+  if (!resolvedById.size) {
+    return {
+      analyticsBehavior,
+      supplementalEngagementEvidence,
+      hubspotPageHistory
+    };
+  }
+
+  const enrichedAnalyticsBehavior = analyticsBehavior
+    ? {
+        ...analyticsBehavior,
+        webActivity: analyticsBehavior.webActivity
+          ? {
+              ...analyticsBehavior.webActivity,
+              recentPageviews: Array.isArray(
+                analyticsBehavior.webActivity.recentPageviews
+              )
+                ? analyticsBehavior.webActivity.recentPageviews.map((item) => {
+                    const ref =
+                      resolveSalesforceReferenceInfo(
+                        item?.path,
+                        resolvedById
+                      ) ||
+                      resolveSalesforceReferenceInfo(item?.url, resolvedById);
+                    return ref
+                      ? {
+                          ...item,
+                          resolvedLabel: ref.label,
+                          resolvedLabelKind: ref.kind
+                        }
+                      : item;
+                  })
+                : analyticsBehavior.webActivity.recentPageviews,
+              recentActions: Array.isArray(
+                analyticsBehavior.webActivity.recentActions
+              )
+                ? analyticsBehavior.webActivity.recentActions.map((item) => {
+                    const pathRef =
+                      resolveSalesforceReferenceInfo(
+                        item?.path,
+                        resolvedById
+                      ) ||
+                      resolveSalesforceReferenceInfo(item?.url, resolvedById);
+                    const valueRef = resolveSalesforceReferenceInfo(
+                      item?.value,
+                      resolvedById
+                    );
+                    if (!pathRef && !valueRef) return item;
+                    return {
+                      ...item,
+                      ...(pathRef
+                        ? {
+                            resolvedPathLabel: pathRef.label,
+                            resolvedPathLabelKind: pathRef.kind
+                          }
+                        : {}),
+                      ...(valueRef
+                        ? {
+                            resolvedValueLabel: valueRef.label,
+                            resolvedValueLabelKind: valueRef.kind
+                          }
+                        : {})
+                    };
+                  })
+                : analyticsBehavior.webActivity.recentActions
+            }
+          : analyticsBehavior.webActivity
+      }
+    : analyticsBehavior;
+
+  const enrichedSupplementalEngagementEvidence = Array.isArray(
+    supplementalEngagementEvidence
+  )
+    ? supplementalEngagementEvidence.map((item) => {
+        const ref = resolveSalesforceReferenceInfo(item?.text, resolvedById);
+        return ref
+          ? { ...item, resolvedLabel: ref.label, resolvedLabelKind: ref.kind }
+          : item;
+      })
+    : supplementalEngagementEvidence;
+
+  const enrichedHubspotPageHistory = Array.isArray(hubspotPageHistory)
+    ? hubspotPageHistory.map((item) => {
+        const ref = resolveSalesforceReferenceInfo(item?.path, resolvedById);
+        return ref
+          ? { ...item, resolvedLabel: ref.label, resolvedLabelKind: ref.kind }
+          : item;
+      })
+    : hubspotPageHistory;
+
+  return {
+    analyticsBehavior: enrichedAnalyticsBehavior,
+    supplementalEngagementEvidence: enrichedSupplementalEngagementEvidence,
+    hubspotPageHistory: enrichedHubspotPageHistory
+  };
+}
+
+function isGenericEventPortalConversionName(name) {
+  const raw = String(name || "").trim();
+  if (!raw) return false;
+  return /^Event Portal Integration\b/i.test(raw);
+}
+
+function deriveEventPortalActionPhrase(name) {
+  const raw = String(name || "").toLowerCase();
+  if (raw.includes("clicked sponsor link") && raw.includes("logged in")) {
+    return "clicked the sponsor link and logged into";
+  }
+  if (raw.includes("clicked sponsor link")) {
+    return "clicked the sponsor link in";
+  }
+  if (/\blogins?\b/.test(raw) || raw.includes("logged in")) {
+    return "logged into";
+  }
+  return "used";
+}
+
+function collectResolvedEventPortalLabels({
+  hubspotPageHistory,
+  analyticsBehavior,
+  recentConversionDate
+}) {
+  const candidates = [];
+  const pushCandidate = (item, occurredAt, source) => {
+    const label = String(item?.resolvedLabel || "").trim();
+    if (!label) return;
+    const kind = String(item?.resolvedLabelKind || "")
+      .trim()
+      .toLowerCase();
+    if (kind && kind !== "record") return;
+    const time = Date.parse(occurredAt || 0);
+    const dateOnly =
+      typeof occurredAt === "string" ? String(occurredAt).slice(0, 10) : null;
+    if (recentConversionDate && dateOnly && dateOnly !== recentConversionDate)
+      return;
+    candidates.push({ label, occurredAt, source, time });
+  };
+
+  for (const item of Array.isArray(hubspotPageHistory)
+    ? hubspotPageHistory
+    : []) {
+    pushCandidate(item, item?.occurredAt, "hubspot");
+  }
+  for (const item of Array.isArray(
+    analyticsBehavior?.webActivity?.recentPageviews
+  )
+    ? analyticsBehavior.webActivity.recentPageviews
+    : []) {
+    pushCandidate(item, item?.occurredAt, "analytics_pageview");
+  }
+  for (const item of Array.isArray(
+    analyticsBehavior?.webActivity?.recentActions
+  )
+    ? analyticsBehavior.webActivity.recentActions
+    : []) {
+    if (item?.resolvedPathLabel) {
+      pushCandidate(
+        {
+          resolvedLabel: item.resolvedPathLabel,
+          resolvedLabelKind: item.resolvedPathLabelKind
+        },
+        item?.occurredAt,
+        "analytics_action_path"
+      );
+    }
+    if (item?.resolvedValueLabel) {
+      pushCandidate(
+        {
+          resolvedLabel: item.resolvedValueLabel,
+          resolvedLabelKind: item.resolvedValueLabelKind
+        },
+        item?.occurredAt,
+        "analytics_action_value"
+      );
+    }
+  }
+
+  return candidates
+    .sort((a, b) => {
+      const aTime = Number.isFinite(a.time) ? a.time : 0;
+      const bTime = Number.isFinite(b.time) ? b.time : 0;
+      return bTime - aTime;
+    })
+    .map((item) => item.label)
+    .filter((label, idx, arr) => arr.indexOf(label) === idx);
+}
+
+function deriveRecentConversionSummaryOverride({
+  contact,
+  hubspotPageHistory,
+  analyticsBehavior
+}) {
+  const recentConversionName = contact?.HubSpot_Recent_Conversion__c || null;
+  const recentConversionDate =
+    contact?.HubSpot_Recent_Conversion_Date__c || null;
+  if (!isGenericEventPortalConversionName(recentConversionName)) return null;
+
+  const labels = collectResolvedEventPortalLabels({
+    hubspotPageHistory,
+    analyticsBehavior,
+    recentConversionDate
+  });
+  const label = labels[0] || null;
+  if (!label) return null;
+
+  const phrase = deriveEventPortalActionPhrase(recentConversionName);
+  return `They recently ${phrase} the event portal for "${label}".`;
 }
 
 async function sfGetLimits({ instanceUrl, accessToken, apiVersion }) {
@@ -2746,6 +3211,25 @@ exports.handler = async function handler(event) {
       ...salesLeadWebEvidence,
       ...hubspotEvidence.filter((item) => item?.category === "url")
     ];
+    const resolvedEngagementInputs =
+      await enrichEngagementInputsWithSalesforceLabels({
+        analyticsBehavior,
+        supplementalEngagementEvidence,
+        hubspotPageHistory,
+        instanceUrl: sfAuth.instanceUrl,
+        accessToken: sfAuth.accessToken,
+        apiVersion
+      });
+    analyticsBehavior = resolvedEngagementInputs.analyticsBehavior;
+    const enrichedSupplementalEngagementEvidence =
+      resolvedEngagementInputs.supplementalEngagementEvidence;
+    hubspotPageHistory = resolvedEngagementInputs.hubspotPageHistory;
+    const recentConversionSummaryOverride =
+      deriveRecentConversionSummaryOverride({
+        contact,
+        hubspotPageHistory,
+        analyticsBehavior
+      });
     const evidence = [
       ...salesLeadWebEvidence,
       ...campaignEvidence,
@@ -2862,7 +3346,8 @@ exports.handler = async function handler(event) {
       hubspotPageHistory,
       hubspotEmailEngagement,
       websiteActivity,
-      supplementalEngagementEvidence
+      supplementalEngagementEvidence: enrichedSupplementalEngagementEvidence,
+      recentConversionSummaryOverride
     });
 
     const deterministic = finalizeSalesSummaryHtml({
@@ -3137,6 +3622,10 @@ exports._internals = {
   enforceSalesSummarySectionCaps,
   finalizeSalesSummaryHtml,
   safeSfRecordUrl,
+  extractSalesforceIdsFromText,
+  resolveSalesforceReferenceInfo,
+  buildSalesforceRecordLabel,
+  deriveRecentConversionSummaryOverride,
   buildOpenAiMessages,
   looksLikeFieldOrIdLeak
 };
