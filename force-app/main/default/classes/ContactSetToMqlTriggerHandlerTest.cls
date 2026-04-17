@@ -52,6 +52,15 @@ private class ContactSetToMqlTriggerHandlerTest {
     return p;
   }
 
+  private static Campaign createCampaignRecord() {
+    Campaign c = new Campaign(
+      Name = 'Hand Raiser Campaign ' + System.now(),
+      IsActive = true
+    );
+    insert c;
+    return c;
+  }
+
   @isTest
   static void createsMqlWhenSetToMqlFlipsTrueOnUpdate() {
     setupCalloutMock();
@@ -334,6 +343,7 @@ private class ContactSetToMqlTriggerHandlerTest {
     Account a = new Account(Name = 'Route A Test Account');
     insert a;
     Product2 product = createHandRaiserProduct();
+    Campaign campaign = createCampaignRecord();
 
     Opportunity opp = new Opportunity(
       Name = 'Route A Opp',
@@ -352,7 +362,14 @@ private class ContactSetToMqlTriggerHandlerTest {
       Set_to_MQL__c = false,
       Hand_Raiser_Opportunity_Id__c = opp.Id,
       Hand_Raiser_Product_Id__c = product.Id,
-      Hand_Raiser_Opp_Is_New__c = true
+      Hand_Raiser_Opp_Is_New__c = true,
+      Hand_Raiser_Lead_Source_Detail__c = '/events/sponsorship-opportunities/a0m123',
+      Hand_Raiser_Lead_Detail_1__c = 'Route A comments',
+      Hand_Raiser_Lead_Detail_2__c = 'Product: https://example.com/product',
+      Hand_Raiser_Lead_Detail_3__c = 'Route A additional context',
+      Hand_Raiser_Lead_Detail_4__c = 'Event datasheet + opp links',
+      Hand_Raiser_Campaign_Id__c = campaign.Id,
+      Hand_Raiser_Payload_Version__c = 'v1'
     );
     insert c;
 
@@ -368,6 +385,12 @@ private class ContactSetToMqlTriggerHandlerTest {
         MQL_Status__c,
         Opportunity__c,
         Product__c,
+        Lead_Source_Detail__c,
+        Lead_Detail_1__c,
+        Lead_Detail_2__c,
+        Lead_Detail_3__c,
+        Lead_Detail_4__c,
+        Campaign__c,
         Conversion_Type__c,
         Conversion_Date__c,
         Converted_By__c
@@ -396,6 +419,21 @@ private class ContactSetToMqlTriggerHandlerTest {
       'Expected Route A to preserve the explicit product on the MQL'
     );
     System.assertEquals(
+      '/events/sponsorship-opportunities/a0m123',
+      mqls[0].Lead_Source_Detail__c
+    );
+    System.assertEquals('Route A comments', mqls[0].Lead_Detail_1__c);
+    System.assertEquals(
+      'Product: https://example.com/product',
+      mqls[0].Lead_Detail_2__c
+    );
+    System.assertEquals('Route A additional context', mqls[0].Lead_Detail_3__c);
+    System.assertEquals(
+      'Event datasheet + opp links',
+      mqls[0].Lead_Detail_4__c
+    );
+    System.assertEquals(campaign.Id, mqls[0].Campaign__c);
+    System.assertEquals(
       ContactSetToMqlTriggerHandler.CONVERSION_TYPE_NEW_OPP,
       mqls[0].Conversion_Type__c,
       'Expected Conversion_Type__c = Created Opportunity'
@@ -416,7 +454,14 @@ private class ContactSetToMqlTriggerHandlerTest {
         Set_to_MQL__c,
         Hand_Raiser_Opportunity_Id__c,
         Hand_Raiser_Product_Id__c,
-        Hand_Raiser_Opp_Is_New__c
+        Hand_Raiser_Opp_Is_New__c,
+        Hand_Raiser_Lead_Source_Detail__c,
+        Hand_Raiser_Lead_Detail_1__c,
+        Hand_Raiser_Lead_Detail_2__c,
+        Hand_Raiser_Lead_Detail_3__c,
+        Hand_Raiser_Lead_Detail_4__c,
+        Hand_Raiser_Campaign_Id__c,
+        Hand_Raiser_Payload_Version__c
       FROM Contact
       WHERE Id = :c.Id
     ];
@@ -428,6 +473,13 @@ private class ContactSetToMqlTriggerHandlerTest {
       refreshed.Hand_Raiser_Opp_Is_New__c,
       'Expected Hand_Raiser_Opp_Is_New__c to be cleared after Route A'
     );
+    System.assertEquals(null, refreshed.Hand_Raiser_Lead_Source_Detail__c);
+    System.assertEquals(null, refreshed.Hand_Raiser_Lead_Detail_1__c);
+    System.assertEquals(null, refreshed.Hand_Raiser_Lead_Detail_2__c);
+    System.assertEquals(null, refreshed.Hand_Raiser_Lead_Detail_3__c);
+    System.assertEquals(null, refreshed.Hand_Raiser_Lead_Detail_4__c);
+    System.assertEquals(null, refreshed.Hand_Raiser_Campaign_Id__c);
+    System.assertEquals(null, refreshed.Hand_Raiser_Payload_Version__c);
   }
 
   // ---- Route B: Opp already existed (Hand_Raiser_Opp_Is_New__c = false/null) ----
@@ -437,6 +489,7 @@ private class ContactSetToMqlTriggerHandlerTest {
     setupCalloutMock();
     Account a = new Account(Name = 'Route B Test Account');
     insert a;
+    Campaign campaign = createCampaignRecord();
 
     Opportunity opp = new Opportunity(
       Name = 'Route B Opp',
@@ -454,7 +507,14 @@ private class ContactSetToMqlTriggerHandlerTest {
         '@example.com',
       AccountId = a.Id,
       Set_to_MQL__c = false,
-      Hand_Raiser_Opportunity_Id__c = opp.Id
+      Hand_Raiser_Opportunity_Id__c = opp.Id,
+      Hand_Raiser_Lead_Source_Detail__c = '/events/sponsorship-opportunities/a0m456',
+      Hand_Raiser_Lead_Detail_1__c = 'Route B comments',
+      Hand_Raiser_Lead_Detail_2__c = 'Product: https://example.com/product-b',
+      Hand_Raiser_Lead_Detail_3__c = 'Route B additional context',
+      Hand_Raiser_Lead_Detail_4__c = 'Route B event links',
+      Hand_Raiser_Campaign_Id__c = campaign.Id,
+      Hand_Raiser_Payload_Version__c = 'v1'
     );
     insert c;
 
@@ -464,7 +524,17 @@ private class ContactSetToMqlTriggerHandlerTest {
     Test.stopTest();
 
     List<MQL__c> mqls = [
-      SELECT Id, MQL_Status__c, Conversion_Type__c, Converted_By__c
+      SELECT
+        Id,
+        MQL_Status__c,
+        Conversion_Type__c,
+        Converted_By__c,
+        Lead_Source_Detail__c,
+        Lead_Detail_1__c,
+        Lead_Detail_2__c,
+        Lead_Detail_3__c,
+        Lead_Detail_4__c,
+        Campaign__c
       FROM MQL__c
       WHERE Contact__c = :c.Id
     ];
@@ -484,6 +554,18 @@ private class ContactSetToMqlTriggerHandlerTest {
       mqls[0].Converted_By__c,
       'Route B should not set Converted_By__c'
     );
+    System.assertEquals(
+      '/events/sponsorship-opportunities/a0m456',
+      mqls[0].Lead_Source_Detail__c
+    );
+    System.assertEquals('Route B comments', mqls[0].Lead_Detail_1__c);
+    System.assertEquals(
+      'Product: https://example.com/product-b',
+      mqls[0].Lead_Detail_2__c
+    );
+    System.assertEquals('Route B additional context', mqls[0].Lead_Detail_3__c);
+    System.assertEquals('Route B event links', mqls[0].Lead_Detail_4__c);
+    System.assertEquals(campaign.Id, mqls[0].Campaign__c);
   }
 
   @isTest

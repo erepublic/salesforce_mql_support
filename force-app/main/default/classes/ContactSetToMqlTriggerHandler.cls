@@ -71,6 +71,12 @@ public with sharing class ContactSetToMqlTriggerHandler {
     Map<Id, String> handRaiserProductIds = new Map<Id, String>();
     Map<Id, Boolean> handRaiserOppIsNew = new Map<Id, Boolean>();
     Map<Id, String> handRaiserSources = new Map<Id, String>();
+    Map<Id, String> handRaiserLeadSourceDetails = new Map<Id, String>();
+    Map<Id, String> handRaiserLeadDetail1s = new Map<Id, String>();
+    Map<Id, String> handRaiserLeadDetail2s = new Map<Id, String>();
+    Map<Id, String> handRaiserLeadDetail3s = new Map<Id, String>();
+    Map<Id, String> handRaiserLeadDetail4s = new Map<Id, String>();
+    Map<Id, String> handRaiserCampaignIds = new Map<Id, String>();
     Set<Id> thresholdContactIds = new Set<Id>();
     for (Contact c : [
       SELECT
@@ -78,7 +84,14 @@ public with sharing class ContactSetToMqlTriggerHandler {
         Hand_Raiser_Source__c,
         Hand_Raiser_Opportunity_Id__c,
         Hand_Raiser_Product_Id__c,
-        Hand_Raiser_Opp_Is_New__c
+        Hand_Raiser_Opp_Is_New__c,
+        Hand_Raiser_Lead_Source_Detail__c,
+        Hand_Raiser_Lead_Detail_1__c,
+        Hand_Raiser_Lead_Detail_2__c,
+        Hand_Raiser_Lead_Detail_3__c,
+        Hand_Raiser_Lead_Detail_4__c,
+        Hand_Raiser_Campaign_Id__c,
+        Hand_Raiser_Payload_Version__c
       FROM Contact
       WHERE Id IN :contactIdsToProcess
     ]) {
@@ -91,15 +104,33 @@ public with sharing class ContactSetToMqlTriggerHandler {
       Boolean hasExplicitHandRaiserProduct = String.isNotBlank(
         c.Hand_Raiser_Product_Id__c
       );
+      Boolean hasExplicitHandRaiserDetails =
+        String.isNotBlank(c.Hand_Raiser_Lead_Source_Detail__c) ||
+        String.isNotBlank(c.Hand_Raiser_Lead_Detail_1__c) ||
+        String.isNotBlank(c.Hand_Raiser_Lead_Detail_2__c) ||
+        String.isNotBlank(c.Hand_Raiser_Lead_Detail_3__c) ||
+        String.isNotBlank(c.Hand_Raiser_Lead_Detail_4__c) ||
+        String.isNotBlank(c.Hand_Raiser_Campaign_Id__c) ||
+        String.isNotBlank(c.Hand_Raiser_Payload_Version__c);
       if (
         hasExplicitHandRaiserSource ||
         hasExplicitHandRaiserOpp ||
-        hasExplicitHandRaiserProduct
+        hasExplicitHandRaiserProduct ||
+        hasExplicitHandRaiserDetails
       ) {
         handRaiserSources.put(c.Id, c.Hand_Raiser_Source__c);
         handRaiserOppIds.put(c.Id, c.Hand_Raiser_Opportunity_Id__c);
         handRaiserProductIds.put(c.Id, c.Hand_Raiser_Product_Id__c);
         handRaiserOppIsNew.put(c.Id, c.Hand_Raiser_Opp_Is_New__c == true);
+        handRaiserLeadSourceDetails.put(
+          c.Id,
+          c.Hand_Raiser_Lead_Source_Detail__c
+        );
+        handRaiserLeadDetail1s.put(c.Id, c.Hand_Raiser_Lead_Detail_1__c);
+        handRaiserLeadDetail2s.put(c.Id, c.Hand_Raiser_Lead_Detail_2__c);
+        handRaiserLeadDetail3s.put(c.Id, c.Hand_Raiser_Lead_Detail_3__c);
+        handRaiserLeadDetail4s.put(c.Id, c.Hand_Raiser_Lead_Detail_4__c);
+        handRaiserCampaignIds.put(c.Id, c.Hand_Raiser_Campaign_Id__c);
       } else {
         thresholdContactIds.add(c.Id);
       }
@@ -131,8 +162,21 @@ public with sharing class ContactSetToMqlTriggerHandler {
         Lead_Source__c = mqlLeadSource,
         MQL_Date__c = Date.today(),
         Opportunity__c = handRaiserOppId,
-        Product__c = handRaiserProductId
+        Product__c = handRaiserProductId,
+        Lead_Source_Detail__c = handRaiserLeadSourceDetails.get(contactId),
+        Lead_Detail_1__c = handRaiserLeadDetail1s.get(contactId),
+        Lead_Detail_2__c = handRaiserLeadDetail2s.get(contactId),
+        Lead_Detail_3__c = handRaiserLeadDetail3s.get(contactId),
+        Lead_Detail_4__c = handRaiserLeadDetail4s.get(contactId)
       );
+      String rawCampaignId = handRaiserCampaignIds.get(contactId);
+      if (String.isNotBlank(rawCampaignId)) {
+        try {
+          mql.Campaign__c = (Id) rawCampaignId;
+        } catch (Exception e) {
+          // Ignore malformed campaign ids from transit fields.
+        }
+      }
       if (isNewOpp && String.isNotBlank(handRaiserOppId)) {
         // Route A: auto-convert only when a fresh Opp already exists.
         mql.MQL_Status__c = CONVERTED_STATUS;
@@ -214,6 +258,13 @@ public with sharing class ContactSetToMqlTriggerHandler {
         resetContact.Hand_Raiser_Opportunity_Id__c = null;
         resetContact.Hand_Raiser_Product_Id__c = null;
         resetContact.Hand_Raiser_Opp_Is_New__c = false;
+        resetContact.Hand_Raiser_Lead_Source_Detail__c = null;
+        resetContact.Hand_Raiser_Lead_Detail_1__c = null;
+        resetContact.Hand_Raiser_Lead_Detail_2__c = null;
+        resetContact.Hand_Raiser_Lead_Detail_3__c = null;
+        resetContact.Hand_Raiser_Lead_Detail_4__c = null;
+        resetContact.Hand_Raiser_Campaign_Id__c = null;
+        resetContact.Hand_Raiser_Payload_Version__c = null;
       }
       contactsToReset.add(resetContact);
     }
