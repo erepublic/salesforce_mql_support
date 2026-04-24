@@ -332,6 +332,96 @@ test("buildSalesNarrativeInput falls back to a generic HubSpot click bullet when
   ).toBe(true);
 });
 
+test("buildSalesNarrativeInput prefers subject lines from recentClicks and emits one bullet per click", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-04-15"
+    },
+    contact: { Private_Sector_Non_Qual__c: false },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    hubspotEmailEngagement: {
+      lastClickAt: "2026-04-22T14:00:00.000Z",
+      lastEmailName:
+        "GT | 2026.04.22 | GovTech Event Sponsorship | Tennessee DGS",
+      recentClicks: [
+        {
+          occurredAt: "2026-04-22T14:00:00.000Z",
+          emailCampaignId: "111",
+          emailName:
+            "GT | 2026.04.22 | GovTech Event Sponsorship | Tennessee DGS",
+          subject: "May 5 is approaching fast. Are you in for Tennessee DGS?"
+        },
+        {
+          occurredAt: "2026-04-21T18:00:00.000Z",
+          emailCampaignId: "222",
+          emailName:
+            "GT | 2026.04.21 | GovTech Event Sponsorship | Tennessee DGS",
+          subject: "Last chance to lock in Tennessee DGS sponsorship"
+        }
+      ]
+    }
+  });
+
+  const emailBullets = out.recentEngagement.filter((item) =>
+    /marketing email\.$/.test(String(item.highlight || ""))
+  );
+  expect(emailBullets.length).toBe(2);
+  expect(
+    emailBullets.some(
+      (item) =>
+        item.date === "2026-04-22" &&
+        item.highlight ===
+          'Clicked the "May 5 is approaching fast. Are you in for Tennessee DGS?" marketing email.'
+    )
+  ).toBe(true);
+  expect(
+    emailBullets.some(
+      (item) =>
+        item.date === "2026-04-21" &&
+        item.highlight ===
+          'Clicked the "Last chance to lock in Tennessee DGS sponsorship" marketing email.'
+    )
+  ).toBe(true);
+});
+
+test("buildSalesNarrativeInput falls back to the internal email name when recentClicks has no subject", () => {
+  const out = buildSalesNarrativeInput({
+    mql: {
+      Lead_Source__c: "Fit and Behavior Threshold Reached",
+      MQL_Date__c: "2026-04-15"
+    },
+    contact: { Private_Sector_Non_Qual__c: false },
+    account: { Private_Sector_Non_Qual__c: false },
+    opportunities: [],
+    opportunityContactRoles: [],
+    historyEvents: [],
+    hubspotEmailEngagement: {
+      lastClickAt: "2026-04-22T14:00:00.000Z",
+      recentClicks: [
+        {
+          occurredAt: "2026-04-22T14:00:00.000Z",
+          emailCampaignId: "111",
+          emailName:
+            "Marketing|GT|Event Sponsorship|HTML|2026.04.01|GT26 - Competitor of Customers (ISAC)",
+          subject: null
+        }
+      ]
+    }
+  });
+
+  expect(
+    out.recentEngagement.some(
+      (item) =>
+        item.highlight ===
+        "Clicked a govtech event sponsorship marketing email."
+    )
+  ).toBe(true);
+});
+
 test("buildSalesNarrativeInput includes compact company context for seller-facing enrichment", () => {
   const out = buildSalesNarrativeInput({
     mql: {

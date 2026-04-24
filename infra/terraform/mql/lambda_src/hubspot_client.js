@@ -128,10 +128,112 @@ async function getContactRecord({
   return res.json || null;
 }
 
+async function fetchRecentEmailEvents({
+  token,
+  baseUrl,
+  email,
+  eventType,
+  sinceIso,
+  limit,
+  timeoutMs
+}) {
+  if (!email) return [];
+  const params = new URLSearchParams();
+  params.set("recipient", email);
+  if (eventType) params.set("eventType", String(eventType));
+  if (sinceIso) {
+    const sinceMs = Date.parse(sinceIso);
+    if (Number.isFinite(sinceMs)) {
+      params.set("startTimestamp", String(sinceMs));
+    }
+  }
+  const cap = Math.min(Math.max(Number(limit) || 50, 1), 300);
+  params.set("limit", String(Math.min(cap, 100)));
+
+  const results = [];
+  let offset = null;
+  for (let page = 0; page < 3; page++) {
+    const pageParams = new URLSearchParams(params);
+    if (offset) pageParams.set("offset", offset);
+    const path = `/email/public/v1/events?${pageParams.toString()}`;
+    const res = await hsFetchJson({
+      token,
+      baseUrl,
+      path,
+      method: "GET",
+      timeoutMs
+    });
+    if (!res.ok) break;
+    const events = Array.isArray(res.json?.events) ? res.json.events : [];
+    for (const event of events) {
+      results.push(event);
+      if (results.length >= cap) break;
+    }
+    if (results.length >= cap) break;
+    if (res.json?.hasMore && res.json?.offset) {
+      offset = String(res.json.offset);
+    } else {
+      break;
+    }
+  }
+  return results;
+}
+
+async function fetchMarketingEmails({ token, baseUrl, emailIds, timeoutMs }) {
+  // The Email Events API returns an `emailCampaignId` that identifies a legacy
+  // email send (not a row in the Marketing Email Tool CRM object), so subject
+  // lookup must go through `/email/public/v1/campaigns/{id}` rather than the
+  // `/marketing/v3/emails/batch/read` endpoint (which does not exist and 404s).
+  // Fetch each id one-at-a-time with bounded concurrency.
+  const ids = Array.from(
+    new Set(
+      (Array.isArray(emailIds) ? emailIds : [])
+        .map((id) => String(id || "").trim())
+        .filter(Boolean)
+    )
+  );
+  if (!ids.length) return new Map();
+  const out = new Map();
+  const concurrency = 4;
+  for (let i = 0; i < ids.length; i += concurrency) {
+    const chunk = ids.slice(i, i + concurrency);
+    const results = await Promise.all(
+      chunk.map((id) =>
+        hsFetchJson({
+          token,
+          baseUrl,
+          path: `/email/public/v1/campaigns/${encodeURIComponent(id)}`,
+          method: "GET",
+          timeoutMs
+        })
+          .then((res) => ({ id, res }))
+          .catch(() => ({ id, res: { ok: false } }))
+      )
+    );
+    for (const { id, res } of results) {
+      if (!res?.ok || !res.json) continue;
+      const row = res.json;
+      const subject =
+        typeof row?.subject === "string" && row.subject.trim()
+          ? row.subject.trim()
+          : null;
+      const name =
+        typeof row?.name === "string" && row.name.trim()
+          ? row.name.trim()
+          : null;
+      if (!subject && !name) continue;
+      out.set(id, { id, name, subject });
+    }
+  }
+  return out;
+}
+
 module.exports = {
   getHubspotToken,
   getHubspotBaseUrl,
   searchContactIdByEmail,
   getContactProperties,
-  getContactRecord
+  getContactRecord,
+  fetchRecentEmailEvents,
+  fetchMarketingEmails
 };

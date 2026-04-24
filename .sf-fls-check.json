@@ -1,0 +1,6 @@
+{
+  "targetOrg": "ef3-prod",
+  "reference": "Contact.Hand_Raiser_Opportunity_Id__c",
+  "base": "origin/main",
+  "ignorePrincipals": ["^permset:Own Backup Integration Permissions$"]
+}

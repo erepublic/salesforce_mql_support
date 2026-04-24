@@ -950,20 +950,59 @@ function labelFromHubspotEmailName(name) {
   return `${uniqueSegments[0]} ${uniqueSegments[1]}`.trim();
 }
 
+function highlightForEmailClick({ subject, emailName }) {
+  const cleanSubject = cleanedText(subject, 140);
+  if (cleanSubject) {
+    return `Clicked the "${cleanSubject}" marketing email.`;
+  }
+  const emailLabel = labelFromHubspotEmailName(emailName);
+  if (emailLabel) {
+    return `Clicked a ${emailLabel.toLowerCase()} marketing email.`;
+  }
+  return "Clicked a HubSpot marketing email.";
+}
+
 function buildHubspotEmailRecentEngagement({ hubspotEmailEngagement }) {
+  const recentClicks = Array.isArray(hubspotEmailEngagement?.recentClicks)
+    ? hubspotEmailEngagement.recentClicks
+    : [];
+  if (recentClicks.length) {
+    const items = [];
+    const seen = new Set();
+    for (const click of recentClicks) {
+      if (!isRecentIso(click?.occurredAt, SUMMARY_ACTIVITY_WINDOW_DAYS))
+        continue;
+      const date = yyyyMmDd(click?.occurredAt);
+      if (!date) continue;
+      const highlight = highlightForEmailClick({
+        subject: click?.subject,
+        emailName: click?.emailName
+      });
+      const key = `${date}|${highlight}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      items.push({
+        date,
+        highlight,
+        importance: "high",
+        source: "hubspot"
+      });
+      if (items.length >= 6) break;
+    }
+    if (items.length) return items;
+  }
+
   const lastClickAt = hubspotEmailEngagement?.lastClickAt || null;
   if (!isRecentIso(lastClickAt, SUMMARY_ACTIVITY_WINDOW_DAYS)) return [];
   const date = yyyyMmDd(lastClickAt);
   if (!date) return [];
-  const emailLabel = labelFromHubspotEmailName(
-    hubspotEmailEngagement?.lastEmailName
-  );
   return [
     {
       date,
-      highlight: emailLabel
-        ? `Clicked a ${emailLabel.toLowerCase()} marketing email.`
-        : "Clicked a HubSpot marketing email.",
+      highlight: highlightForEmailClick({
+        subject: null,
+        emailName: hubspotEmailEngagement?.lastEmailName
+      }),
       importance: "high",
       source: "hubspot"
     }
@@ -1570,5 +1609,6 @@ module.exports = {
   buildSalesEventLabel,
   redactInlineText,
   yyyyMmDd,
-  isHandRaiserLeadSource
+  isHandRaiserLeadSource,
+  labelFromPath
 };

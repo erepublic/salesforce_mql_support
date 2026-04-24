@@ -27,7 +27,8 @@ const lambdaClient = new LambdaClient({});
 const allowlist = require("./mql_allowlist_v1.json");
 const {
   buildSalesNarrativeInput,
-  redactInlineText
+  redactInlineText,
+  labelFromPath
 } = require("./sales_prompt_utils");
 
 const productInterestRules = require("./product_interest_rules_v1.json");
@@ -41,7 +42,9 @@ const {
   getHubspotToken,
   getHubspotBaseUrl,
   searchContactIdByEmail,
-  getContactRecord
+  getContactRecord,
+  fetchRecentEmailEvents,
+  fetchMarketingEmails
 } = require("./hubspot_client");
 const {
   getAnalyticsDbConfig,
@@ -949,12 +952,12 @@ function buildDeterministicSalesSummaryHtml(salesNarrativeInput) {
   }
 
   return [
+    `<p><strong>Most Recent Engagement</strong></p>`,
+    ul(engagementBullets.slice(0, 12)),
     `<p><strong>Why Sales Should Care</strong></p>`,
     ul(whySales.slice(0, 5)),
     `<p><strong>Score Interpretation</strong></p>`,
     ul(scoreBullets.slice(0, 4)),
-    `<p><strong>Most Recent Engagement</strong></p>`,
-    ul(engagementBullets.slice(0, 12)),
     `<p><strong>Suggested Next Step</strong></p>`,
     ul(nextSteps.slice(0, 2))
   ].join("\n");
@@ -975,7 +978,17 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
 
   const user = [
     "Write an HTML summary with these sections (use <p><strong>Section</strong></p> headings):",
-    "1) Why Sales Should Care",
+    "1) Most Recent Engagement",
+    "   - 5-12 bullets, newest-first (most recent first).",
+    "   - Each bullet MUST start with a date (YYYY-MM-DD) then a short plain-English highlight.",
+    "   - When a specific webinar, event, or offer name is available, use that exact name instead of generic wording like 'a high-intent offer'.",
+    "   - If an engagement is tied to a specific opportunity/product, mention that product in the highlight.",
+    "   - Use the provided engagement bullets as your source of truth: include all provided items (up to 12) and do not omit website-activity bullets when present.",
+    "   - Do not paraphrase the engagement highlights unless required for clarity; keep wording close so important evidence (like visits/pageviews) is preserved.",
+    "   - Mention email engagement only when it appears as an explicit dated engagement item in the provided list.",
+    "   - Do not infer email engagement from analytics alone.",
+    "   - Do not turn passive saved-search email receipts into engagement bullets.",
+    "2) Why Sales Should Care",
     "   - 3-5 bullets.",
     "   - Each bullet explains a SALES signal and why it matters now.",
     "   - Avoid technical phrasing; write like a rep-to-rep handoff.",
@@ -987,7 +1000,7 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "   - Always state whether there are open opportunities on the account or not.",
     "   - If recent company opportunity history is present, use it to explain whether this looks like active account motion, expansion, adjacent-product interest, or re-engagement.",
     "   - Do not put outreach recommendations in this section.",
-    "2) Score Interpretation",
+    "3) Score Interpretation",
     "   - 2-4 bullets. Do not output more than 4 bullets.",
     "   - Include Fit and Intent qualitative interpretation (Strong/Moderate/Light).",
     "   - Explain why the company and contact look like a fit, and how the MQL qualified.",
@@ -998,16 +1011,6 @@ function buildOpenAiMessages({ salesNarrativeInput }) {
     "   - Do not mention engagement score, numeric scores, thresholds, cutoffs, or score matrices.",
     "   - Favor business/value framing over technical explanation.",
     "   - If an inbound request exists, treat as time-sensitive, but still flag any fit concerns.",
-    "3) Most Recent Engagement",
-    "   - 5-12 bullets, newest-first (most recent first).",
-    "   - Each bullet MUST start with a date (YYYY-MM-DD) then a short plain-English highlight.",
-    "   - When a specific webinar, event, or offer name is available, use that exact name instead of generic wording like 'a high-intent offer'.",
-    "   - If an engagement is tied to a specific opportunity/product, mention that product in the highlight.",
-    "   - Use the provided engagement bullets as your source of truth: include all provided items (up to 12) and do not omit website-activity bullets when present.",
-    "   - Do not paraphrase the engagement highlights unless required for clarity; keep wording close so important evidence (like visits/pageviews) is preserved.",
-    "   - Mention email engagement only when it appears as an explicit dated engagement item in the provided list.",
-    "   - Do not infer email engagement from analytics alone.",
-    "   - Do not turn passive saved-search email receipts into engagement bullets.",
     "4) Suggested Next Step",
     "   - 1-2 bullets: best outreach angle + what to verify + urgency.",
     "   - Prefer a Business Issue / Value / Power / Plan flow: clarify the buyer's business issue and urgency, confirm the value or success criteria, identify who is involved in the decision, and establish a mutual next meeting or checkpoint.",
@@ -1704,6 +1707,18 @@ function deriveEventPortalActionPhrase(name) {
   return "used";
 }
 
+const EVENT_PORTAL_DATE_WINDOW_DAYS = 2;
+const EVENT_PORTAL_PATH_REGEX = /(^|\/)(auth\/)?event(s)?(\/|$)/i;
+
+function isWithinDateWindow(occurredAt, anchorDate, windowDays) {
+  if (!anchorDate) return true;
+  const anchorMs = Date.parse(`${String(anchorDate).slice(0, 10)}T00:00:00Z`);
+  const occurredMs = Date.parse(occurredAt);
+  if (!Number.isFinite(anchorMs) || !Number.isFinite(occurredMs)) return false;
+  const windowMs = Math.max(0, Number(windowDays) || 0) * 24 * 60 * 60 * 1000;
+  return Math.abs(occurredMs - anchorMs) <= windowMs + 24 * 60 * 60 * 1000;
+}
+
 function collectResolvedEventPortalLabels({
   hubspotPageHistory,
   analyticsBehavior,
@@ -1717,11 +1732,16 @@ function collectResolvedEventPortalLabels({
       .trim()
       .toLowerCase();
     if (kind && kind !== "record") return;
-    const time = Date.parse(occurredAt || 0);
-    const dateOnly =
-      typeof occurredAt === "string" ? String(occurredAt).slice(0, 10) : null;
-    if (recentConversionDate && dateOnly && dateOnly !== recentConversionDate)
+    if (
+      !isWithinDateWindow(
+        occurredAt,
+        recentConversionDate,
+        EVENT_PORTAL_DATE_WINDOW_DAYS
+      )
+    ) {
       return;
+    }
+    const time = Date.parse(occurredAt || 0);
     candidates.push({ label, occurredAt, source, time });
   };
 
@@ -1774,10 +1794,89 @@ function collectResolvedEventPortalLabels({
     .filter((label, idx, arr) => arr.indexOf(label) === idx);
 }
 
+function extractEventPortalSlugLabel(rawPath) {
+  const raw = String(rawPath || "").trim();
+  if (!raw) return null;
+  let pathname = raw;
+  try {
+    pathname = new URL(raw).pathname || raw;
+  } catch {
+    pathname = raw.split(/[?#]/)[0];
+  }
+  if (!pathname) return null;
+  // Strip the "/auth/events" or "/events" prefix so labelFromPath (which
+  // deliberately filters out auth/login segments) can still titleize the
+  // remaining event slug.
+  const trimmed = pathname.replace(/^\/?(auth\/)?event(s)?\//i, "/");
+  if (!/[a-z0-9]/i.test(trimmed)) return null;
+  return labelFromPath(trimmed);
+}
+
+function collectEventPortalSlugFallbackLabels({
+  hubspotPageHistory,
+  analyticsBehavior,
+  supplementalEngagementEvidence,
+  recentConversionDate
+}) {
+  const candidates = [];
+  const pushCandidate = (rawPath, occurredAt) => {
+    const path = String(rawPath || "").trim();
+    if (!path) return;
+    if (!EVENT_PORTAL_PATH_REGEX.test(path)) return;
+    if (
+      !isWithinDateWindow(
+        occurredAt,
+        recentConversionDate,
+        EVENT_PORTAL_DATE_WINDOW_DAYS
+      )
+    ) {
+      return;
+    }
+    const label = extractEventPortalSlugLabel(path);
+    if (!label) return;
+    candidates.push({ label, time: Date.parse(occurredAt || 0) });
+  };
+
+  for (const item of Array.isArray(hubspotPageHistory)
+    ? hubspotPageHistory
+    : []) {
+    pushCandidate(item?.path, item?.occurredAt);
+  }
+  for (const item of Array.isArray(
+    analyticsBehavior?.webActivity?.recentPageviews
+  )
+    ? analyticsBehavior.webActivity.recentPageviews
+    : []) {
+    pushCandidate(item?.path, item?.occurredAt);
+  }
+  for (const item of Array.isArray(
+    analyticsBehavior?.webActivity?.recentActions
+  )
+    ? analyticsBehavior.webActivity.recentActions
+    : []) {
+    pushCandidate(item?.path, item?.occurredAt);
+  }
+  for (const item of Array.isArray(supplementalEngagementEvidence)
+    ? supplementalEngagementEvidence
+    : []) {
+    pushCandidate(item?.text, item?.occurredAt);
+  }
+
+  return candidates
+    .sort((a, b) => {
+      const aTime = Number.isFinite(a.time) ? a.time : 0;
+      const bTime = Number.isFinite(b.time) ? b.time : 0;
+      return bTime - aTime;
+    })
+    .map((item) => item.label)
+    .filter((label, idx, arr) => arr.indexOf(label) === idx);
+}
+
 function deriveRecentConversionSummaryOverride({
   contact,
   hubspotPageHistory,
-  analyticsBehavior
+  analyticsBehavior,
+  supplementalEngagementEvidence
 }) {
   const recentConversionName = contact?.HubSpot_Recent_Conversion__c || null;
   const recentConversionDate =
@@ -1789,7 +1888,16 @@ function deriveRecentConversionSummaryOverride({
     analyticsBehavior,
     recentConversionDate
   });
-  const label = labels[0] || null;
+  let label = labels[0] || null;
+  if (!label) {
+    const slugLabels = collectEventPortalSlugFallbackLabels({
+      hubspotPageHistory,
+      analyticsBehavior,
+      supplementalEngagementEvidence,
+      recentConversionDate
+    });
+    label = slugLabels[0] || null;
+  }
   if (!label) return null;
 
   const phrase = deriveEventPortalActionPhrase(recentConversionName);
@@ -3142,6 +3250,124 @@ exports.handler = async function handler(event) {
                 })
               : null;
 
+          // Best-effort: pull historical CLICK events (last 60 days) so the
+          // summary can show more than just the most recent click, and attach
+          // each email's real subject line instead of the internal campaign
+          // name. If the token is missing scope or the API fails, we leave the
+          // single-click fallback in place.
+          try {
+            const sinceMs = Date.now() - 60 * 24 * 60 * 60 * 1000;
+            const sinceIso = new Date(sinceMs).toISOString();
+            const clickEvents = await fetchRecentEmailEvents({
+              token,
+              baseUrl,
+              email: contact.Email,
+              eventType: "CLICK",
+              sinceIso,
+              limit: 100,
+              timeoutMs
+            });
+            if (Array.isArray(clickEvents) && clickEvents.length) {
+              // Dedupe by emailCampaignId keeping the newest click per campaign.
+              const byCampaign = new Map();
+              const fallback = [];
+              for (const event of clickEvents) {
+                const createdMs = Number(event?.created);
+                const occurredAt = Number.isFinite(createdMs)
+                  ? new Date(createdMs).toISOString()
+                  : null;
+                const campaignId =
+                  event?.emailCampaignId != null
+                    ? String(event.emailCampaignId)
+                    : null;
+                const payload = {
+                  occurredAt,
+                  emailCampaignId: campaignId,
+                  emailName:
+                    typeof event?.emailCampaignName === "string"
+                      ? event.emailCampaignName
+                      : null,
+                  clickedUrl: typeof event?.url === "string" ? event.url : null
+                };
+                if (!occurredAt) continue;
+                if (campaignId) {
+                  const existing = byCampaign.get(campaignId);
+                  if (
+                    !existing ||
+                    Date.parse(payload.occurredAt) >
+                      Date.parse(existing.occurredAt)
+                  ) {
+                    byCampaign.set(campaignId, payload);
+                  }
+                } else {
+                  fallback.push(payload);
+                }
+              }
+              const deduped = [...Array.from(byCampaign.values()), ...fallback]
+                .sort(
+                  (a, b) => Date.parse(b.occurredAt) - Date.parse(a.occurredAt)
+                )
+                .slice(0, 6);
+
+              // Resolve subject lines for unique email IDs via the batch read.
+              const uniqueIds = Array.from(
+                new Set(
+                  deduped.map((item) => item.emailCampaignId).filter(Boolean)
+                )
+              );
+              let subjectById = new Map();
+              if (uniqueIds.length) {
+                try {
+                  subjectById = await fetchMarketingEmails({
+                    token,
+                    baseUrl,
+                    emailIds: uniqueIds,
+                    timeoutMs
+                  });
+                } catch {
+                  subjectById = new Map();
+                }
+              }
+
+              const lastEmailName =
+                hubspotEmailEngagement?.lastEmailName || null;
+              const recentClicks = deduped.map((item) => {
+                const resolved = item.emailCampaignId
+                  ? subjectById.get(item.emailCampaignId)
+                  : null;
+                return {
+                  occurredAt: item.occurredAt,
+                  emailCampaignId: item.emailCampaignId,
+                  emailName: resolved?.name || item.emailName || null,
+                  subject: resolved?.subject || null,
+                  clickedUrl: item.clickedUrl || null
+                };
+              });
+              // If the event-level campaign name was missing and the contact
+              // property has one, backfill the newest click so the fallback
+              // label stays meaningful.
+              if (
+                recentClicks.length &&
+                !recentClicks[0].emailName &&
+                lastEmailName
+              ) {
+                recentClicks[0].emailName = lastEmailName;
+              }
+
+              if (recentClicks.length) {
+                hubspotEmailEngagement = compactObject({
+                  ...(hubspotEmailEngagement || {}),
+                  recentClicks
+                });
+              }
+            }
+          } catch (err) {
+            console.warn("hubspot_email_events_failed", {
+              name: err?.name || null,
+              message: err?.message || null
+            });
+          }
+
           // Map HubSpot website activity into sales-facing, system-agnostic fields.
           if (hubspotContactProps && typeof hubspotContactProps === "object") {
             websiteActivity = compactObject({
@@ -3228,7 +3454,8 @@ exports.handler = async function handler(event) {
       deriveRecentConversionSummaryOverride({
         contact,
         hubspotPageHistory,
-        analyticsBehavior
+        analyticsBehavior,
+        supplementalEngagementEvidence: enrichedSupplementalEngagementEvidence
       });
     const evidence = [
       ...salesLeadWebEvidence,

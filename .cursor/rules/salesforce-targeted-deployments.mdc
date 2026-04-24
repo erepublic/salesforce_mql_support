@@ -39,3 +39,17 @@ sf project deploy start \
 - Do NOT deploy the entire `force-app/` tree unless explicitly requested.
 - Do NOT use `--test-level RunLocalTests` or `RunAllTestsInOrg` unless explicitly requested.
 - Prefer listing individual files/folders under `force-app/main/default/` rather than broad globs.
+
+## Field-Level Security (FLS) Preflight
+
+When a deploy introduces or modifies `force-app/main/default/objects/<Object>/fields/*.field-meta.xml`, run the FLS parity preflight BEFORE promoting the deploy to any integration-facing environment:
+
+```sh
+npm run fls:preflight
+```
+
+Defaults live in `.sf-fls-check.json` (target org, reference field). The check compares every new field's Edit grants in the org against a known-good reference field and fails the deploy if the integration profile/permset coverage is narrower.
+
+Motivation: on 2026-04-17 a v1 Events Portal payload shipped 7 new Contact fields without Edit FLS on the integration profile. Every MQL PATCH was silently rejected with `No such column ...` for 6 days, producing 77 Opportunities with 0 MQLs. This preflight catches that class of regression before a release reaches prod.
+
+When the preflight fails, add the missing `<fieldPermissions editable="true" readable="true">` entries to the relevant profile (or PermissionSet) metadata and include them in the targeted deploy above. Include the field XMLs in the same deploy package or Salesforce will skip the profile-level `fieldPermissions` entries for fields not in the package.

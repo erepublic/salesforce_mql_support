@@ -298,6 +298,115 @@ test("deriveRecentConversionSummaryOverride ignores non-specific object fallback
   ).toBe(null);
 });
 
+test("deriveRecentConversionSummaryOverride resolves when the page visit is within the +/- 2 day window", () => {
+  expect(
+    _internals.deriveRecentConversionSummaryOverride({
+      contact: {
+        HubSpot_Recent_Conversion__c: "Event Portal Integration - Logins",
+        HubSpot_Recent_Conversion_Date__c: "2026-04-08"
+      },
+      hubspotPageHistory: [
+        {
+          occurredAt: "2026-04-06T14:00:00.000Z",
+          resolvedLabel: "EE - Tennessee Digital Government Summit 2026",
+          resolvedLabelKind: "record"
+        }
+      ],
+      analyticsBehavior: null
+    })
+  ).toBe(
+    'They recently logged into the event portal for "EE - Tennessee Digital Government Summit 2026".'
+  );
+});
+
+test("deriveRecentConversionSummaryOverride ignores page visits outside the +/- 2 day window", () => {
+  expect(
+    _internals.deriveRecentConversionSummaryOverride({
+      contact: {
+        HubSpot_Recent_Conversion__c: "Event Portal Integration - Logins",
+        HubSpot_Recent_Conversion_Date__c: "2026-04-08"
+      },
+      hubspotPageHistory: [
+        {
+          occurredAt: "2026-04-01T14:00:00.000Z",
+          resolvedLabel: "EE - Tennessee Digital Government Summit 2026",
+          resolvedLabelKind: "record"
+        }
+      ],
+      analyticsBehavior: null
+    })
+  ).toBe(null);
+});
+
+test("deriveRecentConversionSummaryOverride falls back to a URL slug when no SF record label resolves", () => {
+  expect(
+    _internals.deriveRecentConversionSummaryOverride({
+      contact: {
+        HubSpot_Recent_Conversion__c:
+          "Event Portal Integration - Clicked Sponsor Link and Logged In",
+        HubSpot_Recent_Conversion_Date__c: "2026-04-08"
+      },
+      hubspotPageHistory: [
+        {
+          occurredAt: "2026-04-08T16:20:00.000Z",
+          path: "/events/tennessee-dgs-2026"
+        }
+      ],
+      analyticsBehavior: null
+    })
+  ).toBe(
+    'They recently clicked the sponsor link and logged into the event portal for "Tennessee Dgs 2026".'
+  );
+});
+
+test("deriveRecentConversionSummaryOverride falls back to slug from analytics pageviews", () => {
+  expect(
+    _internals.deriveRecentConversionSummaryOverride({
+      contact: {
+        HubSpot_Recent_Conversion__c: "Event Portal Integration - Logins",
+        HubSpot_Recent_Conversion_Date__c: "2026-04-08"
+      },
+      hubspotPageHistory: [],
+      analyticsBehavior: {
+        webActivity: {
+          recentPageviews: [
+            {
+              occurredAt: "2026-04-09T14:00:00.000Z",
+              path: "/auth/events/colorado-digital-summit"
+            }
+          ]
+        }
+      }
+    })
+  ).toBe(
+    'They recently logged into the event portal for "Colorado Digital Summit".'
+  );
+});
+
+test("deterministic sales summary renders Most Recent Engagement as the first section", () => {
+  const html = _internals.buildDeterministicSalesSummaryHtml({
+    fit: {
+      concerns: [],
+      looksGood: true,
+      companyTier: "High",
+      contactTier: "High"
+    },
+    opportunity: { hasOpenOpportunity: false },
+    recentEngagement: [{ date: "2026-04-22", highlight: "Inbound request" }]
+  });
+
+  const engagementIdx = html.indexOf(
+    "<p><strong>Most Recent Engagement</strong></p>"
+  );
+  const whyIdx = html.indexOf("<p><strong>Why Sales Should Care</strong></p>");
+  const scoreIdx = html.indexOf("<p><strong>Score Interpretation</strong></p>");
+  const nextIdx = html.indexOf("<p><strong>Suggested Next Step</strong></p>");
+  expect(engagementIdx).toBeGreaterThan(-1);
+  expect(whyIdx).toBeGreaterThan(engagementIdx);
+  expect(scoreIdx).toBeGreaterThan(whyIdx);
+  expect(nextIdx).toBeGreaterThan(scoreIdx);
+});
+
 test("deterministic sales summary includes threshold-path and fit-evidence explanations", () => {
   const html = _internals.buildDeterministicSalesSummaryHtml({
     thresholdExplanation: {

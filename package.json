@@ -20,6 +20,7 @@
     "sf:deploy:sandbox": "sf project deploy start --target-org mql-sandbox --source-dir force-app --test-level RunLocalTests",
     "sf:validate:prod": "sf project deploy validate --target-org mql-prod --source-dir force-app --test-level RunLocalTests",
     "sf:quick:prod": "node scripts/deploy-quick-prod.js",
+    "fls:preflight": "node scripts/check-fls-parity.js",
     "prepare": "husky || true",
     "precommit": "lint-staged"
   },
