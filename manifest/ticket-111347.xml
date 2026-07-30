@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+  <types>
+    <members>ContactSetToMqlTriggerHandler</members>
+    <members>ContactSetToMqlTriggerHandlerTest</members>
+    <name>ApexClass</name>
+  </types>
+  <types>
+    <members>Contact.Hand_Raiser_Transaction_Id__c</members>
+    <name>CustomField</name>
+  </types>
+  <types>
+    <members>Hand_Raiser_Product_Access</members>
+    <name>PermissionSet</name>
+  </types>
+  <types>
+    <members>Force%2Ecom User - Force%2Ecom App</members>
+    <members>Force%2Ecom User - Web App</members>
+    <members>Salesforce API Only System Integrations</members>
+    <members>Standard Power Admin - Elevated Access</members>
+    <members>Standard Power Admin</members>
+    <members>Standard Sales Rep</members>
+    <members>System Admin User - Sales Layouts</members>
+    <members>System Admin User - Standard Layouts</members>
+    <members>System Administrator</members>
+    <name>Profile</name>
+  </types>
+  <version>67.0</version>
+</Package>

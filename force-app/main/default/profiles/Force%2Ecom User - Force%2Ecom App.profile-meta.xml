@@ -218,4 +218,9 @@
         <field>Contact.Hand_Raiser_Product_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Hand_Raiser_Transaction_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
 </Profile>

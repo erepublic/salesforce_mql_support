@@ -340,6 +340,7 @@ private class ContactSetToMqlTriggerHandlerTest {
   @isTest
   static void routeA_createsConvertedMqlWithConversionFields() {
     setupCalloutMock();
+    String transactionId = 'ep-route-a-000001';
     Account a = new Account(Name = 'Route A Test Account');
     insert a;
     Product2 product = createHandRaiserProduct();
@@ -349,7 +350,8 @@ private class ContactSetToMqlTriggerHandlerTest {
       Name = 'Route A Opp',
       AccountId = a.Id,
       StageName = 'Prospecting',
-      CloseDate = Date.today().addDays(30)
+      CloseDate = Date.today().addDays(30),
+      Transaction_ID__c = transactionId
     );
     insert opp;
 
@@ -362,6 +364,7 @@ private class ContactSetToMqlTriggerHandlerTest {
       Set_to_MQL__c = false,
       Hand_Raiser_Opportunity_Id__c = opp.Id,
       Hand_Raiser_Product_Id__c = product.Id,
+      Hand_Raiser_Transaction_Id__c = transactionId,
       Hand_Raiser_Opp_Is_New__c = true,
       Hand_Raiser_Lead_Source_Detail__c = '/events/sponsorship-opportunities/a0m123',
       Hand_Raiser_Lead_Detail_1__c = 'Route A comments',
@@ -385,6 +388,7 @@ private class ContactSetToMqlTriggerHandlerTest {
         MQL_Status__c,
         Opportunity__c,
         Product__c,
+        Transaction_Id__c,
         Lead_Source_Detail__c,
         Lead_Detail_1__c,
         Lead_Detail_2__c,
@@ -417,6 +421,11 @@ private class ContactSetToMqlTriggerHandlerTest {
       product.Id,
       mqls[0].Product__c,
       'Expected Route A to preserve the explicit product on the MQL'
+    );
+    System.assertEquals(
+      opp.Transaction_ID__c,
+      mqls[0].Transaction_Id__c,
+      'Route A MQL and Opportunity transaction ids must match exactly'
     );
     System.assertEquals(
       '/events/sponsorship-opportunities/a0m123',
@@ -454,6 +463,7 @@ private class ContactSetToMqlTriggerHandlerTest {
         Set_to_MQL__c,
         Hand_Raiser_Opportunity_Id__c,
         Hand_Raiser_Product_Id__c,
+        Hand_Raiser_Transaction_Id__c,
         Hand_Raiser_Opp_Is_New__c,
         Hand_Raiser_Lead_Source_Detail__c,
         Hand_Raiser_Lead_Detail_1__c,
@@ -468,6 +478,7 @@ private class ContactSetToMqlTriggerHandlerTest {
     System.assertEquals(false, refreshed.Set_to_MQL__c);
     System.assertEquals(null, refreshed.Hand_Raiser_Opportunity_Id__c);
     System.assertEquals(null, refreshed.Hand_Raiser_Product_Id__c);
+    System.assertEquals(null, refreshed.Hand_Raiser_Transaction_Id__c);
     System.assertEquals(
       false,
       refreshed.Hand_Raiser_Opp_Is_New__c,
@@ -487,6 +498,7 @@ private class ContactSetToMqlTriggerHandlerTest {
   @isTest
   static void routeB_createsNewMqlWithoutConversionFields() {
     setupCalloutMock();
+    String transactionId = 'ep-route-b-000001';
     Account a = new Account(Name = 'Route B Test Account');
     insert a;
     Campaign campaign = createCampaignRecord();
@@ -508,6 +520,7 @@ private class ContactSetToMqlTriggerHandlerTest {
       AccountId = a.Id,
       Set_to_MQL__c = false,
       Hand_Raiser_Opportunity_Id__c = opp.Id,
+      Hand_Raiser_Transaction_Id__c = transactionId,
       Hand_Raiser_Lead_Source_Detail__c = '/events/sponsorship-opportunities/a0m456',
       Hand_Raiser_Lead_Detail_1__c = 'Route B comments',
       Hand_Raiser_Lead_Detail_2__c = 'Product: https://example.com/product-b',
@@ -527,6 +540,7 @@ private class ContactSetToMqlTriggerHandlerTest {
       SELECT
         Id,
         MQL_Status__c,
+        Transaction_Id__c,
         Conversion_Type__c,
         Converted_By__c,
         Lead_Source_Detail__c,
@@ -543,6 +557,11 @@ private class ContactSetToMqlTriggerHandlerTest {
       ContactSetToMqlTriggerHandler.NEW_STATUS,
       mqls[0].MQL_Status__c,
       'Route B MQL should be New for sales review'
+    );
+    System.assertEquals(
+      transactionId,
+      mqls[0].Transaction_Id__c,
+      'Route B MQL must retain the current submission transaction id'
     );
     System.assertEquals(
       null,
@@ -624,6 +643,71 @@ private class ContactSetToMqlTriggerHandlerTest {
   }
 
   @isTest
+  static void ef3NewOppSignalWithoutOppIdStaysNew() {
+    setupCalloutMock();
+    String transactionId = '123456789';
+    Product2 handRaiserProduct = createHandRaiserProduct();
+    Contact c = createContact(false);
+
+    Test.startTest();
+    c.Set_to_MQL__c = true;
+    c.Hand_Raiser_Source__c = ContactSetToMqlTriggerHandler.CMS_HAND_RAISER_SOURCE;
+    c.Hand_Raiser_Product_Id__c = handRaiserProduct.Id;
+    c.Hand_Raiser_Transaction_Id__c = transactionId;
+    c.Hand_Raiser_Opp_Is_New__c = true;
+    update c;
+    Test.stopTest();
+
+    List<MQL__c> mqls = [
+      SELECT
+        Id,
+        Lead_Source__c,
+        MQL_Status__c,
+        Opportunity__c,
+        Product__c,
+        Transaction_Id__c,
+        Conversion_Type__c,
+        Conversion_Date__c,
+        Converted_By__c
+      FROM MQL__c
+      WHERE Contact__c = :c.Id
+    ];
+    System.assertEquals(1, mqls.size(), 'Expected one EF3 hand-raiser MQL');
+    System.assertEquals(
+      ContactSetToMqlTriggerHandler.CMS_HAND_RAISER_LEAD_SOURCE,
+      mqls[0].Lead_Source__c,
+      'Expected EF3 hand-raisers to map to Submitted a Form'
+    );
+    System.assertEquals(
+      ContactSetToMqlTriggerHandler.NEW_STATUS,
+      mqls[0].MQL_Status__c,
+      'EF3 new-opportunity signals without an Opportunity Id must stay New'
+    );
+    System.assertEquals(
+      null,
+      mqls[0].Opportunity__c,
+      'Expected no linked Opportunity when CMS did not provide one'
+    );
+    System.assertEquals(
+      handRaiserProduct.Id,
+      mqls[0].Product__c,
+      'Expected the CMS product to be preserved'
+    );
+    System.assertEquals(
+      transactionId,
+      mqls[0].Transaction_Id__c,
+      'Expected the EF3 form submission id to be preserved on the MQL'
+    );
+    System.assertEquals(
+      null,
+      mqls[0].Conversion_Type__c,
+      'Missing-opportunity CMS hand-raisers must not be marked Created Opportunity'
+    );
+    System.assertEquals(null, mqls[0].Conversion_Date__c);
+    System.assertEquals(null, mqls[0].Converted_By__c);
+  }
+
+  @isTest
   static void productOnlyHandRaiserBypassesThresholdPath() {
     setupCalloutMock();
     createThresholdProduct();
@@ -672,6 +756,184 @@ private class ContactSetToMqlTriggerHandlerTest {
       null,
       refreshed.Hand_Raiser_Product_Id__c,
       'Expected Hand_Raiser_Product_Id__c to be cleared after processing'
+    );
+  }
+
+  @isTest
+  static void eventsPortalHandRaiserDedupesSameContactAndProductWithinWindow() {
+    setupCalloutMock();
+    String transactionId = 'ep-dedupe-000001';
+    Product2 handRaiserProduct = createHandRaiserProduct();
+    Contact c = createContact(false);
+
+    insert new MQL__c(
+      Contact__c = c.Id,
+      Product__c = handRaiserProduct.Id,
+      Lead_Source__c = ContactSetToMqlTriggerHandler.EVENTS_PORTAL_LEAD_SOURCE,
+      MQL_Status__c = ContactSetToMqlTriggerHandler.NEW_STATUS,
+      MQL_Date__c = Date.today(),
+      Transaction_Id__c = transactionId
+    );
+
+    Test.startTest();
+    c.Set_to_MQL__c = true;
+    c.Hand_Raiser_Product_Id__c = handRaiserProduct.Id;
+    c.Hand_Raiser_Transaction_Id__c = transactionId;
+    c.Hand_Raiser_Lead_Detail_3__c = 'Duplicate Events Portal signal';
+    update c;
+    Test.stopTest();
+
+    Integer eventsPortalCount = [
+      SELECT COUNT()
+      FROM MQL__c
+      WHERE
+        Contact__c = :c.Id
+        AND Product__c = :handRaiserProduct.Id
+        AND Lead_Source__c = :ContactSetToMqlTriggerHandler.EVENTS_PORTAL_LEAD_SOURCE
+    ];
+    System.assertEquals(
+      1,
+      eventsPortalCount,
+      'Expected recent same-contact same-product Events Portal hand raiser to be deduped'
+    );
+
+    Contact refreshed = [
+      SELECT
+        Set_to_MQL__c,
+        Hand_Raiser_Product_Id__c,
+        Hand_Raiser_Lead_Detail_3__c
+      FROM Contact
+      WHERE Id = :c.Id
+    ];
+    System.assertEquals(
+      false,
+      refreshed.Set_to_MQL__c,
+      'Expected Set_to_MQL__c to reset even when hand-raiser creation is skipped'
+    );
+    System.assertEquals(null, refreshed.Hand_Raiser_Product_Id__c);
+    System.assertEquals(null, refreshed.Hand_Raiser_Lead_Detail_3__c);
+  }
+
+  @isTest
+  static void eventsPortalHandRaiserAllowsDifferentTransactionWithinWindow() {
+    setupCalloutMock();
+    Product2 handRaiserProduct = createHandRaiserProduct();
+    Contact c = createContact(false);
+
+    insert new MQL__c(
+      Contact__c = c.Id,
+      Product__c = handRaiserProduct.Id,
+      Lead_Source__c = ContactSetToMqlTriggerHandler.EVENTS_PORTAL_LEAD_SOURCE,
+      MQL_Status__c = ContactSetToMqlTriggerHandler.NEW_STATUS,
+      MQL_Date__c = Date.today(),
+      Transaction_Id__c = 'ep-distinct-000001'
+    );
+
+    Test.startTest();
+    c.Set_to_MQL__c = true;
+    c.Hand_Raiser_Product_Id__c = handRaiserProduct.Id;
+    c.Hand_Raiser_Transaction_Id__c = 'ep-distinct-000002';
+    update c;
+    Test.stopTest();
+
+    List<MQL__c> mqls = [
+      SELECT Transaction_Id__c
+      FROM MQL__c
+      WHERE
+        Contact__c = :c.Id
+        AND Product__c = :handRaiserProduct.Id
+        AND Lead_Source__c = :ContactSetToMqlTriggerHandler.EVENTS_PORTAL_LEAD_SOURCE
+      ORDER BY Transaction_Id__c
+    ];
+    System.assertEquals(
+      2,
+      mqls.size(),
+      'Distinct submissions must not be suppressed by contact/product dedupe'
+    );
+    System.assertEquals('ep-distinct-000001', mqls[0].Transaction_Id__c);
+    System.assertEquals('ep-distinct-000002', mqls[1].Transaction_Id__c);
+  }
+
+  @isTest
+  static void eventsPortalHandRaiserAllowsSameContactDifferentProduct() {
+    setupCalloutMock();
+    Product2 existingProduct = createHandRaiserProduct();
+    Product2 newProduct = createHandRaiserProduct();
+    Contact c = createContact(false);
+
+    insert new MQL__c(
+      Contact__c = c.Id,
+      Product__c = existingProduct.Id,
+      Lead_Source__c = ContactSetToMqlTriggerHandler.EVENTS_PORTAL_LEAD_SOURCE,
+      MQL_Status__c = ContactSetToMqlTriggerHandler.NEW_STATUS,
+      MQL_Date__c = Date.today()
+    );
+
+    Test.startTest();
+    c.Set_to_MQL__c = true;
+    c.Hand_Raiser_Product_Id__c = newProduct.Id;
+    c.Hand_Raiser_Lead_Detail_3__c = 'Different Events Portal product';
+    update c;
+    Test.stopTest();
+
+    Integer eventsPortalCount = [
+      SELECT COUNT()
+      FROM MQL__c
+      WHERE
+        Contact__c = :c.Id
+        AND Lead_Source__c = :ContactSetToMqlTriggerHandler.EVENTS_PORTAL_LEAD_SOURCE
+    ];
+    System.assertEquals(
+      2,
+      eventsPortalCount,
+      'Expected same-contact Events Portal hand raisers for different products to be allowed'
+    );
+  }
+
+  @isTest
+  static void eventsPortalHandRaiserAllowsSameContactAndProductAfterWindow() {
+    setupCalloutMock();
+    String transactionId = 'ep-window-000001';
+    Product2 handRaiserProduct = createHandRaiserProduct();
+    Contact c = createContact(false);
+
+    MQL__c existingMql = new MQL__c(
+      Contact__c = c.Id,
+      Product__c = handRaiserProduct.Id,
+      Lead_Source__c = ContactSetToMqlTriggerHandler.EVENTS_PORTAL_LEAD_SOURCE,
+      MQL_Status__c = ContactSetToMqlTriggerHandler.NEW_STATUS,
+      MQL_Date__c = Date.today(),
+      Transaction_Id__c = transactionId
+    );
+    insert existingMql;
+    Test.setCreatedDate(
+      existingMql.Id,
+      System.now()
+        .addMinutes(
+          -ContactSetToMqlTriggerHandler.HAND_RAISER_DEDUPE_MINUTES - 1
+        )
+    );
+
+    Test.startTest();
+    c.Set_to_MQL__c = true;
+    c.Hand_Raiser_Product_Id__c = handRaiserProduct.Id;
+    c.Hand_Raiser_Transaction_Id__c = transactionId;
+    c.Hand_Raiser_Lead_Detail_3__c = 'New Events Portal signal after window';
+    update c;
+    Test.stopTest();
+
+    Integer eventsPortalCount = [
+      SELECT COUNT()
+      FROM MQL__c
+      WHERE
+        Contact__c = :c.Id
+        AND Product__c = :handRaiserProduct.Id
+        AND Lead_Source__c = :ContactSetToMqlTriggerHandler.EVENTS_PORTAL_LEAD_SOURCE
+    ];
+    System.assertEquals(
+      2,
+      eventsPortalCount,
+      'Expected same-contact same-product Events Portal hand raiser after the window to be allowed'
     );
   }
 

@@ -19,6 +19,8 @@ public with sharing class ContactSetToMqlTriggerHandler {
   private static final String THRESHOLD_PRODUCT_NAME = 'Lead Opportunity - MQL Threshold';
   @TestVisible
   private static final Integer RECENT_MQL_DEDUPE_DAYS = 30;
+  @TestVisible
+  private static final Integer HAND_RAISER_DEDUPE_MINUTES = 60;
 
   public static void handleAfterInsert(List<Contact> newContacts) {
     if (newContacts == null || newContacts.isEmpty()) {
@@ -69,6 +71,7 @@ public with sharing class ContactSetToMqlTriggerHandler {
     // fired the trigger, so we query fresh values here.
     Map<Id, String> handRaiserOppIds = new Map<Id, String>();
     Map<Id, String> handRaiserProductIds = new Map<Id, String>();
+    Map<Id, String> handRaiserTransactionIds = new Map<Id, String>();
     Map<Id, Boolean> handRaiserOppIsNew = new Map<Id, Boolean>();
     Map<Id, String> handRaiserSources = new Map<Id, String>();
     Map<Id, String> handRaiserLeadSourceDetails = new Map<Id, String>();
@@ -84,6 +87,7 @@ public with sharing class ContactSetToMqlTriggerHandler {
         Hand_Raiser_Source__c,
         Hand_Raiser_Opportunity_Id__c,
         Hand_Raiser_Product_Id__c,
+        Hand_Raiser_Transaction_Id__c,
         Hand_Raiser_Opp_Is_New__c,
         Hand_Raiser_Lead_Source_Detail__c,
         Hand_Raiser_Lead_Detail_1__c,
@@ -104,6 +108,9 @@ public with sharing class ContactSetToMqlTriggerHandler {
       Boolean hasExplicitHandRaiserProduct = String.isNotBlank(
         c.Hand_Raiser_Product_Id__c
       );
+      Boolean hasExplicitHandRaiserTransaction = String.isNotBlank(
+        c.Hand_Raiser_Transaction_Id__c
+      );
       Boolean hasExplicitHandRaiserDetails =
         String.isNotBlank(c.Hand_Raiser_Lead_Source_Detail__c) ||
         String.isNotBlank(c.Hand_Raiser_Lead_Detail_1__c) ||
@@ -116,11 +123,13 @@ public with sharing class ContactSetToMqlTriggerHandler {
         hasExplicitHandRaiserSource ||
         hasExplicitHandRaiserOpp ||
         hasExplicitHandRaiserProduct ||
+        hasExplicitHandRaiserTransaction ||
         hasExplicitHandRaiserDetails
       ) {
         handRaiserSources.put(c.Id, c.Hand_Raiser_Source__c);
         handRaiserOppIds.put(c.Id, c.Hand_Raiser_Opportunity_Id__c);
         handRaiserProductIds.put(c.Id, c.Hand_Raiser_Product_Id__c);
+        handRaiserTransactionIds.put(c.Id, c.Hand_Raiser_Transaction_Id__c);
         handRaiserOppIsNew.put(c.Id, c.Hand_Raiser_Opp_Is_New__c == true);
         handRaiserLeadSourceDetails.put(
           c.Id,
@@ -142,8 +151,49 @@ public with sharing class ContactSetToMqlTriggerHandler {
     //   bypasses the sales queue and the rep can start working it immediately.
     // Route B (no new opp, reused opp, or mql-only handoff): create the MQL as
     //   New so the sales team reviews and routes the lead.
-    // Dedup is intentionally skipped for both routes because the transit fields
-    // are an explicit hand-raiser signal from an upstream system.
+    // Events Portal clicks/submits can arrive as multiple hand-raiser signals
+    // for the same product. Suppress near-duplicate queue items, while leaving
+    // CMS hand-raisers and productless handoffs untouched.
+    Set<Id> eventsPortalHandRaiserContactIds = new Set<Id>();
+    Set<Id> eventsPortalHandRaiserProductIds = new Set<Id>();
+    for (Id contactId : handRaiserSources.keySet()) {
+      String handRaiserSource = handRaiserSources.get(contactId);
+      if (handRaiserSource == CMS_HAND_RAISER_SOURCE) {
+        continue;
+      }
+      String rawHandRaiserProductId = handRaiserProductIds.get(contactId);
+      if (String.isNotBlank(rawHandRaiserProductId)) {
+        eventsPortalHandRaiserContactIds.add(contactId);
+        eventsPortalHandRaiserProductIds.add((Id) rawHandRaiserProductId);
+      }
+    }
+
+    Set<String> recentEventsPortalMqlKeys = new Set<String>();
+    if (
+      !eventsPortalHandRaiserContactIds.isEmpty() &&
+      !eventsPortalHandRaiserProductIds.isEmpty()
+    ) {
+      DateTime dedupeCutoff = System.now()
+        .addMinutes(-HAND_RAISER_DEDUPE_MINUTES);
+      for (MQL__c mql : [
+        SELECT Contact__c, Product__c, Transaction_Id__c
+        FROM MQL__c
+        WHERE
+          Lead_Source__c = :EVENTS_PORTAL_LEAD_SOURCE
+          AND Contact__c IN :eventsPortalHandRaiserContactIds
+          AND Product__c IN :eventsPortalHandRaiserProductIds
+          AND CreatedDate >= :dedupeCutoff
+      ]) {
+        recentEventsPortalMqlKeys.add(
+          handRaiserDedupeKey(
+            mql.Contact__c,
+            mql.Product__c,
+            mql.Transaction_Id__c
+          )
+        );
+      }
+    }
+
     List<MQL__c> handRaiserMqls = new List<MQL__c>();
     for (Id contactId : handRaiserSources.keySet()) {
       String handRaiserSource = handRaiserSources.get(contactId);
@@ -163,6 +213,7 @@ public with sharing class ContactSetToMqlTriggerHandler {
         MQL_Date__c = Date.today(),
         Opportunity__c = handRaiserOppId,
         Product__c = handRaiserProductId,
+        Transaction_Id__c = handRaiserTransactionIds.get(contactId),
         Lead_Source_Detail__c = handRaiserLeadSourceDetails.get(contactId),
         Lead_Detail_1__c = handRaiserLeadDetail1s.get(contactId),
         Lead_Detail_2__c = handRaiserLeadDetail2s.get(contactId),
@@ -186,6 +237,21 @@ public with sharing class ContactSetToMqlTriggerHandler {
       } else {
         // Route B: queue for sales review.
         mql.MQL_Status__c = NEW_STATUS;
+      }
+      String dedupeKey = handRaiserDedupeKey(
+        contactId,
+        handRaiserProductId,
+        handRaiserTransactionIds.get(contactId)
+      );
+      if (
+        mqlLeadSource == EVENTS_PORTAL_LEAD_SOURCE &&
+        handRaiserProductId != null &&
+        recentEventsPortalMqlKeys.contains(dedupeKey)
+      ) {
+        continue;
+      }
+      if (mqlLeadSource == EVENTS_PORTAL_LEAD_SOURCE && dedupeKey != null) {
+        recentEventsPortalMqlKeys.add(dedupeKey);
       }
       handRaiserMqls.add(mql);
     }
@@ -257,6 +323,7 @@ public with sharing class ContactSetToMqlTriggerHandler {
         resetContact.Hand_Raiser_Source__c = null;
         resetContact.Hand_Raiser_Opportunity_Id__c = null;
         resetContact.Hand_Raiser_Product_Id__c = null;
+        resetContact.Hand_Raiser_Transaction_Id__c = null;
         resetContact.Hand_Raiser_Opp_Is_New__c = false;
         resetContact.Hand_Raiser_Lead_Source_Detail__c = null;
         resetContact.Hand_Raiser_Lead_Detail_1__c = null;
@@ -271,5 +338,19 @@ public with sharing class ContactSetToMqlTriggerHandler {
     if (!contactsToReset.isEmpty()) {
       update contactsToReset;
     }
+  }
+
+  private static String handRaiserDedupeKey(
+    Id contactId,
+    Id productId,
+    String transactionId
+  ) {
+    if (contactId == null || productId == null) {
+      return null;
+    }
+    String key = String.valueOf(contactId) + '|' + String.valueOf(productId);
+    return String.isBlank(transactionId)
+      ? key
+      : key + '|' + transactionId.trim();
   }
 }

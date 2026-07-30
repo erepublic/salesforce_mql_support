@@ -560,10 +560,6 @@
     </userPermissions>
     <userPermissions>
         <enabled>true</enabled>
-        <name>SendExternalEmailAvailable</name>
-    </userPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
         <name>SendSitRequests</name>
     </userPermissions>
     <userPermissions>
@@ -724,6 +720,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>Contact.Hand_Raiser_Product_Id__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>Contact.Hand_Raiser_Transaction_Id__c</field>
         <readable>true</readable>
     </fieldPermissions>
 </Profile>
